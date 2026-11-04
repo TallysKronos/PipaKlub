@@ -1,139 +1,131 @@
 extends Control
-const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
-const Hud = preload("res://scripts/campaign/hud.gd")
-const Layout = preload("res://scripts/campaign/hud_layout.gd")
-signal chosen(action: String)
-var player: Dictionary = {}
-var battle_paused := false
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
+const Hud=preload("res://scripts/campaign/hud.gd")
+const Ink=preload("res://scripts/campaign/battle_ink.gd")
+signal chosen(action:String)
+var player:Dictionary={}
+var battle_paused:=false
 var partner_portrait:Texture2D
-var focus_action:="resume"
+var focus_action:="team"
 var buttons:Dictionary={}
-var column:VBoxContainer
-var card:PanelContainer
+var canvas:Control
+var description:Label
+const OPTIONS=[
+	["Pipamons","team","team","Gerencie seus Pipamons e cuide dos seus parceiros."],
+	["Itens","bag","bag","Consulte materiais, itens e lembranças da jornada."],
+	["Missões","missions","missoes","Veja seus objetivos e os próximos passos da aventura."],
+	["Emblemas","emblems","tail","Reveja as conquistas contra os chefes de bairro."],
+	["Tamer (Perfil)","identity","info","Sua identidade, experiência e história como pipeiro."],
+	["Oficina","workshop","line","Confira suas rabiolas e construa novos elos no ateliê."],
+	["Salvar","save","save","Guarde a jornada sem sair do lugar."],
+	["Config.","settings","settings","Ajuste vídeo, áudio, controles e acessibilidade."]]
+
+class Tile extends Button:
+	var art:Texture2D
+	var illustrated:=false
+	var accent:Color=Hud.CYAN
+	var selected:=false
+	func _ready() -> void:
+		set_meta("recorte_decorated",true)
+		for state in ["normal","hover","pressed","focus","disabled"]:add_theme_stylebox_override(state,StyleBoxEmpty.new())
+		for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color","font_hover_pressed_color"]:add_theme_color_override(state,Color.TRANSPARENT)
+		focus_entered.connect(queue_redraw);focus_exited.connect(queue_redraw);mouse_entered.connect(queue_redraw);mouse_exited.connect(queue_redraw)
+	func _draw() -> void:
+		var active:bool=has_focus() or is_hovered() or selected
+		var edge:Color=Hud.GOLD if active else Hud.CYAN
+		if disabled:edge=Color("536980")
+		var r:=Rect2(4,4,size.x-8,size.y-10)
+		shape(Rect2(r.position+Vector2(0,5),r.size),Color("071322"),Color("071322"),5)
+		shape(r,Color("102944") if active else Color("102139"),edge,4)
+		shape(r.grow(-7),Color("142d48"),Color("416686"),1)
+		for i in 6:draw_line(Vector2(size.x-22-i*8,12),Vector2(size.x-40-i*8,30),Color(edge,.3),2)
+		for x in range(24,int(size.x)-20,12):draw_circle(Vector2(x,size.y-28+(x%3)*3),1,Color("355371"))
+		draw_line(Vector2(18,34),Vector2(34,16),edge,5)
+		draw_line(Vector2(size.x-41,size.y-15),Vector2(size.x-22,size.y-34),Hud.GOLD if active else accent,5)
+		if art!=null:
+			var target:=Hud.fit_texture(art,Rect2(68,17,size.x-136,90))
+			if illustrated:
+				draw_texture_rect(art,target,false,Color(1,1,1,.4 if disabled else 1))
+			else:
+				for offset in [Vector2(-3,0),Vector2(3,0),Vector2(0,-3),Vector2(0,3)]:draw_texture_rect(art,Rect2(target.position+offset,target.size),false,Hud.BLACK)
+				draw_texture_rect(art,target,false,Color("8892a4") if disabled else accent.lightened(.3))
+		var font:=Hud.font(true);var font_size:=28
+		var width:=font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
+		draw_string(font,Vector2((size.x-width)/2+2,139+2),text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Hud.BLACK)
+		draw_string(font,Vector2((size.x-width)/2,139),text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Hud.MUTED if disabled else Hud.PAPER)
+		if active:draw_line(Vector2(26,size.y-19),Vector2(size.x-52,size.y-19),Hud.GOLD,2)
+	func shape(r:Rect2,fill:Color,edge:Color,width:float) -> void:
+		var a:=r.position;var b:=r.end;var k:=15.0
+		var p:=PackedVector2Array([a+Vector2(k,0),Vector2(b.x-k,a.y),Vector2(b.x,a.y+k),b-Vector2(0,k),b-Vector2(k,0),Vector2(a.x+k,b.y),Vector2(a.x,b.y-k),a+Vector2(0,k)])
+		draw_colored_polygon(p,fill);p.append(p[0]);draw_polyline(p,edge,width,true)
+
+class DescriptionPlate extends Control:
+	func _draw() -> void:
+		Ink.plate(self,Rect2(0,0,size.x,size.y),Color("092136"),Hud.CYAN,20)
+		draw_line(Vector2(20,size.y-5),Vector2(size.x-38,size.y-5),Color("358ba2"),1)
+
 func _ready() -> void:
-	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	mouse_filter = Control.MOUSE_FILTER_STOP
-	column = VBoxContainer.new()
-	column.add_theme_constant_override("separation",int(Layout.space("s")))
-	add_child(column)
-	var title := Label.new()
-	title.text = "UM RESPIRO"
-	title.add_theme_font_override("font", Hud.display())
-	title.add_theme_font_size_override("font_size", 40)
-	column.add_child(title)
-	var subtitle:=Label.new()
-	subtitle.text="Batalha em pausa" if battle_paused else "A aventura espera por você."
-	subtitle.add_theme_font_size_override("font_size",Layout.type("small"))
-	subtitle.add_theme_color_override("font_color",Hud.MUTED)
-	column.add_child(subtitle)
-	var first: Button
-	var index := 0
-	for option in [["Retomar", "resume", "back"], ["Equipe", "team", "team"], ["Mochila", "bag", "bag"], ["Mapa", "map", "map"], ["Configurações", "settings", "settings"], ["Salvar jornada", "save", "save"], ["Voltar ao menu", "menu", "back"]]:
-		var margin := MarginContainer.new()
-		# Persona stair: each step 12 to the right, the same width for every button.
-		margin.add_theme_constant_override("margin_left", index * 12)
-		margin.add_theme_constant_override("margin_right", (6 - index) * 12)
-		column.add_child(margin)
-		var button := Button.new()
-		button.text = option[0]
-		Hud.navigation_button(button,true,option[2])
-		button.icon = Hud.icon(option[2])
-		button.expand_icon = true
-		button.add_theme_constant_override("icon_max_width", 30)
-		button.custom_minimum_size.y = 48
-		button.add_theme_font_size_override("font_size",Layout.type("label"))
-		button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-		button.tooltip_text=option[0]
-		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		button.pressed.connect(func(): chosen.emit(option[1]))
-		margin.add_child(button)
-		buttons[option[1]]=button
-		if index == 0: first = button
-		index += 1
-	var hints := HBoxContainer.new()
-	column.add_child(hints)
-	Hud.input_hint(hints,"accept","Confirmar")
-	Hud.input_hint(hints,"pause","Retomar")
-	card=load("res://scripts/campaign/hud_result_plate.gd").new()
-	add_child(card)
-	var details := VBoxContainer.new()
-	details.add_theme_constant_override("separation",10)
-	card.add_child(details)
-	_copy("SUA JORNADA",details,Layout.type("small"),Hud.CYAN)
-	_copy(str(player.get("name","Kael")),details,26,Hud.PAPER)
-	_copy("%d moedas"%int(player.get("coins",0)),details,Layout.type("body"),Hud.GOLD)
-	var separator:=HSeparator.new()
-	details.add_child(separator)
-	var partner_row:=HBoxContainer.new()
-	partner_row.add_theme_constant_override("separation",16)
-	details.add_child(partner_row)
-	if partner_portrait!=null:
-		var portrait:=TextureRect.new()
-		portrait.texture=partner_portrait
-		portrait.custom_minimum_size=Vector2(112,128)
-		portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-		portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		portrait.mouse_filter=MOUSE_FILTER_IGNORE
-		partner_row.add_child(portrait)
-	var partner_details:=VBoxContainer.new()
-	partner_details.size_flags_horizontal=SIZE_EXPAND_FILL
-	partner_details.add_theme_constant_override("separation",8)
-	partner_row.add_child(partner_details)
-	var found:=false
-	for partner in player.get("partners", []):
-		if partner.id != player.get("equippedPartnerId", ""): continue
-		found=true
-		var condition: Dictionary = partner.get("condition", {"line": 100, "structure": 100})
-		_copy(partner.get("personalName",partner.modelId),partner_details,22,Hud.PAPER)
-		for stat in [["Linha",condition.line,Hud.LINE],["Armação",condition.structure,Hud.GOLD]]:
-			_copy("%s · %d%%"%[stat[0],stat[1]],partner_details,Layout.type("small"),Hud.MUTED)
-			var bar:=ProgressBar.new()
-			bar.value=clampf(stat[1],0,100)
-			bar.show_percentage=false
-			bar.custom_minimum_size.y=8
-			var fill:=StyleBoxFlat.new()
-			fill.bg_color=stat[2]
-			bar.add_theme_stylebox_override("fill",fill)
-			partner_details.add_child(bar)
-		_copy("Retome quando estiver pronto." if battle_paused else "Reparos no ateliê do Sr. Assis." if condition.line<100 or condition.structure<100 else "Pronto para explorar.",details,Layout.type("small"),Hud.MUTED)
-	if not found:_copy("Sua história está começando.",partner_details,18,Hud.MUTED)
-	resized.connect(_place)
-	_place()
-	# Second pass once the card has its width and its labels wrapped to it.
-	_place.call_deferred()
-	Hud.focus_later(buttons.get(focus_action,first))
-## Menu column on the left of the safe rect, journey card on the right, both inside
-## the 16:9 column on ultrawide.
-func _place() -> void:
-	var safe:=Layout.safe_rect(size)
-	column.position=safe.position+Vector2(Layout.space("l"),Layout.space("s"))
-	column.size=Vector2(safe.size.x*.38,0)
-	var width:=safe.size.x*.38
-	# Fixed share of the safe height: wrapped labels report a word-per-line minimum
-	# before the card has a width, which would make the card fill the screen.
-	var height:=clampf(safe.size.y*.56,340,460)
-	card.size=Vector2(width,height)
-	card.size=Vector2(width,height)
-	card.position=Vector2(safe.end.x-width-Layout.space("l"),safe.position.y+(safe.size.y-height)*.42)
-	queue_redraw()
-func _copy(text:String,parent:Node,font_size:int,color:Color) -> void:
-	var label:=Label.new()
-	label.text=text
-	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	label.add_theme_font_size_override("font_size",font_size)
-	label.add_theme_color_override("font_color",color)
-	parent.add_child(label)
+	set_anchors_and_offsets_preset(PRESET_FULL_RECT);mouse_filter=MOUSE_FILTER_STOP
+	canvas=Control.new();canvas.size=Vector2(1280,720);add_child(canvas)
+	var title:=label("LOBBY DO PIPEIRO",52,Hud.PAPER);canvas.add_child(title);at(title,Vector2(160,55),Vector2(690,64))
+	var subtitle:=label("Batalha em pausa" if battle_paused else "Um respiro entre um elo e outro.",20,Hud.MUTED);canvas.add_child(subtitle);at(subtitle,Vector2(164,121),Vector2(650,30))
+	var wallet:=label("%s · %d moedas"%[player.get("name","Kael"),int(player.get("coins",0))],22,Hud.GOLD);wallet.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;wallet.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS;canvas.add_child(wallet);at(wallet,Vector2(820,86),Vector2(294,38))
+	var grid:=GridContainer.new();grid.columns=4;grid.add_theme_constant_override("h_separation",16);grid.add_theme_constant_override("v_separation",16);canvas.add_child(grid);at(grid,Vector2(160,177),Vector2(960,364))
+	var colors:Array[Color]=[Hud.GOLD,Color("efa44e"),Color("8cd7f0"),Color("c285ed"),Color("69bce3"),Color("bd8bf0"),Color("b687ee"),Color("81bfcf")]
+	for i in OPTIONS.size():
+		var option:Array=OPTIONS[i]
+		var tile:=Tile.new();tile.text=option[0];tile.custom_minimum_size=Vector2(228,174);tile.art=Hud.icon(option[2],true);tile.accent=colors[i]
+		if option[1]=="team":tile.art=partner_portrait if partner_portrait!=null else Hud.ornament(0);tile.illustrated=true
+		if option[1]=="identity":tile.art=load("res://assets/ui/key-items/carteira-pipeiro.png");tile.illustrated=true
+		if option[1]=="emblems":tile.art=load("res://assets/ui/key-items/insignia-morro-do-sol.png");tile.illustrated=true
+		if option[1]=="workshop":tile.art=load("res://assets/campaign/workshop-manga-v1/tesoura.png");tile.illustrated=true
+		if option[1] in ["identity","emblems"]:tile.disabled=not preload("res://scripts/campaign/pipeiro_identity.gd").issued(player)
+		if option[1]=="workshop":tile.disabled=battle_paused or int(player.get("journey",{}).get("lesson",0))<5
+		tile.tooltip_text=option[3]
+		if tile.disabled:tile.tooltip_text="Disponível após o treinamento com o professor." if option[1]=="workshop" else "Receba seus documentos com o professor."
+		if option[1]=="workshop" and battle_paused:tile.tooltip_text="A oficina fica disponível fora das batalhas."
+		grid.add_child(tile);buttons[option[1]]=tile
+		var action:String=option[1];var copy:String=option[3]
+		tile.pressed.connect(func():chosen.emit(action))
+		tile.focus_entered.connect(func():describe(action,copy));tile.mouse_entered.connect(func():describe(action,copy));tile.mouse_exited.connect(_restore_description)
+	var strip:=DescriptionPlate.new();canvas.add_child(strip);at(strip,Vector2(160,566),Vector2(960,54));strip.mouse_filter=MOUSE_FILTER_IGNORE
+	description=label("Gerencie seus Pipamons e cuide dos seus parceiros.",22,Hud.PAPER);description.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;description.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;canvas.add_child(description);at(description,Vector2(191,571),Vector2(898,42));description.mouse_filter=MOUSE_FILTER_IGNORE
+	var footer:=HBoxContainer.new();footer.add_theme_constant_override("separation",26);canvas.add_child(footer);at(footer,Vector2(166,650),Vector2(948,46))
+	for option in [["Retomar","resume","back"],["Mapa","map","map"],["Sair ao título","menu","back"]]:
+		var button:=Button.new();button.text=option[0];button.custom_minimum_size=Vector2(240,44);button.size_flags_horizontal=SIZE_EXPAND_FILL;Hud.navigation_button(button,true,option[2]);footer.add_child(button);buttons[option[1]]=button
+		var action:String=option[1];button.pressed.connect(func():chosen.emit(action))
+		var copy:String={"resume":"Feche o lobby e continue sua aventura.","map":"Consulte os caminhos e os lugares da sua jornada.","menu":"Volte ao título. Seu progresso salvo permanece guardado."}[action]
+		button.focus_entered.connect(func():describe(action,copy));button.mouse_entered.connect(func():describe(action,copy));button.mouse_exited.connect(_restore_description)
+	for i in OPTIONS.size():
+		var button:Button=buttons[OPTIONS[i][1]]
+		button.focus_neighbor_left=buttons[OPTIONS[(i/4)*4+posmod(i-1,4)][1]].get_path()
+		button.focus_neighbor_right=buttons[OPTIONS[(i/4)*4+posmod(i+1,4)][1]].get_path()
+		button.focus_neighbor_bottom=buttons[OPTIONS[i+4][1]].get_path() if i<4 else buttons.resume.get_path()
+		button.focus_neighbor_top=buttons[OPTIONS[i-4][1]].get_path() if i>=4 else buttons.resume.get_path()
+	buttons.resume.focus_neighbor_top=buttons.identity.get_path()
+	buttons.map.focus_neighbor_top=buttons.save.get_path()
+	buttons.menu.focus_neighbor_top=buttons.settings.get_path()
+	var initial:Button=buttons.get(focus_action,buttons.team)
+	if initial.disabled:initial=buttons.team
+	Hud.focus_later(initial)
+	resized.connect(fit);fit()
+func describe(action:String,text:String) -> void:
+	if not is_instance_valid(description):return
+	description.text=text
+	for key in buttons:
+		if buttons[key] is Tile:buttons[key].selected=key==action;buttons[key].queue_redraw()
+func _restore_description() -> void:
+	var focus:=get_viewport().gui_get_focus_owner()
+	for option in OPTIONS:
+		if buttons[option[1]]==focus:describe(option[1],option[3]);return
+func label(text:String,font_size:int,color:Color) -> Label:
+	var result:=Label.new();result.text=text;result.add_theme_font_override("font",Hud.lettering() if font_size>=40 else Hud.font(true));result.add_theme_font_size_override("font_size",font_size);result.add_theme_color_override("font_color",color);return result
+func at(node:Control,point:Vector2,extent:Vector2) -> void:node.position=point;node.size=extent
+func fit() -> void:
+	var factor:=minf(size.x/1280,size.y/720);canvas.scale=Vector2.ONE*factor;canvas.position=(size-Vector2(1280,720)*factor)/2;queue_redraw()
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, size), Tokens.VEU)
-	# The 12-degree cut follows the safe column, so ultrawide keeps the same split.
-	var safe:=Layout.safe_rect(size)
-	var top:=safe.position.x+safe.size.x*.49
-	var bottom:=top-size.y*.21
-	draw_colored_polygon(PackedVector2Array([Vector2.ZERO, Vector2(top, 0), Vector2(bottom, size.y), Vector2(0, size.y)]), Hud.INK)
-	draw_line(Vector2(top, 0), Vector2(bottom, size.y), Hud.CYAN, 4, true)
-	for x in range(20,int(bottom-8),22):
-		for y in range(20,int(size.y),22):draw_circle(Vector2(x,y),1.3,Color(Hud.PAPER,.08))
-	var kael:Texture2D=preload("res://assets/campaign/portrait-kael.png")
-	draw_texture_rect(kael,Hud.fit_texture(kael,Rect2(size.x*.58,size.y*.06,size.x*.32,size.y*.75)),false,Color(Hud.CYAN,.08))
-	var art := Hud.ornament(2)
-	draw_texture_rect(art, Hud.fit_texture(art, Rect2(size.x * .77, size.y * .73, 220, 146)), false)
+	draw_rect(Rect2(Vector2.ZERO,size),Color(.015,.04,.085,.94))
+	for x in range(0,int(size.x),32):draw_line(Vector2(x,0),Vector2(x,size.y),Color(.1,.35,.55,.13),1)
+	for y in range(0,int(size.y),32):draw_line(Vector2(0,y),Vector2(size.x,y),Color(.1,.35,.55,.13),1)
+	draw_line(Vector2(size.x*.65,size.y-6),Vector2(size.x,size.y*.76),Hud.CYAN,4,true)
+	draw_line(Vector2(0,size.y*.23),Vector2(size.x*.2,0),Color(Hud.CYAN,.3),3,true)

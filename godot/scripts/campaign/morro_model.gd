@@ -7,24 +7,34 @@ var rounds_to_win := 2
 var intermission := 0.0
 var round_message := ""
 var ai_level := 1
+const Veskoro=preload("res://scripts/campaign/veskoro_moves.gd")
+var veskoro:Dictionary={}
+static func foe_model(entry:Dictionary,index:int=0)->String:
+	return str(entry.foes[index].get("modelId",["basica","raio","mata","azulao"][int(entry.foes[index].color)]))
+func set_enemy_model(id:String)->void:
+	enemy_model_id=id
+	veskoro=Veskoro.fresh() if id=="veskoro" else {}
 
 func _init(partner: Dictionary = {}, id: String = "morro-1", progress: Dictionary = {}) -> void:
 	super(partner, {"modelId": "basica", "level": 1})
 	stage_id = id
-	var entry := Rules.stage(id)
+	var entry := stage_definition(id)
 	if entry.is_empty(): return
-	ai_level = Rules.ai_level(entry, Rules.defaults() if progress.is_empty() else progress)
+	ai_level = Rules.ai_level(entry, Rules.defaults() if progress.is_empty() else progress) if id.begins_with("morro-") else clampi(int(entry.level)-4,1,10)
 	rounds_to_win = int(entry.rounds)
 	p.merge({"name": "Seu parceiro", "rounds": 0, "out": false, "target": -1, "slot": 0, "style": "", "threatTime": 0.0})
 	actors = [p]
-	var styles: Array = Rules.content().stories[id].styles
+	var styles: Array = Rules.content().stories[id].styles if id.begins_with("morro-") else entry.styles
 	for index in entry.foes.size():
 		var anchor: float = [910, 325][index]
-		var rival := _fighter(500 + (anchor - 500) * .8, anchor, stats(1))
+		var rival := _fighter(500 + (anchor - 500) * .8, anchor, stats(1 if id.begins_with("morro-") else int(entry.level)))
 		rival.color = entry.foes[index].color
+		if not id.begins_with("morro-"):rival.level=int(entry.level)
 		rival.merge({"name": entry.foes[index].name, "rounds": 0, "out": false, "target": -1, "slot": index + 1, "style": styles[index], "threatTime": 0.0})
 		actors.append(rival)
 	q = actors[1]
+	if not id.begins_with("morro-"):
+		set_enemy_model(foe_model(entry));enemy_level=int(entry.level)
 	intro = 3.0
 	duration = 60.0
 
@@ -70,6 +80,7 @@ func tick(delta: float, input: Dictionary) -> void:
 	# Collect first, apply second: every rival can hit every other rival on the same tick.
 	for hit in hits:
 		_apply_hit(hit)
+	if enemy_model_id=="veskoro" and alive(p) and alive(q):Veskoro.tick(self,veskoro,dt)
 	for actor in actors:
 		if actor.hp <= 0 or actor.hull <= 0: actor.out = true
 	var survivors := actors.filter(alive)
@@ -93,6 +104,7 @@ func _finish_round(survivors: Array) -> void:
 	intermission = 3.2
 
 func _new_round() -> void:
+	if enemy_model_id=="veskoro":veskoro=Veskoro.fresh()
 	round_number += 1
 	intro = 3.0
 	duration = 60.0
@@ -100,6 +112,7 @@ func _new_round() -> void:
 		var old: Dictionary = actors[index]
 		var actor := _fighter(500 + (old.anchor - 500) * .8, old.anchor, old.stats)
 		for key in ["name", "rounds", "slot", "style", "color", "hull"]: actor[key] = old[key]
+		if old.has("level"):actor.level=old.level
 		actor.merge({"out": actor.hull <= 0, "target": -1, "threatTime": 0.0})
 		actors[index] = actor
 	p = actors[0]
@@ -131,6 +144,7 @@ func _hunters(slot: int, self_slot: int) -> int:
 	return actors.filter(func(a: Dictionary): return a.slot != 0 and a.slot != self_slot and alive(a) and a.target == slot).size()
 
 func _rival_input(actor: Dictionary, dt: float) -> Dictionary:
+	if is_same(actor,q) and enemy_model_id=="veskoro" and veskoro.get("phase","rest")!="rest":return {"x":0.0,"y":0.0}
 	var b := _brain(actor.style)
 	var foes := actors.filter(func(a: Dictionary): return a.slot != actor.slot and alive(a))
 	if foes.is_empty(): return {}
@@ -188,6 +202,7 @@ func attack_notice(actor: Dictionary) -> Dictionary:
 func snapshot() -> Dictionary:
 	var saved := super.snapshot()
 	saved.merge({"trailStage": stage_id, "actors": _encode(actors), "roundNumber": round_number, "roundsToWin": rounds_to_win, "intermission": intermission, "roundMessage": round_message, "aiLevel": ai_level})
+	if enemy_model_id=="veskoro":saved.veskoro=veskoro.duplicate(true)
 	return saved
 
 func restore(saved: Dictionary) -> void:
@@ -201,4 +216,12 @@ func restore(saved: Dictionary) -> void:
 	intermission = saved.intermission
 	round_message = saved.roundMessage
 	ai_level = int(saved.aiLevel)
+	veskoro=saved.get("veskoro",Veskoro.fresh()).duplicate(true) if enemy_model_id=="veskoro" else {}
 
+
+static func stage_definition(id:String) -> Dictionary:
+	if id.begins_with("morro-"):return Rules.stage(id)
+	for d:Dictionary in preload("res://scripts/campaign/district_rules.gd").catalog():
+		for stage:Dictionary in d.stages:
+			if stage.id==id and stage.get("authored",false):return stage
+	return {}

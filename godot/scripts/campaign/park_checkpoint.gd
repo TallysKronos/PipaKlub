@@ -1,19 +1,22 @@
 extends RefCounted
 ## Explicit coordinate version: legacy illustrated pixels never become map cells by guesswork.
 const SPACE := "parque-overworld-v1"
-const MAPS := {"park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c"}
+const MAPS := {"kronasta-aracati-a":"kronasta-aracati-a","kronasta-aracati-b":"kronasta-aracati-b","kronasta-aracati-c":"kronasta-aracati-c","kronasta-estadio-a":"kronasta-estadio-a","kronasta-mirante-a":"kronasta-mirante-a","kronasta-mirante-b":"kronasta-mirante-b","kronasta-mirante-c":"kronasta-mirante-c","kronasta-coracao-a":"kronasta-coracao-a","kronasta-coracao-b":"kronasta-coracao-b","kronasta-coracao-c":"kronasta-coracao-c","kronasta-coracao-d":"kronasta-coracao-d","kronasta-porto-a":"kronasta-porto-a","kronasta-porto-b":"kronasta-porto-b","kronasta-porto-c":"kronasta-porto-c","kronasta-lajes-a":"kronasta-lajes-a","kronasta-lajes-b":"kronasta-lajes-b","kronasta-lajes-c":"kronasta-lajes-c","kronasta-centro-a":"kronasta-centro-a","kronasta-centro-b":"kronasta-centro-b","kronasta-centro-c":"kronasta-centro-c","parque-patio-liga":"parque-patio-liga","kronasta-palafitas-a":"kronasta-palafitas-a","kronasta-palafitas-b":"kronasta-palafitas-b","kronasta-palafitas-c":"kronasta-palafitas-c","kronasta-industrial-d":"kronasta-industrial-d","kronasta-bosque-d":"kronasta-bosque-d","kronasta-cais-a":"kronasta-cais-a","kronasta-cais-b":"kronasta-cais-b","kronasta-cais-c":"kronasta-cais-c","caverna-mural-a":"caverna-mural-a","caverna-mural-b":"caverna-mural-b","caverna-mural-c":"caverna-mural-c","kronasta-feira-a":"kronasta-feira-a","kronasta-feira-b":"kronasta-feira-b","kronasta-feira-c":"kronasta-feira-c","kronasta-beira-canal-a":"kronasta-beira-canal-a","kronasta-beira-canal-b":"kronasta-beira-canal-b","kronasta-beira-canal-c":"kronasta-beira-canal-c","kronasta-bambuzal-a":"kronasta-bambuzal-a","kronasta-bambuzal-b":"kronasta-bambuzal-b","kronasta-bambuzal-c":"kronasta-bambuzal-c","park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
 ## Kronasta regions reached from the region screen. Each has parts A, B and C
 ## (art/overworld/REGIOES-E-PARTES.md); scenes are kronasta-<region>-<part>.
-const REGIONS := ["bosque","industrial","pantano","montanha"]
+const REGIONS := ["aracati","estadio","mirante","coracao","porto","lajes","centro","palafitas","bosque","industrial","pantano","montanha","bambuzal","beira-canal","feira","cais"]
 const Model = preload("res://scripts/overworld/map_model.gd")
 const Legacy = preload("res://scripts/campaign/park_data.gd")
 static var _maps: Dictionary = {}
 static var _models: Dictionary = {}
 
 static func is_bosque(scene: String) -> bool:
-	return scene in ["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"]
+	return scene in ["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-bosque-d"]
 
+static func is_regional_preview(scene:String) -> bool:
+	return scene.begins_with("kronasta-pantano-") or scene.begins_with("kronasta-montanha-") or scene.begins_with("kronasta-industrial-") or scene.begins_with("mina-ferro-") or scene.begins_with("gelo-") or scene.begins_with("submerso-")
 static func region_of(scene: String) -> String:
+	if scene in ["caverna-mural-a","caverna-mural-b","caverna-mural-c"]:return "caverna"
 	for region in REGIONS:
 		if scene.begins_with("kronasta-"+region+"-") and MAPS.has(scene): return region
 	return ""
@@ -31,6 +34,19 @@ static func data(scene: String) -> Dictionary:
 			_maps[scene].events.append({"id":8243,"type":"npc","name":"Nina","u":10,"v":32,"props":{"fala":"nina-jardim-proposta","missao":"nina","bloqueia":false}})
 		if scene=="park-veredas" and _maps[scene].get("forest",{}).get("nativeProps",false):
 			_maps[scene].events.append({"id":1100,"type":"saida","name":"Atalho para o Jardim das Pipas","u":43,"v":33,"props":{"destino":"park-trail","requer":"ninaTail"}})
+	if scene=="park-clearing" and not _maps[scene].events.any(func(e):return int(e.id)==10601):_maps[scene].events.append_array(preload("res://scripts/campaign/tyler_clareira.gd").events())
+	if scene=="park-trail" and not _maps[scene].events.any(func(e):return int(e.id)==19100):
+		_maps[scene].events.append({"id":19100,"type":"saida","name":"Pátio da Liga","u":34,"v":31,"props":{"destino":"parque-patio-liga","chegada_u":20,"chegada_v":29,"blueEntry":true}})
+	if region_of(scene)=="montanha" and not _maps[scene].events.any(func(e):return int(e.id) in range(19901,19906)):
+		var stages:Array=preload("res://scripts/campaign/district_rules.gd").definition("alto-da-serra").stages
+		for index in stages.size():
+			var stage:Dictionary=stages[index]
+			if stage.scene!=scene:continue
+			_maps[scene].events.append({"id":19901+index,"type":"npc","name":stage.name,"u":stage.point[0],"v":stage.point[1],"props":{"acao":"districtDuel","district":"alto-da-serra","duel":stage.id,"npcIdentity":"professor","bloqueia":false}})
+	var trust_event:Dictionary=load("res://scripts/campaign/retalho_trust.gd").event(scene)
+	if region_of(scene)=="palafitas" and not _maps[scene].events.any(func(e):return int(e.id)>=19801 and int(e.id)<=19805):
+		_maps[scene].events.append_array(preload("res://scripts/campaign/palafitas_championship.gd").events(scene))
+	if not trust_event.is_empty() and not _maps[scene].events.any(func(e):return int(e.id)==int(trust_event.id)):_maps[scene].events.append(trust_event)
 	return _maps[scene]
 
 static func model_for(scene: String):
@@ -123,12 +139,32 @@ static func encounter_weight(checkpoint: Dictionary, point: Vector2) -> float:
 static func allowed(event: Dictionary, player: Dictionary, area: String = "") -> bool:
 	var props: Dictionary = event.get("props",{})
 	var flags: Dictionary = player.get("flags",{})
-	if props.has("requer") and not flags.get(str(props.requer),false): return false
+	if props.get("acao","")=="ruinasDuel":
+		return not flags.get(props.rescueFlag,false)
+	if props.get("acao","")=="pipeiroFantasma":
+		return preload("res://scripts/campaign/district_rules.gd").completed(player,"centro") and not flags.get("pipeiroFantasmaResolvido",false)
+	if props.get("district","") in ["alto-da-serra","centro","lajes","porto","mirante"]:
+		return preload("res://scripts/campaign/district_rules.gd").unlocked(player,props.district)
+	if props.get("district","")=="palafitas" and props.get("acao","")=="districtDuel":
+		var rules=preload("res://scripts/campaign/district_rules.gd")
+		if not rules.unlocked(player,"palafitas"):return false
+		if props.get("duel","")=="palafitas-5" and not rules.qualified(rules.entry(player,"palafitas"),rules.definition("palafitas")) and not rules.completed(player,"palafitas"):return false
+	if props.get("blueEntry",false) and not load("res://scripts/campaign/blue_exam_preparation.gd").eligible(player):return false
+	if props.get("acao","")=="retalhoTrust":return load("res://scripts/campaign/retalho_trust.gd").visible(props.get("trustScene",""),player)
+	if props.get("acao","") in ["tylerClareira","tylerRai"] and not preload("res://scripts/campaign/tyler_clareira.gd").unlocked(player):return false
+	if props.get("requer","")=="portoConcluido":
+		if not preload("res://scripts/campaign/district_rules.gd").completed(player,"porto"):return false
+	elif props.get("requer","")=="cais":
+		if not preload("res://scripts/campaign/district_rules.gd").completed(player,"cais"):return false
+	elif area=="kronasta-mirante-c" and props.get("atalho",false) and props.get("requer","")=="feira":
+		if not flags.get("feira",false) and not preload("res://scripts/campaign/district_rules.gd").completed(player,"feira"):return false
+	elif props.has("requer") and not flags.get(str(props.requer),false): return false
 	if props.has("ocultar_apos") and flags.get(str(props.ocultar_apos),false): return false
 	if props.get("descoberta","")=="clareira-do-marco" and not flags.get("bosqueClareiraDescoberta",false): return false
 	# Lacertubo leaves the Veredas once defeated; only the quest tail remains.
 	if props.get("acao","")=="parkBoss" and flags.get("guardianDefeated",false): return false
 	if props.get("acao","")=="veredasTail" and (not flags.get("guardianDefeated",false) or not flags.get("ninaAccepted",false) or flags.get("ninaTail",false)): return false
+	if props.get("acao","")=="retalhoStory" and flags.get("retalhoBosqueVencido",false):return false
 	if event.get("type","")=="item" and ("park-item-"+area+"-"+str(int(event.id))) in player.get("completedOperations",[]): return false
 	return true
 
@@ -138,9 +174,10 @@ static func exit_target(checkpoint: Dictionary, id: String, player: Dictionary) 
 	var at := Vector2(checkpoint.position[0],checkpoint.position[1])
 	for event in data(source).events:
 		if str(int(event.id))!=id or event.type!="saida": continue
-		if not allowed(event,player) or at.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return {"status":"wrong_step"}
+		if not allowed(event,player,source) or at.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return {"status":"wrong_step"}
 		if absf(model_for(source).height_at(at)-model_for(source).height_at(Vector2(event.u+.5,event.v+.5)))>=.25: return {"status":"wrong_step"}
 		var destination: String = event.props.get("destino","")
+		if destination in ["park-clearing","park-veredas"] and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,destination):return {"status":"story_gate"}
 		if destination=="quintal": return {"status":"ok","scene":destination,"point":Vector2(1792,1808),"space":""}
 		if not MAPS.has(destination): return {"status":"wrong_step"}
 		var entrance: String = event.props.get("entrada_destino","")

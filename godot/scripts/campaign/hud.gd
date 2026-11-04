@@ -240,6 +240,8 @@ static func item_icon(id: String) -> Texture2D:
 	return icon("missoes" if id.begins_with("quest-") else "rabiola" if "rabiola" in id else "mochila")
 
 static func item_art(id: String) -> Texture2D:
+	if id=="agulha-desatar":return load("res://assets/campaign/warehouse-v1/agulha-desatar.svg")
+	if id in ["apito-de-elo","carteira-pipeiro","porta-emblemas","insignia-morro-do-sol"]:return load("res://assets/ui/key-items/"+id+".png")
 	if id=="kit-remendo":return load("res://assets/ui/kit-remendo.svg")
 	var model_id := id.trim_prefix("damaged-").trim_prefix("rabiola-")
 	if model_id in ["basica", "mata", "azulao", "raio", "lacertubo", "quest-nina-tail"]: return artwork("item-" + model_id)

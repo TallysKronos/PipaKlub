@@ -97,7 +97,10 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	stairs_drawn.clear()
 	occluders.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
+	RenderingServer.set_default_clear_color(Color.BLACK if model.data.get("forest",{}).get("interior",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
 	kits.assign([kit_library.comum])
+	if bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false):
+		kits.append(kit_library.parque.duplicate(true))
 	if kit_library.has(model.data.biome):
 		# Area overrides must never leak into the next map's shared kit.
 		var biome_kit: Dictionary = kit_library[model.data.biome].duplicate(true)
@@ -536,7 +539,7 @@ func _draw_parque_floor(at: Vector2i, cell: Dictionary) -> void:
 	_encounter_tufts(at,cell)
 
 func _encounter_tufts(at: Vector2i, cell: Dictionary) -> void:
-	var kit: Dictionary = kits[1]
+	var kit: Dictionary = kits[1] if kits.size()>1 else kit_library.veredas
 	var grass: Dictionary=kit.get("encounterGrass",{"shader":"res://shaders/parque_grass.gdshader","files":["decalques/capim-a.png","decalques/capim-b.png"],"anchor":[26,45]})
 	if parque_grass_material == null:
 		parque_grass_material = ShaderMaterial.new()
@@ -1727,8 +1730,24 @@ func _build_events() -> void:
 		actors.add_child(node)
 		if event.type=="npc":
 			var list: Array = npc_data.morro.get(model.data.scene,[]) if model.data.biome=="morro" else [npc_data.nina] if event.name=="Nina" else [npc_data.lacertubo] if event.props.get("acao", "")=="parkBoss" else [npc_data.assis] if model.data.biome=="parque" and event.props.get("acao","")=="wildGuide" else []
+			if event.props.has("storySprite"):
+				var path:String="res://assets/campaign/tyler-clareira-v1/"+str(event.props.storySprite)+"-overworld-idle-eight.png"
+				list=[{"name":event.name,"image":path,"bounds":{"x":192,"y":96,"w":64,"h":96}}]
+			if event.props.has("storySpritePath"):
+				var path:String=event.props.storySpritePath
+				var tex:Texture2D=load(path)
+				var region: Dictionary = {"x":0,"y":0,"w":tex.get_width(),"h":tex.get_height()}
+				if event.props.has("storySpriteRegion"):region=event.props.storySpriteRegion
+				list=[{"name":event.name,"image":path,"bounds":region}]
 			if event.props.has("npcIdentity"):
-				list=[{"name":str(event.props.npcIdentity),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
+				list=[{"name":event.name if event.props.get("acao","")=="ruinasDuel" or event.props.get("district","") in ["alto-da-serra","centro","lajes","porto","mirante"] else str(event.props.npcIdentity),"spriteIdentity":str(event.props.npcIdentity),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
+			if event.props.get("district","") in ["bambuzal","beira-canal"]:
+				var atlas_path:String="res://assets/npc-ds/"+str(event.props.district)+"-v1/"
+				var atlas:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(atlas_path+"atlas.json"))
+				for frame:Dictionary in atlas.sprites:
+					if frame.name==event.name and frame.facing=="se":
+						list=[{"name":event.name,"image":atlas_path+"atlas.png","bounds":{"x":frame.bounds[0],"y":frame.bounds[1],"w":frame.bounds[2],"h":frame.bounds[3]}}]
+
 			var holder := Node2D.new()
 			node.add_child(holder)
 			var names: Array[String] = []
@@ -1738,18 +1757,39 @@ func _build_events() -> void:
 				var sprite := Sprite2D.new()
 				var native_height := 128.0 if entry.name=="Lacertubo" else 84.0
 				var pixels=preload("res://scripts/npc_pixel_sprite.gd")
-				var identity: String=pixels.identity(entry.name)
+				var identity: String=entry.get("spriteIdentity",pixels.identity(entry.name))
 				if not identity.is_empty():pixels.setup(sprite,identity,pixels.height_for(identity,.85*Avatar.BODY_SCALE))
 				else:
 					sprite.texture=load(entry.image);sprite.region_enabled=true
+					if event.props.get("district","")=="bambuzal":sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 					sprite.region_rect=Rect2(bounds.x,bounds.y,bounds.w,bounds.h)
 					sprite.scale=Vector2.ONE*native_height/float(bounds.h)
 					sprite.offset=Vector2(0,-bounds.h*.5)
+				if str(event.props.get("storySpritePath","")).begins_with("res://assets/overworld/kits/camara-do-elo-v1/"):
+					sprite.scale=Vector2.ONE
+					sprite.offset=Vector2(0,-46)
+					sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+				if event.props.has("storySprite"):
+					sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+					sprite.scale=Vector2.ONE*.85
+					sprite.offset=Vector2(0,-44)
 				sprite.position.x=(i-(list.size()-1)*.5)*30
 				holder.add_child(sprite)
+				if event.props.get("acao") == "aracatiTerreiro":
+					var hover := sprite.create_tween().set_loops().set_trans(Tween.TRANS_SINE)
+					hover.tween_property(sprite, "position:y", -6.0, .9)
+					hover.parallel().tween_property(sprite, "rotation", -.035, .9)
+					hover.tween_property(sprite, "position:y", 0.0, .9)
+					hover.parallel().tween_property(sprite, "rotation", .035, .9)
+				if event.props.get("storySprite","")=="tyler":
+					var reel=load("res://scripts/campaign/tyler_reel_prop.gd").new()
+					reel.position=Vector2(16,-34);holder.add_child(reel)
 				names.append(entry.name)
 			if not names.is_empty():event.name=" e ".join(names)
 			npc_nodes.append({"root":node,"visual":holder,"point":Vector2(event.u+.5,event.v+.5)})
+
+	if area_id == "kronasta-coracao-c":
+		preload("res://scripts/campaign/platyx_overworld.gd").place(self)
 
 func hide_characters() -> void:
 	player_root.hide();follower_root.hide()
@@ -1801,7 +1841,7 @@ func _build_hud() -> void:
 	Hud.fit_footer(footer,hint,83)
 
 func _refresh_positions() -> void:
-	_place_actor(player_root,avatar,player,84)
+	_place_actor(player_root,avatar,player,155 if avatar.mounted else 84)
 	_place_actor(follower_root,companion,follower,42)
 	CompanionFollow.orient(companion,avatar.facing)
 	for actor in npc_nodes:_place_actor(actor.root,actor.visual,actor.point,84)
@@ -1811,7 +1851,7 @@ func _refresh_positions() -> void:
 func _fade_occluders() -> void:
 	var pair:Array[Dictionary]=[]
 	# Project each actor once, rather than repeat height queries for every tree.
-	for member in [{"point":player,"height":84.0},{"point":follower,"height":42.0}]:
+	for member in [{"point":player,"height":155.0 if avatar.mounted else 84.0},{"point":follower,"height":42.0}]:
 		var at:Vector2=member.point
 		pair.append({"point":at,"body":Rect2(model.project(at)-Vector2(20,member.height),Vector2(40,member.height)),"ground":model.project(at,false).y})
 	for node in occluders:
@@ -1861,9 +1901,21 @@ func walk_to(point: Vector2) -> bool:
 func toggle_run() -> void:
 	Locomotion.toggle()
 
+func can_mount() -> bool:
+	if not campaign_mode:return true
+	var player_data=get("saved_player")
+	return player_data is Dictionary and preload("res://scripts/campaign/mount_quest.gd").eligible(player_data)
+
+func toggle_mount() -> void:
+	if not can_mount():return
+	if campaign_mode and get("paused")==true:return
+	if not avatar.motion_action.is_empty() or avatar.jump_time>=0 or avatar.item_time>=0:return
+	avatar.set_mounted(not avatar.mounted)
+	path.clear()
+
 func _physics_process(delta: float) -> void:
 	Locomotion.update()
-	var speed := 3.0*Locomotion.multiplier()
+	var speed:float = 3.0*Locomotion.multiplier()*avatar.travel_multiplier()
 	clock += delta
 	var old := player
 	var input := Controls.direction()
@@ -1912,8 +1964,16 @@ func _adopt_player_step(next:Vector2) -> void:
 	follower_trail.append(player)
 
 func _follow_recorded_path(delta: float) -> void:
-	# Every map follows the accepted footsteps, never a newly chosen shortcut.
-	follower=CompanionFollow.advance(follower,follower_trail,delta,6.3,.8,model.clear_segment)
+	# Follow accepted footsteps; mounted corner recovery stays on walkable paths.
+	var previous:=follower
+	follower=CompanionFollow.advance(follower,follower_trail,delta,8.5 if avatar.mounted else 6.3,.8,model.clear_segment)
+	# At a tight corner, floating interpolation can leave the follower unable to
+	# enter the next recorded segment. Recover through the same walkable graph.
+	if avatar.mounted and follower==previous and follower.distance_to(player)>1:
+		var recovery:PackedVector2Array=model.path_to(follower,player)
+		if not recovery.is_empty():
+			follower_trail.assign(recovery)
+			follower=CompanionFollow.advance(follower,follower_trail,delta,8.5,.8,model.clear_segment)
 
 func interact() -> void:
 	if nearby.is_empty(): return

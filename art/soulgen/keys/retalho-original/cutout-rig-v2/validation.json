@@ -1,0 +1,40 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "Sem referências anatômicas cadastradas; proporção e encaixe exigem revisão visual."
+    ]
+  },
+  "expressions": {
+    "fierce": {
+      "complete_head": true,
+      "opaque_ratio": 1.0233579399682056,
+      "canvas_identical": true
+    },
+    "hurt": {
+      "complete_head": true,
+      "opaque_ratio": 1.0282215541529598,
+      "canvas_identical": true
+    },
+    "happy": {
+      "complete_head": true,
+      "opaque_ratio": 1.0167314623896242,
+      "canvas_identical": true
+    }
+  },
+  "atlas": {
+    "frames": 135,
+    "size": [
+      2048,
+      4352
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}

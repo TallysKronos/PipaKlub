@@ -209,6 +209,8 @@ Bloqueadores são identidade, anatomia, conexão, orientação e contrato técni
 
 ## 12. Ordem de adoção
 
+**Direção adicional do dono · 01/11/2026:** para os próximos personagens humanos, priorizar figurinos e poses expressivos, com presença de cosplay concebido dentro do universo: silhueta, modelagem da roupa e atuação devem comunicar personalidade antes dos detalhes. O elenco atual da Feira foi aprovado. Estudo das cinco referências fornecidas e critérios concretos em [Personagens expressivos](art/benchmarks/expressividade-elenco-2026-11-01/ANALISE.md). Manter o traço aprovado do Kael/Locutor; referências externas orientam design, não cópia de identidade ou acabamento. Explorar a pessoa antes de gerar sprites em lote.
+
 **Primeiro:** calibrar uma prancha com Kael, Assis e uma criatura existente, cada um em anime, retrato e sprite. Comparar ao jogo e aprovar o acabamento. Não redesenhar todo o elenco antes dessa calibração.
 
 **Depois:** fechar a ficha definitiva de Tyler e dos conceitos de tigre, ornitorrinco e morcegos. Produzir indivíduos por família, mantendo uma referência mestra por ID.

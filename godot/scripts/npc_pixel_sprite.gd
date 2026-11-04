@@ -1,10 +1,30 @@
 extends RefCounted
-## Shared static directional bases. No synthesized walking or reward behavior.
+## Shared directional bases and authored walking frames; never grants rewards.
 const Pixelgen = preload("res://scripts/pixelgen_sprites.gd")
 const HEIGHTS := {"professor":90.0,"mae":88.0,"nina":83.0,"bia":78.0,"juninho":78.0,"lia":78.0,"zeca":78.0,"tiao":90.0,"iara":82.0,"nilo":82.0,"dora":76.0,"caue":82.0,"celina":82.0}
 const DIRECTIONS := ["s","sw","w","nw","n","ne","e","se"]
 const Avatar = preload("res://scripts/kael_video_avatar.gd")
 const RELATIVE_HEIGHTS := {"professor":1.12,"mae":1.08,"nina":1.0,"bia":1.0,"juninho":1.0,"lia":1.0,"zeca":1.0,"tiao":1.12,"iara":1.03,"nilo":1.08,"dora":.98,"caue":1.16,"celina":1.0}
+static var mother_walk:Texture2D
+const WALK_TIMES:=[150,120,150,120]
+
+static func animate_walk(sprite:Sprite2D,moving:bool,seconds:float,stairs:bool=false) -> void:
+	if sprite.get_meta("pixel_npc","")!="mae":return
+	var facing:String=sprite.get_meta("pixel_facing","se")
+	if not moving:
+		if sprite.get_meta("walking",false):
+			sprite.texture=Pixelgen.load_texture("res://assets/npc-ds/mae.png");face(sprite,facing)
+		sprite.set_meta("walking",false)
+		return
+	if mother_walk==null:mother_walk=Pixelgen.load_texture("res://assets/npc-ds/mae-walk.png")
+	var phase:=fmod(seconds*1000*(1.1 if stairs else 1.0),540.0)
+	var frame:=0
+	for duration in WALK_TIMES:
+		if phase<float(duration):break
+		phase-=duration;frame+=1
+	var row:=maxi(0,DIRECTIONS.find(facing))
+	sprite.texture=mother_walk;sprite.region_rect=Rect2(mini(frame,3)*64,row*96,64,96)
+	sprite.set_meta("walking",true);sprite.set_meta("walk_frame",mini(frame,3))
 
 static func height_for(id: String,kael_scale: float) -> float:
 	return Avatar.STANDING_HEIGHT*kael_scale*float(RELATIVE_HEIGHTS.get(id,1.0))
@@ -36,7 +56,8 @@ static func face_motion(sprite: Sprite2D,direction: Vector2) -> void:
 static func reveal(sprite: Sprite2D,amount: float) -> void:
 	if sprite.material==null:
 		var shader:=Shader.new()
-		shader.code="shader_type canvas_item; uniform float row=0.; uniform float reveal=1.; void fragment(){if(UV.y*2.-row>reveal){discard;}}"
+		shader.code="shader_type canvas_item; uniform float row=0.; uniform float rows=2.; uniform float reveal=1.; void fragment(){if(UV.y*rows-row>reveal){discard;}}"
 		var material:=ShaderMaterial.new();material.shader=shader;sprite.material=material
 	sprite.material.set_shader_parameter("row",float(int(sprite.region_rect.position.y)/96))
+	sprite.material.set_shader_parameter("rows",float(sprite.texture.get_height())/96.0)
 	sprite.material.set_shader_parameter("reveal",clampf(amount,0,1))

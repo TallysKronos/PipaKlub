@@ -44,7 +44,8 @@ func cover()->void:
 	await tween.finished
 	phase="loading"
 	# Explicitly present the cover/icon before any synchronous scene work.
-	await RenderingServer.frame_post_draw
+	if DisplayServer.get_name()=="headless":await get_tree().process_frame
+	else:await RenderingServer.frame_post_draw
 
 func reveal()->void:
 	phase="revealing"

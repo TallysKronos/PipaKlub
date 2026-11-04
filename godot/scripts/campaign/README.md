@@ -17,9 +17,9 @@ Serviços conectados ao menu, narrativa, oficina, exploração e encontros. Não
 - `state()`: `aberto`, `vencido`, `fechado` ou `em-breve`. Lugares cuja história ainda não foi construída aparecem como "em breve" e não têm viagem.
 - Distrito Industrial, Pântano e Montanha são **prévias de QA**: os mapas existem, mas os bairros que os abrem na bíblia ainda não. Só abrem em build de desenvolvimento (`OS.is_debug_build()`; `SOULMONSTERS_QA=0` simula o jogador) e usam níveis provisórios de selvagens (`park_pacing.gd`). Num export de release ficam "em breve".
 - **Viagem livre, história única**: lugares liberados podem ser revisitados; duelo ou chefe de história vencido não começa de novo (`morro.gd` devolve `already_applied`; o Lacertubo e os treinadores do parque já eram únicos).
-- `category()` fica em Rabiola Branca e `neighbourhoods_won()` conta só o Morro do Sol, até os exames e os bairros seguintes existirem. Nada aqui inventa progresso.
+- `category()` lê a primeira promoção persistida em `league_promotion.gd`: Rabiola Verde após Morro, Bambuzal, Tyler e entrega da rabiola de Nina. `neighbourhoods_won()` conta o histórico permanente dos bairros. Outros exames ainda não foram implementados.
 
-As regiões ficam em `park_checkpoint.gd` (`REGIONS`, `region_of`, `is_kronasta`). A viagem, a descoberta (`<regiao>Parte<X>Descoberta`, recibo `<regiao>-discovered-<parte>-v1`) e os itens dos mapas ficam em `bosque_campaign.gd`. A tela "Região de Kronasta" (pausa → Mapa) lista tudo por ato. Uma cena nova precisa entrar também na lista de cenas válidas de `state.gd`.
+As regiões ficam em `park_checkpoint.gd` (`REGIONS`, `region_of`, `is_kronasta`). A viagem, a descoberta (`<regiao>Parte<X>Descoberta`, recibo `<regiao>-discovered-<parte>-v1`) e os itens dos mapas ficam em `bosque_campaign.gd`. A tela "Região de Kronasta" (pausa → Mapa) preserva o atlas ilustrado, mostra o objetivo da história e oculta os marcadores de prévias fora do QA. As regiões são acessadas pela parte A; B/C são alcançadas pelas saídas do mapa. Uma cena nova precisa entrar também na lista de cenas válidas de `state.gd`.
 
 ## Persistência e recuperação
 

@@ -1,0 +1,27 @@
+{
+  "schema": "bambuzal-native-1",
+  "style": "2D mangá, manchas chapadas, contorno escuro e luz superior esquerda",
+  "provenance": "SVG vetorial autorado nesta implementação, sem cópia de arte externa. Arquitetura reutiliza street_building.gd e suas texturas existentes.",
+  "consumer": "res://scripts/overworld/bamboo_structures.gd",
+  "nativePieces": {
+    "touceira": {
+      "files": [
+        "alto.svg",
+        "baixo.svg"
+      ],
+      "size": [
+        256,
+        384
+      ],
+      "anchor": [
+        128,
+        367
+      ],
+      "scale": 0.58,
+      "blocking": "somente material bosque da planta",
+      "shadow": "ellipse interna, no mesmo apoio",
+      "approval": "pending_owner_review"
+    }
+  },
+  "pieces": {}
+}

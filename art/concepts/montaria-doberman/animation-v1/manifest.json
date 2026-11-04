@@ -1,0 +1,381 @@
+{
+  "createdAt": "2026-11-01T16:16:02.120Z",
+  "source": {
+    "idle-eight.png": {
+      "sha256": "f5ac08436895aca862d969f013d0ac4349e688c9ee053728b77286e2a0b424c3"
+    },
+    "kael-rider-refined.png": {
+      "sha256": "ab06d3be1747547ce836db4b4304e311feca715dce6728847c06e916c46be909"
+    },
+    "mount.json": {
+      "sha256": "7e895327438fb6d1c2e3fa1ac20bab68de7cef8044ceadf627610b498a9cde41"
+    }
+  },
+  "localOnly": true,
+  "model": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+  "shots": [
+    {
+      "id": "idle-s",
+      "action": "idle",
+      "direction": "s",
+      "reference": "references/mount-edited-s.png",
+      "workflow": "workflows/idle-s.json",
+      "status": "prepared",
+      "frames": 124,
+      "fps": 24
+    },
+    {
+      "id": "walk-s",
+      "action": "walk",
+      "direction": "s",
+      "reference": "references/mount-edited-s.png",
+      "workflow": "workflows/walk-s.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "86d478f5-2b5e-4306-8d9c-c6559deca337",
+      "submittedAt": "2026-11-01T16:22:47.319Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/walk-s.mp4"
+      ]
+    },
+    {
+      "id": "run-s",
+      "action": "run",
+      "direction": "s",
+      "reference": "references/mount-edited-s.png",
+      "workflow": "workflows/run-s.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "0c611f11-c28a-4a24-b3ec-1b43d764b8d1",
+      "submittedAt": "2026-11-01T16:23:48.895Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/run-s.mp4"
+      ]
+    },
+    {
+      "id": "idle-sw",
+      "action": "idle",
+      "direction": "sw",
+      "reference": "references/mount-edited-sw.png",
+      "workflow": "workflows/idle-sw.json",
+      "status": "prepared",
+      "frames": 124,
+      "fps": 24
+    },
+    {
+      "id": "walk-sw",
+      "action": "walk",
+      "direction": "sw",
+      "reference": "references/mount-edited-sw.png",
+      "workflow": "workflows/walk-sw.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "b8398592-264c-4ea6-a371-8c933d780ebd",
+      "submittedAt": "2026-11-01T16:17:40.280Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/walk-sw.mp4"
+      ],
+      "review": {
+        "state": "initial-contact-reviewed",
+        "note": "Rider remains seated in sampled frames; colors stay close to the edited source. Continuous loop and transparent sprites still need review."
+      }
+    },
+    {
+      "id": "run-sw",
+      "action": "run",
+      "direction": "sw",
+      "reference": "references/mount-edited-sw.png",
+      "workflow": "workflows/run-sw.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "aac696be-8cd4-4a08-8f74-d7ad6d80be53",
+      "submittedAt": "2026-11-01T16:21:52.142Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/run-sw.mp4"
+      ],
+      "review": {
+        "state": "needs-background-correction",
+        "note": "Character motion generated, but background changes color across frames. Do not integrate raw output or use one fixed chroma key."
+      }
+    },
+    {
+      "id": "idle-w",
+      "action": "idle",
+      "direction": "w",
+      "reference": "references/mount-edited-w.png",
+      "workflow": "workflows/idle-w.json",
+      "status": "prepared",
+      "frames": 124,
+      "fps": 24
+    },
+    {
+      "id": "walk-w",
+      "action": "walk",
+      "direction": "w",
+      "reference": "references/mount-edited-w.png",
+      "workflow": "workflows/walk-w.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "c307bf2f-440c-4984-8c05-399284e76846",
+      "submittedAt": "2026-11-01T16:22:57.759Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/walk-w.mp4"
+      ]
+    },
+    {
+      "id": "run-w",
+      "action": "run",
+      "direction": "w",
+      "reference": "references/mount-edited-w.png",
+      "workflow": "workflows/run-w.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "480f87e6-2dbc-43d3-9472-1d99d0c91ca9",
+      "submittedAt": "2026-11-01T16:23:57.675Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/run-w.mp4"
+      ]
+    },
+    {
+      "id": "idle-nw",
+      "action": "idle",
+      "direction": "nw",
+      "reference": "references/mount-edited-nw.png",
+      "workflow": "workflows/idle-nw.json",
+      "status": "prepared",
+      "frames": 124,
+      "fps": 24
+    },
+    {
+      "id": "walk-nw",
+      "action": "walk",
+      "direction": "nw",
+      "reference": "references/mount-edited-nw.png",
+      "workflow": "workflows/walk-nw.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "1e66f010-d2aa-454a-81f7-d409af061a76",
+      "submittedAt": "2026-11-01T16:23:06.961Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/walk-nw.mp4"
+      ]
+    },
+    {
+      "id": "run-nw",
+      "action": "run",
+      "direction": "nw",
+      "reference": "references/mount-edited-nw.png",
+      "workflow": "workflows/run-nw.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "192f4a23-2e39-4d45-b1e6-baf74081c205",
+      "submittedAt": "2026-11-01T16:24:06.729Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/run-nw.mp4"
+      ]
+    },
+    {
+      "id": "idle-n",
+      "action": "idle",
+      "direction": "n",
+      "reference": "references/mount-edited-n.png",
+      "workflow": "workflows/idle-n.json",
+      "status": "prepared",
+      "frames": 124,
+      "fps": 24
+    },
+    {
+      "id": "walk-n",
+      "action": "walk",
+      "direction": "n",
+      "reference": "references/mount-edited-n.png",
+      "workflow": "workflows/walk-n.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "00cfbb94-9f63-49d4-93b5-1bee45b158fa",
+      "submittedAt": "2026-11-01T16:23:16.081Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/walk-n.mp4"
+      ]
+    },
+    {
+      "id": "run-n",
+      "action": "run",
+      "direction": "n",
+      "reference": "references/mount-edited-n.png",
+      "workflow": "workflows/run-n.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "655f241e-6220-47bd-ac07-f5b1cb7b969b",
+      "submittedAt": "2026-11-01T16:24:14.210Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/run-n.mp4"
+      ],
+      "review": {
+        "state": "rejected-viewpoint-turn",
+        "replacement": "corrected-pack-v1/run-n",
+        "note": "Rear poses reconstructed in sheet; original video preserved."
+      }
+    },
+    {
+      "id": "idle-ne",
+      "action": "idle",
+      "direction": "ne",
+      "reference": "references/mount-edited-ne.png",
+      "workflow": "workflows/idle-ne.json",
+      "status": "prepared",
+      "frames": 124,
+      "fps": 24
+    },
+    {
+      "id": "walk-ne",
+      "action": "walk",
+      "direction": "ne",
+      "reference": "references/mount-edited-ne.png",
+      "workflow": "workflows/walk-ne.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "cc3bd179-a94b-439c-a7e7-7614b793d6b1",
+      "submittedAt": "2026-11-01T16:23:23.862Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/walk-ne.mp4"
+      ]
+    },
+    {
+      "id": "run-ne",
+      "action": "run",
+      "direction": "ne",
+      "reference": "references/mount-edited-ne.png",
+      "workflow": "workflows/run-ne.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "7e03d864-6827-4fc2-8f91-9ae4c4146bf3",
+      "submittedAt": "2026-11-01T16:24:23.232Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/run-ne.mp4"
+      ]
+    },
+    {
+      "id": "idle-e",
+      "action": "idle",
+      "direction": "e",
+      "reference": "references/mount-edited-e.png",
+      "workflow": "workflows/idle-e.json",
+      "status": "prepared",
+      "frames": 124,
+      "fps": 24
+    },
+    {
+      "id": "walk-e",
+      "action": "walk",
+      "direction": "e",
+      "reference": "references/mount-edited-e.png",
+      "workflow": "workflows/walk-e.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "6a410578-784e-46bf-8392-85d6e341da6f",
+      "submittedAt": "2026-11-01T16:23:32.029Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/walk-e.mp4"
+      ]
+    },
+    {
+      "id": "run-e",
+      "action": "run",
+      "direction": "e",
+      "reference": "references/mount-edited-e.png",
+      "workflow": "workflows/run-e.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "585ec7e4-a4d6-42cb-9088-40476da1e35d",
+      "submittedAt": "2026-11-01T16:24:30.975Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/run-e.mp4"
+      ]
+    },
+    {
+      "id": "idle-se",
+      "action": "idle",
+      "direction": "se",
+      "reference": "references/mount-edited-se.png",
+      "workflow": "workflows/idle-se.json",
+      "status": "prepared",
+      "frames": 124,
+      "fps": 24
+    },
+    {
+      "id": "walk-se",
+      "action": "walk",
+      "direction": "se",
+      "reference": "references/mount-edited-se.png",
+      "workflow": "workflows/walk-se.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "bfb74f8d-c413-482a-a4cc-4d4226703d22",
+      "submittedAt": "2026-11-01T16:23:40.914Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/walk-se.mp4"
+      ],
+      "review": {
+        "state": "rejected-camera-zoom",
+        "replacement": "corrected-pack-v1/walk-se",
+        "note": "Use per-cell mirrored corrected SW, not this zooming video."
+      }
+    },
+    {
+      "id": "run-se",
+      "action": "run",
+      "direction": "se",
+      "reference": "references/mount-edited-se.png",
+      "workflow": "workflows/run-se.json",
+      "status": "completed",
+      "frames": 124,
+      "fps": 24,
+      "promptId": "bb83448a-f736-4e38-8b8a-c94f838b1b94",
+      "submittedAt": "2026-11-01T16:24:39.944Z",
+      "nodeErrors": {},
+      "outputs": [
+        "video-original/run-se.mp4"
+      ]
+    }
+  ],
+  "correctionPack": {
+    "path": "corrected-pack-v1/package.json",
+    "gallery": "corrected-pack-v1/index.html",
+    "state": "technically-validated-art-review-pending",
+    "clips": 16,
+    "frames": 128,
+    "integrated": true,
+    "runtime": "godot/assets/mounts/doberman-animated-v1"
+  }
+}

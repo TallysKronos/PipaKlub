@@ -1,0 +1,29 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "OK · Encaixe Vela superior da rabiola: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Vela inferior da rabiola: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Cabeça, duas orelhas e pescoço: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata dianteira próxima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata dianteira distante: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata traseira próxima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata traseira distante: desvio máximo 0.00 unidades."
+    ]
+  },
+  "atlas": {
+    "frames": 109,
+    "size": [
+      2048,
+      3584
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}

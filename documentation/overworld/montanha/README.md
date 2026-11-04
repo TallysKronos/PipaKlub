@@ -9,3 +9,5 @@ Validação: node --test tools/mapa-studio/montanha.test.mjs tools/mapa-studio/m
 Comparação antes/depois em comparacao/. Novos assets e prompts em art/overworld/kits/montanha-v1/README.md.
 
 Consulte relatorios/entrega.md para evidências e limites.
+
+Apresentação atual: fundo preto solicitado pelo dono. Panorama preservado no kit, mas desativado. Capturas da apresentação em fundo-preto/.

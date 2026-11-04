@@ -52,6 +52,9 @@ func map_landmarks() -> Array[Dictionary]:
 	for house in world.houses:
 		var title: String={"casa-kael":"Casa do Kael","professor":"Ateliê do professor","loja":"Loja da Lia"}.get(house.id,"")
 		if not title.is_empty():markers.append({"point":house.door,"text":title})
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	if quest.available(saved_player) and not quest.owned(saved_player):
+		markers.append({"point":quest.LIA if quest.stage(saved_player)==1 else quest.ZECA,"text":"Lia · fecho da guia" if quest.stage(saved_player)==1 else "Zeca · montaria"})
 	return markers
 
 func _ready() -> void:
@@ -109,22 +112,44 @@ func _process(delta: float) -> void:
 		action_requested.emit("autosave")
 
 func _goal() -> Dictionary:
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	if quest.available(saved_player) and quest.stage(saved_player) in [1,2]:
+		var target:Vector2=quest.LIA if quest.stage(saved_player)==1 else quest.ZECA
+		return {"p":target,"h":world.support(target)}
 	var p: Vector2=Checkpoint.PARK if saved_player.get("journey",{}).get("phase")=="complete" else Checkpoint.PROFESSOR
 	return {"p":p,"h":world.support(p)} if is_instance_valid(world) else {"p":p,"h":8}
 
 func _update_hint() -> void:
 	super._update_hint()
+	# At the shop threshold, entering wins; Lia can still be greeted a step away.
+	for house in world.houses:
+		if house.id=="loja" and cell.distance_to(house.door)<.65:
+			near_house=house;near_person={};break
 	context.hide();objective.hide();progress_label.hide()
 	if not is_instance_valid(exploration_hud):return
 	exit_id="morro" if cell.distance_to(Checkpoint.MORRO)<1.6 else "park" if cell.distance_to(Checkpoint.PARK)<1.6 else ""
 	var hint := ""
 	if not exit_id.is_empty():hint="Seguir para o Morro do Sol" if exit_id=="morro" else "Seguir para o parque"
 	elif not near_person.is_empty():hint="Entrar no ateliê do professor" if near_person.id=="assis" else "Conversar com "+str(near_person.name)
-	elif not near_house.is_empty():hint="Entrar no ateliê" if near_house.id=="professor" else "Examinar a entrada"
+	elif not near_house.is_empty():hint="Entrar na Linha & Papel" if near_house.id=="loja" else "Entrar no ateliê" if near_house.id=="professor" else "Examinar a entrada"
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	if quest.available(saved_player) and quest.stage(saved_player)<3:
+		if near_person.get("id")=="zeca":hint+=" · Missão de montaria"
+		elif near_person.get("id")=="lia" and quest.stage(saved_player)==1:hint+=" · Fecho da guia"
 	exploration_hud.prompt.text=hint
 	exploration_hud.objective.text=preload("res://scripts/campaign/kronasta_story.gd").objective(saved_player) if saved_player.get("journey",{}).get("phase")=="complete" else "Suba a ladeira e entre no ateliê do professor."
+	if quest.available(saved_player) and quest.stage(saved_player) in [1,2]:exploration_hud.objective.text=quest.objective(saved_player)
+
+func can_mount() -> bool:
+	return preload("res://scripts/campaign/mount_quest.gd").eligible(saved_player)
+
+func toggle_mount() -> void:
+	if not can_mount() or not conversation.is_empty() or is_instance_valid(active_dialogue):return
+	super.toggle_mount()
 
 func interact() -> void:
+	if has_node("HeleanaReunionMother") and cell.distance_to(Checkpoint.HOME)<=2.0:
+		action_requested.emit("heleana-confession");return
 	if paused:return
 	if is_instance_valid(active_dialogue):
 		if active_dialogue.page_index<active_dialogue.pages.size()-1:active_dialogue.next_page()
@@ -138,6 +163,9 @@ func interact() -> void:
 			_say("Kael",["Primeiro vou concluir meu treino e montar minha pipa com o professor."])
 		else:action_requested.emit(exit_id)
 	elif near_person.get("id")=="assis" or near_house.get("id")=="professor":action_requested.emit("professor-home")
+	elif near_house.get("id")=="loja":action_requested.emit("kite-shop")
+	elif near_house.get("id")=="casa-kael":action_requested.emit("kael-home")
+	elif near_person.get("id") in ["zeca","lia"]:action_requested.emit("mount-quest:"+str(near_person.id))
 	else:super.interact()
 
 func _say(speaker: String,lines: Array) -> void:
@@ -178,3 +206,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		action_requested.emit("map");get_viewport().set_input_as_handled()
 	elif Controls.pressed(event,"interact"):
 		interact();get_viewport().set_input_as_handled()
+
+# Same directional mother art as the house, staged at its real exterior entrance.
+func build_heleana_reunion()->void:
+	var mother:=Sprite2D.new()
+	mother.name="HeleanaReunionMother"
+	preload("res://scripts/npc_pixel_sprite.gd").setup(mother,"mae",48.0,"se")
+	mother.position=project(Checkpoint.HOME+Vector2(1.0,1.0))
+	add_child(mother)
+	var retalho:=Sprite2D.new()
+	retalho.name="HeleanaReunionRetalho"
+	retalho.texture=load("res://assets/campaign/retalho-v1/overworld-idle-eight.png")
+	retalho.region_enabled=true
+	retalho.region_rect=Rect2(64,0,64,96)
+	retalho.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	retalho.scale=Vector2.ONE*48.0/82.0
+	retalho.offset=Vector2(0,-44)
+	retalho.position=project(Checkpoint.HOME+Vector2(2.0,.4))
+	add_child(retalho)

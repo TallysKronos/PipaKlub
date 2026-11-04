@@ -4,7 +4,7 @@ const Levels = preload("res://scripts/campaign/partner_levels.gd")
 ## Single-round local Lacertubo encounter. Contact/costs/armor follow src/engine.js.
 ## Does not implement online rooms, specialization classes or the six line loadouts.
 var outcome := ""
-var intro := 6.6
+var intro := 3.2
 var duration := 120.0
 var partner_id := ""
 var model_id := "rabbito"
@@ -12,6 +12,7 @@ var enemy_model_id := "lacertubo"
 var enemy_level := Pacing.BOSS_LEVEL
 signal damage_applied(event: Dictionary)
 signal combat_feedback(event: Dictionary)
+signal signature_started(id:String,enemy:bool)
 
 func _apply_hit(hit: Dictionary) -> void:
 	var target: Dictionary = hit.target
@@ -23,6 +24,12 @@ func _apply_hit(hit: Dictionary) -> void:
 		var penalty:=Pacing.level_penalty(absi(int(p.level)-int(q.level)))
 		multiplier=1.0+penalty if is_same(target,lower) else 1.0-penalty
 	target[field] = maxf(0, previous - hit.damage*multiplier)
+	if is_same(target,q) and q.get("mormacoForm","")=="normal":
+		if field=="hp":
+			target.hp=maxf(target.hp,target.stats.line*.7)
+		else:
+			target.hull=maxf(target.hull,1.0)
+			target.hp=maxf(target.stats.line*.7,target.hp-(previous-target.hull))
 	var amount: float = previous - target[field]
 	if amount > 0:
 		var event := {"amount":amount,"body":hit.body,"point":hit.get("point",Vector2(target.x,target.y)),"player":is_same(target,p),"critical":hit.get("critical",false),"color":hit.get("color",0),"kind":"cut" if not hit.body else "hit","cut_line":target.hp<=0}
@@ -87,13 +94,22 @@ func tick(delta: float, input: Dictionary) -> void:
 	_move_fighter(p, input, dt, wind)
 	_move_fighter(q, _boss_input(dt) if q.boss else _trainer_input(dt) if q.has("trainingRank") else _wild_input(dt), dt, wind)
 	var hits: Array = []
-	if q.boss: _signature_hit(q, p, dt, true, hits)
-	_signature_hit(p, q, dt, input.get("signature", false) and model_id == "rabbito", hits)
+	if q.boss: _signature_hit(q, p, dt, q.get("mormacoForm","")!="normal", hits)
+	_signature_hit(p, q, dt, input.get("signature", false) and model_id in ["rabbito","rai"], hits)
 	_strike(p, q, hits)
 	_strike(q, p, hits)
+	_tyler_assist(dt,hits)
 	for hit in hits:
 		_apply_hit(hit)
 	if p.hp <= 0 or p.hull <= 0: outcome = "lost"
+	elif q.get("platyxRefusal","")=="pending" and q.hp<=q.stats.line*.5:
+		q.platyxRefusal="stopped"
+		q.hp=maxf(q.hp,q.stats.line*.5)
+		outcome="won"
+	elif q.get("mormacoForm","")=="normal" and q.hp<=q.stats.line*.7:
+		q.mormacoForm="ambush"
+		outcome="won"
+	elif q.get("platyxRefusal","")=="pending" and (q.hull<=0 or duration<=0): outcome = "lost"
 	elif q.hp <= 0 or q.hull <= 0: outcome = "won"
 	elif duration <= 0:
 		if not q.boss and q.hp == p.hp:
@@ -113,6 +129,17 @@ func tick(delta: float, input: Dictionary) -> void:
 				actor.lineCooldown = 0.0
 		else: outcome = "lost" if q.boss or q.hp > p.hp else "won"
 	complete = not outcome.is_empty()
+
+func mormaco_ambush()->bool:
+	return q.get("mormacoForm","")=="ambush"
+
+func _tyler_assist(dt:float,hits:Array)->void:
+	if not q.get("tylerAlly",false):return
+	q.tylerCooldown=maxf(0.0,float(q.get("tylerCooldown",0.0))-dt)
+	if q.tylerCooldown>0.0:return
+	q.tylerCooldown=5.0
+	hits.append({"target":q,"body":false,"damage":8.0,"point":Vector2(q.x,q.y),"color":3})
+	combat_feedback.emit({"kind":"cut","amount":0,"point":Vector2(q.x,q.y),"player":false})
 
 func _move_fighter(actor: Dictionary, raw: Dictionary, dt: float, wind: float) -> void:
 	actor.strike = false
@@ -178,6 +205,7 @@ func _move_fighter(actor: Dictionary, raw: Dictionary, dt: float, wind: float) -
 	actor.energy = clampf(actor.energy + (6 if cut else actor.stats.regen) * dt, 0, actor.stats.energy)
 
 func _boss_input(dt: float) -> Dictionary:
+	if enemy_model_id=="mormaco-possuido":return _mormaco_input(dt)
 	var phase := 2 if minf(q.hp, q.hull) <= 250 * .55 else 1
 	if phase != q.phase:
 		q.phase = phase
@@ -250,6 +278,7 @@ func _wild_input(dt: float) -> Dictionary:
 	return {"x": clampf((target.x - q.x) / 80, -.6, .6), "y": clampf((target.y - q.y) / 80, -.6, .6), "cut": pull, "skill": pull and q.energy >= 40}
 
 func signature_profile(actor: Dictionary) -> Dictionary:
+	if is_same(actor,q) and enemy_model_id=="mormaco-possuido":return {"radius":110.0,"windup":2.1}
 	return {"radius":95.0 if actor.boss else 85.0,"windup":1.5 if actor.boss else 1.4}
 
 func attack_notice(actor: Dictionary) -> Dictionary:
@@ -288,6 +317,7 @@ func _signature_hit(actor: Dictionary, target: Dictionary, dt: float, wants: boo
 	actor.signatureAim = Vector2(target.x, target.y)
 	actor.strike = false
 	actor.maneuver = false
+	signature_started.emit(model_id if is_same(actor,p) else enemy_model_id,not is_same(actor,p))
 	if actor.boss:
 		actor.charge = 0.0
 		actor.telegraph = 0.0
@@ -356,4 +386,20 @@ static func _decode(value: Variant) -> Variant:
 	return value
 
 func wind_strength() -> float:
+	if enemy_model_id=="mormaco-possuido":return 0.0
 	return sin(time/9)*12
+
+func _mormaco_input(dt:float)->Dictionary:
+	var phase:=2 if q.get("mormacoForm","")=="possessed" or minf(q.hp,q.hull)<=q.stats.line*.55 else 1
+	if phase!=q.phase:q.phase=phase;q.recovery=2.0;q.charge=0;q.telegraph=0
+	if q.signatureWindup>0:return {}
+	var crossing:=Vector2(p.anchor,585).lerp(Vector2(p.x,p.y),.65)
+	var target:=Vector2(clampf(q.anchor+(crossing.x-q.anchor)/.7,55,945),clampf(585+(crossing.y-585)/.7,70,480))
+	var speed:=.5 if phase==2 else .35
+	var input:={"x":clampf((target.x-q.x)/100,-speed,speed),"y":clampf((target.y-q.y)/100,-speed,speed),"cut":false}
+	if q.recovery>0:q.recovery=maxf(0,q.recovery-dt);input.x*=.15;input.y*=.15;return input
+	if q.charge>0 or contact(q,p).get("valid",false):
+		q.charge+=dt;q.telegraph=minf(1,q.charge/1.2)
+		if q.telegraph>.5:input.x=0.0;input.y=0.0
+		if q.charge>=1.2:input.cut=true;q.charge=0;q.telegraph=0;q.recovery=1.8
+	return input

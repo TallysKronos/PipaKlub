@@ -21,7 +21,7 @@ static func walk(room: Variant,who: String,points: Array,speed: float=200.0,stai
 		var distance := origin.distance_to(target)
 		var moved := 0.0
 		if who=="kael":room.face_actor(target);room.cinematic_actor_moving=true
-		else:room.face_mother(target);room.mother_walking=true
+		else:room.face_mother(target);room.mother_walking=true;room.mother_stair=stair
 		while alive(room) and moved<distance:
 			await tree.process_frame
 			if not alive(room):return
@@ -33,13 +33,18 @@ static func walk(room: Variant,who: String,points: Array,speed: float=200.0,stai
 				room.mother_point=origin.lerp(target,t)
 				if stair!=0:room.mother_reveal=t if stair>0 else 1.0-t
 			room.opening_pose()
-	if alive(room):room.cinematic_actor_moving=false;room.mother_walking=false
+	if alive(room):
+		room.cinematic_actor_moving=false;room.mother_walking=false;room.mother_stair=0
+		room.opening_pose()
 
 static func pass_tail(room: Node2D,from: Vector2,to: Vector2) -> void:
+	await pass_item(room,from,to,preload("res://scripts/campaign/hud.gd").icon("tail"))
+
+static func pass_item(room: Node2D,from: Vector2,to: Vector2,texture: Texture2D,extent:float=30.0) -> void:
 	if not alive(room):return
 	var item:=Sprite2D.new()
-	item.texture=preload("res://scripts/campaign/hud.gd").icon("tail")
-	item.scale=Vector2.ONE*30.0/maxf(item.texture.get_width(),item.texture.get_height())
+	item.texture=texture
+	item.scale=Vector2.ONE*extent/maxf(item.texture.get_width(),item.texture.get_height())
 	item.z_index=200
 	room.add_child(item)
 	var start: Vector2=room.project(from)-Vector2(0,45)
@@ -76,6 +81,7 @@ static func play(room: Node2D,step: int) -> void:
 	elif step==4:
 		# Returning to the desk preserves the position reached by player movement.
 		await walk(room,"kael",[Vector2(block.kaelDesk[0],block.kaelDesk[1])],190)
+		if not alive(room):return
 		room.face_actor(Vector2(1200,432))
 		await wait(room,.4)
 	elif step==5:
@@ -85,6 +91,7 @@ static func play(room: Node2D,step: int) -> void:
 		await walk(room,"mother",[Vector2(624,784),Vector2(760,704),Vector2(880,640)],190)
 		if not alive(room):return
 		await walk(room,"kael",[Vector2(1120,560),Vector2(1030,610)],190)
+		if not alive(room):return
 		room.face_actor(room.mother_point);room.face_mother(room.actor)
 		await wait(room,.2)
 	elif step==7:

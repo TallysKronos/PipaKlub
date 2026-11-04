@@ -58,7 +58,7 @@ test('Soulgen serves and loads the Nozinho preset and every source without broad
   const loaded=await createNozinho();assert.deepEqual(loaded,project);
   assert.equal((await fetch('/nozinho.mjs')).status,200);
   assert.match(await (await fetch('/')).text(),/id="nozinho"/);
-  const studio=await (await fetch('/studio.mjs')).text();assert.match(studio,/requestedPreset==='nozinho'/);assert.match(studio,/'lacertubo-v2','nozinho'/);
+  const studio=await (await fetch('/studio.mjs')).text();assert.match(studio,/requestedPreset==='nozinho'/);assert.match(studio,/const STORE=\[[^\]]*'nozinho'/);
   for(const a of Object.values(loaded.assets))assert.equal((await fetch(a.src)).status,200);
   assert.equal((await fetch('/art/soulgen/keys/nozinho/prepare.py')).status,404);
  }finally{globalThis.fetch=original;server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}

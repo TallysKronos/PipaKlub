@@ -7,9 +7,12 @@ var description: Label
 var item_art: TextureRect
 var quantity: Label
 signal retry_requested
+signal mount_requested
 signal care_requested
+var selected_item:=""
 var use_button:Button
 var care_available:=true
+var mount_available:=false
 var tabs:Array[Button]=[]
 var current_filter:="Tudo"
 var page_index:=0
@@ -22,7 +25,7 @@ var load_state:="ready"
 var reduced_motion:=false
 var state_time:=0.0
 static var seen:Dictionary={}
-const NAMES := {"kit-remendo":"Kit de Remendo","quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol","papel-seda":"Papel de seda","vareta-bambu":"Vareta de bambu","cola-reparo":"Cola de reparo","linha-encerada":"Linha encerada","pista-caderno-heleana-1":"Página do caderno"}
+const NAMES := {"certificado-rabiola-azul":"Certificado · Rabiola Azul","agulha-desatar":"Agulha de desatar","apito-falso":"Apito de Lalau","apito-de-vento":"Apito de vento","certificado-rabiola-verde":"Certificado · Rabiola Verde","emprestimo-carcara-nina":"Autorização · Carcará da Nina","rabiola-rascunho-bicho-pau":"Rabiola de Bicho-pau [rascunho]","rabiola-rascunho-joaninha":"Rabiola de Joaninha-pião [rascunho]","apito-de-elo":"Apito de Elo","quest-fecho-guia":"Fecho da guia","insignia-morro-do-sol":"Insígnia do Morro do Sol","carteira-pipeiro":"Carteira de Pipeiro","porta-emblemas":"Porta-emblemas","kit-remendo":"Kit de Remendo","quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol","papel-seda":"Papel de seda","vareta-bambu":"Vareta de bambu","cola-reparo":"Cola de reparo","linha-encerada":"Linha encerada","pista-caderno-heleana-1":"Página do caderno"}
 func _ready() -> void:
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	add_theme_constant_override("separation",16)
@@ -80,7 +83,9 @@ func _ready() -> void:
 	description.add_theme_font_size_override("font_size",18)
 	use_button=Button.new();use_button.text="Cuidar do parceiro"
 	Hud.navigation_button(use_button,true);column.add_child(use_button)
-	use_button.pressed.connect(func():care_requested.emit())
+	use_button.pressed.connect(func():
+		if selected_item=="apito-de-elo":mount_requested.emit()
+		else:care_requested.emit())
 	var paging:=HBoxContainer.new()
 	paging.add_theme_constant_override("separation",16)
 	add_child(paging)
@@ -114,7 +119,8 @@ func _unhandled_input(event:InputEvent) -> void:
 		page_index=0;populate(tabs[index].text);tabs[index].grab_focus()
 		get_viewport().set_input_as_handled()
 func category(id: String) -> String:
-	return "Missão" if id.begins_with("quest-") or id.begins_with("pista-") else "Rabiolas" if "rabiola" in id else "Materiais"
+	if id.begins_with("certificado-"):return "Missão"
+	return "Missão" if id.begins_with("quest-") or id.begins_with("pista-") or id in ["agulha-desatar","apito-falso","apito-de-vento","apito-de-elo","carteira-pipeiro","porta-emblemas","insignia-morro-do-sol"] else "Rabiolas" if "rabiola" in id else "Materiais"
 func populate(filter: String) -> void:
 	current_filter=filter
 	for tab in tabs:tab.set_pressed_no_signal(tab.text==filter)
@@ -170,8 +176,10 @@ func populate(filter: String) -> void:
 		show_all.pressed.connect(func():page_index=0;populate("Tudo");tabs[0].grab_focus())
 	select_item(first)
 func select_item(id: String) -> void:
-	use_button.visible=id=="kit-remendo"
-	use_button.disabled=not care_available
+	selected_item=id
+	use_button.visible=id in ["kit-remendo","apito-de-elo"]
+	use_button.text="Chamar montaria" if id=="apito-de-elo" else "Cuidar do parceiro"
+	use_button.disabled=not mount_available if id=="apito-de-elo" else not care_available
 	if not id.is_empty():seen[id]=true
 	for child in list.get_children():
 		if child is Button:
@@ -180,8 +188,18 @@ func select_item(id: String) -> void:
 	item_art.texture = Hud.item_art(id)
 	item_name.text = NAMES.get(id, id.replace("-", " ").capitalize()) if not id.is_empty() else "Nada por aqui"
 	quantity.text = ("MISSÃO · " if category(id) == "Missão" else "") + "%d na mochila" % inventory.get(id, 0) if not id.is_empty() else ""
-	description.text = "Esta categoria ainda está vazia." if id.is_empty() else "Nina está esperando por esta rabiola. Entregue-a pessoalmente." if id == "quest-nina-tail" else "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola." if category(id) == "Rabiolas" else "Material guardado para sua jornada."
+	description.text = "Esta categoria ainda está vazia." if id.is_empty() else "Nina está esperando por esta rabiola. Entregue-a pessoalmente." if id == "quest-nina-tail" else "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola." if category(id) == "Rabiolas" else "Ferramenta de missão guardada após o confronto no galpão." if id=="agulha-desatar" else "Material guardado para sua jornada."
+	if id=="apito-falso":description.text="Apito vendido por Lalau como original. Experimente na entrada das Ruínas, nas Veredas."
+	if id=="apito-de-vento":description.text="Apito verdadeiro recuperado com Grampo. Seu som responde à Rabiola Antiga. Guardado como item de missão, não consumível."
+	if id=="apito-de-elo":description.text="Recebido de Zeca após reparar a guia. Na rua e nas trilhas, use B ou o direcional para cima para montar e desmontar. Requer uma montaria no grupo com pelo menos 1 HP e armação intacta. Não é consumido. Shift permite correr montado."
+	if id=="quest-fecho-guia":description.text="Lia preparou este fecho para a guia da montaria. Leve-o a Zeca na pracinha."
+	if id=="insignia-morro-do-sol": description.text="Sua primeira insígnia, conquistada ao vencer Mikka no Morro do Sol. Guardada no primeiro espaço de Pausa → Porta-emblemas."
+	if id=="carteira-pipeiro": description.text="Seu registro de pipeiro, entregue pelo Sr. Assis. Consulte nome, nível de tamer e jornada no menu de pausa → Carteira de Pipeiro."
+	if id=="porta-emblemas": description.text="Estojo com doze espaços. Um emblema por chefe de bairro vencido. Consulte-o junto à Carteira de Pipeiro."
 	if id=="pista-caderno-heleana-1": description.text="Página encontrada em um dos platôs do Bosque dos Ventos. Guardada entre suas pistas."
+	if id=="certificado-rabiola-verde":description.text="Seu primeiro exame da Liga foi concluído. Categoria permanente: perder um título de bairro não a remove."
+	if id=="certificado-rabiola-azul":description.text="Dona Cida registrou sua aprovação em observação, condução e controle. Categoria permanente e independente de Retalho."
+	if id=="emprestimo-carcara-nina":description.text="Nina autorizou o empréstimo do Carcará para uma futura travessia de Planar. Use as setas azuis junto ao rio das Veredas para Planar. Não é um parceiro transferido para sua equipe."
 	if id=="kit-remendo":
 		item_name.text="Kit de Remendo"
 		description.text="Papel, cola e linha para cuidar de um Soulmonster. Restaura toda a linha e a armação ao concluir os cuidados."

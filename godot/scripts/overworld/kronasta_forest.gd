@@ -20,6 +20,9 @@ static func build(view) -> void:
 	var h:int=int(model.data.h)
 	var industrial:bool=bool(model.data.get("forest",{}).get("industrial",false))
 	var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
+	var mine:bool=bool(model.data.get("forest",{}).get("mine",false))
+	var submerged:bool=bool(model.data.get("forest",{}).get("submerged",false))
+	var ice:bool=bool(model.data.get("forest",{}).get("ice",false)) or submerged
 	var industrial_surface:=ShaderMaterial.new()
 	if industrial:industrial_surface.shader=preload("res://shaders/industrial_surface.gdshader")
 	var material:=ShaderMaterial.new()
@@ -36,6 +39,26 @@ static func build(view) -> void:
 		material.set_shader_parameter("mountain_stage",int(model.data.forest.baseLevel)/2)
 		material.set_shader_parameter("mountain_rock",preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png"))
 		material.set_shader_parameter("terrain_mask",preload("res://scripts/overworld/mountain_structures.gd").mask(model))
+	if mine:
+		material.shader=preload("res://shaders/mural_ground.gdshader") if model.data.get("forest",{}).get("mural",false) else preload("res://shaders/mine_ground.gdshader")
+		material.set_shader_parameter("masks",_masks(model))
+		material.set_shader_parameter("map_size",Vector2(w,h))
+		material.set_shader_parameter("stone",load(KITS+"cavernas-v3/surfaces/rocha-cinza.png"))
+		material.set_shader_parameter("earth",load(KITS+"cavernas-v3/surfaces/terra-gruta.png"))
+		material.set_shader_parameter("rock_mask",preload("res://scripts/overworld/mine_structures.gd").mask(model))
+	if ice and not submerged:
+		material.shader=preload("res://shaders/ice_ground.gdshader")
+		material.set_shader_parameter("masks",_masks(model))
+		material.set_shader_parameter("map_size",Vector2(w,h))
+		material.set_shader_parameter("noise_texture",load(KITS+"cavernas-v3/surfaces/rocha-cinza.png"))
+		material.set_shader_parameter("frozen_mask",preload("res://scripts/overworld/ice_structures.gd").mask(model))
+	if submerged:
+		material.shader=preload("res://shaders/submerged_ground.gdshader")
+		material.set_shader_parameter("masks",_masks(model))
+		material.set_shader_parameter("map_size",Vector2(w,h))
+		material.set_shader_parameter("noise_texture",load(KITS+"cavernas-v3/surfaces/rocha-cinza.png"))
+		material.set_shader_parameter("sand_mask",preload("res://scripts/overworld/submerged_structures.gd").mask(model))
+		material.set_shader_parameter("still",OS.get_environment("SUBMERSO_CAPTURE")=="1")
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
 		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
@@ -46,11 +69,47 @@ static func build(view) -> void:
 	var concrete:Texture2D=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"industrial-v1/superficies/concreto.png") if industrial else null
 	var wall_texture:Texture2D=concrete if industrial else load(KITS+"terrenos-v1/superficies/terra-barranco.png")
 	if mountain:wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png")
+	if mine:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-calcario.png" if model.data.get("forest",{}).get("mural",false) else KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	if ice:
+		var path:String=KITS+"gelo-v1/superficies/parede.png"
+		wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(path) if FileAccess.file_exists(path) else load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	if submerged:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	if model.data.get("forest",{}).get("harbor",false):wall_texture=load(KITS+"industrial-v1/superficies/concreto.png")
+	var chamber: bool = model.data.get("forest",{}).get("chamber",false)
+	if chamber:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	var stadium: bool = model.data.get("id")=="kronasta-estadio-a"
+	var aracati: bool = str(model.data.get("id","")).begins_with("kronasta-aracati-")
+	var mirante := str(model.data.id).begins_with("kronasta-mirante-")
+	var paving := {}
+	if mirante and not Structures.geometry():
+		for height_level in range(5):
+			var surface := ShaderMaterial.new()
+			surface.shader = preload("res://shaders/mirante_paving.gdshader")
+			surface.set_shader_parameter("arena", str(model.data.id).ends_with("-c"))
+			surface.set_shader_parameter("elevation", float(height_level) * 64.0)
+			paving[height_level] = surface
+	var coastal_tiles := {}
+	if aracati and not Structures.geometry():
+		var path_surface := ShaderMaterial.new()
+		path_surface.shader = preload("res://shaders/aracati_path.gdshader")
+		path_surface.set_shader_parameter("part", ["a","b","c"].find(str(model.data.id).right(1)))
+		path_surface.set_shader_parameter("area_part",["a","b","c"].find(str(model.data.id).right(1)))
+		coastal_tiles["path_surface"] = path_surface
+		var terrace_surface := path_surface.duplicate() as ShaderMaterial
+		terrace_surface.set_shader_parameter("elevation", 128.0)
+		coastal_tiles["terrace_surface"] = terrace_surface
+	if aracati and not Structures.geometry():
+		for pair in [["agua","agua"],["piso","arenito"],["terra","grama"],["ponte","tablado"]]:
+			coastal_tiles[pair[0]] = load(KITS+"aracati-v1/"+pair[1]+".png")
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
-			if mountain and not inside:continue
+			if stadium and (not inside or model.cell_at(Vector2i(u,v)).material!="piso"):continue
+			if model.data.get("forest",{}).get("interior",false) and (not inside or model.cell_at(Vector2i(u,v)).get("material")=="rocha"):continue
+			if (mountain or mine or ice or bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false)) and not inside:continue
+			# Mural chambers use the continuous short cut-border, without broad foreground roof tiles.
+			if inside and model.data.get("forest",{}).get("mural",false) and Structures.mine_cutaway(model,u,v):continue
 			var node:=Node2D.new()
 			node.position=Vector2((u-v)*32,(u+v)*16+2)
 			view.actors.add_child(node)
@@ -64,6 +123,7 @@ static func build(view) -> void:
 			# Platô um pouco mais claro que o chão de baixo; rampa sombreada pelo lado em que sobe
 			# (subindo para +u/+v ela vira de costas para a câmera e escurece).
 			var tone:=.88+.18*level
+			if ice:tone=.86+.14*(level-int(model.data.forest.baseLevel))
 			if mountain:tone=.96+.05*(level-int(model.data.forest.baseLevel))
 			if inside and model.cell_at(Vector2i(u,v)).get("ramp")!=null:
 				tone*=.80 if str(model.cell_at(Vector2i(u,v)).ramp) in ["u+","v+"] else 1.12
@@ -85,36 +145,72 @@ static func build(view) -> void:
 				for corner in corners:concrete_uv.append(corner)
 				poly.uv=concrete_uv
 				poly.color=Color.WHITE
+			if model.data.get("id")=="kronasta-estadio-a" and inside and model.cell_at(Vector2i(u,v)).material=="piso":
+				poly.material=null
+				var shade:=Color("253751") if u in [23,24,25] else Color("dfc7a2")
+				shade=shade.lightened(.05*_hash(u,v,3))
+				poly.vertex_colors=PackedColorArray([shade,shade,shade,shade])
 			if OS.get_environment("KRONASTA_GEOMETRIA")=="1":
 				# Conferência geométrica: cores chapadas por nível, rampa em vermelho.
 				poly.material=null
 				var c:Dictionary=model.cell_at(Vector2i(u,v)) if inside else {}
 				var flat:=Color("6a8f4e") if c.is_empty() or int(c.level)==0 else Color("b9d77a") if int(c.level)==1 else Color("d9e9a8")
+				if mine:flat=[Color("626b7b"),Color("8e9bb0"),Color("a9b3c0"),Color("bdc7ce"),Color("c7d0d3"),Color("d6d5c4"),Color("e0dfcf")][clampi(level,0,6)]
+				if ice:flat=[Color("507da2"),Color("7ba5c5"),Color("add1e1"),Color("dbecf5"),Color("8dc4de"),Color("bce1ee"),Color("e1f5fa")][clampi(level,0,6)]
+				if ice and c.get("material")=="piso":flat=Color("58badb")
 				if mountain:flat=[Color("547c63"),Color("81a56f"),Color("b8c98e"),Color("70a5ab"),Color("a1b6d0"),Color("c9b4d4"),Color("e6d6b0")][clampi(level,0,6)]
-				if mountain and (c.is_empty() or c.get("material")=="rocha"):flat=flat.darkened(.55)
+				if (mountain or mine) and (c.is_empty() or c.get("material")=="rocha"):flat=flat.darkened(.55)
 				if not c.is_empty() and c.material=="bosque":flat=flat.darkened(.28)
 				if not c.is_empty() and c.material=="terra":flat=Color("cbac72")
 				if not c.is_empty() and c.get("ramp")!=null:flat=Color("d0473b") if str(c.ramp) in ["u+","v+"] else Color("e0a03a")
 				poly.vertex_colors=PackedColorArray([flat,flat,flat,flat])
-			Structures.floor_cut(model,node,poly,corners,u,v)
+			if chamber or str(model.data.id).begins_with("kronasta-mirante-"):poly.z_index=-1
+			if chamber and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				poly.material=null
+				var shade:=Color("#55596f") if u in range(22,26) else Color("#383b50")
+				shade=shade.lightened(.035*_hash(u,v,2))
+				poly.vertex_colors=PackedColorArray([shade,shade,shade,shade])
+			if mirante and inside and not Structures.geometry() and model.cell_at(Vector2i(u,v)).material == "piso":
+				poly.material = paving[level]
+			Structures.floor_cut(model,node,poly,corners,u,v,coastal_tiles)
+			if stadium and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				preload("res://scripts/overworld/stadium_structures.gd").trim_floor(node,points,u)
 			if inside:
 				if not mountain or level>=0:_walls(view,model,node,u,v,wall_texture)
-				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not mountain and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not mountain and not mine and not ice and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 					view._encounter_tufts(Vector2i(u,v),model.cell_at(Vector2i(u,v)))
-			elif not industrial and not mountain and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
+			elif not industrial and not mountain and not mine and not ice and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<(.38 if mirante else .82) and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
+	if model.data.get("id")=="kronasta-estadio-a":preload("res://scripts/overworld/stadium_structures.gd").build(view)
+	if bool(model.data.get("forest",{}).get("bamboo",false)) or bool(model.data.get("forest",{}).get("canal",false)) or bool(model.data.get("forest",{}).get("market",false)):
+		preload("res://scripts/overworld/bamboo_structures.gd").build(view)
+	if model.data.get("forest",{}).get("market",false):preload("res://scripts/overworld/market_structures.gd").build(view)
+	if model.data.get("forest",{}).get("canal",false):preload("res://scripts/overworld/canal_structures.gd").build(view)
+	if model.data.get("forest",{}).get("harbor",false):preload("res://scripts/overworld/harbor_structures.gd").build(view)
+	if str(model.data.id).begins_with("kronasta-mirante-") and not Structures.geometry(): preload("res://scripts/overworld/harbor_structures.gd").mirante_props(view)
+	if aracati and not Structures.geometry(): preload("res://scripts/overworld/harbor_structures.gd").aracati_props(view)
 	if bool(model.data.get("forest",{}).get("industrial",false)):
 		preload("res://scripts/overworld/industrial_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("swamp",false)):
 		preload("res://scripts/overworld/swamp_structures.gd").build(view)
 	if mountain:preload("res://scripts/overworld/mountain_structures.gd").build(view)
-	if bool(model.data.get("forest",{}).get("nativeProps",false)):
+	if mine:preload("res://scripts/overworld/mine_structures.gd").build(view)
+	if model.data.get("forest",{}).get("mural",false):preload("res://scripts/overworld/mural_structures.gd").build(view)
+	if submerged:preload("res://scripts/overworld/submerged_structures.gd").build(view)
+	elif ice:preload("res://scripts/overworld/ice_structures.gd").build(view)
+	if chamber:
+		preload("res://scripts/overworld/elo_chamber.gd").build(view)
+	elif stadium:
+		pass
+	elif bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
+			if piece.asset.begins_with("canal-") or piece.asset.begins_with("feira-") or piece.asset.begins_with("cais-"):continue
+			if piece.asset in ["bambuzal-touceira","bambuzal-casa","bambuzal-bancada"]:continue
 			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
-			if piece.asset=="montanha-crista":continue
+			if piece.asset in ["montanha-crista","mina-prop","mina-cave","mina-suporte","gelo-prop","gelo-marker","submerso-prop","submerso-marker"]:continue
 			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
 			else:native_pieces.append(piece)
 		if not native_pieces.is_empty():
@@ -124,7 +220,7 @@ static func build(view) -> void:
 			view.art_preview=preview
 	else:
 		for piece in model.data.pieces:_piece(view,model,piece)
-	if not bool(model.data.get("forest",{}).get("industrial",false)) and not mountain:_tufts(view,model)
+	if not bool(model.data.get("forest",{}).get("industrial",false)) and not mountain and not mine and not ice:_tufts(view,model)
 	for event in model.data.events:
 		if view.campaign_mode: break # Campaign markers follow persistent collection receipts.
 		if OS.get_environment("KRONASTA_GEOMETRIA")!="1" and event.type=="item" and str(event.props.get("visibilidade","")) in ["visivel","brilho"]:_glint(view,model,event)
@@ -134,16 +230,26 @@ static func _screen(point:Vector2,height:float) -> Vector2:
 
 static func _corner_height(model,u:int,v:int,corner:Vector2) -> float:
 	var cell:Dictionary=model.cell_at(Vector2i(u,v))
+	var cut:float=Structures.mine_cut_height(model,u,v)
+	if cut>-999.0:return cut
 	return model.surface_height(cell,corner-Vector2(u,v))
 
 # Paredão de terra nas bordas da frente (+u e +v) onde o vizinho é mais baixo: textura com
 # estratos, face sudeste média e sudoeste escura, sombra na base, borda de grama dobrando.
 static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void:
+	if bool(model.data.get("forest",{}).get("mine",false)):
+		var near:=false
+		for y in range(v-3,v+4):
+			for x in range(u-3,u+4):
+				if model.walkable(Vector2i(x,y)):near=true
+		if not near:return
 	for side in ["u","v"]:
 		var n:=Vector2i(u+1,v) if side=="u" else Vector2i(u,v+1)
 		var neighbour:Dictionary=model.cell_at(n)
 		var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
-		if neighbour.is_empty() and not mountain:continue
+		var ice:bool=bool(model.data.get("forest",{}).get("ice",false)) or bool(model.data.get("forest",{}).get("submerged",false))
+		var seal_boundary:bool=bool(model.data.get("forest",{}).get("sealBoundary",false))
+		if neighbour.is_empty() and not mountain and not ice and not seal_boundary:continue
 		var a:=Vector2(u+1,v) if side=="u" else Vector2(u,v+1)
 		var b:=Vector2(u+1,v+1)
 		var top_a:=_corner_height(model,u,v,a)
@@ -151,6 +257,8 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		var low_a:float=-18 if neighbour.is_empty() else _corner_height(model,n.x,n.y,a)
 		var low_b:float=-18 if neighbour.is_empty() else _corner_height(model,n.x,n.y,b)
 		if mountain and (neighbour.is_empty() or float(neighbour.get("level",0))<0):low_a=-18;low_b=-18
+		if ice and neighbour.is_empty():low_a=-2;low_b=-2
+		if seal_boundary and neighbour.is_empty():low_a=0;low_b=0
 		if top_a<=low_a+.001 and top_b<=low_b+.001:continue
 		low_a=minf(low_a,top_a);low_b=minf(low_b,top_b)
 		var wall:=Polygon2D.new()
@@ -167,9 +275,26 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		var s0:=float(u+v)*44.0
 		wall.uv=PackedVector2Array([Vector2(s0,-top_a*112),Vector2(s0+44,-top_b*112),Vector2(s0+44,-low_b*112),Vector2(s0,-low_a*112)])
 		var lit:=Color(1.0,.97,.92) if side=="u" else Color(.70,.66,.64)
+		if ice:lit=Color(.88,.97,1.0) if side=="u" else Color(.60,.76,.90)
+		if bool(model.data.get("forest",{}).get("submerged",false)):lit=Color(.38,.69,.72) if side=="u" else Color(.25,.48,.62)
 		if OS.get_environment("KRONASTA_GEOMETRIA")=="1":lit=Color("9a7652") if side=="u" else Color("775b46")
+		var coastal := str(model.data.get("id","")).begins_with("kronasta-aracati-") and not Structures.geometry()
+		if coastal:
+			wall.texture=null
+			lit=Color("b57c48") if side=="u" else Color("95603b")
+			lit=lit.lightened(_hash(u,v,12)*.10)
 		wall.vertex_colors=PackedColorArray([lit,lit,lit*Color(.62,.60,.62),lit*Color(.62,.60,.62)])
 		node.add_child(wall)
+		if coastal:
+			for band in [.30,.66]:
+				var seam_a: Vector2 = pts[0].lerp(pts[3],band)-node.position
+				var seam_b: Vector2 = pts[1].lerp(pts[2],band)-node.position
+				var seam := Line2D.new()
+				seam.width=1.5
+				seam.default_color=lit.darkened(.25)
+				seam.points=PackedVector2Array([seam_a,seam_a.lerp(seam_b,.42)+Vector2(0,3),seam_a.lerp(seam_b,.62)+Vector2(0,3),seam_b])
+				node.add_child(seam)
+		if model.data.get("forest",{}).get("chamber",false):continue
 		# Borda de grama que dobra por cima do paredão, com recorte irregular.
 		var lip:=Polygon2D.new()
 		var lip_pts:=PackedVector2Array([pts[0]-node.position,pts[1]-node.position])
@@ -179,14 +304,21 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 			lip_pts.append(pts[0].lerp(pts[1],t)-node.position+Vector2(0,drop))
 		lip.polygon=lip_pts
 		lip.color=Color("4a7a2a") if side=="u" else Color("3d6824")
-		if bool(model.data.get("forest",{}).get("industrial",false)):lip.color=Color("7c8381")
+		if bool(model.data.get("forest",{}).get("industrial",false)) or model.data.get("forest",{}).get("harbor",false):lip.color=Color("7c8381")
 		if bool(model.data.get("forest",{}).get("mountain",false)):lip.color=Color("666951")
+		if bool(model.data.get("forest",{}).get("mine",false)):lip.color=Color("252a35")
+		if ice:lip.color=Color("9dbed7")
+		if bool(model.data.get("forest",{}).get("submerged",false)):lip.color=Color("376c72")
+		if coastal:lip.color=Color("7b8841")
 		node.add_child(lip)
 		var rim:=Line2D.new()
 		rim.points=PackedVector2Array([pts[0]-node.position+Vector2(0,1),pts[1]-node.position+Vector2(0,1)])
 		rim.width=2.0
 		rim.default_color=Color("d6cc9c") if bool(model.data.get("forest",{}).get("industrial",false)) else Color("a7d65e")
 		if bool(model.data.get("forest",{}).get("mountain",false)):rim.default_color=Color("a8a27b")
+		if bool(model.data.get("forest",{}).get("mine",false)):rim.default_color=Color("77766b")
+		if ice:rim.default_color=Color("ecfaff")
+		if bool(model.data.get("forest",{}).get("submerged",false)):rim.default_color=Color("5c9f9e")
 		node.add_child(rim)
 		# Sombra de contato no chão de baixo, desenhada logo depois desse chão.
 		var shade:=Node2D.new()
@@ -201,6 +333,10 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		shade.add_child(shadow)
 
 static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occluder:bool,shrink:float=1.0) -> void:
+	if bool(model.data.get("forest",{}).get("bamboo",false)):
+		if int(floor(point.x))%2!=0 or int(floor(point.y))%2!=0:return
+		preload("res://scripts/overworld/bamboo_structures.gd").grove(view,point,level,"alto",.5+r*.12)
+		return
 	if bool(model.data.get("forest",{}).get("swamp",false)):
 		var base:=_screen(point,float(level))
 		for at:Array in model.data.forest.get("clearViews",[]):
@@ -383,3 +519,5 @@ static func _masks(model) -> ImageTexture:
 				return lerpf(lerpf(g[v0*w+u0],g[v0*w+u1],tx),lerpf(g[v1*w+u0],g[v1*w+u1],tx),ty)
 			image.set_pixel(x,y,Color(sample.call(grids[0]),sample.call(grids[1]),noise.get_noise_2d(x*.25,y*.25)*.5+.5,sample.call(grids[2])))
 	return ImageTexture.create_from_image(image)
+
+

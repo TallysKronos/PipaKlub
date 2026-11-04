@@ -62,11 +62,13 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	if kind == "practice" and (not whole(checkpoint.get("lesson")) or checkpoint.lesson > 4):
 		return "invalid"
 	if kind == "world":
-		if checkpoint.get("scene") not in ["quintal", "professor-home", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
+		if checkpoint.get("scene") not in ["kronasta-aracati-a","kronasta-aracati-b","kronasta-aracati-c","kronasta-estadio-a","kronasta-mirante-a","kronasta-mirante-b","kronasta-mirante-c","kronasta-coracao-a","kronasta-coracao-b","kronasta-coracao-c","kronasta-coracao-d","kronasta-porto-a","kronasta-porto-b","kronasta-porto-c","kronasta-centro-a","kronasta-centro-b","kronasta-centro-c","kronasta-lajes-a","kronasta-lajes-b","kronasta-lajes-c","parque-patio-liga","kael-home","kronasta-palafitas-a","kronasta-palafitas-b","kronasta-palafitas-c","kronasta-industrial-d","kronasta-bosque-d","kronasta-cais-a","kronasta-cais-b","kronasta-cais-c","caverna-mural-a","caverna-mural-b","caverna-mural-c","kronasta-feira-a","kronasta-feira-b","kronasta-feira-c","kronasta-beira-canal-a","kronasta-beira-canal-b","kronasta-beira-canal-c","kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c","quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
 			return "invalid"
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
 				return "invalid"
+		# Furniture can move between map revisions; RoomView recovers a nearby free spot.
+		if checkpoint.scene=="kite-shop" and not preload("res://scripts/campaign/shop_data.gd").inside_floor(Vector2(checkpoint.position[0],checkpoint.position[1])):return "invalid"
 	if checkpoint.has("space"):
 		if kind!="world":return "invalid"
 		var point := Vector2(float(checkpoint.position[0]),float(checkpoint.position[1]))
@@ -90,6 +92,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	for key in player.flags:
 		if not (key is String or key is StringName) or not player.flags[key] is bool:
 			return "invalid"
+	if player.has("blueExam") and not load("res://scripts/campaign/blue_exam.gd").valid(player.blueExam):return "invalid"
 	if player.has("cityPosition"):
 		var city: Variant=player.cityPosition
 		if not city is Array or city.size()!=2:return "invalid"
@@ -120,13 +123,25 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			if not player[field] is Array: return "invalid"
 			for entry in player[field]:
 				if not entry is String: return "invalid"
+	if player.has("marisolRowTrip") and not load("res://scripts/campaign/marisol_row_trip.gd").valid_record(player.marisolRowTrip):return "invalid"
+	if player.has("ninaGlideFlight") and not preload("res://scripts/campaign/nina_glide.gd").valid_flight(player.ninaGlideFlight):return "invalid"
+	if player.has("tylerClareiraStep") and (not whole(player.tylerClareiraStep) or player.tylerClareiraStep>11):return "invalid"
 	if player.has("morro") and not valid_morro(player.morro): return "invalid"
+	if player.has("championship"):
+		if player.championship is Dictionary and whole(player.championship.get("version")) and player.championship.version>1:return "future"
+		if not preload("res://scripts/campaign/district_rules.gd").valid(player.championship):return "invalid"
+	if player.has("pipeiroIdentity") and not preload("res://scripts/campaign/pipeiro_identity.gd").valid_identity(player.pipeiroIdentity): return "invalid"
+	if player.has("districtEmblems") and not preload("res://scripts/campaign/pipeiro_identity.gd").valid_emblems(player.districtEmblems): return "invalid"
 	if player.has("wildDrop"):
 		if not player.wildDrop is Dictionary or not player.wildDrop.get("intro") is bool or not whole(player.wildDrop.get("misses")): return "invalid"
 	if player.has("encounterGraceUntil"):
 		if not (player.encounterGraceUntil is int or player.encounterGraceUntil is float) or not is_finite(player.encounterGraceUntil) or player.encounterGraceUntil < 0: return "invalid"
 	if kind == "encounter" and not valid_encounter(player.get("encounter")):
 		return "invalid"
+	if kind=="encounter" and player.encounter.has("districtContext"):
+		var context:Dictionary=player.encounter.districtContext
+		var ready:Dictionary=preload("res://scripts/campaign/district_rules.gd").prepare(player,context.district,context.duel,context.defenseId)
+		if ready.status!="ok" or not preload("res://scripts/campaign/district_rules.gd").same_context(ready.context,context):return "invalid"
 	if kind in ["practice", "starter", "workshop"]:
 		if not player.get("journey") is Dictionary or not whole(player.journey.get("lesson")) or player.journey.lesson > 5:
 			return "invalid"
@@ -197,24 +212,71 @@ static func valid_workshop(state: Dictionary) -> bool:
 
 static func valid_encounter(value: Variant) -> bool:
 	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer"] or not value.get("state") is Dictionary: return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story","tufanocorte-story","tyler-lab","ruinas-elo"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
 	if value.has("space"):
 		if value.space!="parque-overworld-v1" or not preload("res://scripts/campaign/park_checkpoint.gd").loadable_position(value.get("scene","park-veredas"),Vector2(value.returnPoint[0],value.returnPoint[1])): return false
 	var state: Dictionary = value.state
+	if value.kind=="ruinas-elo":
+		var stage: Array = load("res://scripts/campaign/ruinas_elo.gd").battle_stage(value)
+		var legacy_eremor: bool = value.get("scene")=="kronasta-coracao-d" and state.get("enemyModelId")=="pipa-dragao-desatada"
+		if stage.is_empty() or value.get("space")!="parque-overworld-v1" or (state.get("enemyModelId")!=stage[1] and not legacy_eremor) or state.get("enemyLevel")!=stage[2] or value.get("rewardXp")!=0:return false
+	if value.kind=="tyler-lab" and (value.get("scene")!="professor-home" or value.has("space") or state.get("enemyModelId")!="lacertubo" or state.get("enemyLevel")!=33 or value.get("rewardXp")!=0):return false
+	if value.kind=="tufanocorte-story" and (value.get("scene")!="kronasta-montanha-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="tufanocorte" or state.get("enemyLevel")!=29 or value.get("rewardXp")!=0):return false
+	if value.kind=="mormaco-story" and (value.get("scene")!="kronasta-pantano-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="mormaco-possuido" or state.get("enemyLevel")!=27 or value.get("rewardXp")!=0):return false
+	if value.kind=="retalho-rescue" and (value.get("scene")!="kronasta-palafitas-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="mata" or state.get("enemyLevel")!=24 or value.get("rewardXp")!=0):return false
+	if value.kind=="warehouse-story":
+		var opponent:String=value.get("warehouseOpponent","")
+		if opponent not in ["gollia","dragon"] or value.get("rewardXp")!=0 or value.get("space")!="parque-overworld-v1":return false
+		if value.get("scene")!=("kronasta-industrial-b" if opponent=="gollia" else "kronasta-industrial-d") or state.get("enemyModelId")!=("azulao" if opponent=="gollia" else "pipa-dragao-desatada") or state.get("enemyLevel")!=(23 if opponent=="gollia" else 25):return false
+	if value.kind=="retalho-story" and (value.get("scene")!="kronasta-bosque-d" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="retalho-original" or state.get("enemyLevel")!=22 or value.get("rewardXp")!=0):return false
+	if value.kind=="feira-story":
+		var who:String=value.get("feiraOpponent","")
+		if who not in ["lalau","grampo"] or value.get("space")!="parque-overworld-v1":return false
+		if value.get("scene")!=("kronasta-feira-a" if who=="lalau" else "kronasta-feira-b") or state.get("enemyModelId")!=("mata" if who=="lalau" else "platyx-draft") or state.get("enemyLevel")!=(16 if who=="lalau" else 17):return false
+	if value.kind=="canal-gate" and (value.get("scene")!="park-veredas" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="platyx-draft" or state.get("enemyLevel")!=14):return false
 	if value.kind in ["wild","trainer"]:
-		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or state.get("enemyModelId") not in ["basica", "mata", "raio"] or not whole(state.get("enemyLevel")) or state.enemyLevel < 1 or state.enemyLevel > 9: return false
+		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or not whole(state.get("enemyLevel")):return false
+		if value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-beira-canal-"):
+			if state.get("enemyModelId")!="lacertubo" or state.enemyLevel<12 or state.enemyLevel>14:return false
+		elif value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-feira-"):
+			if state.get("enemyModelId") not in ["rascunho-bicho-pau","rascunho-joaninha"] or state.enemyLevel<15 or state.enemyLevel>17:return false
+		elif value.get("scene")=="kronasta-bosque-d":
+			if state.get("enemyModelId") not in ["basica","mata","raio"] or state.enemyLevel<20 or state.enemyLevel>22:return false
+		elif state.get("enemyModelId") not in ["basica", "mata", "raio","rascunho-bicho-pau","rascunho-joaninha"] or state.enemyLevel<1 or state.enemyLevel>9:return false
 	if value.kind=="trainer":
 		var duel: Dictionary=preload("res://scripts/campaign/park_training.gd").duel(str(value.get("trainerId","")))
-		if duel.is_empty() or value.get("scene","")!=duel.scene or value.get("space","")!="parque-overworld-v1" or value.get("rewardXp",-1)!=duel.xp or state.get("enemyModelId","")!=duel.species or int(state.get("enemyLevel",0))!=duel.level: return false
+		if duel.is_empty():return false
+		var old_xp:int=preload("res://scripts/campaign/park_training.gd").LEGACY_XP.get(value.get("trainerId",""),-1)
+		if value.get("scene","")!=duel.scene or value.get("space","")!="parque-overworld-v1" or value.get("rewardXp",-1) not in [duel.xp,old_xp] or state.get("enemyModelId","")!=duel.species or int(state.get("enemyLevel",0))!=duel.level: return false
 	if state.get("outcome") not in ["", "won", "lost", "fled"] or not state.get("partnerId") is String or not state.get("modelId") is String: return false
 	for field in ["time", "intro", "duration"]:
 		if not number(state.get(field)) or state[field] < 0: return false
 	if value.kind == "morro":
-		if not valid_morro_state(state) or value.get("scene") != {"morro-1": "morro", "morro-2": "morro-area-2", "morro-3": "morro-area-3", "morro-4": "morro-area-4", "morro-5": "morro-area-5"}.get(state.get("trailStage")): return false
-	var actors: Array = state.actors if value.kind == "morro" else [state.get("p"), state.get("q")]
+		if not valid_morro_state(state):return false
+		var scenes:Dictionary={"morro-1":"morro","morro-2":"morro-area-2","morro-3":"morro-area-3","morro-4":"morro-area-4","morro-5":"morro-area-5"}
+		if value.has("districtContext"):
+			var context:Variant=value.districtContext
+			if not preload("res://scripts/campaign/district_rules.gd").valid_context(context) or context.district!="morro" or context.duel!=state.trailStage:return false
+			if context.mode=="defense":
+				var d:Dictionary=preload("res://scripts/campaign/district_rules.gd").definition("morro")
+				if not d.stages.slice(0,4).any(func(s):return s.scene==value.get("scene") and s.npcId==context.opponent):return false
+			elif value.get("scene")!=scenes.get(state.trailStage):return false
+		elif value.get("scene")!=scenes.get(state.trailStage):return false
+	if value.kind=="district":
+		var context:Variant=value.get("districtContext")
+		var rules=preload("res://scripts/campaign/district_rules.gd")
+		if not rules.valid_context(context) or context.district not in ["bambuzal","beira-canal","feira","cais","industrial","palafitas","alto-da-serra","centro","lajes","porto","mirante"] or context.duel!=state.get("trailStage") or not valid_morro_state(state):return false
+		var d:Dictionary=rules.definition(context.district)
+		var stage:Dictionary=d.stages.filter(func(s):return s.id==context.duel)[0]
+		if context.mode=="defense":
+			if not d.stages.slice(0,4).any(func(s):return s.scene==value.get("scene") and s.npcId==context.opponent):return false
+		elif value.get("scene")!=stage.scene:return false
+		if value.get("space","")!="parque-overworld-v1":return false
+		if state.get("enemyModelId")=="veskoro" and (context.district!="palafitas" or context.opponent!="caio-garca"):return false
+	var actors: Array = state.actors if value.kind in ["morro","district"] else [state.get("p"), state.get("q")]
 	for actor_value in actors:
 		if not actor_value is Dictionary: return false
 		var actor: Dictionary = actor_value
@@ -252,12 +314,16 @@ static func valid_morro(value: Variant) -> bool:
 	return value.items.is_empty() or value.items == ["rabiola-raio-de-sol"]
 
 static func valid_morro_state(state: Dictionary) -> bool:
+	if state.get("enemyModelId")=="veskoro":
+		if not preload("res://scripts/campaign/veskoro_moves.gd").valid(state.get("veskoro")):return false
+	elif state.has("veskoro"):return false
 	var id: String = str(state.get("trailStage", ""))
-	if id not in ["morro-1", "morro-2", "morro-3", "morro-4", "morro-5"]: return false
+	var definition:Dictionary=preload("res://scripts/campaign/morro_model.gd").stage_definition(id)
+	if definition.is_empty(): return false
 	if not state.get("actors") is Array or state.actors.size() != (3 if id == "morro-3" else 2): return false
 	for key in ["roundNumber", "roundsToWin", "aiLevel"]:
 		if not whole(state.get(key)) or state[key] < 1: return false
-	if state.roundsToWin != (3 if id == "morro-5" else 2) or state.aiLevel > 10: return false
+	if state.roundsToWin != int(definition.rounds) or state.aiLevel > 10: return false
 	if not number(state.get("intermission")) or state.intermission < 0 or state.intermission > 3.2 or not state.get("roundMessage") is String: return false
 	for index in state.actors.size():
 		var actor: Variant = state.actors[index]

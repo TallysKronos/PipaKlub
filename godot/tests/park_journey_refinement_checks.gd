@@ -58,9 +58,10 @@ func run() -> void:
 	var wild_count:=0
 	var wild_per_stop:=0 if "--no-random" in OS.get_cmdline_user_args() else 2
 	var authored_xp:=0
-	for entry in Training.DUELS: authored_xp+=entry.xp
-	check(Encounter.level_for_xp(authored_xp)==8,"first clears alone reach Lv.8; random encounters are optional preparation")
-	for entry in Training.DUELS:
+	for raw in Training.DUELS: authored_xp+=Training.duel(raw.id).xp
+	check(authored_xp==174 and Encounter.level_for_xp(authored_xp)==3,"trainer XP matches species/level and does not bypass progression")
+	for raw in Training.DUELS:
+		var entry:=Training.duel(raw.id)
 		var map=Checkpoint.model_for(entry.scene)
 		var at:=Training.point(entry.id,map)
 		var preparation_bench:=rest_point(entry.scene)
@@ -71,16 +72,39 @@ func run() -> void:
 		session.data.checkpoint=Checkpoint.make(entry.scene,at,Checkpoint.SPACE)
 		check(Pacing.weight(map,at)==0,entry.name+" has a safe conversation area")
 		check(encounters.start_training(entry.id,at+Vector2(12,12)).status=="wrong_step","cannot start remote duel")
-		check(encounters.start_training(entry.id,at).status=="ok",entry.name+" duel starts")
+		var started:Dictionary=encounters.start_training(entry.id,at)
+		check(started.status=="ok",entry.name+" duel starts")
+		if started.status!="ok":
+			session.free();quit(1);return
 		var battle: Dictionary=session.snapshot().player.encounter
 		var model:=Encounter.new();model.restore(battle.state)
+		check(model.q.trainingRank==Training.DUELS.find(raw)+1,"trainer combat rank survives reward derivation")
+		check(battle.rewardXp==Encounters.reward_amount(false,entry.scene,entry.species,entry.level),"trainer creature XP equals wild opponent of same species/level")
+		var old_battle:Dictionary=battle.duplicate(true)
+		old_battle.rewardXp=Training.LEGACY_XP[entry.id]
+		check(State.valid_encounter(old_battle),"suspended legacy trainer remains loadable")
+		check(Encounters.reward_for(old_battle,old_battle.state)==entry.xp,"legacy trainer does not retain inflated creature payout")
 		fight(model)
-		check(model.outcome=="won",entry.name+" can be beaten at the earned level")
-		if model.outcome!="won": break
+		if model.outcome!="won":
+			check(model.outcome=="lost" and model.p.level<entry.level,"underprepared route can lose and needs more exploration")
+			var defeated_before:Dictionary=session.data.player.duplicate(true)
+			check(encounters.save_battle(model.snapshot()).status=="ok" and encounters.settle().status=="ok","underlevel defeat returns to exploration")
+			check(Training.active(session.data.player).xp==Training.active(defeated_before).xp and session.data.player.coins==defeated_before.coins and session.data.player.tamerXp==defeated_before.tamerXp,"defeat awards no creature XP, money or tamer XP")
+			check(not Training.completed(session.data.player,entry.id),"defeat does not consume first-clear reward")
+			print("PARK JOURNEY: ",checks," checks; ",failures," failures; preparation required before ",entry.name,"; stages=",JSON.stringify(stages),"; wildWins=",wild_count)
+			session.free();quit(1 if failures else 0);return
 		check(encounters.save_battle(model.snapshot()).status=="ok","suspended duel remains valid")
 		var before: int=Training.active(session.data.player).xp
+		var coins_before:int=session.data.player.coins
+		var tamer_before:int=session.data.player.get("tamerXp",0)
+		var preview:Dictionary=load("res://scripts/campaign/hud_rewards.gd").preview(session.data.player,battle,model)
 		check(encounters.settle().status=="ok","duel settles atomically")
 		check(Training.active(session.data.player).xp==before+entry.xp,"first clear grants declared XP")
+		check(session.data.player.coins==coins_before+entry.coins and preview.coins==entry.coins,"trainer pays money shown in preview")
+		check(session.data.player.tamerXp==tamer_before+int(floor(entry.xp/5.0))+entry.tamerXp and preview.tamer.after==session.data.player.tamerXp,"trainer tamer bonus matches committed preview")
+		for outcome in ["lost","fled"]:
+			var failed_state:Dictionary=model.snapshot();failed_state.outcome=outcome
+			check(Encounters.owner_bonus(battle,failed_state)=={"coins":0,"tamerXp":0},"no trainer bonus for "+outcome)
 		check(Training.completed(session.data.player,entry.id),"duel receipt is persisted")
 		check(session.data.player.inventory.is_empty(),"friendly duels do not drop wild rabiolas")
 		var state_before: String=JSON.stringify(session.data)
@@ -101,13 +125,13 @@ func run() -> void:
 			preload("res://scripts/campaign/progression.gd").award(session.data.player,Training.active(session.data.player),amount)
 			wild_count+=1
 		stages.append({"trainer":entry.id,"xp":Training.active(session.data.player).xp,"level":Training.level(session.data.player)})
-	check(Training.level(session.data.player)>=8,"authored route prepares Lv.8 even without random encounters")
+	check(Training.level(session.data.player)<8,"six duels do not grant the recommended boss level")
 	var boss_at:=Checkpoint.target("park-veredas","boss")
 	session.data.checkpoint=Checkpoint.make("park-veredas",boss_at,Checkpoint.SPACE)
 	check(exploration.rest(rest_point("park-veredas")).status=="ok","prepare at final bench")
 	check(encounters.start_boss(boss_at).status=="ok","earned route reaches actual boss service")
 	var boss:=Encounter.new();boss.restore(session.data.player.encounter.state);fight(boss)
-	check(boss.outcome=="won","Lv.8 route can defeat boss with timed commands")
+	check(boss.outcome=="won","perfect-command controller can still win below recommendation")
 	check(encounters.save_battle(boss.snapshot()).status=="ok" and encounters.settle().status=="ok","boss victory persists")
 	var tail_at:=Checkpoint.target("park-veredas","tail")
 	check(exploration.collect_tail(tail_at).status=="ok","tail is collected separately")

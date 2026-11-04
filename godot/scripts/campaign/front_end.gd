@@ -5,6 +5,7 @@ const Room = preload("res://scripts/campaign/room_view.gd")
 const Journey = preload("res://scripts/campaign/journey.gd")
 const FlightView = preload("res://scripts/campaign/first_flight_view.gd")
 const WorkshopView = preload("res://scripts/campaign/workshop_view.gd")
+const ShopData=preload("res://scripts/campaign/shop_data.gd")
 const TutorialStaging=preload("res://scripts/campaign/tutorial_staging.gd")
 const Morro = preload("res://scripts/campaign/morro.gd")
 const MorroView = preload("res://scripts/campaign/morro_view.gd")
@@ -19,6 +20,9 @@ const Backdrop = preload("res://scripts/campaign/hud_backdrop.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const Sound = preload("res://scripts/campaign/sound_director.gd")
+const DemoFlow = preload("res://scripts/campaign/demo_flow.gd")
+const PipeiroIdentity = preload("res://scripts/campaign/pipeiro_identity.gd")
+const DistrictBadges = preload("res://scripts/campaign/district_badges.gd")
 var sound := Sound.new()
 var session := Session.new()
 var opening: RefCounted
@@ -196,15 +200,31 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var point:Dictionary=snapshot.get("checkpoint",{})
 	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
 	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento","kronasta-bosque-a":"Bosque · Trilha das Copas","kronasta-bosque-b":"Bosque · Desvio do Riacho","kronasta-bosque-c":"Bosque · Clareira do Marco"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
+	if scene=="kite-shop":name="Linha & Papel"
 	# Region maps carry their own "<Região> · <parte>" name.
 	if ParkCheckpoint.is_kronasta(scene) and not ParkCheckpoint.is_bosque(scene):name=str(ParkCheckpoint.data(scene).get("name",name))
 	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
-	if scene.begins_with("morro"):
+	if point.get("kind")=="opening":
+		var room_key:String="home" if int(point.get("step",0))>=12 else "bedroom"
+		name="Casa do Kael" if room_key=="home" else "Quarto do Kael"
+		texture=load("res://assets/campaign/"+content.rooms[room_key].floorImage)
+	elif point.get("kind") in ["starter","workshop"]:
+		texture=load("res://assets/campaign/workshop-background.png")
+	elif point.get("kind")=="practice":
+		name="Treino com o Sr. Assis"
+	elif ParkCheckpoint.is_regional_preview(scene):
+		name=ParkCheckpoint.data(scene).get("name","Kronasta")
+		texture=load("res://assets/campaign/maps/kronasta-atlas-v1.png")
+	elif scene=="kite-shop":
+		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/loja-tcg-v1/preview.png"))
+	elif scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")
 		if not data.get("images",[]).is_empty():texture=load("res://assets/campaign/morro/"+data.images[0].image)
-	elif scene in ["quintal","professor-home"]:
-		texture=load("res://assets/campaign/"+content.rooms["street" if scene=="quintal" else "professor"].floorImage)
+	elif scene=="professor-home":
+		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/professor-moderno-v1/preview.png"))
+	elif scene=="quintal":
+		texture=load("res://assets/campaign/"+content.rooms.street.floorImage)
 	elif scene in ["park-trail","park-clearing"]:
 		var maps:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/park/maps.json"))
 		texture=load("res://assets/campaign/park/"+maps[scene].floorImage)
@@ -246,7 +266,7 @@ func _show_slots(new_journey:bool=false) -> void:
 			var saved_player:Dictionary=inspection.data.get("player",{})
 			for partner in saved_player.get("partners",[]):
 				if partner.id!=saved_player.get("equippedPartnerId",""):continue
-				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(partner.modelId,"")
+				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,"")
 				if content.combat.has(art_id):
 					card.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
 		page.add_child(card)
@@ -278,6 +298,8 @@ func _error(code: String) -> String:
 		"future": "Este save precisa de uma versão mais recente do jogo.",
 		"unsupported": "Versão do save incompatível.", "occupied": "Esta jornada já existe.",
 		"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
+		"feira_no_coins":"O apito custa 20 moedas. Os desafios do bairro ajudam a conseguir moedas.",
+		"not_enough_coins":"Você precisa de 12 moedas para descansar aqui. O ateliê do professor continua gratuito.",
 		"stale": "A jornada foi alterada. Volte ao menu e carregue novamente.",
 		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor.",
 		"io_error": "Não foi possível acessar o save. Confira o espaço e a permissão da pasta."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
@@ -340,16 +362,195 @@ func _result(result: Dictionary) -> bool:
 	return false
 
 func _show_saved() -> void:
+	if not _result(PipeiroIdentity.ensure_legacy(session)): return
+	if PipeiroIdentity.pending(session.snapshot()):
+		TutorialStaging.resume_documents(self)
+		return
+	if not _result(DistrictBadges.ensure_legacy(session)):return
+	if DistrictBadges.pending(session.snapshot()):
+		_resume_first_insignia()
+		return
+	if preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):
+		_show_world();_present_green_promotion.call_deferred();return
+	if DemoFlow.pending(session.snapshot()):
+		_show_demo_complete()
+		return
 	match str(session.snapshot().checkpoint.kind):
 		"opening": _show_opening()
-		"world": _show_world()
+		"world":
+			_show_world()
+			_present_pending_ending.call_deferred()
 		"practice": _show_practice()
 		"starter": _show_starter()
 		"workshop": _show_workshop()
 		"encounter": _show_encounter()
 
+func _show_identity() -> void:
+	if not PipeiroIdentity.issued(session.snapshot().get("player",{})):
+		_notice("Sua carteira será entregue pelo Sr. Assis ao concluir o treino.")
+		return
+	_clear("page:CARTEIRA DE PIPEIRO")
+	var card = load("res://scripts/campaign/hud_pipeiro_identity.gd").new()
+	card.saved = session.snapshot()
+	card.backdrop_texture = _slot_location(card.saved).texture
+	card.reduced_motion = preferences.reduced_motion
+	add_child(card)
+	card.closed.connect(_close_identity)
+
+func _resume_first_insignia() -> void:
+	_show_world()
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+	if last_scene_key.begins_with("world:") and DistrictBadges.pending(session.snapshot()):
+		_present_first_insignia(false)
+
+func _present_first_insignia(from_mikka:bool) -> void:
+	var generation:=opening_generation
+	if is_instance_valid(park):
+		park.paused=true
+		var pending_path:Variant=park.get("path")
+		if pending_path!=null:pending_path.clear();park.set("path",pending_path)
+	if is_instance_valid(room):room.can_walk=false
+	if from_mikka:
+		var text:="Mikka: Você conquistou o Morro do Sol! Esta insígnia é sua. É o primeiro bairro de uma longa jornada.\n\nMikka: A rabiola que você ganhou também é o começo de um novo laço. Passe no ateliê do professor para montar seu próximo parceiro."
+		var dialog:=_dialog("Mikka",text,"Receber a insígnia")
+		dialog.allow_cancel=false
+		var accepted:=[false]
+		dialog.confirmed.connect(func():accepted[0]=true)
+		dialog.popup_centered()
+		while TutorialStaging.valid(self,generation) and is_instance_valid(dialog) and not accepted[0]:await get_tree().process_frame
+		if is_instance_valid(dialog):dialog.queue_free()
+		if not TutorialStaging.valid(self,generation):return
+	if not await _present_key_item(DistrictBadges.FIRST_ITEM,DistrictBadges.FIRST_NAME):return
+	_complete_first_insignia()
+
+func _complete_first_insignia() -> void:
+	var result:Dictionary=DistrictBadges.acknowledge(session)
+	if result.status not in ["ok","already_applied"]:
+		var retry:=_dialog("Salvar conquista",_error(result.status),"Tentar novamente","Voltar ao menu")
+		retry.confirmed.connect(_complete_first_insignia.call_deferred);retry.confirmed.connect(retry.queue_free)
+		retry.canceled.connect(_menu.call_deferred);retry.canceled.connect(retry.queue_free);retry.popup_centered()
+		return
+	var dialog:=_dialog("Primeiro bairro conquistado","Sua primeira insígnia está guardada no primeiro espaço do porta-emblemas.\n\nVocê pode consultá-la em Pausa → Porta-emblemas. A jornada continua: explore Kronasta e cuide dos seus parceiros.","Ver porta-emblemas","Continuar explorando")
+	dialog.confirmed.connect(func():
+		if is_instance_valid(park):park.paused=false
+		if is_instance_valid(room):room.can_walk=true
+		_open_emblem_case(0))
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(func():
+		if is_instance_valid(park):park.paused=false
+		if is_instance_valid(room):room.can_walk=true)
+	dialog.canceled.connect(dialog.queue_free);dialog.popup_centered()
+
+func _open_emblem_case(index: int = 0) -> void:
+	for child in get_children():
+		if child.has_meta("emblem_case"): return
+	if not PipeiroIdentity.issued(session.snapshot().get("player",{})): return
+	var previous_focus:Control=get_viewport().gui_get_focus_owner()
+	var previous:WeakRef=weakref(previous_focus) if is_instance_valid(previous_focus) else null
+	var park_paused:bool=is_instance_valid(park) and park.paused
+	var was_walking:bool=is_instance_valid(room) and room.can_walk
+	if is_instance_valid(park):park.paused=true
+	if is_instance_valid(room):room.can_walk=false
+	var focus_modes: Array = []
+	for control in find_children("*","Control",true,false):
+		if control.focus_mode!=Control.FOCUS_NONE:
+			focus_modes.append({"control":control,"mode":control.focus_mode})
+			control.focus_mode=Control.FOCUS_NONE
+	if is_instance_valid(pause_overlay): pause_overlay.hide()
+	var view = load("res://scripts/campaign/hud_emblem_case.gd").new()
+	view.player = session.snapshot().player
+	view.initial_slot = index
+	add_child(view)
+	view.closed.connect(func():
+		remove_child(view)
+		view.queue_free()
+		for entry in focus_modes:
+			if is_instance_valid(entry.control):entry.control.focus_mode=entry.mode
+		if is_instance_valid(pause_overlay): pause_overlay.show()
+		if is_instance_valid(park):park.paused=park_paused
+		if is_instance_valid(room):room.can_walk=was_walking
+		if previous!=null:
+			var focus:Control=previous.get_ref()
+			if is_instance_valid(focus): Hud.focus_later(focus))
+
+func _present_key_item(id: String, item_name: String) -> bool:
+	var generation := opening_generation
+	var was_walking: bool = is_instance_valid(room) and room.can_walk
+	var park_paused: bool = is_instance_valid(park) and park.paused
+	var battle_paused: bool = is_instance_valid(battle) and battle.paused
+	if is_instance_valid(room): room.can_walk=false
+	if is_instance_valid(park): park.paused=true
+	if is_instance_valid(battle): battle.suspend_actions(); battle.paused=true
+	var banner = load("res://scripts/campaign/hud_key_item_banner.gd").new()
+	banner.item_name = item_name
+	banner.item_texture = Hud.item_art(id)
+	banner.reduced_motion = preferences.reduced_motion
+	add_child(banner)
+	while TutorialStaging.valid(self,generation) and is_instance_valid(banner) and not banner.done:
+		await get_tree().process_frame
+	if is_instance_valid(banner): banner.queue_free()
+	var valid := TutorialStaging.valid(self,generation)
+	if valid:
+		if is_instance_valid(room): room.can_walk=was_walking
+		if is_instance_valid(park): park.paused=park_paused
+		if is_instance_valid(battle): battle.paused=battle_paused
+	return valid
+
+func _close_identity() -> void:
+	if not _result(PipeiroIdentity.acknowledge(session)): return
+	_return_to_game()
+
+func _complete_document_delivery() -> void:
+	var result: Dictionary = PipeiroIdentity.acknowledge(session)
+	if result.status in ["ok","already_applied"]:
+		_show_saved()
+		return
+	var dialog := _dialog("Salvar jornada",_error(result.status),"Tentar novamente","Voltar ao menu")
+	dialog.confirmed.connect(_complete_document_delivery.call_deferred)
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(_menu.call_deferred)
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.popup_centered()
+
+func _show_demo_complete() -> void:
+	if not DemoFlow.completed(session.snapshot()): return
+	menu_origin = ""
+	sound.set_game_paused(false)
+	_clear("page:DEMO CONCLUÍDA")
+	var ending = load("res://scripts/campaign/hud_demo_complete.gd").new()
+	ending.partner_portrait = load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/" + content.combat.rabbito.image), "rabbito")
+	add_child(ending)
+	ending.chosen.connect(_finish_demo)
+
+func _finish_demo(action: String) -> void:
+	if action not in ["explore", "map", "menu"]: return
+	if not _result(DemoFlow.acknowledge(session)): return
+	menu_origin = ""
+	sound.set_game_paused(false)
+	match action:
+		"explore": _show_saved()
+		"map": _show_kronasta()
+		"menu": _menu()
+
+func _nina_homecoming() -> void:
+	park.path.clear()
+	park.paused = true
+	var dialog := _dialog("Nina", "Nina: [emo=brilho]Você encontrou! Eu reconheceria esse nó em qualquer lugar. Obrigada… Agora posso trazer meu Carcará de volta.\n\nKael: Cuida bem dele, Nina.", "Concluir este capítulo")
+	dialog.confirmed.connect(func():
+		if preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):_present_green_promotion.call_deferred()
+		else:_show_demo_complete.call_deferred())
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.popup_centered(Vector2i(640, 300))
+
 func _return_to_game() -> void:
-	_show_saved()
+	var point:Dictionary=session.snapshot().get("checkpoint",{})
+	# Returning to the lobby is not a map transition. Reuse the loaded park assets
+	# synchronously, so a loading cover cannot clear the newly restored lobby.
+	if point.get("kind","")=="world" and ParkCheckpoint.MAPS.has(point.get("scene","")):_show_park()
+	else:_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if not is_inside_tree():return
 	# Returning from a page must not restart combat while the player is still orienting.
 	if is_instance_valid(battle): battle.paused = true
 	if menu_origin.is_empty(): return
@@ -616,22 +817,45 @@ func _show_world() -> void:
 	_stage_container()
 	var point: Dictionary = session.snapshot().checkpoint
 	var professor: bool = point.scene == "professor-home"
-	var data: Dictionary = (content.rooms.professor if professor else content.rooms.street).duplicate(true)
-	if not professor and not data.hotspots.any(func(h: Dictionary): return h.id == "morro"):
+	var shop:bool=point.scene=="kite-shop"
+	var home:bool=point.scene=="kael-home"
+	var data: Dictionary = ShopData.room() if shop else (content.rooms.home if home else content.rooms.professor if professor else content.rooms.street).duplicate(true)
+	if not professor and not shop and not home and not data.hotspots.any(func(h: Dictionary): return h.id == "morro"):
 		data.hotspots.append({"id": "morro", "name": "Morro do Sol", "x": 2592, "y": 1040})
+	if professor and preload("res://scripts/campaign/expedition_photo.gd").available(session.snapshot().player):
+		for spot:Dictionary in data.hotspots:
+			if spot.id=="study":spot.name="Arquivo de expedições"
+	if professor:data=preload("res://scripts/campaign/retalho_care.gd").room_data(data,session.snapshot().player)
 	room = Room.new()
 	stage.add_child(room)
-	room.configure(data, point.position, true, "*", professor, true)
+	room.configure(data, point.position, true, "*", professor or home, true)
+	if professor:preload("res://scripts/campaign/retalho_care.gd").build(room,session.snapshot().player)
+	if home and session.snapshot().player.flags.get("retalhoParceiraHeleana",false):room.add_retalho_resident()
 	_equip_room_companion()
 	room.interacted.connect(_world_interact)
 	var overlay=load("res://scripts/campaign/hud_exploration.gd").new()
 	overlay.subject=room
-	overlay.area_name="Ateliê do Sr. Assis" if professor else "Bairro dos Ventos"
+	overlay.area_name="Casa do Kael" if home else "Linha & Papel" if shop else "Ateliê do Sr. Assis" if professor else "Bairro dos Ventos"
 	overlay.player_data=session.snapshot().player
 	add_child(overlay)
+	if home:
+		var player:Dictionary=session.snapshot().player
+		var confession_pending:bool=preload("res://scripts/campaign/heleana_confession.gd").available(player) and not player.flags.get("heleanaReconheceuRetalho",false)
+		overlay.objective.text="Sua casa · converse com sua mãe ou saia pela porta."
+		if player.flags.get("retalhoParceiraHeleana",false):
+			overlay.objective.text="Retalho mora com Heleana."
+		elif confession_pending:
+			overlay.objective.text="Converse com Heleana."
+			var night:=CanvasModulate.new()
+			night.color=Color("9aabc7")
+			room.add_child(night)
+	if professor and preload("res://scripts/campaign/retalho_care.gd").available(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/retalho_care.gd").objective(session.snapshot().player)
+	if professor and preload("res://scripts/campaign/blue_exam_preparation.gd").eligible(session.snapshot().player) and not preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/blue_exam_preparation.gd").data().pending
 	overlay.map=Hud.map_for(room,overlay)
 	status=overlay.prompt
 	room.set_meta("exploration_hud",overlay)
+	if home and preload("res://scripts/campaign/heleana_confession.gd").refused(session.snapshot().player) and not session.snapshot().player.flags.get("heleanaReconheceuRetalho",false):
+		_show_heleana_confession.call_deferred()
 	overlay.chosen.connect(func(id:String):
 		if id=="collection":_show_collection()
 		elif id=="bag":_show_bag()
@@ -642,7 +866,10 @@ func _show_world() -> void:
 func _equip_room_companion()->void:
 	for partner in session.snapshot().player.partners:
 		if partner.id != session.snapshot().player.get("equippedPartnerId", ""): continue
-		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		if partner.modelId=="retalho-original":
+			room.equip_retalho_follower()
+			return
+		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
 		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
 		room.companion_frames = content.combat[id].animations.idle
 
@@ -677,7 +904,8 @@ func _show_neighborhood() -> void:
 	park.menu_requested.connect(_pause_game)
 	# Let the SubViewport draw the initialized city before uncovering it.
 	await get_tree().process_frame
-	await RenderingServer.frame_post_draw
+	if DisplayServer.get_name()=="headless":await get_tree().process_frame
+	else:await RenderingServer.frame_post_draw
 	if not is_instance_valid(park) or not is_instance_valid(scene_loading):
 		if is_instance_valid(scene_loading):scene_loading.queue_free()
 		scene_loading=null
@@ -688,11 +916,20 @@ func _show_neighborhood() -> void:
 	if pause_after_load:
 		pause_after_load=false
 		_pause_game()
-	elif is_instance_valid(park):park.paused=false
+	else:
+		if is_instance_valid(park):park.paused=false
+		var reunion=preload("res://scripts/campaign/heleana_confession.gd")
+		if reunion.outside(saved.player) and not saved.player.flags.get("heleanaReconheceuRetalho",false):
+			park.build_heleana_reunion()
+			_show_heleana_confession.call_deferred()
 
 func _neighborhood_action(id: String) -> void:
-	if not _save_park():return
+	if flow_busy:return
+	if not _save_park(true):return
+	if id.begins_with("mount-quest:"):
+		_mount_quest_talk(id.trim_prefix("mount-quest:"));return
 	match id:
+		"heleana-confession":_show_heleana_confession()
 		"autosave":return
 		"collection":_show_collection()
 		"bag":_show_bag()
@@ -701,14 +938,83 @@ func _neighborhood_action(id: String) -> void:
 		"professor-home":
 			var entry: Array=content.rooms.professor.layout.blocking.kaelEntry
 			if _result(journey.enter_world("professor-home",Vector2(entry[0],entry[1]))):_show_saved.call_deferred()
+		"kite-shop":
+			if _result(journey.enter_world("kite-shop",ShopData.ENTRY)):_show_saved.call_deferred()
+		"kael-home":
+			if _result(session.checkpoint({"kind":"world","scene":"kael-home","position":[432,1008]},session.snapshot().player)):_show_saved.call_deferred()
 		"morro":
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",Vector2(528,752))):_show_saved.call_deferred()
 		"park":
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("park-trail",Vector2(208,816))):_show_saved.call_deferred()
 
+func _mount_quest_talk(npc:String) -> void:
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	var player:Dictionary=session.snapshot().player
+	if not quest.available(player):
+		_notice("Zeca: Termine seu treino com o professor. Depois, passe na pracinha: tenho um companheiro para você conhecer.");return
+	var step:=quest.stage(player)
+	if step==3:
+		if npc=="zeca":
+			quest.new(session).talk(npc)
+			park.saved_player=session.snapshot().player
+		_notice("Zeca: O apito chama seu companheiro. Vá com calma nas curvas e deixe as passagens estreitas para atravessar a pé." if npc=="zeca" else "Lia: O fecho ficou firme! Agora é cuidar da guia e do seu companheiro.");return
+	if npc=="zeca" and step==1:
+		_notice("Zeca: A Lia está na rua alta, ao lado da Linha & Papel. Diga que é o fecho da guia; ela já sabe a medida.");return
+	if npc=="lia" and step!=1:
+		_notice("Lia: Leve o fecho de volta ao Zeca, na pracinha." if step==2 else "Lia: O Zeca está na pracinha. Ele anda precisando de uma mão com uma guia.");return
+	var text:String="Estou cuidando de uma montaria de papel. Ela é veloz, mas a guia ficou com o fecho solto. Não vou deixar ninguém montar assim. A Lia tem a peça certa. Pode buscar para mim?" if step==0 else "O Zeca mandou você? Separei um fecho de linha encerada: segura bem sem machucar a armação. Aqui está. Leve para ele conferir o ajuste." if npc=="lia" else "É o fecho certo! Agora a guia está segura. Você cuidou do que ela precisava antes de pensar em correr. Fique com este Apito de Elo: ele chama seu novo companheiro de estrada. O Dóber de papel vai entrar no seu grupo e também poderá batalhar."
+	flow_busy=true;park.paused=true;park.avatar.moving=false;park.avatar.running=false
+	var dialog:=_dialog("Zeca" if npc=="zeca" else "Lia",text,"Vou buscar" if step==0 else "Receber o fecho" if npc=="lia" else "Receber o apito","Agora não" if step==0 else "")
+	dialog.confirmed.connect(func():_complete_mount_quest(npc,dialog))
+	dialog.canceled.connect(func():dialog.queue_free();_finish_mount_conversation())
+	dialog.popup_centered()
+
+func _finish_mount_conversation() -> void:
+	flow_busy=false
+	if is_instance_valid(park):park.paused=false
+
+func _complete_mount_quest(npc:String,dialog:Control) -> void:
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	var result:Dictionary=quest.new(session).talk(npc)
+	dialog.queue_free()
+	if result.status not in ["ok","already_applied"]:
+		_finish_mount_conversation();_result(result);return
+	if is_instance_valid(park):
+		park.saved_player=session.snapshot().player
+		park.exploration_hud.refresh(park.saved_player)
+		park._update_hint()
+	var player:Dictionary=session.snapshot().player
+	if quest.owned(player):
+		await _present_key_item(quest.ITEM,"Apito de Elo")
+		_finish_mount_conversation()
+		_notice("Dóber de papel entrou no grupo. Para montar, ele precisa estar no grupo, com ao menos 1 HP e sem estar derrotado. Apito guardado na mochila. Use B ou o direcional para cima para montar e desmontar nas áreas abertas. Segure Shift ou ative Correr para a montaria correr. Também pode chamar pela mochila → Apito de Elo.")
+	else:
+		_finish_mount_conversation()
+		if is_instance_valid(park):park.exploration_hud.push_notice(quest.objective(player),"item")
+
+func _use_mount_item() -> void:
+	var saved:Dictionary=session.snapshot()
+	if not preload("res://scripts/campaign/mount_quest.gd").eligible(saved.player):
+		_notice("Para montar, mantenha uma montaria no grupo com pelo menos 1 HP e sem estar derrotada.");return
+	if not _remember_world_position():return
+	menu_origin="";sound.set_game_paused(false);_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if not is_inside_tree():return
+	if is_instance_valid(park) and park.has_method("toggle_mount"):park.toggle_mount()
+
 func _world_interact(id: String) -> void:
+	if session.snapshot().checkpoint.get("scene")=="kael-home":
+		if id=="mother":_show_heleana_confession();return
+		if id=="exit":
+			if _result(journey.enter_world("quintal",preload("res://scripts/campaign/neighborhood_checkpoint.gd").HOME)):_show_saved.call_deferred()
+			return
+		if id=="seat" or id=="upstairs":_notice("Kael: Vou ficar um pouco aqui embaixo.");return
 	if flow_busy:return
+	if id=="retalho-care":
+		_show_retalho_care();return
 	var point: Dictionary = session.snapshot().checkpoint
+	if point.scene=="kite-shop":
+		_shop_interact(id);return
 	if point.scene == "quintal":
 		if id == "morro" and session.snapshot().player.get("journey", {}).get("phase") == "complete":
 			if _result(journey.enter_world("morro", Vector2(528, 752))): _show_saved()
@@ -725,11 +1031,37 @@ func _world_interact(id: String) -> void:
 	elif id == "exit":
 		TutorialStaging.leave_atelier(self)
 	elif id == "professor":
-		TutorialStaging.meet_professor(self)
+		var preparation=preload("res://scripts/campaign/blue_exam_preparation.gd")
+		if preparation.eligible(session.snapshot().player) and not preparation.prepared(session.snapshot().player):_show_blue_preparation()
+		else:TutorialStaging.meet_professor(self)
+	elif id=="study" and point.scene=="professor-home" and _tyler_study():
+		pass
+	elif id=="study" and point.scene=="professor-home" and preload("res://scripts/campaign/expedition_photo.gd").available(session.snapshot().player):
+		_show_expedition_photo()
 	elif id == "workbench":
 		TutorialStaging.open_workbench(self)
 	else:
 		_notice("Estudos sobre pipas, almas e o vento.")
+
+func _shop_interact(id:String)->void:
+	if id=="exit":
+		var previous:Array=session.snapshot().player.get("cityPosition",[ShopData.CITY_ENTRY.x,ShopData.CITY_ENTRY.y])
+		if _result(journey.enter_world("quintal",Vector2(previous[0],previous[1]))):_show_saved.call_deferred()
+		return
+	var title:="Dono da loja" if id=="counter" else "Linha & Papel"
+	var text:String={"counter":"Bem-vindo à Linha & Papel! Pode olhar os mostruários com calma. As mesas são o ponto de encontro de quem gosta de montar, colecionar e conversar sobre Soulmonsters.","showcase":"Mostruários de papéis, linhas e kits de montagem. Cada cor ajuda a dar personalidade a uma pipa.","gondola":"Kits, pastas e acessórios organizados para os colecionadores.","table-a":"Mesas da comunidade, com espaço para abrir pastas, mostrar coleções e conhecer outros jogadores.","table-b":"Um segundo espaço de convivência para os jogadores do bairro."}.get(id,"Fique à vontade para explorar a loja.")
+	room.can_walk=false
+	if id=="counter":room.face_actor(ShopData.OWNER)
+	var dialog:=_dialog(title,text,"Continuar")
+	dialog.name="ShopConversation"
+	if id=="counter":
+		var owner_art:Sprite2D=room.get_node("ShopOwner/Art")
+		dialog._portraits[title]=owner_art.texture
+		dialog.portrait.material=owner_art.material
+	dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		if is_instance_valid(room):room.can_walk=true)
+	dialog.popup_centered()
 
 func _show_practice() -> void:
 	_clear()
@@ -943,7 +1275,7 @@ func _finish_workshop_presentation(outcome:Dictionary)->void:
 	_clear("workshop:birth")
 	flow_busy=true
 	var birth:Control=load("res://scripts/campaign/workshop_birth_view.gd").new()
-	var art_id:String={"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(job.modelId,"rabbito")
+	var art_id:String={"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(job.modelId,"rabbito")
 	birth.partner_name=Journey.CATALOG.get(job.modelId,job.modelId)
 	birth.partner_texture=load("res://assets/campaign/"+content.combat[art_id].image)
 	birth.frames=content.combat[art_id].animations.idle
@@ -993,7 +1325,7 @@ func _confirm_cancel_workshop() -> void:
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(room) and room.can_walk and is_instance_valid(status):
-		status.text = Controls.prompt("interact") + " · " + {"desk": "Montar Rabbito", "stairs": "Descer para a sala", "exit": "Sair", "professor": "Conversar com Sr. Assis", "professor-home": "Entrar no ateliê", "morro": "Entrar no Morro do Sol", "park": "Entrar no parque", "workbench": "Usar bancada"}.get(room.near, "Interagir") if not room.near.is_empty() and (room.near == room.target_hotspot or room.target_hotspot == "*") else ("Analógico · Mover" if Controls.gamepad else "Setas · Mover")
+		status.text = Controls.prompt("interact") + " · " + {"desk": "Montar Rabbito", "stairs": "Descer para a sala", "exit": "Sair", "professor": "Conversar com Sr. Assis", "professor-home": "Entrar no ateliê", "morro": "Entrar no Morro do Sol", "park": "Entrar no parque", "workbench": "Usar bancada", "retalho-care":"Cuidar de Retalho"}.get(room.near, "Interagir") if not room.near.is_empty() and (room.near == room.target_hotspot or room.target_hotspot == "*") else ("Analógico · Mover" if Controls.gamepad else "Setas · Mover")
 		if status.get_parent() is PanelContainer and status.get_parent().theme_type_variation == "RecortePromptPanel":
 			status.text = status.text.trim_prefix(Controls.prompt("interact")+" · ")
 		if room.has_meta("exploration_hud"):
@@ -1004,6 +1336,10 @@ func _process(_delta: float) -> void:
 			status.text = ("Analógico · Mover" if Controls.gamepad else "WASD / setas · Mover") + "  ·  " + {3: "Aproxime-se da mesa de desenho.", 11: "Aproxime-se da escada para descer.", 13: "Aproxime-se da porta para sair."}[current_step]
 
 func _unhandled_input(event: InputEvent) -> void:
+	var mount_key:bool=event is InputEventKey and event.pressed and not event.echo and event.physical_keycode==KEY_B
+	var mount_pad:bool=event is InputEventJoypadButton and event.pressed and event.button_index==JOY_BUTTON_DPAD_UP
+	if (mount_key or mount_pad) and not flow_busy and not is_instance_valid(scene_loading) and last_scene_key.begins_with("world:") and is_instance_valid(park) and park.has_method("toggle_mount") and not park.paused and get_tree().get_nodes_in_group("manga_dialogue").is_empty():
+		park.toggle_mount();get_viewport().set_input_as_handled();return
 	if is_instance_valid(scene_loading):
 		get_viewport().set_input_as_handled();return
 	if flow_busy and event.is_action_pressed("campaign_map"):
@@ -1023,7 +1359,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu:slots":
 		_menu();get_viewport().set_input_as_handled();return
 	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
-		if last_scene_key=="page:CUIDAR DO PARCEIRO":_show_collection()
+		if last_scene_key=="page:CARTEIRA DE PIPEIRO": _close_identity()
+		elif last_scene_key=="page:DEMO CONCLUÍDA": _finish_demo("explore")
+		elif last_scene_key=="page:CUIDAR DO PARCEIRO":_leave_partner_care()
 		elif last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
 		elif session.snapshot().is_empty(): _menu()
 		else: _return_to_game()
@@ -1061,10 +1399,10 @@ func _pause_game() -> void:
 	pause_overlay = load("res://scripts/campaign/hud_pause.gd").new()
 	pause_overlay.z_index=200
 	pause_overlay.player = session.snapshot().player
-	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "resume"
+	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "team"
 	for partner in pause_overlay.player.get("partners",[]):
 		if partner.id!=pause_overlay.player.get("equippedPartnerId",""):continue
-		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(partner.modelId,"")
+		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,"")
 		if content.combat.has(art_id):pause_overlay.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
 	if is_instance_valid(battle):
 		pause_overlay.battle_paused=true
@@ -1074,18 +1412,24 @@ func _pause_game() -> void:
 				partner.condition={"line":clampf(battle.model.p.hp/battle.model.p.stats.line*100,0,100),"structure":clampf(battle.model.p.hull/battle.model.p.stats.line*100,0,100)}
 	add_child(pause_overlay)
 	pause_overlay.chosen.connect(func(action: String):
-		if action in ["team", "bag", "settings","map","save"] and not _remember_world_position(): return
-		if action in ["team","bag","settings","map"]:menu_origin=action
+		if action in ["team", "bag", "settings","map","save","identity","emblems","missions","workshop"] and not _remember_world_position(): return
+		if action in ["team","bag","settings","map","identity","emblems","missions","workshop"]:menu_origin=action
 		match action:
 			"resume": _resume_game()
 			"team": _show_collection()
 			"bag": _show_bag()
+			"identity": _show_identity()
+			"emblems": _open_emblem_case()
+			"missions": _show_missions()
+			"workshop": _show_lobby_workshop()
 			"settings": _show_settings()
 			"map":_show_map()
 			"save":
 				menu_origin="save"
 				sound.play_event("progress.save_ok")
 				pause_overlay.buttons.save.text="Jornada salva"
+				pause_overlay.description.text="Jornada salva. Pode continuar sua aventura."
+				pause_overlay.buttons.save.queue_redraw()
 			"menu": _return_to_menu()
 	)
 
@@ -1170,7 +1514,8 @@ func _load_park() -> void:
 	flow_busy=true
 	if is_instance_valid(park): park.paused=true
 	await get_tree().process_frame
-	await RenderingServer.frame_post_draw
+	if DisplayServer.get_name()=="headless":await get_tree().process_frame
+	else:await RenderingServer.frame_post_draw
 	if is_instance_valid(scene_loading):
 		await scene_loading.reveal()
 		scene_loading.queue_free()
@@ -1182,6 +1527,10 @@ func _load_park() -> void:
 	elif is_instance_valid(park): park.paused=false
 
 func _show_park() -> void:
+	if session.snapshot().player.has("marisolRowTrip"):
+		if not _result(load("res://scripts/campaign/marisol_row_trip.gd").new(session).recover()):return
+	if session.snapshot().player.has("ninaGlideFlight"):
+		if not _result(load("res://scripts/campaign/nina_glide.gd").new(session).recover()):return
 	_clear()
 	var container := SubViewportContainer.new()
 	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -1203,7 +1552,7 @@ func _show_park() -> void:
 			_result(discovery)
 			return
 		saved=session.snapshot()
-	park = ParkOverworldView.new()
+	park = load("res://scripts/campaign/park_row_view.gd").new() if saved.checkpoint.scene=="kronasta-pantano-a" else load("res://scripts/campaign/park_glide_view.gd").new() if saved.checkpoint.scene in ["park-veredas","kronasta-beira-canal-b"] else ParkOverworldView.new()
 	park.ui_theme = theme
 	park.content = content
 	park.saved_checkpoint = saved.checkpoint
@@ -1215,16 +1564,17 @@ func _show_park() -> void:
 	park.menu_requested.connect(_pause_game)
 	park.exit_requested.connect(_park_exit)
 
-func _save_park() -> bool:
+func _save_park(quiet:bool=false) -> bool:
 	var space: String = park.get("checkpoint_space") if park.get("checkpoint_space")!=null else ""
-	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), park.player,space)
+	var at:Vector2=park.checkpoint_point() if park.has_method("checkpoint_point") else park.player
+	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), at,space)
 	if result.status != "ok":
 		park.paused = true
 		_notice(_error(result.status))
 		return false
 	if is_instance_valid(park.exploration_hud):
 		park.exploration_hud.refresh(session.snapshot().player)
-		park.exploration_hud.push_notice("Progresso salvo","saved")
+		if not quiet:park.exploration_hud.push_notice("Progresso salvo","saved")
 	return true
 
 func _park_exit(event: Dictionary) -> void:
@@ -1234,6 +1584,7 @@ func _park_exit(event: Dictionary) -> void:
 		_show_kronasta()
 		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
+	if destination.status=="story_gate":_notice("A passagem para a Clareira abre depois de conquistar o Bambuzal. Vença o Lohan e volte por aqui.");return
 	if not _result(destination): return
 	park.paused=true
 	if _result(journey.enter_world(destination.scene,destination.point,destination.space)): _show_saved.call_deferred()
@@ -1245,7 +1596,138 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
-		if ParkCheckpoint.is_kronasta(park.saved_checkpoint.scene) and event.type=="npc":
+		if action=="aracatiRato":
+			_notice("Rato: Você também deu alma a uma coisa que fez. Podia vir com a gente.\n\nKael: O Rabbito fica comigo porque quer. Solta o Aracati.\n\nRato: Então me mostra o que acontece quando você larga a linha.")
+			return
+		if action=="aracatiTerreiro":
+			if player.flags.get("aracatiRabiolavaLivre",false):
+				_notice("A brisa voltou a atravessar o terreiro.")
+				return
+			_confirm_park("Rabiolava", "Kael: Essa linha é do Carretel Negro. Rabbito, vamos soltar o Rabiolava!", "Enfrentar", func():
+				if _result(load("res://scripts/campaign/ruinas_elo.gd").begin(session,park.player)):_show_saved.call_deferred())
+			return
+		if action=="blueExam":
+			_blue_station(str(event.props.blueAction));return
+		if action=="serraWind":
+			_confirm_park("Corrente de Ar","O vento sobe pela face da rocha. Kael pode usá-lo para alcançar o patamar acima.","Subir com o vento",func():_ride_serra_wind.call_deferred())
+			return
+		if action in ["learnDig","serraDig","serraGalleryReturn"]:
+			var lesson=preload("res://scripts/campaign/tufanocorte_story.gd").new(session)
+			var point:Vector2=park.player
+			if action=="serraGalleryReturn":
+				if _result(lesson.leave_gallery(point)):_show_saved.call_deferred()
+			elif action=="learnDig":
+				_confirm_park("Tatutrama","O tatu arranha a terra com as garras, para, depois escuta o chão. Sob a camada solta, aparece a ponta de uma vareta.\n\nKael: Entendi. Primeiro eu procuro onde a terra cede. Depois cavo sem forçar.","Aprender Cavar",func():
+					var result:Dictionary=lesson.learn_dig(point)
+					if _result(result):
+						park.refresh(session.snapshot().player)
+						_notice.call_deferred("Cavar aprendido. Experimente na terra fofa perto do mirante."))
+			elif not session.snapshot().player.flags.get("canCavar",false):
+				_notice("A terra está solta. Observe o tatu perto do mirante para aprender a cavar.")
+			elif "serra-primeira-escavacao-v1" in session.snapshot().player.completedOperations:
+				_confirm_park("Passagem sob a Serra","Kael: Tem uma galeria aqui embaixo. Posso voltar por esta abertura.","Entrar na galeria",func():
+					if _result(lesson.enter_gallery(point)):_show_saved.call_deferred())
+			else:
+				_confirm_park("Terra fofa","Há algo logo abaixo da superfície.","Cavar",func():
+					var result:Dictionary=lesson.dig(point)
+					if result.status=="already_applied":_notice.call_deferred("Você já escavou este ponto.")
+					elif _result(result):
+						park.refresh(session.snapshot().player)
+						park.celebrate_item("Vareta de bambu"))
+			return
+		if action=="tufanocorteStory":
+			var serra=preload("res://scripts/campaign/tufanocorte_story.gd").new(session)
+			if not serra.available(session.snapshot().player):return
+			if session.snapshot().player.flags.get("tufanocorteLiberto",false):
+				_notice("Tufanocorte: Aprenda a ler o ar antes de tentar subir com ele.");return
+			_confirm_park("Tufanocorte","Tufanocorte: Você subiu até aqui a pé. Agora corte os fios que prendem o meu vento.\n\nKael: Aguente firme. Vou soltar você.","Enfrentar",func():
+				if _result(serra.begin(park.player)):_show_saved.call_deferred())
+			return
+		if action in ["mormacoSignals","mormacoStory","mormacoRest"]:
+			_request_mormaco(action);return
+		if action=="retalhoTrust":
+			_show_retalho_trust();return
+		if action=="retalhoTrustRest":
+			_confirm_park("Descanso das docas","Recuperar linha e armação da equipe? Este ponto de apoio é gratuito.","Descansar",func():
+				if _result(load("res://scripts/campaign/retalho_trust.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
+		if action in ["warehouseGollia","warehouseStory"]:
+			_request_warehouse(action=="warehouseGollia");return
+		if action=="warehouseRest":
+			_confirm_park("Banco de manutenção","Recuperar a linha e a armação da equipe?","Descansar",func():
+				if _result(load("res://scripts/campaign/warehouse_story.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
+		if action=="retalhoStory":
+			_confirm_park("Retalho","Quem tem dono é fraco.\n\nRetalho estica as orelhas de papel e desafia Rabbito. Adversário Nv.22. Você pode recuar ou tentar novamente após uma derrota.","Aceitar desafio",func():
+				if _result(load("res://scripts/campaign/retalho_story.gd").new(session).begin(park.player)):_show_saved.call_deferred())
+			return
+		if action=="muralStory":
+			_show_mural_story();return
+		if action=="muralRest":
+			_confirm_park("Pausa na galeria","Descansar e recuperar linha e armação de toda a equipe?","Descansar",func():
+				if _result(load("res://scripts/campaign/mural_story.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
+		if action=="feiraStory":
+			_request_feira_story(str(event.props.feiraAction));return
+		if action=="districtRest" and event.props.get("district")=="cais":
+			_confirm_park("Descansar nas docas","Recuperar toda a equipe por 12 moedas? Se todos estiverem bem, nada será cobrado.","Descansar",func():
+				if _result(load("res://scripts/campaign/district_campaign.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
+		if action=="districtRest" and event.props.get("district")=="feira":
+			_confirm_park("Descansar no mercado","Recuperar toda a equipe por 12 moedas? Se todos estiverem bem, nada será cobrado.","Descansar",func():
+				if _result(load("res://scripts/campaign/feira_story.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
+		if action=="canalClue":
+			_notice(event.props.texto);return
+		if action=="districtRest" and event.props.get("district")=="beira-canal":
+			_confirm_park("Descansar na oficina","Recuperar toda a equipe por 12 moedas? Se todos estiverem bem, nada será cobrado.","Descansar",func():
+				if _result(load("res://scripts/campaign/canal_gate.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
+		if action=="canalGate":
+			_request_canal_gate();return
+		if action=="marisolRow":
+			_request_marisol_row(str(event.props.rowLink));return
+		if action=="ninaGlide":
+			_request_nina_glide(str(event.props.glideLink));return
+		if action in ["tylerClareira","tylerRai"]:
+			_show_tyler_clareira();return
+		if action=="ruinasRefem":
+			var lines = preload("res://scripts/campaign/ruinas_dialogue.gd")
+			var rescued: bool = session.snapshot().player.flags.get(event.props.rescueFlag,false)
+			var conversation: Dictionary = lines.RESCUES[park.saved_checkpoint.scene]
+			_notice(conversation.get("after", conversation.freed) if rescued else conversation.bound)
+			return
+		if action=="ruinasChamber":
+			_confirm_park("Câmara do Elo","Depois de entrar, só será possível sair após derrotar Eremor.","Entrar",func():
+				var scene := "kronasta-coracao-d"
+				if _result(session.checkpoint(ParkCheckpoint.make(scene,ParkCheckpoint.spawn(scene),ParkCheckpoint.SPACE),session.snapshot().player)):_show_saved.call_deferred())
+			return
+		if action=="ruinasDuel":
+			var ruins = load("res://scripts/campaign/ruinas_elo.gd")
+			var scene: String=park.saved_checkpoint.scene
+			if scene=="kronasta-estadio-a":
+				_show_stadium_bracket(ruins)
+				return
+			if scene=="kronasta-coracao-d":
+				_request_enamor(ruins)
+				return
+			var intro: String=preload("res://scripts/campaign/ruinas_dialogue.gd").RESCUES[scene].guard
+			_confirm_park(event.name,intro,"Enfrentar",func():
+				if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
+			return
+		if action=="pipeiroFantasma":
+			_confirm_park("Pipeiro Fantasma","Tyler: Era eu nos fios. Eu soltava as almas antes que o Bando chegasse. Uma flor caiu junto da última pipa. Guarda pra mim?","Receber Flor de Cerejeira",func():
+				if _result(load("res://scripts/campaign/tyler_arcs.gd").finish_ghost(session)):_show_saved.call_deferred())
+			return
+		if action=="districtDuel":
+			_district_action(str(event.props.duel))
+			return
+		if action=="bambuzalClue":
+			var found:Dictionary=load("res://scripts/campaign/district_campaign.gd").new(session).inspect_clue(id,park.player)
+			if found.status in ["ok","already_applied"]:_notice("Os cortes ainda estão claros. Há feixes escondidos para vender ao Bando do Cerol. Alguém está levando o bambu durante a noite.")
+			else:_result(found)
+			return
+		if ParkCheckpoint.is_kronasta(park.saved_checkpoint.scene) and event.type=="npc" and action!="wildRest":
 			_notice(event.name+": "+str(event.props.get("texto","")))
 			return
 		if action=="parkMap": _show_map()
@@ -1262,6 +1744,22 @@ func _park_event(id: String) -> void:
 		return
 
 func _park_action(id: String) -> void:
+	if id.begins_with("row-land:"):
+		var result:Dictionary=load("res://scripts/campaign/marisol_row_trip.gd").new(session).finish(id.trim_prefix("row-land:"),park.row_motion)
+		if _result(result):park.finish_row();park.refresh(session.snapshot().player)
+		return
+	if id=="blue-exam-checkpoint":
+		var result:Dictionary=load("res://scripts/campaign/blue_exam.gd").new(session).escort_checkpoint(park.blue_guide.course,park.player)
+		if _result(result):
+			park.blue_guide.course.accept();park.blue_guide.running=not park.blue_guide.course.complete;park.refresh(session.snapshot().player)
+		else:
+			park.blue_guide.course=load("res://scripts/campaign/blue_escort_model.gd").new(int(load("res://scripts/campaign/blue_exam.gd").record(session.snapshot().player).escort))
+			park.exploration_hud.objective.text="Não foi possível gravar o marco. O Carcará voltou ao último marco salvo; inicie a condução ali."
+		return
+	if id.begins_with("glide-land:"):
+		var result:Dictionary=load("res://scripts/campaign/nina_glide.gd").new(session).finish(id.trim_prefix("glide-land:"))
+		if _result(result):park.finish_glide();park.refresh(session.snapshot().player)
+		return
 	if id == "autosave":
 		_save_park()
 		return
@@ -1319,14 +1817,20 @@ func _park_action(id: String) -> void:
 			park.refresh(session.snapshot().player)
 			_notice("Baú encontrado · " + {"lookout": "Rabiola de Azulão", "woodland": "25 moedas", "canal": "Rabiola de Mata verde", "ridge": "Rabiola de Raio de sol", "courtyard": "60 moedas"}[chest_id])
 	elif id == "nina":
+		if not preload("res://scripts/campaign/kronasta_story.gd").mikka_defeated(player) and not player.flags.get("ninaAccepted",false):
+			_notice("Nina: A Mikka está esperando os novos pipeiros no Morro do Sol. Depois passa aqui para conversar comigo.");return
+		if player.flags.get("ninaReturned",false) and preload("res://scripts/campaign/league_promotion.gd").eligible(player) and not preload("res://scripts/campaign/league_promotion.gd").promoted(player):
+			if _result(preload("res://scripts/campaign/league_promotion.gd").claim(session,point)):_present_green_promotion()
+			return
 		if player.flags.get("ninaReturned", false): _notice("Nina: O Carcará está comigo de novo. Ainda quero te mostrar a pipa que eu estava construindo!")
 		elif player.flags.get("ninaTail", false):
 			if _result(exploration.return_tail(point)):
 				park.refresh(session.snapshot().player)
-				_notice("Nina: [emo=brilho]Você encontrou! Eu reconheceria esse nó em qualquer lugar. Obrigada… Agora posso trazer meu Carcará de volta.\n\nJornada: Missão concluída · A rabiola de Nina")
+				_nina_homecoming()
 		elif not player.flags.get("ninaAccepted", false):
-			_confirm_park("Nina", "[emo=suor]Meu Carcará tentou me proteger daquele lagarto. A linha rompeu e ele se recolheu na rabiola… O vento levou ela para os canos. Você consegue trazer a rabiola dele?", "Vou recuperar a rabiola", func():
+			_confirm_park("Nina", "[emo=suor]Cortaram a linha do meu Carcará com cerol… Ele se recolheu na rabiola e o vento levou ela. Achei pegadas palmadas seguindo para os canos. Você pode procurar por ele?", "Vou recuperar a rabiola", func():
 				if _result(exploration.accept_nina(point)): park.refresh(session.snapshot().player))
+		elif player.flags.get("ninaBambuzalOrder",false) and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,"park-clearing"):_notice("Nina: A passagem para a Clareira abre depois do campeonato do Bambuzal. Vá pelo Bosque e fale com o Lohan. Eu espero você aqui.")
 		else: _notice("Nina: Siga pelo Jardim até a Clareira e procure os canos nas Veredas. Os pipeiros pelo caminho podem treinar com você. Ele arma a vela antes de puxar… Depois fica parado por um instante.")
 	elif id == "tail":
 		if _result(exploration.collect_tail(point)):
@@ -1359,7 +1863,7 @@ func _park_training(id: String) -> void:
 		_notice("%s: %s Já concluímos nosso duelo. Siga explorando; os bancos recuperam sua equipe." % [entry.name,entry.tip])
 		return
 	var introduction: String=str(entry.get("intro",""))
-	var text: String=(introduction+"\n\n" if not introduction.is_empty() else "")+"%s\n\nDuelo opcional · adversário Nv. %d · +%d XP na primeira vitória. Seu parceiro está no Nv. %d. Não há rabiola como prêmio." % [entry.tip,entry.level,entry.xp,Training.level(player)]
+	var text: String=(introduction+"\n\n" if not introduction.is_empty() else "")+"%s\n\nDuelo opcional · adversário Nv. %d · +%d XP para o parceiro (igual ao selvagem), %d moedas e +%d XP extra de tamer. Seu parceiro está no Nv. %d. Não há rabiola como prêmio." % [entry.tip,entry.level,entry.xp,entry.coins,entry.tamerXp,Training.level(player)]
 	_confirm_park(entry.name,text,"Vamos treinar",func():
 		var result: Dictionary=encounters.start_training(id,park.player)
 		if _result(result) and result.status=="ok": _show_saved.call_deferred())
@@ -1376,23 +1880,56 @@ func _confirm_park(title: String, text: String, accept: String, callback: Callab
 	dialog.popup_centered(Vector2i(620, 200))
 
 func _show_encounter() -> void:
+	var saved_encounter:Dictionary=session.snapshot().player.encounter
+	if _finish_platyx_refusal(saved_encounter):return
+	if saved_encounter.get("kind")=="mormaco-story" and saved_encounter.state.q.get("mormacoForm","")=="ambush":
+		if _finish_mormaco_ambush():return
 	_clear()
+	var is_district:bool=session.snapshot().player.encounter.get("kind","")=="district"
 	var is_morro: bool = session.snapshot().player.encounter.get("kind", "") == "morro"
-	battle = MorroBattleView.new() if is_morro else EncounterView.new()
-	battle.configure(content, session.snapshot().player.encounter.state)
+	battle = MorroBattleView.new() if is_morro or is_district else EncounterView.new()
+	battle.reward_encounter = saved_encounter
+	battle.configure(content, saved_encounter.state)
 	battle.reward_player = session.snapshot().player
-	battle.reward_encounter = session.snapshot().player.encounter
+
 	battle.reduced_motion = preferences.reduced_motion
 	add_child(battle)
 	battle.save_requested.connect(func(state: Dictionary):
 		var result: Dictionary = encounters.save_battle(state)
 		battle.blocked = result.status != "ok"
-		if battle.blocked: battle.suspend_actions())
+		if battle.blocked: battle.suspend_actions()
+		elif saved_encounter.get("kind")=="mormaco-story" and state.q.get("mormacoForm","")=="ambush":
+			battle.paused=true
+			_finish_mormaco_ambush.call_deferred()
+		elif saved_encounter.get("scene")=="kronasta-coracao-c" and state.q.get("platyxRefusal","")=="stopped":
+			battle.paused=true
+			_finish_platyx_refusal.call_deferred(session.snapshot().player.encounter))
 	battle.leave_requested.connect(_menu)
 	battle.finish_requested.connect(func():
 		if not _result(encounters.save_battle(battle.model.snapshot())): return
-		if is_morro:
+		if is_district:
+			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
+		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
+		elif session.snapshot().player.encounter.kind=="ruinas-elo":
+			var outcome: String = session.snapshot().player.encounter.state.outcome
+			if _result(load("res://scripts/campaign/ruinas_elo.gd").settle(session)):_return_ruinas.call_deferred(outcome)
+		elif session.snapshot().player.encounter.kind=="tyler-lab":
+			if _result(load("res://scripts/campaign/tyler_arcs.gd").settle_lab(session)):_return_tyler_lab.call_deferred()
+		elif session.snapshot().player.encounter.kind=="tufanocorte-story":
+			if _result(preload("res://scripts/campaign/tufanocorte_story.gd").new(session).settle()):_return_tufanocorte.call_deferred()
+		elif session.snapshot().player.encounter.kind=="mormaco-story":
+			if _result(load("res://scripts/campaign/mormaco_story.gd").new(session).settle()):_return_mormaco.call_deferred()
+		elif session.snapshot().player.encounter.kind=="retalho-rescue":
+			if _result(load("res://scripts/campaign/retalho_trust.gd").new(session).settle()):_show_saved.call_deferred()
+		elif session.snapshot().player.encounter.kind=="warehouse-story":
+			if _result(load("res://scripts/campaign/warehouse_story.gd").new(session).settle()):_return_warehouse.call_deferred()
+		elif session.snapshot().player.encounter.kind=="retalho-story":
+			if _result(load("res://scripts/campaign/retalho_story.gd").new(session).settle()):_return_retalho.call_deferred()
+		elif session.snapshot().player.encounter.kind=="feira-story":
+			if _result(load("res://scripts/campaign/feira_story.gd").new(session).settle()):_return_feira_story.call_deferred()
+		elif session.snapshot().player.encounter.kind=="canal-gate":
+			if _result(load("res://scripts/campaign/canal_gate.gd").new(session).settle()):_show_saved.call_deferred()
 		elif _result(encounters.settle()): _show_saved.call_deferred())
 
 func _remember_world_position() -> bool:
@@ -1425,7 +1962,7 @@ func _show_collection() -> void:
 	list.add_theme_constant_override("separation",16)
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(list)
-	var team_capacity:=maxi(1,floori((size.y-250)/(190*preferences.text_scale)))
+	var team_capacity:=maxi(1,floori((size.y-300)/(260*preferences.text_scale)))
 	var team_pages:=maxi(1,ceili(float(player.partners.size())/team_capacity))
 	team_page=clampi(team_page,0,team_pages-1)
 	for partner in player.partners.slice(team_page*team_capacity,(team_page+1)*team_capacity):
@@ -1436,7 +1973,7 @@ func _show_collection() -> void:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 20)
 		card.add_child(row)
-		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
 		var art: Dictionary = content.combat[art_id]
 		var frame: Dictionary = art.animations.idle[0]
 		var texture := AtlasTexture.new()
@@ -1448,6 +1985,17 @@ func _show_collection() -> void:
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		portrait.custom_minimum_size = Vector2(144, 118)
 		row.add_child(portrait)
+		if preload("res://scripts/campaign/mount_quest.gd").capable(partner):
+			var mount_icon:=TextureRect.new()
+			mount_icon.name="MountCapability"
+			mount_icon.texture=load("res://assets/ui/mount-capability.svg")
+			mount_icon.custom_minimum_size=Vector2(30,30)
+			mount_icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+			mount_icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			mount_icon.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+			mount_icon.tooltip_text="Pode ser montado · requer 1 HP e armação intacta" if preload("res://scripts/campaign/mount_quest.gd").healthy(partner) else "Montaria derrotada · repare Linha e Armação antes de montar"
+			if not preload("res://scripts/campaign/mount_quest.gd").healthy(partner):mount_icon.modulate=Color(.45,.45,.45)
+			row.add_child(mount_icon)
 		var details := VBoxContainer.new()
 		details.add_theme_constant_override("separation",6)
 		details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -1504,7 +2052,10 @@ func _show_collection() -> void:
 	if team_pages>1:
 		_button("Anterior",footer,func():team_page-=1;_show_collection()).disabled=team_page==0
 		_button("Próxima",footer,func():team_page+=1;_show_collection()).disabled=team_page==team_pages-1
-		_label("%d / %d"%[team_page+1,team_pages],footer,16)
+		var page_number:=_label("%d / %d"%[team_page+1,team_pages],footer,16)
+		page_number.autowrap_mode=TextServer.AUTOWRAP_OFF
+		page_number.custom_minimum_size.x=90
+		page_number.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 
 func _route_action(id: String) -> void:
 	for place in park.data.places:
@@ -1521,6 +2072,7 @@ func _route_action(id: String) -> void:
 		elif place.action == "parkMap": _notice("Parque dos Ventos\n\nA trilha segue até a Clareira do Papel. Além dela ficam as Veredas.")
 
 func _show_partner_care(partner_id:String="") -> void:
+	if flow_busy or is_instance_valid(scene_loading):return
 	if not _remember_world_position():return
 	var care=load("res://scripts/campaign/partner_care.gd").new(session)
 	var saved:Dictionary=session.snapshot()
@@ -1530,6 +2082,40 @@ func _show_partner_care(partner_id:String="") -> void:
 	for entry in saved.player.partners:
 		if entry.id==wanted:chosen=entry;break
 	if chosen.is_empty():chosen=saved.player.partners[0]
+	# Leave the menu first: camping belongs to the real map and its camera.
+	if ParkCheckpoint.MAPS.has(saved.checkpoint.get("scene","")):_show_park()
+	else:_show_world()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if not is_inside_tree():return
+	var subject:Node2D=park if is_instance_valid(park) else room
+	if not is_instance_valid(subject) or not is_instance_valid(subject.get("avatar")):
+		_notice("Não foi possível preparar o acampamento aqui. Tente novamente.");return
+	flow_busy=true
+	if is_instance_valid(park):
+		park.paused=true
+		# The city uses the dock controller, which has no point-path property.
+		var pending_path:Variant=park.get("path")
+		if pending_path!=null:
+			pending_path.clear();park.set("path",pending_path)
+	if is_instance_valid(room):room.can_walk=false
+	var camp=load("res://scripts/campaign/care_camp_transition.gd").new()
+	camp.avatar=subject.avatar;camp.companion=subject.get("companion");camp.reduced_motion=preferences.reduced_motion
+	if camp.companion==null:camp.companion=subject.get("partner")
+	add_child(camp)
+	var generation:int=opening_generation
+	await camp.play()
+	if not TutorialStaging.valid(self,generation):return
+	remove_child(camp)
+	_open_partner_care(chosen)
+	add_child(camp)
+	flow_busy=true
+	await camp.reveal()
+	if is_instance_valid(camp):camp.queue_free()
+	flow_busy=false
+
+func _open_partner_care(chosen:Dictionary) -> void:
+	var care=load("res://scripts/campaign/partner_care.gd").new(session)
+	var saved:Dictionary=session.snapshot()
 	_clear("page:CUIDAR DO PARCEIRO")
 	page=VBoxContainer.new()
 	add_child(page)
@@ -1558,7 +2144,12 @@ func _show_partner_care(partner_id:String="") -> void:
 			view.refresh_stock(int(session.snapshot().player.inventory.get(care.ITEM,0)),int(session.snapshot().player.coins),false)
 			view.supply.disabled=true
 			view.pet.grab_focus())
-	view.back_requested.connect(_show_collection)
+	view.back_requested.connect(_leave_partner_care)
+
+func _leave_partner_care() -> void:
+	if flow_busy:return
+	menu_origin=""
+	_show_saved()
 
 func _show_bag() -> void:
 	if not _remember_world_position(): return
@@ -1568,7 +2159,9 @@ func _show_bag() -> void:
 	_label("%d moedas · Materiais e lembranças da sua jornada"%player.coins,page,18).add_theme_color_override("font_color",Hud.GOLD)
 	var inventory_view = load("res://scripts/campaign/hud_inventory.gd").new()
 	inventory_view.care_available=session.snapshot().checkpoint.get("kind","")=="world"
+	inventory_view.mount_available=session.snapshot().checkpoint.get("kind","")=="world" and session.snapshot().checkpoint.get("scene","") not in ["professor-home","kite-shop","kael-home"]
 	inventory_view.care_requested.connect(func():_show_partner_care())
+	inventory_view.mount_requested.connect(_use_mount_item)
 	inventory_view.inventory = player.inventory
 	inventory_view.reduced_motion=preferences.reduced_motion
 	page.add_child(inventory_view)
@@ -1587,6 +2180,11 @@ func _show_bag() -> void:
 	Hud.input_hint(footer,"line","Próxima aba")
 
 func _show_map() -> void:
+	if load("res://scripts/campaign/bosque_campaign.gd").available(session.snapshot().get("player",{})):
+		_show_kronasta()
+	else:_show_local_map()
+
+func _show_local_map() -> void:
 	if not _remember_world_position(): return
 	sound.play_event("ui.map")
 	var subject:Node2D=park if is_instance_valid(park) else room
@@ -1637,75 +2235,70 @@ func _show_kronasta() -> void:
 	var saved: Dictionary=session.snapshot()
 	var region=load("res://scripts/campaign/bosque_campaign.gd")
 	if not region.available(saved.player): return
-	var Story=load("res://scripts/campaign/kronasta_story.gd")
-	var player: Dictionary=saved.player
-	_simple_page("REGIÃO DE KRONASTA",true)
-	page.add_theme_constant_override("separation",10)
-	_label("Você está em "+_slot_location(saved).name,page,18).add_theme_color_override("font_color",Hud.MUTED)
-	_label("%s  ·  Categoria %s  ·  Bairros vencidos %d de 12"%[Story.ACTS[Story.act(player)],Story.category(player),Story.neighbourhoods_won(player)],page,20)
-	var goal:=_label("Objetivo · "+Story.objective(player),page,19)
-	goal.add_theme_color_override("font_color",Hud.GOLD)
-	var scroll:=ScrollContainer.new()
-	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.follow_focus=true
-	page.add_child(scroll)
-	var list:=VBoxContainer.new()
-	list.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	list.add_theme_constant_override("separation",6)
-	scroll.add_child(list)
-	# Travel starts from the Vila or a map scene; elsewhere the list is read-only.
-	var here: String=saved.checkpoint.get("scene","")
-	var can_leave: bool=here=="quintal" or ParkCheckpoint.MAPS.has(here)
-	if not can_leave:_label("Para viajar, volte à Vila do Primeiro Vento ou a uma área do mapa.",list,16).add_theme_color_override("font_color",Hud.MUTED)
-	# Released places can be revisited freely; won duels and bosses stay won.
-	var section:=func(title:String):_label(title,list,16).add_theme_color_override("font_color",Hud.CYAN)
-	var row_for:=func(entry:Dictionary,status_text:String,status_color:Color):
-		var row:=HBoxContainer.new()
-		row.add_theme_constant_override("separation",16)
-		list.add_child(row)
-		var title:=_label("%s  ·  Nv. %s"%[entry.name,entry.levels],row,18)
-		title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-		title.autowrap_mode=TextServer.AUTOWRAP_OFF
-		title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-		title.tooltip_text=entry.note
-		if Story.scene_for_travel(entry.id)==here:
-			var status:=_label("Você está aqui",row,16)
-			status.autowrap_mode=TextServer.AUTOWRAP_OFF
-			status.add_theme_color_override("font_color",Hud.GOLD)
-		elif Story.can_travel(player,entry.id) and can_leave:
-			var destination: String=Story.scene_for_travel(entry.id)
-			# The row already names the place; the button stays short so it never truncates.
-			var go:=_button("Entrar",row,func():_travel_kronasta(destination))
-			go.custom_minimum_size=Vector2(170,44)
-			go.tooltip_text=entry.name+" · "+status_text
-		else:
-			var status:=_label(status_text,row,16)
-			status.autowrap_mode=TextServer.AUTOWRAP_OFF
-			status.add_theme_color_override("font_color",status_color)
-	section.call("LUGARES LIBERADOS")
-	for entry in Story.released(player):
-		var won: bool=Story.state(player,entry.id)=="vencido"
-		row_for.call(entry,"Bairro vencido" if won else "Acesso pela Vila",Hud.GOLD if won else Hud.MUTED)
-	var next: Dictionary=Story.next_destination(player)
-	if not next.is_empty():
-		section.call("PRÓXIMO DESTINO DA HISTÓRIA")
-		row_for.call(next,Story.requirement(player,next.id),Hud.MUTED)
-	var qa_list: Array=Story.previews(player)
-	if not qa_list.is_empty():
-		section.call("QA · PRÉVIAS DE MAPA (não aparecem para jogadores)")
-		for entry in qa_list: row_for.call(entry,Story.requirement(player,entry.id),Hud.MUTED)
-	var footer:=HBoxContainer.new()
-	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
-	page.add_child(footer)
-	_button("Continuar de onde parei",footer,_return_to_game).custom_minimum_size.x=360
-	if can_leave and here!="quintal":_button("Voltar à Vila do Primeiro Vento",footer,func():_travel_kronasta("quintal")).custom_minimum_size.x=440
+	_clear("page:REGIÃO DE KRONASTA")
+	var atlas=load("res://scripts/campaign/hud_kronasta_map.gd").new()
+	atlas.current_scene=saved.checkpoint.get("scene","")
+	atlas.saved_player=saved.player.duplicate(true)
+	add_child(atlas)
+	atlas.travel_requested.connect(_travel_kronasta)
+	atlas.local_requested.connect(_show_local_map)
+	atlas.closed.connect(func():
+		menu_origin=""
+		sound.set_game_paused(false)
+		_show_saved())
 
 func _travel_kronasta(destination: String) -> void:
 	if not _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel(destination)): return
 	menu_origin=""
 	sound.set_game_paused(false)
 	_show_saved()
+
+func _show_missions() -> void:
+	var player:Dictionary=session.snapshot().player
+	_simple_page("MISSÕES",true)
+	_label("Objetivos da sua jornada",page,24).add_theme_color_override("font_color",Hud.CYAN)
+	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",16);scroll.add_child(list)
+	var trained:bool=int(player.get("journey",{}).get("lesson",0))>=5
+	var entries:Array=[["Os primeiros elos","Conclua o treinamento com o Sr. Assis.",trained]]
+	var mount_quest=preload("res://scripts/campaign/mount_quest.gd")
+	if mount_quest.available(player):entries.append([mount_quest.TITLE,mount_quest.objective(player),mount_quest.owned(player)])
+	if trained:
+		entries.append(["Seu primeiro parceiro","Monte seu primeiro Pipamon na oficina.",not player.get("partners",[]).is_empty()])
+		var victories:int=player.get("morro",{}).get("stars",{}).size()
+		entries.append(["Desafios do Morro do Sol","%d / 5 desafios concluídos. Converse com os pipeiros para avançar."%victories,player.get("districtEmblems",{}).has("bairro-01")])
+	if player.get("flags",{}).get("ninaAccepted",false):
+		var instruction:="Explore as Veredas e recupere a rabiola de Nina."
+		if player.flags.get("guardianDefeated",false):instruction="Recolha a rabiola nas Veredas e leve-a de volta à Nina."
+		if player.flags.get("ninaTail",false):instruction="Volte e entregue a rabiola à Nina."
+		entries.append(["O pedido de Nina",instruction,bool(player.flags.get("ninaReturned",false))])
+	for entry in entries:
+		var plate=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(plate)
+		var column:=VBoxContainer.new();column.add_theme_constant_override("separation",6);plate.add_child(column)
+		_label(("CONCLUÍDA · " if entry[2] else "EM ANDAMENTO · ")+entry[0],column,25).add_theme_color_override("font_color",Hud.GOLD if entry[2] else Hud.CYAN)
+		_label(entry[1],column,21)
+	_button("Voltar ao lobby",page,_return_to_game).custom_minimum_size.y=48
+
+func _show_lobby_workshop() -> void:
+	var saved:Dictionary=session.snapshot()
+	if saved.checkpoint.get("scene","")=="professor-home":
+		_show_tail_workshop()
+		return
+	_simple_page("OFICINA",true)
+	_label("Novos parceiros começam com uma rabiola.",page,26).add_theme_color_override("font_color",Hud.GOLD)
+	_label("A montagem e a restauração acontecem no ateliê do Sr. Assis. Aqui você pode consultar o que já encontrou.",page,22)
+	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",12);scroll.add_child(list)
+	var found:=false
+	for id in Journey.CATALOG:
+		var intact:=int(saved.player.inventory.get("rabiola-"+id,0))
+		var damaged:=int(saved.player.inventory.get("damaged-rabiola-"+id,0))
+		if intact+damaged==0:continue
+		found=true
+		_label("%s · %d pronta(s) para montar · %d para restaurar"%[Journey.CATALOG[id],intact,damaged],list,23)
+	if not found:_label("Você ainda não encontrou rabiolas. Explore o mundo e converse com seus moradores.",list,22)
+	var footer:=HBoxContainer.new();footer.add_theme_constant_override("separation",32);page.add_child(footer)
+	_button("Voltar ao lobby",footer,_return_to_game)
 
 func _show_tail_workshop() -> void:
 	if not _remember_world_position(): return
@@ -1726,7 +2319,9 @@ func _show_tail_workshop() -> void:
 			_button("Restaurar rabiola de " + Journey.CATALOG[chosen], page, func():
 				if _result(journey.restore_inventory_tail(chosen)): _show_tail_workshop())
 	if not found: _label("Traga uma rabiola encontrada no parque para construir um novo parceiro.", page)
-	_button("Voltar", page, _show_saved)
+	_button("Voltar", page, func():
+		if menu_origin=="workshop":_return_to_game()
+		else:_show_saved())
 
 func _apply_preferences() -> void:
 	if sound.is_inside_tree(): sound.configure(preferences.audio_levels, preferences.dialogue_blips)
@@ -1759,7 +2354,6 @@ func _show_settings() -> void:
 	var category_row:=HBoxContainer.new()
 	category_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	var active_tab:Button
-	category_row.add_theme_constant_override("separation",20)
 	page.add_child(category_row)
 	for category in ["Vídeo","Áudio","Acessibilidade","Controles"]:
 		var tab:=Button.new();tab.text=category;Hud.navigation_button(tab,true)
@@ -1855,7 +2449,6 @@ func _show_settings() -> void:
 	Hud.secondary_button(keyboard_button)
 	var footer:=HBoxContainer.new()
 	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
-	footer.add_theme_constant_override("separation",20)
 	page.add_child(footer)
 	_button("Voltar", footer, _menu if session.snapshot().is_empty() else _return_to_game).custom_minimum_size.x=180
 	Hud.input_hint(footer,"accept","Alterar")
@@ -1948,7 +2541,6 @@ func _show_controls() -> void:
 	_label("Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",page,16).add_theme_color_override("font_color",Hud.MUTED)
 	var footer:=HBoxContainer.new()
 	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
-	footer.add_theme_constant_override("separation",24)
 	page.add_child(footer)
 	_button("Voltar",footer,_return_controls_settings).custom_minimum_size.x=180
 	var restore:=_button("Restaurar padrão", footer, _confirm_restore_controls)
@@ -2062,13 +2654,30 @@ func _morro_action(id: String) -> void:
 	if park.player.distance_to(Vector2(place.point[0], place.point[1])) > 90: return
 	if place.has("stage"):
 		var names := " e ".join(Morro.Rules.stage(data.stage).foes.map(func(f): return f.name))
-		if session.snapshot().player.get("morro", Morro.Rules.defaults()).stars.has(data.stage):
+		var districts=preload("res://scripts/campaign/district_rules.gd")
+		var player:Dictionary=session.snapshot().player
+		var title:Dictionary=districts.entry(player,"morro")
+		if not title.pendingDefense.is_empty():
+			if title.pendingDefense.scene==session.snapshot().checkpoint.scene:_show_title_defense()
+			else:_notice(districts.objective(player,"morro"))
+			return
+		if title.champion=="player" and data.stage!="morro-5":
+			if _result(morro.offer_defense(park.player)):_show_title_defense()
+			return
+		var planned:Dictionary=districts.prepare(player,"morro",data.stage)
+		if planned.status=="already_applied":
 			_notice("Você já venceu %s aqui. Este desafio está concluído; o caminho segue aberto." % names)
+			return
+		if planned.status!="ok":
+			_notice(districts.objective(player,"morro") if title.completed else "Vença os desafios anteriores antes de enfrentar este pipeiro.")
 			return
 		var story: Dictionary = Morro.Rules.content().stories[data.stage]
 		var text := "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]]))
+		if planned.context.mode in ["requalify","reclaim"]:
+			text="Este duelo faz parte da reconquista do título. A primeira recompensa e a insígnia não serão concedidas novamente."
+			if data.stage=="morro-5":names=districts.opponent_name(player,"morro")
 		text += "\n\nDica de voo: " + story.tactic
-		_confirm_park(" e ".join(Morro.Rules.stage(data.stage).foes.map(func(f): return f.name)), text, "Vamos voar!", func():
+		_confirm_park(names, text, "Vamos voar!", func():
 			if _result(morro.start(park.player)): _show_saved.call_deferred())
 		return
 	if place.action == "pilot_story":
@@ -2097,24 +2706,940 @@ func _morro_action(id: String) -> void:
 				if exit_place.get("action", "") == "road_next": point = Vector2(exit_place.point[0], exit_place.point[1])
 		if _result(journey.enter_world(place.target, point)): _show_saved.call_deferred()
 
+func _show_title_defense() -> void:
+	var player:Dictionary=session.snapshot().player
+	var districts=preload("res://scripts/campaign/district_rules.gd")
+	var opponent:String=districts.opponent_name(player,"morro")
+	var text:="%s desafia você pelo título do Morro do Sol.\n\nSe perder ou desistir da luta, ele fica com o título e você precisa vencer os quatro desafios novamente para recuperá-lo. Sua insígnia e os caminhos já abertos continuam seus.\n\nVocê pode responder depois: o desafio permanece salvo."%opponent
+	_confirm_park("Defesa de título · "+opponent,text,"Defender meu título",func():
+		if _result(morro.start_defense(park.player)):_show_saved.call_deferred())
+	if is_instance_valid(park.goal):park.goal.text=districts.objective(player,"morro")
+
 func _return_morro_result() -> void:
+	if not _result(DistrictBadges.ensure_legacy(session)):return
+	if DistrictBadges.pending(session.snapshot()):
+		_show_world()
+		_present_first_insignia.call_deferred(bool(session.snapshot().player.lastMorro.get("insignia",false)))
+		return
 	_show_saved()
 	var result: Dictionary = session.snapshot().player.lastMorro
 	var lines: Array = Morro.Rules.content().stories[result.stage].won if result.outcome == "won" else Morro.Rules.content().stories[result.stage].lost
-	if result.outcome == "fled":
-		_notice("Você pode conversar com o pipeiro para tentar novamente quando quiser.")
-		return
-	var text := "\n\n".join(lines.map(func(line): return "%s: %s" % [line[0], line[1]]))
-	text += "\n\nRecompensas: +%d XP" % result.partnerXp
-	if result.outcome == "won": text += " · %d estrelas · +%d moedas" % [result.stars, result.coins]
-	if result.get("drop") != null: text += "\nRabiola de Raio de sol recebida!"
-	_notice(text)
+	# The shared illustrated battle result is the sole reward presentation.
+	# Returning to the map preserves the NPC's voice without repeating a receipt.
+	var text:="Você pode conversar com o pipeiro para tentar novamente quando quiser." if result.outcome=="fled" else "\n\n".join(lines.map(func(line): return "%s: %s" % [line[0], line[1]]))
+	var title:=" e ".join(Morro.Rules.stage(result.stage).foes.map(func(foe):return foe.name))
+	if result.get("districtMode","progress")!="progress":
+		title="Disputa pelo título"
+		text=preload("res://scripts/campaign/district_rules.gd").objective(session.snapshot().player,"morro")
+	if is_instance_valid(park):park.paused=true
+	var dialog:=_dialog(title,text,"Continuar explorando")
+	dialog.set_meta("morro_epilogue",true)
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		if is_instance_valid(park):park.paused=false)
+	dialog.popup_centered()
 
 func _partner_portrait(model_id: String) -> Texture2D:
-	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(model_id, "rabbito")
+	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(model_id, "rabbito")
 	var art: Dictionary = content.combat[id]
 	var frame: Dictionary = art.animations.idle[0]
 	var texture := AtlasTexture.new()
 	texture.atlas = load("res://assets/campaign/" + art.image)
 	texture.region = Rect2(frame.x, frame.y, frame.w, frame.h)
 	return texture
+
+func _district_action(id:String,skip_row:bool=false)->void:
+	if id=="cais-5" and not skip_row and load("res://scripts/campaign/marisol_row.gd").eligible(session.snapshot().player):
+		var origin:Vector2=park.player
+		if not load("res://scripts/campaign/marisol_row.gd").new(session).near(origin):return
+		_simple_page("Marisol · Cais Velho",true)
+		_label("Você veio pela água ou pelo emblema?",page,26)
+		_button("Conversar sobre Remar",page,func():_show_row_lesson(load("res://scripts/campaign/marisol_row.gd").new(session),origin))
+		_button("Assuntos do campeonato",page,func():
+			_return_row_championship(id))
+		_button("Voltar ao Cais",page,_show_saved)
+		return
+	var service=load("res://scripts/campaign/district_campaign.gd").new(session)
+	var rules=load("res://scripts/campaign/district_rules.gd")
+	var player:Dictionary=session.snapshot().player
+	var entry:Dictionary=service.stage(id)
+	var district:String=entry.get("district","")
+	var title:Dictionary=rules.entry(player,district)
+	if entry.is_empty():return
+	if title.champion=="player" and id!=district+"-5" and title.pendingDefense.is_empty():
+		if not _result(service.offer_defense(id,park.player)):return
+		player=session.snapshot().player;title=rules.entry(player,district)
+	if not title.pendingDefense.is_empty():
+		if title.pendingDefense.challenger!=entry.npcId:
+			_notice(rules.objective(player,district));return
+		_confirm_park("Defender "+rules.definition(district).name,entry.name+" quer disputar seu título. Derrota ou fuga entrega o título ao desafiante e exige quatro novas vitórias para a reconquista. Você pode responder depois; o desafio permanece salvo.","Defender meu título",func():
+			if _result(service.start(id,park.player,true)):_show_saved.call_deferred())
+		return
+	var planned:Dictionary=rules.prepare(player,district,id)
+	if planned.status=="already_applied":_notice("Este duelo já foi concluído. Você pode continuar explorando o bairro.");return
+	if planned.status!="ok":
+		if rules.status(player,district)=="prerequisite":_notice(service.objective(player,district));return
+		_notice("Vença os quatro pipeiros na ordem do percurso antes do campeão." if id==district+"-5" else "Conclua o desafio anterior para continuar.");return
+	var speaker:String=rules.opponent_name(player,district) if id==district+"-5" and title.completed else entry.name
+	var text:String=entry.before[0][1] if planned.context.mode=="progress" else "Vamos disputar mais uma vez. O caminho para recuperar o título passa por estes quatro desafios."
+	_confirm_park(speaker,text+"\n\nAdversário Nv. %d · vence quem conquistar %d rodadas."%[entry.level,entry.rounds],"Disputar",func():
+		if _result(service.start(id,park.player)):_show_saved.call_deferred())
+
+func _return_district_result()->void:
+	_show_saved()
+	var player:Dictionary=session.snapshot().player
+	var result:Dictionary=player.get("lastDistrict",{})
+	if result.is_empty():return
+	var service=load("res://scripts/campaign/district_campaign.gd")
+	var entry:Dictionary=service.stage(result.duel)
+	var text:String=""
+	if result.mode=="progress":text=entry.won[0][1] if result.outcome=="won" else entry.lost[0][1]
+	else:text=service.objective(player,result.district)
+	if result.get("emblem",false):text+="\n\nInsígnia recebida · "+str(result.district)+". O próximo destino está no mapa de Kronasta."
+	_notice(text)
+
+func _show_tyler_clareira()->void:
+	var service=load("res://scripts/campaign/tyler_clareira.gd").new(session)
+	if not service.available(park.player):return
+	if service.done(session.snapshot().player):
+		_notice("Tyler: Rai e eu vamos conferir este lado. O banco está livre se vocês precisarem descansar.");return
+	var index:int=service.step(session.snapshot().player)
+	var line:Dictionary=service.nodes()[index]
+	park.path.clear();park.paused=true
+	var camera_start:Vector2=park.camera.position
+	park.camera.zoom=Vector2.ONE*(1.35 if line.get("cue","")=="reel" else 1.15)
+	var focus:Vector2=park.model.project(service.point())
+	if line.get("cue","")=="rai":focus=park.model.project(Vector2(26.5,20.5))
+	if preferences.reduced_motion:park.camera.position=focus
+	else:park.create_tween().tween_property(park.camera,"position",focus,.45)
+	var scene_dialog:=_dialog(line.speaker,line.text,"Continuar","Continuar depois")
+	scene_dialog.allow_cancel=false
+	scene_dialog._portraits["Tyler"]=load("res://assets/campaign/tyler-clareira-v1/tyler.png")
+	scene_dialog._portraits["Rai"]=load("res://assets/campaign/tyler-clareira-v1/rai.png")
+	scene_dialog.confirmed.connect(func():
+		var result:Dictionary=service.advance(index,park.player)
+		if result.status!="ok":_result(result);return
+		scene_dialog.queue_free()
+		if not service.done(session.snapshot().player):_show_tyler_clareira.call_deferred()
+		else:
+			park.paused=false;park.camera.zoom=Vector2.ONE*1.15;park.camera.position=camera_start;park.refresh(session.snapshot().player);park.encounter_grace=6.0)
+	scene_dialog.canceled.connect(func():
+		scene_dialog.queue_free();park.paused=false;park.camera.zoom=Vector2.ONE*1.15;park.camera.position=camera_start)
+	scene_dialog.popup_centered()
+
+func _present_green_promotion()->void:
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if not is_inside_tree() or not preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):return
+	if is_instance_valid(park):park.paused=true;park.path.clear()
+	var promotion_dialog:=_dialog("Rabiola Verde","Nina: [emo=brilho]Você trouxe meu Carcará de volta. Venceu os dois bairros e ajudou alguém fora da arena. Isso também é ser pipeiro.\n\nCarteira de Pipeiro: Exame da categoria Branca concluído. Categoria Rabiola Verde registrada.\n\nNina: Quando meu Carcará estiver pronto para a travessia, pode contar com ele. Guarde esta autorização de empréstimo.\n\nJornada: Experimente Planar nas setas azuis junto ao rio das Veredas. O próximo bairro é Beira-Canal.","Guardar e continuar")
+	promotion_dialog.allow_cancel=false
+	promotion_dialog._portraits["Carteira de Pipeiro"]=null
+	promotion_dialog.confirmed.connect(func():
+		if not _result(preload("res://scripts/campaign/league_promotion.gd").acknowledge(session)):return
+		promotion_dialog.queue_free()
+		if is_instance_valid(park):park.paused=false;park.refresh(session.snapshot().player)
+		if DemoFlow.pending(session.snapshot()):_show_demo_complete.call_deferred())
+	promotion_dialog.popup_centered()
+
+func _request_nina_glide(id:String)->void:
+	var glide=load("res://scripts/campaign/nina_glide.gd")
+	if not glide.allowed(session.snapshot().player):
+		_notice("A seta marca um ponto de Planar. Devolva a rabiola da Nina e conclua o primeiro exame para contar com o Carcará dela.");return
+	var text:="Nina emprestou seu Carcará para este trecho. Aproxime-se da seta azul e confirme: ele leva você e seu parceiro até a outra margem. A ponte normal continua disponível. Se interromper a travessia, vocês retomam no ponto de partida seguro."
+	if session.snapshot().player.flags.get("ninaGlideTutorialDone",false):text="Planar até a outra margem com o Carcará da Nina?"
+	_confirm_park("Planar · Carcará da Nina",text,"Planar",func():
+		var result:Dictionary=glide.new(session).begin(id,park.player)
+		if _result(result):park.play_glide(session.snapshot().player.ninaGlideFlight))
+
+func _request_canal_gate()->void:
+	var service=load("res://scripts/campaign/canal_gate.gd").new(session)
+	if session.snapshot().player.flags.get("grampoVeredasVencido",false):
+		_confirm_park("Comporta das Veredas","O Lacertubo já deixou este lugar. A Rabiola Antiga vibra perto da entrada fechada das Ruínas. O controle do canal está ao alcance: destrancar a comporta?","Destrancar",func():
+			if _result(service.open(park.player)):
+				park.refresh(session.snapshot().player);park.exploration_hud.push_notice("Comporta aberta · volte ao pátio de Kleie","item"))
+	else:
+		_confirm_park("Grampo","Vai mexer no controle? Achei essas peças primeiro! Platyx, segura a linha.\n\nDuelo de história · adversário Nv. 14. Derrota ou fuga permitem tentar novamente.","Enfrentar Grampo",func():
+			if _result(service.begin(park.player)):_show_saved.call_deferred())
+
+func _request_feira_story(who:String)->void:
+	var service=load("res://scripts/campaign/feira_story.gd").new(session)
+	var player:Dictionary=session.snapshot().player
+	var phase:String=service.phase(player)
+	if who=="door":
+		if phase=="buy":_notice("A fechadura das Ruínas responde a um apito de vento. Talvez alguém na Feira saiba onde encontrar um.");return
+		if phase=="door":
+			_confirm_park("A porta das Ruínas","Kael aproxima o apito da fechadura antiga. Experimentar?","Soprar o apito",func():
+				if _result(service.test_door(park.player)):
+					park.refresh(session.snapshot().player)
+					_notice("O apito solta um chiado fino. É de plástico! A fechadura não se move. Kael: Lalau vai ter que explicar isso."))
+		elif phase=="complete":
+			if preload("res://scripts/campaign/mural_story.gd").available(player):
+				_confirm_park("A porta das Ruínas","O apito verdadeiro ressoa com a Rabiola Antiga. A passagem para a Caverna do Mural está aberta.","Entrar",func():
+					if _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel("caverna-mural-a")):_show_park.call_deferred())
+			else:_notice("O apito verdadeiro responde à porta. Antes de seguir, conclua o campeonato da Feira do Largo.")
+		else:_notice(service.objective(player))
+		return
+	if who=="lalau" and phase=="buy":
+		_confirm_park("Seu Lalau","Apito de vento original! Vinte moedas. Com ele, porta nenhuma resiste!
+
+Comprar por 20 moedas?","Comprar apito",func():
+			if _result(service.buy(park.player)):
+				park.refresh(session.snapshot().player);park.celebrate_item("Recebido · Apito anunciado como original"))
+		return
+	if phase==who:
+		var message:String="Eu devolvo suas moedas, mas primeiro quero ver se você sabe voar. O verdadeiro? Pode estar com o Grampo…" if who=="lalau" else "Lalau falou demais. Platyx, vamos!
+
+Platyx recolhe as patas e olha para Grampo, inseguro."
+		_confirm_park("Seu Lalau" if who=="lalau" else "Grampo",message+"
+
+Duelo de história · Nv. "+("16" if who=="lalau" else "17")+". Derrota ou fuga permitem tentar novamente.","Disputar",func():
+			if _result(service.begin(who,park.player)):_show_saved.call_deferred())
+	else:_notice(service.objective(player))
+
+func _return_feira_story()->void:
+	_show_saved()
+	var result:Dictionary=session.snapshot().player.get("lastFeira",{})
+	if result.get("outcome")!="won":return
+	if result.opponent=="lalau":_notice("Seu Lalau devolve as 20 moedas: Está bem! Troquei o apito verdadeiro com o Grampo por cerol. Ele está no beco da parte B do mercado.")
+	else:_notice("Grampo: Leva esse apito e sai do meu caminho.
+
+Recebido · Apito de vento verdadeiro. Platyx se esconde nas dobras da cabeça, aliviado por parar de lutar.")
+
+func _show_mural_story()->void:
+	var service=load("res://scripts/campaign/mural_story.gd").new(session)
+	if not service.near("caverna-mural-c",service.AT,park.player):return
+	var index:int=service.step(session.snapshot().player)
+	if index>=3:_notice("Tyler: A ponta da linha foi oferecida. Vamos lembrar disso quando encontrarmos outras marcas.");return
+	var node:Dictionary=service.nodes()[index]
+	park.path.clear();park.paused=true
+	var scene_dialog:=_dialog(node.title,node.text,"Guardar esta lembrança","Continuar depois")
+	var cinematic:Control=get_tree().get_first_node_in_group("mural_cinematic")
+	if not is_instance_valid(cinematic):
+		cinematic=load("res://scripts/campaign/mural_cinematic.gd").new()
+		cinematic.reduced_motion=preferences.reduced_motion
+		add_child(cinematic)
+	scene_dialog.confirmed.connect(func():
+		var result:Dictionary=service.advance(index,park.player)
+		if not _result(result):return
+		scene_dialog.queue_free()
+		if service.step(session.snapshot().player)<3:_show_mural_story.call_deferred()
+		else:
+			if is_instance_valid(cinematic):cinematic.queue_free()
+			park.paused=false;park.refresh(session.snapshot().player)
+			park.celebrate_item("A Rabiola Antiga respondeu ao mural"))
+	scene_dialog.canceled.connect(func():
+		scene_dialog.queue_free()
+		if is_instance_valid(cinematic):cinematic.queue_free()
+		park.paused=false)
+	scene_dialog.show_portraits=false
+	scene_dialog.popup_centered()
+	scene_dialog.portrait.hide();scene_dialog.other_portrait.hide()
+
+func _return_retalho()->void:
+	_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if session.snapshot().player.flags.get("retalhoBosqueVencido",false):
+		_notice("Retalho recua entre as copas antes que Kael se aproxime. Na base da rabiola, há um nó bem diferente dos outros.\n\nKael: Esse nó… parece feito para uma expedição.")
+
+func _request_warehouse(gollia:bool=false)->void:
+	var service=load("res://scripts/campaign/warehouse_story.gd").new(session)
+	var player:Dictionary=session.snapshot().player
+	if not service.available(player):
+		_notice("Antes de seguir: conclua o Cais Velho, encontre Retalho no Bosque e examine a foto da expedição no arquivo do ateliê.");return
+	if gollia:
+		if player.flags.get("golliaCarretelVencida",false):_notice("Gollia: Eu só aceitei o Carretel Negro para testar. Tem alguma coisa acontecendo no galpão, pela porta do depósito.");return
+		_confirm_park("Gollia · Nv. 23","Só vou testar esse Carretel Negro. Uma disputa, Kael?\n\nAzulão se prepara. Você pode recuar; derrota ou fuga permitem tentar novamente.","Disputar",func():
+			if _result(service.begin("gollia",park.player)):_show_saved.call_deferred())
+		return
+	if player.flags.get("pipaDragaoDesatadaVencida",false):_notice("As rabiolas já não estão presas juntas. Retalho precisa de cuidados no ateliê. O duelo com Bruno Solda está liberado.");return
+	if not player.flags.get("golliaCarretelVencida",false):_notice("Encontre Gollia junto ao depósito, na parte B.");return
+	var index:int=service.step(player)
+	var tableau=load("res://scripts/campaign/warehouse_tableau.gd").new()
+	tableau.beat=index;tableau.reduced_motion=preferences.reduced_motion;add_child(tableau)
+	park.path.clear();park.paused=true
+	var entry:Dictionary=service.nodes()[index] if index<3 else {"title":"Pipa-Dragão desatada · Nv. 25","text":"Tyler: As duas almas estão livres. Agora mantenha a linha firme, sem cortar a rabiola.\n\nO confronto pode ser vencido. Derrota ou fuga permitem tentar novamente, sem repetir a intervenção. A Agulha de desatar é uma recompensa única."}
+	var dialog:=_dialog(entry.title,entry.text,"Continuar" if index<3 else "Iniciar confronto","Continuar depois")
+	dialog.show_portraits=false
+	dialog.confirmed.connect(func():
+		var result:Dictionary=service.advance(index,park.player) if index<3 else service.begin("dragon",park.player)
+		if not _result(result):return
+		dialog.queue_free()
+		if index<3:_request_warehouse.call_deferred(false)
+		else:_show_saved.call_deferred())
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		if is_instance_valid(tableau):tableau.queue_free()
+		if is_instance_valid(park):park.paused=false)
+	dialog.popup_centered()
+
+func _return_warehouse()->void:
+	_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	var result:Dictionary=session.snapshot().player.get("lastWarehouse",{})
+	if result.get("outcome")!="won":return
+	if result.opponent=="gollia":_notice("Gollia recua. A porta do galpão está adiante, na frente do depósito.")
+	else:
+		if is_instance_valid(park):park.celebrate_item("Recebido · Agulha de desatar")
+		_notice("As almas estão livres. Kael se aproxima de Retalho, ainda ferido.\n\nTyler: Vamos levá-lo ao ateliê.\n\nAgulha de desatar guardada. Sua função de remontagem será integrada depois. Bruno Solda já pode ser desafiado.")
+
+func _show_expedition_photo()->void:
+	if not is_instance_valid(room) or room.actor.distance_to(preload("res://scripts/campaign/expedition_photo.gd").AT)>110:return
+	var service=preload("res://scripts/campaign/expedition_photo.gd").new(session)
+	room.can_walk=false;flow_busy=true
+	var photo:=preload("res://scripts/campaign/expedition_photo_view.gd").new()
+	photo.name="ExpeditionPhotograph";add_child(photo)
+	var dialog:=_dialog("Uma foto entre os arquivos",service.pages(),"Guardar lembrança","Fechar por enquanto")
+	dialog.name="ExpeditionPhotoDialogue"
+	dialog.confirmed.connect(func():
+		var result:Dictionary=service.read(room.actor)
+		if result.status in ["ok","already_applied"]:dialog.queue_free()
+		else:_result(result))
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		if is_instance_valid(photo):photo.queue_free()
+		if is_instance_valid(room):room.can_walk=true
+		flow_busy=false)
+	dialog.popup_centered()
+
+func _show_retalho_care()->void:
+	if flow_busy or not is_instance_valid(room):return
+	var service=preload("res://scripts/campaign/retalho_care.gd").new(session)
+	if not service.near(room.actor):return
+	var index:int=service.step(session.snapshot().player)
+	if index>=service.nodes().size():
+		_show_retalho_trust();return
+	var node:Dictionary=service.nodes()[index]
+	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
+	room.face_actor(service.AT);room.face_mother(service.AT)
+	var generation:=opening_generation
+	var dialog:=_dialog(node.title,node.text,"Continuar","Continuar depois")
+	dialog.name="RetalhoCareDialogue"
+	var continue_scene:=[false]
+	dialog.confirmed.connect(func():
+		if not TutorialStaging.valid(self,generation) or not is_instance_valid(room):return
+		if not _result(service.advance(node.id,room.actor)):return
+		continue_scene[0]=true
+		dialog.queue_free()
+		)
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		flow_busy=false
+		if is_instance_valid(room):
+			room.can_walk=true;room.set_story_paused(false)
+			var overlay:Control=room.get_meta("exploration_hud",null)
+			if is_instance_valid(overlay):overlay.objective.text=service.objective(session.snapshot().player)
+		if continue_scene[0] and index<service.nodes().size()-1 and TutorialStaging.valid(self,generation):_show_retalho_care.call_deferred())
+	dialog.popup_centered()
+
+func _show_heleana_confession()->void:
+	if flow_busy or (not is_instance_valid(room) and not is_instance_valid(park)):return
+	var service=load("res://scripts/campaign/heleana_confession.gd").new(session)
+	if not service.available(session.snapshot().player):_notice("Heleana: Vá com cuidado. Estarei aqui quando voltar.");return
+	var p:Dictionary=session.snapshot().player
+	var outdoors:bool=service.outside(p)
+	var point:Vector2=park.cell if outdoors and is_instance_valid(park) else room.actor if is_instance_valid(room) else Vector2.INF
+	if not service.near(point):return
+	if service.done(p) and not service.recognition(p):_notice("Heleana: Obrigada por me escutar. Você e seus parceiros sempre terão lugar aqui.");return
+	var step:int=service.index(p)
+	if service.refused(p) and not service.done(p) and step==0:service.play_grunt(self)
+	var node:Array=service.nodes(p)[step]
+	flow_busy=true
+	if is_instance_valid(room):
+		room.can_walk=false;room.set_story_paused(true)
+		room.face_actor(Vector2(960,864));room.face_mother(room.actor)
+	if is_instance_valid(park):park.paused=true
+	var generation:=opening_generation
+	var dialog:=_dialog(node[0],node[1],"Continuar","Continuar depois")
+	dialog.name="HeleanaConfessionDialogue"
+	dialog._portraits["Heleana"]=load("res://assets/campaign/"+content.portraits["Mãe"])
+	var follow:=[false]
+	var leave_house:=[false]
+	dialog.confirmed.connect(func():
+		if not TutorialStaging.valid(self,generation):return
+		if _result(service.advance(step,point)):
+			follow[0]=true
+			leave_house[0]=not outdoors and service.outside(session.snapshot().player)
+			dialog.queue_free())
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		flow_busy=false
+		if is_instance_valid(room):room.can_walk=true;room.set_story_paused(false)
+		if is_instance_valid(park):park.paused=false
+		if not follow[0] or not TutorialStaging.valid(self,generation):return
+		if leave_house[0]:_show_saved.call_deferred()
+		elif not service.done(session.snapshot().player) or service.recognition(session.snapshot().player):_show_heleana_confession.call_deferred())
+	dialog.popup_centered()
+
+func _show_blue_preparation()->void:
+	if flow_busy or not is_instance_valid(room):return
+	var preparation=preload("res://scripts/campaign/blue_exam_preparation.gd")
+	if not preparation.eligible(session.snapshot().player) or not preparation.near(session,room.actor):return
+	if preparation.prepared(session.snapshot().player):
+		_notice("Sr. Assis: A orientação está registrada. Dona Cida aplica a prova no Pátio da Liga, junto ao Parque.");return
+	var entry:Dictionary=preparation.data()
+	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
+	var generation:=opening_generation
+	var dialog:=_dialog(entry.title,entry.text,"Registrar preparação","Conversar depois")
+	dialog.name="BlueExamPreparationDialogue"
+	dialog.confirmed.connect(func():
+		if not TutorialStaging.valid(self,generation) or not is_instance_valid(room):return
+		if _result(preparation.confirm(session,room.actor)):dialog.queue_free())
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		flow_busy=false
+		if is_instance_valid(room):
+			room.can_walk=true;room.set_story_paused(false)
+			var overlay:Control=room.get_meta("exploration_hud",null)
+			if is_instance_valid(overlay):overlay.objective.text=preload("res://scripts/campaign/kronasta_story.gd").objective(session.snapshot().player))
+	dialog.popup_centered()
+
+func _show_retalho_trust()->void:
+	if flow_busy:return
+	var service=load("res://scripts/campaign/retalho_trust.gd").new(session)
+	var p:Dictionary=session.snapshot().player
+	if not service.available(p):return
+	var n:int=service.stage(p)
+	if n==8:
+		_notice("Retalho escolheu acompanhar você. Ele está no banco de parceiros deste save.");return
+	var at:Vector2=room.actor if is_instance_valid(room) else park.player if is_instance_valid(park) else Vector2.INF
+	var scene:String=session.snapshot().checkpoint.get("scene","")
+	if not service.near(scene,at):return
+	if n<2 and scene!="professor-home" or n in [2,4] and scene!=service.A or n==3 and scene!=service.B or n>=5 and scene!=service.C:
+		_notice(service.objective(p));return
+	if is_instance_valid(park):
+		var subject:Vector2=service.SICK if scene==service.A else service.HERB if scene==service.B else service.RESCUE
+		if at.distance_to(subject)<.7:
+			for offset in [Vector2(0,1),Vector2(1,0),Vector2(0,-1),Vector2(-1,0)]:
+				var candidate:Vector2=subject+offset
+				if not park.model.clear_segment(at,candidate) or not service.near(scene,candidate):continue
+				park.player=candidate;at=candidate;park._refresh_positions();break
+	if n==7 and p.partners.size()>=service.CAPACITY:
+		_show_retalho_bank();return
+	var entry:Dictionary=service.nodes()[n]
+	flow_busy=true
+	if is_instance_valid(room):room.can_walk=false;room.set_story_paused(true)
+	if is_instance_valid(park):park.path.clear();park.paused=true
+	if n==6 and is_instance_valid(park) and not preferences.reduced_motion:
+		var companion_spot:Vector2=at+Vector2(2,0)
+		if park.model.point_walkable(companion_spot) and absf(park.model.height_at(companion_spot)-park.model.height_at(at))<.25:
+			park.follower=companion_spot;park._refresh_positions()
+		for actor:Dictionary in park.npc_nodes:
+			if actor.root.get_meta("event",{}).get("props",{}).get("acao","")!="retalhoTrust":continue
+			var original:Vector2=actor.root.position
+			var toward:Vector2=park.model.project(at,false)-original
+			var approach:=toward.limit_length(6)
+			var tween:Tween=actor.root.create_tween()
+			tween.tween_property(actor.root,"position",original-approach*.4,.45)
+			tween.tween_interval(.4)
+			tween.tween_property(actor.root,"position",original+approach,.85).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	var generation:=opening_generation
+	var dialog:=_dialog(entry.title,entry.text,"Proteger Retalho" if n==5 else "Acolher Retalho" if n==7 else "Continuar","Continuar depois")
+	if n==7:
+		dialog.options=[{"id":"accept","text":"Acolher Retalho"},{"id":"refuse","text":"Não formar esse laço"},{"id":"later","text":"Decidir depois","safe":true}]
+		dialog.choice_selected.connect(func(id:String):
+			if not TutorialStaging.valid(self,generation):return
+			if id=="accept":dialog.confirmed.emit()
+			elif id=="later":dialog.canceled.emit()
+			elif id=="refuse" and _result(service.refuse(at)):dialog.queue_free();_show_saved.call_deferred())
+	dialog.name="RetalhoTrustDialogue"
+	var committed:=[false]
+	dialog.confirmed.connect(func():
+		if not TutorialStaging.valid(self,generation):return
+		var result:Dictionary=service.begin(at) if n==5 else service.claim(at) if n==7 else service.advance(n,at)
+		if not _result(result):return
+		committed[0]=true;dialog.queue_free())
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		flow_busy=false
+		if is_instance_valid(room):room.can_walk=true;room.set_story_paused(false)
+		if is_instance_valid(park):park.paused=false
+		if committed[0] and TutorialStaging.valid(self,generation):_after_retalho_trust.call_deferred(n)
+		elif n==6 and TutorialStaging.valid(self,generation):_show_world.call_deferred())
+	dialog.popup_centered()
+
+func _after_retalho_trust(n:int)->void:
+	_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if n==7 and is_instance_valid(park):park.celebrate_item("Retalho escolheu acompanhar você")
+
+func _show_retalho_bank()->void:
+	var service=load("res://scripts/campaign/retalho_trust.gd").new(session)
+	var p:Dictionary=session.snapshot().player
+	if service.stage(p)!=7:return
+	_simple_page("Banco cheio · Retalho está esperando",true)
+	_label("Retalho já escolheu você. Libere uma vaga quando quiser; ele não será perdido.",page,22)
+	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.follow_focus=true;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(list)
+	for partner:Dictionary in p.partners:
+		var id:String=partner.id
+		if id==p.get("equippedPartnerId","") or partner.get("origin","")==service.ORIGIN:continue
+		var partner_name:String=partner.get("personalName",partner.modelId)
+		_button("Liberar "+partner_name+" · Nv. "+str(preload("res://scripts/campaign/partner_levels.gd").level_for_xp(partner.get("xp",0))),list,func():
+			var dialog:=_dialog("Liberar parceiro?",partner_name+" sairá permanentemente do banco deste save. Esta ação não pode ser desfeita. Nenhum outro parceiro será alterado.","Liberar permanentemente","Manter parceiro")
+			dialog.name="RetalhoBankReleaseDialogue"
+			dialog.confirmed.connect(func():
+				if _result(service.release(id)):
+					dialog.queue_free();_show_retalho_bank.call_deferred())
+			dialog.canceled.connect(dialog.queue_free);dialog.popup_centered())
+	_button("Voltar sem liberar ninguém",page,_show_saved)
+	if p.partners.size()<service.CAPACITY:_button("Voltar para acolher Retalho",page,_show_saved)
+
+func _blue_station(action:String)->void:
+	if flow_busy or not is_instance_valid(park):return
+	var exam=load("res://scripts/campaign/blue_exam.gd").new(session)
+	var p:Dictionary=session.snapshot().player
+	var point:Vector2=park.player
+	if action=="register":
+		if not exam.near(point,exam.CIDA):return
+		if exam.promoted(p):_notice("Dona Cida: Sua categoria Rabiola Azul está registrada. O campo de controle continua disponível para treino, sem novas recompensas.");return
+		if exam.stage(p)==3:
+			_confirm_park("Dona Cida · resultado da avaliação","Você observou o parceiro, respeitou seu ritmo e demonstrou controle. Posso registrar sua aprovação na categoria Rabiola Azul.","Registrar aprovação",func():
+				if _result(exam.claim(park.player)):
+					park.refresh(session.snapshot().player);park.celebrate_item("Categoria Rabiola Azul conquistada"))
+		else:_notice("Dona Cida: A avaliação tem três competências: observação, condução e controle. Todos usam o Carcará da Liga. Nenhum item ou recurso da sua equipe será gasto.\n\n"+exam.objective(p))
+	elif action=="observe":
+		if not _result(exam.observe(point)):return
+		_show_blue_observation(point)
+	elif action=="escort":
+		if not exam.near(point,exam.escort_start(p)):return
+		if not exam.record(p).care:_notice("Dona Cida: Primeiro, examine o Carcará e escolha o cuidado adequado na bancada elevada.");return
+		if exam.record(p).escort==3 and not exam.promoted(p):_notice("Dona Cida: Condução aprovada. Siga ao campo de controle.");return
+		park.blue_guide.begin();park.exploration_hud.objective.text="Acompanhe o Carcará. Ele vai parar se você se afastar demais."
+	elif action=="control":
+		if not exam.near(point,exam.CONTROL):return
+		if int(exam.record(p).escort)!=3:_notice("Dona Cida: Conclua primeiro a condução pelos três marcos.");return
+		_clear("page:EXAME AZUL · CONTROLE")
+		var view=load("res://scripts/campaign/blue_control_view.gd").new();view.name="BlueControlView";add_child(view)
+		view.left.connect(_show_saved)
+		view.finished.connect(func():
+			if _result(exam.control(view.model,point)):_show_saved())
+
+func _show_blue_observation(point:Vector2)->void:
+	var exam=load("res://scripts/campaign/blue_exam.gd").new(session)
+	_simple_page("OBSERVAÇÃO · Carcará da Liga",true)
+	var row:=HBoxContainer.new();row.add_theme_constant_override("separation",24);page.add_child(row)
+	var content_art:Dictionary=content.combat["basic-carcara"];var frame:Dictionary=content_art.animations.idle[0]
+	var texture:=AtlasTexture.new();texture.atlas=load("res://assets/campaign/"+content_art.image);texture.region=Rect2(frame.x,frame.y,frame.w,frame.h)
+	var art:=TextureRect.new();art.texture=texture;art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;art.custom_minimum_size=Vector2(220,190);row.add_child(art)
+	_label("Armação íntegra. Linha íntegra. Movimentos lentos e sinais de cansaço.\n\nQual cuidado atende ao que você observou?",row,24).size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var feedback:=_label("Escolha o cuidado. Nenhum material da sua bolsa será utilizado.",page,22)
+	for option in [["rest","Oferecer descanso · respeitar o cansaço"],["frame","Reparar a armação"],["line","Trocar a linha"]]:
+		var id:String=option[0]
+		_button(option[1],page,func():
+			var result:Dictionary=exam.care(id,point)
+			if result.status=="try_again":feedback.text=result.hint
+			elif _result(result):_show_saved())
+	_button("Voltar sem concluir o cuidado",page,_show_saved)
+
+func _show_row_lesson(lesson:RefCounted,origin:Vector2)->void:
+	if not lesson.near(origin):return
+	_simple_page(lesson.data().title,true)
+	if lesson.learned(session.snapshot().player):
+		_label(lesson.data().done,page,24)
+		_button("Voltar ao Cais",page,_show_saved)
+		return
+	if lesson.step==lesson.data().lessons.size():
+		_label("Corrente, ritmo e margem. Registre a orientação para praticar com a capivara de Marisol na Entrada alagada, no Pântano.",page,24)
+		var feedback:=_label("Registre a orientação antes de sair.",page,22)
+		_button("Registrar orientação",page,func():
+			var result:Dictionary=lesson.finish(origin)
+			if _result(result):_show_row_lesson(lesson,origin)
+			else:feedback.text="Não foi possível salvar. Tente registrar novamente; suas respostas continuam nesta tela.")
+	else:
+		var entry:Dictionary=lesson.data().lessons[lesson.step]
+		_label(lesson.data().intro if lesson.step==0 else "Marisol · corrente, ritmo e margem",page,22)
+		_label("%d / %d · %s"%[lesson.step+1,lesson.data().lessons.size(),entry.prompt],page,26)
+		var feedback:=_label("Escolha como você conduziria a travessia.",page,22)
+		for option:Dictionary in entry.options:
+			var choice:String=option.id
+			_button(option.text,page,func():
+				var result:Dictionary=lesson.answer(choice,origin)
+				if result.status=="try_again":feedback.text=result.hint
+				elif _result(result):_show_row_lesson(lesson,origin))
+	_button("Sair sem registrar",page,_show_saved)
+
+func _return_row_championship(id:String)->void:
+	_show_saved()
+	for frame in 900:
+		await get_tree().process_frame
+		if is_instance_valid(park) and not is_instance_valid(scene_loading):
+			_district_action(id,true)
+			return
+
+func _request_marisol_row(id:String)->void:
+	var row=load("res://scripts/campaign/marisol_row_trip.gd")
+	if not row.allowed(session.snapshot().player):
+		_notice("A seta marca Remar. Após o Exame Azul, converse com Marisol no Cais Velho para aprender a conduzir a travessia.");return
+	_confirm_park("Remar · capivara de Marisol","A capivara de apoio acompanha sua pequena balsa. Segure "+Controls.prompt("interact")+" ou o botão Remar para avançar; solte para descansar. A ponte continua disponível. Interromper e carregar o save devolve você à margem de partida. Nenhum parceiro é transferido ao seu banco.","Embarcar",func():
+		var result:Dictionary=row.new(session).begin(id,park.player)
+		if _result(result):park.play_row(session.snapshot().player.marisolRowTrip))
+
+func _request_mormaco(action:String)->void:
+	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
+	var point:Vector2=park.player
+	if action=="mormacoSignals":
+		_confirm_park("O vento parou","A água está imóvel. As rabiolas pendem sem força e o ar pesa entre as árvores.\n\nKael: Até aqui… O que está prendendo o vento?\n\nUm som de pressão vem do lago, no fundo do Pântano.","Seguir o som",func():
+			if _result(story.observe(point)):park.refresh(session.snapshot().player))
+	elif action=="mormacoRest":
+		_confirm_park("Pouso da margem","Descansar e recuperar linha e armação da equipe? Sem custo ou experiência.","Descansar",func():
+			if _result(story.rest(point)):park.refresh(session.snapshot().player))
+	elif session.snapshot().player.flags.get("mormacoEmboscada",false) and not session.snapshot().player.flags.get("mormacoTylerChegou",false):
+		_confirm_park("Kael","Mormaço recua para o poço. — Espera… tem alguém na margem!\n\nVoz entre as árvores: Agora! Lancem o Carretel Negro!","Olhar para o poço",func():_play_mormaco_ambush.call_deferred(point))
+	elif story.freed(session.snapshot().player):_notice("Mormaço: O frio sabe onde estão os outros. Não confunda pressa com vento, pequeno pipeiro.")
+	elif story.won(session.snapshot().player):
+		_confirm_park("O primeiro Vento livre","Os cordões perdem a tensão. O brilho violeta desaparece dos olhos de Mormaço; a água volta a subir clara. Ele respira fundo e observa Kael.\n\nMormaço: Enfim… Achou que eu estava dormindo?\n\nKael: Os outros Ventos também estão presos?\n\nMormaço: O frio sabe onde estão os outros.","Escutar o Vento",func():
+			if _result(story.release(point)):park.refresh(session.snapshot().player))
+	elif not session.snapshot().player.flags.get("mormacoVentosPararam",false):_notice("O ar parado chamou sua atenção na entrada. Examine o sinal junto ao caminho da parte A antes de enfrentar o guardião.")
+	elif session.snapshot().player.flags.get("mormacoTylerChegou",false):
+		_confirm_park("Kael e Tyler","Tyler: Rai e eu vamos abrir espaço. Mire nos fios do Carretel, Kael!\n\nKael: Entendido. Vamos trazer Mormaço de volta.","Lutar juntos",func():
+			if _result(story.begin(point)):_show_saved.call_deferred())
+	else:
+		_confirm_park("Kael · Mormaço","Mormaço ergue a cabeça sobre a água e aceita o desafio.\n\nKael: Quero ver o que o primeiro Vento sabe fazer.","Enfrentar",func():
+			if _result(story.begin(point)):_show_saved.call_deferred())
+
+func _finish_mormaco_ambush()->bool:
+	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
+	if not _result(story.settle()):return false
+	_return_mormaco_ambush.call_deferred()
+	return true
+
+func _return_mormaco_ambush()->void:
+	_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if is_instance_valid(park) and is_instance_valid(park.get("mormaco")):_request_mormaco("mormacoStory")
+
+func _play_mormaco_ambush(point:Vector2)->void:
+	if not is_instance_valid(park) or not is_instance_valid(park.get("mormaco")):return
+	var stage_view:Node2D=park
+	flow_busy=true
+	await get_tree().process_frame
+	if not is_instance_valid(stage_view) or park!=stage_view:return
+	stage_view.paused=true
+	await stage_view.mormaco.play_possession()
+	if not is_instance_valid(stage_view) or park!=stage_view:return
+	stage_view.paused=false
+	flow_busy=false
+	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
+	if not _result(story.finish_ambush(point)):return
+	stage_view.refresh(session.snapshot().player)
+	stage_view.mormaco.staging=false
+	_confirm_park("Tyler","Tyler chega à margem com Rai. — Kael! Aquele carretel está controlando o Mormaço. Se você enfrentar os jatos sozinho, ele vai te encurralar.\n\nKael: Eu seguro a linha. Vocês atacam quando ele baixar a guarda.\n\nTyler: Vamos juntos, Rai!","Lutar juntos",func():
+		if _result(story.begin(point)):_show_saved.call_deferred())
+func _return_mormaco()->void:
+	_show_saved()
+	if session.snapshot().player.get("lastMormaco","")=="won":_notice.call_deferred("Os nós do Carretel Negro cederam. Mormaço continua vivo. Aproxime-se da margem para escutar o guardião.")
+
+func _return_tufanocorte()->void:
+	_show_saved()
+	if session.snapshot().player.flags.get("tufanocorteLiberto",false):
+		_notice.call_deferred("Tufanocorte: Os fios cederam. Agora escute o vento que sobe pela pedra.\n\nCorrente de Ar registrada.")
+
+func _ride_serra_wind()->void:
+	var view:Node2D=park
+	await get_tree().process_frame
+	if not is_instance_valid(view) or view!=park:return
+	var script=preload("res://scripts/campaign/tufanocorte_story.gd")
+	var service=script.new(session)
+	if not _result(service.ride_wind(view.player)):return
+	flow_busy=true
+	view.paused=true
+	if not preferences.reduced_motion:
+		var landing:Vector2=view.model.project(script.WIND_END)
+		var actor_root:Node2D=view.player_root
+		var rise:=create_tween()
+		rise.tween_property(actor_root,"position",actor_root.position.lerp(landing,.5)+Vector2(0,-65),.4).set_trans(Tween.TRANS_SINE)
+		rise.tween_property(actor_root,"position",landing,.35).set_trans(Tween.TRANS_SINE)
+		await rise.finished
+	if not is_instance_valid(view) or view!=park:return
+	flow_busy=false
+	_show_saved()
+
+func _tyler_study() -> bool:
+	var arcs = load("res://scripts/campaign/tyler_arcs.gd")
+	var player: Dictionary = session.snapshot().player
+	if arcs.finale_ready(player):
+		var dialog := _dialog("Tyler · Flor de Cerejeira", "Tyler: O DNA é do Assis. Sou uma cópia dele. Se eu fui feito pra ser alguém que já existe, quem sobra quando eu tiro isso?\n\nKael: Você é alguém que se importa, Tyler. Foi você quem escolheu ajudar. Vem, vamos sair daqui.", "Entregar a flor")
+		dialog.confirmed.connect(func():
+			if _result(arcs.finish_finale(session)):_show_saved.call_deferred())
+		dialog.confirmed.connect(dialog.queue_free)
+		dialog.canceled.connect(dialog.queue_free)
+		return true
+	if not arcs.Rules.completed(player, "centro") or player.flags.get("tylerCreatedKnown", false):
+		return false
+	var dialog := _dialog("Laboratório do Professor", "Tyler: Os registros estão ali. A sentinela fechou a saída. Kael, fica comigo.", "Enfrentar a sentinela", "Voltar")
+	dialog.confirmed.connect(func():
+		if _result(arcs.begin_lab(session)):_show_saved.call_deferred())
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
+	return true
+
+func _return_tyler_lab() -> void:
+	_show_saved()
+	if session.snapshot().player.flags.get("tylerCreatedKnown", false):
+		_notice("Tyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\nKael: O Rabbito também foi feito, e ninguém manda no que ele escolhe.")
+
+func _return_ruinas(outcome: String = "") -> void:
+	_show_saved()
+	var saved: Dictionary = session.snapshot()
+	var scene: String = saved.checkpoint.get("scene","")
+	var lines = preload("res://scripts/campaign/ruinas_dialogue.gd")
+	if scene not in ["kronasta-coracao-d","kronasta-aracati-c"] and not lines.RESCUES.has(scene):return
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+	if not is_instance_valid(park) or park.saved_checkpoint.scene!=scene:return
+	if scene=="kronasta-aracati-c":
+		if outcome == "won":
+			park.paused = true
+			park.path.clear()
+			for actor in park.npc_nodes:
+				if actor.root.get_meta("event").props.get("acao") != "aracatiTerreiro": continue
+				var cord := Line2D.new()
+				cord.width = 3.0
+				cord.default_color = Color("#653b84")
+				cord.points = PackedVector2Array([Vector2(-30, -48), Vector2(0, -34), Vector2(30, -48)])
+				cord.z_index = 2
+				actor.visual.add_child(cord)
+				var release: Tween = cord.create_tween()
+				release.tween_interval(.25)
+				release.tween_property(cord, "position:y", 30.0, .28)
+				release.parallel().tween_property(cord, "modulate:a", 0.0, .28)
+				await release.finished
+				cord.queue_free()
+				break
+		_notice("Kael: Pronto. A linha cedeu. Você está livre, Rabiolava.\n\nCorrente de Ar disponível." if outcome=="won" else "Kael: Vou me recompor. Ainda dá tempo de soltar o Rabiolava.")
+		return
+	if lines.RESCUES.has(scene):
+		if scene == "kronasta-coracao-c" and outcome == "won":
+			park.path.clear()
+			park.paused = true
+			await preload("res://scripts/campaign/platyx_overworld.gd").refuse(park, preferences.reduced_motion)
+			var dialog := _dialog("Jamile", lines.RESCUES[scene].freed, "Continuar")
+			dialog.confirmed.connect(dialog.queue_free)
+			dialog.canceled.connect(dialog.queue_free)
+			dialog.popup_centered(Vector2i(640, 300))
+			await dialog.tree_exited
+			await preload("res://scripts/overworld/elo_chamber.gd").untie_prisoner(park)
+			await preload("res://scripts/campaign/platyx_overworld.gd").leave_for_chamber(park)
+			park.paused = false
+			return
+		if outcome == "won":
+			park.path.clear()
+			park.paused = true
+			await preload("res://scripts/overworld/elo_chamber.gd").untie_prisoner(park)
+		_notice(lines.RESCUES[scene].freed if outcome=="won" else lines.LOST_GUARD)
+		return
+	var flags: Dictionary = session.snapshot().player.flags
+	if flags.get("enamorDerrotado",false):
+		_notice(lines.VICTORY)
+	elif flags.get("ruinasChefeVencido",false) and not flags.get("enamorDesperto",false):
+		_request_enamor(load("res://scripts/campaign/ruinas_elo.gd"))
+	elif outcome in ["lost","fled"]:
+		_notice(lines.REMATCH if flags.get("enamorDesperto",false) else lines.LOST_CHIEF)
+
+func _show_stadium_bracket(finals: GDScript) -> void:
+	var view = park
+	view.path.clear()
+	view.paused = true
+	var flags: Dictionary = session.snapshot().player.flags
+	var round: int = finals.round_index(flags)
+	var panel := ConfirmationDialog.new()
+	panel.title = "Campeonato de Kronasta"
+	panel.ok_button_text = "Enfrentar " + str(finals.BRACKET[round][0]) if round < 4 else "Concluir"
+	panel.cancel_button_text = "Voltar"
+	var layout := VBoxContainer.new()
+	layout.add_theme_constant_override("separation", 16)
+	panel.add_child(layout)
+	var columns := HBoxContainer.new()
+	columns.add_theme_constant_override("separation", 24)
+	layout.add_child(columns)
+	var rounds := [
+		["Quartas de final", "Kael × Grampo", "Tyler venceu Mikka", "Faye venceu Kleie", "Tainá venceu Lohan"],
+		["Semifinais", "Kael × Tyler", "Faye venceu Tainá"],
+		["Final da chave", "Kael × Faye"],
+	]
+	for index in rounds.size():
+		var column := VBoxContainer.new()
+		column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		columns.add_child(column)
+		for row in rounds[index].size():
+			var label := Label.new()
+			label.text = rounds[index][row] if row == 0 or round >= index else "A definir"
+			if row == 1 and round > index: label.text += "  ✓"
+			if index == round: label.add_theme_color_override("font_color", Color("#ffd78e"))
+			column.add_child(label)
+	layout.add_child(HSeparator.new())
+	var title := Label.new()
+	title.text = "Duelo pelo título · Jamile — " + ("Campeão: Kael" if round == 4 else "Desafio liberado" if round == 3 else "Reservado ao vencedor da chave")
+	layout.add_child(title)
+	panel.confirmed.connect(func():
+		if round < 4 and _result(finals.begin(session,view.player)):_show_saved.call_deferred()
+		panel.queue_free())
+	panel.canceled.connect(panel.queue_free)
+	panel.tree_exiting.connect(func():
+		if is_instance_valid(view):view.paused = false)
+	add_child(panel)
+	panel.popup_centered(Vector2i(650, 270))
+	var accept := panel.get_ok_button()
+	var back := panel.get_cancel_button()
+	accept.focus_neighbor_left = accept.get_path_to(back)
+	accept.focus_neighbor_right = accept.get_path_to(back)
+	back.focus_neighbor_left = back.get_path_to(accept)
+	back.focus_neighbor_right = back.get_path_to(accept)
+	accept.grab_focus()
+
+func _present_pending_ending() -> void:
+	var saved: Dictionary = session.snapshot()
+	if saved.checkpoint.get("scene") != "kronasta-estadio-a" or not saved.player.flags.get("campeaoKronasta",false) or saved.player.flags.get("kronastaEndingSeen",false):
+		return
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+	if not is_instance_valid(park) or session.snapshot().checkpoint.get("scene") != "kronasta-estadio-a":
+		return
+	var view = park
+	view.path.clear()
+	view.paused = true
+	var dialog := _dialog("Campeão de Kronasta", "A arquibancada explode em aplausos. Heleana se levanta, e Tyler ergue a mão para Kael.\n\nJamile: A linha é sua, campeão.", "Ver créditos")
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.confirmed.connect(_show_kronasta_credits.call_deferred)
+	dialog.popup_centered(Vector2i(640,240))
+
+func _show_kronasta_credits() -> void:
+	var credits := _dialog("Soulmonsters", "CAMPEONATO DE KRONASTA\n\nCriação e desenvolvimento\nEquipe Soulmonsters\n\nObrigado por jogar!", "Voltar à cidade")
+	credits.confirmed.connect(func():
+		var saved: Dictionary = session.snapshot()
+		saved.player.flags.kronastaEndingSeen = true
+		var city := preload("res://scripts/campaign/neighborhood_checkpoint.gd").HOME
+		var result: Dictionary = session.commit_operation("kronasta-ending-v1", {"kind":"world","scene":"quintal","position":[city.x,city.y]}, saved.player)
+		if _result(result):
+			credits.queue_free()
+			_show_saved.call_deferred())
+	credits.popup_centered(Vector2i(640,320))
+
+func _request_enamor(ruins: GDScript) -> void:
+	var flags: Dictionary = session.snapshot().player.flags
+	if not flags.get("ruinasChefeVencido",false) and not flags.get("enamorDesperto",false):
+		_confirm_park("Rato · Bando do Cerol",preload("res://scripts/campaign/ruinas_dialogue.gd").CHIEF,"Enfrentar Rato",func():
+			if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
+		return
+	if session.snapshot().player.flags.get("enamorDesperto",false):
+		_confirm_park("Eremor",preload("res://scripts/campaign/ruinas_dialogue.gd").AWAKENED,"Enfrentar",func():
+			if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
+		return
+	_confirm_park("Altar do Elo",preload("res://scripts/campaign/ruinas_dialogue.gd").BETRAYAL,"Continuar",_play_enamor_awaken.call_deferred)
+
+func _play_enamor_awaken() -> void:
+	if flow_busy or not is_instance_valid(park):
+		return
+	var view = park
+	var saved: Dictionary = session.snapshot()
+	if saved.checkpoint.get("scene")!="kronasta-coracao-d" or saved.player.flags.get("enamorDesperto",false):
+		return
+	var point: Vector2 = view.player
+	flow_busy = true
+	view.paused = true
+	var camera: Camera2D = view.camera
+	var offset := camera.offset
+	var focus: Vector2 = view.model.project(Vector2(24,15.5)) - camera.position
+	var chamber_art = preload("res://scripts/overworld/elo_chamber.gd")
+	var gag: Dictionary = chamber_art.prepare_rock_gag(view)
+	await chamber_art.move_culprit(view,gag,preferences.reduced_motion)
+	if not is_instance_valid(view):
+		flow_busy=false
+		return
+	var effect := chamber_art.rupture(view)
+	var shapes = preload("res://scripts/overworld/forest_structures.gd")
+	effect.modulate.a = 0
+	var tween := view.create_tween()
+	tween.tween_property(camera,"offset",offset+focus,.32 if not preferences.reduced_motion else 0.0)
+	tween.tween_property(effect,"modulate:a",1.0,.48)
+	if not preferences.reduced_motion:
+		for shake in [Vector2(4,-3),Vector2(-5,2),Vector2(3,1),Vector2.ZERO]:
+			tween.tween_property(camera,"offset",offset+focus+shake,.06)
+	await tween.finished
+	if not is_instance_valid(view):
+		flow_busy = false
+		return
+	var chamber = preload("res://scripts/overworld/elo_chamber.gd")
+	var flank := Vector2(29.5, 20.5)
+	if view.model.point_walkable(flank):
+		point = flank
+		view.player = flank
+		view.follower = Vector2(29.5, 21.5)
+		view._refresh_positions()
+	var creature: AnimatedSprite2D = chamber.awakening_sprite(view)
+	if creature != null:
+		var roar := AudioStreamPlayer.new()
+		roar.stream = load("res://assets/overworld/kits/camara-do-elo-v1/enamor-rugido.wav")
+		roar.bus = "SFX"
+		roar.volume_db = -8
+		view.add_child(roar)
+		roar.finished.connect(roar.queue_free)
+		creature.frame_changed.connect(func():
+			if creature.frame==6:
+				if is_instance_valid(roar):roar.play()
+				chamber.drop_rock(gag,preferences.reduced_motion))
+		creature.play()
+		await creature.animation_finished
+		if not is_instance_valid(view):
+			flow_busy = false
+			return
+	chamber.collapse(view)
+	var awakened: AnimatedSprite2D = chamber.eremor_advance(view)
+	if not preferences.reduced_motion:
+		awakened.play()
+		var step := view.create_tween()
+		step.tween_property(awakened,"position",view.model.project(Vector2(24,16.5)),.48)
+		await step.finished
+		if not is_instance_valid(view):
+			flow_busy = false
+			return
+		awakened.stop()
+	for i in 12:
+		var angle := TAU*i/12.0
+		var at := Vector2.from_angle(angle)*float(28+i*4)
+		shapes.quad(effect,PackedVector2Array([at+Vector2(-15,0),at+Vector2(0,-9),at+Vector2(15,0),at+Vector2(0,9)]),Color(.76,.65,.79,.55))
+	for actor in view.npc_nodes:
+		if actor.root.get_meta("event").props.get("acao") == "ruinasDuel":
+			actor.root.hide()
+	view.hint.hide()
+	var boss_idle := Sprite2D.new()
+	boss_idle.texture = load("res://assets/overworld/kits/camara-do-elo-v1/eremor-overworld-idle.png")
+	boss_idle.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	boss_idle.offset.y = -boss_idle.texture.get_height() * .43
+	boss_idle.position = awakened.position
+	boss_idle.z_index = awakened.z_index
+	view.actors.add_child(boss_idle)
+	awakened.queue_free()
+	var fade := view.create_tween()
+	fade.tween_property(effect,"modulate:a",0.0,.65)
+	await fade.finished
+	if not is_instance_valid(view):
+		flow_busy = false
+		return
+	effect.queue_free()
+	camera.offset = offset
+	_confirm_park("Câmara do Elo", preload("res://scripts/campaign/ruinas_dialogue.gd").EVACUATE, "Continuar", func():
+		_finish_elo_evacuation.call_deferred(view, point))
+
+func _finish_elo_evacuation(view, point: Vector2) -> void:
+	if not is_instance_valid(view): return
+	flow_busy = true
+	view.paused = true
+	await preload("res://scripts/overworld/elo_chamber.gd").evacuate(view)
+	flow_busy = false
+	if not is_instance_valid(view): return
+	var saved: Dictionary = session.snapshot()
+	saved.player.flags.enamorDesperto = true
+	if not _result(session.commit_operation("enamor-despertar-v1", ParkCheckpoint.make("kronasta-coracao-d", point, ParkCheckpoint.SPACE), saved.player)): return
+
+	view.paused = false
+	_show_saved.call_deferred()
+
+func _finish_platyx_refusal(encounter: Dictionary) -> bool:
+	if encounter.get("kind")!="ruinas-elo" or encounter.get("scene")!="kronasta-coracao-c" or encounter.state.q.get("platyxRefusal","")!="stopped":
+		return false
+	if not _result(load("res://scripts/campaign/ruinas_elo.gd").settle(session)):
+		return false
+	_return_ruinas.call_deferred("won")
+	return true

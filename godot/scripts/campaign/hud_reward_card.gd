@@ -98,7 +98,10 @@ func _ready() -> void:
 	tamer.custom_minimum_size.x=210
 	tamer.add_theme_constant_override("separation",6)
 	layout.add_child(tamer)
-	portrait(load("res://assets/campaign/portrait-kael.png"),tamer,Vector2(210,185))
+	var tamer_art:=AtlasTexture.new()
+	tamer_art.atlas=load("res://assets/campaign/portrait-kael-manga-v4.png")
+	tamer_art.region=Rect2(120,0,610,900)
+	portrait(tamer_art,tamer,Vector2(210,185))
 	var trainer:Dictionary=summary.get("tamer",{})
 	var total:int=trainer.get("after",0)
 	var tamer_level:=1
@@ -201,7 +204,7 @@ func _ready() -> void:
 		if item in summary.get("new_items",[]):caption("NOVO!",column,14,"RecorteGoldText")
 		var row:=HBoxContainer.new()
 		column.add_child(row)
-		var item_id:String={"Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(str(item),"")
+		var item_id:String={"Rabiola de Bicho-pau de Vareta [rascunho]":"rabiola-rascunho-bicho-pau","Rabiola de Joaninha-pião [rascunho]":"rabiola-rascunho-joaninha","Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(str(item),"")
 		if not item_id.is_empty():portrait(Hud.item_art(item_id),row,Vector2(40,48))
 		caption(str(item),row,16).size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	if summary.get("items",[]).is_empty():caption("Nenhum item obtido.",items,16,"RecorteMutedText")

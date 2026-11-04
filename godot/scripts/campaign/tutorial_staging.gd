@@ -129,12 +129,27 @@ static func after_practice(front:Control)->void:
 	var room:=professor_stage(front,Vector2(1056,1232))
 	var generation:int=front.opening_generation
 	if not await approach(room,Vector2(1152,864)):
-		if valid(front,generation):front._show_starter()
+		if valid(front,generation):front._show_saved()
 		return
 	if not valid(front,generation):return
 	room.face_actor(room.mother_point)
-	if not await talk(front,"Sr. Assis: Muito bem, Kael. Você aprendeu a guiar, cruzar linhas e proteger seu parceiro.\n\nSr. Assis: Agora escolha uma destas quatro rabiolas. Vamos à bancada montar sua primeira pipa comigo.","Ver as rabiolas"):return
-	if valid(front,generation):front._show_starter()
+	if not await talk(front,"Sr. Assis: Muito bem, Kael. Você aprendeu a guiar, cruzar linhas e proteger seu parceiro.\n\nSr. Assis: Tenho duas coisas para você levar nessa jornada.","Avançar"):return
+	if not valid(front,generation):return
+	await present_documents(front)
+
+static func resume_documents(front:Control)->void:
+	var room := professor_stage(front,Vector2(1152,864))
+	room.face_actor(room.mother_point)
+	await present_documents(front)
+
+static func present_documents(front:Control)->void:
+	var generation:int = front.opening_generation
+	if not await front._present_key_item("carteira-pipeiro","Carteira de Pipeiro"):return
+	if not await front._present_key_item("porta-emblemas","Porta-emblemas"):return
+	if not valid(front,generation):return
+	if not await talk(front,"Sr. Assis: Sua carteira guarda seu registro de pipeiro. O porta-emblemas tem doze espaços: um emblema por chefe de bairro vencido.\n\nSr. Assis: Para consultar os dois, abra o menu de pausa e escolha Carteira de Pipeiro. Lá você também encontra sua equipe, a mochila e o mapa.\n\nSr. Assis: Agora escolha uma rabiola. Vamos montar sua pipa na oficina.","Ir à oficina"):return
+	if not valid(front,generation):return
+	front._complete_document_delivery()
 
 static func handoff(front:Control,starter:bool=true)->void:
 	var room:=professor_stage(front,Vector2(1152,864))

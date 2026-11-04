@@ -1,0 +1,111 @@
+{
+  "id": "walk-n",
+  "image": "sheet.png",
+  "size": [
+    2048,
+    1024
+  ],
+  "cell": [
+    512,
+    512
+  ],
+  "columns": 4,
+  "rows": 2,
+  "pivot": [
+    256,
+    480
+  ],
+  "headAnchor": [
+    256,
+    153.88235294117646
+  ],
+  "scale": 0.8235294117647058,
+  "mirroredFrom": null,
+  "sourceVideo": "walk-n.mp4",
+  "frames": [
+    {
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "durationMs": 150,
+      "file": "frames/frame-01.png"
+    },
+    {
+      "rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "durationMs": 150,
+      "file": "frames/frame-02.png"
+    },
+    {
+      "rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "durationMs": 150,
+      "file": "frames/frame-03.png"
+    },
+    {
+      "rect": [
+        1536,
+        0,
+        512,
+        512
+      ],
+      "durationMs": 150,
+      "file": "frames/frame-04.png"
+    },
+    {
+      "rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "durationMs": 150,
+      "file": "frames/frame-05.png"
+    },
+    {
+      "rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "durationMs": 150,
+      "file": "frames/frame-06.png"
+    },
+    {
+      "rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "durationMs": 150,
+      "file": "frames/frame-07.png"
+    },
+    {
+      "rect": [
+        1536,
+        512,
+        512,
+        512
+      ],
+      "durationMs": 150,
+      "file": "frames/frame-08.png"
+    }
+  ],
+  "review": {
+    "state": "draft-for-visual-review",
+    "notes": []
+  }
+}

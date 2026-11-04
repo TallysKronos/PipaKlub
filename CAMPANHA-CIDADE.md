@@ -1,6 +1,6 @@
 # Campanha da cidade — direção aprovada
 
-Status: desenho da próxima expansão. A entrega atual fecha a base de recompensas online das três Trilhas existentes; o mapa de 12 bairros e a disputa de títulos ainda não estão implementados.
+Status: a fundação de bairros e disputa de títulos está implementada no Godot para saves locais (PIP-92), com integração jogável no Morro do Sol. O catálogo reserva os 12 bairros; os demais encontros e mapas de campanha ainda dependem de autoria. A liquidação online por conta continua sendo uma integração futura. Detalhes e limites em [PIP-92](documentation/campaign/pip-92-bairros.md).
 
 ## Decisões do criador
 

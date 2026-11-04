@@ -1,5 +1,8 @@
 extends Node2D
 const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
+const HouseArt=preload("res://scripts/campaign/house_modern.gd")
+const ProfessorArt=preload("res://scripts/campaign/professor_modern.gd")
+const ShopArt=preload("res://scripts/campaign/shop_modern.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 const Locomotion = preload("res://scripts/campaign/locomotion.gd")
@@ -24,10 +27,17 @@ var mother_sprite: Sprite2D
 var mother_point := Vector2.ZERO
 var mother_facing := 0
 var mother_walking := false
+var mother_stair:=0
 var mother_reveal := 1.0
 var story_paused := false
 var cinematic_actor_moving := false
 var companion_follow := true
+var retalho_follower := false
+var retalho_resident:Sprite2D
+var retalho_point:=Vector2.ZERO
+var retalho_goal:=Vector2.ZERO
+var retalho_wait:=0.0
+var retalho_direction:=0
 var opening_tv: Node2D
 var target_marker: Node2D
 
@@ -35,30 +45,48 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	for child in get_children():
 		child.free()
 	props.clear()
+	retalho_follower=false
+	retalho_resident=null
 	companion = null
 	mother_sprite = null
 	companion_frames.clear()
 	trail.clear()
-	data = room
+	data = HouseArt.room_data(room)
 	target_marker=Node2D.new()
 	target_marker.z_index=250
 	target_marker.draw.connect(_draw_target)
 	add_child(target_marker)
 	camera = data.camera
 	actor = Vector2(point[0], point[1])
+	if ShopArt.applies(data):actor=preload("res://scripts/campaign/shop_data.gd").resume_point(actor)
 	can_walk = walk
 	target_hotspot = target
-	var floor_sprite := Sprite2D.new()
-	floor_sprite.texture = load("res://assets/campaign/" + data.floorImage)
-	floor_sprite.centered = false
-	floor_sprite.z_index = 0
-	add_child(floor_sprite)
+	if ShopArt.applies(data):
+		ShopArt.build_floor(self)
+	elif ProfessorArt.applies(data):
+		ProfessorArt.build_floor(self)
+	elif HouseArt.applies(data):
+		HouseArt.build_floor(self)
+	else:
+		var floor_sprite := Sprite2D.new()
+		floor_sprite.texture = load("res://assets/campaign/" + data.floorImage)
+		floor_sprite.centered = false
+		floor_sprite.z_index = 0
+		add_child(floor_sprite)
 	for prop in data.props:
-		var sprite := Sprite2D.new()
-		sprite.texture = load("res://assets/campaign/" + prop.image)
-		sprite.centered = false
-		sprite.position = Vector2(prop.rect[0], prop.rect[1])
-		sprite.scale = Vector2(prop.rect[2], prop.rect[3]) / sprite.texture.get_size()
+		var sprite:Node2D
+		if ShopArt.applies(data):
+			sprite=ShopArt.create_prop(self,prop)
+		elif ProfessorArt.applies(data):
+			sprite=ProfessorArt.create_prop(self,prop)
+		elif HouseArt.applies(data):
+			sprite=HouseArt.create_prop(self,prop)
+		else:
+			sprite=Sprite2D.new()
+			sprite.texture = load("res://assets/campaign/" + prop.image)
+			sprite.centered = false
+			sprite.position = Vector2(prop.rect[0], prop.rect[1])
+			sprite.scale = Vector2(prop.rect[2], prop.rect[3]) / sprite.texture.get_size()
 		add_child(sprite)
 		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
 	avatar = Avatar.new()
@@ -77,6 +105,7 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		npc.position = project(Vector2(location[0], location[1]))
 		add_child(npc)
 		props.append({"node": npc, "rect": _foot(Vector2(location[0], location[1])), "layer": ""})
+	if ShopArt.applies(data):ShopArt.add_owner(self)
 	if partner:add_companion()
 	_update_order()
 
@@ -105,6 +134,7 @@ func add_companion() -> void:
 func opening_pose() -> void:
 	avatar.position=project(actor)
 	if is_instance_valid(mother_sprite):
+		NpcPixels.animate_walk(mother_sprite,mother_walking,clock,mother_stair!=0)
 		mother_sprite.position=project(mother_point)+Vector2(0,(1.0-mother_reveal)*40.0*float(camera.scale))
 		if data.get("id")!="professor":
 			if mother_sprite.material!=null:
@@ -203,14 +233,17 @@ func _process(delta: float) -> void:
 	clock += delta
 	if is_instance_valid(target_marker):target_marker.queue_redraw()
 	if is_instance_valid(mother_sprite):opening_pose()
+	_step_retalho_resident(delta)
 	if is_instance_valid(companion) and companion_follow:
-		var frame: Dictionary = companion_frames[int(clock * 12) % companion_frames.size()]
-		companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
+		if not retalho_follower:
+			var frame:Dictionary=companion_frames[int(clock*12)%companion_frames.size()]
+			companion.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
 		if trail.is_empty() or trail.back().distance_to(actor) > 8:
 			trail.append(actor)
 		companion_point=CompanionFollow.advance(companion_point,trail,minf(delta,.05),720.0,70.0,_companion_segment)
 		companion.position = project(companion_point)
-		CompanionFollow.orient(companion,avatar.facing)
+		if retalho_follower:_face_retalho(companion,avatar.facing)
+		else:CompanionFollow.orient(companion,avatar.facing)
 		_update_order()
 	near = ""
 	var nearest := INF
@@ -269,3 +302,68 @@ func _draw_target() -> void:
 		var color:=Tokens.CEU
 		target_marker.draw_arc(at,20,0,TAU,32,color,2,true)
 		target_marker.draw_colored_polygon(PackedVector2Array([at+Vector2(-7,-38),at+Vector2(7,-38),at+Vector2(0,-27)]),color)
+
+
+func _face_retalho(sprite:Sprite2D,facing:String)->void:
+	var index:=maxi(0,NpcPixels.DIRECTIONS.find(facing))
+	sprite.region_rect=Rect2((index%4)*64,floori(index/4.0)*96,64,96)
+	sprite.flip_h=false
+
+func _style_retalho(sprite:Sprite2D)->void:
+	sprite.texture=load("res://assets/campaign/retalho-v1/overworld-idle-eight.png")
+	sprite.region_enabled=true
+	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.offset=Vector2(0,-44)
+	sprite.scale=Vector2.ONE*(NpcPixels.height_for("mae",avatar.scale.y)/82.0)
+	_face_retalho(sprite,"se")
+
+func equip_retalho_follower()->void:
+	retalho_follower=true
+	_style_retalho(companion)
+
+func add_retalho_resident()->void:
+	if is_instance_valid(retalho_resident):return
+	# Pick a spot with room for a patrol, using the same footprints as Kael.
+	var start:=Vector2.INF
+	for rect in data.walkable:
+		var center:=Rect2(rect[0],rect[1],rect[2],rect[3]).get_center()
+		if _safe(center) and center.distance_to(mother_point)>72 and (not start.is_finite() or center.distance_to(mother_point)<start.distance_to(mother_point)):
+			start=center
+	if not start.is_finite():return
+	retalho_point=start
+	retalho_goal=start
+	retalho_wait=.65
+	retalho_resident=Sprite2D.new()
+	retalho_resident.name="RetalhoResidente"
+	_style_retalho(retalho_resident)
+	retalho_resident.position=project(start)
+	add_child(retalho_resident)
+	props.append({"node":retalho_resident,"rect":_foot(start),"layer":""})
+	_update_order()
+
+func _step_retalho_resident(delta:float)->void:
+	if not is_instance_valid(retalho_resident):return
+	if retalho_point.distance_to(retalho_goal)<1.0:
+		retalho_wait-=delta
+		if retalho_wait>0:return
+		retalho_wait=.75
+		for index in 8:
+			retalho_direction=(retalho_direction+1)%8
+			var candidate:=retalho_point+Vector2.RIGHT.rotated(retalho_direction*PI/4.0)*132.0
+			if candidate.distance_to(mother_point)<66 or candidate.distance_to(actor)<54:continue
+			if _companion_segment(retalho_point,candidate):
+				retalho_goal=candidate
+				break
+		return
+	var next:=retalho_point.move_toward(retalho_goal,125.0*minf(delta,.05))
+	if next.distance_to(actor)<32 or next.distance_to(mother_point)<44:
+		retalho_goal=retalho_point
+		return
+	var direction:=project(next)-project(retalho_point)
+	retalho_point=next
+	var facing:=preload("res://scripts/kael_video_avatar.gd").facing_for(direction)
+	_face_retalho(retalho_resident,facing)
+	retalho_resident.position=project(next)+Vector2(0,-absf(sin(clock*16.0))*2)
+	for item in props:
+		if item.node==retalho_resident:item.rect=_foot(next)
+	_update_order()

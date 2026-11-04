@@ -15,6 +15,7 @@ var objective_age:=0.0
 var idle_age:=0.0
 var coin_age:=10.0
 var pointer_mode:=false
+var show_partner:=true
 var objective:Label
 var prompt:Label
 var area:Label
@@ -25,6 +26,7 @@ var prompt_panel:PanelContainer
 var partner_panel:Control
 var tools:HBoxContainer
 var run_button:Button
+var mount_button:Button
 var map:Control
 var notices:Array[Dictionary]=[]
 var notice_stack:VBoxContainer
@@ -60,13 +62,13 @@ func _ready() -> void:
 	area_panel.create_tween().tween_property(area_panel,"modulate:a",1,.14)
 	objective_panel=plate(self,Hud.CORAL)
 	objective=label(objective_panel)
-	objective.max_lines_visible=2
 	objective_panel.hide()
 	partner_panel=Control.new()
 	partner_panel.mouse_filter=MOUSE_FILTER_IGNORE
 	add_child(partner_panel)
 	partner_panel.draw.connect(_draw_partner)
 	coins=label(self)
+	coins.autowrap_mode=TextServer.AUTOWRAP_OFF
 	coins.theme_type_variation="RecorteGoldText"
 	prompt_panel=plate(self,Hud.CYAN)
 	var row:=HBoxContainer.new()
@@ -88,7 +90,7 @@ func _ready() -> void:
 		button.text=option[0]
 		Hud.navigation_button(button,true,option[2])
 		button.add_theme_font_size_override("font_size",16)
-		button.custom_minimum_size=Vector2(104,48)
+		button.custom_minimum_size=Vector2(144,48)
 		button.pressed.connect(func():chosen.emit(option[1]))
 		tools.add_child(button)
 	resized.connect(_layout)
@@ -102,6 +104,12 @@ func _ready() -> void:
 	run_button.pressed.connect(func():
 		if is_instance_valid(subject) and subject.has_method("toggle_run"):subject.toggle_run())
 	add_child(run_button)
+	mount_button=Button.new();mount_button.name="MountToggle";mount_button.focus_mode=Control.FOCUS_NONE
+	mount_button.custom_minimum_size=Vector2(184,44);Hud.navigation_button(mount_button,true)
+	mount_button.tooltip_text="Apito de Elo · B no teclado / direcional para cima no controle."
+	mount_button.pressed.connect(func():
+		if is_instance_valid(subject) and subject.has_method("toggle_mount"):subject.toggle_mount())
+	add_child(mount_button)
 	refresh(player_data)
 	_layout()
 func refresh(value:Dictionary) -> void:
@@ -196,7 +204,7 @@ func _layout() -> void:
 	# Bottom left: partner card, coins above it.
 	partner_panel.size=Vector2(328,100)
 	partner_panel.position=Vector2(safe.position.x,safe.end.y-partner_panel.size.y)
-	partner_panel.visible=not partner.is_empty()
+	partner_panel.visible=show_partner and not partner.is_empty()
 	coins.add_theme_font_size_override("font_size",Layout.type("small"))
 	coins.text="%d moedas"%int(player_data.get("coins",0))
 	coins.position=Vector2(safe.position.x+Layout.space("s"),partner_panel.position.y-Layout.space("s")-coins.get_combined_minimum_size().y)
@@ -221,7 +229,7 @@ func _layout() -> void:
 	notice_stack.size=Vector2(notice_stack.size.x,notice_stack.get_combined_minimum_size().y)
 	notice_stack.position=Vector2(safe.end.x-notice_stack.size.x,prompt_panel.position.y-notice_stack.size.y-gap)
 	# Bottom centre: run toggle (mouse), labelled with the active device's button.
-	run_button.visible=is_instance_valid(subject) and subject.has_method("toggle_run")
+	run_button.visible=is_instance_valid(subject) and subject.has_method("toggle_run") and (not subject.has_method("can_run") or subject.can_run())
 	run_button.set_pressed_no_signal(Locomotion.toggled)
 	run_button.text="Corrida ligada" if Locomotion.toggled else "Correr"
 	run_button.icon=Controls.glyph("run")
@@ -233,6 +241,14 @@ func _layout() -> void:
 	run_button.size=run_button.get_combined_minimum_size()
 	run_button.position=Vector2(safe.position.x+(safe.size.x-run_button.size.x)/2,safe.end.y-run_button.size.y)
 	run_button.modulate.a=1.0 if idle_age<4 or Locomotion.toggled else .55
+	# Mount toggle (when the area offers one) stacks above the run toggle.
+	mount_button.visible=is_instance_valid(subject) and subject.has_method("toggle_mount") and (not subject.has_method("can_mount") or subject.can_mount())
+	if mount_button.visible:
+		var riding:bool=is_instance_valid(subject.get("avatar")) and subject.avatar.mounted
+		mount_button.text=("↑" if Controls.gamepad else "B")+(" · Desmontar" if riding else " · Montar")
+		mount_button.add_theme_font_size_override("font_size",Layout.type("small"))
+		mount_button.size=mount_button.get_combined_minimum_size()
+		mount_button.position=Vector2(safe.position.x+(safe.size.x-mount_button.size.x)/2,run_button.position.y-mount_button.size.y-Layout.space("s"))
 	partner_panel.queue_redraw()
 func _draw_partner() -> void:
 	if partner.is_empty():return

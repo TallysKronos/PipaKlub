@@ -11,6 +11,7 @@ func _init(local_session: Node) -> void:
 	session = local_session
 
 func enter_world(scene: String, position: Vector2, space: String = "") -> Dictionary:
+	if scene=="kite-shop" and not preload("res://scripts/campaign/shop_data.gd").safe(position):return {"status":"invalid"}
 	var saved: Dictionary = session.snapshot()
 	if saved.is_empty() or saved.player.partners.is_empty():
 		return {"status": "wrong_step"}
@@ -41,6 +42,7 @@ func lesson_completed(index: int) -> Dictionary:
 	var point := {"kind": "practice", "lesson": index + 1} if index < 4 else {"kind": "starter"}
 	if index == 4:
 		player.journey.phase = "choose"
+		preload("res://scripts/campaign/pipeiro_identity.gd").issue_into(player)
 	return session.commit_operation("first-flight-lesson-%d" % index, point, player)
 
 func choose(model_id: String) -> Dictionary:

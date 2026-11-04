@@ -1,0 +1,169 @@
+{
+  "checks": 480,
+  "clips": 16,
+  "frames": 128,
+  "pass": true,
+  "results": [
+    {
+      "id": "walk-e",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 81.51280749661579,
+      "meanInternalDifference": 63.82600695721963,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "walk-w",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": true,
+      "closingFrameDifference": 81.51280749661579,
+      "meanInternalDifference": 63.82600695721963,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "run-e",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 95.34787488159466,
+      "meanInternalDifference": 81.7969311120004,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "run-w",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": true,
+      "closingFrameDifference": 95.34787488159466,
+      "meanInternalDifference": 81.7969311120004,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "walk-sw",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 59.697038491184124,
+      "meanInternalDifference": 57.90031264908011,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "walk-se",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": true,
+      "closingFrameDifference": 59.697038491184124,
+      "meanInternalDifference": 57.90031264908011,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "run-sw",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 83.82472104742193,
+      "meanInternalDifference": 82.69295006209067,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "run-se",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": true,
+      "closingFrameDifference": 83.82472104742193,
+      "meanInternalDifference": 82.69295006209067,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "walk-ne",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 73.8500864304235,
+      "meanInternalDifference": 61.03757684750834,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "walk-nw",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": true,
+      "closingFrameDifference": 73.8500864304235,
+      "meanInternalDifference": 61.03757684750834,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "run-ne",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 74.75214012164902,
+      "meanInternalDifference": 72.53635014465893,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "run-nw",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": true,
+      "closingFrameDifference": 74.75214012164902,
+      "meanInternalDifference": 72.53635014465893,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "walk-n",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 43.836392644494886,
+      "meanInternalDifference": 37.26619604612283,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "run-n",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 45.489541037076485,
+      "meanInternalDifference": 52.9241509227749,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "run-s",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 61.7056693110909,
+      "meanInternalDifference": 59.10778720022666,
+      "artisticApproval": "pending",
+      "integrated": false
+    },
+    {
+      "id": "walk-s",
+      "transparent": true,
+      "frameCount": 8,
+      "exactCellMirroring": false,
+      "closingFrameDifference": 38.677442892166404,
+      "meanInternalDifference": 45.77638382529659,
+      "artisticApproval": "pending",
+      "integrated": false
+    }
+  ],
+  "limitations": "Pixel and layout checks are not artistic approval or proof of natural gait. No browser visual automation or ingame integration in this pack."
+}

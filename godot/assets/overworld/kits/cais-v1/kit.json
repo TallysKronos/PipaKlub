@@ -1,0 +1,86 @@
+{
+  "id": "cais-v1",
+  "source": "image_gen built-in",
+  "state": "initial map art pending review",
+  "projection": "isometric64x32; facade/roof flat UV surfaces",
+  "assets": {
+    "fachada": {
+      "file": "fachada.png",
+      "size": [
+        562,
+        266
+      ],
+      "sourceBox": [
+        16,
+        120,
+        590,
+        410
+      ]
+    },
+    "telhado": {
+      "file": "telhado.png",
+      "size": [
+        472,
+        269
+      ],
+      "sourceBox": [
+        600,
+        120,
+        1085,
+        405
+      ]
+    },
+    "barco": {
+      "file": "barco.png",
+      "size": [
+        408,
+        449
+      ],
+      "sourceBox": [
+        1090,
+        15,
+        1536,
+        475
+      ]
+    },
+    "mastro": {
+      "file": "mastro.png",
+      "size": [
+        252,
+        543
+      ],
+      "sourceBox": [
+        90,
+        420,
+        400,
+        990
+      ]
+    },
+    "materiais": {
+      "file": "materiais.png",
+      "size": [
+        519,
+        389
+      ],
+      "sourceBox": [
+        455,
+        560,
+        1006,
+        998
+      ]
+    },
+    "banca": {
+      "file": "banca.png",
+      "size": [
+        470,
+        540
+      ],
+      "sourceBox": [
+        1010,
+        440,
+        1536,
+        1005
+      ]
+    }
+  }
+}

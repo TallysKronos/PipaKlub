@@ -14,6 +14,12 @@ func find_script(node:Node,path:String) -> Node:
 		var found:=find_script(child,path)
 		if found!=null:return found
 	return null
+func wait_care() -> Node:
+	for i in 300:
+		var view:=find_script(app,"res://scripts/campaign/partner_care_view.gd")
+		if view!=null and not app.flow_busy:return view
+		await create_timer(.01).timeout
+	return null
 func shot(name:String) -> void:
 	if DisplayServer.get_name()=="headless":return
 	for i in 3:await process_frame
@@ -28,12 +34,13 @@ func run() -> void:
 	var player:Dictionary=app.session.snapshot().player
 	player.partners=[{"id":"care-partner","modelId":"rabbito","personalName":"Rabbito","xp":0,"craftBonus":0,"condition":{"line":18,"structure":35}}]
 	player.equippedPartnerId="care-partner";player.coins=24;player.journey={"phase":"complete","lesson":5}
-	check(app.session.checkpoint({"kind":"world","scene":"quintal","position":[10.5,20.5],"space":"bairro-inicial-v2"},player).status=="ok","campaign fixture")
+	var data:Dictionary=app.Morro.maps()["morro-area-5"]
+	check(app.session.checkpoint({"kind":"world","scene":"morro-area-5","position":data.spawn},player).status=="ok","campaign fixture")
 	app._show_collection();await process_frame
 	var care_buttons:Array=app.page.find_children("*","Button",true,false).filter(func(b):return b.text=="Cuidar")
 	check(care_buttons.size()==1,"team exposes care per partner")
 	care_buttons[0].pressed.emit();await process_frame
-	var view:Node=find_script(app,"res://scripts/campaign/partner_care_view.gd")
+	var view:Node=await wait_care()
 	check(view!=null,"team opens care page")
 	check(view.action.disabled,"repair unavailable without kit")
 	view.supply.pressed.emit()
@@ -60,7 +67,7 @@ func run() -> void:
 	inventory.select_item("kit-remendo")
 	check(inventory.use_button.visible and inventory.item_name.text=="Kit de Remendo","bag identifies usable repair item")
 	inventory.use_button.pressed.emit();await process_frame
-	view=find_script(app,"res://scripts/campaign/partner_care_view.gd")
+	view=await wait_care()
 	view.set_process(false)
 	var first:Vector2=view.foot
 	for i in 10:view._process(.1)
@@ -94,10 +101,10 @@ func run() -> void:
 	check(app.session.snapshot().player.partners[0].condition.line==100,"campaign partner repaired")
 	await shot("03-recuperado")
 	view.back_requested.emit();await process_frame
-	check(app.last_scene_key=="page:EQUIPE","back returns to team")
+	check(is_instance_valid(app.park),"back returns to overworld")
 	var before:Dictionary=app.session.snapshot()
 	app._show_partner_care();await process_frame
-	view=find_script(app,"res://scripts/campaign/partner_care_view.gd")
+	view=await wait_care()
 	view._pet()
 	check(view.action.disabled and app.session.snapshot().player==before.player,"healthy pet interaction does not spend items")
 	view.select_tool("frame")
@@ -114,7 +121,7 @@ func run() -> void:
 	view.creature.show()
 	var escape:=InputEventKey.new();escape.physical_keycode=KEY_ESCAPE;escape.pressed=true
 	app._unhandled_input(escape);await process_frame
-	check(app.last_scene_key=="page:EQUIPE","Escape returns from care to team")
+	check(is_instance_valid(app.park),"Escape returns from care to overworld")
 	for audio in app.find_children("*","AudioStreamPlayer",true,false):audio.stop()
 	# Let the audio thread release stopped voices before the fast headless exit.
 	await create_timer(.15).timeout

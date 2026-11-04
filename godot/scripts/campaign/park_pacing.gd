@@ -3,11 +3,10 @@ extends RefCounted
 const Training=preload("res://scripts/campaign/park_training.gd")
 const BOSS_LEVEL := 8
 const MIN_WALK_SECONDS := 4.0
-const SPECIES_XP := {"basica":Vector2i(10,3),"mata":Vector2i(14,4),"raio":Vector2i(18,5),"lacertubo":Vector2i(80,20)}
+const Rewards=preload("res://scripts/campaign/opponent_rewards.gd")
 
 static func reward_xp(species: String, level: int) -> int:
-	var values: Vector2i=SPECIES_XP.get(species,Vector2i(10,3))
-	return values.x+(clampi(level,1,50)-1)*values.y
+	return Rewards.xp(species,level)
 
 static func distance_range(scene: String) -> Vector2:
 	return {"park-trail":Vector2(18,26),"park-clearing":Vector2(14,22),"park-veredas":Vector2(12,19)}.get(scene,Vector2(18,26))
@@ -19,6 +18,7 @@ static func walking_grace(player: Dictionary) -> float:
 static func weight(model, point: Vector2) -> float:
 	if not model.point_walkable(point): return 0.0
 	var cell: Dictionary=model.cell_at(Vector2i(point.floor()))
+	if (str(model.data.get("id",""))=="kronasta-bosque-d" or str(model.data.get("id","")).begins_with("kronasta-bambuzal-") or str(model.data.get("id","")).begins_with("kronasta-beira-canal-") or str(model.data.get("id","")).begins_with("kronasta-feira-")) and cell.material!="mato":return 0.0
 	if cell.material not in ["grama","terra","mato"] or cell.get("ramp")!=null: return 0.0
 	for event in model.data.events:
 		var action: String=event.props.get("acao","")
@@ -32,6 +32,10 @@ static func weight(model, point: Vector2) -> float:
 	return 1.6 if cell.material=="mato" else 1.0
 
 static func wild_level(scene: String, roll: int) -> int:
+	if scene=="kronasta-bosque-d":return 20+roll%3
+	if scene.begins_with("kronasta-feira-"):return 15+roll%3
+	if scene.begins_with("kronasta-beira-canal-"):return 12+roll%3
+	if scene.begins_with("kronasta-bambuzal-"):return 7+roll%3
 	if scene.begins_with("kronasta-bosque-"):
 		return {"kronasta-bosque-a":1,"kronasta-bosque-b":2,"kronasta-bosque-c":3}[scene]+roll%3
 	# Preview regions: provisional levels just above the Bosque until their

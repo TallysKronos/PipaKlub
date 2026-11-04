@@ -84,7 +84,7 @@ func _ready() -> void:
 	var content: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 	for partner in saved_player.partners:
 		if partner.id != saved_player.get("equippedPartnerId", ""): continue
-		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
 		var selected: Dictionary = content.combat[id]
 		companion.texture = load("res://assets/campaign/" + selected.image)
 		companion_frames.clear()

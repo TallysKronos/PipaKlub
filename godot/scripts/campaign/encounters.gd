@@ -12,10 +12,17 @@ static func reward_amount(boss: bool, _scene: String, enemy_id: String, level: i
 	return Pacing.reward_xp("lacertubo" if boss else enemy_id,Pacing.BOSS_LEVEL if boss else level)
 
 static func reward_for(battle: Dictionary, _state: Dictionary) -> int:
+	# Normalize suspended trainer fights too: old oversized first-clear XP is obsolete.
+	if battle.get("kind","")=="trainer":
+		return Pacing.reward_xp(str(_state.get("enemyModelId","")),int(_state.get("enemyLevel",1)))
 	# New encounters freeze their reward before the first input. Legacy suspended
 	# fights retain the previous regional reward and their saved combat attributes.
 	if battle.has("rewardXp"): return int(battle.rewardXp)
 	return 160 if battle.get("kind","")=="lacertubo" else int({"park-trail":40,"park-clearing":60,"park-veredas":80}.get(battle.get("scene","park-veredas"),40))
+
+static func owner_bonus(battle:Dictionary,state:Dictionary) -> Dictionary:
+	if battle.get("kind","")!="trainer" or state.get("outcome","")!="won":return {"coins":0,"tamerXp":0}
+	return preload("res://scripts/campaign/opponent_rewards.gd").trainer_bonus(int(state.get("enemyLevel",1)))
 
 func _init(local_session: Node) -> void:
 	session = local_session
@@ -37,6 +44,9 @@ func start_wild(point: Vector2) -> Dictionary:
 	var species := ("basica" if roll < .5 else "mata") if first else ("basica" if roll < .5 else "mata" if roll < .85 else "raio")
 	var level := 5 + bytes.decode_u32(4) % 5 if scene == "park-veredas" else 1 + bytes.decode_u32(4) % 3 + (1 if scene == "park-clearing" else 0)
 	if saved.checkpoint.get("space","")==Checkpoint.SPACE: level=Pacing.wild_level(scene,bytes.decode_u32(4))
+	if scene.begins_with("kronasta-bambuzal-"):species=preload("res://scripts/campaign/bambuzal_wild_drafts.gd").choose(roll)
+	if scene.begins_with("kronasta-feira-"):species="rascunho-bicho-pau" if roll<.5 else "rascunho-joaninha"
+	if scene.begins_with("kronasta-beira-canal-"):species="lacertubo"
 	var model := Model.new(partner, {"modelId": species, "level": level})
 	Progression.discover(player, species)
 	player.encounter = {"id": State.new_id(), "kind": "wild", "scene": scene, "dropRoll": bytes.decode_u32(8) / 4294967296.0, "returnPoint": [point.x, point.y], "state": model.snapshot()}
@@ -64,7 +74,8 @@ func start_training(id: String, point: Vector2) -> Dictionary:
 	var model:=Model.new(partner,{"modelId":entry.species,"level":entry.level})
 	model.intro=2.2
 	model.q.name=entry.name
-	model.q.trainingRank=Training.DUELS.find(entry)+1
+	for rank in Training.DUELS.size():
+		if Training.DUELS[rank].id==id:model.q.trainingRank=rank+1;break
 	Progression.discover(saved.player,entry.species)
 	saved.player.encounter={"id":State.new_id(),"kind":"trainer","trainerId":id,"trainerName":entry.name,"scene":entry.scene,"space":Checkpoint.SPACE,"rewardXp":entry.xp,"dropRoll":0.0,"returnPoint":[point.x,point.y],"state":model.snapshot()}
 	return session.checkpoint({"kind":"encounter"},saved.player)
@@ -78,7 +89,7 @@ func start_boss(point: Vector2) -> Dictionary:
 	for entry in player.partners:
 		if entry.id == player.get("equippedPartnerId", ""): partner = entry
 	if partner.is_empty() or partner.get("condition", {}).get("line", 100) <= 0 or partner.get("condition", {}).get("structure", 100) <= 0: return {"status": "repair_needed"}
-	if partner.get("modelId") not in ["rabbito", "basica", "mata", "azulao", "raio", "lacertubo"]: return {"status": "wrong_step"}
+	if partner.get("modelId") not in ["rabbito", "basica", "mata", "azulao", "raio", "lacertubo", "doberman-c", "retalho-original"]: return {"status": "wrong_step"}
 	var model := Model.new(partner)
 	Progression.discover(player, "lacertubo")
 	player.encounter = {"id": State.new_id(), "kind": "lacertubo", "returnPoint": [point.x, point.y], "state": model.snapshot()}
@@ -112,6 +123,10 @@ func settle() -> Dictionary:
 		condition.structure = clampf(state.p.hull / state.p.stats.line * 100, 0, 100)
 		partner.condition = condition
 		if state.outcome == "won": reward = Progression.award(player, partner, reward)
+	var bonus:=owner_bonus(battle,state)
+	var tamer_before:int=player.get("tamerXp",0)
+	player.coins+=bonus.coins
+	player.tamerXp=mini(31383,tamer_before+int(bonus.tamerXp))
 	if state.outcome == "won" and boss:
 		player.flags.guardianDefeated = true
 		player.inventory["rabiola-lacertubo"] = player.inventory.get("rabiola-lacertubo", 0) + 1
@@ -125,6 +140,8 @@ func settle() -> Dictionary:
 		else: drop.misses += 1
 		player.wildDrop = drop
 	player.lastEncounter = {"outcome": state.outcome, "partnerXp": reward if state.outcome == "won" else 0,"kind":battle.kind,"trainerName":battle.get("trainerName","")}
+	player.lastEncounter.coins=bonus.coins
+	player.lastEncounter.tamerBonus=int(player.tamerXp)-tamer_before
 	player.encounterGraceUntil = Time.get_unix_time_from_system() + Pacing.walking_grace(player)
 	var point: Array = battle.returnPoint if state.outcome != "lost" else ([Park.ENTRY.x, Park.ENTRY.y] if scene == "park-veredas" else [208, 816])
 	var checkpoint := {"kind":"world","scene":scene,"position":point}

@@ -7,7 +7,7 @@
  "tilewidth": 64,
  "tileheight": 32,
  "infinite": false,
- "nextobjectid": 14,
+ "nextobjectid": 15,
  "properties": [
   {
    "name": "nome",
@@ -52,7 +52,7 @@
   {
    "name": "forest",
    "type": "string",
-   "value": "{\"nativeProps\":true,\"industrial\":true,\"followTrail\":true,\"stairs\":[{\"u\":12,\"v\":28,\"width\":3,\"length\":2}],\"guards\":[{\"u\":4,\"v\":27,\"side\":\"v\"},{\"u\":5,\"v\":27,\"side\":\"v\"},{\"u\":6,\"v\":27,\"side\":\"v\"},{\"u\":7,\"v\":27,\"side\":\"v\"},{\"u\":8,\"v\":27,\"side\":\"v\"},{\"u\":9,\"v\":27,\"side\":\"v\"},{\"u\":10,\"v\":27,\"side\":\"v\"},{\"u\":11,\"v\":27,\"side\":\"v\"},{\"u\":15,\"v\":27,\"side\":\"v\"},{\"u\":16,\"v\":27,\"side\":\"v\"},{\"u\":17,\"v\":27,\"side\":\"v\"},{\"u\":18,\"v\":27,\"side\":\"v\"},{\"u\":19,\"v\":27,\"side\":\"v\"}],\"buildings\":[{\"name\":\"Usina\",\"u\":6,\"v\":5,\"w\":10,\"h\":7,\"z\":128,\"style\":\"usina\"},{\"name\":\"Depósito de peças\",\"u\":23,\"v\":5,\"w\":6,\"h\":6,\"z\":80,\"style\":\"galpao\"},{\"name\":\"Carga azul\",\"u\":6,\"v\":21,\"w\":4,\"h\":3,\"z\":52,\"style\":\"container\"},{\"name\":\"Carga ocre\",\"u\":16,\"v\":21,\"w\":3,\"h\":4,\"z\":52,\"style\":\"container\"},{\"name\":\"Gerador do pátio\",\"u\":39,\"v\":18,\"w\":3,\"h\":4,\"z\":76,\"style\":\"caldeira\"}],\"shots\":[{\"name\":\"implantacao-1\",\"u\":11,\"v\":12,\"zoom\":2.3},{\"name\":\"implantacao-2\",\"u\":26,\"v\":11,\"zoom\":2.3},{\"name\":\"implantacao-3\",\"u\":8,\"v\":24,\"zoom\":2.3},{\"name\":\"implantacao-4\",\"u\":17.5,\"v\":25,\"zoom\":2.3},{\"name\":\"implantacao-5\",\"u\":40.5,\"v\":22,\"zoom\":2.3},{\"name\":\"doca-principal\",\"u\":12,\"v\":22,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"deposito\",\"u\":26,\"v\":11,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"maquinas\",\"u\":41,\"v\":25,\"zoom\":1,\"kind\":\"jogo\"}]}"
+   "value": "{\"nativeProps\":true,\"industrial\":true,\"followTrail\":true,\"stairs\":[{\"u\":12,\"v\":28,\"width\":3,\"length\":2}],\"guards\":[{\"u\":4,\"v\":27,\"side\":\"v\"},{\"u\":5,\"v\":27,\"side\":\"v\"},{\"u\":6,\"v\":27,\"side\":\"v\"},{\"u\":7,\"v\":27,\"side\":\"v\"},{\"u\":8,\"v\":27,\"side\":\"v\"},{\"u\":9,\"v\":27,\"side\":\"v\"},{\"u\":10,\"v\":27,\"side\":\"v\"},{\"u\":11,\"v\":27,\"side\":\"v\"},{\"u\":15,\"v\":27,\"side\":\"v\"},{\"u\":16,\"v\":27,\"side\":\"v\"},{\"u\":17,\"v\":27,\"side\":\"v\"},{\"u\":18,\"v\":27,\"side\":\"v\"},{\"u\":19,\"v\":27,\"side\":\"v\"}],\"buildings\":[{\"name\":\"Usina\",\"u\":6,\"v\":5,\"w\":10,\"h\":7,\"z\":128,\"style\":\"usina\"},{\"name\":\"Depósito de peças\",\"u\":23,\"v\":5,\"w\":6,\"h\":6,\"z\":80,\"style\":\"galpao\"},{\"name\":\"Carga azul\",\"u\":6,\"v\":21,\"w\":4,\"h\":3,\"z\":52,\"style\":\"container\"},{\"name\":\"Carga ocre\",\"u\":16,\"v\":21,\"w\":3,\"h\":4,\"z\":52,\"style\":\"container\"},{\"name\":\"Gerador do pátio\",\"u\":39,\"v\":18,\"w\":3,\"h\":4,\"z\":76,\"style\":\"caldeira\"}],\"shots\":[{\"name\":\"implantacao-1\",\"u\":11,\"v\":12,\"zoom\":2.3},{\"name\":\"implantacao-2\",\"u\":26,\"v\":11,\"zoom\":2.3},{\"name\":\"implantacao-3\",\"u\":8,\"v\":24,\"zoom\":2.3},{\"name\":\"implantacao-4\",\"u\":17.5,\"v\":25,\"zoom\":2.3},{\"name\":\"implantacao-5\",\"u\":40.5,\"v\":22,\"zoom\":2.3},{\"name\":\"encontro-bruno-solda\",\"u\":29.5,\"v\":13.5,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"doca-principal\",\"u\":12,\"v\":22,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"deposito\",\"u\":26,\"v\":11,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"maquinas\",\"u\":41,\"v\":25,\"zoom\":1,\"kind\":\"jogo\"}]}"
   }
  ],
  "tilesets": [
@@ -4234,6 +4234,41 @@
        "name": "texto",
        "type": "string",
        "value": "Um canto tranquilo junto à doca. Prévia sem recuperação ou recompensas."
+      }
+     ]
+    },
+    {
+     "id": 68005,
+     "name": "Bruno Solda",
+     "type": "npc",
+     "x": 944,
+     "y": 432,
+     "point": true,
+     "properties": [
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "districtDuel"
+      },
+      {
+       "name": "district",
+       "type": "string",
+       "value": "industrial"
+      },
+      {
+       "name": "duel",
+       "type": "string",
+       "value": "industrial-5"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/vila-operaria-v1/bruno-solda.png"
+      },
+      {
+       "name": "texto",
+       "type": "string",
+       "value": "Linha boa não é a que nunca rompe. É a que a gente aprende a refazer. Vamos voar?"
       }
      ]
     }

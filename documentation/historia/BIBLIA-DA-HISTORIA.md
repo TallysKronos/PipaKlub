@@ -91,6 +91,10 @@ Regras:
 | **Glacerol** | Geleira + cerol | Gelo (geleira) | Fria e cortante, testa com paciência |
 | **Tufanocorte** | Tufão + corte | Montanha (Serra) | Exigente, só respeita quem sobe sem atalho |
 
+**Mormaço · visual aprovado (02/11/2026):** opção C da exploração de gêiseres: animal baixo e robusto de inspiração tatu/pangolim da areia, corpo magenta, grandes placas roxas, ventre ocre, garras claras e dois gêiseres turquesa de água quente e vapor. Conserva o olhar sonolento e esperto, varetas, pipa e rabiola. O animal de referência não muda sua região de história: continua guardião do Pântano. As demais opções ficam reservadas para outros Soulmonsters, sem atribuição automática a outros Ventos.
+
+**Mormaço · estado possuído aprovado (02/11/2026):** a influência do Carretel Negro muda visivelmente sua paleta para tons quase negros de ameixa e azul, com olhos violeta luminosos, marcas magenta e vapor escuro ao redor dos jatos ciano. Cordões negros e um nó central controlam a carapaça e as bases dos gêiseres. O corpo C permanece reconhecível; ao ser libertado retorna à forma livre, sem morte ou evolução de espécie. Prancha de autoridade: `art/creatures/mormaco/possessed-c-v2/prancha-possuido.png`.
+
 Eles não são supervisores de rank, como os guardiões de Digimon World DS. Eles ficam fora do campeonato: são a ponte entre a trajetória 1 e a 2.
 
 ### 2.5 Habilidades de campo
@@ -101,9 +105,9 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 | --- | --- | --- | --- |
 | **Pulo do Elo** | Rabbito (já existe como golpe) | Vãos curtos e degraus altos | Ato 1 |
 | **Planar** | Espécies-ave, como o Carcará | Descer de platôs para longe, atravessar ravinas no sentido da descida | Ato 2 |
-| **Remar** | Espécies d'água, como o Platyx | Atravessar água rasa e canais | Ato 3 |
-| **Cavar** | Uma espécie-tatu da Serra (a criar) | Buracos marcados no chão, que levam a galerias | Ato 4 |
-| **Corrente de ar** | Presente do Tufanocorte | Subir por correntes de vento em penhascos | Ato 4 |
+| **Remar** | Espécies d'água; Platyx reservado ao arco de Grampo | Atravessar água rasa e canais | Ato 3 |
+| **Cavar** | Uma espécie-tatu (a criar) | Buracos marcados no chão, que levam a galerias | Ato 4 |
+| **Corrente de ar** | Presente do Aracati | Subir por correntes de vento em penhascos | Ato 4 |
 
 **Regra de mapa:** todo bloqueio por habilidade precisa ser **visto antes** de poder ser usado. Isso já está em `art/overworld/REGIOES-E-PARTES.md`.
 
@@ -196,13 +200,13 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 
 ## 6. Categorias do campeonato (ranks)
 
-**[Proposta]** A escada de rank de Digimon World DS (P1, P2), trocada por categorias da Liga. Cada categoria vale para 2 bairros e termina num **exame** dado pela Dona Cida. O exame é sempre uma tarefa da trajetória 2 vista pelo lado da Liga, para as duas trajetórias andarem juntas.
+**[Proposta]** A escada de rank de Digimon World DS (P1, P2), trocada por categorias da Liga. Cada categoria vale para 2 bairros e termina num **exame** dado pela Dona Cida. **[Decidido, 02/11/2026]** O exame Azul é uma avaliação comum a todos os candidatos, independente dos acontecimentos exclusivos da história de Kael. Experiências da trajetória pessoal podem prepará-lo, mas não substituem a prova da Liga. Os demais exames da tabela permanecem propostas a revisar segundo esse princípio.
 
 | Categoria | Bairros | Exame para subir | O que libera |
 | --- | --- | --- | --- |
 | **Rabiola Branca** | 1 e 2 | Achar a rabiola da Nina no Parque dos Ventos | 2 vagas no Varal |
 | **Rabiola Verde** | 3 e 4 | Achar o Tyler, que a Liga dá como desaparecido | Loja da Liga, ala 2. Pedidos de parceiro da categoria Verde |
-| **Rabiola Azul** | 5 e 6 | Trazer a Retalho de volta sem cortar a rabiola dela | 4 vagas no Varal |
+| **Rabiola Azul** | 5 e 6 | Prova de condução e cuidado: observação, condução e controle, aplicada por Dona Cida a todos os candidatos | Remonta até o estágio Arraia. 4 vagas no Varal |
 | **Rabiola Vermelha** | 7 e 8 | Libertar os Quatro Ventos | Loja da Liga, ala 3. Torneio da TV |
 | **Rabiola Dourada** | 9 e 10 | **Copa Relâmpago**: 3 duelos seguidos, 3 parceiros fixos, sem itens (P24) | 6 vagas no Varal |
 | **Campeão de Kronasta** | 11 e 12 | A final contra a Jamile | Pós-jogo |
@@ -264,9 +268,23 @@ Já existe: abertura, aniversário de 15 anos, Rabbito, oficina, treino com o Sr
 | 4 | Vila Operária A–B | Bairro 6. Fábrica de linha. O Gollia está lá e aceita o Carretel Negro do Bando "só para testar". | Gollia (23) | — |
 | 5 | Vila Operária D, galpão | **O chefe impossível (P9).** O Bando costurou três rabiolas roubadas num só corpo, a **Pipa-Dragão**. O Kael não tem como vencer. A Retalho se joga na frente para defender o Kael e perde, como o lobo solitário de Digimon World DS. O Tyler chega e **desata os nós**, soltando duas das três almas. A Pipa-Dragão encolhe. | Pipa-Dragão (impossível) → Pipa-Dragão desatada (25) | **Agulha de desatar**: no quadro de evolução, volta uma forma para seguir por outro ramo |
 | 6 | Vila Operária C | Duelo pelo bairro. | Campeão 6, **Bruno Solda** (24) | Bairro 7 |
-| 7 | Ateliê | A Retalho, ferida, deixa o Kael chegar perto. O Assis reconhece o nó da rabiola. | — | Exame da categoria Azul |
+| 7 | Ateliê | O Retalho, ferido, deixa o Kael chegar perto. O Assis reconhece o nó da rabiola. | — | Continuação do arco pessoal de Retalho, independente do exame Azul |
 
-**Exame da categoria Azul [Proposta]:** trazer a Retalho de volta **sem cortar a rabiola**. É o arco do Pagumon de Digimon World DS: a Retalho foge do Varal, come uma flor que faz mal (é preciso achar o remédio no Pântano) e depois é pega por valentões das Palafitas. No fim, ela aceita ficar. A revelação de quem ela é fica para o ato 4.
+**Exame da categoria Azul [Decidido, 02/11/2026]:** prova de condução e cuidado aplicada por Dona Cida. Qualquer jovem do universo pode realizá-la, sem conhecer Retalho ou participar da história de Kael. Após a categoria anterior e os bairros 5 e 6, a orientação apresenta três competências:
+
+1. **Observação:** identificar o estado de um Soulmonster e escolher o cuidado adequado.
+2. **Condução:** acompanhá-lo por um percurso com obstáculos, respeitando seu ritmo.
+3. **Controle:** resolver um desafio prático usando técnica, sem colocar o parceiro em risco desnecessário. Uma vitória em batalha, sozinha, não basta.
+
+O cenário aprovado é o **Pátio da Liga no Parque**, anexo D do Jardim das Pipas. Todos os candidatos usam um **Carcará de avaliação emprestado**, sem exigir parceiro, condição de combate ou espaço no banco. A primeira implementação identifica cansaço e oferece descanso; acompanha três marcos pelo pátio; sustenta voo por dois segundos, alivia a linha ao sinal e responde a três janelas de defesa. Erros explicam a tentativa e permitem repetir sem dano ou consumo. As competências aprovadas ficam salvas; sair do exercício de controle reinicia apenas esse exercício. Ao final, Dona Cida registra a categoria Azul e um certificado uma única vez, na mesma gravação. Não concede XP nem Retalho. A personagem ainda aguarda arte própria aprovada; o posto e o diálogo a identificam. A orientação de Assis não concede categoria nem atesta aprovação. O arco de Retalho não é pré-requisito do exame, não dá pontos e não substitui nenhuma etapa.
+
+**Arco pessoal de Retalho [Proposta mantida]:** trazê-lo de volta **sem cortar a rabiola** é uma escolha de Kael, não uma tarefa da Liga. Retalho foge do Varal, come uma flor que faz mal (é preciso achar o remédio no Pântano) e depois é pego por valentões das Palafitas. No fim, ele aceita ficar. A revelação de quem ele é fica para o ato 4. Essa experiência pode preparar emocionalmente Kael para o exame, sem condicionar sua inscrição ou aprovação.
+
+**Conquista de Retalho [Decidido, 02/11/2026]:** após o cuidado no ateliê, Kael oferece descanso livre no Varal. Retalho foge; Kael encontra-o doente no Pântano e busca o remédio, sem exigir que volte. Nas Palafitas, Kael o protege dos valentões e deixa a passagem livre. Retalho começa a partir, para e retorna espontaneamente, aproximando sua rabiola da mão de Kael. A cena apresenta **“Retalho escolheu acompanhar você”**. Ele se torna um parceiro do banco do save, uma única vez, pela confiança — não por captura, corte ou aprovação no exame Azul.
+
+Se as 30 vagas do banco do save estiverem ocupadas, a escolha fica registrada e Retalho aguarda acolhimento até o jogador organizar espaço. Nenhum parceiro é substituído automaticamente; liberar um parceiro exige confirmação e não pode atingir o parceiro equipado. Isso não ocupa automaticamente uma das 20 vagas globais da conta. A revelação futura sobre Heleana aprofunda o vínculo sem retirar Retalho do jogador. Nesta primeira integração, a ida ao Varal e a passagem da noite usam uma elipse narrativa; o Varal livre em overworld ainda não foi construído. Palafitas A–C recebe o percurso de resgate; seu campeonato continua separado e ainda pendente.
+
+**Remar [Decisão, 02/11/2026]:** Marisol ensina a habilidade após o Exame Azul. **Platyx é único e reservado ao enredo de redenção de Grampo**: não emprestar outro indivíduo, não distribuir a espécie e não colocá-la como encontro selvagem. O apoio escolhido é uma **capivara de boia, design D** da exploração de 02/11/2026 (verde-água, boia nos quadris e vela curva). A, B e C ficam preservados como conceitos, sem inclusão automática no elenco. Integração atual: orientação interativa de corrente, ritmo e margem, seguida de prática opcional no trecho seguro da Entrada alagada (Pântano A), entre as duas margens de cota 0. A capivara acompanha a balsa sem entrar no banco; segurar Remar avança e soltar recupera o fôlego. A ponte continua disponível. Remar é aprendido ao desembarcar com a chegada gravada. Interrupção e recarga devolvem à margem de origem; falha ao gravar permite repetir o desembarque. Esta prática não enfrenta ou liberta Mormaço.
 
 ### 7.5 Ato 4 — Rabiola Vermelha: "Os Quatro Ventos"
 
@@ -281,6 +299,8 @@ Já existe: abertura, aniversário de 15 anos, Rabbito, oficina, treino com o Sr
 | 7 | Geleira | A Glacerol, amarrada, guardada pelo **Rato em pessoa**. O Rato não luta: assiste. Ele convida o Kael para o Bando: *"Você também deu alma a uma coisa que você fez."* O Kael recusa. | Glacerol amarrada (33) | Exame da categoria Vermelha |
 
 **Revelação de reunião (P20 e a reunião de domadores de Digimon World DS):** depois da Glacerol, todos os campeões já vencidos se reúnem na Praça da Matriz. A Mikka, o Lohan, a Kleie e os outros decidem **patrulhar Kronasta juntos**. É o momento em que o campeonato vira comunidade.
+
+**Integração do Mormaço (02/11/2026):** após Azul e prática de Remar, observar o ar parado no Pântano A e seguir ao lago C. Confronto Nv.27, jato com aviso de 2,1s e recuperação; derrota/fuga permitem retorno e descanso. Vitória desfaz o controle; conversa na margem registra a libertação e a pista “o frio sabe onde estão os outros”. Não concede captura, categoria Vermelha ou recompensas repetíveis. Primeira apresentação usa poses ilustradas e transição de cor, não rig Soulgen completo.
 
 ### 7.6 Ato 5 — Rabiola Dourada: "A noite do cerol"
 
@@ -364,7 +384,7 @@ Esta tabela é a da v1, com a ordem detalhada acima.
 | Parque dos Ventos | Mata-verde, Carcará, Azulão | Raio | — |
 | Bosque de Kronasta | Mata-verde; **coruja de papel-manteiga**; **sagui de rabiola longa** | Espécie-tatu (Cavar) | **Onça de bambu**, que só anda à noite |
 | Vila do Bambuzal | **Bicho-pau de vareta**; Mata-verde | **Joaninha-pião** | — |
-| Beira-Canal e Veredas | Lacertubo jovem (o chefe é o adulto); **sapo-cano** | Platyx selvagem | — |
+| Beira-Canal e Veredas | Lacertubo jovem (o chefe é o adulto); **sapo-cano** | A definir; não usar Platyx selvagem | — |
 | Feira do Largo | **Pombo de jornal**; **gato de saco de papel** | **Papagaio de feira**, que repete as falas dos NPCs | — |
 | Cais Velho e Porto Novo | **Caranguejo-carretel**; **gaivota de sinalização** | **Peixe-voador de seda** | — |
 | Vila Operária | **Mariposa de lâmpada**; **rato de bobina** (mascote do Bando) | **Tatu-bola de engrenagem** | **Pipa-Dragão** remendada, solta depois do ato 3 |
@@ -527,4 +547,25 @@ Todas as 14 decisões da v2 foram tomadas em 01/11/2026 (seção 18). Ficam com 
 - **Mantidos como propostos:** a noite do cerol, o Grampo mudando de lado, o Tyler como Pipeiro Fantasma, as categorias com nome de rabiola e a Dona Cida, as cinco habilidades de campo e os nomes dos campeões 4 a 12.
 - **Extras:** entram o bafo de figurinhas, o arco do Pipeiro Fantasma da TV e o Torneio da TV. O armeiro lendário sai.
 - **Rato e lendário:** o agente de concept propõe 2 ou 3 versões de cada para o criador escolher.
+- **Atualizado em 02/11/2026:** a Ilha do Aracati permanece (dá a Corrente de ar) e o Vulcão e a Geleira não entram como regiões agora; o Exame Azul e o arco de Retalho foram redefinidos. Valem as decisões de 02/11 abaixo e em §7.
 
+
+
+### Elenco secundário de Palafitas [Decidido, 02/11/2026]
+
+Quatro adversários anteriores a Caio Garça, com nomes e papéis aprovados pelo dono: **Seyran**, pipeiro ligado ao equilíbrio nas passarelas; **Oruvo**, confeccionador de velas e pipeiro; **Kessai**, pipeiro das travessias; **Veldren**, cuidador das passarelas e pipeiro veterano. Usam, respectivamente, os designs A, B, C e D preservados em art/characters/caio-garca/concept-v2/. Sem novas revelações da história; parceiros e idades exatas ainda não definidos. Esta definição de elenco não significa que o campeonato já esteja integrado.
+
+### Palafitas · estado da implementação [02/11/2026]
+
+O campeonato está integrado localmente após o emblema de Bruno e Mormaço livre: Seyran/Oruvo na parte A, Kessai/Veldren na B e Caio na C, níveis24–27. Resgate de Retalho preservado e separado. Sequência, retomada, emblema e defesa usam as regras de bairros. A arte de batalha ainda usa modelos existentes como protótipo; **Mata verde não é o parceiro canônico de Caio**. Seu Soulmonster crocodiliano de veneno permanece visual aprovado, sem nome/dados de combate definidos. Alto da Serra segue sem acesso jogável até sua integração.
+
+### Veskoro [Decidido e integrado localmente, 02/11/2026]
+
+O crocodiliano de Caio se chama **Veskoro**, nome aprovado pelo dono. Corpo arredondado, feixes de veneno roxo, vela/varetas e rabiola conforme conceito aprovado. Sua identidade inspira máscara e punhos de Caio. Novos duelos do campeão usam Veskoro27, com jato e nuvem tóxicos antecipados por marcação e recuperação para contra-ataque. O antigo Mata verde permanece somente para compatibilidade de duelos já salvos. Não foi liberado como captura/recompensa; animação Soulgen e arena de docas continuam pendentes. Esta atualização substitui a observação anterior de nome e arte de combate indefinidos.
+
+
+### Decisão do dono · reencontro de Heleana e Retalho
+
+O gatilho é Retalho, sem exigência de emblema. Se Kael aceitou o convite dela, deve levá-la como parceiro ativo à mãe: o novo nome/laço transcreve o anterior, Retalho não se lembrará de Heleana novamente, mas Heleana reconhece, chora e conta o ocorrido. Preservar o nome dado pelo jogador.
+
+Se Kael recusou, ao voltar para casa ouve um grunhido externo. Ele e Heleana saem: Retalho seguiu Tyler às escondidas, movida por algo dentro dela. Heleana se emociona, toca a rabiola, Retalho recupera as lembranças e as duas voltam a ser parceiras. Não conceder Retalho a Kael nesta vertente. Adiar não é recusar; falta de vaga após aceitar também não é recusa. Esta decisão substitui as propostas anteriores de retorno incondicional a Heleana e de revelar um nome antigo obrigatório.

@@ -14,6 +14,8 @@ var saved_checkpoint: Dictionary = {}
 var saved_player: Dictionary = {}
 var content: Dictionary = {}
 var paused := false
+var mormaco:Node2D
+var blue_guide:Node2D
 var ui_theme: Theme
 var exploration_hud: Control
 var markers: Array = []
@@ -64,6 +66,7 @@ func _ready() -> void:
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
 	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_kronasta(saved_checkpoint.scene) else 1.15)
+	if area_id.begins_with("gelo-") or area_id.begins_with("mina-ferro-") or area_id.begins_with("submerso-"):camera.zoom=Vector2.ONE
 	_refresh_positions()
 	camera.reset_smoothing()
 	var partner_id := "rabbito"
@@ -78,6 +81,8 @@ func _ready() -> void:
 	exploration_hud = load("res://scripts/campaign/hud_exploration.gd").new()
 	exploration_hud.subject = self
 	exploration_hud.area_name = model.data.name
+	if Checkpoint.region_of(saved_checkpoint.scene)=="palafitas":
+		exploration_hud.area_name={"a":"Palafitas · Docas de chegada","b":"Palafitas · Passarelas","c":"Palafitas · Doca de Caio"}.get(saved_checkpoint.scene.right(1),model.data.name)
 	exploration_hud.player_data = saved_player
 	ui.add_child(exploration_hud)
 	hint = exploration_hud.prompt
@@ -91,10 +96,80 @@ func _ready() -> void:
 		if actor.root.get_meta("event",{}).get("props",{}).get("acao","")=="parkBoss" and actor.visual.get_child_count()>0:
 			guardian_art=actor.visual.get_child(0)
 			guardian_frames=content.combat.lacertubo.animations.idle
+	if saved_checkpoint.scene == "kronasta-coracao-d" and saved_player.flags.get("enamorDesperto", false):
+		for actor in npc_nodes:
+			var event: Dictionary = actor.root.get_meta("event")
+			if event.props.get("acao") != "ruinasDuel": continue
+			event.name = "Eremor"
+			for child in actor.visual.get_children():
+				child.hide()
+			var sprite := Sprite2D.new()
+			sprite.texture = load("res://assets/overworld/kits/camara-do-elo-v1/eremor-overworld-idle.png")
+			sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			sprite.offset.y = -sprite.texture.get_height() * .43
+			actor.visual.add_child(sprite)
+			break
 	_roll_encounter_distance()
 	encounter_grace=Pacing.walking_grace(saved_player)
+	if saved_checkpoint.scene=="kronasta-pantano-c" and load("res://scripts/campaign/mormaco_story.gd").available(saved_player):
+		mormaco=load("res://scripts/campaign/mormaco_overworld.gd").new();add_child(mormaco)
+	if saved_checkpoint.scene=="park-trail" and load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved_player):
+		var entry:=Node2D.new();entry.position=model.project(Vector2(34.5,31.5));actors.add_child(entry)
+		var arrow:=Line2D.new();arrow.width=3;arrow.default_color=Color("43c5df");arrow.points=PackedVector2Array([Vector2(-14,7),Vector2(14,-7),Vector2(3,-9),Vector2(14,-7),Vector2(9,3)]);entry.add_child(arrow)
+		var label:=Label.new();label.text="Pátio da Liga";label.position=Vector2(-45,-32);label.add_theme_font_size_override("font_size",14);label.add_theme_color_override("font_outline_color",Color.BLACK);label.add_theme_constant_override("outline_size",5);entry.add_child(label)
+	if saved_checkpoint.scene=="parque-patio-liga":
+		follower_root.hide();exploration_hud.show_partner=false;exploration_hud.partner_panel.hide()
+		blue_guide=load("res://scripts/campaign/blue_exam_guide.gd").new();add_child(blue_guide)
+		var marks=load("res://scripts/campaign/blue_exam.gd")
+		exploration_hud.objective.text=marks.objective(saved_player)
 
 func _build_events() -> void:
+	if Checkpoint.region_of(saved_checkpoint.scene)=="palafitas":
+		for e:Dictionary in Checkpoint.data(saved_checkpoint.scene).events:
+			if e.props.get("district","")=="palafitas" and Checkpoint.allowed(e,saved_player,area_id) and not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):
+				interaction_events.append(e.duplicate(true))
+	if load("res://scripts/campaign/mormaco_story.gd").available(saved_player):
+		interaction_events.append_array(load("res://scripts/campaign/mormaco_story.gd").events(saved_checkpoint.scene))
+		if saved_checkpoint.scene=="kronasta-pantano-c":
+			for e:Dictionary in interaction_events:
+				if int(e.id)==7:e.name="Pouso da margem · descansar";e.props.acao="mormacoRest"
+	if saved_checkpoint.scene=="parque-patio-liga":
+		var start:Vector2=load("res://scripts/campaign/blue_exam.gd").escort_start(saved_player)
+		for event:Dictionary in interaction_events:
+			if event.props.get("blueAction","")=="escort":event.u=int(start.x);event.v=int(start.y)
+	if saved_checkpoint.scene=="park-veredas":interaction_events.append_array(preload("res://scripts/campaign/feira_story.gd").door_events(saved_player))
+	if saved_checkpoint.scene=="park-veredas":
+		for event:Dictionary in preload("res://scripts/campaign/canal_gate.gd").events(saved_player):
+			if Checkpoint.allowed(event,saved_player,area_id):interaction_events.append(event)
+	if Checkpoint.region_of(saved_checkpoint.scene)=="montanha":
+		for event:Dictionary in Checkpoint.data(saved_checkpoint.scene).events:
+			if event.props.get("district","")=="alto-da-serra" and Checkpoint.allowed(event,saved_player,area_id) and not interaction_events.any(func(existing):return int(existing.id)==int(event.id)):
+				interaction_events.append(event.duplicate(true))
+	var district_region:=Checkpoint.region_of(saved_checkpoint.scene)
+	if district_region in ["bambuzal","beira-canal","feira","cais","industrial","palafitas"]:
+		var rules=preload("res://scripts/campaign/district_rules.gd")
+		var title:Dictionary=rules.entry(saved_player,district_region)
+		for event:Dictionary in model.data.events+interaction_events:
+			if event.props.get("duel","")==district_region+"-5":event.name=rules.opponent_name(saved_player,district_region) if title.completed and title.champion!="player" else rules.definition(district_region).champion.name
+	if district_region=="cais":
+		for event:Dictionary in model.data.events+interaction_events:
+			if event.props.get("duel","")=="cais-5":
+				event.props.storySpritePath="res://assets/npc-ds/cais-v1/"+event.name.to_lower()+".png"
+	if district_region=="palafitas":
+		for event:Dictionary in interaction_events:
+			if event.props.get("duel","")=="palafitas-5":
+				var actor_id:String="caio" if event.name=="Caio Garça" else event.name.to_lower()
+				event.props.storySpritePath="res://assets/npc-ds/palafitas-v1/"+actor_id+".png"
+	if district_region=="industrial":
+		for event:Dictionary in model.data.events+interaction_events:
+			if event.props.get("duel","")=="industrial-5":
+				var actor_id:String=event.name.to_lower().replace(" ","-")
+				event.props.storySpritePath="res://assets/npc-ds/vila-operaria-v1/"+actor_id+".png"
+	if district_region=="feira":
+		for event:Dictionary in model.data.events+interaction_events:
+			if event.props.get("duel","")=="feira-5":
+				var actor_id:String={"Veyra":"veyra","Orven":"orven","Zafri":"zafri","Nymel":"nymel","Dona Zulmira":"zulmira"}.get(event.name,"zulmira")
+				event.props.storySpritePath="res://assets/npc-ds/feira-v1/"+actor_id+".png"
 	if model.data.get("forest",{}).get("nativeProps",false):
 		for event in Checkpoint.data(saved_checkpoint.scene).events:
 			if model.data.events.any(func(existing: Dictionary): return int(existing.id)==int(event.id)): continue
@@ -103,7 +178,15 @@ func _build_events() -> void:
 	# Dito has no approved overworld sprite in the delivery. Do not duplicate another
 	# character or leave an invisible person as an interaction target.
 	if Checkpoint.is_bosque(area_id):
-		interaction_events=interaction_events.filter(func(event: Dictionary): return event.type!="npc" or event.props.has("npcIdentity"))
+		interaction_events=interaction_events.filter(func(event: Dictionary): return event.type!="npc" or event.props.has("npcIdentity") or event.props.has("storySpritePath"))
+	if saved_checkpoint.scene=="park-clearing":
+		for e:Dictionary in preload("res://scripts/campaign/tyler_clareira.gd").events():
+			if not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):interaction_events.append(e)
+	if saved_checkpoint.scene=="kronasta-montanha-c":
+		interaction_events.append_array(preload("res://scripts/campaign/tufanocorte_story.gd").lesson_events(saved_player))
+		interaction_events.append_array(preload("res://scripts/campaign/tufanocorte_story.gd").wind_events(saved_player))
+	if saved_checkpoint.scene=="mina-ferro-a":
+		interaction_events.append_array(preload("res://scripts/campaign/tufanocorte_story.gd").gallery_events(saved_player))
 	interaction_events.append_array(Training.events(area_id,model))
 	interaction_events.append_array(Bosque.rest_events(area_id,model))
 	super()
@@ -155,6 +238,10 @@ func _build_markers() -> void:
 
 func refresh(value: Dictionary) -> void:
 	saved_player = value.duplicate(true)
+	if saved_checkpoint.get("scene")=="parque-patio-liga":
+		var at:Vector2=load("res://scripts/campaign/blue_exam.gd").escort_start(saved_player)
+		for event:Dictionary in interaction_events:
+			if event.props.get("blueAction","")=="escort":event.u=int(at.x);event.v=int(at.y)
 	collected_pieces.clear()
 	for actor in npc_nodes:
 		for event in model.data.events:
@@ -175,6 +262,9 @@ func refresh(value: Dictionary) -> void:
 		exploration_hud.refresh(saved_player)
 		var scene: String=saved_checkpoint.get("scene","park-trail")
 		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_kronasta(scene) else Training.objective(saved_player,scene)
+		if Checkpoint.is_regional_preview(scene) and not Checkpoint.is_kronasta(scene):exploration_hud.objective.text="Explore os caminhos · M para viajar por Kronasta."
+		if scene=="parque-patio-liga":exploration_hud.objective.text=load("res://scripts/campaign/blue_exam.gd").objective(saved_player)
+	if is_instance_valid(mormaco):mormaco.refresh()
 
 func toggle_run() -> void:
 	if not paused and item_receipt.is_empty():super.toggle_run()
@@ -201,6 +291,8 @@ func _physics_process(delta: float) -> void:
 		if gap<nearest and absf(model.height_at(player)-model.height_at(at))<.25:
 			nearby=event; nearest=gap
 	hint.text = "" if nearby.is_empty() else nearby.name
+	if nearby.get("type")=="item" and nearby.props.get("visibilidade","")=="escondido":
+		hint.text = "Investigar o chão"
 	var moved := player.distance_to(before)
 	if saved_checkpoint.scene=="park-veredas" and saved_player.get("flags",{}).get("ninaAccepted",false) and not saved_player.flags.get("guardianDefeated",false):
 		var boss_gap: float=player.distance_to(Checkpoint.target("park-veredas","boss"))
@@ -214,7 +306,7 @@ func _physics_process(delta: float) -> void:
 	save_distance+=moved
 	save_age+=delta
 	if moved>0:
-		var weight: float=0.0 if Training.needs_rest(saved_player) else Pacing.weight(model,player)
+		var weight: float=0.0 if saved_checkpoint.scene.begins_with("caverna-mural-") or Training.needs_rest(saved_player) or Checkpoint.is_regional_preview(saved_checkpoint.scene) else Pacing.weight(model,player)
 		if encounter_grace>0:
 			encounter_grace=maxf(0,encounter_grace-delta)
 		elif weight>0:

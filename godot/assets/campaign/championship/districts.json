@@ -1,0 +1,3045 @@
+{
+  "version": 1,
+  "districts": [
+    {
+      "id": "morro",
+      "number": 1,
+      "name": "Morro do Sol",
+      "playable": true,
+      "next": "bambuzal",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "park-trail"
+      ],
+      "champion": {
+        "id": "mikka",
+        "name": "Mikka",
+        "level": 8
+      },
+      "emblem": {
+        "slot": 0,
+        "name": "Insígnia do Morro do Sol"
+      },
+      "stages": [
+        {
+          "id": "morro-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "zeca",
+          "name": "Zeca",
+          "level": 1,
+          "before": [
+            [
+              "Zeca",
+              "Quem passa por esse portão ganha uma boa-vinda e um desafio! Não precisa correr: me mostra seu primeiro rebique."
+            ]
+          ],
+          "won": [
+            [
+              "Zeca",
+              "Aí sim! Você ouviu o vento antes de puxar. A Bia está na escadaria, debaixo da árvore. Ela nunca fica parada!"
+            ]
+          ],
+          "lost": [
+            [
+              "Zeca",
+              "Sem pressa. Olha para onde as linhas se cruzam e guarda energia para a hora certa. O portão continua aberto para você."
+            ]
+          ],
+          "reward": {
+            "coins": 10,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "scene": "morro",
+          "npcName": "Zeca",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Zeca",
+              "color": 0
+            }
+          ]
+        },
+        {
+          "id": "morro-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "bia",
+          "name": "Bia",
+          "level": 2,
+          "before": [
+            [
+              "Bia",
+              "Tá vendo as folhas? Elas avisam quando o vento vai virar. Eu gosto de mudar de lado com ele. Consegue me acompanhar?"
+            ]
+          ],
+          "won": [
+            [
+              "Bia",
+              "Você encontrou meu ritmo! Lá na laje tem uma dupla fazendo barulho. O Juninho pensa antes de puxar; a Lia vai na frente."
+            ]
+          ],
+          "lost": [
+            [
+              "Bia",
+              "Não precisa me perseguir pelo céu inteiro. Espera minha linha passar pelo seu caminho. Tenta mais uma vez!"
+            ]
+          ],
+          "reward": {
+            "coins": 12,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "scene": "morro-area-2",
+          "npcName": "Bia",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Bia",
+              "color": 1
+            }
+          ]
+        },
+        {
+          "id": "morro-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "juninho",
+          "name": "Juninho e Lia",
+          "level": 2,
+          "before": [
+            [
+              "Juninho",
+              "Aqui na laje a gente combina o começo, mas cada pipa faz seu caminho."
+            ],
+            [
+              "Lia",
+              "E eu não prometo esperar ninguém! Quando três linhas se encontram, vale escolher bem a sua hora."
+            ]
+          ],
+          "won": [
+            [
+              "Juninho",
+              "Boa leitura! Você não entrou no meio da confusão."
+            ],
+            [
+              "Lia",
+              "O Tião está no mirante da caixa-d’água. Se ele fechar a guarda, muda o jeito de chegar!"
+            ]
+          ],
+          "lost": [
+            [
+              "Juninho",
+              "Com três no céu, dá para observar antes de entrar."
+            ],
+            [
+              "Lia",
+              "Escolhe um cruzamento bom. Correr atrás de todo mundo só gasta fôlego!"
+            ]
+          ],
+          "reward": {
+            "coins": 16,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "scene": "morro-area-3",
+          "npcName": "Juninho",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Juninho",
+              "color": 2
+            },
+            {
+              "name": "Lia",
+              "color": 3
+            }
+          ]
+        },
+        {
+          "id": "morro-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "tiao",
+          "name": "Tião",
+          "level": 3,
+          "before": [
+            [
+              "Tião",
+              "Lá de cima parece que dá para alcançar tudo. Eu prefiro guardar o fôlego e escolher meu espaço. Vamos ver como você chega."
+            ]
+          ],
+          "won": [
+            [
+              "Tião",
+              "Você teve paciência para encontrar a abertura. O parque fica logo depois do mirante. Tem alguém esperando por quem consegue chegar até lá."
+            ]
+          ],
+          "lost": [
+            [
+              "Tião",
+              "Minha guarda não fica fechada para sempre. Voa, observa e muda o ângulo. O céu tem mais de um caminho."
+            ]
+          ],
+          "reward": {
+            "coins": 18,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "scene": "morro-area-4",
+          "npcName": "Tião",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Tião",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "morro-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "mikka",
+          "name": "Mikka",
+          "level": 4,
+          "before": [
+            [
+              "Mikka",
+              "Então foi você que atravessou o bairro! Sou Mikka. Cada um daqui te mostrou um jeito de voar. Agora quero conhecer o seu."
+            ],
+            [
+              "Mikka",
+              "Não precisa imitar ninguém. Encontre seu espaço, escute o vento e vamos fazer uma boa história no céu."
+            ]
+          ],
+          "won": [
+            [
+              "Mikka",
+              "Você conquistou o Morro do Sol! Esta é sua primeira insígnia. A rabiola também é o começo de um novo laço. Passe no ateliê do professor para conhecer seu próximo parceiro."
+            ]
+          ],
+          "lost": [
+            [
+              "Mikka",
+              "Você chegou até aqui por mérito seu. Não deixa um duelo apagar os outros encontros. Descansa, observa seu parceiro e volta quando quiser."
+            ]
+          ],
+          "reward": {
+            "coins": 30,
+            "xp": 120,
+            "item": "rabiola-raio"
+          },
+          "authored": true,
+          "scene": "morro-area-5",
+          "npcName": "Mikka",
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Mikka",
+              "color": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bambuzal",
+      "number": 2,
+      "name": "Vila do Bambuzal",
+      "playable": true,
+      "next": "beira-canal",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "park-clearing"
+      ],
+      "champion": {
+        "id": "lohan",
+        "name": "Lohan",
+        "level": 12
+      },
+      "emblem": {
+        "slot": 1,
+        "name": "Insígnia da Vila do Bambuzal"
+      },
+      "stages": [
+        {
+          "id": "bambuzal-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "bambu-1",
+          "name": "Nara",
+          "level": 9,
+          "before": [
+            [
+              "Nara",
+              "Aqui a gente aprende a ouvir o bambu antes de cortar. Vamos ver como você escuta o vento?"
+            ]
+          ],
+          "won": [
+            [
+              "Nara",
+              "Bom voo! O Dito está mais adiante, seguindo a praça."
+            ]
+          ],
+          "lost": [
+            [
+              "Nara",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 20,
+            "xp": 46,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Nara",
+          "scene": "kronasta-bambuzal-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Nara",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "mobile"
+          ]
+        },
+        {
+          "id": "bambuzal-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "bambu-2",
+          "name": "Dito",
+          "level": 9,
+          "before": [
+            [
+              "Dito",
+              "Vareta boa tem flexibilidade. Se tentar resolver tudo na força, ela quebra. Vamos testar?"
+            ]
+          ],
+          "won": [
+            [
+              "Dito",
+              "Pode seguir para o miolo. E olha os cortes no bambu: não foram feitos por quem cuida daqui."
+            ]
+          ],
+          "lost": [
+            [
+              "Dito",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 25,
+            "xp": 34,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Dito",
+          "scene": "kronasta-bambuzal-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Dito",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
+        },
+        {
+          "id": "bambuzal-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "bambu-3",
+          "name": "Célia",
+          "level": 10,
+          "before": [
+            [
+              "Célia",
+              "Tem bambu sumindo de noite. Antes de seguir, mostre que você cuida do seu parceiro."
+            ]
+          ],
+          "won": [
+            [
+              "Célia",
+              "Seu parceiro confia em você. Há um banco adiante para vocês descansarem."
+            ]
+          ],
+          "lost": [
+            [
+              "Célia",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 30,
+            "xp": 37,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Célia",
+          "scene": "kronasta-bambuzal-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Célia",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "guard"
+          ]
+        },
+        {
+          "id": "bambuzal-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "bambu-4",
+          "name": "Bento",
+          "level": 11,
+          "before": [
+            [
+              "Bento",
+              "Encontramos cortes novos no bambuzal. O Lohan está esperando lá em cima. Primeiro, nosso duelo."
+            ]
+          ],
+          "won": [
+            [
+              "Bento",
+              "Os feixes cortados escondidos no bambuzal são a pista. Siga até o Lohan no alto."
+            ]
+          ],
+          "lost": [
+            [
+              "Bento",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 35,
+            "xp": 54,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Bento",
+          "scene": "kronasta-bambuzal-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Bento",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
+        },
+        {
+          "id": "bambuzal-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "lohan",
+          "name": "Lohan",
+          "level": 12,
+          "before": [
+            [
+              "Lohan",
+              "Este bairro não é só uma arena. Cada vareta leva o trabalho de alguém. Vamos voar juntos, Kael?"
+            ]
+          ],
+          "won": [
+            [
+              "Lohan",
+              "Você conquistou o Bambuzal! A Clareira do Papel está no seu caminho. E precisamos ficar de olho em quem compra as varetas cortadas."
+            ]
+          ],
+          "lost": [
+            [
+              "Lohan",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 40,
+            "xp": 73,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Lohan",
+          "scene": "kronasta-bambuzal-c",
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Lohan",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beira-canal",
+      "number": 3,
+      "name": "Beira-Canal",
+      "playable": true,
+      "next": "feira",
+      "prerequisiteFlag": "comportaVeredasAberta",
+      "unlocks": [
+        "park-veredas"
+      ],
+      "champion": {
+        "id": "kleie",
+        "name": "Kleie",
+        "level": 15
+      },
+      "emblem": {
+        "slot": 2,
+        "name": "Insígnia do Beira-Canal"
+      },
+      "stages": [
+        {
+          "id": "beira-canal-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "canal-1",
+          "name": "Vaeli",
+          "level": 12,
+          "before": [
+            [
+              "Vaeli",
+              "A água parou e ninguém sabe por quê. Antes de seguir, vamos testar o seu ritmo."
+            ]
+          ],
+          "won": [
+            [
+              "Vaeli",
+              "Olhe os canos: o comando fica nas Veredas, acima de nós."
+            ]
+          ],
+          "lost": [
+            [
+              "Vaeli",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 40,
+            "xp": 73,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Vaeli",
+          "scene": "kronasta-beira-canal-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Vaeli",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
+        },
+        {
+          "id": "beira-canal-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "canal-2",
+          "name": "Noxen",
+          "level": 12,
+          "before": [
+            [
+              "Noxen",
+              "Escuta o canal. Sem correnteza, até o vento parece preso. Vamos voar?"
+            ]
+          ],
+          "won": [
+            [
+              "Noxen",
+              "Siga para a oficina. Soryn conhece esse encanamento."
+            ]
+          ],
+          "lost": [
+            [
+              "Noxen",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 45,
+            "xp": 73,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Noxen",
+          "scene": "kronasta-beira-canal-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Noxen",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
+        },
+        {
+          "id": "beira-canal-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "canal-3",
+          "name": "Soryn",
+          "level": 13,
+          "before": [
+            [
+              "Soryn",
+              "Eu conserto as peças. Mas não adianta trocar cano com a comporta fechada. Primeiro, nosso duelo."
+            ]
+          ],
+          "won": [
+            [
+              "Soryn",
+              "Há descanso junto à oficina. Eriska está na praça do outro lado."
+            ]
+          ],
+          "lost": [
+            [
+              "Soryn",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 50,
+            "xp": 80,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Soryn",
+          "scene": "kronasta-beira-canal-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Soryn",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ]
+        },
+        {
+          "id": "beira-canal-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "canal-4",
+          "name": "Eriska",
+          "level": 14,
+          "before": [
+            [
+              "Eriska",
+              "Kleie quer ver o canal correndo antes da disputa. E eu quero ver sua linha em ação."
+            ]
+          ],
+          "won": [
+            [
+              "Eriska",
+              "O comando principal fica nas Veredas. Volte quando destrancar a comporta."
+            ]
+          ],
+          "lost": [
+            [
+              "Eriska",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 55,
+            "xp": 88,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Eriska",
+          "scene": "kronasta-beira-canal-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Eriska",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
+        },
+        {
+          "id": "beira-canal-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "kleie",
+          "name": "Kleie",
+          "level": 15,
+          "before": [
+            [
+              "Kleie",
+              "O canal voltou a respirar. Agora vamos fazer o vento correr pela arena!"
+            ]
+          ],
+          "won": [
+            [
+              "Kleie",
+              "Beira-Canal é seu! A Feira do Largo é o próximo bairro. Leve nosso vento com você."
+            ]
+          ],
+          "lost": [
+            [
+              "Kleie",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
+          "reward": {
+            "coins": 60,
+            "xp": 96,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Kleie",
+          "scene": "kronasta-beira-canal-c",
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Kleie",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feira",
+      "number": 4,
+      "name": "Feira do Largo",
+      "playable": true,
+      "next": "cais",
+      "prerequisiteFlag": "feiraApitoVerdadeiro",
+      "unlocks": [
+        "caverna"
+      ],
+      "champion": {
+        "id": "zulmira",
+        "name": "Dona Zulmira",
+        "level": 18
+      },
+      "emblem": {
+        "slot": 3,
+        "name": "Insígnia da Feira do Largo"
+      },
+      "stages": [
+        {
+          "id": "feira-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "feira-veyra",
+          "name": "Veyra",
+          "level": 15,
+          "before": [
+            [
+              "Veyra",
+              "A linha não pode atravessar a rua dos outros. Vamos treinar?"
+            ]
+          ],
+          "won": [
+            [
+              "Veyra",
+              "Boa disputa! Continue pelo mercado."
+            ]
+          ],
+          "lost": [
+            [
+              "Veyra",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
+          "reward": {
+            "coins": 50,
+            "xp": 100,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Veyra",
+          "scene": "kronasta-feira-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Vaeli",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
+        },
+        {
+          "id": "feira-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "feira-orven",
+          "name": "Orven",
+          "level": 16,
+          "before": [
+            [
+              "Orven",
+              "Eu observo o vento pelos toldos. Consegue acompanhar?"
+            ]
+          ],
+          "won": [
+            [
+              "Orven",
+              "Boa disputa! Continue pelo mercado."
+            ]
+          ],
+          "lost": [
+            [
+              "Orven",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
+          "reward": {
+            "coins": 55,
+            "xp": 110,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Orven",
+          "scene": "kronasta-feira-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Noxen",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
+        },
+        {
+          "id": "feira-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "feira-zafri",
+          "name": "Zafri",
+          "level": 16,
+          "before": [
+            [
+              "Zafri",
+              "Nem toda oferta é o que parece. Observe antes de puxar."
+            ]
+          ],
+          "won": [
+            [
+              "Zafri",
+              "Boa disputa! Continue pelo mercado."
+            ]
+          ],
+          "lost": [
+            [
+              "Zafri",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
+          "reward": {
+            "coins": 60,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Zafri",
+          "scene": "kronasta-feira-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Soryn",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ]
+        },
+        {
+          "id": "feira-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "feira-nymel",
+          "name": "Nymel",
+          "level": 17,
+          "before": [
+            [
+              "Nymel",
+              "O largo é de todos. Cuide do seu parceiro."
+            ]
+          ],
+          "won": [
+            [
+              "Nymel",
+              "Boa disputa! Continue pelo mercado."
+            ]
+          ],
+          "lost": [
+            [
+              "Nymel",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
+          "reward": {
+            "coins": 65,
+            "xp": 130,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Nymel",
+          "scene": "kronasta-feira-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Eriska",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
+        },
+        {
+          "id": "feira-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "zulmira",
+          "name": "Dona Zulmira",
+          "level": 18,
+          "before": [
+            [
+              "Dona Zulmira",
+              "O melhor pipeiro sabe escutar seu parceiro. Mostre o que aprenderam."
+            ]
+          ],
+          "won": [
+            [
+              "Dona Zulmira",
+              "O emblema é seu! O próximo bairro é o Cais."
+            ]
+          ],
+          "lost": [
+            [
+              "Dona Zulmira",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
+          "reward": {
+            "coins": 70,
+            "xp": 140,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Dona Zulmira",
+          "scene": "kronasta-feira-c",
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Kleie",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cais",
+      "number": 5,
+      "name": "Cais Velho",
+      "playable": true,
+      "next": "industrial",
+      "prerequisiteFlag": "",
+      "unlocks": [],
+      "champion": {
+        "id": "marisol",
+        "name": "Marisol",
+        "level": 21
+      },
+      "emblem": {
+        "slot": 4,
+        "name": "Insígnia do Cais Velho"
+      },
+      "stages": [
+        {
+          "id": "cais-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "neril",
+          "name": "Neril",
+          "level": 18,
+          "before": [
+            [
+              "Neril",
+              "O vento muda quando passa entre os barcos. Sente antes de puxar a linha."
+            ]
+          ],
+          "won": [
+            [
+              "Neril",
+              "Boa leitura! Pode seguir pelo ancoradouro."
+            ]
+          ],
+          "lost": [
+            [
+              "Neril",
+              "Observe as bandeiras e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 18,
+            "xp": 160,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Neril",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "patient"
+          ],
+          "npcName": "Neril",
+          "scene": "kronasta-cais-a"
+        },
+        {
+          "id": "cais-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "ossian",
+          "name": "Ossian",
+          "level": 19,
+          "before": [
+            [
+              "Ossian",
+              "Uma linha bem cuidada aguenta mais que um puxão apressado. Vamos testar?"
+            ]
+          ],
+          "won": [
+            [
+              "Ossian",
+              "Essa linha está em boas mãos. Continue."
+            ]
+          ],
+          "lost": [
+            [
+              "Ossian",
+              "Descanse nas docas e volte com a linha inteira."
+            ]
+          ],
+          "reward": {
+            "coins": 20,
+            "xp": 180,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Ossian",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "reader"
+          ],
+          "npcName": "Ossian",
+          "scene": "kronasta-cais-a"
+        },
+        {
+          "id": "cais-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "vaelis",
+          "name": "Vaelis",
+          "level": 19,
+          "before": [
+            [
+              "Vaelis",
+              "Veja as bandeiras! Quero uma disputa que faça todo o cais olhar para cima."
+            ]
+          ],
+          "won": [
+            [
+              "Vaelis",
+              "Que voo! Até as bandeiras acompanharam."
+            ]
+          ],
+          "lost": [
+            [
+              "Vaelis",
+              "Quero ver esse voo mais uma vez!"
+            ]
+          ],
+          "reward": {
+            "coins": 22,
+            "xp": 200,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Vaelis",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ],
+          "npcName": "Vaelis",
+          "scene": "kronasta-cais-b"
+        },
+        {
+          "id": "cais-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "rhuna",
+          "name": "Rhuna",
+          "level": 20,
+          "before": [
+            [
+              "Rhuna",
+              "Eu espero a rajada certa. Não confunda silêncio com falta de coragem."
+            ]
+          ],
+          "won": [
+            [
+              "Rhuna",
+              "Você encontrou a abertura antes de mim."
+            ]
+          ],
+          "lost": [
+            [
+              "Rhuna",
+              "Respire. A próxima rajada ainda vem."
+            ]
+          ],
+          "reward": {
+            "coins": 24,
+            "xp": 220,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Rhuna",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "reader"
+          ],
+          "npcName": "Rhuna",
+          "scene": "kronasta-cais-b"
+        },
+        {
+          "id": "cais-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "marisol",
+          "name": "Marisol",
+          "level": 21,
+          "before": [
+            [
+              "Marisol",
+              "Você chegou ao alto do cais. Aqui, saber ceder ao vento também é força."
+            ]
+          ],
+          "won": [
+            [
+              "Marisol",
+              "O quinto emblema é seu. Leve o vento do cais na próxima jornada."
+            ]
+          ],
+          "lost": [
+            [
+              "Marisol",
+              "O mar não se vence com pressa. Cuide do parceiro e volte."
+            ]
+          ],
+          "reward": {
+            "coins": 26,
+            "xp": 240,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Marisol",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "patient"
+          ],
+          "npcName": "Marisol",
+          "scene": "kronasta-cais-c"
+        }
+      ]
+    },
+    {
+      "id": "industrial",
+      "number": 6,
+      "name": "Vila Operária",
+      "playable": false,
+      "next": "palafitas",
+      "prerequisiteFlag": "pipaDragaoDesatadaVencida",
+      "unlocks": [
+        "arquivo-atelie"
+      ],
+      "champion": {
+        "id": "bruno-solda",
+        "name": "Bruno Solda",
+        "level": 24
+      },
+      "emblem": {
+        "slot": 5,
+        "name": "Insígnia da Vila Operária"
+      },
+      "stages": [
+        {
+          "id": "industrial-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "vasken",
+          "name": "Vasken",
+          "npcName": "Vasken",
+          "scene": "kronasta-industrial-a",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/vasken.png",
+          "level": 21,
+          "before": [
+            [
+              "Vasken",
+              "Não adianta puxar forte se você perde o ritmo. Vamos ver como sua linha responde!"
+            ]
+          ],
+          "won": [
+            [
+              "Vasken",
+              "Essa puxada foi boa! Quero aprender esse tempo aí."
+            ]
+          ],
+          "lost": [
+            [
+              "Vasken",
+              "Respira antes de puxar. Força sem ritmo só cansa os braços."
+            ]
+          ],
+          "reward": {
+            "coins": 28,
+            "xp": 260,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Vasken",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ]
+        },
+        {
+          "id": "industrial-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "rivka",
+          "name": "Rivka",
+          "npcName": "Rivka",
+          "scene": "kronasta-industrial-a",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/rivka.png",
+          "level": 22,
+          "before": [
+            [
+              "Rivka",
+              "Um movimento basta, quando ele vem na hora exata. Observe minhas mãos."
+            ]
+          ],
+          "won": [
+            [
+              "Rivka",
+              "Você encontrou uma abertura que eu não tinha previsto. Interessante."
+            ]
+          ],
+          "lost": [
+            [
+              "Rivka",
+              "Você mostrou a intenção cedo demais. Experimente deixar o vento falar primeiro."
+            ]
+          ],
+          "reward": {
+            "coins": 30,
+            "xp": 280,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Rivka",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
+        },
+        {
+          "id": "industrial-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "odrik",
+          "name": "Odrik",
+          "npcName": "Odrik",
+          "scene": "kronasta-industrial-b",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/odrik.png",
+          "level": 22,
+          "before": [
+            [
+              "Odrik",
+              "Se piscar, eu já mudei de lado! Pronto para acompanhar?"
+            ]
+          ],
+          "won": [
+            [
+              "Odrik",
+              "Tá, essa eu não vi chegando! Mais tarde quero revanche."
+            ]
+          ],
+          "lost": [
+            [
+              "Odrik",
+              "Quase! Mas quase não segura linha. Tenta outra vez!"
+            ]
+          ],
+          "reward": {
+            "coins": 32,
+            "xp": 300,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Odrik",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ]
+        },
+        {
+          "id": "industrial-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "teyra",
+          "name": "Teyra",
+          "npcName": "Teyra",
+          "scene": "kronasta-industrial-b",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/teyra.png",
+          "level": 23,
+          "before": [
+            [
+              "Teyra",
+              "Antes de avançar, aprenda a firmar o apoio. Seu parceiro depende de você."
+            ]
+          ],
+          "won": [
+            [
+              "Teyra",
+              "Bom apoio. Você soube proteger o parceiro e esperar sua vez."
+            ]
+          ],
+          "lost": [
+            [
+              "Teyra",
+              "Recuar para cuidar do parceiro também é uma decisão firme."
+            ]
+          ],
+          "reward": {
+            "coins": 34,
+            "xp": 320,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Teyra",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
+        },
+        {
+          "id": "industrial-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "bruno-solda",
+          "name": "Bruno Solda",
+          "npcName": "Bruno Solda",
+          "scene": "kronasta-industrial-c",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/bruno-solda.png",
+          "level": 24,
+          "before": [
+            [
+              "Bruno Solda",
+              "Linha boa não é a que nunca rompe. É a que a gente aprende a refazer. Vamos voar?"
+            ]
+          ],
+          "won": [
+            [
+              "Bruno Solda",
+              "O bairro tem um novo campeão. Cuide desse laço: força nenhuma substitui confiança."
+            ]
+          ],
+          "lost": [
+            [
+              "Bruno Solda",
+              "Seu parceiro precisa de cuidado, não de pressa. Descanse; eu espero vocês aqui."
+            ]
+          ],
+          "reward": {
+            "coins": 36,
+            "xp": 340,
+            "item": ""
+          },
+          "authored": true,
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Bruno Solda",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "palafitas",
+      "number": 7,
+      "name": "Palafitas",
+      "playable": true,
+      "next": "alto-da-serra",
+      "prerequisiteFlag": "",
+      "unlocks": [],
+      "champion": {
+        "id": "caio-garca",
+        "name": "Caio Garça",
+        "level": 27
+      },
+      "emblem": {
+        "slot": 6,
+        "name": "Insígnia das Palafitas"
+      },
+      "stages": [
+        {
+          "id": "palafitas-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "seyran",
+          "name": "Seyran",
+          "level": 24,
+          "before": [
+            [
+              "Seyran",
+              "O piso pode oscilar. Sua atenção, não. Vamos encontrar o equilíbrio."
+            ]
+          ],
+          "won": [
+            [
+              "Seyran",
+              "Você encontrou apoio sem prender o movimento. Boa linha."
+            ]
+          ],
+          "lost": [
+            [
+              "Seyran",
+              "Relaxe os ombros e encontre o apoio antes de puxar."
+            ]
+          ],
+          "reward": {
+            "coins": 38,
+            "xp": 360,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Seyran",
+          "scene": "kronasta-palafitas-a",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/seyran.png",
+          "point": [
+            22,
+            28
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Seyran",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "palafitas-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "oruvo",
+          "name": "Oruvo",
+          "level": 25,
+          "before": [
+            [
+              "Oruvo",
+              "Uma vela precisa de espaço para respirar. Seu parceiro também! Vamos voar?"
+            ]
+          ],
+          "won": [
+            [
+              "Oruvo",
+              "Olha só esse voo! Tem lugar para você na nossa roda."
+            ]
+          ],
+          "lost": [
+            [
+              "Oruvo",
+              "Não tente vencer o vento no grito. Deixe a linha responder."
+            ]
+          ],
+          "reward": {
+            "coins": 40,
+            "xp": 380,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Oruvo",
+          "scene": "kronasta-palafitas-a",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/oruvo.png",
+          "point": [
+            30,
+            16
+          ],
+          "rounds": 2,
+          "styles": [
+            "reader"
+          ],
+          "foes": [
+            {
+              "name": "Oruvo",
+              "color": 3
+            }
+          ]
+        },
+        {
+          "id": "palafitas-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "kessai",
+          "name": "Kessai",
+          "level": 25,
+          "before": [
+            [
+              "Kessai",
+              "Na travessia, hesitar também muda o rumo. Quero ver suas decisões!"
+            ]
+          ],
+          "won": [
+            [
+              "Kessai",
+              "Você acompanhou minha mudança de lado. Boa travessia!"
+            ]
+          ],
+          "lost": [
+            [
+              "Kessai",
+              "Olhou só para mim e esqueceu o vento. Tente outra vez!"
+            ]
+          ],
+          "reward": {
+            "coins": 42,
+            "xp": 400,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Kessai",
+          "scene": "kronasta-palafitas-b",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/kessai.png",
+          "point": [
+            18,
+            28
+          ],
+          "rounds": 2,
+          "styles": [
+            "aggressive"
+          ],
+          "foes": [
+            {
+              "name": "Kessai",
+              "color": 1
+            }
+          ]
+        },
+        {
+          "id": "palafitas-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "veldren",
+          "name": "Veldren",
+          "level": 26,
+          "before": [
+            [
+              "Veldren",
+              "Uma passarela firme começa em cada apoio. Mostre como cuida da sua linha."
+            ]
+          ],
+          "won": [
+            [
+              "Veldren",
+              "Vocês souberam esperar. Caio está na doca da parte C."
+            ]
+          ],
+          "lost": [
+            [
+              "Veldren",
+              "Pressa não conserta apoio ruim. Descanse e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 44,
+            "xp": 420,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Veldren",
+          "scene": "kronasta-palafitas-b",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/veldren.png",
+          "point": [
+            30,
+            12
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Veldren",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "palafitas-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "caio-garca",
+          "name": "Caio Garça",
+          "level": 27,
+          "before": [
+            [
+              "Caio Garça",
+              "O vento chega para todos. Quero ver o que vocês fazem quando ele muda."
+            ]
+          ],
+          "won": [
+            [
+              "Caio Garça",
+              "O emblema é de vocês. Mantenham firme o vínculo, não a mão."
+            ]
+          ],
+          "lost": [
+            [
+              "Caio Garça",
+              "Ainda há vento para outra tentativa. Cuide do parceiro; eu espero."
+            ]
+          ],
+          "reward": {
+            "coins": 46,
+            "xp": 440,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Caio Garça",
+          "scene": "kronasta-palafitas-c",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/caio.png",
+          "point": [
+            26,
+            12
+          ],
+          "rounds": 3,
+          "styles": [
+            "reader"
+          ],
+          "foes": [
+            {
+              "name": "Caio Garça",
+              "color": 2,
+              "modelId": "veskoro"
+            }
+          ]
+        }
+      ],
+      "startFlag": "mormacoLiberto"
+    },
+    {
+      "id": "alto-da-serra",
+      "number": 8,
+      "name": "Alto da Serra",
+      "playable": true,
+      "next": "centro",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "centro"
+      ],
+      "champion": {
+        "id": "dona-neve",
+        "name": "Dona Neve",
+        "level": 30
+      },
+      "emblem": {
+        "slot": 7,
+        "name": "Insígnia do Alto da Serra"
+      },
+      "stages": [
+        {
+          "id": "alto-da-serra-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "veyl",
+          "name": "Veyl",
+          "level": 27,
+          "before": [
+            [
+              "Veyl",
+              "O vento bate de frente no posto de vigia. Firme os pés e mostre sua linha."
+            ]
+          ],
+          "won": [
+            [
+              "Veyl",
+              "Você segurou o primeiro rajado. Sora espera perto do abrigo."
+            ]
+          ],
+          "lost": [
+            [
+              "Veyl",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 42,
+            "xp": 420,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Veyl",
+          "scene": "kronasta-montanha-a",
+          "point": [
+            20,
+            17
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Veyl",
+              "color": 0
+            }
+          ]
+        },
+        {
+          "id": "alto-da-serra-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "sora",
+          "name": "Sora",
+          "level": 27,
+          "before": [
+            [
+              "Sora",
+              "Perto do abrigo, o vento troca de lado. Ataque quando ele abrir espaço."
+            ]
+          ],
+          "won": [
+            [
+              "Sora",
+              "Você leu a mudança do vento. Vá à encosta."
+            ]
+          ],
+          "lost": [
+            [
+              "Sora",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 42,
+            "xp": 420,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Sora",
+          "scene": "kronasta-montanha-a",
+          "point": [
+            22,
+            8
+          ],
+          "rounds": 2,
+          "styles": [
+            "aggressive"
+          ],
+          "foes": [
+            {
+              "name": "Sora",
+              "color": 1
+            }
+          ]
+        },
+        {
+          "id": "alto-da-serra-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "oren",
+          "name": "Oren",
+          "level": 28,
+          "before": [
+            [
+              "Oren",
+              "Quem trabalha com linha aprende a esperar. Vamos ver se você também sabe."
+            ]
+          ],
+          "won": [
+            [
+              "Oren",
+              "Uma linha firme vale mais que um puxão forte. Procure Kaiva."
+            ]
+          ],
+          "lost": [
+            [
+              "Oren",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 42,
+            "xp": 420,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Oren",
+          "scene": "kronasta-montanha-b",
+          "point": [
+            29,
+            14
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Oren",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "alto-da-serra-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "kaiva",
+          "name": "Kaiva",
+          "level": 29,
+          "before": [
+            [
+              "Kaiva",
+              "A passarela estreita ensina a escolher um passo de cada vez. Está pronto?"
+            ]
+          ],
+          "won": [
+            [
+              "Kaiva",
+              "Dona Neve espera no cume. Leve o que aprendeu com a gente."
+            ]
+          ],
+          "lost": [
+            [
+              "Kaiva",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 42,
+            "xp": 420,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Kaiva",
+          "scene": "kronasta-montanha-b",
+          "point": [
+            22,
+            8
+          ],
+          "rounds": 2,
+          "styles": [
+            "aggressive"
+          ],
+          "foes": [
+            {
+              "name": "Kaiva",
+              "color": 3
+            }
+          ]
+        },
+        {
+          "id": "alto-da-serra-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "dona-neve",
+          "name": "Dona Neve",
+          "level": 30,
+          "before": [
+            [
+              "Dona Neve",
+              "Você subiu, ouviu os quatro e chegou com a linha inteira. Agora enfrente a campeã do Alto da Serra."
+            ]
+          ],
+          "won": [
+            [
+              "Dona Neve",
+              "A Insígnia do Alto da Serra é sua. Pode seguir em direção ao Centro."
+            ]
+          ],
+          "lost": [
+            [
+              "Dona Neve",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 65,
+            "xp": 540,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Dona Neve",
+          "scene": "kronasta-montanha-c",
+          "point": [
+            29,
+            8
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Dona Neve",
+              "color": 3
+            }
+          ]
+        }
+      ],
+      "startFlag": "tufanocorteLiberto"
+    },
+    {
+      "id": "centro",
+      "number": 9,
+      "name": "Centro",
+      "playable": true,
+      "next": "lajes",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "lajes"
+      ],
+      "champion": {
+        "id": "leo-antena",
+        "name": "Leo Antena",
+        "level": 33
+      },
+      "emblem": {
+        "slot": 8,
+        "name": "Insígnia do Centro"
+      },
+      "stages": [
+        {
+          "id": "centro-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "vitra",
+          "name": "Vitra",
+          "level": 30,
+          "before": [
+            [
+              "Vitra",
+              "Mostre como se sai com a linha e eu conto o que vi."
+            ]
+          ],
+          "won": [
+            [
+              "Vitra",
+              "O produtor da Pipa TV pediu ajuda. Noxen viu o fio afrouxar."
+            ]
+          ],
+          "lost": [
+            [
+              "Vitra",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 45,
+            "xp": 450,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Vitra",
+          "scene": "kronasta-centro-a",
+          "point": [
+            24,
+            31
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Vitra",
+              "color": 0
+            }
+          ]
+        },
+        {
+          "id": "centro-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "noxen",
+          "name": "Noxen",
+          "level": 31,
+          "before": [
+            [
+              "Noxen",
+              "Mostre como se sai com a linha e eu conto o que vi."
+            ]
+          ],
+          "won": [
+            [
+              "Noxen",
+              "O puxão veio da Pipa TV. Pergunte a Sinal."
+            ]
+          ],
+          "lost": [
+            [
+              "Noxen",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 45,
+            "xp": 450,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Noxen",
+          "scene": "kronasta-centro-a",
+          "point": [
+            24,
+            12
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Noxen",
+              "color": 1
+            }
+          ]
+        },
+        {
+          "id": "centro-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "sinal",
+          "name": "Sinal",
+          "level": 31,
+          "before": [
+            [
+              "Sinal",
+              "Mostre como se sai com a linha e eu conto o que vi."
+            ]
+          ],
+          "won": [
+            [
+              "Sinal",
+              "A fita mostra a pipa caindo sem a rabiola. Oriel tem a gravação completa."
+            ]
+          ],
+          "lost": [
+            [
+              "Sinal",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 45,
+            "xp": 450,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Sinal",
+          "scene": "kronasta-centro-b",
+          "point": [
+            24,
+            31
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Sinal",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "centro-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "oriel",
+          "name": "Oriel",
+          "level": 32,
+          "before": [
+            [
+              "Oriel",
+              "Mostre como se sai com a linha e eu conto o que vi."
+            ]
+          ],
+          "won": [
+            [
+              "Oriel",
+              "O rosto ficou fora do quadro. Leve a pista ao Leo."
+            ]
+          ],
+          "lost": [
+            [
+              "Oriel",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 45,
+            "xp": 450,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Oriel",
+          "scene": "kronasta-centro-b",
+          "point": [
+            24,
+            12
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Oriel",
+              "color": 3
+            }
+          ]
+        },
+        {
+          "id": "centro-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "leo-antena",
+          "name": "Leo Antena",
+          "level": 33,
+          "before": [
+            [
+              "Leo Antena",
+              "Agora é a sua vez de ir ao vivo."
+            ]
+          ],
+          "won": [
+            [
+              "Leo Antena",
+              "A Insígnia do Centro é sua. A próxima etapa é no Conjunto das Lajes."
+            ]
+          ],
+          "lost": [
+            [
+              "Leo Antena",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 70,
+            "xp": 580,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Leo Antena",
+          "scene": "kronasta-centro-c",
+          "point": [
+            24,
+            6
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Leo Antena",
+              "color": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lajes",
+      "number": 10,
+      "name": "Condomínio",
+      "playable": true,
+      "next": "porto",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "porto"
+      ],
+      "champion": {
+        "id": "taina",
+        "name": "Tainá",
+        "level": 36
+      },
+      "emblem": {
+        "slot": 9,
+        "name": "Insígnia do Condomínio"
+      },
+      "stages": [
+        {
+          "id": "lajes-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "lajes-desafiante-1",
+          "name": "Portaria",
+          "level": 33,
+          "before": [
+            [
+              "Portaria",
+              "A praça está aberta. Quer começar o circuito?"
+            ]
+          ],
+          "won": [
+            [
+              "Portaria",
+              "Bom duelo. Pode seguir pelo circuito."
+            ]
+          ],
+          "lost": [
+            [
+              "Portaria",
+              "Recupere a linha e volte para tentar de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 48,
+            "xp": 480,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Portaria",
+          "scene": "kronasta-lajes-a",
+          "point": [
+            24,
+            31
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Portaria",
+              "color": 0
+            }
+          ]
+        },
+        {
+          "id": "lajes-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "lajes-desafiante-2",
+          "name": "Jardins",
+          "level": 34,
+          "before": [
+            [
+              "Jardins",
+              "Aqui o vento muda atrás dos jardins. Quero ver como você segura a linha."
+            ]
+          ],
+          "won": [
+            [
+              "Jardins",
+              "Bom duelo. Pode seguir pelo circuito."
+            ]
+          ],
+          "lost": [
+            [
+              "Jardins",
+              "Recupere a linha e volte para tentar de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 48,
+            "xp": 480,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Jardins",
+          "scene": "kronasta-lajes-a",
+          "point": [
+            24,
+            12
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Jardins",
+              "color": 1
+            }
+          ]
+        },
+        {
+          "id": "lajes-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "lajes-desafiante-3",
+          "name": "Clube",
+          "level": 35,
+          "before": [
+            [
+              "Clube",
+              "O próximo desafio é no clube. Sua linha aguenta?"
+            ]
+          ],
+          "won": [
+            [
+              "Clube",
+              "Bom duelo. Pode seguir pelo circuito."
+            ]
+          ],
+          "lost": [
+            [
+              "Clube",
+              "Recupere a linha e volte para tentar de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 48,
+            "xp": 480,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Clube",
+          "scene": "kronasta-lajes-b",
+          "point": [
+            24,
+            31
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Clube",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "lajes-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "lajes-desafiante-4",
+          "name": "Piscina",
+          "level": 35,
+          "before": [
+            [
+              "Piscina",
+              "O vento cruza a piscina e sobe pro terraço. Vamos testar seu controle."
+            ]
+          ],
+          "won": [
+            [
+              "Piscina",
+              "Bom duelo. Pode seguir pelo circuito."
+            ]
+          ],
+          "lost": [
+            [
+              "Piscina",
+              "Recupere a linha e volte para tentar de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 48,
+            "xp": 480,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Piscina",
+          "scene": "kronasta-lajes-b",
+          "point": [
+            24,
+            12
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Piscina",
+              "color": 3
+            }
+          ]
+        },
+        {
+          "id": "lajes-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "taina",
+          "name": "Tainá",
+          "level": 36,
+          "before": [
+            [
+              "Tainá",
+              "Do terraço dá pra ver a cidade toda. Vamos disputar a insígnia?"
+            ]
+          ],
+          "won": [
+            [
+              "Tainá",
+              "A Insígnia do Condomínio é sua. Siga para o próximo bairro."
+            ]
+          ],
+          "lost": [
+            [
+              "Tainá",
+              "Recupere a linha e volte para tentar de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 75,
+            "xp": 620,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Tainá",
+          "scene": "kronasta-lajes-c",
+          "point": [
+            24,
+            6
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Tainá",
+              "color": 0
+            }
+          ]
+        }
+      ],
+      "startFlag": "tylerCreatedKnown"
+    },
+    {
+      "id": "porto",
+      "number": 11,
+      "name": "Porto Novo",
+      "playable": true,
+      "next": "mirante",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "mirante"
+      ],
+      "champion": {
+        "id": "jurandir",
+        "name": "Capitão Jurandir",
+        "level": 40
+      },
+      "emblem": {
+        "slot": 10,
+        "name": "Insígnia do Porto Novo"
+      },
+      "stages": [
+        {
+          "id": "porto-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "neris",
+          "name": "Neris",
+          "level": 36,
+          "before": [
+            [
+              "Neris",
+              "Se a bandeira baixa, ninguém entra no canal. Mostre que sabe ler o sinal."
+            ]
+          ],
+          "won": [
+            [
+              "Neris",
+              "Boa leitura. Varko está no fim do terminal."
+            ]
+          ],
+          "lost": [
+            [
+              "Neris",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 55,
+            "xp": 540,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Neris",
+          "scene": "kronasta-porto-a",
+          "point": [
+            22,
+            32
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Neris",
+              "color": 0
+            }
+          ]
+        },
+        {
+          "id": "porto-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "varko",
+          "name": "Varko",
+          "level": 37,
+          "before": [
+            [
+              "Varko",
+              "Vento lateral derruba carga mal amarrada. Vamos ver como você segura a linha."
+            ]
+          ],
+          "won": [
+            [
+              "Varko",
+              "Carga segura. Procure Elune nas docas."
+            ]
+          ],
+          "lost": [
+            [
+              "Varko",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 55,
+            "xp": 540,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Varko",
+          "scene": "kronasta-porto-a",
+          "point": [
+            16,
+            11
+          ],
+          "rounds": 2,
+          "styles": [
+            "aggressive"
+          ],
+          "foes": [
+            {
+              "name": "Varko",
+              "color": 1
+            }
+          ]
+        },
+        {
+          "id": "porto-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "elune",
+          "name": "Elune",
+          "level": 38,
+          "before": [
+            [
+              "Elune",
+              "A doca só funciona se cada peça aguenta o tranco. Vamos testar sua armação."
+            ]
+          ],
+          "won": [
+            [
+              "Elune",
+              "Armação firme. Tervan está perto da saída das docas."
+            ]
+          ],
+          "lost": [
+            [
+              "Elune",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 55,
+            "xp": 540,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Elune",
+          "scene": "kronasta-porto-b",
+          "point": [
+            31,
+            32
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Elune",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "porto-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "tervan",
+          "name": "Tervan",
+          "level": 39,
+          "before": [
+            [
+              "Tervan",
+              "Pra virar entre os barcos, você tem que puxar na hora certa. Quero ver."
+            ]
+          ],
+          "won": [
+            [
+              "Tervan",
+              "Boa manobra. Jurandir espera no cais."
+            ]
+          ],
+          "lost": [
+            [
+              "Tervan",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 55,
+            "xp": 540,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Tervan",
+          "scene": "kronasta-porto-b",
+          "point": [
+            15,
+            10
+          ],
+          "rounds": 2,
+          "styles": [
+            "aggressive"
+          ],
+          "foes": [
+            {
+              "name": "Tervan",
+              "color": 3
+            }
+          ]
+        },
+        {
+          "id": "porto-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "jurandir",
+          "name": "Capitão Jurandir",
+          "level": 40,
+          "before": [
+            [
+              "Capitão Jurandir",
+              "Você passou pelo terminal e pelas docas. Agora dispute comigo a insígnia do Porto Novo."
+            ]
+          ],
+          "won": [
+            [
+              "Capitão Jurandir",
+              "A Insígnia do Porto Novo é sua. O caminho para o Coração das Ruínas está aberto."
+            ]
+          ],
+          "lost": [
+            [
+              "Capitão Jurandir",
+              "Recupere a linha e volte quando estiver pronto."
+            ]
+          ],
+          "reward": {
+            "coins": 85,
+            "xp": 700,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Capitão Jurandir",
+          "scene": "kronasta-porto-c",
+          "point": [
+            24,
+            7
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Capitão Jurandir",
+              "color": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mirante",
+      "number": 12,
+      "name": "Alto do Mirante",
+      "playable": true,
+      "next": "",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "estadio"
+      ],
+      "champion": {
+        "id": "icaro",
+        "name": "Ícaro",
+        "level": 44
+      },
+      "emblem": {
+        "slot": 11,
+        "name": "Insígnia do Alto do Mirante"
+      },
+      "stages": [
+        {
+          "id": "mirante-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "vael",
+          "name": "Vael",
+          "level": 40,
+          "before": [
+            [
+              "Vael",
+              "Aqui a subida muda o vento. Quer testar sua linha?"
+            ]
+          ],
+          "won": [
+            [
+              "Vael",
+              "Bom duelo. Pode seguir."
+            ]
+          ],
+          "lost": [
+            [
+              "Vael",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 60,
+            "xp": 560,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Vael",
+          "scene": "kronasta-mirante-a",
+          "point": [
+            24,
+            31
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Vael",
+              "color": 0
+            }
+          ]
+        },
+        {
+          "id": "mirante-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "ilyra",
+          "name": "Ilyra",
+          "level": 41,
+          "before": [
+            [
+              "Ilyra",
+              "Observe as bandeiras antes de puxar."
+            ]
+          ],
+          "won": [
+            [
+              "Ilyra",
+              "Bom duelo. Pode seguir."
+            ]
+          ],
+          "lost": [
+            [
+              "Ilyra",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 60,
+            "xp": 560,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Ilyra",
+          "scene": "kronasta-mirante-a",
+          "point": [
+            24,
+            12
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Ilyra",
+              "color": 1
+            }
+          ]
+        },
+        {
+          "id": "mirante-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "orvik",
+          "name": "Orvik",
+          "level": 42,
+          "before": [
+            [
+              "Orvik",
+              "Cuido das passagens do mirante. Vamos ver como você lida com as rajadas."
+            ]
+          ],
+          "won": [
+            [
+              "Orvik",
+              "Bom duelo. Pode seguir."
+            ]
+          ],
+          "lost": [
+            [
+              "Orvik",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 60,
+            "xp": 560,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Orvik",
+          "scene": "kronasta-mirante-b",
+          "point": [
+            24,
+            31
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Orvik",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "mirante-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "senael",
+          "name": "Senael",
+          "level": 43,
+          "before": [
+            [
+              "Senael",
+              "O vento da praça sobe até o topo. Sinta a mudança antes de enfrentar Ícaro."
+            ]
+          ],
+          "won": [
+            [
+              "Senael",
+              "Bom duelo. Pode seguir."
+            ]
+          ],
+          "lost": [
+            [
+              "Senael",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 60,
+            "xp": 560,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Senael",
+          "scene": "kronasta-mirante-b",
+          "point": [
+            24,
+            12
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Senael",
+              "color": 3
+            }
+          ]
+        },
+        {
+          "id": "mirante-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "icaro",
+          "name": "Ícaro",
+          "level": 44,
+          "before": [
+            [
+              "Ícaro",
+              "Já fui campeão. Saí quando achei que a TV decidia quem merecia vencer. Aqui em cima, a linha é nossa."
+            ]
+          ],
+          "won": [
+            [
+              "Ícaro",
+              "A última insígnia é sua. Jamile espera no Estádio de Kronasta."
+            ]
+          ],
+          "lost": [
+            [
+              "Ícaro",
+              "Recupere a linha e tente de novo."
+            ]
+          ],
+          "reward": {
+            "coins": 90,
+            "xp": 740,
+            "item": ""
+          },
+          "authored": true,
+          "npcName": "Ícaro",
+          "scene": "kronasta-mirante-c",
+          "point": [
+            24,
+            6
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Ícaro",
+              "color": 0
+            }
+          ]
+        }
+      ],
+      "startFlag": "enamorDerrotado"
+    }
+  ]
+}

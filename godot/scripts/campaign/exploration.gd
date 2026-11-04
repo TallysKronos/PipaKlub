@@ -16,6 +16,8 @@ func accept_nina(point: Vector2) -> Dictionary:
 	if not _near(point, Data.NINA,85,"nina"): return {"status": "wrong_step"}
 	var saved: Dictionary = session.snapshot()
 	var player: Dictionary = saved.player
+	if not preload("res://scripts/campaign/kronasta_story.gd").mikka_defeated(player):return {"status":"wrong_step"}
+	player.flags.ninaBambuzalOrder=true
 	player.flags.ninaAccepted = true
 	return session.commit_operation("nina-accepted-v1", saved.checkpoint, player)
 
@@ -54,9 +56,11 @@ func return_tail(point: Vector2) -> Dictionary:
 	if not _near(point, Data.NINA,85,"nina"): return {"status": "wrong_step"}
 	var saved: Dictionary = session.snapshot()
 	var player: Dictionary = saved.player
-	if not player.flags.get("ninaTail", false): return {"status": "wrong_step"}
+	if player.flags.get("ninaReturned", false): return {"status": "already_applied"}
+	if not player.flags.get("ninaTail", false) or not player.flags.get("ninaAccepted", false) or not player.flags.get("guardianDefeated", false) or int(player.inventory.get("quest-nina-tail", 0)) < 1: return {"status": "wrong_step"}
 	player.flags.ninaReturned = true
 	player.inventory.erase("quest-nina-tail")
+	preload("res://scripts/campaign/league_promotion.gd").award_into(player)
 	return session.commit_operation("nina-returned-v1", saved.checkpoint, player)
 
 func equip(id: String) -> Dictionary:

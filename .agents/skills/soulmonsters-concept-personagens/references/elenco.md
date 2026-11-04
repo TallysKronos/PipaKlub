@@ -25,8 +25,36 @@ e preserve o DNA. Atualize a coluna "Estado" a cada entrega.
 
 ## Regras do elenco
 
+Vila Operária: o dono aprovou distribuir as quatro alternativas revisadas: A Vasken (expansivo), B Rivka (teatral), C Odrik (impulsivo), D Teyra (protetor). Fonte e registro em `art/characters/vila-operaria/elenco-v1/`. Pranchas individuais pendentes. Parceiros indefinidos; sem integração ao jogo.
+
+Bruno Solda: alternativa D escolhida pelo dono; prancha com costas e expressões em `art/characters/bruno-solda/concept-v1/prancha.png`, em revisão. Parceiro indefinido. Sem integração ao jogo.
+
 - Nenhuma assinatura repetida: dois personagens não usam a mesma peça de destaque (fone de cristal é
   do Kael; gola de penas é do Locutor).
 - Cores principais: o azul do Kael não é a cor principal de outro jovem protagonista ou rival.
 - Grupo tem linguagem comum (seção 4 de `design-de-personagem.md`); indivíduo tem silhueta própria.
 - Personagem novo, parceiro novo ou nome novo é **proposta** até o dono aprovar.
+
+Caio Garça: campeão7 das Palafitas, Nv.27, definido na Bíblia atual. Exploração A/B/C/D colorida com silhuetas em `art/characters/caio-garca/concept-v1/`, em revisão. Idade, corpo, roupa e parceiro ainda não definidos. A tabela antiga de campeões pendentes acima não prevalece sobre os nomes atuais da Bíblia.
+
+Caio Garça — revisão V2: quatro opções coloridas e silhuetas em art/characters/caio-garca/concept-v2/, inspiradas em Makoko de Lagos como fantasia ancestral, conforme confirmação do usuário. V1 preservada; escolha pendente, sem canonizar figurino, idade ou parceiro.
+
+Caio Garça — direção V3 do usuário: velho esguio, máscara e punhos de um novo Soulmonster crocodiliano arredondado que emana veneno roxo. Concepts V2 A/B/C/D aprovados como reserva para outros personagens, sem atribuições definidas. V3 em exploração, criatura ainda sem nome.
+
+Caio Garça — V4 aprovada pelo usuário: rosto de senhor mais mangá, nariz simplificado. Arte em art/characters/caio-garca/concept-v4/caio-rosto-manga.png. V3 preservada; nenhuma integração de runtime nesta etapa.
+
+Caio Garça — prancha V5 com costas e expressões em revisão. V4 continua identidade aprovada. Conferir posição lateral da rabiola antes de produção.
+
+Caio Garça — V6 corrige continuidade da rabiola no quadril esquerdo; prancha em art/characters/caio-garca/concept-v6/prancha.png. Inspeção visual concluída, sem integração no jogo.
+
+Palafitas — Seyran (A, equilíbrio), Oruvo (B, velas), Kessai (C, travessias) e Veldren (D, passarelas) com nomes e papéis aprovados. Seyran possui prancha em art/characters/seyran/concept-v1/, em revisão. Designs fonte preservados em caio-garca/concept-v2/.
+
+Oruvo — prancha individual em art/characters/oruvo/concept-v1/, com frente, costas, expressões e estudo de linha. Design B preservado; em revisão, sem integração de runtime.
+
+Kessai — prancha em art/characters/kessai/concept-v1/, frente/costas/expressões/linha. Design C preservado; em revisão, sem integração no jogo.
+
+Veldren — prancha em art/characters/veldren/concept-v1/, integração visual de Soulmonster através de gola/punhos de placas e maquiagem. Em revisão; corrigir lado anatômico e nós da rabiola antes de produção. Parceiro não definido.
+
+Veldren — V1 aprovada; V2 corrige continuidade da rabiola no quadril direito. Caio tem fonte estática transparente de overworld em art/characters/palafitas-overworld-v1/caio-source.png, ainda sem integração ao mapa.
+
+Caio Garça — parceiro definido pelo usuário: Veskoro, crocodiliano arredondado de veneno roxo. Pose de batalha própria em art/creatures/veskoro/battle-v1/, integração local e efeitos procedurais; rig Soulgen ainda pendente.

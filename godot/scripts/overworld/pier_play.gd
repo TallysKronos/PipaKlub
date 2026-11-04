@@ -197,6 +197,10 @@ func _record_trail(old: Vector2,old_height: float) -> void:
 func toggle_run() -> void:
 	if not paused and not overview:Locomotion.toggle()
 
+func toggle_mount() -> void:
+	if paused or overview or not ladder.is_empty():return
+	avatar.set_mounted(not avatar.mounted)
+
 func _physics_process(delta: float) -> void:
 	if paused or overview:
 		avatar.moving=false
@@ -210,7 +214,7 @@ func _physics_process(delta: float) -> void:
 		var input := Controls.direction()
 		if input.length()>.1:
 			var lattice := Vector2(input.x+2*input.y,-input.x+2*input.y).normalized()
-			walk(lattice*SPEED*Locomotion.multiplier()*delta*minf(input.length(),1.0))
+			walk(lattice*SPEED*Locomotion.multiplier()*avatar.travel_multiplier()*delta*minf(input.length(),1.0))
 	avatar.moving = old.distance_to(cell)>.0001 or not ladder.is_empty()
 	avatar.running=avatar.moving and ladder.is_empty() and Locomotion.requested()
 	if avatar.moving and ladder.is_empty():

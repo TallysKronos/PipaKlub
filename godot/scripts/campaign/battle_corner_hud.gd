@@ -7,6 +7,7 @@ const PILOT=preload("res://assets/campaign/portrait-kael.png")
 const Layout=preload("res://scripts/campaign/hud_layout.gd")
 ## Corners sit on the shared safe rectangle (hud_layout.gd), so the battle lines up
 ## with exploration on Switch handheld, Steam Deck 16:10 and ultrawide.
+const Boss=preload("res://scripts/campaign/boss_presentation.gd")
 static func regions(size:Vector2,rivals:int=1) -> Dictionary:
 	var safe:=Layout.safe_rect(size)
 	var middle:=safe.get_center().x
@@ -27,6 +28,7 @@ static func diamonds(c:CanvasItem,start:Vector2,won:int,total:int,color:Color) -
 		c.draw_colored_polygon(shape,color if index<won else T.TINTA_3)
 static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictionary,seconds:float,round_no:int,rounds:int,wind:float,cost:int=0,lesson:int=-1,footer_top:float=-1) -> void:
 	var boxes:=regions(c.size,actors.size()-1)
+	var boss:bool=actors.size()==2 and actors[1].get("boss",false)
 	if footer_top>=0:boxes.partner.position.y=footer_top-boxes.partner.size.y-4
 	if actors[0].hp/actors[0].stats.line<.25:
 		var thickness:float=minf(c.size.x,c.size.y)*.06
@@ -36,17 +38,17 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	c.draw_texture_rect_region(PILOT,Rect2(pilot.position+Vector2(8,4),Vector2(54,58)),Rect2(160,10,460,500))
 	text(c,pilot.position+Vector2(72,25),Ink.ellipsis(player.get("name","Kael"),Hud.font(true),20,205),20)
 	var xp:int=player.get("tamerXp",0)
-	var level:=1
-	while level<100 and xp>=20*level+3*level*level:level+=1
+	var level:=preload("res://scripts/campaign/pipeiro_identity.gd").tamer_level(xp)
 	text(c,pilot.position+Vector2(72,48),"Tamer · Nv. %d"%level,Layout.type("micro"),T.PAPEL_2)
 	diamonds(c,pilot.position+Vector2(240,46),actors[0].get("rounds",0),rounds,T.CEU)
 	for index in range(1,actors.size()):
+		if boss:continue
 		var a:Dictionary=rival_summary(actors[index])
 		var compact:bool=actors.size()>2
 		var box:=Rect2(boxes.rivals.position+Vector2(0,(index-1)*66),Vector2(300,60 if compact else 104))
 		Ink.plate(c,box,T.TINTA,T.RABIOLA,10)
 		var title:String=a.get("name","Selvagem")
-		text(c,box.position+Vector2(14,21),Ink.ellipsis(title+" · "+names[index],Hud.font(true),18,270),18)
+		text(c,box.position+Vector2(14,21),Ink.ellipsis(names[index] if title.is_empty() else title+" · "+names[index],Hud.font(true),18,270),18)
 		var fraction:float=a.hp/a.stats.line
 		text(c,box.position+Vector2(14,43),"Linha",Layout.type("micro"))
 		bar(c,Rect2(box.position+Vector2(66,32),Vector2(164,10)),fraction,line_color(fraction))
@@ -75,6 +77,11 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 		c.draw_rect(cell_rect,T.CEU if p.energy/p.stats.energy>cell/10.0 else T.TINTA_3)
 		if cell<ceili(cost/p.stats.energy*10) and cost>0:c.draw_rect(cell_rect.grow(1),T.SOL,false,1)
 	text(c,card.position+Vector2(339,92),"%d%%"%roundi(p.energy/p.stats.energy*100),Layout.type("micro"))
+	if boss:
+		Boss.draw_meter(c,actors[1],faces[1],seconds,int(actors[1].get("level",1)))
+		Ink.plate(c,boxes.weather,T.TINTA,T.TINTA,6)
+		text(c,boxes.weather.position+Vector2(14,20),("Ar parado" if absf(wind)<.001 else "Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"]),Layout.type("micro"),T.PAPEL_2)
+		return
 	var center:Vector2=boxes.clock.get_center()
 	var diamond:=PackedVector2Array([center+Vector2(0,-45),center+Vector2(55,0),center+Vector2(0,45),center+Vector2(-55,0)])
 	c.draw_colored_polygon(diamond,T.TINTA)
@@ -84,6 +91,6 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	Ink.plate(c,Rect2(center+Vector2(-60,49),Vector2(120,24)),T.TINTA,T.TINTA,4)
 	text(c,center+Vector2(-35,66),"RODADA %d"%round_no if lesson<0 else "TREINO",Layout.type("micro"))
 	Ink.plate(c,boxes.weather,T.TINTA,T.TINTA,6)
-	text(c,boxes.weather.position+Vector2(14,20),"Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"],Layout.type("micro"),T.PAPEL_2)
+	text(c,boxes.weather.position+Vector2(14,20),("Ar parado" if absf(wind)<.001 else "Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"]),Layout.type("micro"),T.PAPEL_2)
 	if seconds<=10 and lesson<0:
 		text(c,Vector2(c.size.x/2-57,187),"ÚLTIMOS 10 s",16,T.RABIOLA)

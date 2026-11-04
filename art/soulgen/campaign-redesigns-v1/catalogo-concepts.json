@@ -1,0 +1,223 @@
+{
+  "schema": "soulgen-concept-reservations-v1",
+  "decisao": "Dono escolheu Trovareta A, Rabiolava B, Glacerol A e Tufanocorte A; demais oito propostas reservadas como outros Soulmonsters.",
+  "observacao": "IDs de reserva sao tecnicos. Sem nomes de Dex, atributos, evolucoes ou integracao decididos. Fontes preservadas integralmente.",
+  "concepts": [
+    {
+      "id": "trovareta",
+      "descricao": "Ave de trovao",
+      "estado": "arquitetura-escolhida",
+      "fonte": "trovareta-trovao-v2.png",
+      "opcao": "A",
+      "sha256": "8cee1978bc0e00362eaf950633c7a28935d476688f0d15e5ba5fe215ae840761",
+      "rig_pronto": true,
+      "integrado": false,
+      "nome": "Trovareta",
+      "contorno_carcara": {
+        "fonte": "contorno-carcara-v1/trovareta.png",
+        "estado": "acabamento-em-revisao",
+        "rig_pronto": false
+      },
+      "soulgen": {
+        "project": "art/soulgen/keys/trovareta/cutout-rig-v1/trovareta.soulgen.json",
+        "preset": "trovareta",
+        "parts": 8,
+        "actions": 6,
+        "faces": [
+          "normal",
+          "fierce",
+          "hurt",
+          "happy"
+        ],
+        "status": "rig-ajustado-e-aprovado-pelo-dono",
+        "browser_visual_tested": false,
+        "game_integrated": false,
+        "rigRevision": 2
+      }
+    },
+    {
+      "id": "rabiolava",
+      "descricao": "Raia aerea de rabiolas incandescentes",
+      "estado": "arquitetura-escolhida",
+      "fonte": "rabiolava-propostas-v1.png",
+      "opcao": "B",
+      "sha256": "2b93e09a8be00cb529e8f1c186bb0263d52ed2e3ee1e804223d477ee1dca9881",
+      "rig_pronto": true,
+      "integrado": false,
+      "nome": "Rabiolava",
+      "contorno_carcara": {
+        "fonte": "contorno-carcara-v1/rabiolava.png",
+        "estado": "acabamento-em-revisao",
+        "rig_pronto": false
+      },
+      "soulgen": {
+        "project": "art/soulgen/keys/rabiolava/cutout-rig-v1/rabiolava.soulgen.json",
+        "preset": "rabiolava",
+        "parts": 6,
+        "actions": 6,
+        "faces": [
+          "normal",
+          "fierce",
+          "hurt",
+          "happy"
+        ],
+        "status": "rig-ajustado-e-aprovado-pelo-dono",
+        "browser_visual_tested": false,
+        "game_integrated": false,
+        "rigRevision": 2
+      }
+    },
+    {
+      "id": "reserva-trovao-quadrupede",
+      "descricao": "Quadrupede ressonante com para-raios dorsais",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "trovareta-b-trovao-v2.png",
+      "opcao": "B",
+      "sha256": "6e0d3138a1a7d36f148a7a9073e5ec5f62fd492ef494c1abdc70779ae986487d",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "reserva-trovao-serpente",
+      "descricao": "Serpente eletrica de nos e armacao angular",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "trovareta-c-trovao-v2.png",
+      "opcao": "C",
+      "sha256": "fa02e2de642c8c3af87ca810d20b44e5844b12145182494b3f0675531e80d7d4",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "reserva-lava-fera",
+      "descricao": "Fera robusta com leque de tres rabiolas de lava",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "rabiolava-propostas-v1.png",
+      "opcao": "A",
+      "sha256": "2b93e09a8be00cb529e8f1c186bb0263d52ed2e3ee1e804223d477ee1dca9881",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "reserva-lava-caititu",
+      "descricao": "Caititu vulcanico com crina de lava",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "rabiolava-propostas-v1.png",
+      "opcao": "C",
+      "sha256": "2b93e09a8be00cb529e8f1c186bb0263d52ed2e3ee1e804223d477ee1dca9881",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "glacerol",
+      "descricao": "Lince de geleira e fio cortante",
+      "estado": "arquitetura-escolhida",
+      "fonte": "glacerol-propostas-v1.png",
+      "opcao": "A",
+      "sha256": "6dd712b8bce10bb0d780b4cb266b505366971f6154e6c8ad771fb5228aa1d49d",
+      "rig_pronto": true,
+      "integrado": false,
+      "nome": "Glacerol",
+      "contorno_carcara": {
+        "fonte": "contorno-carcara-v1/glacerol.png",
+        "estado": "acabamento-em-revisao",
+        "rig_pronto": false
+      },
+      "soulgen": {
+        "project": "art/soulgen/keys/glacerol/cutout-rig-v1/glacerol.soulgen.json",
+        "preset": "glacerol",
+        "parts": 9,
+        "actions": 6,
+        "faces": [
+          "normal",
+          "fierce",
+          "hurt",
+          "happy"
+        ],
+        "status": "rig-ajustado-e-aprovado-pelo-dono",
+        "browser_visual_tested": false,
+        "game_integrated": false,
+        "rigRevision": 2
+      }
+    },
+    {
+      "id": "reserva-gelo-crustaceo",
+      "descricao": "Crustaceo de pincas de gelo",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "glacerol-propostas-v1.png",
+      "opcao": "B",
+      "sha256": "6dd712b8bce10bb0d780b4cb266b505366971f6154e6c8ad771fb5228aa1d49d",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "reserva-gelo-mariposa",
+      "descricao": "Mariposa de seda gelada",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "glacerol-propostas-v1.png",
+      "opcao": "C",
+      "sha256": "6dd712b8bce10bb0d780b4cb266b505366971f6154e6c8ad771fb5228aa1d49d",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "tufanocorte",
+      "descricao": "Carneiro de espirais cortantes",
+      "estado": "arquitetura-escolhida",
+      "fonte": "tufanocorte-propostas-v1.png",
+      "opcao": "A",
+      "sha256": "aa2e7be270fe633341517b9ebe3147492889e5227eb4b9d9569a6e8838d2a664",
+      "rig_pronto": true,
+      "integrado": false,
+      "nome": "Tufanocorte",
+      "contorno_carcara": {
+        "fonte": "contorno-carcara-v1/tufanocorte.png",
+        "estado": "acabamento-em-revisao",
+        "rig_pronto": false
+      },
+      "soulgen": {
+        "project": "art/soulgen/keys/tufanocorte/cutout-rig-v1/tufanocorte.soulgen.json",
+        "preset": "tufanocorte",
+        "parts": 10,
+        "actions": 6,
+        "faces": [
+          "normal",
+          "fierce",
+          "hurt",
+          "happy"
+        ],
+        "status": "rig-ajustado-e-aprovado-pelo-dono",
+        "browser_visual_tested": false,
+        "game_integrated": false,
+        "rigRevision": 2
+      }
+    },
+    {
+      "id": "reserva-vento-tamandua",
+      "descricao": "Tamandua de cauda em leque espiralado",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "tufanocorte-propostas-v1.png",
+      "opcao": "B",
+      "sha256": "aa2e7be270fe633341517b9ebe3147492889e5227eb4b9d9569a6e8838d2a664",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "reserva-vento-espiral",
+      "descricao": "Criatura aerea de espiral vazada",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "tufanocorte-propostas-v1.png",
+      "opcao": "C",
+      "sha256": "aa2e7be270fe633341517b9ebe3147492889e5227eb4b9d9569a6e8838d2a664",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    }
+  ]
+}
