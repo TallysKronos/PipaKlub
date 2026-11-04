@@ -1,5 +1,4 @@
 extends "res://scripts/campaign/encounter_view.gd"
-const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 const TrailModel = preload("res://scripts/campaign/morro_model.gd")
 const Rules = preload("res://scripts/campaign/morro_rules.gd")
 
