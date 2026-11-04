@@ -34,7 +34,8 @@ func run() -> void:
 	for destination in ["park-trail","park-veredas"]:
 		var door:Dictionary={}
 		for event in view.interaction_events:
-			if event.type=="saida" and event.props.destino==destination:door=event
+			# The high passage (entrada_destino) has its own check in parque_connections_checks.
+			if event.type=="saida" and event.props.destino==destination and not event.props.has("entrada_destino"):door=event
 		check(not door.is_empty(),destination+" exit exists")
 		view.nearby=door;view.interact()
 		var expected:=Vector2(36.5,2.5) if destination=="park-trail" else Vector2(2.5,13.5)

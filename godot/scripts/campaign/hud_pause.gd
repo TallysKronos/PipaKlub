@@ -71,7 +71,8 @@ func _ready() -> void:
 	var subtitle:=label("Batalha em pausa" if battle_paused else "Um respiro entre um elo e outro.",20,Hud.MUTED);canvas.add_child(subtitle);at(subtitle,Vector2(164,121),Vector2(650,30))
 	var wallet:=label("%s · %d moedas"%[player.get("name","Kael"),int(player.get("coins",0))],22,Hud.GOLD);wallet.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;wallet.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS;canvas.add_child(wallet);at(wallet,Vector2(820,86),Vector2(294,38))
 	var grid:=GridContainer.new();grid.columns=4;grid.add_theme_constant_override("h_separation",16);grid.add_theme_constant_override("v_separation",16);canvas.add_child(grid);at(grid,Vector2(160,177),Vector2(960,364))
-	var colors:Array[Color]=[Hud.GOLD]+Tokens.LOBBY_ACCENTS
+	var colors:Array[Color]=[Hud.GOLD]
+	for accent:Color in Tokens.LOBBY_ACCENTS:colors.append(accent)
 	for i in OPTIONS.size():
 		var option:Array=OPTIONS[i]
 		var tile:=Tile.new();tile.text=option[0];tile.custom_minimum_size=Vector2(228,174);tile.art=Hud.icon(option[2],true);tile.accent=colors[i]
