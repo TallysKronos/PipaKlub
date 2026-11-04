@@ -2310,7 +2310,7 @@ func _show_missions() -> void:
 	var Story=load("res://scripts/campaign/kronasta_story.gd")
 	var main_beat:Dictionary=Story.current_beat(player)
 	if trained and not main_beat.is_empty():
-		var main:=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(main)
+		var main=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(main)
 		var main_column:=VBoxContainer.new();main_column.add_theme_constant_override("separation",6);main.add_child(main_column)
 		_label("PRINCIPAL · Ato %d"%int(main_beat.act),main_column,25).add_theme_color_override("font_color",Hud.GOLD)
 		_label(Story.objective(player),main_column,21)

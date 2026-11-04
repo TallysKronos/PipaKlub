@@ -375,7 +375,7 @@ func _unhandled_input(event: InputEvent) -> void:
 ## Night of the cerol (Centro and Condomínio) and the Trovareta storm (Bosque):
 ## a veil over the world, under the HUD.
 func stage_endgame(id: String) -> void:
-	if id not in ["gerador","gollia-arrependimento"]:return
+	if id not in ["gerador","gollia-arrependimento","reuniao"]:return
 	var previous := actors.get_node_or_null("EndgameStaging")
 	if previous != null:return
 	var staging := Node2D.new()
@@ -384,6 +384,9 @@ func stage_endgame(id: String) -> void:
 	staging.z_index=1
 	actors.add_child(staging)
 	var center := Vector2i(player.floor())
+	if id=="reuniao":
+		_stage_champions(staging,center)
+		return
 	if id=="gerador":
 		var story=preload("res://scripts/campaign/endgame_story.gd")
 		var anchor: Vector2=story.point(area_id,story.STEPS[id].anchor)
@@ -440,6 +443,59 @@ func stage_endgame(id: String) -> void:
 		sprite.offset.y=-size.y*.5
 		sprite.position=model.project(Vector2(cell)+Vector2(.5,.5))
 		sprite.set_meta("rest_y",sprite.position.y)
+		sprite.set_meta("ground_point",Vector2(cell)+Vector2(.5,.5))
+		staging.add_child(sprite)
+
+## F20: the champions' meeting in the Praça da Matriz, in three small groups with room
+## for Kael. Mikka is the event itself; the others come from each district's cast
+## (Dona Neve has no art yet).
+const CHAMPIONS := [
+	{"name":"Lohan","atlas":"res://assets/npc-ds/bambuzal-v1/"},
+	{"name":"Kleie","atlas":"res://assets/npc-ds/beira-canal-v1/"},
+	{"name":"Dona Zulmira","path":"res://assets/npc-ds/feira-v1/zulmira.png"},
+	{"name":"Marisol","path":"res://assets/npc-ds/cais-v1/marisol.png"},
+	{"name":"Bruno Solda","path":"res://assets/npc-ds/vila-operaria-v1/bruno-solda.png"},
+	{"name":"Caio Garça","path":"res://assets/npc-ds/palafitas-v1/caio.png"},
+]
+const CHAMPION_SPOTS := [Vector2i(-3,-2),Vector2i(-4,0),Vector2i(-3,2),Vector2i(0,-3),Vector2i(2,-3),Vector2i(4,-1),Vector2i(4,1)]
+
+func _stage_champions(staging: Node2D, center: Vector2i) -> void:
+	var occupied := {center:true,Vector2i(follower.floor()):true}
+	var occupied_screen := [model.project(player),model.project(follower)]
+	for i in CHAMPIONS.size():
+		var entry: Dictionary=CHAMPIONS[i]
+		var cell := Vector2i(-1,-1)
+		for delta in [Vector2i.ZERO,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN,Vector2i(-1,-1),Vector2i(1,1),Vector2i(-2,0),Vector2i(2,0)]:
+			var candidate: Vector2i=center+CHAMPION_SPOTS[i]+delta
+			var point := Vector2(candidate)+Vector2(.5,.5)
+			var screen: Vector2=model.project(point)
+			var separate := true
+			for used: Vector2 in occupied_screen:
+				if screen.distance_to(used)<64.0:separate=false
+			if separate and not occupied.has(candidate) and model.point_walkable(point) and absf(model.height_at(point)-model.height_at(player))<.25:
+				cell=candidate
+				break
+		if cell.x<0:continue
+		occupied[cell]=true
+		occupied_screen.append(model.project(Vector2(cell)+Vector2(.5,.5)))
+		var sprite := Sprite2D.new()
+		sprite.name=str(entry.name)
+		if entry.has("atlas"):
+			var atlas: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(str(entry.atlas)+"atlas.json"))
+			sprite.texture=load(str(entry.atlas)+"atlas.png")
+			for frame: Dictionary in atlas.sprites:
+				if frame.name==entry.name and frame.facing=="se":
+					sprite.region_enabled=true
+					sprite.region_rect=Rect2(frame.bounds[0],frame.bounds[1],frame.bounds[2],frame.bounds[3])
+		else:
+			sprite.texture=load(str(entry.path))
+			if sprite.texture.get_width()>sprite.texture.get_height():
+				sprite.region_enabled=true
+				sprite.region_rect=Rect2(0,0,64,96)
+		var size: Vector2=sprite.region_rect.size if sprite.region_enabled else sprite.texture.get_size()
+		sprite.scale=Vector2.ONE*(96.0/size.y)
+		sprite.offset.y=-size.y*.5
+		sprite.position=model.project(Vector2(cell)+Vector2(.5,.5))
 		sprite.set_meta("ground_point",Vector2(cell)+Vector2(.5,.5))
 		staging.add_child(sprite)
 
@@ -541,7 +597,7 @@ func present_championship_victory() -> void:
 	if not reduced_motion:await get_tree().create_timer(.8).timeout
 func finish_endgame_scene(id: String) -> void:
 	if reduced_motion:return
-	if id=="gollia-arrependimento":
+	if id in ["gollia-arrependimento","reuniao"]:
 		var staging := actors.get_node_or_null("EndgameStaging")
 		if staging == null:return
 		var retreat := create_tween().set_parallel(true)
