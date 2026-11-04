@@ -3605,8 +3605,12 @@ func _present_pending_ending() -> void:
 	await view.present_championship_victory()
 	if not is_instance_valid(view) or park!=view:return
 	sound.play_event("progress.quest_complete")
+	var broadcast=load("res://scripts/campaign/championship_broadcast.gd").new()
+	broadcast.reduced_motion=preferences.reduced_motion
+	add_child(broadcast)
 	var dialog := _dialog("Jamile", "Você chegou até aqui, Kael.\n\nA linha é sua, campeão.", "Ver créditos")
 	dialog.confirmed.connect(dialog.queue_free)
+	dialog.confirmed.connect(broadcast.queue_free)
 	dialog.confirmed.connect(_show_kronasta_credits.call_deferred)
 	dialog.popup_centered(Vector2i(640,240))
 

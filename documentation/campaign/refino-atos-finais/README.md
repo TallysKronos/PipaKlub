@@ -37,3 +37,9 @@ As vitórias do teste de interface são simuladas. Estes resultados não substit
 - Interface da chave e encerramento passaram novamente em 42 verificações com resultados de batalha simulados.
 
 Os novos diálogos são propostas editoriais integradas para revisão. A transmissão da TV foi retomada na fala de Jamile, mas ainda não existe uma cena de transmissão ao vivo completa.
+
+## Transmissão do campeonato
+
+O encerramento tem agora a identificação Pipa TV ao vivo, faixa de campeão e o filtro CRT já usado pelo jogo. O enquadramento permanece no lobby com Kael e os três acompanhantes. O diálogo conserva o foco; o grafismo sai antes dos créditos. A opção de movimento reduzido remove a entrada em fade.
+
+Verificado no Godot a 1280x720. A repetição da chave e do encerramento passou nas 42 verificações. As vitórias são simuladas no teste. Esta cena não inclui um retorno cinematográfico ao quarto do prólogo.
