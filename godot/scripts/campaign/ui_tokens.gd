@@ -17,6 +17,36 @@ const UNTINTED := Color.WHITE
 const COLORS := {"nanquim": NANQUIM, "tinta": TINTA, "tinta-2": TINTA_2,
 	"tinta-3": TINTA_3, "papel": PAPEL, "papel-2": PAPEL_2,
 	"rabiola": RABIOLA, "ceu": CEU, "sol": SOL, "folha": FOLHA, "veu": VEU}
+## Secondary palettes of screens drawn after PIP-62 (same values, now named here).
+## Pause lobby ("LOBBY DO PIPEIRO"): navy tiles and their accents.
+const LOBBY_SHADOW := Color("071322")
+const LOBBY_TILE := Color("102139")
+const LOBBY_TILE_ACTIVE := Color("102944")
+const LOBBY_INSET := Color("142d48")
+const LOBBY_INSET_EDGE := Color("416686")
+const LOBBY_DOTS := Color("355371")
+const LOBBY_DISABLED := Color("536980")
+const LOBBY_DISABLED_ART := Color("8892a4")
+const LOBBY_STRIP := Color("092136")
+const LOBBY_STRIP_LINE := Color("358ba2")
+const LOBBY_BACKDROP := Color(.015, .04, .085, .94)
+const LOBBY_GRID := Color(.1, .35, .55, .13)
+const LOBBY_ACCENTS := [Color("efa44e"), Color("8cd7f0"), Color("c285ed"), Color("69bce3"), Color("bd8bf0"), Color("b687ee"), Color("81bfcf")]
+## Region map and guides.
+const MAP_MUTED := Color("697478")
+const MAP_MUTED_TEXT := Color("b3b4ae")
+const GUIDE_CYAN := Color("43c5df")
+const GUIDE_CYAN_LINE := Color("4acbe5")
+const GUIDE_FIELD := Color("111f2e")
+const GUIDE_TARGET := Color(.15, .7, .85, .2)
+const GUIDE_TRACE := Color("eadbb8")
+## Story accents: Bando cord, result highlight, night room, possessed notice, mute.
+const CORD := Color("653b84")
+const HIGHLIGHT := Color("ffd78e")
+const NIGHT_ROOM := Color("9aabc7")
+const POSSESSED := Color("b978dd")
+const MIST := Color(.76, .65, .79, .55)
+const MUTED_ICON := Color(.45, .45, .45)
 const ACTION_COLORS := {"attack": RABIOLA, "energy": FOLHA, "dodge": CEU,
 	"puxao": SOL, "line": PAPEL, "team": SOL}
 const FONT_ROOT := "res://assets/campaign/ui-modern/fonts/"

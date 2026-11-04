@@ -1,4 +1,5 @@
 extends "res://scripts/campaign/encounter_view.gd"
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 const TrailModel = preload("res://scripts/campaign/morro_model.gd")
 const Rules = preload("res://scripts/campaign/morro_rules.gd")
 
@@ -75,7 +76,7 @@ func _draw() -> void:
 		elif v.poisonTime>0:message="VENENO · %.1fs"%v.poisonTime
 		if not message.is_empty():
 			var notice:=Rect2(size.x*.5-260,174,520,42)
-			Ink.plate(self,notice,Tokens.TINTA,Color("b978dd"),8)
+			Ink.plate(self,notice,Tokens.TINTA,Tokens.POSSESSED,8)
 			draw_string(Hud.font(true),notice.position+Vector2(14,27),message,HORIZONTAL_ALIGNMENT_CENTER,492,18,Tokens.PAPEL)
 	# Persistent special indicators are rendered in the sky.
 

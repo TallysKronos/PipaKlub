@@ -847,7 +847,7 @@ func _show_world() -> void:
 		elif confession_pending:
 			overlay.objective.text="Converse com Heleana."
 			var night:=CanvasModulate.new()
-			night.color=Color("9aabc7")
+			night.color=Hud.Tokens.NIGHT_ROOM
 			room.add_child(night)
 	if professor and preload("res://scripts/campaign/retalho_care.gd").available(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/retalho_care.gd").objective(session.snapshot().player)
 	if professor and preload("res://scripts/campaign/blue_exam_preparation.gd").eligible(session.snapshot().player) and not preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/blue_exam_preparation.gd").data().pending
@@ -1999,7 +1999,7 @@ func _show_collection() -> void:
 			mount_icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			mount_icon.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 			mount_icon.tooltip_text="Pode ser montado · requer 1 HP e armação intacta" if preload("res://scripts/campaign/mount_quest.gd").healthy(partner) else "Montaria derrotada · repare Linha e Armação antes de montar"
-			if not preload("res://scripts/campaign/mount_quest.gd").healthy(partner):mount_icon.modulate=Color(.45,.45,.45)
+			if not preload("res://scripts/campaign/mount_quest.gd").healthy(partner):mount_icon.modulate=Hud.Tokens.MUTED_ICON
 			row.add_child(mount_icon)
 		var details := VBoxContainer.new()
 		details.add_theme_constant_override("separation",6)
@@ -3426,7 +3426,7 @@ func _return_ruinas(outcome: String = "") -> void:
 				if actor.root.get_meta("event").props.get("acao") != "aracatiTerreiro": continue
 				var cord := Line2D.new()
 				cord.width = 3.0
-				cord.default_color = Color("#653b84")
+				cord.default_color = Hud.Tokens.CORD
 				cord.points = PackedVector2Array([Vector2(-30, -48), Vector2(0, -34), Vector2(30, -48)])
 				cord.z_index = 2
 				actor.visual.add_child(cord)
@@ -3496,7 +3496,7 @@ func _show_stadium_bracket(finals: GDScript) -> void:
 			var label := Label.new()
 			label.text = rounds[index][row] if row == 0 or round >= index else "A definir"
 			if row == 1 and round > index: label.text += "  ✓"
-			if index == round: label.add_theme_color_override("font_color", Color("#ffd78e"))
+			if index == round: label.add_theme_color_override("font_color", Hud.Tokens.HIGHLIGHT)
 			column.add_child(label)
 	layout.add_child(HSeparator.new())
 	var title := Label.new()
@@ -3628,7 +3628,7 @@ func _play_enamor_awaken() -> void:
 	for i in 12:
 		var angle := TAU*i/12.0
 		var at := Vector2.from_angle(angle)*float(28+i*4)
-		shapes.quad(effect,PackedVector2Array([at+Vector2(-15,0),at+Vector2(0,-9),at+Vector2(15,0),at+Vector2(0,9)]),Color(.76,.65,.79,.55))
+		shapes.quad(effect,PackedVector2Array([at+Vector2(-15,0),at+Vector2(0,-9),at+Vector2(15,0),at+Vector2(0,9)]),Hud.Tokens.MIST)
 	for actor in view.npc_nodes:
 		if actor.root.get_meta("event").props.get("acao") == "ruinasDuel":
 			actor.root.hide()

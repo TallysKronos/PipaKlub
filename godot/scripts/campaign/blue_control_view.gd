@@ -1,4 +1,5 @@
 extends Control
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 signal finished
 signal left
 const Model=preload("res://scripts/campaign/blue_control_model.gd")
@@ -61,8 +62,8 @@ func _unhandled_input(event:InputEvent)->void:
  Controls.observe(event)
  if Controls.cancel(event):toggle_pause();get_viewport().set_input_as_handled()
 func _draw()->void:
- draw_rect(Rect2(Vector2.ZERO,size),Color("111f2e"))
+ draw_rect(Rect2(Vector2.ZERO,size),Tokens.GUIDE_FIELD)
  draw_style_box(Hud.panel("dark"),field())
  var target:=Rect2(field().position+Model.TARGET.position*field().size,Model.TARGET.size*field().size)
- draw_rect(target,Color(.15,.7,.85,.2));draw_rect(target,Color("4acbe5"),false,3)
- draw_line(Vector2(field().get_center().x,field().end.y),field().position+model.position*field().size,Color("eadbb8"),2,true)
+ draw_rect(target,Tokens.GUIDE_TARGET);draw_rect(target,Tokens.GUIDE_CYAN_LINE,false,3)
+ draw_line(Vector2(field().get_center().x,field().end.y),field().position+model.position*field().size,Tokens.GUIDE_TRACE,2,true)

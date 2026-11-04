@@ -11,7 +11,22 @@ const ART_RENDERERS := {
 	"res://scripts/campaign/lacertubo_movie.gd": "Cutscene film backdrop.",
 	"res://scripts/campaign/neighborhood_view.gd": "Neighbourhood terrain map colours.",
 	"res://scripts/campaign/opening_tv.gd": "Opening TV screen grading and bezel.",
-	"res://scripts/campaign/workshop_birth_view.gd": "Partner birth light effect."
+	"res://scripts/campaign/workshop_birth_view.gd": "Partner birth light effect.",
+	"res://scripts/campaign/house_modern.gd": "Kael's house interior furniture and walls.",
+	"res://scripts/campaign/professor_modern.gd": "Workshop interior furniture and walls.",
+	"res://scripts/campaign/shop_modern.gd": "Lia's shop interior furniture.",
+	"res://scripts/campaign/care_camp_transition.gd": "Care camp tent and fire scene.",
+	"res://scripts/campaign/mural_cinematic.gd": "Cave mural cinematic grading.",
+	"res://scripts/campaign/warehouse_battle_field.gd": "Warehouse arena floor and props.",
+	"res://scripts/campaign/warehouse_tableau.gd": "Warehouse story tableau.",
+	"res://scripts/campaign/tyler_reel_prop.gd": "Tyler's reel prop drawing.",
+	"res://scripts/campaign/park_row_view.gd": "Raft, towline and water arrows of the Remar crossing.",
+	"res://scripts/campaign/park_glide_view.gd": "Glide wind arrows over the world.",
+	"res://scripts/campaign/mormaco_overworld.gd": "Mormaço geysers and steam.",
+	"res://scripts/campaign/veskoro_signals.gd": "Veskoro venom telegraphs in battle.",
+	"res://scripts/campaign/expedition_photo_view.gd": "Old expedition photograph grading.",
+	"res://scripts/campaign/hud_pipeiro_identity.gd": "Illustrated pipeiro ID card (a physical document).",
+	"res://scripts/campaign/hud_emblem_case.gd": "Illustrated insignia case and medals (physical objects)."
 }
 ## World renderers (terrain, water, structures, showcases): materials, not interface ink.
 const ART_DIRECTORIES := {"res://scripts/overworld/": "World material renderers."}

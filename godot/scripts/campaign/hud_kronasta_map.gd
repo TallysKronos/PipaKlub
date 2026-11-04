@@ -1,4 +1,5 @@
 extends Control
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 signal travel_requested(scene:String)
 signal local_requested
 signal closed
@@ -32,16 +33,16 @@ class Marker extends Button:
 	func _draw() -> void:
 		var at:=Vector2(18,18)
 		var active:bool=is_hovered() or has_focus() or selected
-		var color:=Color("ffc23d") if current else Color("2ec8e3") if lit else Color("697478")
-		draw_circle(at,14,Color("141e29"))
-		if active:draw_arc(at,18,0,TAU,32,Color("f4e9d2"),2,true)
+		var color:=Tokens.SOL if current else Tokens.CEU if lit else Tokens.MAP_MUTED
+		draw_circle(at,14,Tokens.TINTA)
+		if active:draw_arc(at,18,0,TAU,32,Tokens.PAPEL,2,true)
 		draw_arc(at,12,0,TAU,32,color,2,true)
 		draw_circle(at,7 if lit else 4,color)
 		if current:draw_colored_polygon(PackedVector2Array([at+Vector2(-5,-24),at+Vector2(5,-24),at+Vector2(0,-17)]),color)
 		var width:=minf(190,Hud.font(true).get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,14).x+16)
 		var rect:=Rect2(12,34,width,24)
 		draw_style_box(Hud.panel("dark"),rect)
-		draw_string(Hud.font(true),Vector2(20,51),title,HORIZONTAL_ALIGNMENT_LEFT,width-16,14,Color("f4e9d2") if lit else Color("b3b4ae"))
+		draw_string(Hud.font(true),Vector2(20,51),title,HORIZONTAL_ALIGNMENT_LEFT,width-16,14,Tokens.PAPEL if lit else Tokens.MAP_MUTED_TEXT)
 
 func label(parent:Node,text:String,font_size:int=18) -> Label:
 	var result:=Label.new();result.text=text
@@ -151,8 +152,8 @@ func _draw() -> void:
 		var start:Vector2=map_rect.position+a.at*map_rect.size
 		var end:Vector2=map_rect.position+b.at*map_rect.size
 		var active:bool=not a.scenes.is_empty() and not b.scenes.is_empty()
-		draw_line(start,end,Color("141e29",.65),5,true)
-		draw_dashed_line(start,end,Color("f4e9d2",.85) if active else Color("697478",.7),2,7,true)
+		draw_line(start,end,Tokens.alpha(Tokens.TINTA,.65),5,true)
+		draw_dashed_line(start,end,Tokens.alpha(Tokens.PAPEL,.85) if active else Tokens.alpha(Tokens.MAP_MUTED,.7),2,7,true)
 	draw_rect(map_rect.grow(2),Hud.MUTED,false,2)
 
 func _unhandled_input(event:InputEvent) -> void:

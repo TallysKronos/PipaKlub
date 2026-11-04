@@ -509,7 +509,7 @@ func _draw() -> void:
 		draw_line(Vector2(235,585),ally_position,Hud.GOLD,2,true)
 		var ally_frame:Dictionary=content.combat.rai.animations.idle[0]
 		Ink.live_sprite(self,rai_ally,"rai",ally_frame,ally_position,115,Tokens.UNTINTED,_field_scale(),ally_position.x>model.q.x)
-		draw_string(Hud.font(),ally_position+Vector2(-45,-55),"Tyler · Rai",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color.WHITE)
+		draw_string(Hud.font(),ally_position+Vector2(-45,-55),"Tyler · Rai",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Tokens.PAPEL)
 
 	_draw_feedback()
 

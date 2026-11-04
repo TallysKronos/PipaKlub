@@ -1,4 +1,5 @@
 extends Node2D
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 const Exam=preload("res://scripts/campaign/blue_exam.gd")
 const Escort=preload("res://scripts/campaign/blue_escort_model.gd")
 var view:Node2D
@@ -15,13 +16,13 @@ func _ready()->void:
  var content:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
  var entry:Dictionary=content.combat["basic-carcara"];frames=entry.animations.idle
  art=Sprite2D.new();art.texture=load("res://assets/campaign/"+entry.image);art.region_enabled=true;root.add_child(art)
- caption=Label.new();caption.text="Carcará da Liga";caption.add_theme_font_size_override("font_size",14);caption.add_theme_color_override("font_outline_color",Color.BLACK);caption.add_theme_constant_override("outline_size",5);root.add_child(caption)
+ caption=Label.new();caption.text="Carcará da Liga";caption.add_theme_font_size_override("font_size",14);caption.add_theme_color_override("font_outline_color",Tokens.NANQUIM);caption.add_theme_constant_override("outline_size",5);root.add_child(caption)
  for i in Escort.ROUTE.size():
   var marker:=Node2D.new();marker.position=view.model.project(Escort.ROUTE[i]);view.actors.add_child(marker)
-  var ring:=Line2D.new();ring.width=2;ring.default_color=Color("43c5df")
+  var ring:=Line2D.new();ring.width=2;ring.default_color=Tokens.GUIDE_CYAN
   for n in 33:ring.add_point(Vector2(cos(TAU*n/32)*19,sin(TAU*n/32)*9))
   marker.add_child(ring)
-  var number:=Label.new();number.text=str(i+1);number.position=Vector2(-4,-24);number.add_theme_color_override("font_outline_color",Color.BLACK);number.add_theme_constant_override("outline_size",4);marker.add_child(number)
+  var number:=Label.new();number.text=str(i+1);number.position=Vector2(-4,-24);number.add_theme_color_override("font_outline_color",Tokens.NANQUIM);number.add_theme_constant_override("outline_size",4);marker.add_child(number)
  _process(0)
 func begin()->void:
  course=Escort.new(0 if Exam.promoted(view.saved_player) else int(Exam.record(view.saved_player).escort));running=not course.complete

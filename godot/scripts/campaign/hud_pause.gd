@@ -28,27 +28,27 @@ class Tile extends Button:
 	func _ready() -> void:
 		set_meta("recorte_decorated",true)
 		for state in ["normal","hover","pressed","focus","disabled"]:add_theme_stylebox_override(state,StyleBoxEmpty.new())
-		for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color","font_hover_pressed_color"]:add_theme_color_override(state,Color.TRANSPARENT)
+		for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color","font_hover_pressed_color"]:add_theme_color_override(state,Tokens.alpha(Tokens.NANQUIM,0.0))
 		focus_entered.connect(queue_redraw);focus_exited.connect(queue_redraw);mouse_entered.connect(queue_redraw);mouse_exited.connect(queue_redraw)
 	func _draw() -> void:
 		var active:bool=has_focus() or is_hovered() or selected
 		var edge:Color=Hud.GOLD if active else Hud.CYAN
-		if disabled:edge=Color("536980")
+		if disabled:edge=Tokens.LOBBY_DISABLED
 		var r:=Rect2(4,4,size.x-8,size.y-10)
-		shape(Rect2(r.position+Vector2(0,5),r.size),Color("071322"),Color("071322"),5)
-		shape(r,Color("102944") if active else Color("102139"),edge,4)
-		shape(r.grow(-7),Color("142d48"),Color("416686"),1)
+		shape(Rect2(r.position+Vector2(0,5),r.size),Tokens.LOBBY_SHADOW,Tokens.LOBBY_SHADOW,5)
+		shape(r,Tokens.LOBBY_TILE_ACTIVE if active else Tokens.LOBBY_TILE,edge,4)
+		shape(r.grow(-7),Tokens.LOBBY_INSET,Tokens.LOBBY_INSET_EDGE,1)
 		for i in 6:draw_line(Vector2(size.x-22-i*8,12),Vector2(size.x-40-i*8,30),Color(edge,.3),2)
-		for x in range(24,int(size.x)-20,12):draw_circle(Vector2(x,size.y-28+(x%3)*3),1,Color("355371"))
+		for x in range(24,int(size.x)-20,12):draw_circle(Vector2(x,size.y-28+(x%3)*3),1,Tokens.LOBBY_DOTS)
 		draw_line(Vector2(18,34),Vector2(34,16),edge,5)
 		draw_line(Vector2(size.x-41,size.y-15),Vector2(size.x-22,size.y-34),Hud.GOLD if active else accent,5)
 		if art!=null:
 			var target:=Hud.fit_texture(art,Rect2(68,17,size.x-136,90))
 			if illustrated:
-				draw_texture_rect(art,target,false,Color(1,1,1,.4 if disabled else 1))
+				draw_texture_rect(art,target,false,Tokens.alpha(Tokens.UNTINTED,.4 if disabled else 1.0))
 			else:
 				for offset in [Vector2(-3,0),Vector2(3,0),Vector2(0,-3),Vector2(0,3)]:draw_texture_rect(art,Rect2(target.position+offset,target.size),false,Hud.BLACK)
-				draw_texture_rect(art,target,false,Color("8892a4") if disabled else accent.lightened(.3))
+				draw_texture_rect(art,target,false,Tokens.LOBBY_DISABLED_ART if disabled else accent.lightened(.3))
 		var font:=Hud.font(true);var font_size:=28
 		var width:=font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
 		draw_string(font,Vector2((size.x-width)/2+2,139+2),text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Hud.BLACK)
@@ -61,8 +61,8 @@ class Tile extends Button:
 
 class DescriptionPlate extends Control:
 	func _draw() -> void:
-		Ink.plate(self,Rect2(0,0,size.x,size.y),Color("092136"),Hud.CYAN,20)
-		draw_line(Vector2(20,size.y-5),Vector2(size.x-38,size.y-5),Color("358ba2"),1)
+		Ink.plate(self,Rect2(0,0,size.x,size.y),Tokens.LOBBY_STRIP,Hud.CYAN,20)
+		draw_line(Vector2(20,size.y-5),Vector2(size.x-38,size.y-5),Tokens.LOBBY_STRIP_LINE,1)
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT);mouse_filter=MOUSE_FILTER_STOP
@@ -71,7 +71,7 @@ func _ready() -> void:
 	var subtitle:=label("Batalha em pausa" if battle_paused else "Um respiro entre um elo e outro.",20,Hud.MUTED);canvas.add_child(subtitle);at(subtitle,Vector2(164,121),Vector2(650,30))
 	var wallet:=label("%s · %d moedas"%[player.get("name","Kael"),int(player.get("coins",0))],22,Hud.GOLD);wallet.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;wallet.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS;canvas.add_child(wallet);at(wallet,Vector2(820,86),Vector2(294,38))
 	var grid:=GridContainer.new();grid.columns=4;grid.add_theme_constant_override("h_separation",16);grid.add_theme_constant_override("v_separation",16);canvas.add_child(grid);at(grid,Vector2(160,177),Vector2(960,364))
-	var colors:Array[Color]=[Hud.GOLD,Color("efa44e"),Color("8cd7f0"),Color("c285ed"),Color("69bce3"),Color("bd8bf0"),Color("b687ee"),Color("81bfcf")]
+	var colors:Array[Color]=[Hud.GOLD]+Tokens.LOBBY_ACCENTS
 	for i in OPTIONS.size():
 		var option:Array=OPTIONS[i]
 		var tile:=Tile.new();tile.text=option[0];tile.custom_minimum_size=Vector2(228,174);tile.art=Hud.icon(option[2],true);tile.accent=colors[i]
@@ -124,8 +124,8 @@ func at(node:Control,point:Vector2,extent:Vector2) -> void:node.position=point;n
 func fit() -> void:
 	var factor:=minf(size.x/1280,size.y/720);canvas.scale=Vector2.ONE*factor;canvas.position=(size-Vector2(1280,720)*factor)/2;queue_redraw()
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO,size),Color(.015,.04,.085,.94))
-	for x in range(0,int(size.x),32):draw_line(Vector2(x,0),Vector2(x,size.y),Color(.1,.35,.55,.13),1)
-	for y in range(0,int(size.y),32):draw_line(Vector2(0,y),Vector2(size.x,y),Color(.1,.35,.55,.13),1)
+	draw_rect(Rect2(Vector2.ZERO,size),Tokens.LOBBY_BACKDROP)
+	for x in range(0,int(size.x),32):draw_line(Vector2(x,0),Vector2(x,size.y),Tokens.LOBBY_GRID,1)
+	for y in range(0,int(size.y),32):draw_line(Vector2(0,y),Vector2(size.x,y),Tokens.LOBBY_GRID,1)
 	draw_line(Vector2(size.x*.65,size.y-6),Vector2(size.x,size.y*.76),Hud.CYAN,4,true)
 	draw_line(Vector2(0,size.y*.23),Vector2(size.x*.2,0),Color(Hud.CYAN,.3),3,true)

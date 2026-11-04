@@ -116,8 +116,8 @@ func _ready() -> void:
 		mormaco=load("res://scripts/campaign/mormaco_overworld.gd").new();add_child(mormaco)
 	if saved_checkpoint.scene=="park-trail" and load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved_player):
 		var entry:=Node2D.new();entry.position=model.project(Vector2(34.5,31.5));actors.add_child(entry)
-		var arrow:=Line2D.new();arrow.width=3;arrow.default_color=Color("43c5df");arrow.points=PackedVector2Array([Vector2(-14,7),Vector2(14,-7),Vector2(3,-9),Vector2(14,-7),Vector2(9,3)]);entry.add_child(arrow)
-		var label:=Label.new();label.text="Pátio da Liga";label.position=Vector2(-45,-32);label.add_theme_font_size_override("font_size",14);label.add_theme_color_override("font_outline_color",Color.BLACK);label.add_theme_constant_override("outline_size",5);entry.add_child(label)
+		var arrow:=Line2D.new();arrow.width=3;arrow.default_color=Tokens.GUIDE_CYAN;arrow.points=PackedVector2Array([Vector2(-14,7),Vector2(14,-7),Vector2(3,-9),Vector2(14,-7),Vector2(9,3)]);entry.add_child(arrow)
+		var label:=Label.new();label.text="Pátio da Liga";label.position=Vector2(-45,-32);label.add_theme_font_size_override("font_size",14);label.add_theme_color_override("font_outline_color",Tokens.NANQUIM);label.add_theme_constant_override("outline_size",5);entry.add_child(label)
 	if saved_checkpoint.scene=="parque-patio-liga":
 		follower_root.hide();exploration_hud.show_partner=false;exploration_hud.partner_panel.hide()
 		blue_guide=load("res://scripts/campaign/blue_exam_guide.gd").new();add_child(blue_guide)

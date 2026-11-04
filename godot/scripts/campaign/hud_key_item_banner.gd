@@ -1,5 +1,6 @@
 extends Control
 ## Acquisition presentation only. Rewards must already be committed by the caller.
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 signal finished
 const Hud = preload("res://scripts/campaign/hud.gd")
 const DURATION := 2.5
@@ -17,7 +18,7 @@ func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var gradient := Gradient.new()
 	gradient.offsets = PackedFloat32Array([0,.18,.82,1])
-	gradient.colors = PackedColorArray([Color(0,0,0,0),Color(Hud.INK,.88),Color(Hud.INK,.88),Color(0,0,0,0)])
+	gradient.colors = PackedColorArray([Tokens.alpha(Tokens.NANQUIM,0.0),Color(Hud.INK,.88),Color(Hud.INK,.88),Tokens.alpha(Tokens.NANQUIM,0.0)])
 	band = GradientTexture2D.new()
 	band.gradient = gradient
 	band.width = 512; band.height = 1
@@ -51,7 +52,7 @@ func _draw() -> void:
 	var alpha := opacity_at(elapsed)
 	if alpha <= 0: return
 	var center := Vector2(size.x*.5,size.y*.48)
-	draw_texture_rect(band,Rect2(0,center.y-112,size.x,240),false,Color(1,1,1,alpha))
+	draw_texture_rect(band,Rect2(0,center.y-112,size.x,240),false,Tokens.alpha(Tokens.UNTINTED,alpha))
 	# Quiet halftone and ink, confined to the sides so the item keeps the focus.
 	for side in [-1,1]:
 		for x in range(80,int(size.x*.34),12):
@@ -71,7 +72,7 @@ func _draw() -> void:
 	var scale := item_scale_at(elapsed)
 	if scale > 0 and item_texture != null:
 		var extent := Vector2(128,128)*scale
-		draw_texture_rect(item_texture,Rect2(icon_center-extent/2,extent),false,Color(1,1,1,alpha))
+		draw_texture_rect(item_texture,Rect2(icon_center-extent/2,extent),false,Tokens.alpha(Tokens.UNTINTED,alpha))
 	if not reduced_motion:
 		var impact := (1.0-smoothstep(.32,.65,elapsed))*smoothstep(.16,.22,elapsed)
 		for index in 4:
