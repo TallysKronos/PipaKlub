@@ -84,12 +84,14 @@ Regras:
 
 **[Decidido 01/11]** Quatro almáticas antigas e destrutivas, forças da natureza misturadas com pipa. São os guardiões da lenda: os primeiros a receber alma do visitante do mural. Cada uma mora num lugar extremo de Kronasta:
 
+**[Decidido 04/11]** Os Quatro Ventos são estes. Vulcão e Geleira saem; a Glacerol sai da história.
+
 | Vento | Força | Lugar | Personalidade [Proposta] |
 | --- | --- | --- | --- |
-| **Trovareta** | Trovão + vareta | Floresta (Bosque, à noite, em tempestade) | Paciente e temível, só aparece na tempestade |
-| **Rabiolava** | Lava + rabiola | Vulcão | Furiosa, a mais difícil de acalmar |
-| **Glacerol** | Geleira + cerol | Gelo (geleira) | Fria e cortante, testa com paciência |
-| **Tufanocorte** | Tufão + corte | Montanha (Serra) | Exigente, só respeita quem sobe sem atalho |
+| **Mormaço** | Calor + vapor | Pântano do Mormaço (lago C) | Sonolento e esperto; o primeiro a ser preso |
+| **Tufanocorte** | Tufão + corte | Serra de Kronasta (Cume) | Exigente, só respeita quem sobe sem atalho |
+| **Rabiolava** | Lava + rabiola | Ilha do Aracati (terreiro C) | Furiosa, a mais difícil de acalmar |
+| **Trovareta** | Trovão + vareta | Bosque dos Ventos, noite de tempestade | Paciente e temível, só aparece na tempestade |
 
 **Mormaço · visual aprovado (02/11/2026):** opção C da exploração de gêiseres: animal baixo e robusto de inspiração tatu/pangolim da areia, corpo magenta, grandes placas roxas, ventre ocre, garras claras e dois gêiseres turquesa de água quente e vapor. Conserva o olhar sonolento e esperto, varetas, pipa e rabiola. O animal de referência não muda sua região de história: continua guardião do Pântano. As demais opções ficam reservadas para outros Soulmonsters, sem atribuição automática a outros Ventos.
 
@@ -286,57 +288,50 @@ Se as 30 vagas do banco do save estiverem ocupadas, a escolha fica registrada e 
 
 **Remar [Decisão, 02/11/2026]:** Marisol ensina a habilidade após o Exame Azul. **Platyx é único e reservado ao enredo de redenção de Grampo**: não emprestar outro indivíduo, não distribuir a espécie e não colocá-la como encontro selvagem. O apoio escolhido é uma **capivara de boia, design D** da exploração de 02/11/2026 (verde-água, boia nos quadris e vela curva). A, B e C ficam preservados como conceitos, sem inclusão automática no elenco. Integração atual: orientação interativa de corrente, ritmo e margem, seguida de prática opcional no trecho seguro da Entrada alagada (Pântano A), entre as duas margens de cota 0. A capivara acompanha a balsa sem entrar no banco; segurar Remar avança e soltar recupera o fôlego. A ponte continua disponível. Remar é aprendido ao desembarcar com a chegada gravada. Interrupção e recarga devolvem à margem de origem; falha ao gravar permite repetir o desembarque. Esta prática não enfrenta ou liberta Mormaço.
 
-### 7.5 Ato 4 — Rabiola Vermelha: "Os Quatro Ventos"
+### 7.5 Ato 4 — Rabiola Vermelha: "Os Quatro Ventos" [Decidido 04/11]
 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |
 | --- | --- | --- | --- | --- |
-| 1 | Vulcão | Os ventos param em Kronasta. Pipas não sobem. **O Rato prendeu os Quatro Ventos com o Carretel Negro** (P10). A Rabiolava é a primeira, na cratera. | Rabiolava amarrada (27) | Rabiolava solta e um enigma: "o frio sabe onde estão os outros" |
-| 2 | Palafitas | Bairro 7. | Campeão 7, **Caio Garça** (27) | Bairro 8 e a Serra |
-| 3 | Casa do Kael, à noite | **A confissão.** A mãe conta que era pesquisadora e que a rabiola veio das Ruínas. "Era minha quando eu era criança" era mentira (v1). Ela reconhece a Retalho pela máscara e pelas cicatrizes e chora: conta do ataque do lendário e da parceira que ficou presa. | — | A Retalho lembra do nome verdadeiro |
-| 4 | Serra (Montanha) | O Tufanocorte, amarrado. Só respeita quem sobe sem atalho: a subida é a pé, sem Planar. | Tufanocorte amarrado (29) | Presente: **Corrente de ar**. A espécie-tatu da Serra ensina **Cavar** |
-| 5 | Alto da Serra | Bairro 8. | Campeã 8, **Dona Neve** (30) | Bairro 9 e a Geleira |
-| 6 | Bosque, noite de tempestade | A Trovareta, amarrada. Só aparece na tempestade. Um **tenente do Bando**, o Navalha, tenta cortar a rabiola dela. | Navalha (30) → Trovareta amarrada (31) | — |
-| 7 | Geleira | A Glacerol, amarrada, guardada pelo **Rato em pessoa**. O Rato não luta: assiste. Ele convida o Kael para o Bando: *"Você também deu alma a uma coisa que você fez."* O Kael recusa. | Glacerol amarrada (33) | Exame da categoria Vermelha |
-
-**Revelação de reunião (P20 e a reunião de domadores de Digimon World DS):** depois da Glacerol, todos os campeões já vencidos se reúnem na Praça da Matriz. A Mikka, o Lohan, a Kleie e os outros decidem **patrulhar Kronasta juntos**. É o momento em que o campeonato vira comunidade.
+| 1 | Pântano C | Os ventos param. O Rato prendeu os Quatro Ventos com o Carretel Negro. O Mormaço é o primeiro. | Mormaço possuído (27) | Pista: "o frio sabe onde estão os outros" |
+| 2 | Palafitas | Bairro 7. | Campeão 7, **Caio Garça** (27) | A Serra |
+| 3 | Casa do Kael, à noite | **A confissão** da Heleana (e o reencontro com o Retalho, nas duas vertentes). | — | — |
+| 4 | Serra C (Cume) | O Tufanocorte, amarrado. Subida a pé, sem Planar. O tatu ensina **Cavar**; o paredão ensina **Corrente de ar**. | Tufanocorte (29) | Alto da Serra |
+| 5 | Alto da Serra | Bairro 8. | Campeã 8, **Dona Neve** (30) | Ilha do Aracati |
+| 6 | Aracati C | A Rabiolava amarrada no terreiro. | Rabiolava (33) | A tempestade |
+| 7 | Bosque C, noite de tempestade | O tenente **Navalha** tenta cortar a rabiola da Trovareta. Depois, a Trovareta amarrada. O **Rato em pessoa** assiste e convida o Kael para o Bando: *"Você também deu alma a uma coisa que você fez."* O Kael recusa. | Navalha (30) → Trovareta (31) | O Centro |
+| 8 | Centro A, Praça da Matriz | **Reunião dos campeões**: Mikka, Lohan, Kleie, Zulmira, Marisol, Bruno, Caio e Dona Neve decidem patrulhar Kronasta juntos. | — | Exame Vermelho |
+| 9 | Centro A | **Exame da categoria Vermelha** com a Dona Cida: dois duelos de avaliação seguidos, sem descanso entre eles. | Avaliação (31) → Avaliação (32) | Bairro 9 |
 
 **Integração do Mormaço (02/11/2026):** após Azul e prática de Remar, observar o ar parado no Pântano A e seguir ao lago C. Confronto Nv.27, jato com aviso de 2,1s e recuperação; derrota/fuga permitem retorno e descanso. Vitória desfaz o controle; conversa na margem registra a libertação e a pista “o frio sabe onde estão os outros”. Não concede captura, categoria Vermelha ou recompensas repetíveis. Primeira apresentação usa poses ilustradas e transição de cor, não rig Soulgen completo.
 
-### 7.6 Ato 5 — Rabiola Dourada: "A noite do cerol"
+### 7.6 Ato 5 — Rabiola Dourada: "A noite do cerol" [Decidido 04/11]
 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |
 | --- | --- | --- | --- | --- |
-| 1 | Centro | Bairro 9, estúdio da Pipa TV. O produtor do programa pede ao Kael para caçar o **"Pipeiro Fantasma"**, que solta pipas presas em fios e "rouba" rabiolas. | Campeão 9, **Leo Antena** (33) | Bairro 10 |
-| 2 | Laboratório sob o ateliê | **O homúnculo.** O Tyler descobre o que é e foge com o Rai. O Kael o encontra: *"O Rabbito também foi feito, e ninguém manda no que ele escolhe."* (v1) **[Proposta]** O Kael descobre que o Pipeiro Fantasma é o Tyler, que solta as almas presas para o Bando não pegar. É a reviravolta do Lucky Mouse de Digimon World 3: o caçado era do bem. | — | — |
-| 3 | Kronasta inteira | **A noite do cerol (P12).** O Bando corta as rabiolas de meio bairro numa noite. Kronasta vira o **mundo espelho**: os mesmos mapas, à noite, com Desalmados, barreiras do Bando e NPCs sem parceiro. Para passar nas barreiras, o Kael usa uma **braçadeira do Bando** tirada de um capanga (o "Crony ID" de Digimon World 3). | Desalmados (30–35) | — |
-| 4 | Conjunto das Lajes | Bairro 10, de noite. A campeã luta mesmo com o bairro tomado. | Campeã 10, **Tainá** (36) | Bairro 11 |
-| 5 | Vila Operária D, galpão | **Invasão (P17).** O galpão do Bando tem cadeado de três nós. Cada tenente guarda um nó (P7). Depois, uma sequência de lutas contra capangas até o fundo. | Peteca (34), Cola-Fina (35), Navalha (36) → sequência de capangas | Almas guardadas libertadas |
-| 6 | Fundo do galpão | **O Gollia no time do Bando.** Ele luta pelo Rato. O parceiro dele, sobrecarregado com o Carretel Negro, vira um monstro sem controle (o GranKuwagamon de Digimon World DS) e o Gollia fica sem ação. A Retalho o protege. Ele foge com o Bando, abalado. | Gollia (36) → parceiro do Gollia descontrolado (37) | Semente do arrependimento |
-| 7 | Alto da Serra, torre do vento | **O gerador (P12, a máquina de desfazer porcos de Digimon World 3).** Os Quatro Ventos sopram juntos do alto da Serra e devolvem as almas cortadas aos corpos. Kronasta volta ao normal. | — | **Exame da categoria Dourada: Copa Relâmpago** |
+| 1 | Centro A | O produtor da Pipa TV pede ao Kael para caçar o **Pipeiro Fantasma**. | — | — |
+| 2 | Centro | Bairro 9. | Campeão 9, **Leo Antena** (33) | — |
+| 3 | Centro C | O Pipeiro Fantasma solta as pipas presas e deixa uma flor de cerejeira. | — | — |
+| 4 | Ateliê, laboratório | **O homúnculo.** Kael descobre que o Tyler foi feito e que o Pipeiro Fantasma é ele. | Sentinela (33) | A noite do cerol |
+| 5 | Vila, Centro e Condomínio | **A noite do cerol, versão enxuta.** Esses três lugares ficam à noite; os outros fecham até o gerador ligar. Barreiras do Bando nas saídas; Desalmados nas ruas. | Capanga da barreira (33) | **Braçadeira do Bando** |
+| 6 | Condomínio | Bairro 10, de noite. | Campeã 10, **Tainá** (36) | O galpão |
+| 7 | Vila Operária D, galpão | **Invasão.** Cadeado de três nós, um por tenente; depois os capangas até o fundo. | Peteca (34), Cola-Fina (35), Navalha (36) → 2 capangas | — |
+| 8 | Fundo do galpão | **O Gollia no time do Bando.** O parceiro dele, sobrecarregado pelo Carretel Negro, perde o controle. O Retalho protege o Gollia, que foge abalado. | Gollia (36) → parceiro descontrolado (37) | O gerador |
+| 9 | Serra C, torre do vento | **O gerador.** Os Quatro Ventos sopram juntos e devolvem as almas. A noite acaba. | — | Copa Relâmpago |
+| 10 | Centro A | **Exame da categoria Dourada: Copa Relâmpago**, três rodadas seguidas transmitidas pela Pipa TV. | 3 rodadas (34, 35, 36) | Bairro 11 |
 
-### 7.7 Ato 6 — Campeão de Kronasta: "O Elo"
+### 7.7 Ato 6 — Campeão de Kronasta: "O Elo" [Decidido 04/11]
 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |
 | --- | --- | --- | --- | --- |
 | 1 | Porto Novo | Bairro 11. | Campeão 11, **Capitão Jurandir** (40) | Coração das Ruínas |
-| 2 | Coração das Ruínas, entrada | **Aliados amarrados (P11).** O Rato prendeu três amigos com o Carretel Negro: a Nina, a Mikka e a Jamile. É um corredor de chefes. | Nina (40), Mikka (41), Jamile (43) | — |
-| 3 | Coração das Ruínas, parte D | **Sem volta (P18).** Aviso na tela antes de entrar. **O Elo.** O Bando invade para levar o Elo. A Heleana, o Assis, o Tyler e o Kael agem juntos pela primeira vez (v1). | — | — |
-| 4 | Câmara do ovo | **O Grande Carretel (P18, chefe em partes).** Primeiro, os **quatro carretéis menores**, um por Vento roubado, como os casulos de Digimon World DS. Depois, o Carretel Grande em duas fases. | 4 carretéis (42) → Grande Carretel (44) | — |
-| 4b | Câmara do ovo | **O arrependimento do Gollia.** Ele larga o Bando e segura os capangas na porta da câmara para o Kael passar. | — | — |
-| 5 | Câmara do ovo | **A traição invertida.** O Rato manda o Grampo esticar a linha do Elo à força. O Platyx se recusa a puxar. O Grampo larga o carretel e ajuda o Kael. | **Rato** (45) | O Elo volta para a câmara |
-| 6 | Alto do Mirante | Bairro 12. O ex-campeão da cidade, que desistiu porque achava o campeonato "vendido para a TV". | Campeão 12, **Ícaro** (44) | Santuário |
-| 7 | Santuário do Lendário | **O lendário.** O lendário do jogo desperta, e Kael precisa vencê-lo antes da final (v1). **[Proposta]** É o antagonista ideológico (P6): acha que humanos esticam a linha e testa o Kael. Quando perde, não é a força que o convence: é o Rabbito escolher ficar do lado do Kael sem ser mandado. | **Lendário** (46) | Final do campeonato |
-| 8 | Estádio de Kronasta | **A final contra a Jamile.** As duas trajetórias se encontram na arquibancada: a mãe, o professor e o Tyler assistem ao Kael (v1). **[Proposta]** O Gollia, o Grampo e os campeões dos bairros estão na arquibancada. | Jamile (48–50) | Créditos |
+| 2 | Coração das Ruínas A, B e C | **Aliados amarrados:** capangas guardam a Nina, a Mikka e a Jamile. Na parte C, o Grampo e o Platyx; o Platyx se recusa a puxar. | Capangas (40, 41) → Platyx (43) | — |
+| 3 | Coração das Ruínas D | **O arrependimento do Gollia:** ele larga o Bando e segura os capangas na porta para o Kael passar. | — | — |
+| 4 | Coração das Ruínas D | **O Rato.** | Rato (44) | — |
+| 5 | Coração das Ruínas D | **O lendário é o Eremor.** O Bando o desperta; os pilares cedem. Heleana, Assis e Tyler seguram a saída. | **Eremor** (45) | Bairro 12 |
+| 6 | Alto do Mirante | Bairro 12. Ícaro, que achava o campeonato "vendido para a TV". | Campeão 12, **Ícaro** (44) | Estádio |
+| 7 | Estádio de Kronasta | **A chave final:** Grampo (47), Tyler (48), Faye (49) e o título contra a Jamile (50). Na arquibancada: a Heleana, o Assis, o Tyler, o Gollia, o Grampo e os campeões dos bairros. | Chave de 4 rodadas | Créditos |
 
-**[Decidido] Regras de progressão:**
-
-- São 12 bairros, e as áreas da trajetória 2 só abrem com bairros vencidos.
-- A final do campeonato exige três coisas, nesta ordem:
-  1. ter vencido os 12 bairros;
-  2. ter derrotado o Rato e o Bando do Cerol no Coração das Ruínas;
-  3. ter derrotado o lendário do jogo.
-
-**[Proposta]** O lendário é o visitante do mural, aquele que desceu com o ovo de luz. Ele desperta quando o Elo volta para a câmara do ovo e testa se o Kael forma laço ou estica a linha à força. Falta definir o nome e o design.
+**[Decidido] Regras de progressão:** a final exige os 12 bairros, o Rato vencido e o Eremor vencido, nesta ordem. O Santuário do Lendário sai do mapa.
 
 ### 7.8 Resumo: o que cada vitória abre na trajetória 2
 
@@ -569,3 +564,11 @@ O crocodiliano de Caio se chama **Veskoro**, nome aprovado pelo dono. Corpo arre
 O gatilho é Retalho, sem exigência de emblema. Se Kael aceitou o convite dela, deve levá-la como parceiro ativo à mãe: o novo nome/laço transcreve o anterior, Retalho não se lembrará de Heleana novamente, mas Heleana reconhece, chora e conta o ocorrido. Preservar o nome dado pelo jogador.
 
 Se Kael recusou, ao voltar para casa ouve um grunhido externo. Ele e Heleana saem: Retalho seguiu Tyler às escondidas, movida por algo dentro dela. Heleana se emociona, toca a rabiola, Retalho recupera as lembranças e as duas voltam a ser parceiras. Não conceder Retalho a Kael nesta vertente. Adiar não é recusar; falta de vaga após aceitar também não é recusa. Esta decisão substitui as propostas anteriores de retorno incondicional a Heleana e de revelar um nome antigo obrigatório.
+
+## 19. Decisões registradas (04/11/2026)
+
+- **Quatro Ventos:** Mormaço (Pântano), Tufanocorte (Serra), Rabiolava (Ilha do Aracati) e Trovareta (Bosque, em tempestade). Sai a Glacerol (§2.4).
+- **Rato em pessoa:** aparece no Bosque, na tempestade da Trovareta, e faz o convite ali. Sai do Aracati (§7.5).
+- **Noite do cerol:** versão enxuta, com Vila, Centro e Condomínio à noite; os demais lugares fecham até o gerador (§7.6).
+- **Lendário:** é o Eremor, nas Ruínas D, depois do Rato. Sai o Santuário (§7.7).
+- **Final:** a chave de quatro rodadas no Estádio, terminando na Jamile (§7.7).
