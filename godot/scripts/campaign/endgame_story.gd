@@ -203,3 +203,18 @@ static func after(p:Dictionary,id:String)->String:
 static func exit_blocked(event:Dictionary,p:Dictionary,area:String)->bool:
 	if event.get("type","")!="saida" or not night_active(p) or flags(p).get("bracadeiraBando",false):return false
 	return area in NIGHT_SCENES and str(event.props.get("destino",""))!="kronasta"
+
+## Story light (night, storm) as a multiply veil under the HUD. The terrain uses
+## unshaded materials, which CanvasModulate does not reach.
+static func veil(hud_parent:Node,tint:Color)->void:
+	if not is_instance_valid(hud_parent) or hud_parent.has_node("StoryLight"):return
+	var veil_rect:=ColorRect.new()
+	veil_rect.name="StoryLight"
+	veil_rect.color=tint
+	veil_rect.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	veil_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var blend:=CanvasItemMaterial.new()
+	blend.blend_mode=CanvasItemMaterial.BLEND_MODE_MUL
+	veil_rect.material=blend
+	hud_parent.add_child(veil_rect)
+	hud_parent.move_child(veil_rect,0)

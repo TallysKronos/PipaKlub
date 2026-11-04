@@ -3,6 +3,7 @@ extends "res://scripts/overworld/neighborhood_play.gd"
 signal action_requested(id: String)
 signal menu_requested
 const Checkpoint = preload("res://scripts/campaign/neighborhood_checkpoint.gd")
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 var saved_player: Dictionary = {}
 var checkpoint_position := Checkpoint.HOME
 var exploration_hud: Control
@@ -81,6 +82,9 @@ func _ready() -> void:
 	exploration_hud.chosen.connect(func(id: String):action_requested.emit(id))
 	_equip_partner()
 	_refresh_visuals();_update_hint()
+	# Night of the cerol: the Vila is one of the three night places (BIBLIA §7.6).
+	if load("res://scripts/campaign/endgame_story.gd").night_active(saved_player):
+		load("res://scripts/campaign/endgame_story.gd").veil(hud_root,Tokens.TINTA_3.lightened(.2))
 	camera.position=player_root.position-Vector2(0,45)
 	camera.reset_smoothing()
 

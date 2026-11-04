@@ -63,7 +63,6 @@ func _ready() -> void:
 	area_id = Checkpoint.MAPS[saved_checkpoint.scene]
 	super()
 	interface.hide()
-	_apply_story_light()
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
 	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_kronasta(saved_checkpoint.scene) else 1.15)
@@ -87,6 +86,7 @@ func _ready() -> void:
 	exploration_hud.player_data = saved_player
 	ui.add_child(exploration_hud)
 	hint = exploration_hud.prompt
+	_apply_story_light()
 	exploration_hud.map = Hud.map_for(self,ui)
 	exploration_hud.chosen.connect(func(id: String):
 		if id=="menu": menu_requested.emit()
@@ -363,14 +363,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	super(event)
 
 ## Night of the cerol (Centro and Condomínio) and the Trovareta storm (Bosque):
-## a world tint only; the HUD lives on its own canvas and keeps its colours.
+## a veil over the world, under the HUD.
 func _apply_story_light() -> void:
 	var endgame=load("res://scripts/campaign/endgame_story.gd")
 	var tint:=Tokens.UNTINTED
-	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.3)
-	elif endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene):tint=Tokens.TINTA_3.lightened(.5)
+	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.2)
+	elif endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene):tint=Tokens.TINTA_3.lightened(.32)
 	if tint==Tokens.UNTINTED:return
-	var shade:=CanvasModulate.new()
-	shade.name="StoryLight"
-	shade.color=tint
-	add_child(shade)
+	endgame.veil(exploration_hud.get_parent() if is_instance_valid(exploration_hud) else null,tint)

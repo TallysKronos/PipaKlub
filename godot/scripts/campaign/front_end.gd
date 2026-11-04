@@ -3349,7 +3349,9 @@ func _endgame_step(id:String)->void:
 				park.refresh(session.snapshot().player)
 				_notice.call_deferred(step.outro))
 		return
-	_confirm_park(step.name,endgame.prompt(player,id),"Enfrentar",func():
+	# The title follows the opponent in front of the player (Navalha, then Trovareta...).
+	var index:int=endgame.duel_index(player,id)
+	_confirm_park(step.name if index==0 else str(step.duels[index][0]),endgame.prompt(player,id),"Enfrentar",func():
 		if _result(story.begin(id,at)):_show_saved.call_deferred())
 
 func _return_endgame(id:String)->void:

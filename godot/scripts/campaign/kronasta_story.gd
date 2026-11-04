@@ -335,10 +335,14 @@ static func scene_for_travel(id: String) -> String:
 ## points to this place; otherwise the part's own exploration hint.
 static func region_objective(player: Dictionary, scene: String) -> String:
 	var region:=Checkpoint.region_of(scene)
+	# An act 4-6 story step placed here wins over the area's district progress.
+	var step_beat:=current_beat(player)
+	if load("res://scripts/campaign/endgame_story.gd").STEPS.has(step_beat.get("id","")) and step_beat.place==str(place_for_scene(scene).get("id",region)):return step_beat.text
 	if region=="montanha" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"alto-da-serra"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"alto-da-serra")
 	if region=="palafitas" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,region):return preload("res://scripts/campaign/district_campaign.gd").objective(player,region)
 	var beat:=current_beat(player)
-	if not beat.is_empty() and beat.place==region and region!="bosque": return beat.text
+	var here:String=str(place_for_scene(scene).get("id",region))
+	if not beat.is_empty() and (beat.place==region or beat.place==here) and (region!="bosque" or beat.id=="trovareta"): return beat.text
 	var part:=scene.right(1)
 	return {
 		"industrial":{"a":"Siga pelo Pátio de Cargas até o Canal das Caldeiras.","b":"Atravesse o Canal das Caldeiras até a Usina do Vento.","c":"Usina do Vento · o atalho leva de volta ao Pátio de Cargas."},
