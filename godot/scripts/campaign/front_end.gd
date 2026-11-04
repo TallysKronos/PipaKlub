@@ -58,6 +58,8 @@ var pause_previous: Dictionary = {}
 var last_scene_key := ""
 var menu_origin:=""
 var pause_after_load:=false
+## Real save store while a QA jump runs on its own folder (qa_jump.gd).
+var qa_real_store:RefCounted=null
 var binding_rows:Dictionary={}
 var controls_focus_action:=""
 var team_page:=0
@@ -182,6 +184,8 @@ func _menu() -> void:
 	menu_origin=""
 	_clear("menu")
 	session.close_session()
+	# Leaving a QA jump returns to the player's real save folder.
+	if qa_real_store!=null:session._store=qa_real_store;qa_real_store=null
 	var menu=load("res://scripts/campaign/hud_title_menu.gd").new()
 	for index in range(1,4):
 		if session.inspect_slot("slot-%d"%index).status=="ok":menu.has_saves=true
@@ -194,7 +198,40 @@ func _main_menu_action(id:String) -> void:
 		"continue":_show_slots(false)
 		"new":_show_slots(true)
 		"settings":_show_settings()
+		"qa-jump":_show_qa_jump()
 		"quit":get_tree().quit()
+
+## QA only: list of story points of acts 4-6 (qa_jump.gd).
+func _show_qa_jump() -> void:
+	if not preload("res://scripts/campaign/kronasta_story.gd").qa():return
+	_simple_page("QA · SALTAR PARA UM PASSO",true)
+	_label("Cria uma jornada descartável, em uma pasta de save separada, com tudo o que vem antes já feito.",page,18)
+	var list:=VBoxContainer.new()
+	list.add_theme_constant_override("separation",6)
+	var scroll:=ScrollContainer.new()
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.add_child(list)
+	list.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	page.add_child(scroll)
+	for entry:Dictionary in preload("res://scripts/campaign/qa_jump.gd").JUMPS:
+		var id:String=entry.id
+		_button(str(entry.label),list,func():_qa_jump(id))
+	_button("Voltar",page,_menu)
+
+func _qa_jump(id:String) -> void:
+	var qa=preload("res://scripts/campaign/qa_jump.gd")
+	if qa.jump(id).is_empty():return
+	if qa_real_store==null:qa_real_store=session._store
+	session.close_session()
+	# The QA folder holds only throwaway journeys: start each jump from a clean slot.
+	var folder:=DirAccess.open(qa.STORE_PATH)
+	if folder!=null:
+		for file in folder.get_files():folder.remove(file)
+	session._store=preload("res://scripts/campaign/save_store.gd").new(qa.STORE_PATH)
+	if not _result(session.start("slot-1")):return
+	if not _result(qa.install(session,id)):return
+	_show_saved()
 
 func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var point:Dictionary=snapshot.get("checkpoint",{})

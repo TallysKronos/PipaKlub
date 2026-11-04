@@ -34,7 +34,10 @@ func _ready() -> void:
 		first.add_theme_font_size_override("font_size",28)
 	elif mode=="main":
 		var index:=0
-		for option in [["CONTINUAR","continue"],["NOVA JORNADA","new"],["CONFIGURAÇÕES","settings"],["SAIR","quit"]]:
+		var options:=[["CONTINUAR","continue"],["NOVA JORNADA","new"],["CONFIGURAÇÕES","settings"],["SAIR","quit"]]
+		# QA builds only: start a throwaway journey at a story point (qa_jump.gd).
+		if preload("res://scripts/campaign/kronasta_story.gd").qa():options.insert(3,["QA · SALTAR PARA UM PASSO","qa-jump"])
+		for option in options:
 			var button:=_button(option[0],option[1],index)
 			button.disabled=option[1]=="continue" and not has_saves
 			if first==null and not button.disabled:first=button
