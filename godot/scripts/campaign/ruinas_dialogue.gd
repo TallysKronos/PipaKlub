@@ -13,15 +13,17 @@ const RESCUES := {
 	},
 	"kronasta-coracao-c": {
 		"guard":"Grampo: Rato já entrou na câmara. Platyx, segura a linha.\n\nJamile: Grampo, olha pra ele. Ele está tremendo desde que você amarrou minhas mãos.\n\nGrampo: É só mais um duelo. Vai, Platyx.",
+		"after":"Jamile: Grampo e Platyx entraram na câmara. A porta está livre.",
 		"bound":"Jamile: Estou com as mãos presas. Quando a linha cair, afaste o carretel do alcance dele.",
-		"freed":"Grampo: Platyx, volta aqui. Eu mandei você puxar.\n\nGrampo: Toda vez que você baixava a cabeça, eu fingia que era um sim.\n\nGrampo: Tá bom. Nunca mais vou puxar por você. Vamos soltar a Jamile juntos?\n\nJamile: Rato está com a chave. Kael, segue. Nós vamos atrás de você.",
+		"freed":"Grampo: Platyx, volta aqui. Eu mandei você puxar.\n\nGrampo: Toda vez que você baixava a cabeça, eu fingia que era um sim.\n\nGrampo: Tá bom. Nunca mais vou puxar por você. Vamos soltar a Jamile juntos?\n\nGrampo: Vou tentar fazer o Rato parar. Platyx, vem comigo?",
 	},
 }
 
 const DOOR := "Jamile: Daqui em diante, fica de olho no altar. Se Rato usar a chave, talvez a gente fique preso do lado de dentro.\n\nEntrar na Câmara do Elo bloqueia a saída até Eremor ser derrotado."
-const CHIEF := "Rato: Passei anos vendo parceiros irem embora quando bem entendiam. Com o Elo, eu posso criar um que fique.\n\nKael: Se ele é obrigado a ficar, você já decidiu tudo por ele. Largue a chave.\n\nRato: Venha tirar da minha mão."
+const CHIEF := "Grampo: Rato, para. Olha pro Platyx. Eu achei que podia escolher por ele. Você ainda pode largar essa chave.\n\nRato: Passei anos vendo parceiros irem embora quando bem entendiam. Com o Elo, eu posso criar um que fique.\n\nKael: Se ele é obrigado a ficar, você já decidiu tudo por ele. Largue a chave.\n\nRato: Venha tirar da minha mão."
 const BETRAYAL := "Kael: Acabou, Rato. A chave.\n\nRato: Eu prometi um duelo. Não prometi entregar nada.\n\nTyler: Kael, ele está indo pro selo!"
-const AWAKENED := "Rato: Ai.\n\nTyler: Nina, Mikka, Jamile, comigo. A passagem ainda está de pé.\n\nGrampo: Platyx, quer me ajudar com a viga?\n\nTyler: Kael, a gente tira todo mundo daqui.\n\nKael: Eremor! Olha pra mim. Você fica aqui."
+const EVACUATE := "Tyler: Nina, Mikka, Jamile, comigo! Grampo, segura a retaguarda."
+const AWAKENED := "Kael: Eremor! Olha pra mim. Você fica aqui."
 const REMATCH := "Tyler: A passagem ainda aguenta. Respira, confere a linha e me avisa quando estiver pronto.\n\nKael: Dessa vez eu seguro Eremor aqui."
 const VICTORY := "Kael: A linha parou de puxar.\n\nTyler: Todo mundo passou. Vem, Kael.\n\nGrampo: Platyx, pronto pra sair?"
 const LOST_GUARD := "Kael: Minha linha cedeu. Vou me recompor e volto pra soltar você."

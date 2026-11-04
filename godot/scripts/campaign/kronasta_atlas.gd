@@ -21,7 +21,8 @@ const REGIONS := [
 {"id":"feira","name":"Feira do Largo","at":Vector2(.64,.68),"scenes":["kronasta-feira-a","kronasta-feira-b","kronasta-feira-c"],"parts":["Praça da Feira","Mercado alto","Largo da campeã"],"description":"Bancas, pipeiros e um apito de origem duvidosa. Dispute o quarto emblema."},
 {"id":"caverna","name":"Caverna do Mural","at":Vector2(.54,.74),"scenes":["caverna-mural-a","caverna-mural-b","caverna-mural-c"],"parts":["Vestíbulo do Nó","Galeria do Vento","Salão do Primeiro Laço"],"description":"Tyler encontrou marcas antigas na pedra. A Rabiola Antiga pode responder a elas."},
 {"id":"cais","name":"Cais Velho","at":Vector2(.75,.72),"scenes":["kronasta-cais-a","kronasta-cais-b","kronasta-cais-c"],"parts":["Ancoradouro","Docas","Cais alto"],"description":"Barcos de pesca e pipas de sinalização. Cinco desafios pelo quinto emblema."},
-	{"id":"palafitas","name":"Palafitas · resgate","at":Vector2(.84,.82),"scenes":["kronasta-palafitas-a","kronasta-palafitas-b","kronasta-palafitas-c"],"parts":["Chegada do resgate","Travessia das docas","Patamar do resgate"],"description":"Percurso do resgate de Retalho. O campeonato do bairro ainda não está disponível."}
+	{"id":"palafitas","name":"Palafitas · resgate","at":Vector2(.84,.82),"scenes":["kronasta-palafitas-a","kronasta-palafitas-b","kronasta-palafitas-c"],"parts":["Chegada do resgate","Travessia das docas","Patamar do resgate"],"description":"Percurso do resgate de Retalho. O campeonato do bairro ainda não está disponível."},
+	{"id":"aracati","name":"Ilha do Aracati","at":Vector2(.22,.74),"scenes":["kronasta-aracati-a","kronasta-aracati-b","kronasta-aracati-c"],"parts":["Chegada","Trilha costeira","Terreiro"],"description":"A ponte abre após vencer Dona Neve."},
 ]
 const LINKS := [[0,1],[0,6],[0,7],[1,2],[2,8],[2,3],[2,4],[4,9],[4,10],[3,10],[3,11],[11,5],[4,12],[4,13],[7,14],[15,16],[16,17],[17,18],[17,19]]
 static func region_for(scene:String) -> String:
@@ -30,6 +31,10 @@ static func region_for(scene:String) -> String:
 	if scene.begins_with("morro"):return "morro"
 	return "vila"
 static func can_travel(scene:String,player:Dictionary={}) -> bool:
+	if scene=="kronasta-estadio-a":
+		return preload("res://scripts/campaign/kronasta_story.gd").can_travel(player,"estadio")
+	if scene.begins_with("kronasta-aracati-"):
+		return scene=="kronasta-aracati-a" and preload("res://scripts/campaign/kronasta_story.gd").can_travel(player,"aracati")
 	if scene.begins_with("kronasta-montanha-"):
 		return scene=="kronasta-montanha-a" and preload("res://scripts/campaign/kronasta_story.gd").can_travel(player,"montanha")
 	if scene=="parque-patio-liga":return load("res://scripts/campaign/blue_exam_preparation.gd").eligible(player)

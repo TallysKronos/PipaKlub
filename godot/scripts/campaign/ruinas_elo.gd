@@ -35,6 +35,7 @@ static func bracket_text(flags: Dictionary) -> String:
 const CHIEF := ["Rato", "azulao", 44, "ruinasChefeVencido"]
 
 const STAGES := {
+	"kronasta-aracati-c": ["Rabiolava", "rabiolava", 33, "aracatiRabiolavaLivre"],
 	"kronasta-estadio-a": ["Jamile", "azulao", 50, "campeaoKronasta"],
 	"kronasta-coracao-a": ["Capanga do Cerol", "lacertubo", 40, "ruinasNinaLivre"],
 	"kronasta-coracao-b": ["Capanga do Cerol", "mata", 41, "ruinasMikkaLivre"],
@@ -53,7 +54,7 @@ static func begin(session: Node, point: Vector2) -> Dictionary:
 	var saved: Dictionary = session.snapshot()
 	var cp: Dictionary = saved.checkpoint
 	var scene: String = cp.get("scene", "")
-	if cp.kind != "world" or cp.get("space") != CP.SPACE or not STAGES.has(scene) or not (Rules.city_final_unlocked(saved.player) if scene == "kronasta-estadio-a" else Rules.completed(saved.player, "porto")):
+	if cp.kind != "world" or cp.get("space") != CP.SPACE or not STAGES.has(scene) or not (Rules.city_final_unlocked(saved.player) if scene == "kronasta-estadio-a" else Rules.completed(saved.player, "alto-da-serra" if scene == "kronasta-aracati-c" else "porto")):
 		return {"status":"wrong_step"}
 	var current := round_index(saved.player.flags) if scene=="kronasta-estadio-a" else -1
 	if current==4:return {"status":"wrong_step"}
@@ -62,7 +63,7 @@ static func begin(session: Node, point: Vector2) -> Dictionary:
 		return {"status":"wrong_step"}
 	var map = CP.model_for(scene)
 	var nearby: bool = map.data.events.any(func(e: Dictionary) -> bool:
-		return e.props.get("acao") == "ruinasDuel" and point.distance_to(Vector2(e.u + .5, e.v + .5)) <= 1.8)
+		return e.props.get("acao") == ("aracatiTerreiro" if scene == "kronasta-aracati-c" else "ruinasDuel") and point.distance_to(Vector2(e.u + .5, e.v + .5)) <= 1.8)
 	if not point.is_finite() or not map.point_walkable(point) or not nearby:
 		return {"status":"wrong_step"}
 	var active: Dictionary = preload("res://scripts/campaign/park_training.gd").active(saved.player)
@@ -92,5 +93,6 @@ static func settle(session: Node) -> Dictionary:
 		return {"status":"wrong_step"}
 	if result.outcome == "won":
 		saved.player.flags[battle_stage(battle)[3]] = true
+		if battle.scene=="kronasta-aracati-c":saved.player.flags.canCorrenteDeAr=true
 	saved.player.erase("encounter")
 	return session.commit_operation("encounter-"+battle.id, CP.make(battle.scene, Vector2(battle.returnPoint[0], battle.returnPoint[1]), CP.SPACE), saved.player)

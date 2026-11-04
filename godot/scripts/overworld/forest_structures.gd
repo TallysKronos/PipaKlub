@@ -27,7 +27,7 @@ static func mine_cut_height(model,u:int,v:int) -> float:
    if model.walkable(p):height=maxf(height,model.height_at(Vector2(p)+Vector2(.5,.5))+14.0/64.0)
  return height
 static func mine_cutaway(model,u:int,v:int) -> bool:return mine_cut_height(model,u,v)>-999.0
-static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int) -> void:
+static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int,coastal_tiles:Dictionary={}) -> void:
  var c:Dictionary=model.cell_at(Vector2i(u,v))
  if c.is_empty():c={"material":"grama","level":0}
  if model.data.get("forest",{}).get("mountain",false) and (u<0 or v<0 or u>=int(model.data.w) or v>=int(model.data.h)):
@@ -73,7 +73,7 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
    var stone_uv:=PackedVector2Array()
    for p in fragment:stone_uv.append(p*48.0)
    target.uv=stone_uv
-  if c.get("material","")=="piso" and model.data.get("id")!="kronasta-estadio-a" and not model.data.get("forest",{}).get("chamber",false) and not model.data.get("forest",{}).get("ice",false) and not model.data.get("forest",{}).get("submerged",false):
+  if c.get("material","")=="piso" and (geometry() or not str(model.data.id).begins_with("kronasta-mirante-")) and model.data.get("id")!="kronasta-estadio-a" and not model.data.get("forest",{}).get("chamber",false) and not model.data.get("forest",{}).get("ice",false) and not model.data.get("forest",{}).get("submerged",false):
    target.material=null
    target.texture=null if geometry() else load(BASE+"terrenos-v1/superficies/bloquete.png")
    target.color=Color("c5b88b") if geometry() else Color.WHITE
@@ -92,7 +92,58 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
    var water_uv:=PackedVector2Array()
    for p in points:water_uv.append((p+node.position)*.7)
    target.uv=water_uv
+  if not coastal_tiles.is_empty():
+   var tile:Texture2D=coastal_tiles.get(c.material,coastal_tiles.piso)
+   var tile_uv:=PackedVector2Array()
+   for p in fragment:
+    var local:Vector2=p-Vector2(u,v)
+    tile_uv.append(Vector2(.5+.36*(local.x-local.y),.13+.32*(local.x+local.y))*tile.get_size())
+   target.material=null
+   target.texture=tile
+   target.color=Color.WHITE
+   target.uv=tile_uv
+   if not coastal_tiles.has("path_surface"):
+    node.add_child(target)
+    continue
+   if c.material == "agua":
+    var near_shore := false
+    for side in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+     var adjacent: Dictionary = model.cell_at(Vector2i(u,v)+side)
+     near_shore = near_shore or (not adjacent.is_empty() and adjacent.material != "agua")
+    if not near_shore or (u*7+v*11)%5 != 0:
+     target.texture=null
+     target.color=Color("237c87").lightened(float((u*7+v*11)%5)*.008)
+   elif c.material == "piso" and (u+v)%4 != 0:
+    target.texture=null
+    target.color=Color("e7bc82").lightened(float((u*7+v*11)%7)*.016)
+   elif c.material == "terra" and (u+v)%3 != 0:
+    target.texture=null
+    target.color=Color("9ba44d").lightened(float((u*7+v*11)%7)*.014)
+   if coastal_tiles.has("path_surface") and c.material in ["piso","terra"] and c.get("ramp")==null:
+    target.material=coastal_tiles.terrace_surface if int(c.level)>1 else coastal_tiles.path_surface
+    target.texture=null
+    target.uv=fragment
   node.add_child(target)
+  if not coastal_tiles.is_empty() and str(model.data.id).begins_with("kronasta-aracati-") and points.size()==4 and (not coastal_tiles.has("path_surface") or target.material!=coastal_tiles.path_surface and target.material!=coastal_tiles.terrace_surface):
+   coastal_edges(model,node,points,Vector2i(u,v),c.material)
+static func coastal_edges(model,node:Node2D,points:PackedVector2Array,cell:Vector2i,material:String) -> void:
+ var directions := [Vector2i.UP,Vector2i.RIGHT,Vector2i.DOWN,Vector2i.LEFT]
+ for i in 4:
+  var adjacent:Dictionary=model.cell_at(cell+directions[i])
+  var neighbor:=str(adjacent.get("material",""))
+  var a:=points[i]
+  var b:=points[(i+1)%4]
+  var inward:=((points[(i+2)%4]+points[(i+3)%4])-a-b)*.5
+  var variation:=float(posmod(cell.x*7+cell.y*11+i*3,7))/7.0
+  if material=="agua" and neighbor in ["piso","terra"] and variation>.28:
+   line(node,PackedVector2Array([a.lerp(b,.13)+inward*.22,a.lerp(b,.4)+inward*.15,a.lerp(b,.7)+inward*.23,a.lerp(b,.92)+inward*.19]),2,Color("8ecdd0"))
+  elif material=="piso" and neighbor=="ponte":
+   quad(node,PackedVector2Array([a,b,b+inward*.27,a+inward*.27]),Color("b18554"))
+  elif material=="piso" and neighbor=="terra":
+   var mid:=a.lerp(b,.3+variation*.4)
+   quad(node,PackedVector2Array([a,b,b+inward*.10,mid+inward*(.27+variation*.15),a+inward*.1]),Color("c3ad66"))
+   quad(node,PackedVector2Array([a,b,b+inward*.04,mid+inward*.16,a+inward*.04]),Color("9ba44d"))
+
 static func line(parent:Node2D,points:PackedVector2Array,width:float,color:Color) -> void:
  var node:=Line2D.new();node.points=points;node.width=width;node.default_color=color;parent.add_child(node)
 static func quad(parent:Node2D,points:PackedVector2Array,color:Color,texture:Texture2D=null) -> Polygon2D:

@@ -1959,6 +1959,7 @@
     }
   },
   "combat": {
+    "rabiolava": {"image":"combat-rabiolava.png","animations":{"idle":[{"x":0,"y":0,"w":384,"h":384}],"attack":[{"x":384,"y":0,"w":384,"h":384}],"victory":[{"x":768,"y":0,"w":384,"h":384}],"defeat":[{"x":1152,"y":0,"w":384,"h":384}]}},
     "tufanocorte": {"image": "tufanocorte.png", "animations": {"idle": [{"x": 0, "y": 0, "w": 384, "h": 354}], "attack": [{"x": 0, "y": 0, "w": 384, "h": 354}], "victory": [{"x": 0, "y": 0, "w": 384, "h": 354}], "defeat": [{"x": 0, "y": 0, "w": 384, "h": 354}]}},
     "mormaco-normal": {
       "image": "mormaco-v1/soulgen-normal.png",

@@ -38,3 +38,63 @@ static func build(view)->void:
   surface(node,top,Color.WHITE if not S.geometry() else Color("a5bac1"),"telhado.png")
  for p:Dictionary in view.model.data.forest.get("props",[]):sprite(view,Vector2(p.u+p.w*.5,p.v+p.h*.5),p.asset+".png",p.width)
  for p:Dictionary in view.model.data.forest.get("ships",[]):sprite(view,Vector2(p.u,p.v),"barco.png",190,.83,true)
+
+static func aracati_props(view) -> void:
+ var placements := {
+  "a": [
+   ["cancela",23,37], ["biruta",28,24], ["banco",13,22], ["banco",13,12],
+   ["arvore-costeira",10,19], ["arvore-costeira",30,9], ["arvore-costeira",33,24],
+   ["mato-costeiro",11,20], ["mato-costeiro",31,10], ["mato-costeiro",34,24],
+   ["mato-costeiro",20,28], ["mato-costeiro",15,12], ["mato-costeiro",30,26],
+  ],
+  "b": [
+   ["biruta",35,12], ["banco",17,29], ["banco",11,17],
+   ["arvore-costeira",7,22], ["arvore-costeira",35,15],
+   ["mato-costeiro",8,23], ["mato-costeiro",34,16], ["mato-costeiro",15,14],
+   ["mato-costeiro",31,23], ["mato-costeiro",17,30],
+  ],
+  "c": [
+   ["biruta",17,10], ["banco",11,27],
+   ["arvore-costeira",9,25], ["arvore-costeira",31,7],
+   ["mato-costeiro",10,26], ["mato-costeiro",32,8], ["mato-costeiro",15,13],
+   ["mato-costeiro",18,21], ["mato-costeiro",31,13],
+  ],
+ }
+ for prop in placements.get(str(view.model.data.id).right(1),[]):
+  var point := Vector2(prop[1]+.5,prop[2]+.5)
+  if not view.model.point_walkable(point):continue
+  var sprite := Sprite2D.new()
+  sprite.texture = load("res://assets/overworld/kits/aracati-v1/"+prop[0]+".png")
+  if sprite.texture == null:continue
+  var root:=Node2D.new()
+  root.position=view.model.project(point,false)
+  root.set_meta("scenery",true)
+  view.actors.add_child(root)
+  sprite.position = view.model.project(point)-root.position
+  var foot:=sprite.position
+  S.quad(root,PackedVector2Array([foot+Vector2(-16,0),foot+Vector2(0,-7),foot+Vector2(22,0),foot+Vector2(0,7)]),Color(0.20,0.21,0.12,0.24))
+  sprite.offset.y = -sprite.texture.get_height()*.5
+  if prop[0] == "banco":
+   sprite.scale = Vector2.ONE * 1.55
+  if prop[0] == "arvore-costeira":sprite.offset.x = sprite.texture.get_width()*.16
+  root.add_child(sprite)
+
+static func mirante_props(view) -> void:
+ var placements := {
+  "a": [["casa",17,29],["casa",20,24],["casa",30,18],["poste",19,30],["poste",27,22],["balaustrada",29,32],["balaustrada",31,30],["banco",18,27]],
+  "b": [["jacaranda",19,20],["banco",17,21],["banco",20,23],["poste",30,24],["poste",15,23],["casa",31,15],["casa",34,20],["balaustrada",14,24],["balaustrada",33,25]],
+  "c": [["bandeira",16,8],["bandeira",31,8],["bandeira",16,18],["bandeira",31,18],["balaustrada",15,14],["balaustrada",32,14],["banco",29,20]],
+ }
+ for prop in placements.get(str(view.model.data.id).right(1),[]):
+  var point := Vector2(prop[1]+.5,prop[2]+.5)
+  if not view.model.point_walkable(point):continue
+  var sprite := Sprite2D.new()
+  sprite.texture = load("res://assets/overworld/kits/mirante-v1/"+prop[0]+".png")
+  var holder := Node2D.new()
+  holder.position = view.model.project(point,false)
+  sprite.position = view.model.project(point) - holder.position
+  sprite.offset.y = -sprite.texture.get_height()*.5
+  if prop[0] == "banco":
+   sprite.scale = Vector2.ONE * 1.55
+  view.actors.add_child(holder)
+  holder.add_child(sprite)

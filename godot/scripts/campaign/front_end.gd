@@ -1578,6 +1578,16 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="aracatiRato":
+			_notice("Rato: Você também deu alma a uma coisa que fez. Podia vir com a gente.\n\nKael: O Rabbito fica comigo porque quer. Solta o Aracati.\n\nRato: Então me mostra o que acontece quando você larga a linha.")
+			return
+		if action=="aracatiTerreiro":
+			if player.flags.get("aracatiRabiolavaLivre",false):
+				_notice("A brisa voltou a atravessar o terreiro.")
+				return
+			_confirm_park("Rabiolava", "Kael: Essa linha é do Carretel Negro. Rabbito, vamos soltar o Rabiolava!", "Enfrentar", func():
+				if _result(load("res://scripts/campaign/ruinas_elo.gd").begin(session,park.player)):_show_saved.call_deferred())
+			return
 		if action=="blueExam":
 			_blue_station(str(event.props.blueAction));return
 		if action=="serraWind":
@@ -1667,7 +1677,7 @@ func _park_event(id: String) -> void:
 			var lines = preload("res://scripts/campaign/ruinas_dialogue.gd")
 			var rescued: bool = session.snapshot().player.flags.get(event.props.rescueFlag,false)
 			var conversation: Dictionary = lines.RESCUES[park.saved_checkpoint.scene]
-			_notice(conversation.freed if rescued else conversation.bound)
+			_notice(conversation.get("after", conversation.freed) if rescued else conversation.bound)
 			return
 		if action=="ruinasChamber":
 			_confirm_park("Câmara do Elo","Depois de entrar, só será possível sair após derrotar Eremor.","Entrar",func():
@@ -3356,15 +3366,49 @@ func _return_ruinas(outcome: String = "") -> void:
 	var saved: Dictionary = session.snapshot()
 	var scene: String = saved.checkpoint.get("scene","")
 	var lines = preload("res://scripts/campaign/ruinas_dialogue.gd")
-	if scene!="kronasta-coracao-d" and not lines.RESCUES.has(scene):return
+	if scene not in ["kronasta-coracao-d","kronasta-aracati-c"] and not lines.RESCUES.has(scene):return
 	while is_instance_valid(scene_loading) or flow_busy:
 		await get_tree().process_frame
 	if not is_instance_valid(park) or park.saved_checkpoint.scene!=scene:return
+	if scene=="kronasta-aracati-c":
+		if outcome == "won":
+			park.paused = true
+			park.path.clear()
+			for actor in park.npc_nodes:
+				if actor.root.get_meta("event").props.get("acao") != "aracatiTerreiro": continue
+				var cord := Line2D.new()
+				cord.width = 3.0
+				cord.default_color = Color("#653b84")
+				cord.points = PackedVector2Array([Vector2(-30, -48), Vector2(0, -34), Vector2(30, -48)])
+				cord.z_index = 2
+				actor.visual.add_child(cord)
+				var release: Tween = cord.create_tween()
+				release.tween_interval(.25)
+				release.tween_property(cord, "position:y", 30.0, .28)
+				release.parallel().tween_property(cord, "modulate:a", 0.0, .28)
+				await release.finished
+				cord.queue_free()
+				break
+		_notice("Kael: Pronto. A linha cedeu. Você está livre, Rabiolava.\n\nCorrente de Ar disponível." if outcome=="won" else "Kael: Vou me recompor. Ainda dá tempo de soltar o Rabiolava.")
+		return
 	if lines.RESCUES.has(scene):
 		if scene == "kronasta-coracao-c" and outcome == "won":
 			park.path.clear()
 			park.paused = true
 			await preload("res://scripts/campaign/platyx_overworld.gd").refuse(park, preferences.reduced_motion)
+			var dialog := _dialog("Jamile", lines.RESCUES[scene].freed, "Continuar")
+			dialog.confirmed.connect(dialog.queue_free)
+			dialog.canceled.connect(dialog.queue_free)
+			dialog.popup_centered(Vector2i(640, 300))
+			await dialog.tree_exited
+			await preload("res://scripts/overworld/elo_chamber.gd").untie_prisoner(park)
+			await preload("res://scripts/campaign/platyx_overworld.gd").leave_for_chamber(park)
+			park.paused = false
+			return
+		if outcome == "won":
+			park.path.clear()
+			park.paused = true
+			await preload("res://scripts/overworld/elo_chamber.gd").untie_prisoner(park)
 		_notice(lines.RESCUES[scene].freed if outcome=="won" else lines.LOST_GUARD)
 		return
 	var flags: Dictionary = session.snapshot().player.flags
@@ -3461,7 +3505,7 @@ func _request_enamor(ruins: GDScript) -> void:
 			if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
 		return
 	if session.snapshot().player.flags.get("enamorDesperto",false):
-		_confirm_park("Eremor",preload("res://scripts/campaign/ruinas_dialogue.gd").REMATCH,"Enfrentar",func():
+		_confirm_park("Eremor",preload("res://scripts/campaign/ruinas_dialogue.gd").AWAKENED,"Enfrentar",func():
 			if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
 		return
 	_confirm_park("Altar do Elo",preload("res://scripts/campaign/ruinas_dialogue.gd").BETRAYAL,"Continuar",_play_enamor_awaken.call_deferred)
@@ -3474,9 +3518,6 @@ func _play_enamor_awaken() -> void:
 	if saved.checkpoint.get("scene")!="kronasta-coracao-d" or saved.player.flags.get("enamorDesperto",false):
 		return
 	var point: Vector2 = view.player
-	saved.player.flags.enamorDesperto = true
-	if not _result(session.commit_operation("enamor-despertar-v1",ParkCheckpoint.make("kronasta-coracao-d",point,ParkCheckpoint.SPACE),saved.player)):
-		return
 	flow_busy = true
 	view.paused = true
 	var camera: Camera2D = view.camera
@@ -3502,6 +3543,12 @@ func _play_enamor_awaken() -> void:
 		flow_busy = false
 		return
 	var chamber = preload("res://scripts/overworld/elo_chamber.gd")
+	var flank := Vector2(29.5, 20.5)
+	if view.model.point_walkable(flank):
+		point = flank
+		view.player = flank
+		view.follower = Vector2(29.5, 21.5)
+		view._refresh_positions()
 	var creature: AnimatedSprite2D = chamber.awakening_sprite(view)
 	if creature != null:
 		var roar := AudioStreamPlayer.new()
@@ -3534,6 +3581,18 @@ func _play_enamor_awaken() -> void:
 		var angle := TAU*i/12.0
 		var at := Vector2.from_angle(angle)*float(28+i*4)
 		shapes.quad(effect,PackedVector2Array([at+Vector2(-15,0),at+Vector2(0,-9),at+Vector2(15,0),at+Vector2(0,9)]),Color(.76,.65,.79,.55))
+	for actor in view.npc_nodes:
+		if actor.root.get_meta("event").props.get("acao") == "ruinasDuel":
+			actor.root.hide()
+	view.hint.hide()
+	var boss_idle := Sprite2D.new()
+	boss_idle.texture = load("res://assets/overworld/kits/camara-do-elo-v1/eremor-overworld-idle.png")
+	boss_idle.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	boss_idle.offset.y = -boss_idle.texture.get_height() * .43
+	boss_idle.position = awakened.position
+	boss_idle.z_index = awakened.z_index
+	view.actors.add_child(boss_idle)
+	awakened.queue_free()
 	var fade := view.create_tween()
 	fade.tween_property(effect,"modulate:a",0.0,.65)
 	await fade.finished
@@ -3542,11 +3601,22 @@ func _play_enamor_awaken() -> void:
 		return
 	effect.queue_free()
 	camera.offset = offset
-	await chamber.evacuate(view)
+	_confirm_park("Câmara do Elo", preload("res://scripts/campaign/ruinas_dialogue.gd").EVACUATE, "Continuar", func():
+		_finish_elo_evacuation.call_deferred(view, point))
+
+func _finish_elo_evacuation(view, point: Vector2) -> void:
+	if not is_instance_valid(view): return
+	flow_busy = true
+	view.paused = true
+	await preload("res://scripts/overworld/elo_chamber.gd").evacuate(view)
 	flow_busy = false
-	var ruins = load("res://scripts/campaign/ruinas_elo.gd")
-	_confirm_park("Eremor desperto",preload("res://scripts/campaign/ruinas_dialogue.gd").AWAKENED,"Enfrentar",func():
-		if _result(ruins.begin(session,view.player)):_show_saved.call_deferred())
+	if not is_instance_valid(view): return
+	var saved: Dictionary = session.snapshot()
+	saved.player.flags.enamorDesperto = true
+	if not _result(session.commit_operation("enamor-despertar-v1", ParkCheckpoint.make("kronasta-coracao-d", point, ParkCheckpoint.SPACE), saved.player)): return
+
+	view.paused = false
+	_show_saved.call_deferred()
 
 func _finish_platyx_refusal(encounter: Dictionary) -> bool:
 	if encounter.get("kind")!="ruinas-elo" or encounter.get("scene")!="kronasta-coracao-c" or encounter.state.q.get("platyxRefusal","")!="stopped":

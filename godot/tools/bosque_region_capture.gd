@@ -7,10 +7,12 @@ func capture() -> void:
  var output:=""
  var plan_path:=""
  var terrain_only:=false
+ var show_player:=false
  for arg in OS.get_cmdline_user_args():
   if arg.begins_with("--area="):area=arg.trim_prefix("--area=")
   if arg.begins_with("--plan="):plan_path=arg.trim_prefix("--plan=")
   if arg=="--terrain-only":terrain_only=true
+  if arg=="--show-player":show_player=true
   if arg.begins_with("--out="):output=arg.trim_prefix("--out=")
  if output.is_empty():output=ProjectSettings.globalize_path("res://../documentation/overworld/kronasta/captures/"+area+"/"+("geometria" if OS.get_environment("KRONASTA_GEOMETRIA")=="1" else "arte"))
  DirAccess.make_dir_recursive_absolute(output)
@@ -30,12 +32,20 @@ func capture() -> void:
   var art:CanvasItem=occluder.get_node_or_null("Art")
   if art:art.modulate.a=1
  view.camera.position_smoothing_enabled=false
+ view.camera.process_callback=Camera2D.CAMERA2D_PROCESS_IDLE
  if terrain_only:
   for node in view.actors.get_children():
    if node.get_meta("scenery",false):node.hide()
  for shot in plan.shots:
+  var focus := Vector2(shot.u,shot.v)
+  if show_player:
+   view.player_root.visible=view.model.point_walkable(focus)
+   view.player=focus
+   view._refresh_positions()
   view.camera.zoom=Vector2.ONE*float(shot.zoom)
   view.camera.position=view.model.project(Vector2(shot.u,shot.v))-Vector2(0,35)+Vector2(0,float(shot.get("offsetY",0)))
+  view.camera.reset_smoothing()
+  view.camera.force_update_scroll()
   await process_frame
   await RenderingServer.frame_post_draw
   var error:int=root.get_texture().get_image().save_png(output.path_join(str(shot.name)+".png"))

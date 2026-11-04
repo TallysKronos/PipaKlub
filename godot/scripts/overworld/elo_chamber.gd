@@ -329,10 +329,11 @@ static func evacuate(view) -> void:
 	]
 	var group: Tween = view.create_tween().set_parallel()
 	var slots := [
-		Vector2(24.5, 18.5), Vector2(25.5, 18.5),
-		Vector2(23.5, 19.5), Vector2(25.5, 19.5),
-		Vector2(23.5, 17.5), Vector2(25.5, 17.5),
+		Vector2(24.5, 26.5), Vector2(26.5, 24.5),
+		Vector2(23.5, 24.5), Vector2(26.5, 22.5),
+		Vector2(23.5, 21.5), Vector2(25.5, 20.5),
 	]
+	var last_clearance := {}
 	for i in cast.size():
 		var start: Vector2 = slots[i]
 		if not view.model.point_walkable(start): continue
@@ -351,10 +352,15 @@ static func evacuate(view) -> void:
 		var lane := -.33 if i % 2 == 0 else .33
 		var shift := Vector2(lane, 0)
 		sprite.position = view.model.project(start + shift)
-		sprite.hide()
 		view.actors.add_child(sprite)
-		group.tween_callback(sprite.show).set_delay(i * .62)
-		var elapsed := i * .62
+		var departure := i * .62
+		var travel := 0.0
+		var last_point := start
+		for point in route:
+			departure = maxf(departure, float(last_clearance.get(point, 0.0)) - travel)
+			travel += last_point.distance_to(point) * .18
+			last_point = point
+		var elapsed := departure
 		var previous := start
 		for point in route:
 			var duration := previous.distance_to(point) * .18
@@ -363,7 +369,27 @@ static func evacuate(view) -> void:
 			var lane_offset: Vector2 = view.model.project(point + shift, false) - view.model.project(point, false)
 			group.tween_property(sprite, "position", to_screen + lane_offset, duration).set_delay(elapsed).from(from_screen + lane_offset)
 			elapsed += duration
+			last_clearance[point] = elapsed + .48
 			previous = point
 		group.tween_property(sprite, "modulate:a", 0.0, .22).set_delay(elapsed)
 		group.tween_callback(sprite.queue_free).set_delay(elapsed + .22)
 	if group.is_valid(): await group.finished
+
+static func untie_prisoner(view) -> void:
+	for actor in view.npc_nodes:
+		var event: Dictionary = actor.root.get_meta("event")
+		if event.props.get("acao") != "ruinasRefem": continue
+		var prisoner: Node2D = actor.root
+		var cord := Line2D.new()
+		cord.default_color = Color("#e0af69")
+		cord.width = 3.0
+		cord.points = PackedVector2Array([Vector2(-12, -35), Vector2(0, -32), Vector2(12, -35)])
+		cord.z_index = 1
+		prisoner.add_child(cord)
+		var release := prisoner.create_tween()
+		release.tween_property(cord, "position", Vector2(8, 31), .34).set_ease(Tween.EASE_IN)
+		release.parallel().tween_property(cord, "rotation", .48, .34)
+		release.tween_property(cord, "modulate:a", 0.0, .25)
+		await release.finished
+		cord.queue_free()
+		return

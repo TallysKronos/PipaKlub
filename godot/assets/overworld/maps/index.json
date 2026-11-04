@@ -324,6 +324,42 @@
       "name": "Parque · Pátio da Liga",
       "scene": "parque-patio-liga",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-aracati-a",
+      "name": "Ilha do Aracati · A",
+      "scene": "kronasta-aracati-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-aracati-b",
+      "name": "Ilha do Aracati · B",
+      "scene": "kronasta-aracati-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-aracati-c",
+      "name": "Ilha do Aracati · C",
+      "scene": "kronasta-aracati-c",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-mirante-a",
+      "name": "Alto do Mirante · A",
+      "scene": "kronasta-mirante-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-mirante-b",
+      "name": "Alto do Mirante · B",
+      "scene": "kronasta-mirante-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-mirante-c",
+      "name": "Alto do Mirante · C",
+      "scene": "kronasta-mirante-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -379,7 +415,13 @@
     "kronasta-palafitas-a": "kronasta-palafitas-a",
     "kronasta-palafitas-b": "kronasta-palafitas-b",
     "kronasta-palafitas-c": "kronasta-palafitas-c",
-    "parque-patio-liga": "parque-patio-liga"
+    "parque-patio-liga": "parque-patio-liga",
+    "kronasta-aracati-a": "kronasta-aracati-a",
+    "kronasta-aracati-b": "kronasta-aracati-b",
+    "kronasta-aracati-c": "kronasta-aracati-c",
+    "kronasta-mirante-a": "kronasta-mirante-a",
+    "kronasta-mirante-b": "kronasta-mirante-b",
+    "kronasta-mirante-c": "kronasta-mirante-c"
   },
   "campaignReplacement": false
 }

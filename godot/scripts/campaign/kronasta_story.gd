@@ -27,7 +27,7 @@ const PLACES := [
 	{"id":"montanha","name":"Serra de Kronasta","kind":"natural","act":4,"levels":"26–32","scene":"kronasta-montanha-a","note":"Sopé, Encosta e Cume."},
 	{"id":"centro","name":"Centro","kind":"bairro","bairro":9,"act":4,"levels":"30–33","scene":"kronasta-centro-a","note":"Praça da Matriz e Pipa TV."},
 	{"id":"alto-da-serra","name":"Alto da Serra","kind":"bairro","bairro":8,"act":4,"levels":"27–30","note":"Bairro 8."},
-	{"id":"aracati","name":"Ilha do Aracati","kind":"natural","act":4,"levels":"30–34","note":"A ponte está fechada."},
+	{"id":"aracati","scene":"kronasta-aracati-a","name":"Ilha do Aracati","kind":"natural","act":4,"levels":"30–34","note":"Atravesse a ponte e siga a trilha até o terreiro."},
 	{"id":"lajes","name":"Condomínio","scene":"kronasta-lajes-a","kind":"bairro","bairro":10,"act":5,"levels":"33–36","note":"Bairro 10."},
 	{"id":"porto","scene":"kronasta-porto-a","name":"Porto Novo","kind":"bairro","bairro":11,"act":6,"levels":"36–40","note":"Bairro 11."},
 	{"id":"coracao","scene":"kronasta-coracao-a","name":"Coração das Ruínas","kind":"ruinas","act":6,"levels":"40–45","note":"O Elo."},
@@ -216,6 +216,7 @@ static func state(player: Dictionary, id: String) -> String:
 		"porto":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"porto") else "fechado"
 		"lajes":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"lajes") else "fechado"
 		"centro":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"centro") else "fechado"
+		"aracati":return "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"alto-da-serra") else "fechado"
 		"montanha":return "aberto" if serra_open(player) or (qa() and prologue_done(player)) else "fechado"
 		"palafitas":return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,id) or load("res://scripts/campaign/retalho_trust.gd").docks_open(player) else "fechado"
 		"pantano":
@@ -239,6 +240,7 @@ static func can_travel(player: Dictionary, id: String) -> bool:
 
 static func requirement(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
+	if id=="aracati" and state(player,id)=="fechado":return "Vença Dona Neve no Alto da Serra."
 	if id=="montanha" and state(player,id)=="fechado":return "Liberte Mormaço e vença Caio Garça em Palafitas."
 	if id=="palafitas" and state(player,id)=="fechado":return "O resgate abre durante o arco de Retalho; o campeonato exige o emblema de Bruno e Mormaço livre."
 	if id=="beira-canal" and preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") and not flags(player).get("leagueGreen",false):return "Conclua o primeiro exame com Nina"

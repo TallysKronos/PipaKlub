@@ -1775,6 +1775,12 @@ func _build_events() -> void:
 					sprite.offset=Vector2(0,-44)
 				sprite.position.x=(i-(list.size()-1)*.5)*30
 				holder.add_child(sprite)
+				if event.props.get("acao") == "aracatiTerreiro":
+					var hover := sprite.create_tween().set_loops().set_trans(Tween.TRANS_SINE)
+					hover.tween_property(sprite, "position:y", -6.0, .9)
+					hover.parallel().tween_property(sprite, "rotation", -.035, .9)
+					hover.tween_property(sprite, "position:y", 0.0, .9)
+					hover.parallel().tween_property(sprite, "rotation", .035, .9)
 				if event.props.get("storySprite","")=="tyler":
 					var reel=load("res://scripts/campaign/tyler_reel_prop.gd").new()
 					reel.position=Vector2(16,-34);holder.add_child(reel)

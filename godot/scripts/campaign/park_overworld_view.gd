@@ -95,6 +95,19 @@ func _ready() -> void:
 		if actor.root.get_meta("event",{}).get("props",{}).get("acao","")=="parkBoss" and actor.visual.get_child_count()>0:
 			guardian_art=actor.visual.get_child(0)
 			guardian_frames=content.combat.lacertubo.animations.idle
+	if saved_checkpoint.scene == "kronasta-coracao-d" and saved_player.flags.get("enamorDesperto", false):
+		for actor in npc_nodes:
+			var event: Dictionary = actor.root.get_meta("event")
+			if event.props.get("acao") != "ruinasDuel": continue
+			event.name = "Eremor"
+			for child in actor.visual.get_children():
+				child.hide()
+			var sprite := Sprite2D.new()
+			sprite.texture = load("res://assets/overworld/kits/camara-do-elo-v1/eremor-overworld-idle.png")
+			sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			sprite.offset.y = -sprite.texture.get_height() * .43
+			actor.visual.add_child(sprite)
+			break
 	_roll_encounter_distance()
 	encounter_grace=Pacing.walking_grace(saved_player)
 	if saved_checkpoint.scene=="kronasta-pantano-c" and load("res://scripts/campaign/mormaco_story.gd").available(saved_player):
@@ -277,6 +290,8 @@ func _physics_process(delta: float) -> void:
 		if gap<nearest and absf(model.height_at(player)-model.height_at(at))<.25:
 			nearby=event; nearest=gap
 	hint.text = "" if nearby.is_empty() else nearby.name
+	if nearby.get("type")=="item" and nearby.props.get("visibilidade","")=="escondido":
+		hint.text = "Investigar o chão"
 	var moved := player.distance_to(before)
 	if saved_checkpoint.scene=="park-veredas" and saved_player.get("flags",{}).get("ninaAccepted",false) and not saved_player.flags.get("guardianDefeated",false):
 		var boss_gap: float=player.distance_to(Checkpoint.target("park-veredas","boss"))

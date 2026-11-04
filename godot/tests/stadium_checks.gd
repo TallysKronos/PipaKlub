@@ -15,6 +15,7 @@ func _initialize() -> void:
 	var player: Dictionary = State.fresh("slot-1").player
 	player.partners = [{"id":"test","modelId":"basica","xp":0,"condition":{"line":100,"structure":100}}]
 	player.equippedPartnerId = "test"
+	player.journey = {"phase":"complete","lesson":5}
 	var model = Map.model_for(Scene)
 	if not verify(not model.point_walkable(Vector2(23.5,7.5)),"counter blocks walking"):return
 	if not verify(not model.point_walkable(Vector2(18.5,13.5)),"bench blocks walking"):return
@@ -24,13 +25,21 @@ func _initialize() -> void:
 	if not verify(session.start("slot-1").status=="ok" and session.checkpoint(cp,player).status=="ok","open stadium fixture"):return
 	if not verify(Finals.begin(session,Point).status=="wrong_step","require Mirante"):return
 	player = session.snapshot().player
+	var travel = preload("res://scripts/campaign/bosque_campaign.gd").new(session)
+	var mirante := "kronasta-mirante-c"
+	var arena := Map.make(mirante, Map.spawn(mirante), Map.SPACE)
+	if not verify(session.checkpoint(arena,player).status=="ok","start at Mirante"):return
+	if not verify(travel.travel(Scene).status=="wrong_step","stadium travel locked before Mirante"):return
 	Rules.award_emblem(player,"mirante")
 	var entry: Dictionary = Rules.entry(player,"mirante")
 	entry.completed = true
 	entry.rewardClaimed = true
 	entry.champion = "player"
 	Rules.store(player,"mirante",entry)
-	if not verify(session.checkpoint(cp,player).status=="ok","persist Mirante"):return
+	if not verify(session.checkpoint(arena,player).status=="ok","persist Mirante"):return
+	if not verify(travel.travel(Scene).status=="ok","travel from Mirante to stadium"):return
+	if not verify(session.snapshot().checkpoint.scene==Scene,"arrive at stadium lobby"):return
+	if not verify(session.checkpoint(cp,session.snapshot().player).status=="ok","approach attendant"):return
 	for round in [0,1,1,2,3]:
 		if not verify(Finals.begin(session,Point).status=="ok","start round "+str(round)):return
 		session.close_session()
@@ -42,6 +51,7 @@ func _initialize() -> void:
 		saved.player.encounter.state.outcome = "won" if won else "lost"
 		if not verify(session.checkpoint(saved.checkpoint,saved.player).status=="ok","persist outcome"):return
 		if not verify(Finals.settle(session).status=="ok","settle"):return
+		if not verify(session.snapshot().checkpoint.scene==Scene,"return to lobby after duel"):return
 		var flags: Dictionary = session.snapshot().player.flags
 		if not verify(Finals.round_index(flags)==round+int(won),"advance only on victory"):return
 		if not verify(flags.get("campeaoKronasta",false)==(round==3),"title only after Jamile"):return
