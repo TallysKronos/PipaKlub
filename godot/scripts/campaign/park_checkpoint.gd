@@ -7,6 +7,7 @@ const MAPS := {"kronasta-aracati-a":"kronasta-aracati-a","kronasta-aracati-b":"k
 const REGIONS := ["aracati","estadio","mirante","coracao","porto","lajes","centro","palafitas","bosque","industrial","pantano","montanha","bambuzal","beira-canal","feira","cais"]
 const Model = preload("res://scripts/overworld/map_model.gd")
 const Legacy = preload("res://scripts/campaign/park_data.gd")
+static var _endgame_added := {}
 static var _maps: Dictionary = {}
 static var _models: Dictionary = {}
 
@@ -47,6 +48,10 @@ static func data(scene: String) -> Dictionary:
 	if region_of(scene)=="palafitas" and not _maps[scene].events.any(func(e):return int(e.id)>=19801 and int(e.id)<=19805):
 		_maps[scene].events.append_array(preload("res://scripts/campaign/palafitas_championship.gd").events(scene))
 	if not trust_event.is_empty() and not _maps[scene].events.any(func(e):return int(e.id)==int(trust_event.id)):_maps[scene].events.append(trust_event)
+	# Acts 4-6 story steps. Marked first: resolving their points reads this same map.
+	if not _endgame_added.has(scene):
+		_endgame_added[scene]=true
+		_maps[scene].events.append_array(load("res://scripts/campaign/endgame_story.gd").events(scene))
 	return _maps[scene]
 
 static func model_for(scene: String):
@@ -139,6 +144,11 @@ static func encounter_weight(checkpoint: Dictionary, point: Vector2) -> float:
 static func allowed(event: Dictionary, player: Dictionary, area: String = "") -> bool:
 	var props: Dictionary = event.get("props",{})
 	var flags: Dictionary = player.get("flags",{})
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	if props.get("acao","")=="endgameStep": return endgame.ready(player,str(props.get("step","")))
+	# The Rato makes his invitation in the Bosque storm (decision of 04/11), not in Aracati.
+	if props.get("acao","")=="aracatiRato": return false
+	if endgame.exit_blocked(event,player,area): return false
 	if props.get("acao","")=="ruinasDuel":
 		return not flags.get(props.rescueFlag,false)
 	if props.get("acao","")=="pipeiroFantasma":

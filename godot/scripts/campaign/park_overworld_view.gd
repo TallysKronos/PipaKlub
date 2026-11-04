@@ -63,6 +63,7 @@ func _ready() -> void:
 	area_id = Checkpoint.MAPS[saved_checkpoint.scene]
 	super()
 	interface.hide()
+	_apply_story_light()
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
 	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_kronasta(saved_checkpoint.scene) else 1.15)
@@ -124,6 +125,10 @@ func _ready() -> void:
 		exploration_hud.objective.text=marks.objective(saved_player)
 
 func _build_events() -> void:
+	# Acts 4-6 story steps injected by ParkCheckpoint (endgame_story.gd).
+	for e:Dictionary in Checkpoint.data(saved_checkpoint.scene).events:
+		if e.props.get("acao","")=="endgameStep" and Checkpoint.allowed(e,saved_player,area_id) and not interaction_events.any(func(existing):return str(existing.id)==str(e.id)):
+			interaction_events.append(e.duplicate(true))
 	if Checkpoint.region_of(saved_checkpoint.scene)=="palafitas":
 		for e:Dictionary in Checkpoint.data(saved_checkpoint.scene).events:
 			if e.props.get("district","")=="palafitas" and Checkpoint.allowed(e,saved_player,area_id) and not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):
@@ -356,3 +361,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if paused or not item_receipt.is_empty(): return
 	super(event)
+
+## Night of the cerol (Centro and Condomínio) and the Trovareta storm (Bosque):
+## a world tint only; the HUD lives on its own canvas and keeps its colours.
+func _apply_story_light() -> void:
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	var tint:=Tokens.UNTINTED
+	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.3)
+	elif endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene):tint=Tokens.TINTA_3.lightened(.5)
+	if tint==Tokens.UNTINTED:return
+	var shade:=CanvasModulate.new()
+	shade.name="StoryLight"
+	shade.color=tint
+	add_child(shade)

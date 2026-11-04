@@ -212,7 +212,7 @@ static func valid_workshop(state: Dictionary) -> bool:
 
 static func valid_encounter(value: Variant) -> bool:
 	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story","tufanocorte-story","tyler-lab","ruinas-elo"] or not value.get("state") is Dictionary: return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["endgame-step", "lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story","tufanocorte-story","tyler-lab","ruinas-elo"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
@@ -223,6 +223,7 @@ static func valid_encounter(value: Variant) -> bool:
 		var stage: Array = load("res://scripts/campaign/ruinas_elo.gd").battle_stage(value)
 		var legacy_eremor: bool = value.get("scene")=="kronasta-coracao-d" and state.get("enemyModelId")=="pipa-dragao-desatada"
 		if stage.is_empty() or value.get("space")!="parque-overworld-v1" or (state.get("enemyModelId")!=stage[1] and not legacy_eremor) or state.get("enemyLevel")!=stage[2] or value.get("rewardXp")!=0:return false
+	if value.kind=="endgame-step" and not load("res://scripts/campaign/endgame_story.gd").valid(value):return false
 	if value.kind=="tyler-lab" and (value.get("scene")!="professor-home" or value.has("space") or state.get("enemyModelId")!="lacertubo" or state.get("enemyLevel")!=33 or value.get("rewardXp")!=0):return false
 	if value.kind=="tufanocorte-story" and (value.get("scene")!="kronasta-montanha-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="tufanocorte" or state.get("enemyLevel")!=29 or value.get("rewardXp")!=0):return false
 	if value.kind=="mormaco-story" and (value.get("scene")!="kronasta-pantano-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="mormaco-possuido" or state.get("enemyLevel")!=27 or value.get("rewardXp")!=0):return false

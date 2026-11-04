@@ -1596,6 +1596,8 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="endgameStep":
+			_endgame_step(str(event.props.get("step","")));return
 		if action=="aracatiRato":
 			_notice("Rato: Você também deu alma a uma coisa que fez. Podia vir com a gente.\n\nKael: O Rabbito fica comigo porque quer. Solta o Aracati.\n\nRato: Então me mostra o que acontece quando você larga a linha.")
 			return
@@ -1914,6 +1916,9 @@ func _show_encounter() -> void:
 		elif session.snapshot().player.encounter.kind=="ruinas-elo":
 			var outcome: String = session.snapshot().player.encounter.state.outcome
 			if _result(load("res://scripts/campaign/ruinas_elo.gd").settle(session)):_return_ruinas.call_deferred(outcome)
+		elif session.snapshot().player.encounter.kind=="endgame-step":
+			var step_id:String=str(session.snapshot().player.encounter.step)
+			if _result(load("res://scripts/campaign/endgame_story.gd").new(session).settle()):_return_endgame.call_deferred(step_id)
 		elif session.snapshot().player.encounter.kind=="tyler-lab":
 			if _result(load("res://scripts/campaign/tyler_arcs.gd").settle_lab(session)):_return_tyler_lab.call_deferred()
 		elif session.snapshot().player.encounter.kind=="tufanocorte-story":
@@ -3329,6 +3334,29 @@ func _play_mormaco_ambush(point:Vector2)->void:
 func _return_mormaco()->void:
 	_show_saved()
 	if session.snapshot().player.get("lastMormaco","")=="won":_notice.call_deferred("Os nós do Carretel Negro cederam. Mormaço continua vivo. Aproxime-se da margem para escutar o guardião.")
+
+## Acts 4-6 story steps (endgame_story.gd): conversation or next duel of a sequence.
+func _endgame_step(id:String)->void:
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	var player:Dictionary=session.snapshot().player
+	if not endgame.ready(player,id):return
+	var step:Dictionary=endgame.STEPS[id]
+	var story=endgame.new(session)
+	var at:Vector2=park.player
+	if not step.has("duels"):
+		_confirm_park(step.name,step.intro,"Continuar",func():
+			if _result(story.talk(id,at)):
+				park.refresh(session.snapshot().player)
+				_notice.call_deferred(step.outro))
+		return
+	_confirm_park(step.name,endgame.prompt(player,id),"Enfrentar",func():
+		if _result(story.begin(id,at)):_show_saved.call_deferred())
+
+func _return_endgame(id:String)->void:
+	_show_saved()
+	var text:String=load("res://scripts/campaign/endgame_story.gd").after(session.snapshot().player,id)
+	if not text.is_empty() and session.snapshot().player.get("flags",{}).get("endgame-%s-0"%id,false):
+		_notice.call_deferred(text)
 
 func _return_tufanocorte()->void:
 	_show_saved()

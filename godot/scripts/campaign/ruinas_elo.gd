@@ -43,7 +43,7 @@ const STAGES := {
 	"kronasta-coracao-d": ["Eremor", "eremor", 45, "enamorDerrotado"],
 }
 const INTRO := {
-	"kronasta-estadio-a": "Heleana, Assis e Tyler torcem na arquibancada.\n\nJamile: Você viu minha última final pela televisão. Desta vez, é a sua linha que eu vou enfrentar. Pronto, Kael?",
+	"kronasta-estadio-a": "Na arquibancada, Heleana, Assis e Tyler torcem. Ao lado deles, o Gollia, o Grampo e os campeões dos doze bairros.\n\nJamile: Você viu minha última final pela televisão. Desta vez, é a sua linha que eu vou enfrentar. Pronto, Kael?",
 	"kronasta-coracao-a": "Capanga: Se quiser soltar a Nina, vai ter que passar por mim.",
 	"kronasta-coracao-b": "Capanga: A Mikka fica onde está. Mostre sua linha, Kael.",
 	"kronasta-coracao-c": "Capanga: Rato já entrou na câmara. Você não vai tirar a Jamile daqui.",
@@ -70,6 +70,8 @@ static func begin(session: Node, point: Vector2) -> Dictionary:
 	if active.is_empty() or active.get("condition", {}).get("line", 100) <= 0 or active.get("condition", {}).get("structure", 100) <= 0:
 		return {"status":"repair_needed"}
 	var chief: bool = scene=="kronasta-coracao-d" and not saved.player.flags.get("ruinasChefeVencido",false) and not saved.player.flags.get("enamorDesperto",false)
+	# Gollia holds the chamber door first (BIBLIA §7.7, act 6 step 3).
+	if chief and not saved.player.flags.get("golliaArrependido",false):return {"status":"wrong_step"}
 	if chief:stage=CHIEF
 	elif scene=="kronasta-coracao-d" and not saved.player.flags.get("enamorDesperto",false):return {"status":"wrong_step"}
 	var model := Model.new(active, {"modelId":stage[1], "level":stage[2]})

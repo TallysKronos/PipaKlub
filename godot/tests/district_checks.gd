@@ -61,7 +61,10 @@ func pure_model()->void:
 		check(Rules.award_emblem(p,d.id),"first emblem "+d.id)
 		check(not Rules.award_emblem(p,d.id),"no duplicate emblem "+d.id)
 		check(Story.neighbourhoods_won(p)==int(d.number),"story counts generic history")
-	check(Rules.city_final_unlocked(p),"Mirante opens municipal final")
+	# The final also needs the Rato and the Eremor (BIBLIA §7.7, decision of 04/11).
+	check(not Rules.city_final_unlocked(p),"twelve districts alone do not open the final")
+	p.flags.ruinasChefeVencido=true;p.flags.enamorDerrotado=true
+	check(Rules.city_final_unlocked(p),"twelve districts, Rato and Eremor open municipal final")
 	var before_mirante := base_player()
 	before_mirante.flags.enamorDerrotado=true
 	check(not Rules.city_final_unlocked(before_mirante),"Enamor alone does not open municipal final")

@@ -72,6 +72,32 @@ const BEATS := [
 	{"id":"mormaco-sinais","act":4,"place":"pantano","text":"O ar parou. Observe o caminho da Entrada alagada, no Pântano."},
 	{"id":"mormaco-liberto","act":4,"place":"pantano","text":"Siga até o lago da parte C e liberte Mormaço do Carretel Negro."},
 	{"id":"palafitas-emblema","act":4,"place":"palafitas","text":"Vença Seyran, Oruvo, Kessai e Veldren nas Palafitas e dispute o emblema com Caio Garça."},
+	# Acts 4-6 (BIBLIA §7.5-7.7, decisions of 04/11/2026). Steps marked in
+	# endgame_story.gd are the new conversations and duel sequences.
+	{"id":"tufanocorte","act":4,"place":"montanha","text":"Suba a Serra a pé até o Cume e solte o Tufanocorte."},
+	{"id":"serra-habilidades","act":4,"place":"montanha","text":"Aprenda Cavar com o tatu e suba o paredão com a Corrente de ar."},
+	{"id":"dona-neve","act":4,"place":"montanha","text":"Vença os quatro desafios do Alto da Serra e dispute o emblema com a Dona Neve."},
+	{"id":"rabiolava","act":4,"place":"aracati","text":"Atravesse a ponte da Ilha do Aracati e solte a Rabiolava no terreiro."},
+	{"id":"trovareta","act":4,"place":"bosque","text":"Uma tempestade caiu sobre o Bosque. Vá à Clareira do Marco: a Trovareta está presa."},
+	{"id":"reuniao","act":4,"place":"centro","text":"Os campeões dos bairros esperam você na Praça da Matriz, no Centro."},
+	{"id":"exame-vermelho","act":4,"place":"centro","text":"Faça o exame da categoria Vermelha com a Dona Cida, na Praça da Matriz."},
+	{"id":"pipa-tv","act":5,"place":"centro","text":"Converse com o produtor da Pipa TV na Praça da Matriz."},
+	{"id":"leo-antena","act":5,"place":"centro","text":"Vença os quatro desafios do Centro e dispute o emblema com o Leo Antena."},
+	{"id":"fantasma","act":5,"place":"centro","text":"Procure o Pipeiro Fantasma na parte C do Centro."},
+	{"id":"homunculo","act":5,"place":"rua-dos-ventos","text":"Volte ao ateliê e desça ao laboratório sob a casa do Sr. Assis."},
+	{"id":"barreira","act":5,"place":"centro","text":"A noite do cerol caiu. No Centro, tire a braçadeira de um capanga do Bando."},
+	{"id":"taina","act":5,"place":"lajes","text":"Com a braçadeira, entre no Condomínio e vença a Tainá, mesmo de noite."},
+	{"id":"galpao","act":5,"place":"industrial","text":"Invada o galpão do Bando, na Vila Operária: desfaça os três nós do cadeado."},
+	{"id":"gollia-bando","act":5,"place":"industrial","text":"Enfrente o Gollia no fundo do galpão."},
+	{"id":"gerador","act":5,"place":"montanha","text":"Suba à torre do vento, no Cume da Serra, e chame os Quatro Ventos."},
+	{"id":"copa-relampago","act":5,"place":"centro","text":"Dispute a Copa Relâmpago, o exame da categoria Dourada, na Praça da Matriz."},
+	{"id":"jurandir","act":6,"place":"porto","text":"Vença os quatro desafios do Porto Novo e dispute o emblema com o Capitão Jurandir."},
+	{"id":"ruinas-aliados","act":6,"place":"coracao","text":"Entre no Coração das Ruínas e solte a Nina, a Mikka e a Jamile."},
+	{"id":"gollia-arrependimento","act":6,"place":"coracao","text":"Siga até a porta da Câmara do Elo, na parte D das Ruínas."},
+	{"id":"rato","act":6,"place":"coracao","text":"Enfrente o Rato no altar do Elo."},
+	{"id":"eremor","act":6,"place":"coracao","text":"O Eremor despertou. Vença o lendário antes que ele saia das Ruínas."},
+	{"id":"icaro","act":6,"place":"mirante","text":"Vença os quatro desafios do Alto do Mirante e dispute o emblema com o Ícaro."},
+	{"id":"final","act":6,"place":"estadio","text":"Vá ao Estádio de Kronasta e dispute a chave final."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -94,6 +120,24 @@ static func mikka_defeated(player: Dictionary) -> bool:
 
 static func beat_done(player: Dictionary, id: String) -> bool:
 	var f:=flags(player)
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	if endgame.STEPS.has(id):return endgame.done(player,id)
+	var rules=preload("res://scripts/campaign/district_rules.gd")
+	match id:
+		"tufanocorte":return f.get("tufanocorteLiberto",false)
+		"serra-habilidades":return "serra-corrente-de-ar-v1" in player.get("completedOperations",[]) or rules.completed(player,"alto-da-serra")
+		"dona-neve":return rules.completed(player,"alto-da-serra")
+		"rabiolava":return f.get("aracatiRabiolavaLivre",false)
+		"leo-antena":return rules.completed(player,"centro")
+		"fantasma":return f.get("pipeiroFantasmaResolvido",false)
+		"homunculo":return f.get("tylerCreatedKnown",false)
+		"taina":return rules.completed(player,"lajes")
+		"jurandir":return rules.completed(player,"porto")
+		"ruinas-aliados":return f.get("ruinasNinaLivre",false) and f.get("ruinasMikkaLivre",false) and f.get("ruinasJamileLivre",false)
+		"rato":return f.get("ruinasChefeVencido",false)
+		"eremor":return f.get("enamorDerrotado",false)
+		"icaro":return rules.completed(player,"mirante")
+		"final":return f.get("campeaoKronasta",false)
 	match id:
 		"heleana-confissao":return f.get("heleanaConfessouRabiola",false)
 		"palafitas-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"palafitas")
@@ -143,6 +187,9 @@ static func neighbourhoods_won(player: Dictionary) -> int:
 
 ## First exam is explicit and saved; loss of a district title cannot demote it.
 static func category(player: Dictionary) -> String:
+	if player.get("flags",{}).get("campeaoKronasta",false):return CATEGORIES[5]
+	if player.get("flags",{}).get("leagueGold",false):return CATEGORIES[4]
+	if player.get("flags",{}).get("leagueRed",false):return CATEGORIES[3]
 	if player.get("flags",{}).get("leagueBlue",false):return CATEGORIES[2]
 	return CATEGORIES[1] if player.get("flags",{}).get("leagueGreen",false) else CATEGORIES[0]
 
@@ -158,6 +205,15 @@ static func objective(player: Dictionary) -> String:
 	if beat.get("id","").begins_with("mormaco-"):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
 	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
+	if beat.get("id")=="serra-habilidades":
+		if not flags(player).get("canCavar",false):return "Observe o tatu no cume da Serra para aprender Cavar."
+		if "serra-primeira-escavacao-v1" not in player.get("completedOperations",[]):return "Experimente Cavar na terra fofa do cume."
+		if "serra-galeria-cavar-v1" not in player.get("completedOperations",[]):return "Volte à terra fofa para abrir a galeria sob a Serra."
+		return "Use Corrente de Ar no paredão abaixo do mirante."
+	var district:String={"dona-neve":"alto-da-serra","leo-antena":"centro","taina":"lajes","jurandir":"porto","icaro":"mirante"}.get(beat.get("id",""),"")
+	if not district.is_empty():
+		var progress:String=preload("res://scripts/campaign/district_campaign.gd").objective(player,district)
+		if not progress.is_empty():return progress
 	if not beat.is_empty(): return beat.text
 	if flags(player).get("tufanocorteLiberto",false):
 		if not flags(player).get("canCavar",false):return "Observe o tatu no cume da Serra para aprender Cavar."
@@ -181,7 +237,7 @@ static func next_destination(player: Dictionary = {}) -> Dictionary:
 ## Places the player can go back to freely: open or won. Story beats inside them
 ## are not replayed (won duels and bosses stay gone).
 static func released(player: Dictionary) -> Array:
-	return PLACES.filter(func(entry): return state(player,entry.id) in ["aberto","vencido"] and (not entry.get("preview",false) or entry.id=="pantano" and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player)))
+	return PLACES.filter(func(entry): return state(player,entry.id) in ["aberto","vencido"] and (not entry.get("preview",false) or entry.id=="pantano" and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) or entry.id=="industrial" and load("res://scripts/campaign/endgame_story.gd").night_active(player)))
 
 static func previews(player: Dictionary) -> Array:
 	return PLACES.filter(func(entry): return entry.get("preview",false) and qa() and state(player,entry.id)=="aberto")
@@ -209,13 +265,24 @@ static func serra_open(player:Dictionary)->bool:
 static func state(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
 	if entry.is_empty(): return "em-breve"
+	var rules=preload("res://scripts/campaign/district_rules.gd")
+	# Night of the cerol, lean version: only the night places (and the story stops of
+	# the act) stay open until the generator brings the Winds back.
+	if load("res://scripts/campaign/endgame_story.gd").night_active(player):
+		match id:
+			"rua-dos-ventos":return "aberto"
+			"centro":return "vencido" if rules.completed(player,"centro") else "aberto"
+			"lajes":return "vencido" if rules.completed(player,"lajes") else "aberto" if rules.unlocked(player,"lajes") else "fechado"
+			"industrial":return "aberto" if rules.completed(player,"lajes") else "fechado"
+			"montanha":return "aberto" if flags(player).get("golliaFugiu",false) else "fechado"
+		return "fechado"
 	match id:
 		"mirante":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"mirante") else "fechado"
 		"estadio":return "aberto" if preload("res://scripts/campaign/district_rules.gd").city_final_unlocked(player) else "fechado"
 		"coracao":return "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"porto") else "fechado"
 		"porto":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"porto") else "fechado"
 		"lajes":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"lajes") else "fechado"
-		"centro":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"centro") else "fechado"
+		"centro":return "vencido" if rules.completed(player,"centro") else "aberto" if flags(player).get("trovaretaLivre",false) or rules.unlocked(player,"centro") else "fechado"
 		"aracati":return "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"alto-da-serra") else "fechado"
 		"montanha":return "aberto" if serra_open(player) or (qa() and prologue_done(player)) else "fechado"
 		"palafitas":return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,id) or load("res://scripts/campaign/retalho_trust.gd").docks_open(player) else "fechado"
@@ -240,7 +307,16 @@ static func can_travel(player: Dictionary, id: String) -> bool:
 
 static func requirement(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
+	if load("res://scripts/campaign/endgame_story.gd").night_active(player) and state(player,id)=="fechado":
+		if id=="lajes":return "Tire a braçadeira de um capanga do Bando no Centro."
+		return "A noite do cerol fechou este caminho. Os Ventos precisam voltar."
 	if id=="aracati" and state(player,id)=="fechado":return "Vença Dona Neve no Alto da Serra."
+	if id=="centro" and state(player,id)=="fechado":return "Solte a Trovareta no Bosque, durante a tempestade."
+	if id=="lajes" and state(player,id)=="fechado":return "Descubra o que o laboratório do Sr. Assis esconde."
+	if id=="porto" and state(player,id)=="fechado":return "Conquiste a categoria Dourada na Copa Relâmpago."
+	if id=="coracao" and state(player,id)=="fechado":return "Vença o Capitão Jurandir no Porto Novo."
+	if id=="mirante" and state(player,id)=="fechado":return "Vença o Eremor no Coração das Ruínas."
+	if id=="estadio" and state(player,id)=="fechado":return "Vença os 12 bairros, o Rato e o Eremor."
 	if id=="montanha" and state(player,id)=="fechado":return "Liberte Mormaço e vença Caio Garça em Palafitas."
 	if id=="palafitas" and state(player,id)=="fechado":return "O resgate abre durante o arco de Retalho; o campeonato exige o emblema de Bruno e Mormaço livre."
 	if id=="beira-canal" and preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") and not flags(player).get("leagueGreen",false):return "Conclua o primeiro exame com Nina"

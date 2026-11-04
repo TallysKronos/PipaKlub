@@ -30,13 +30,18 @@ func _initialize() -> void:
 	var arena := Map.make(mirante, Map.spawn(mirante), Map.SPACE)
 	if not verify(session.checkpoint(arena,player).status=="ok","start at Mirante"):return
 	if not verify(travel.travel(Scene).status=="wrong_step","stadium travel locked before Mirante"):return
-	Rules.award_emblem(player,"mirante")
-	var entry: Dictionary = Rules.entry(player,"mirante")
-	entry.completed = true
-	entry.rewardClaimed = true
-	entry.champion = "player"
-	Rules.store(player,"mirante",entry)
+	# The final needs the 12 districts, the Rato and the Eremor (BIBLIA §7.7).
+	for district: Dictionary in Rules.catalog():
+		var entry: Dictionary = Rules.entry(player,district.id)
+		entry.completed = true
+		entry.rewardClaimed = true
+		entry.champion = "player"
+		Rules.store(player,district.id,entry)
 	if not verify(session.checkpoint(arena,player).status=="ok","persist Mirante"):return
+	if not verify(travel.travel(Scene).status=="wrong_step","stadium still locked before Rato and Eremor"):return
+	player.flags.ruinasChefeVencido = true
+	player.flags.enamorDerrotado = true
+	if not verify(session.checkpoint(arena,player).status=="ok","persist Ruínas"):return
 	if not verify(travel.travel(Scene).status=="ok","travel from Mirante to stadium"):return
 	if not verify(session.snapshot().checkpoint.scene==Scene,"arrive at stadium lobby"):return
 	if not verify(session.checkpoint(cp,session.snapshot().player).status=="ok","approach attendant"):return

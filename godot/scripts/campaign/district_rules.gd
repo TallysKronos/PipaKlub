@@ -46,8 +46,10 @@ static func unlocked_areas(player:Dictionary) -> Array:
 		for area in d.unlocks:
 			if area not in result:result.append(area)
 	return result
+## The final needs the 12 districts, the Rato and the Eremor (BIBLIA §7.7).
 static func city_final_unlocked(player:Dictionary) -> bool:
-	return completed(player,"mirante")
+	var f:Dictionary=player.get("flags",{})
+	return completed_count(player)>=12 and f.get("ruinasChefeVencido",false) and f.get("enamorDerrotado",false)
 static func opponent_name(player:Dictionary,id:String) -> String:
 	var d:=definition(id);var value:=entry(player,id)
 	if d.is_empty():return ""
