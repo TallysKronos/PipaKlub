@@ -31,6 +31,8 @@ func buttons(node:Node) -> Array[Button]:
 		found.append_array(buttons(child))
 	return found
 func run() -> void:
+	# The player's menu: the QA jump entry only shows in QA builds (qa_jump.gd).
+	preload("res://scripts/campaign/kronasta_story.gd").qa_override=0
 	var front:=Front.new()
 	front.session._store=Store.new("user://title-menu-"+State.new_id())
 	front.preferences.storage_path="user://title-menu-"+State.new_id()+".cfg"
