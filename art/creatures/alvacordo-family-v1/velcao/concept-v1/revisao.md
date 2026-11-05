@@ -1,0 +1,3 @@
+# Conferência visual
+
+Imagem inspecionada: Quadrúpede de quatro patas, velas laterais nos ombros, focinho alongado e cauda-pluma. Paleta e família coerentes; silhueta distinta dos outros estágios. As velas leem visualmente próximas de asas; função de freio é proposta, não demonstrada em animação. Há suaves transições residuais na pintura; concept manga limpo, não pixel art de grade validada. Fundo branco opaco; não recortado, animado ou integrado. Em avaliação pelo autor.

@@ -1,0 +1,29 @@
+{
+  "id": "yaguarion",
+  "name": "Yaguarion",
+  "identity": "yaguaru-memoria",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-0bb7c3ed-d9f9-486e-9457-c523bd5ecda2.png",
+  "tool": "image_gen.imagegen",
+  "width": 1024,
+  "height": 1536,
+  "mode": "RGB",
+  "sha256": "b4cddec9c2862c8981eafa8960ce901c67a074f9b19f00fd9ec77429eff3928a",
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "references": [
+    {
+      "path": "art/soulgen/keys/yaguaru-memoria/color-rig-v2/preview.png",
+      "role": "identidade atual do autor"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png",
+      "role": "acabamento de cavaleiro aprovado"
+    }
+  ],
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false
+}

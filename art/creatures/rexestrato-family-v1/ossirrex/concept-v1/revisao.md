@@ -1,0 +1,3 @@
+# Conferência
+
+Tiranossauro fóssil horizontal, duas pernas fortes, dois braços curtos, costelas-varetas e membranas âmbar. Corpo e rabiola inspecionados, contagem de membros conferida. Mãos com dois dedos; garras traseiras acessórias e número de segmentos precisam padronização numa prancha técnica. Não se promete contagem exata de dentes ou costelas pelo prompt. Leves transições suaves residuais; concept mangá, não pixel art em grade. Fundo branco opaco. Sem recorte, rig, animação ou integração. Em avaliação.

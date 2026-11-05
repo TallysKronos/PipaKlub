@@ -1,0 +1,7 @@
+# A — Mergulhador de resgate
+
+Definido: criança de água da família capivara. Observado: menta/marfim/petróleo, pés palmados, focinho rombo, quilha e três abas. Proposto: estágio jovem alternativo com ação e arquitetura próprias. Não decidido: nome, rota, receita e habilidades de jogo.
+
+A: streamline amphibious QUADRUPED diving rescuer. Replace round child barrel with forward-leaning flexible torpedo-like compact torso; long powerful rear webbed paws and short steering front paws, four limbs total. Low forehead blunt capybara muzzle, determined gentle expression. Child vertical dorsal sail is SUBTRACTED: reorganize it into two low swept hydrofoil folds rooted along the flanks and one short flexible spine ridge; NO giant dorsal sail. Ivory ventral tension-paper surface can cup/support a small rescued creature but depict it empty. Main silhouette is swift horizontal bow, not long sea serpent. Show a bounding low dive preparation with hind legs pushing, near forepaw pulling inward. Soul-tail three tabs flows behind, total length moderate. Key readable feature: rear propulsion versus broad flexible ventral cradle. No armor, weapons, clothes or flotation ring.
+
+Direção: 45% criatura / 45% pipa funcional / 10% acabamento 2D mangá. Fonte de princípios: art/benchmarks/digimon-ultimate-mega-2026-11-04/. Nenhuma arte externa fornecida à geração.

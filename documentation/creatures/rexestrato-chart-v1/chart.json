@@ -1,0 +1,93 @@
+{
+  "family_id": "rexestrato-family-v1",
+  "scope": "Quatro concepts aprovados visualmente; nomes, funções e mecânicas propostos. Sem integração.",
+  "nodes": [
+    {
+      "id": "calquim",
+      "name": "Calquim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Corpo único de pipa com armação fóssil, sem membros, uma flâmula.",
+      "story": "Começa a perceber vibrações na própria membrana.",
+      "action": "Sentir vibrações",
+      "tradeoff": "Não se ancora para produzir sons fortes.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/rexestrato-family-v1/calquim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/rexestrato-family-v1/calquim/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovado! Faça um fossil brontossauro”, após o comparativo de Calquim, Ossito v2, Ossirrex e Rexestrato. Aprovação visual das quatro artes, sem aprovação técnica ou integração."
+    },
+    {
+      "id": "ossito",
+      "name": "Ossito",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Pequeno bípede de barriga inflada âmbar, armação de costelas, braços curtos de dois dedos e janela fóssil na face.",
+      "story": "Aprende a apoiar o corpo e marcar ritmos com passos.",
+      "action": "Marcar um ritmo",
+      "tradeoff": "Corpo leve e pouca pressão nas membranas.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/rexestrato-family-v1/ossito/concept-v2/concept.png",
+      "brief": "../../../art/creatures/rexestrato-family-v1/ossito/concept-v2/brief.md",
+      "approval_note": "Autor: “Aprovado! Faça um fossil brontossauro”, após o comparativo de Calquim, Ossito v2, Ossirrex e Rexestrato. Aprovação visual das quatro artes, sem aprovação técnica ou integração."
+    },
+    {
+      "id": "ossirrex",
+      "name": "Ossirrex",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Tiranossauro fóssil horizontal, duas pernas fortes, dois braços curtos, costelas-varetas e membranas âmbar.",
+      "story": "Coordena mandíbula e estrutura do peito para projetar chamados.",
+      "action": "Projetar um chamado",
+      "tradeoff": "Precisa alinhar o corpo e recuperar tensão.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/rexestrato-family-v1/ossirrex/concept-v1/concept.png",
+      "brief": "../../../art/creatures/rexestrato-family-v1/ossirrex/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovado! Faça um fossil brontossauro”, após o comparativo de Calquim, Ossito v2, Ossirrex e Rexestrato. Aprovação visual das quatro artes, sem aprovação técnica ou integração."
+    },
+    {
+      "id": "rexestrato",
+      "name": "Rexestrato",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Tiranossauro de tórax-fole profundo e ressonador de membrana ligado à mandíbula; dois braços pequenos e duas pernas.",
+      "story": "Aprende a usar mandíbula, costelas e membranas em conjunto.",
+      "action": "Ressoar",
+      "tradeoff": "A maior pressão exige apoio firme e recuperação.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/rexestrato-family-v1/rexestrato/concept-v1/concept.png",
+      "brief": "../../../art/creatures/rexestrato-family-v1/rexestrato/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovado! Faça um fossil brontossauro”, após o comparativo de Calquim, Ossito v2, Ossirrex e Rexestrato. Aprovação visual das quatro artes, sem aprovação técnica ou integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "calquim",
+      "to": "ossito",
+      "kind": "reweaving",
+      "reason": "Massa única ganha apoios e braços curtos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ossito",
+      "to": "ossirrex",
+      "kind": "reweaving",
+      "reason": "Apoios amadurecem, corpo horizontal coordena costelas e mandíbula.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ossirrex",
+      "to": "rexestrato",
+      "kind": "reweaving",
+      "reason": "Estrutura amplia a caixa de ressonância e ganha controle do chamado.",
+      "decision_status": "proposed"
+    }
+  ]
+}

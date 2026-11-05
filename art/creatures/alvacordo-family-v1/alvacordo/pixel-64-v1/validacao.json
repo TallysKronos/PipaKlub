@@ -1,0 +1,47 @@
+{
+  "canvas": [
+    64,
+    64
+  ],
+  "sheet": [
+    512,
+    64
+  ],
+  "frames": 8,
+  "opaque_counts": [
+    1669,
+    1669,
+    1672,
+    1679,
+    1688,
+    1685,
+    1669,
+    1669
+  ],
+  "opaque_colors": 12,
+  "alpha_values": [
+    0,
+    255
+  ],
+  "durations_ms": [
+    220,
+    100,
+    100,
+    200,
+    200,
+    100,
+    100,
+    180
+  ],
+  "tags": [
+    {
+      "name": "idle-so",
+      "from": 0,
+      "to": 7,
+      "direction": "forward",
+      "color": "#000000ff"
+    }
+  ],
+  "method": "Aseprite atlas, palette, Pillow and visualfilmstrip; validate tool unavailable",
+  "integration": false
+}

@@ -1,0 +1,32 @@
+{
+  "id": "dobracula",
+  "name": "Dobrácula",
+  "identity": "doberman-c",
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-5e45cbf3-335a-48de-a338-9481678aeaad.png",
+  "width": 1024,
+  "height": 1536,
+  "mode": "RGB",
+  "alpha": false,
+  "sha256": "248a824a355651703b92e6a6fefd7daf028e2bd54550295112c82103de2661c4",
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "sources": "fontes.json",
+  "references": [
+    {
+      "path": "art/soulgen/keys/doberman-c/refined-rig-v3/preview.png",
+      "role": "identidade autoral vigente"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/yaguarion/concept-v2/concept.png",
+      "role": "acabamento próprio aprovado"
+    }
+  ],
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "approval_note": "2026-11-04: autor respondeu aprovadissimo e definiu Dobrácula adulto, Dóber jovem. Aprovação visual, sem integração."
+}

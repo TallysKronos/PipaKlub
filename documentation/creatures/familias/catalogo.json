@@ -1,0 +1,4943 @@
+{
+  "date": "2026-11-04",
+  "scope": "Checkout local pipa-club-integracao-atualizada; arts/creatures, charts, Soulgen e Dex. Sem fetch, integração ou alteração de cânone.",
+  "counts": {
+    "families": 73,
+    "families_with_chart": 34,
+    "unique_records": 202,
+    "visual_reservations": 17,
+    "dex_entries": 36,
+    "chart_sources": 37
+  },
+  "families": [
+    {
+      "id": "anaconda-retrato",
+      "name": "Anaconda do retrato",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/anaconda-retrato-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "anaconda-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Protege-se no próprio arco e descobre a linha que o mantém unido.",
+          "art": "art/creatures/anaconda-retrato-family-v1/anaconda-baby/concept-v1/concept.png",
+          "brief": "art/creatures/anaconda-retrato-family-v1/anaconda-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/anaconda-retrato-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "anaconda-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Explora seus movimentos e carrega uma moldura ainda vazia.",
+          "art": "art/creatures/anaconda-retrato-family-v1/anaconda-child/concept-v1/concept.png",
+          "brief": "art/creatures/anaconda-retrato-family-v1/anaconda-child/concept-v1/brief.md",
+          "source": "documentation/creatures/anaconda-retrato-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "anaconda-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Ganha peso de constritora e passa a cultivar a própria imagem.",
+          "art": "art/creatures/anaconda-retrato-family-v1/anaconda-young/concept-v1/concept.png",
+          "brief": "art/creatures/anaconda-retrato-family-v1/anaconda-young/concept-v1/brief.md",
+          "source": "documentation/creatures/anaconda-retrato-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "anaconda-cavaleiro",
+          "name": "Adulto — cavaleiro do retrato",
+          "kind": "stage",
+          "stage": "Adulto — cavaleiro do retrato",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Troca força bruta por precisão de esgrima; o retrato marcado contrasta com a armadura impecável.",
+          "art": "art/creatures/anaconda-retrato-family-v1/anaconda-cavaleiro/concept-v1/concept.png",
+          "brief": "art/creatures/anaconda-retrato-family-v1/anaconda-cavaleiro/concept-v1/brief.md",
+          "source": "documentation/creatures/anaconda-retrato-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "anaconda-baby",
+          "to": "anaconda-child",
+          "kind": "reweaving",
+          "reason": "Explora seus movimentos e carrega uma moldura ainda vazia.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "anaconda-child",
+          "to": "anaconda-young",
+          "kind": "reweaving",
+          "reason": "Ganha peso de constritora e passa a cultivar a própria imagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "anaconda-young",
+          "to": "anaconda-cavaleiro",
+          "kind": "reweaving",
+          "reason": "Troca força bruta por precisão de esgrima; o retrato marcado contrasta com a armadura impecável.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "azulao",
+      "name": "Azulão",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/azulao-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "azulim",
+          "name": "Azulim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente (registro visual)",
+          "production": "Concept/documentação",
+          "story": "Aprende a encontrar abrigo.",
+          "art": "art/creatures/azulao-family-v1/azulim/concept-pipa-v3/concept.png",
+          "brief": "art/creatures/azulao-family-v1/azulim/concept-pipa-v3/brief.md",
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "azulao",
+          "name": "Azulão",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Existente",
+          "production": "Concept/documentação",
+          "story": "A chuva passa. O laço fica.",
+          "art": "art/soulgen/keys/azulao/color-rig-v2/concept.png",
+          "brief": null,
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/azulao/color-rig-v2/azulao.soulgen.json"
+        },
+        {
+          "id": "azulfazo",
+          "name": "Azulfazo",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Estado visual a conferir",
+          "production": "Concept/documentação",
+          "story": "Força para sustentar a frente.",
+          "art": "art/soulgen/keys/azulfazo/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/azulfazo/cutout-rig-v1/azulfazo.soulgen.json"
+        },
+        {
+          "id": "azulineo",
+          "name": "Azulíneo",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente (registro visual)",
+          "production": "Concept/documentação",
+          "story": "Encontra a passagem entre rajadas.",
+          "art": "art/creatures/azulao-family-v1/azulineo/concept-pipa-v3/concept.png",
+          "brief": "art/creatures/azulao-family-v1/azulineo/concept-pipa-v3/brief.md",
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "azulume",
+          "name": "Azulume",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente (registro visual)",
+          "production": "Concept/documentação",
+          "story": "Enxerga o desenho do vento.",
+          "art": "art/creatures/azulao-family-v1/azulume/concept-pipa-v3/concept.png",
+          "brief": "art/creatures/azulao-family-v1/azulume/concept-pipa-v3/brief.md",
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "azultor",
+          "name": "Azultor",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Estado visual a conferir",
+          "production": "Concept/documentação",
+          "story": "O abrigo que enfrenta a tempestade.",
+          "art": "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png",
+          "brief": "art/creatures/azulao-family-v1/azultor/piloto-especialidade-v1/brief.md",
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "azuligero",
+          "name": "Azulígero",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente (registro visual)",
+          "production": "Concept/documentação",
+          "story": "Uma curva que ninguém consegue fechar.",
+          "art": "art/creatures/azulao-family-v1/azuligero/concept-pipa-v3/concept.png",
+          "brief": "art/creatures/azulao-family-v1/azuligero/concept-pipa-v3/brief.md",
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "azulaculo",
+          "name": "Azuláculo",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente (registro visual)",
+          "production": "Concept/documentação",
+          "story": "Pouco movimento. A escolha certa.",
+          "art": "art/creatures/azulao-family-v1/azulaculo/concept-pipa-v3/concept.png",
+          "brief": "art/creatures/azulao-family-v1/azulaculo/concept-pipa-v3/brief.md",
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "azulao-moncao",
+          "name": "Azulão · Monção",
+          "kind": "configuration",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente (registro visual)",
+          "production": "Concept/documentação",
+          "story": "Abrigo sob chuva e vento cruzado.",
+          "art": "art/creatures/azulao-family-v1/azulao-moncao/concept-pipa-v3/concept.png",
+          "brief": "art/creatures/azulao-family-v1/azulao-moncao/concept-pipa-v3/brief.md",
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "azulao-alisio",
+          "name": "Azulão · Alísio",
+          "kind": "configuration",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente (registro visual)",
+          "production": "Concept/documentação",
+          "story": "Aproveita a corrente em vez de enfrentá-la.",
+          "art": "art/creatures/azulao-family-v1/azulao-alisio/concept-pipa-v3/concept.png",
+          "brief": "art/creatures/azulao-family-v1/azulao-alisio/concept-pipa-v3/brief.md",
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "azulfazo-possuido",
+          "name": "Azulfazo possuído",
+          "kind": "state",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Estado visual a conferir",
+          "production": "Concept/documentação",
+          "story": "Força arrancada do laço.",
+          "art": "art/soulgen/keys/azulfazo-possuido/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "documentation/creatures/azulao-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/azulfazo-possuido/cutout-rig-v1/azulfazo-possuido.soulgen.json"
+        },
+        {
+          "id": "azulao-zokk",
+          "name": "Fera marítima do Chifre de Zokk (rótulo)",
+          "kind": "configuration",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Concept apreciado na conversa; manifesto ainda em avaliação",
+          "production": "Concept",
+          "story": "Transformação por material raro explorada; posição e requisitos não definidos.",
+          "art": "art/creatures/azulao-family-v1/azulao-zokk/concept-v1/concept.png",
+          "brief": null,
+          "source": "art/creatures/azulao-family-v1/DECISOES.md",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "azulim",
+          "to": "azulao",
+          "kind": "reweaving",
+          "proposal": true
+        },
+        {
+          "from": "azulao",
+          "to": "azulfazo",
+          "kind": "reweaving",
+          "proposal": false
+        },
+        {
+          "from": "azulao",
+          "to": "azulineo",
+          "kind": "reweaving",
+          "proposal": false
+        },
+        {
+          "from": "azulao",
+          "to": "azulume",
+          "kind": "reweaving",
+          "proposal": false
+        },
+        {
+          "from": "azulfazo",
+          "to": "azultor",
+          "kind": "reweaving",
+          "proposal": true
+        },
+        {
+          "from": "azulineo",
+          "to": "azuligero",
+          "kind": "reweaving",
+          "proposal": true
+        },
+        {
+          "from": "azulume",
+          "to": "azulaculo",
+          "kind": "reweaving",
+          "proposal": true
+        },
+        {
+          "from": "azulao",
+          "to": "azulao-moncao",
+          "kind": "configuration",
+          "proposal": true
+        },
+        {
+          "from": "azulao",
+          "to": "azulao-alisio",
+          "kind": "configuration",
+          "proposal": true
+        },
+        {
+          "from": "azulfazo",
+          "to": "azulfazo-possuido",
+          "kind": "possession",
+          "proposal": false
+        }
+      ],
+      "notes": [
+        "Alísio (pégaso) e Monção (inseto) são formas especiais; possessão de Azulfazo é estado, não novo degrau. Arte final de Azultor preserva corpo aprovado e rosto adulto revisto; metadados de versões antigas continuam divergentes."
+      ]
+    },
+    {
+      "id": "cacaurama",
+      "name": "Cacau e preguiça — dois ramos",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/cacaurama-chart-v2/chart.json",
+        "documentation/creatures/cacaurama-preguica-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "cacau-baby",
+          "name": "Bebê (nome pendente)",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Fruto verde fechado; observa e se prende com pequenos ganchos.",
+          "art": "art/creatures/cacaurama-family-v1/cacau-baby/concept-v2/concept.png",
+          "brief": "art/creatures/cacaurama-family-v1/cacau-baby/concept-v2/brief.md",
+          "source": "documentation/creatures/cacaurama-preguica-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cacau-child",
+          "name": "Criança (nome pendente)",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Gomos crescem e os membros permitem explorar; primeiras pontas amarelas.",
+          "art": "art/creatures/cacaurama-family-v1/cacau-child/concept-v2/concept.png",
+          "brief": "art/creatures/cacaurama-family-v1/cacau-child/concept-v2/brief.md",
+          "source": "documentation/creatures/cacaurama-chart-v2/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cacaulento",
+          "name": "Jovem (nome pendente)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Fruto dourado; braços longos tensionam a linha com precisão paciente.",
+          "art": "art/creatures/cacaurama-family-v1/cacaulento/concept-v2/concept.png",
+          "brief": "art/creatures/cacaurama-family-v1/cacaulento/concept-v2/brief.md",
+          "source": "documentation/creatures/cacaurama-chart-v2/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cacaurama",
+          "name": "Adulto (nome pendente)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "brief",
+          "story": "Amadurecer permite abrir a proteção e tecer com alcance maior.",
+          "art": null,
+          "brief": "art/creatures/cacaurama-family-v1/cacaurama/concept-v2/brief.md",
+          "source": "documentation/creatures/cacaurama-chart-v2/chart.json",
+          "rig": null
+        },
+        {
+          "id": "preguicau-child",
+          "name": "Criança (nome pendente)",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A casca se abre para revelar rosto e membros; aprende a se prender à própria linha.",
+          "art": "art/creatures/cacaurama-family-v1/preguicau-child/concept-v1/concept.png",
+          "brief": "art/creatures/cacaurama-family-v1/preguicau-child/concept-v1/brief.md",
+          "source": "documentation/creatures/cacaurama-preguica-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "preguicau-young",
+          "name": "Jovem (nome pendente)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Braços alongados e membranas tensionadas sustentam o corpo; a casca vira cobertura dorsal.",
+          "art": "art/creatures/cacaurama-family-v1/preguicau-young/concept-v1/concept.png",
+          "brief": "art/creatures/cacaurama-family-v1/preguicau-young/concept-v1/brief.md",
+          "source": "documentation/creatures/cacaurama-preguica-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "preguicau-adult",
+          "name": "Adulto (nome pendente)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Casca madura se abre em manto; a preguiça guardiã ancora linhas com braços de grande alcance.",
+          "art": "art/creatures/cacaurama-family-v1/preguicau-adult/concept-v1/concept.png",
+          "brief": "art/creatures/cacaurama-family-v1/preguicau-adult/concept-v1/brief.md",
+          "source": "documentation/creatures/cacaurama-preguica-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "cacau-baby",
+          "to": "cacau-child",
+          "kind": "reweaving",
+          "reason": "Fruto verde fechado; observa e se prende com pequenos ganchos.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "cacau-child",
+          "to": "cacaulento",
+          "kind": "reweaving",
+          "reason": "Gomos crescem e os membros permitem explorar; primeiras pontas amarelas.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "cacaulento",
+          "to": "cacaurama",
+          "kind": "reweaving",
+          "reason": "Casca madura se abre na transformação fantástica; sementes organizam nova anatomia.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "cacau-baby",
+          "to": "preguicau-child",
+          "kind": "reweaving",
+          "reason": "A casca se abre para revelar rosto e membros; aprende a se prender à própria linha.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "preguicau-child",
+          "to": "preguicau-young",
+          "kind": "reweaving",
+          "reason": "Braços alongados e membranas tensionadas sustentam o corpo; a casca vira cobertura dorsal.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "preguicau-young",
+          "to": "preguicau-adult",
+          "kind": "reweaving",
+          "reason": "Casca madura se abre em manto; a preguiça guardiã ancora linhas com braços de grande alcance.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [
+        "Bebê Cacau compartilhado pelos ramos fruto e preguiça; contado uma vez. Aprovação do ramo preguiça não aprova automaticamente o ramo fruto. Adulto do fruto está em brief, sem PNG atual nesta pasta."
+      ]
+    },
+    {
+      "id": "capivara-boia",
+      "name": "Capivara aquática / Capiboia",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/capivara-boia-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "gotim",
+          "name": "Gotim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a recuperar equilíbrio pela dobra do próprio corpo.",
+          "art": "art/creatures/capivara-boia-family-v1/gotim/concept-v4/concept.png",
+          "brief": "art/creatures/capivara-boia-family-v1/gotim/concept-v4/brief.md",
+          "source": "documentation/creatures/capivara-boia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "capivara-boia",
+          "name": "Capiboia",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a sustentar-se em terra e dirigir o primeiro impulso na água com o próprio corpo.",
+          "art": "art/creatures/capivara-boia/child-manga-v3/concept.png",
+          "brief": "art/creatures/capivara-boia/child-manga-v3/brief.md",
+          "source": "documentation/creatures/capivara-boia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "remansa",
+          "name": "Remansa",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a sustentar direção em correntes mais fortes e abre passagem com os apoios dianteiros.",
+          "art": "art/creatures/capivara-boia-family-v1/remansa/concept-v1/concept.png",
+          "brief": "art/creatures/capivara-boia-family-v1/remansa/concept-v1/brief.md",
+          "source": "documentation/creatures/capivara-boia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "marevia",
+          "name": "Marévia",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Reorganiza a flutuação em abrigo que desvia correntes ao redor de quem acompanha.",
+          "art": "art/creatures/capivara-boia-family-v1/marevia/concept-v1/concept.png",
+          "brief": "art/creatures/capivara-boia-family-v1/marevia/concept-v1/brief.md",
+          "source": "documentation/creatures/capivara-boia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "capiboia-porto",
+          "name": "Adulto de B — Porto vivo",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Conter torna-se abrigar: reorganiza a proteção ao redor da passagem.",
+          "art": "art/creatures/capivara-boia-family-v1/capiboia-porto/concept-v1/concept.png",
+          "brief": "art/creatures/capivara-boia-family-v1/capiboia-porto/concept-v1/brief.md",
+          "source": "documentation/creatures/capivara-boia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "capiboia-tececorrente",
+          "name": "Adulto de C — Mestre da vazante (proposta)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Concentra a técnica dos remos num gesto de impacto preciso e abre passagem pela corrente.",
+          "art": "art/creatures/capivara-boia-family-v1/capiboia-tececorrente/concept-v3/concept.png",
+          "brief": "art/creatures/capivara-boia-family-v1/capiboia-tececorrente/concept-v3/brief.md",
+          "source": "documentation/creatures/capivara-boia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "capiboia-contensor",
+          "name": "B — Contensor de correnteza",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a conter o fluxo para proteger uma passagem.",
+          "art": "art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/b-quebra-corrente/concept.png",
+          "brief": "art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/b-quebra-corrente/brief.md",
+          "source": "documentation/creatures/capivara-boia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "capiboia-condutor",
+          "name": "C — Condutor de canais",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a conduzir a água por movimentos precisos dos membros.",
+          "art": "art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/c-condutor/concept.png",
+          "brief": "art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/c-condutor/brief.md",
+          "source": "documentation/creatures/capivara-boia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "capibaluarte",
+          "name": "Capibaluarte",
+          "kind": "stage",
+          "stage": "Adulto / candidato de rota",
+          "grade": null,
+          "status": "Consultar decisão na fonte",
+          "production": "Concept",
+          "story": "Cavaleiro visual aprovado; ligação com os ramos B/C não definida.",
+          "art": "art/creatures/onze-cavaleiros-v1/capibaluarte/concept-v1/concept.png",
+          "brief": "art/creatures/onze-cavaleiros-v1/capibaluarte/DECISOES.md",
+          "source": "art/creatures/onze-cavaleiros-v1/capibaluarte/DECISOES.md",
+          "rig": null
+        },
+        {
+          "id": "herdeiro-de-ghinues",
+          "name": "Herdeiro de Ghinues (rótulo)",
+          "kind": "configuration",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Consultar decisão na fonte",
+          "production": "Concept",
+          "story": "Remonta Especial proposta pelo Martelo de Ghinues; forma-base e estágio indefinidos. Ghinues é outra criatura, sem design produzido neste estudo.",
+          "art": "art/creatures/capivara-boia-family-v1/herdeiro-de-ghinues/concept-v1/concept.png",
+          "brief": "art/creatures/capivara-boia-family-v1/herdeiro-de-ghinues/concept-v1/brief.md",
+          "source": "art/creatures/capivara-boia-family-v1/herdeiro-de-ghinues/concept-v1/brief.md",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "gotim",
+          "to": "capivara-boia",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Equilíbrio inicial adquire quatro apoios, crescente nos quadris e primeira vela."
+        },
+        {
+          "from": "capivara-boia",
+          "to": "remansa",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Flutuação se distribui pelas laterais; quatro pés controlam direção e impulso."
+        },
+        {
+          "from": "remansa",
+          "to": "marevia",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Estruturas laterais se abrem em abrigo e quebra-mar; a vela vira leque arqueado."
+        },
+        {
+          "from": "capiboia-contensor",
+          "to": "capiboia-porto",
+          "kind": "reweaving",
+          "reason": "Conter torna-se abrigar: reorganiza a proteção ao redor da passagem.",
+          "decision_status": "proposed",
+          "requirements_status": "undefined"
+        },
+        {
+          "from": "capiboia-condutor",
+          "to": "capiboia-tececorrente",
+          "kind": "reweaving",
+          "reason": "Conduzir torna-se coordenar: recolhe e abre as superfícies para distribuir o fluxo.",
+          "decision_status": "proposed",
+          "requirements_status": "undefined"
+        },
+        {
+          "from": "capivara-boia",
+          "to": "capiboia-contensor",
+          "kind": "reweaving",
+          "reason": "Aprende a conter o fluxo para proteger uma passagem.",
+          "decision_status": "approved",
+          "approval_note": "Gosto de B e C useos como evos alternativas",
+          "requirements_status": "undefined"
+        },
+        {
+          "from": "capivara-boia",
+          "to": "capiboia-condutor",
+          "kind": "reweaving",
+          "reason": "Aprende a conduzir a água por movimentos precisos dos membros.",
+          "decision_status": "approved",
+          "approval_note": "Gosto de B e C useos como evos alternativas",
+          "requirements_status": "undefined"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "caracol-pneu",
+      "name": "Caracol + pneu",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/caracol-pneu-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "caracol-pneu-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a aderir e se recolher numa pequena concha de borracha-papel.",
+          "art": "art/creatures/caracol-pneu-family-v1/caracol-pneu-baby/concept-v1/concept.png",
+          "brief": "art/creatures/caracol-pneu-family-v1/caracol-pneu-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/caracol-pneu-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "caracol-pneu-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Alonga o pé de apoio e desenvolve sulcos largos e abas ainda fechadas na concha.",
+          "art": "art/creatures/caracol-pneu-family-v1/caracol-pneu-child/concept-v1/concept.png",
+          "brief": "art/creatures/caracol-pneu-family-v1/caracol-pneu-child/concept-v1/brief.md",
+          "source": "documentation/creatures/caracol-pneu-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "caracol-pneu-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Inclina a concha e abre duas membranas para captar vento; aprende a orientar o corpo antes de rolar.",
+          "art": "art/creatures/caracol-pneu-family-v1/caracol-pneu-young/concept-v1/concept.png",
+          "brief": "art/creatures/caracol-pneu-family-v1/caracol-pneu-young/concept-v1/brief.md",
+          "source": "documentation/creatures/caracol-pneu-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "espirrodante",
+          "name": "Adulto — Espirrodante (nome proposto)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Amplia o casco em roda-vela vertical; combina apoio do pé e painéis de vento para controlar deslocamento e defesa.",
+          "art": "art/creatures/caracol-pneu-family-v1/espirrodante/concept-v1/concept.png",
+          "brief": "art/creatures/caracol-pneu-family-v1/espirrodante/concept-v1/brief.md",
+          "source": "documentation/creatures/caracol-pneu-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "caracol-pneu-baby",
+          "to": "caracol-pneu-child",
+          "kind": "reweaving",
+          "reason": "Alonga o pé de apoio e desenvolve sulcos largos e abas ainda fechadas na concha.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "caracol-pneu-child",
+          "to": "caracol-pneu-young",
+          "kind": "reweaving",
+          "reason": "Inclina a concha e abre duas membranas para captar vento; aprende a orientar o corpo antes de rolar.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "caracol-pneu-young",
+          "to": "espirrodante",
+          "kind": "reweaving",
+          "reason": "Amplia o casco em roda-vela vertical; combina apoio do pé e painéis de vento para controlar deslocamento e defesa.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "caramund",
+      "name": "Caramelo / Caramund",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/caramund-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "caramund-baby",
+          "name": "Bebê (nome pendente)",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Uma pipa-rosto curiosa descobre o vento; orelha caída e folha já anunciam a família.",
+          "art": "art/creatures/caramund/caramund-baby/concept-v1/concept.png",
+          "brief": "art/creatures/caramund/caramund-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/caramund-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "caramund-child",
+          "name": "Criança (nome pendente)",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Ganha corpo quadrúpede, explora o bairro e aprende a se colocar na frente de quem precisa de proteção.",
+          "art": "art/creatures/caramund/caramund-child/concept-v1/concept.png",
+          "brief": "art/creatures/caramund/caramund-child/concept-v1/brief.md",
+          "source": "documentation/creatures/caramund-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "caramund-young",
+          "name": "Jovem (nome pendente)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Passa a interceptar ameaças com ombreira de pipa e proteção de escamas, preparando a postura do futuro cavaleiro.",
+          "art": "art/creatures/caramund/caramund-young/concept-v1/concept.png",
+          "brief": "art/creatures/caramund/caramund-young/concept-v1/brief.md",
+          "source": "documentation/creatures/caramund-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "caramund",
+          "name": "Caramund (nome proposto)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Protege o bairro com postura firme, espada de duas mãos e armadura de grandes escamas.",
+          "art": "art/creatures/caramund/concept-v1/concept.png",
+          "brief": "art/creatures/caramund/concept-v1/brief.md",
+          "source": "documentation/creatures/caramund-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "caramund-baby",
+          "to": "caramund-child",
+          "kind": "reweaving",
+          "reason": "Ganha corpo quadrúpede, explora o bairro e aprende a se colocar na frente de quem precisa de proteção.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "caramund-child",
+          "to": "caramund-young",
+          "kind": "reweaving",
+          "reason": "Passa a interceptar ameaças com ombreira de pipa e proteção de escamas, preparando a postura do futuro cavaleiro.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "caramund-young",
+          "to": "caramund",
+          "kind": "reweaving",
+          "reason": "Protege o bairro com postura firme, espada de duas mãos e armadura de grandes escamas.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "carcara",
+      "name": "Carcará",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/carcara-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "carquim",
+          "name": "Carquim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A forma imatura aprende a sustentar o próprio equilíbrio antes de procurar trajetórias.",
+          "art": "art/creatures/carcara-family-v1/carquim/concept-v1/concept.png",
+          "brief": "art/creatures/carcara-family-v1/carquim/concept-v1/brief.md",
+          "source": "documentation/creatures/carcara-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "carcara",
+          "name": "Carcará",
+          "kind": "stage",
+          "stage": "Base · criança neste estudo",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Pipa remendada que ensina a esperar a corrente; fonte do catálogo preservada.",
+          "art": "art/creatures/carcara-family-v1/references/carcara-identity.png",
+          "brief": "documentation/creatures/evolucoes-v1/briefs/carcara.md",
+          "source": "documentation/creatures/carcara-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/carcara/color-rig/rig.mjs"
+        },
+        {
+          "id": "caravento",
+          "name": "Caravento",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Escolher a corrente amadurece em escolher também o ponto de apoio e a saída.",
+          "art": "art/creatures/carcara-family-v1/caravento/concept-v1/concept.png",
+          "brief": "art/creatures/carcara-family-v1/caravento/concept-v1/brief.md",
+          "source": "documentation/creatures/carcara-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "caramastro",
+          "name": "Caramastro",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De dominar a própria saída passa a oferecer um exemplo estável que outros podem seguir.",
+          "art": "art/creatures/carcara-family-v1/caramastro/concept-v1/concept.png",
+          "brief": "art/creatures/carcara-family-v1/caramastro/concept-v1/brief.md",
+          "source": "documentation/creatures/carcara-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "carquim",
+          "to": "carcara",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Ensaiar equilíbrio abre as asas e permite reconhecer a corrente."
+        },
+        {
+          "from": "carcara",
+          "to": "caravento",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Esperar o vento evolui para escolher apoio e corrigir a saída."
+        },
+        {
+          "from": "caravento",
+          "to": "caramastro",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Precisão própria amadurece em estabilidade para conduzir pelo exemplo."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "cervarco-family-v1",
+      "name": "Cervo / Cervarco",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/cervarco-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "brotim",
+          "name": "Brotim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Orelhas estabilizam seu corpo enquanto aprende a seguir a linha.",
+          "art": "art/creatures/cervarco-family-v1/brotim/concept-v1/concept.png",
+          "brief": "art/creatures/cervarco-family-v1/brotim/concept-v1/brief.md",
+          "source": "documentation/creatures/cervarco-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "galhim",
+          "name": "Galhim",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Primeiros apoios dão coragem para explorar sem perder o grupo.",
+          "art": "art/creatures/cervarco-family-v1/galhim/concept-v1/concept.png",
+          "brief": "art/creatures/cervarco-family-v1/galhim/concept-v1/brief.md",
+          "source": "documentation/creatures/cervarco-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cervela",
+          "name": "Cervela",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De seguir trilhas passa a indicar caminhos com a tensão das linhas.",
+          "art": "art/creatures/cervarco-family-v1/cervela/concept-v1/concept.png",
+          "brief": "art/creatures/cervarco-family-v1/cervela/concept-v1/brief.md",
+          "source": "documentation/creatures/cervarco-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cervarco",
+          "name": "Cervarco",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Usa mãos e galhadas para coordenar linhas e ajudar outros a atravessar.",
+          "art": "art/creatures/cervarco-family-v1/cervarco/concept-v1/concept.png",
+          "brief": "art/creatures/cervarco-family-v1/cervarco/concept-v1/brief.md",
+          "source": "documentation/creatures/cervarco-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "brotim",
+          "to": "galhim",
+          "kind": "reweaving",
+          "reason": "Corpo flutuante ganha quatro apoios para exploração.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "galhim",
+          "to": "cervela",
+          "kind": "reweaving",
+          "reason": "Galhadas pequenas viram armação de condução e corpo ganha alcance.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "cervela",
+          "to": "cervarco",
+          "kind": "reweaving",
+          "reason": "A condução amadurece em tecelagem: braços coordenam linhas e quatro pernas ancoram o peso.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "chaspiral",
+      "name": "Chaspiral / chapeleira",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/chaspiral-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "infusim",
+          "name": "Infusim (nome proposto)",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a recuperar o equilíbrio entre pausas e impulsos.",
+          "art": "art/creatures/chaspiral-family-v1/infusim/concept-v1/concept.png",
+          "brief": "art/creatures/chaspiral-family-v1/infusim/concept-v1/brief.md",
+          "source": "documentation/creatures/chaspiral-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "chaspiral",
+          "name": "Chaspiral",
+          "kind": "stage",
+          "stage": "Criança (posição proposta)",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "rig",
+          "story": "Experimenta ritmo por pausas e surpresas.",
+          "art": "art/soulgen/keys/chaspiral/color-rig-v2/preview.png",
+          "brief": null,
+          "source": "documentation/creatures/chaspiral-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json"
+        },
+        {
+          "id": "chavalsa",
+          "name": "Chavalsa (nome proposto)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a marcar o próximo gesto em vez de chegar sempre atrasada.",
+          "art": "art/creatures/chaspiral-family-v1/chavalsa/concept-v1/concept.png",
+          "brief": "art/creatures/chaspiral-family-v1/chavalsa/concept-v1/brief.md",
+          "source": "documentation/creatures/chaspiral-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "chaspiral-imperial",
+          "name": "Chaspiral imperial (rótulo)",
+          "kind": "stage",
+          "stage": "Adulta",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Transforma descompasso em cadência cerimonial de duelo.",
+          "art": "art/creatures/onze-cavaleiros-v1/chaspiral-imperial/concept-v1/concept.png",
+          "brief": "art/creatures/onze-cavaleiros-v1/chaspiral-imperial/concept-v1/brief.md",
+          "source": "documentation/creatures/chaspiral-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "infusim",
+          "to": "chaspiral",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O corpo inicial desdobra asas, braços e os primeiros cachos."
+        },
+        {
+          "from": "chaspiral",
+          "to": "chavalsa",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O gesto se alonga e ganha cadência de duelista."
+        },
+        {
+          "from": "chavalsa",
+          "to": "chaspiral-imperial",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "A precisão se consolida em proteção articulada, visor e florete."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "coruja-balanca",
+      "name": "Coruja da balança",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/coruja-balanca-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "coruja-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Descobre equilíbrio com duas pequenas abas laterais.",
+          "art": "art/creatures/coruja-balanca/coruja-baby/concept-v1/concept.png",
+          "brief": "art/creatures/coruja-balanca/coruja-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/coruja-balanca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "coruja-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a sustentar dois pratos pelas asas sem perder o apoio dos pés.",
+          "art": "art/creatures/coruja-balanca/coruja-child/concept-v1/concept.png",
+          "brief": "art/creatures/coruja-balanca/coruja-child/concept-v1/brief.md",
+          "source": "documentation/creatures/coruja-balanca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "coruja-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Ganha força de preensão e estabiliza uma travessa com as duas mãos.",
+          "art": "art/creatures/coruja-balanca/coruja-young/concept-v1/concept.png",
+          "brief": "art/creatures/coruja-balanca/coruja-young/concept-v1/brief.md",
+          "source": "documentation/creatures/coruja-balanca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "coruja-balanca",
+          "name": "Adulto — guerreiro da balança",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Usa uma base forte para manejar a balança e manter a guarda.",
+          "art": "art/creatures/coruja-balanca/concept-v1/concept.png",
+          "brief": "art/creatures/coruja-balanca/concept-v1/brief.md",
+          "source": "documentation/creatures/coruja-balanca-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "coruja-baby",
+          "to": "coruja-child",
+          "kind": "reweaving",
+          "reason": "Aprende a sustentar dois pratos pelas asas sem perder o apoio dos pés.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "coruja-child",
+          "to": "coruja-young",
+          "kind": "reweaving",
+          "reason": "Ganha força de preensão e estabiliza uma travessa com as duas mãos.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "coruja-young",
+          "to": "coruja-balanca",
+          "kind": "reweaving",
+          "reason": "Usa uma base forte para manejar a balança e manter a guarda.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "doberman-c",
+      "name": "Dóber / Dobrácula",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/doberman-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "dobrinco",
+          "name": "Dobrinco",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a equilibrar a primeira armação.",
+          "art": "art/creatures/doberman-family-v1/dobrinco/concept-v1/concept.png",
+          "brief": "art/creatures/doberman-family-v1/dobrinco/concept-v1/brief.md",
+          "source": "documentation/creatures/doberman-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "dobrim",
+          "name": "Dobrim",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Passa a sustentar quatro apoios e tensionar o losango do peito.",
+          "art": "art/creatures/doberman-family-v1/dobrim/concept-v1/concept.png",
+          "brief": "art/creatures/doberman-family-v1/dobrim/concept-v1/brief.md",
+          "source": "documentation/creatures/doberman-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "doberman-c",
+          "name": "Dóber",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "O autor definiu explicitamente que a forma existente é jovem.",
+          "art": "art/soulgen/keys/doberman-c/refined-rig-v3/preview.png",
+          "brief": "art/soulgen/keys/doberman-c/README.md",
+          "source": "documentation/creatures/doberman-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/doberman-c/refined-rig-v3/doberman-c.soulgen.json"
+        },
+        {
+          "id": "dobracula",
+          "name": "Dobrácula",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Forma adulta de Trevas inspirada em Drácula aprovada visualmente pelo autor.",
+          "art": "art/creatures/onze-cavaleiros-v1/dobracula/concept-v1/concept.png",
+          "brief": "art/creatures/onze-cavaleiros-v1/dobracula/concept-v1/brief.md",
+          "source": "documentation/creatures/doberman-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "dobrinco",
+          "to": "dobrim",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Cabeça-pipa ganha tronco, peito e quatro apoios."
+        },
+        {
+          "from": "dobrim",
+          "to": "doberman-c",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Pernas e orelhas crescem, estalactites e rabiolas assumem a forma jovem existente."
+        },
+        {
+          "from": "doberman-c",
+          "to": "dobracula",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Corpo assume postura cavaleiresca, couraça, capa e espada da forma adulta."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "estratonte-family-v1",
+      "name": "Fóssil brontossauro / Estratonte",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/estratonte-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "seixim",
+          "name": "Seixim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a equilibrar pescoço e corpo.",
+          "art": "art/creatures/estratonte-family-v1/seixim/concept-v1/concept.png",
+          "brief": "art/creatures/estratonte-family-v1/seixim/concept-v1/brief.md",
+          "source": "documentation/creatures/estratonte-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "vertim",
+          "name": "Vertim",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Ganha confiança para sustentar a própria estrutura.",
+          "art": "art/creatures/estratonte-family-v1/vertim/concept-v1/concept.png",
+          "brief": "art/creatures/estratonte-family-v1/vertim/concept-v1/brief.md",
+          "source": "documentation/creatures/estratonte-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "brontela",
+          "name": "Brontela",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Começa a sustentar um pequeno painel dorsal com as costelas; esse painel se amplia no abrigo adulto.",
+          "art": "art/creatures/estratonte-family-v1/brontela/concept-v3/concept.png",
+          "brief": "art/creatures/estratonte-family-v1/brontela/concept-v3/brief.md",
+          "source": "documentation/creatures/estratonte-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "estratonte",
+          "name": "Estratonte",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Transforma a própria armação em abrigo para outros.",
+          "art": "art/creatures/estratonte-family-v1/estratonte/concept-v1/concept.png",
+          "brief": "art/creatures/estratonte-family-v1/estratonte/concept-v1/brief.md",
+          "source": "documentation/creatures/estratonte-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "seixim",
+          "to": "vertim",
+          "kind": "reweaving",
+          "reason": "Ganha quatro apoios para sustentar pescoço e ventre.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "vertim",
+          "to": "brontela",
+          "kind": "reweaving",
+          "reason": "Corpo amadurece moderadamente e costelas começam a sustentar pequeno painel dorsal.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "brontela",
+          "to": "estratonte",
+          "kind": "reweaving",
+          "reason": "Painel parcial se amplia em cobertura; torso e apoios se reforçam para abrigar.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "flautrevo",
+      "name": "Flautrevo / morcego flautista",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/flautrevo-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "sussurim",
+          "name": "Sussurim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Descobre escuta, equilíbrio e resposta ao primeiro som.",
+          "art": "art/creatures/flautrevo-family-v1/sussurim/concept-v2/concept.png",
+          "brief": "art/creatures/flautrevo-family-v1/sussurim/concept-v2/brief.md",
+          "source": "documentation/creatures/flautrevo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "flautrevo",
+          "name": "Flautrevo",
+          "kind": "stage",
+          "stage": "Criança existente",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Recolhe assobios esquecidos e cria trilhas de vento no catálogo existente.",
+          "art": "art/soulgen/keys/flautrevo/color-rig-v2/preview.png",
+          "brief": "art/soulgen/keys/flautrevo/README.md",
+          "source": "documentation/creatures/flautrevo-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json"
+        },
+        {
+          "id": "vesperina",
+          "name": "Vesperina",
+          "kind": "stage",
+          "stage": "Jovem arauto",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a orientar os outros sem transformar a melodia em imposição.",
+          "art": "art/creatures/flautrevo-family-v1/vesperina/concept-v1/concept.png",
+          "brief": "art/creatures/flautrevo-family-v1/vesperina/concept-v1/brief.md",
+          "source": "documentation/creatures/flautrevo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "vesperalia",
+          "name": "Vesperália",
+          "kind": "stage",
+          "stage": "Adulta cavaleira",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Assume responsabilidade de conduzir; voto de respeitar a escolha alheia continua proposta.",
+          "art": "art/creatures/onze-cavaleiros-v1/vesperalia/concept-v1/concept.png",
+          "brief": "art/creatures/onze-cavaleiros-v1/vesperalia/concept-v1/brief.md",
+          "source": "documentation/creatures/flautrevo-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "sussurim",
+          "to": "flautrevo",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Escutar e equilibrar-se prepara as primeiras trilhas de notas."
+        },
+        {
+          "from": "flautrevo",
+          "to": "vesperina",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Novos apoios e sinais permitem orientar outros."
+        },
+        {
+          "from": "vesperina",
+          "to": "vesperalia",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O gesto de arauto assume armadura e estandarte; corpo se reorganiza sem trocar a alma."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "galofuso-family-v1",
+      "name": "Galo de combate / Galofuso",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/galofuso-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "pivico",
+          "name": "Pivico",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a sentir o puxão da própria linha.",
+          "art": "art/creatures/galofuso-family-v1/pivico/concept-v1/concept.png",
+          "brief": "art/creatures/galofuso-family-v1/pivico/concept-v1/brief.md",
+          "source": "documentation/creatures/galofuso-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cristim",
+          "name": "Cristim",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Troca o susto pela curiosidade; erra e insiste.",
+          "art": "art/creatures/galofuso-family-v1/cristim/concept-v2/concept.png",
+          "brief": "art/creatures/galofuso-family-v1/cristim/concept-v2/brief.md",
+          "source": "documentation/creatures/galofuso-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "esporilho",
+          "name": "Esporilho",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "O impulso de desafiar vira técnica de duelo.",
+          "art": "art/creatures/galofuso-family-v1/esporilho/concept-v1/concept.png",
+          "brief": "art/creatures/galofuso-family-v1/esporilho/concept-v1/brief.md",
+          "source": "documentation/creatures/galofuso-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "galofuso",
+          "name": "Galofuso",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a escolher o momento do tiro e coordenar a pressão.",
+          "art": "art/creatures/galofuso-family-v1/galofuso/concept-v1/concept.png",
+          "brief": "art/creatures/galofuso-family-v1/galofuso/concept-v1/brief.md",
+          "source": "documentation/creatures/galofuso-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "pivico",
+          "to": "cristim",
+          "kind": "reweaving",
+          "reason": "Ganha apoios para experimentar mira e tensão.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "cristim",
+          "to": "esporilho",
+          "kind": "reweaving",
+          "reason": "Mecanismo de estalo amadurece em asa-trilho e postura de duelo.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "esporilho",
+          "to": "galofuso",
+          "kind": "reweaving",
+          "reason": "A técnica de um tiro vira coordenação de dois mecanismos e proteção de placas.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "gambalhote",
+      "name": "Gambá / Gambalhote",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/gambalhote-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "gambalhote-baby",
+          "name": "Bebê (nome pendente)",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Uma pequena pipa-rosto aprende a mover a própria rabiola.",
+          "art": "art/creatures/gambalhote/gambalhote-baby/concept-v1/concept.png",
+          "brief": "art/creatures/gambalhote/gambalhote-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/gambalhote-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "gambalhote",
+          "name": "Gambalhote (nome proposto)",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a manipular os próprios braços e a blefar com o alcance do focinho.",
+          "art": "art/creatures/gambalhote/concept-v1/concept.png",
+          "brief": "art/creatures/gambalhote/concept-v1/brief.md",
+          "source": "documentation/creatures/gambalhote-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "gambalhote-young",
+          "name": "Jovem (nome pendente)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Controla braços e pernas pelos fios; a membrana dorsal antecipa a pipa que ficará suspensa no adulto.",
+          "art": "art/creatures/gambalhote/gambalhote-young/concept-v1/concept.png",
+          "brief": "art/creatures/gambalhote/gambalhote-young/concept-v1/brief.md",
+          "source": "documentation/creatures/gambalhote-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "gambalhote-adult",
+          "name": "Adulto (nome pendente)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A pipa assume o comando de um cavaleiro articulado, mantendo uma única identidade e rabiola.",
+          "art": "art/creatures/gambalhote/gambalhote-adult/concept-v2/concept.png",
+          "brief": "art/creatures/gambalhote/gambalhote-adult/concept-v2/brief.md",
+          "source": "documentation/creatures/gambalhote-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "gambalhote-baby",
+          "to": "gambalhote",
+          "kind": "reweaving",
+          "reason": "Aprende a manipular os próprios braços e a blefar com o alcance do focinho.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "gambalhote",
+          "to": "gambalhote-young",
+          "kind": "reweaving",
+          "reason": "Controla braços e pernas pelos fios; a membrana dorsal antecipa a pipa que ficará suspensa no adulto.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "gambalhote-young",
+          "to": "gambalhote-adult",
+          "kind": "reweaving",
+          "reason": "A pipa assume o comando de um cavaleiro articulado, mantendo uma única identidade e rabiola.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "gata-lunar",
+      "name": "Gata lunar / Noctiluna",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/gata-lunar-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "gata-lunar-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Uma pequena pipa-rosto percebe correntes noturnas pela curva da própria rabiola.",
+          "art": "art/creatures/gata-lunar-family-v1/gata-lunar-baby/concept-v1/concept.png",
+          "brief": "art/creatures/gata-lunar-family-v1/gata-lunar-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/gata-lunar-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "gata-lunar-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A gatinha aprende a tensionar o peito de pipa, explorando o vento com a pata erguida.",
+          "art": "art/creatures/gata-lunar-family-v1/gata-lunar-child/concept-v1/concept.png",
+          "brief": "art/creatures/gata-lunar-family-v1/gata-lunar-child/concept-v1/brief.md",
+          "source": "documentation/creatures/gata-lunar-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "gata-lunar-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Ganha alcance e precisão; as membranas entre dianteira e quadril controlam a tensão em movimento.",
+          "art": "art/creatures/gata-lunar-family-v1/gata-lunar-young/concept-v1/concept.png",
+          "brief": "art/creatures/gata-lunar-family-v1/gata-lunar-young/concept-v1/brief.md",
+          "source": "documentation/creatures/gata-lunar-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "noctiluna",
+          "name": "Adulta — Noctiluna (nome proposto)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A cavaleira-bruxa orienta suas membranas com um cajado-armação de lua, transformando o gesto felino em técnica ritual.",
+          "art": "art/creatures/gata-lunar-family-v1/noctiluna/concept-v1/concept.png",
+          "brief": "art/creatures/gata-lunar-family-v1/noctiluna/concept-v1/brief.md",
+          "source": "documentation/creatures/gata-lunar-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "gata-lunar-baby",
+          "to": "gata-lunar-child",
+          "kind": "reweaving",
+          "reason": "A gatinha aprende a tensionar o peito de pipa, explorando o vento com a pata erguida.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "gata-lunar-child",
+          "to": "gata-lunar-young",
+          "kind": "reweaving",
+          "reason": "Ganha alcance e precisão; as membranas entre dianteira e quadril controlam a tensão em movimento.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "gata-lunar-young",
+          "to": "noctiluna",
+          "kind": "reweaving",
+          "reason": "A cavaleira-bruxa orienta suas membranas com um cajado-armação de lua, transformando o gesto felino em técnica ritual.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "hipolanterna-family-v1",
+      "name": "Cavalo-marinho + abóbora",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/hipolanterna-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "pevidim",
+          "name": "Pevidim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a se orientar pelo movimento da própria rabiola.",
+          "art": "art/creatures/hipolanterna-family-v1/pevidim/concept-v1/concept.png",
+          "brief": "art/creatures/hipolanterna-family-v1/pevidim/concept-v1/brief.md",
+          "source": "documentation/creatures/hipolanterna-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cavalume",
+          "name": "Cavalume",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A primeira janela de papel começa a funcionar como sinal.",
+          "art": "art/creatures/hipolanterna-family-v1/cavalume/concept-v1/concept.png",
+          "brief": "art/creatures/hipolanterna-family-v1/cavalume/concept-v1/brief.md",
+          "source": "documentation/creatures/hipolanterna-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "hipomoranga",
+          "name": "Hipomoranga",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende quando mostrar seus sinais em vez de reagir a tudo.",
+          "art": "art/creatures/hipolanterna-family-v1/hipomoranga/concept-v1/concept.png",
+          "brief": "art/creatures/hipolanterna-family-v1/hipomoranga/concept-v1/brief.md",
+          "source": "documentation/creatures/hipolanterna-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "hipolanterna",
+          "name": "Hipolanterna",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Passa a controlar as próprias janelas com cordas e mãos-nadadeiras.",
+          "art": "art/creatures/hipolanterna-family-v1/hipolanterna/concept-v1/concept.png",
+          "brief": "art/creatures/hipolanterna-family-v1/hipolanterna/concept-v1/brief.md",
+          "source": "documentation/creatures/hipolanterna-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "pevidim",
+          "to": "cavalume",
+          "kind": "reweaving",
+          "reason": "Corpo ganha pescoço e cauda para orientar um primeiro sinal.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "cavalume",
+          "to": "hipomoranga",
+          "kind": "reweaving",
+          "reason": "Janelas e cauda ganham alcance e controle.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "hipomoranga",
+          "to": "hipolanterna",
+          "kind": "reweaving",
+          "reason": "Nadadeiras amadurecem em braços que manipulam as janelas do corpo.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "javali-guerreiro",
+      "name": "Javali guerreiro",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/javali-guerreiro-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "javali-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a orientar as pequenas abas de proteção do rosto.",
+          "art": "art/creatures/javali-guerreiro/javali-baby/concept-v1/concept.png",
+          "brief": "art/creatures/javali-guerreiro/javali-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/javali-guerreiro-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "javali-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Explora o chão sobre quatro patas e aprende a firmar os cascos.",
+          "art": "art/creatures/javali-guerreiro/javali-child/concept-v1/concept.png",
+          "brief": "art/creatures/javali-guerreiro/javali-child/concept-v1/brief.md",
+          "source": "documentation/creatures/javali-guerreiro-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "javali-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Concentra força nos ombros e usa as proteções dianteiras para conter impactos.",
+          "art": "art/creatures/javali-guerreiro/javali-young/concept-v1/concept.png",
+          "brief": "art/creatures/javali-guerreiro/javali-young/concept-v1/brief.md",
+          "source": "documentation/creatures/javali-guerreiro-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "javali-guerreiro",
+          "name": "Adulto — guerreiro javali",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A postura bípede libera as proteções dianteiras para aparar e contra-atacar.",
+          "art": "art/creatures/javali-guerreiro/concept-v1/concept.png",
+          "brief": "art/creatures/javali-guerreiro/concept-v1/brief.md",
+          "source": "documentation/creatures/javali-guerreiro-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "javali-baby",
+          "to": "javali-child",
+          "kind": "reweaving",
+          "reason": "Explora o chão sobre quatro patas e aprende a firmar os cascos.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "javali-child",
+          "to": "javali-young",
+          "kind": "reweaving",
+          "reason": "Concentra força nos ombros e usa as proteções dianteiras para conter impactos.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "javali-young",
+          "to": "javali-guerreiro",
+          "kind": "reweaving",
+          "reason": "A postura bípede libera as proteções dianteiras para aparar e contra-atacar.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "lince-de-cerco",
+      "name": "Lince de Cerco",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/lince-de-cerco-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "lince-de-cerco-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "rig-review",
+          "story": "Aprende a orientar pequenas abas de papel para manter o equilíbrio.",
+          "art": "art/creatures/lince-de-cerco/lince-de-cerco-baby/concept-v1/concept.png",
+          "brief": "art/creatures/lince-de-cerco/lince-de-cerco-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/lince-de-cerco-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/lince-de-cerco-baby/cutout-rig-v1/lince-de-cerco-baby.soulgen.json"
+        },
+        {
+          "id": "lince-de-cerco-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "rig-review",
+          "story": "Firma as patas enquanto descobre como puxar as linhas das pequenas bandeirolas.",
+          "art": "art/creatures/lince-de-cerco/lince-de-cerco-child/concept-v1/concept.png",
+          "brief": "art/creatures/lince-de-cerco/lince-de-cerco-child/concept-v1/brief.md",
+          "source": "documentation/creatures/lince-de-cerco-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/lince-de-cerco-child/cutout-rig-v1/lince-de-cerco-child.soulgen.json"
+        },
+        {
+          "id": "lince-de-cerco-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "rig-review",
+          "story": "Estabiliza um conjunto dobrável de arcos curtos com a força das patas dianteiras.",
+          "art": "art/creatures/lince-de-cerco/lince-de-cerco-young/concept-v1/concept.png",
+          "brief": "art/creatures/lince-de-cerco/lince-de-cerco-young/concept-v1/brief.md",
+          "source": "documentation/creatures/lince-de-cerco-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/lince-de-cerco-young/cutout-rig-v1/lince-de-cerco-young.soulgen.json"
+        },
+        {
+          "id": "lince-de-cerco",
+          "name": "Adulto — Lince de Cerco",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "rig-review",
+          "story": "Ancora as patas e distribui a tensão entre dois grandes arcos de pipa.",
+          "art": "art/creatures/lince-de-cerco/concept-v1/concept.png",
+          "brief": "art/creatures/lince-de-cerco/concept-v1/brief.md",
+          "source": "documentation/creatures/lince-de-cerco-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/lince-de-cerco/cutout-rig-v1/lince-de-cerco.soulgen.json"
+        }
+      ],
+      "edges": [
+        {
+          "from": "lince-de-cerco-baby",
+          "to": "lince-de-cerco-child",
+          "kind": "reweaving",
+          "reason": "Firma as patas enquanto descobre como puxar as linhas das pequenas bandeirolas.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "lince-de-cerco-child",
+          "to": "lince-de-cerco-young",
+          "kind": "reweaving",
+          "reason": "Estabiliza um conjunto dobrável de arcos curtos com a força das patas dianteiras.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "lince-de-cerco-young",
+          "to": "lince-de-cerco",
+          "kind": "reweaving",
+          "reason": "Ancora as patas e distribui a tensão entre dois grandes arcos de pipa.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "lobo-cordeiro",
+      "name": "Lobo em pele de cordeiro",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/lobo-cordeiro-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "lanzinho",
+          "name": "Lãzinho",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende quando se recolher e quando se aproximar.",
+          "art": "art/creatures/lobo-cordeiro-family-v1/lanzinho/concept-v1/concept.png",
+          "brief": "art/creatures/lobo-cordeiro-family-v1/lanzinho/concept-v1/brief.md",
+          "source": "documentation/creatures/lobo-cordeiro-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "lobo-cordeiro",
+          "name": "Lobo em pele de cordeiro",
+          "kind": "stage",
+          "stage": "Base · criança no estudo",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Identidade e montagem do autor preservadas; associação de maturidade é proposta.",
+          "art": "art/soulgen/keys/lobo-cordeiro/concept-v1/lobo-cordeiro.png",
+          "brief": "art/soulgen/keys/lobo-cordeiro/README.md",
+          "source": "documentation/creatures/lobo-cordeiro-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/lobo-cordeiro/color-rig-v2/lobo-cordeiro.soulgen.json"
+        },
+        {
+          "id": "fiafalso",
+          "name": "Fiafalso",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Começa a escolher quando mostrar o próprio corpo em vez de somente esconder.",
+          "art": "art/creatures/lobo-cordeiro-family-v1/fiafalso/concept-v1/concept.png",
+          "brief": "art/creatures/lobo-cordeiro-family-v1/fiafalso/concept-v1/brief.md",
+          "source": "documentation/creatures/lobo-cordeiro-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "velalvo",
+          "name": "Velalvo",
+          "kind": "stage",
+          "stage": "Adulto natural",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "A cobertura que escondia passa a abrigar outros.",
+          "art": "art/creatures/lobo-cordeiro-family-v1/velalvo/concept-v1/concept.png",
+          "brief": "art/creatures/lobo-cordeiro-family-v1/velalvo/concept-v1/brief.md",
+          "source": "documentation/creatures/lobo-cordeiro-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "voto-do-elo",
+          "name": "Voto do Elo",
+          "kind": "configuration",
+          "stage": "Guerreiro · especial",
+          "grade": null,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "O abrigo se transforma em proteção ativa sem ocultar a identidade do lobo.",
+          "art": "art/creatures/lobo-cordeiro-family-v1/voto-do-elo/concept-v1/concept.png",
+          "brief": "art/creatures/lobo-cordeiro-family-v1/voto-do-elo/concept-v1/brief.md",
+          "source": "documentation/creatures/lobo-cordeiro-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "lanzinho",
+          "to": "lobo-cordeiro",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O botão começa a explorar sem perder sua cobertura."
+        },
+        {
+          "from": "lobo-cordeiro",
+          "to": "fiafalso",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Escolher quando aparecer alonga apoios e divide o manto."
+        },
+        {
+          "from": "fiafalso",
+          "to": "velalvo",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Revelar-se amadurece em oferecer abrigo."
+        },
+        {
+          "from": "velalvo",
+          "to": "voto-do-elo",
+          "kind": "configuration",
+          "decision_status": "proposed",
+          "reason": "O manto condensa as próprias dobras em placas protetoras; não é quinto estágio."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "mata-verde",
+      "name": "Mata Verde",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/mata-verde-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "brotim",
+          "name": "Brotim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Ensaiar equilíbrio permite explorar sem se abrir ao primeiro sopro.",
+          "art": "art/creatures/mata-verde-family-v1/brotim/concept-v1/concept.png",
+          "brief": "art/creatures/mata-verde-family-v1/brotim/concept-v1/brief.md",
+          "source": "documentation/creatures/mata-verde-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "mata-verde",
+          "name": "Mata Verde",
+          "kind": "stage",
+          "stage": "Base · criança no estudo",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Folha que se enrolou na linha da pipa e aprendeu a dançar entre galhos, segundo o catálogo local.",
+          "art": "art/soulgen/keys/mata-verde/color-rig-v2/concept.png",
+          "brief": "documentation/creatures/evolucoes-v1/briefs/mata-verde.md",
+          "source": "documentation/creatures/mata-verde-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/mata-verde/color-rig-v2/mata-verde.soulgen.json"
+        },
+        {
+          "id": "folhante",
+          "name": "Folhante",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Escapar amadurece em controlar o próprio eixo antes de escolher a saída.",
+          "art": "art/creatures/mata-verde-family-v1/folhante/concept-v1/concept.png",
+          "brief": "art/creatures/mata-verde-family-v1/folhante/concept-v1/brief.md",
+          "source": "documentation/creatures/mata-verde-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "verdestrama",
+          "name": "Verdestrama",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a abrir uma passagem precisa em vez de somente escapar dela.",
+          "art": "art/creatures/mata-verde-family-v1/verdestrama/concept-v1/concept.png",
+          "brief": "art/creatures/mata-verde-family-v1/verdestrama/concept-v1/brief.md",
+          "source": "documentation/creatures/mata-verde-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "brotim",
+          "to": "mata-verde",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Ensaio de apoio permite abrir as folhas e explorar a corrente."
+        },
+        {
+          "from": "mata-verde",
+          "to": "folhante",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Esquiva livre amadurece em domínio do giro e aparo."
+        },
+        {
+          "from": "folhante",
+          "to": "verdestrama",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Controlar o eixo permite usar seis apoios e avanço preciso na forma de inseto-fada."
+        }
+      ],
+      "notes": [
+        "Brotim também é ID/nome do bebê do cervo em outro chart. Manter identidade qualificada pela família; não é a mesma criatura."
+      ]
+    },
+    {
+      "id": "mico-samurai",
+      "name": "Mico samurai",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/mico-samurai-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "mico-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Descobre equilíbrio pela cauda e aprende a orientar os tufos de papel.",
+          "art": "art/creatures/mico-samurai-family-v1/mico-baby/concept-v1/concept.png",
+          "brief": "art/creatures/mico-samurai-family-v1/mico-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/mico-samurai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "mico-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Treina coordenação com duas varetas revestidas de papel.",
+          "art": "art/creatures/mico-samurai-family-v1/mico-child/concept-v1/concept.png",
+          "brief": "art/creatures/mico-samurai-family-v1/mico-child/concept-v1/brief.md",
+          "source": "documentation/creatures/mico-samurai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "mico-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a alternar guarda e alcance com duas lâminas leves e visor ainda aberto.",
+          "art": "art/creatures/mico-samurai-family-v1/mico-young/concept-v1/concept.png",
+          "brief": "art/creatures/mico-samurai-family-v1/mico-young/concept-v1/brief.md",
+          "source": "documentation/creatures/mico-samurai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "micoshiro",
+          "name": "Adulto — Micoshiro (nome proposto)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "O samurai esguio domina duas katanas e usa a cauda como contrapeso; o elmo fecha a proteção da cabeça.",
+          "art": "art/creatures/mico-samurai-family-v1/micoshiro/concept-v1/concept.png",
+          "brief": "art/creatures/mico-samurai-family-v1/micoshiro/concept-v1/brief.md",
+          "source": "documentation/creatures/mico-samurai-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "mico-baby",
+          "to": "mico-child",
+          "kind": "reweaving",
+          "reason": "Treina coordenação com duas varetas revestidas de papel.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "mico-child",
+          "to": "mico-young",
+          "kind": "reweaving",
+          "reason": "Aprende a alternar guarda e alcance com duas lâminas leves e visor ainda aberto.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "mico-young",
+          "to": "micoshiro",
+          "kind": "reweaving",
+          "reason": "O samurai esguio domina duas katanas e usa a cauda como contrapeso; o elmo fecha a proteção da cabeça.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "pangolim-trovao",
+      "name": "Pangolim trovejante",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/pangolim-trovao-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "pangolim-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Recolhe-se numa cápsula de escamas e retém pequenas cargas.",
+          "art": "art/creatures/pangolim-trovao-family-v1/pangolim-baby/concept-v1/concept.png",
+          "brief": "art/creatures/pangolim-trovao-family-v1/pangolim-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/pangolim-trovao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "pangolim-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Desenrola o corpo e testa pequenas descargas entre as garras.",
+          "art": "art/creatures/pangolim-trovao-family-v1/pangolim-child/concept-v1/concept.png",
+          "brief": "art/creatures/pangolim-trovao-family-v1/pangolim-child/concept-v1/brief.md",
+          "source": "documentation/creatures/pangolim-trovao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "pangolim-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Ganha alcance e controle sem abrir a proteção: aprende a conduzir carga até as mãos.",
+          "art": "art/creatures/pangolim-trovao-family-v1/pangolim-young/concept-v1/concept.png",
+          "brief": "art/creatures/pangolim-trovao-family-v1/pangolim-young/concept-v1/brief.md",
+          "source": "documentation/creatures/pangolim-trovao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "pangolim-adult-bastiao",
+          "name": "Adulto quadrúpede — Bastião (proposta)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A rota quadrúpede concentra peso, apoio e condução pelas garras; pequenos leques orientam a descarga.",
+          "art": "art/creatures/pangolim-trovao-family-v1/pangolim-adult-bastiao/concept-v1/concept.png",
+          "brief": "art/creatures/pangolim-trovao-family-v1/pangolim-adult-bastiao/concept-v1/brief.md",
+          "source": "documentation/creatures/pangolim-trovao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "pangolim-adult-dragao",
+          "name": "Adulto dragão — Fulguar (nome proposto)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A rota erguida abre as escamas em grandes leques e redireciona a carga entre condutores.",
+          "art": "art/creatures/pangolim-trovao-family-v1/pangolim-adult-dragao/concept-v1/concept.png",
+          "brief": "art/creatures/pangolim-trovao-family-v1/pangolim-adult-dragao/concept-v1/brief.md",
+          "source": "documentation/creatures/pangolim-trovao-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "pangolim-baby",
+          "to": "pangolim-child",
+          "kind": "reweaving",
+          "reason": "Desenrola o corpo e testa pequenas descargas entre as garras.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "pangolim-child",
+          "to": "pangolim-young",
+          "kind": "reweaving",
+          "reason": "Ganha alcance e controle sem abrir a proteção: aprende a conduzir carga até as mãos.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "pangolim-young",
+          "to": "pangolim-adult-bastiao",
+          "kind": "reweaving",
+          "reason": "A rota quadrúpede concentra peso, apoio e condução pelas garras; pequenos leques orientam a descarga.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "pangolim-young",
+          "to": "pangolim-adult-dragao",
+          "kind": "reweaving",
+          "reason": "A rota erguida abre as escamas em grandes leques e redireciona a carga entre condutores.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "alvacordo-family-v1",
+      "name": "Husky / border collie de papel",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/papel-collie-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "farpim",
+          "name": "Farpim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a seguir antes de conduzir.",
+          "art": "art/creatures/alvacordo-family-v1/farpim/concept-v1/concept.png",
+          "brief": "art/creatures/alvacordo-family-v1/farpim/concept-v1/brief.md",
+          "source": "documentation/creatures/papel-collie-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "papisco",
+          "name": "Papisco",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Descobre como puxar sem romper.",
+          "art": "art/creatures/alvacordo-family-v1/papisco/concept-v1/concept.png",
+          "brief": "art/creatures/alvacordo-family-v1/papisco/concept-v1/brief.md",
+          "source": "documentation/creatures/papel-collie-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "velcao",
+          "name": "Velcão",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Troca a brincadeira pela leitura do movimento do grupo.",
+          "art": "art/creatures/alvacordo-family-v1/velcao/concept-v1/concept.png",
+          "brief": "art/creatures/alvacordo-family-v1/velcao/concept-v1/brief.md",
+          "source": "documentation/creatures/papel-collie-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "alvacordo",
+          "name": "Alvacordo",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "rig-review",
+          "story": "Deixa de apenas perseguir: aprende a proteger e coordenar.",
+          "art": "art/creatures/alvacordo-family-v1/alvacordo/concept-v4/concept.png",
+          "brief": "art/creatures/alvacordo-family-v1/alvacordo/concept-v4/brief.md",
+          "source": "documentation/creatures/papel-collie-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/alvacordo/cutout-rig-v1/alvacordo.soulgen.json"
+        }
+      ],
+      "edges": [
+        {
+          "from": "farpim",
+          "to": "papisco",
+          "kind": "reweaving",
+          "reason": "O corpo flutuante ganha apoios para experimentar a tensão.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "papisco",
+          "to": "velcao",
+          "kind": "reweaving",
+          "reason": "A coordenação vira interceptação: quatro apoios e velas de freio.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "velcao",
+          "to": "alvacordo",
+          "kind": "reweaving",
+          "reason": "A experiência de condução vira proteção: mãos controlam armações de tensão.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "rabbito",
+      "name": "Rabbito",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/rabbito-chart-v2/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "rabbito",
+          "name": "Rabbito",
+          "kind": "stage",
+          "stage": "Grau II sugerido; não é cânone de estágios.",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Criado e montado por Kael; a Rabiola Antiga dá vida à sua criação singular.",
+          "art": "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+          "brief": "documentation/creatures/evolucoes-v1/briefs/rabbito.md",
+          "source": "documentation/creatures/rabbito-chart-v2/chart.json",
+          "rig": "art/soulgen/keys/rabbito/color-rig-v2/user-hierarchy-original.soulgen.json"
+        },
+        {
+          "id": "rastro-dos-ventos",
+          "name": "Rastro dos Ventos",
+          "kind": "stage",
+          "stage": "Hipótese de associação III/IV; sem retcon de origem.",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a escolher a aterrissagem em vez de apenas saltar.",
+          "art": "art/creatures/rabbito-family-v1/rastro-dos-ventos/concept-v2/concept.png",
+          "brief": "art/creatures/rabbito-family-v1/rastro-dos-ventos/concept-v2/brief.md",
+          "source": "documentation/creatures/rabbito-chart-v2/chart.json",
+          "rig": null
+        },
+        {
+          "id": "arauto-da-tempestade",
+          "name": "Arauto da Tempestade",
+          "kind": "stage",
+          "stage": "Hipótese de associação III/IV; sem retcon de origem.",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A velocidade antes individual passa a abrir uma rota para os outros.",
+          "art": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+          "brief": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/brief.md",
+          "source": "documentation/creatures/rabbito-chart-v2/chart.json",
+          "rig": null
+        },
+        {
+          "id": "mestre-dos-fios",
+          "name": "Mestre dos Fios",
+          "kind": "stage",
+          "stage": "Hipótese de associação III/IV; sem retcon de origem.",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Troca a pressa pelo cuidado com os limites do Elo.",
+          "art": "art/creatures/rabbito-family-v1/mestre-dos-fios/concept-v2/concept.png",
+          "brief": "art/creatures/rabbito-family-v1/mestre-dos-fios/concept-v2/brief.md",
+          "source": "documentation/creatures/rabbito-chart-v2/chart.json",
+          "rig": null
+        },
+        {
+          "id": "tecelao-da-aurora",
+          "name": "Tecelão da Aurora",
+          "kind": "stage",
+          "stage": "Hipótese de associação III/IV; sem retcon de origem.",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a sustentar uma ligação para além do próprio conforto.",
+          "art": "art/creatures/rabbito-family-v1/tecelao-da-aurora/concept-v2/concept.png",
+          "brief": "art/creatures/rabbito-family-v1/tecelao-da-aurora/concept-v2/brief.md",
+          "source": "documentation/creatures/rabbito-chart-v2/chart.json",
+          "rig": null
+        },
+        {
+          "id": "rabbitknight",
+          "name": "Rabbitknight",
+          "kind": "configuration",
+          "stage": "Hipótese de associação III/IV; sem retcon de origem.",
+          "grade": null,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Alternativa de disciplina corporal sem continuação evolutiva registrada.",
+          "art": "art/creatures/rabbito-family-v1/rabbitknight/concept-v3/concept.png",
+          "brief": "art/creatures/rabbito-family-v1/rabbitknight/concept-v3/brief.md",
+          "source": "documentation/creatures/rabbito-chart-v2/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "rabbito",
+          "to": "rastro-dos-ventos",
+          "kind": "reweaving",
+          "reason": "Precisão na aterrissagem reorganiza as pernas e as orelhas.",
+          "decision_status": "proposed",
+          "route": "Velocista"
+        },
+        {
+          "from": "rastro-dos-ventos",
+          "to": "arauto-da-tempestade",
+          "kind": "reweaving",
+          "reason": "Estabilidade adulta transforma impulso em abertura de rota.",
+          "decision_status": "proposed",
+          "route": "Velocista"
+        },
+        {
+          "from": "rabbito",
+          "to": "mestre-dos-fios",
+          "kind": "reweaving",
+          "reason": "Cuidado com a tensão reorganiza postura e pontos de apoio.",
+          "decision_status": "proposed",
+          "route": "Condutor"
+        },
+        {
+          "from": "mestre-dos-fios",
+          "to": "tecelao-da-aurora",
+          "kind": "reweaving",
+          "reason": "Distribuir carga permite sustentar ligações por mais tempo.",
+          "decision_status": "proposed",
+          "route": "Condutor"
+        },
+        {
+          "from": "rabbito",
+          "to": "rabbitknight",
+          "kind": "configuration",
+          "reason": "Disciplina de guarda troca alcance por resposta de perto.",
+          "decision_status": "proposed",
+          "route": "Especial"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "rai",
+      "name": "Rai / Saber",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/rai-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "raibroto",
+          "name": "Raibroto",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A curiosidade antecede a escolha de acompanhar alguém; comportamento proposto, não flashback canônico.",
+          "art": "art/creatures/rai-family-v1/raibroto/concept-v1/concept.png",
+          "brief": "art/creatures/rai-family-v1/raibroto/concept-v1/brief.md",
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "rai",
+          "name": "Rai / Saber",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Parceiro de Tyler na Bíblia. O autor define esta forma como criança; sua origem não foi reescrita.",
+          "art": "art/soulgen/keys/rai/cutout-rig-v1/preview.png",
+          "brief": "documentation/creatures/evolucoes-v1/briefs/rai.md",
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/rai/cutout-rig-v1/rai.soulgen.json"
+        },
+        {
+          "id": "raigume",
+          "name": "Raigume",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a escolher o instante de intervir em vez de saltar a qualquer movimento.",
+          "art": "art/creatures/rai-family-v1/raigume/concept-v1/concept.png",
+          "brief": "art/creatures/rai-family-v1/raigume/concept-v1/brief.md",
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "raisoberano",
+          "name": "Raisoberano",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A potência amadurece em responsabilidade: escolhe o que proteger.",
+          "art": "art/creatures/rai-family-v1/raisoberano/concept-v1/concept.png",
+          "brief": "art/creatures/rai-family-v1/raisoberano/concept-v1/brief.md",
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "raivela",
+          "name": "Raivela",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a escutar a direção da força e usar o espaço entre dois movimentos.",
+          "art": "art/creatures/rai-family-v1/raivela/concept-v1/concept.png",
+          "brief": "art/creatures/rai-family-v1/raivela/concept-v1/brief.md",
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "raiatar",
+          "name": "Raiatar",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Deixa de depender só do próprio corte e aprende a coordenar forças diferentes.",
+          "art": "art/creatures/rai-family-v1/raiatar/concept-v1/concept.png",
+          "brief": "art/creatures/rai-family-v1/raiatar/concept-v1/brief.md",
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "entreflor",
+          "name": "Entreflor",
+          "kind": "configuration",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Impulso e direção se tornam cooperação: nenhum dos dois é apagado para que a união exista.",
+          "art": "art/creatures/rai-family-v1/entreflor/concept-v1/concept.png",
+          "brief": "art/creatures/rai-family-v1/entreflor/concept-v1/brief.md",
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "arauto-da-tempestade",
+          "name": "Arauto da Tempestade",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Parceiro externo da família Rabbito para o Entrelaço; não é evolução de Rai.",
+          "art": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+          "brief": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/brief.md",
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": null,
+          "reference_only": true
+        }
+      ],
+      "edges": [
+        {
+          "from": "raibroto",
+          "to": "rai",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O botão de vela abre e o filhote passa a escolher seu caminho."
+        },
+        {
+          "from": "rai",
+          "to": "raigume",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Aprender quando intervir desenvolve apoio dianteiro e quilha de interceptação."
+        },
+        {
+          "from": "raigume",
+          "to": "raisoberano",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Intervir amadurece em sustentar uma posição para proteger."
+        },
+        {
+          "from": "rai",
+          "to": "raivela",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Perceber a pressão lateral reorganiza corpo e vela para contornar."
+        },
+        {
+          "from": "raivela",
+          "to": "raiatar",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Ler o vento amadurece em coordenar tensão com outro parceiro."
+        },
+        {
+          "from": "raiatar",
+          "to": "entreflor",
+          "kind": "interweaving",
+          "decision_status": "proposed",
+          "partners": [
+            "raiatar",
+            "arauto-da-tempestade"
+          ],
+          "requires_all_partners": true,
+          "reason": "Duas entradas obrigatórias: Raiatar orienta a tensão e Arauto fornece impulso; cada braço conserva uma boca/linha do parceiro."
+        },
+        {
+          "from": "arauto-da-tempestade",
+          "to": "entreflor",
+          "kind": "interweaving",
+          "decision_status": "proposed",
+          "partners": [
+            "raiatar",
+            "arauto-da-tempestade"
+          ],
+          "requires_all_partners": true,
+          "reason": "Duas entradas obrigatórias: Raiatar orienta a tensão e Arauto fornece impulso; cada braço conserva uma boca/linha do parceiro."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "raio-de-sol",
+      "name": "Raio de Sol",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/raio-de-sol-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "solim",
+          "name": "Solim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": null,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "O olhar curioso aprende a distinguir uma abertura antes de agir.",
+          "art": "art/creatures/raio-de-sol-family-v1/solim/concept-v1/concept.png",
+          "brief": "art/creatures/raio-de-sol-family-v1/solim/concept-v1/brief.md",
+          "source": "documentation/creatures/raio-de-sol-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "raio-de-sol-crianca",
+          "name": "Raio de Sol",
+          "kind": "stage",
+          "stage": "Criança · novo concept",
+          "grade": null,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Observar amadurece em experimentar como se proteger.",
+          "art": "art/creatures/raio-de-sol-family-v1/raio-de-sol-crianca/concept-v1/concept.png",
+          "brief": "art/creatures/raio-de-sol-family-v1/raio-de-sol-crianca/concept-v1/brief.md",
+          "source": "documentation/creatures/raio-de-sol-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/raio-de-sol/color-rig-v2/raio-de-sol.soulgen.json",
+          "aliases": [
+            "raio-de-sol"
+          ]
+        },
+        {
+          "id": "solguarda",
+          "name": "Solguarda",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": null,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Ler a situação amadurece em escolher a abertura e sustentar uma guarda.",
+          "art": "art/creatures/raio-de-sol-family-v1/solguarda/concept-v1/concept.png",
+          "brief": "art/creatures/raio-de-sol-family-v1/solguarda/concept-v1/brief.md",
+          "source": "documentation/creatures/raio-de-sol-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "solim",
+          "to": "raio-de-sol-crianca",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O botão abre em filhote que ensaia guarda."
+        },
+        {
+          "from": "raio-de-sol-crianca",
+          "to": "solguarda",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Amadurecimento visual da guarda em leão magro com dois meios-escudos. Graus intermediários e requisitos não definidos."
+        }
+      ],
+      "notes": [
+        "Chart usa age em vez de grau numérico; não foi criado jovem. Não preencher essa lacuna por dedução.",
+        "raio-de-sol-crianca é ID do concept da base raio-de-sol no Soulgen/Dex; não contado como segunda família."
+      ]
+    },
+    {
+      "id": "rexestrato-family-v1",
+      "name": "Fóssil T-rex / Rexestrato",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/rexestrato-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "calquim",
+          "name": "Calquim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Começa a perceber vibrações na própria membrana.",
+          "art": "art/creatures/rexestrato-family-v1/calquim/concept-v1/concept.png",
+          "brief": "art/creatures/rexestrato-family-v1/calquim/concept-v1/brief.md",
+          "source": "documentation/creatures/rexestrato-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "ossito",
+          "name": "Ossito",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a apoiar o corpo e marcar ritmos com passos.",
+          "art": "art/creatures/rexestrato-family-v1/ossito/concept-v2/concept.png",
+          "brief": "art/creatures/rexestrato-family-v1/ossito/concept-v2/brief.md",
+          "source": "documentation/creatures/rexestrato-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "ossirrex",
+          "name": "Ossirrex",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Coordena mandíbula e estrutura do peito para projetar chamados.",
+          "art": "art/creatures/rexestrato-family-v1/ossirrex/concept-v1/concept.png",
+          "brief": "art/creatures/rexestrato-family-v1/ossirrex/concept-v1/brief.md",
+          "source": "documentation/creatures/rexestrato-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "rexestrato",
+          "name": "Rexestrato",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a usar mandíbula, costelas e membranas em conjunto.",
+          "art": "art/creatures/rexestrato-family-v1/rexestrato/concept-v1/concept.png",
+          "brief": "art/creatures/rexestrato-family-v1/rexestrato/concept-v1/brief.md",
+          "source": "documentation/creatures/rexestrato-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "calquim",
+          "to": "ossito",
+          "kind": "reweaving",
+          "reason": "Massa única ganha apoios e braços curtos.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ossito",
+          "to": "ossirrex",
+          "kind": "reweaving",
+          "reason": "Apoios amadurecem, corpo horizontal coordena costelas e mandíbula.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ossirrex",
+          "to": "rexestrato",
+          "kind": "reweaving",
+          "reason": "Estrutura amplia a caixa de ressonância e ganha controle do chamado.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "riscaz",
+      "name": "Riscaz",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/riscaz-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "riscotim",
+          "name": "Riscotim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a equilibrar sua construção compacta antes de adquirir apoios.",
+          "art": "art/creatures/riscaz-family-v1/riscotim/concept-v1/concept.png",
+          "brief": "art/creatures/riscaz-family-v1/riscotim/concept-v1/brief.md",
+          "source": "documentation/creatures/riscaz-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "riscaz",
+          "name": "Riscaz",
+          "kind": "stage",
+          "stage": "Criança existente",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Base autoral preservada; maturidade é organização documental.",
+          "art": "art/soulgen/keys/riscaz/cutout-rig-v1/preview.png",
+          "brief": "art/soulgen/keys/riscaz/README.md",
+          "source": "documentation/creatures/riscaz-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/riscaz/cutout-rig-v1/riscaz.soulgen.json"
+        },
+        {
+          "id": "riscavela",
+          "name": "Riscavela",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a ancorar os apoios e tensionar a vela; essa estrutura prepara a balista do adulto.",
+          "art": "art/creatures/riscaz-family-v1/riscavela/concept-v2/concept.png",
+          "brief": "art/creatures/riscaz-family-v1/riscavela/concept-v2/brief.md",
+          "source": "documentation/creatures/riscaz-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "riscarion",
+          "name": "Riscárion",
+          "kind": "stage",
+          "stage": "Adulto cavaleiro",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Transformação cavaleiresca sombria e venenosa pedida pelo autor; voto e origem continuam abertos.",
+          "art": "art/creatures/onze-cavaleiros-v1/riscarion/concept-v1/concept.png",
+          "brief": "art/creatures/onze-cavaleiros-v1/riscarion/concept-v1/brief.md",
+          "source": "documentation/creatures/riscaz-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "riscotim",
+          "to": "riscaz",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Cabeça-pipa passa a sustentar corpo e apoios."
+        },
+        {
+          "from": "riscaz",
+          "to": "riscavela",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Apoios alongados e tensão da vela antecipam função de ancoragem."
+        },
+        {
+          "from": "riscavela",
+          "to": "riscarion",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Postura quadrúpede se reorganiza em cavaleiro com elmo e balista."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "tramino",
+      "name": "Dragão / Tramino",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/tramino-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "traminho",
+          "name": "Traminho (proposto)",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a recuperar tensão e equilíbrio para dar o primeiro impulso.",
+          "art": "art/creatures/tramino-family-v1/traminho/concept-v2/concept.png",
+          "brief": "art/creatures/tramino-family-v1/traminho/concept-v2/brief.md",
+          "source": "documentation/creatures/tramino-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "tramino",
+          "name": "Tramino (proposto)",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Curioso e impulsivo, sempre chama o parceiro para seguir antes de conferir o caminho.",
+          "art": "art/creatures/tramino-family-v1/tramino/concept-v2/concept.png",
+          "brief": "art/creatures/tramino-family-v1/tramino/concept-v2/brief.md",
+          "source": "documentation/creatures/tramino-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "tramassauro",
+          "name": "Tramassauro (proposto)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a sustentar e orientar tensão com base firme e gestos controlados.",
+          "art": "art/creatures/tramino-family-v1/tramassauro/concept-v7/concept.png",
+          "brief": "art/creatures/tramino-family-v1/tramassauro/concept-v7/brief.md",
+          "source": "documentation/creatures/tramino-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "tramadraco",
+          "name": "Tramadraco — cavaleiro (nome proposto)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "rig-review",
+          "story": "A técnica de sustentar tensão torna-se guarda e compromisso, interpretados como cavaleiro adulto.",
+          "art": "art/creatures/tramino-family-v1/tramadraco/concept-v3/concept.png",
+          "brief": "art/creatures/tramino-family-v1/tramadraco/concept-v3/brief.md",
+          "source": "documentation/creatures/tramino-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/tramadraco/cutout-rig-v1/tramadraco.soulgen.json"
+        }
+      ],
+      "edges": [
+        {
+          "from": "traminho",
+          "to": "tramino",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O corpo inicial desdobra quatro membros e ganha impulso próprio."
+        },
+        {
+          "from": "tramino",
+          "to": "tramassauro",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O impulso reorganiza os apoios em quadrupedismo e especializa os antebraços para interceptar."
+        },
+        {
+          "from": "tramassauro",
+          "to": "tramadraco",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O autor pediu cavaleiro acima da jovem; peito e tirantes se reorganizam em armadura, elmo e guarda de espada.",
+          "requirements_status": "undefined"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "trinca-brasas",
+      "name": "Trinca-brasas / cérbero",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/trinca-brasas-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "braseco",
+          "name": "Braseco",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a coordenar três focos de atenção num só indivíduo.",
+          "art": "art/creatures/trinca-brasas-family-v1/braseco/concept-v1/concept.png",
+          "brief": "art/creatures/trinca-brasas-family-v1/braseco/concept-v1/brief.md",
+          "source": "documentation/creatures/trinca-brasas-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "trinca-brasas",
+          "name": "Trinca-brasas",
+          "kind": "stage",
+          "stage": "Criança existente",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Companhia, coragem e proteção do lar constam no catálogo existente.",
+          "art": "art/soulgen/keys/trinca-brasas/color-rig-v2/preview.png",
+          "brief": "art/soulgen/keys/trinca-brasas/README.md",
+          "source": "documentation/creatures/trinca-brasas-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json"
+        },
+        {
+          "id": "trincaguarda",
+          "name": "Trincaguarda",
+          "kind": "stage",
+          "stage": "Jovem quadrúpede",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "A vigilância passa a ser sustentada pelo corpo e pela coordenação.",
+          "art": "art/creatures/trinca-brasas-family-v1/trincaguarda/concept-v1/concept.png",
+          "brief": "art/creatures/trinca-brasas-family-v1/trincaguarda/concept-v1/brief.md",
+          "source": "documentation/creatures/trinca-brasas-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "tricordio",
+          "name": "Tricórdio",
+          "kind": "stage",
+          "stage": "Adulto cavaleiro",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A proteção ganha intenção e instrumentos; voto de ouvir antes de julgar continua proposta.",
+          "art": "art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png",
+          "brief": "art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/brief.md",
+          "source": "documentation/creatures/trinca-brasas-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "braseco",
+          "to": "trinca-brasas",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "O bebê aprende a explorar e coordenar sua guarda."
+        },
+        {
+          "from": "trinca-brasas",
+          "to": "trincaguarda",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "A vigilância exige novos apoios e primeiras proteções."
+        },
+        {
+          "from": "trincaguarda",
+          "to": "tricordio",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "A guarda se reorganiza em corpo cavaleiresco e equipamento; transformação das cabeças segue direção do autor."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "urso-polar",
+      "name": "Urso polar / Borealvo",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/urso-polar-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "urso-polar-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Uma pequena pipa de gelo descobre como estabilizar o próprio voo com abas laterais.",
+          "art": "art/creatures/urso-polar-family-v1/urso-polar-baby/concept-v1/concept.png",
+          "brief": "art/creatures/urso-polar-family-v1/urso-polar-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/urso-polar-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "urso-polar-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Desenvolve patas largas para firmar apoio; aprende a sustentar o peito tensionado antes de avançar.",
+          "art": "art/creatures/urso-polar-family-v1/urso-polar-child/concept-v1/concept.png",
+          "brief": "art/creatures/urso-polar-family-v1/urso-polar-child/concept-v1/brief.md",
+          "source": "documentation/creatures/urso-polar-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "urso-polar-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Quadrúpede de ombros pesados, usa as membranas dos antebraços como apoio ao atravessar passagens instáveis.",
+          "art": "art/creatures/urso-polar-family-v1/urso-polar-young/concept-v1/concept.png",
+          "brief": "art/creatures/urso-polar-family-v1/urso-polar-young/concept-v1/brief.md",
+          "source": "documentation/creatures/urso-polar-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "borealvo",
+          "name": "Adulto — Borealvo (nome proposto)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Torna-se um chefe quebra-gelo: abre passagens com o malho enquanto abriga companheiros atrás do manto tensionado.",
+          "art": "art/creatures/urso-polar-family-v1/borealvo/concept-v2/concept.png",
+          "brief": "art/creatures/urso-polar-family-v1/borealvo/concept-v2/brief.md",
+          "source": "documentation/creatures/urso-polar-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "urso-polar-baby",
+          "to": "urso-polar-child",
+          "kind": "reweaving",
+          "reason": "Desenvolve patas largas para firmar apoio; aprende a sustentar o peito tensionado antes de avançar.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "urso-polar-child",
+          "to": "urso-polar-young",
+          "kind": "reweaving",
+          "reason": "Quadrúpede de ombros pesados, usa as membranas dos antebraços como apoio ao atravessar passagens instáveis.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "urso-polar-young",
+          "to": "borealvo",
+          "kind": "reweaving",
+          "reason": "Torna-se um chefe quebra-gelo: abre passagens com o malho enquanto abriga companheiros atrás do manto tensionado.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "viuva-anjo",
+      "name": "Viúva-negra / Seraf Seda",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/viuva-anjo-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "viuva-baby",
+          "name": "Bebê",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a prender seus pequenos apoios e a manter a tensão do fio.",
+          "art": "art/creatures/viuva-anjo-family-v1/viuva-baby/concept-v1/concept.png",
+          "brief": "art/creatures/viuva-anjo-family-v1/viuva-baby/concept-v1/brief.md",
+          "source": "documentation/creatures/viuva-anjo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "viuva-child",
+          "name": "Criança",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Coordena oito pernas e tece a primeira linha de proteção diante do corpo.",
+          "art": "art/creatures/viuva-anjo-family-v1/viuva-child/concept-v1/concept.png",
+          "brief": "art/creatures/viuva-anjo-family-v1/viuva-child/concept-v1/brief.md",
+          "source": "documentation/creatures/viuva-anjo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "viuva-young",
+          "name": "Jovem",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Quatro membros sustentam o corpo e quatro passam a abrir membranas de teia-pipa.",
+          "art": "art/creatures/viuva-anjo-family-v1/viuva-young/concept-v1/concept.png",
+          "brief": "art/creatures/viuva-anjo-family-v1/viuva-young/concept-v1/brief.md",
+          "source": "documentation/creatures/viuva-anjo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "seraf-seda",
+          "name": "Adulta — Seraf Seda (nome proposto)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "A tecelã torna-se cavaleira-anjo: dois braços, duas pernas e quatro asas protegem o espaço ao redor.",
+          "art": "art/creatures/viuva-anjo-family-v1/seraf-seda/concept-v1/concept.png",
+          "brief": "art/creatures/viuva-anjo-family-v1/seraf-seda/concept-v1/brief.md",
+          "source": "documentation/creatures/viuva-anjo-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "viuva-baby",
+          "to": "viuva-child",
+          "kind": "reweaving",
+          "reason": "Coordena oito pernas e tece a primeira linha de proteção diante do corpo.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "viuva-child",
+          "to": "viuva-young",
+          "kind": "reweaving",
+          "reason": "Quatro membros sustentam o corpo e quatro passam a abrir membranas de teia-pipa.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "viuva-young",
+          "to": "seraf-seda",
+          "kind": "reweaving",
+          "reason": "A tecelã torna-se cavaleira-anjo: dois braços, duas pernas e quatro asas protegem o espaço ao redor.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "yaguaru-memoria",
+      "name": "Yaguarú / onça mumificada",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/yaguaru-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "yaguim",
+          "name": "Yaguim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a sustentar a primeira dobra e o primeiro nó.",
+          "art": "art/creatures/yaguaru-family-v1/yaguim/concept-v1/concept.png",
+          "brief": "art/creatures/yaguaru-family-v1/yaguim/concept-v1/brief.md",
+          "source": "documentation/creatures/yaguaru-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "yaguaru-memoria",
+          "name": "Yaguarú",
+          "kind": "stage",
+          "stage": "Criança existente",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Base autoral preservada; classificação de maturidade documental.",
+          "art": "art/soulgen/keys/yaguaru-memoria/color-rig-v2/preview.png",
+          "brief": "art/soulgen/keys/yaguaru-memoria/README.md",
+          "source": "documentation/creatures/yaguaru-chart-v1/chart.json",
+          "rig": "art/soulgen/keys/yaguaru-memoria/color-rig-v2/yaguaru-memoria.soulgen.json"
+        },
+        {
+          "id": "yaguarda",
+          "name": "Yaguarda",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Protege com apoios firmes e aprende a distribuir tensão pelas faixas.",
+          "art": "art/creatures/yaguaru-family-v1/yaguarda/concept-v1/concept.png",
+          "brief": "art/creatures/yaguaru-family-v1/yaguarda/concept-v1/brief.md",
+          "source": "documentation/creatures/yaguaru-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "yaguarion",
+          "name": "Yaguarion",
+          "kind": "stage",
+          "stage": "Adulto cavaleiro",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Reorganiza corpo e construção em cavaleiro; origem e voto indefinidos.",
+          "art": "art/creatures/onze-cavaleiros-v1/yaguarion/concept-v2/concept.png",
+          "brief": "art/creatures/onze-cavaleiros-v1/yaguarion/concept-v2/brief.md",
+          "source": "documentation/creatures/yaguaru-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "yaguim",
+          "to": "yaguaru-memoria",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Primeira cabeça-pipa adquire quatro apoios e vela."
+        },
+        {
+          "from": "yaguaru-memoria",
+          "to": "yaguarda",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Faixas e apoios ganham função de proteção e contenção."
+        },
+        {
+          "from": "yaguarda",
+          "to": "yaguarion",
+          "kind": "reweaving",
+          "decision_status": "proposed",
+          "reason": "Postura se reorganiza em cavaleiro de elmo e couraça de faixas."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "retalho",
+      "name": "Retalho — identidade e máscara",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/retalho-original/cutout-rig-v2/retalho-original.soulgen.json",
+        "art/soulgen/keys/retalho-mascarada/cutout-rig-v1/retalho-mascarada.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "retalho-original",
+          "name": "Retalho original",
+          "kind": "state",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/retalho-original/cutout-rig-v2/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/retalho-original/cutout-rig-v2/retalho-original.soulgen.json",
+          "rig": "art/soulgen/keys/retalho-original/cutout-rig-v2/retalho-original.soulgen.json"
+        },
+        {
+          "id": "retalho-mascarada",
+          "name": "Retalho mascarada / cicatrizes",
+          "kind": "state",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/retalho-mascarada/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/retalho-mascarada/cutout-rig-v1/retalho-mascarada.soulgen.json",
+          "rig": "art/soulgen/keys/retalho-mascarada/cutout-rig-v1/retalho-mascarada.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Duas apresentações narrativas da mesma identidade. Não são bebê e adulto; sequência de recuperação depende da história."
+      ]
+    },
+    {
+      "id": "mormaco",
+      "name": "Mormaço — livre e possuído",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/mormaco/cutout-rig-v1/mormaco.soulgen.json",
+        "assets/pipa-dex.json",
+        "art/creatures/mormaco/DECISOES.md"
+      ],
+      "nodes": [
+        {
+          "id": "mormaco",
+          "name": "Mormaço livre",
+          "kind": "state",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/creatures/mormaco/model-c-v1/prancha-c-livre.png",
+          "brief": null,
+          "source": "art/soulgen/keys/mormaco/cutout-rig-v1/mormaco.soulgen.json",
+          "rig": "art/soulgen/keys/mormaco/cutout-rig-v1/mormaco.soulgen.json"
+        },
+        {
+          "id": "mormaco-possuido",
+          "name": "Mormaço possuído",
+          "kind": "state",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Arte/registro existente",
+          "story": "",
+          "art": "art/creatures/mormaco/possessed-c-v2/prancha-possuido.png",
+          "brief": null,
+          "source": "art/creatures/mormaco/DECISOES.md",
+          "rig": null
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "O estado do Carretel Negro não é evolução natural. Consultar DECISOES e bíblia; não presumir nova espécie."
+      ]
+    },
+    {
+      "id": "pipa-dragao",
+      "name": "Pipa-Dragão — sobrecarregada e desatada",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/pipa-dragao/cutout-rig-v1/pipa-dragao.soulgen.json",
+        "art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/pipa-dragao-desatada.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "pipa-dragao",
+          "name": "Pipa-Dragão sobrecarregada / químico B",
+          "kind": "state",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/pipa-dragao/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/pipa-dragao/cutout-rig-v1/pipa-dragao.soulgen.json",
+          "rig": "art/soulgen/keys/pipa-dragao/cutout-rig-v1/pipa-dragao.soulgen.json"
+        },
+        {
+          "id": "pipa-dragao-desatada",
+          "name": "Pipa-Dragão desatada",
+          "kind": "state",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/pipa-dragao-desatada.soulgen.json",
+          "rig": "art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/pipa-dragao-desatada.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Forma desatada é mudança narrativa de sobrecarga; não estágio bebê. Pumas antigos foram preservados como outros conceitos, não esta espécie."
+      ]
+    },
+    {
+      "id": "alvaneve",
+      "name": "Alvaneve",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "alvaneve",
+          "name": "Alvaneve",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "O inverno que aprendeu a confiar",
+          "art": "art/soulgen/keys/alvaneve/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
+          "rig": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "araruna-memoria",
+      "name": "Araruna",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/araruna-memoria/color-rig-v2/araruna-memoria.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "araruna-memoria",
+          "name": "Araruna",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Asa das Lembranças",
+          "art": "art/soulgen/keys/araruna-memoria/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/araruna-memoria/color-rig-v2/araruna-memoria.soulgen.json",
+          "rig": "art/soulgen/keys/araruna-memoria/color-rig-v2/araruna-memoria.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "auriflama",
+      "name": "Auriflama",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "auriflama",
+          "name": "Auriflama",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "A centelha que volta",
+          "art": "art/soulgen/keys/auriflama/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json",
+          "rig": "art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "azulongo",
+      "name": "Azulongo",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/azulongo/color-rig-v2/azulongo.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "azulongo",
+          "name": "Azulongo",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "O fio das marés",
+          "art": "art/soulgen/keys/azulongo/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/azulongo/color-rig-v2/azulongo.soulgen.json",
+          "rig": "art/soulgen/keys/azulongo/color-rig-v2/azulongo.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "caimbira-memoria",
+      "name": "Caimbira",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/caimbira-memoria/color-rig-v2/caimbira-memoria.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "caimbira-memoria",
+          "name": "Caimbira",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Vigia das Marés Esquecidas",
+          "art": "art/soulgen/keys/caimbira-memoria/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/caimbira-memoria/color-rig-v2/caimbira-memoria.soulgen.json",
+          "rig": "art/soulgen/keys/caimbira-memoria/color-rig-v2/caimbira-memoria.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "capimansa",
+      "name": "Capimansa",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "capimansa",
+          "name": "Capimansa",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Companheira das Águas Calmas",
+          "art": "art/soulgen/keys/capimansa/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json",
+          "rig": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "celofita",
+      "name": "Celofita",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "assets/pipa-dex.json"
+      ],
+      "nodes": [
+        {
+          "id": "celofita",
+          "name": "Celofita",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Arte/registro existente",
+          "story": "Corredor do Horizonte",
+          "art": "assets/creatures/colecoes/celofita.png",
+          "brief": null,
+          "source": "assets/pipa-dex.json",
+          "rig": null
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "eremor",
+      "name": "Eremor",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/eremor/eremor-v3.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "eremor",
+          "name": "Eremor",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/concepts/eremor-v1/eremor.png",
+          "brief": null,
+          "source": "art/soulgen/keys/eremor/eremor-v3.soulgen.json",
+          "rig": "art/soulgen/keys/eremor/eremor-v3.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "glacerol",
+      "name": "Glacerol",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/glacerol/cutout-rig-v1/glacerol.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "glacerol",
+          "name": "Glacerol",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/glacerol/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/glacerol/cutout-rig-v1/glacerol.soulgen.json",
+          "rig": "art/soulgen/keys/glacerol/cutout-rig-v1/glacerol.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "guaravento",
+      "name": "Guaravento",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "guaravento",
+          "name": "Guaravento",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Vigia das Rajadas",
+          "art": "art/soulgen/keys/guaravento/color-rig-v2/concept.png",
+          "brief": null,
+          "source": "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json",
+          "rig": "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "herravento",
+      "name": "Herravento",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/herravento/color-rig-v2/herravento.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "herravento",
+          "name": "Herravento",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Caçador das Rajadas",
+          "art": "art/soulgen/keys/herravento/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/herravento/color-rig-v2/herravento.soulgen.json",
+          "rig": "art/soulgen/keys/herravento/color-rig-v2/herravento.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "hiponilo",
+      "name": "Hiponilo",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "hiponilo",
+          "name": "Hiponilo",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Guardião do rio sagrado",
+          "art": "art/soulgen/keys/hiponilo/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json",
+          "rig": "art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "jaguarluar",
+      "name": "Jaguarluar",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "jaguarluar",
+          "name": "Jaguarluar",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "A sombra da lua cheia",
+          "art": "art/soulgen/keys/jaguarluar/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json",
+          "rig": "art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "jarabrasa",
+      "name": "Jarabrasa",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "jarabrasa",
+          "name": "Jarabrasa",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Sentinela das brasas da mata",
+          "art": "art/soulgen/keys/jarabrasa/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json",
+          "rig": "art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "javali-biscoito",
+      "name": "Javali de Biscoito",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "assets/pipa-dex.json"
+      ],
+      "nodes": [
+        {
+          "id": "javali-biscoito",
+          "name": "Javali de Biscoito",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Arte/registro existente",
+          "story": "Nome provisório",
+          "art": "assets/creatures/colecoes/javali-biscoito-v1.png",
+          "brief": null,
+          "source": "assets/pipa-dex.json",
+          "rig": null
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "lacertubo",
+      "name": "Lacertubo",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/lacertubo/color-rig-v2/lacertubo.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "lacertubo",
+          "name": "Lacertubo",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "O guardião dos canos",
+          "art": "art/soulgen/keys/lacertubo/color-rig-v2/assembly-review.png",
+          "brief": null,
+          "source": "art/soulgen/keys/lacertubo/color-rig-v2/lacertubo.soulgen.json",
+          "rig": "art/soulgen/keys/lacertubo/color-rig-v2/lacertubo.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "marulume",
+      "name": "Marulume",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "marulume",
+          "name": "Marulume",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Mensageiro de Atlântida",
+          "art": "art/soulgen/keys/marulume/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json",
+          "rig": "art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "micofolha",
+      "name": "Micofolha",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "micofolha",
+          "name": "Micofolha",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Mensageiro das Copas",
+          "art": "art/soulgen/keys/micofolha/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json",
+          "rig": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "nevagume",
+      "name": "Nevagume",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "nevagume",
+          "name": "Nevagume",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "A costura da coragem",
+          "art": "art/soulgen/keys/nevagume/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json",
+          "rig": "art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "nozinho",
+      "name": "Nozinho",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "nozinho",
+          "name": "Nozinho",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "O laço entre dois mundos",
+          "art": "art/soulgen/keys/nozinho/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json",
+          "rig": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "platofolha",
+      "name": "Platofolha",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "assets/pipa-dex.json"
+      ],
+      "nodes": [
+        {
+          "id": "platofolha",
+          "name": "Platofolha",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Arte/registro existente",
+          "story": "Guardião das Copas de Papel",
+          "art": "assets/creatures/colecoes/platofolha.png",
+          "brief": null,
+          "source": "assets/pipa-dex.json",
+          "rig": null
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "platyx",
+      "name": "Platyx",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/platyx/cutout-rig-v1/platyx.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "platyx",
+          "name": "Platyx",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/platyx/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/platyx/cutout-rig-v1/platyx.soulgen.json",
+          "rig": "art/soulgen/keys/platyx/cutout-rig-v1/platyx.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "pteralis",
+      "name": "Pteralis",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/pteralis/color-rig-v2/pteralis.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "pteralis",
+          "name": "Pteralis",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Explorador das Correntes",
+          "art": "art/soulgen/keys/pteralis/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/pteralis/color-rig-v2/pteralis.soulgen.json",
+          "rig": "art/soulgen/keys/pteralis/color-rig-v2/pteralis.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "rabiolava",
+      "name": "Rabiolava",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/rabiolava/cutout-rig-v1/rabiolava.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "rabiolava",
+          "name": "Rabiolava",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/rabiolava/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/rabiolava/cutout-rig-v1/rabiolava.soulgen.json",
+          "rig": "art/soulgen/keys/rabiolava/cutout-rig-v1/rabiolava.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "rexal",
+      "name": "Rexal",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/rexal/color-rig-v2/rexal.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "rexal",
+          "name": "Rexal",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Tiranossauro das Rajadas",
+          "art": "art/soulgen/keys/rexal/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/rexal/color-rig-v2/rexal.soulgen.json",
+          "rig": "art/soulgen/keys/rexal/color-rig-v2/rexal.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "riovela",
+      "name": "Riovela",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "assets/pipa-dex.json"
+      ],
+      "nodes": [
+        {
+          "id": "riovela",
+          "name": "Riovela",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Arte/registro existente",
+          "story": "Navegante das Correntes Antigas",
+          "art": "assets/creatures/colecoes/riovela.png",
+          "brief": null,
+          "source": "assets/pipa-dex.json",
+          "rig": null
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "stegaru",
+      "name": "Stegaru",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/stegaru/color-rig-v2/stegaru.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "stegaru",
+          "name": "Stegaru",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Jardim de Varetas",
+          "art": "art/soulgen/keys/stegaru/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/stegaru/color-rig-v2/stegaru.soulgen.json",
+          "rig": "art/soulgen/keys/stegaru/color-rig-v2/stegaru.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "tamoata-memoria",
+      "name": "Tamoatá",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/tamoata-memoria/color-rig-v2/tamoata-memoria.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "tamoata-memoria",
+          "name": "Tamoatá",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Tecelão dos Caminhos",
+          "art": "art/soulgen/keys/tamoata-memoria/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/tamoata-memoria/color-rig-v2/tamoata-memoria.soulgen.json",
+          "rig": "art/soulgen/keys/tamoata-memoria/color-rig-v2/tamoata-memoria.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "tatutrama",
+      "name": "Tatutrama",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "tatutrama",
+          "name": "Tatutrama",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Guardião das Dobras Antigas",
+          "art": "art/soulgen/keys/tatutrama/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
+          "rig": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "tricerafan",
+      "name": "Tricerafan",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/tricerafan/color-rig-v2/tricerafan.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "tricerafan",
+          "name": "Tricerafan",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "Guardião do Leque Celeste",
+          "art": "art/soulgen/keys/tricerafan/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/tricerafan/color-rig-v2/tricerafan.soulgen.json",
+          "rig": "art/soulgen/keys/tricerafan/color-rig-v2/tricerafan.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "trovareta",
+      "name": "Trovareta",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/trovareta/cutout-rig-v1/trovareta.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "trovareta",
+          "name": "Trovareta",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/trovareta/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/trovareta/cutout-rig-v1/trovareta.soulgen.json",
+          "rig": "art/soulgen/keys/trovareta/cutout-rig-v1/trovareta.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "tufanocorte",
+      "name": "Tufanocorte",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/tufanocorte/cutout-rig-v1/tufanocorte.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "tufanocorte",
+          "name": "Tufanocorte",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "",
+          "art": "art/soulgen/keys/tufanocorte/cutout-rig-v1/preview.png",
+          "brief": null,
+          "source": "art/soulgen/keys/tufanocorte/cutout-rig-v1/tufanocorte.soulgen.json",
+          "rig": "art/soulgen/keys/tufanocorte/cutout-rig-v1/tufanocorte.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "umbrocasco",
+      "name": "Umbrocasco",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json"
+      ],
+      "nodes": [
+        {
+          "id": "umbrocasco",
+          "name": "Umbrocasco",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Projeto Soulgen existente",
+          "story": "A memória do vento",
+          "art": "art/soulgen/keys/umbrocasco/color-rig-v2/source.png",
+          "brief": null,
+          "source": "art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json",
+          "rig": "art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json"
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Sem parentesco evolutivo documentado; não unir por semelhança de nome ou tema."
+      ]
+    },
+    {
+      "id": "tamandua-tear",
+      "name": "Tamanduá-tear",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/creatures/tamandua-tear/concept-v1/brief.md"
+      ],
+      "nodes": [
+        {
+          "id": "tamandua-tear",
+          "name": "Tamanduá-tear",
+          "kind": "stage",
+          "stage": "Adulto (proposta)",
+          "grade": null,
+          "status": "Proposto",
+          "production": "Concept",
+          "story": "",
+          "art": "art/creatures/tamandua-tear/concept-v1/concept.png",
+          "brief": "art/creatures/tamandua-tear/concept-v1/brief.md",
+          "source": "art/creatures/tamandua-tear/concept-v1/brief.md",
+          "rig": null
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Piloto quadrúpede adulto proposto, sem pré-evoluções criadas."
+      ]
+    },
+    {
+      "id": "ibex-astrolabio",
+      "name": "Íbex-astrolábio",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/creatures/ibex-astrolabio/concept-v1/brief.md"
+      ],
+      "nodes": [
+        {
+          "id": "ibex-astrolabio",
+          "name": "Íbex-astrolábio",
+          "kind": "stage",
+          "stage": "Adulto (proposta)",
+          "grade": null,
+          "status": "Proposto",
+          "production": "Concept",
+          "story": "",
+          "art": "art/creatures/ibex-astrolabio/concept-v1/concept.png",
+          "brief": "art/creatures/ibex-astrolabio/concept-v1/brief.md",
+          "source": "art/creatures/ibex-astrolabio/concept-v1/brief.md",
+          "rig": null
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Piloto quadrúpede adulto proposto, sem pré-evoluções criadas."
+      ]
+    },
+    {
+      "id": "veskoro",
+      "name": "Veskoro — crocodiliano de Caio",
+      "category": "Criaturas sem linha evolutiva definida",
+      "sources": [
+        "art/creatures/veskoro/battle-v1/README.md",
+        "art/creatures/crocodiliano-caio/concept-v1/brief.md"
+      ],
+      "nodes": [
+        {
+          "id": "veskoro",
+          "name": "Veskoro",
+          "kind": "stage",
+          "stage": "Não definido",
+          "grade": null,
+          "status": "Estado conforme fonte; não inferido de existência de pasta",
+          "production": "Arte/registro existente",
+          "story": "",
+          "art": "art/creatures/veskoro/battle-v1/source.png",
+          "brief": null,
+          "source": "art/creatures/veskoro/battle-v1/README.md",
+          "rig": null
+        }
+      ],
+      "edges": [],
+      "notes": [
+        "Crocodiliano-caio é ID antigo do mesmo design. Uma pose de combate não equivale a rig articulado."
+      ]
+    },
+    {
+      "id": "entrelacos",
+      "name": "Entrelaços — referências cruzadas",
+      "category": "Fusões entre famílias",
+      "sources": [
+        "documentation/creatures/estrato-rex-entrelaco-v1/chart.json",
+        "documentation/creatures/rai-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "paleorix",
+          "name": "Paleórix (proposto)",
+          "kind": "interweaving",
+          "stage": "Entrelaço; sem grau atribuído",
+          "grade": null,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Estratonte + Rexestrato → Paleórix.",
+          "art": "art/creatures/paleorix/concept-v2/concept.png",
+          "brief": null,
+          "source": "documentation/creatures/estrato-rex-entrelaco-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "entreflor",
+          "name": "Entreflor",
+          "kind": "interweaving",
+          "stage": "Entrelaço; sem grau atribuído",
+          "grade": null,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Raiatar + Arauto da Tempestade → Entreflor.",
+          "art": "art/creatures/rai-family-v1/entreflor/concept-v1/concept.png",
+          "brief": null,
+          "source": "documentation/creatures/rai-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "estratonte",
+          "to": "paleorix",
+          "kind": "interweaving",
+          "partners": [
+            "estratonte",
+            "rexestrato"
+          ],
+          "reason": "Sustentação e cobertura reorganizam proteção e direção da pressão.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "rexestrato",
+          "to": "paleorix",
+          "kind": "interweaving",
+          "partners": [
+            "estratonte",
+            "rexestrato"
+          ],
+          "reason": "Mandíbula, tórax e membranas fornecem ressonância e ruptura.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "raiatar",
+          "to": "entreflor",
+          "kind": "interweaving",
+          "decision_status": "proposed",
+          "partners": [
+            "raiatar",
+            "arauto-da-tempestade"
+          ],
+          "requires_all_partners": true,
+          "reason": "Duas entradas obrigatórias: Raiatar orienta a tensão e Arauto fornece impulso; cada braço conserva uma boca/linha do parceiro."
+        },
+        {
+          "from": "arauto-da-tempestade",
+          "to": "entreflor",
+          "kind": "interweaving",
+          "decision_status": "proposed",
+          "partners": [
+            "raiatar",
+            "arauto-da-tempestade"
+          ],
+          "requires_all_partners": true,
+          "reason": "Duas entradas obrigatórias: Raiatar orienta a tensão e Arauto fornece impulso; cada braço conserva uma boca/linha do parceiro."
+        }
+      ],
+      "notes": [
+        "Participantes continuam em suas famílias. Resultado contado uma vez; fusão não inventa um quinto estágio."
+      ]
+    }
+  ],
+  "reservations": [
+    {
+      "id": "reserva-trovao-quadrupede",
+      "name": "Quadrupede ressonante com para-raios dorsais",
+      "option": "B",
+      "art": "art/soulgen/campaign-redesigns-v1/trovareta-b-trovao-v2.png",
+      "source": "art/soulgen/campaign-redesigns-v1/catalogo-concepts.json"
+    },
+    {
+      "id": "reserva-trovao-serpente",
+      "name": "Serpente eletrica de nos e armacao angular",
+      "option": "C",
+      "art": "art/soulgen/campaign-redesigns-v1/trovareta-c-trovao-v2.png",
+      "source": "art/soulgen/campaign-redesigns-v1/catalogo-concepts.json"
+    },
+    {
+      "id": "reserva-lava-fera",
+      "name": "Fera robusta com leque de tres rabiolas de lava",
+      "option": "A",
+      "art": "art/soulgen/campaign-redesigns-v1/rabiolava-propostas-v1.png",
+      "source": "art/soulgen/campaign-redesigns-v1/catalogo-concepts.json"
+    },
+    {
+      "id": "reserva-lava-caititu",
+      "name": "Caititu vulcanico com crina de lava",
+      "option": "C",
+      "art": "art/soulgen/campaign-redesigns-v1/rabiolava-propostas-v1.png",
+      "source": "art/soulgen/campaign-redesigns-v1/catalogo-concepts.json"
+    },
+    {
+      "id": "reserva-gelo-crustaceo",
+      "name": "Crustaceo de pincas de gelo",
+      "option": "B",
+      "art": "art/soulgen/campaign-redesigns-v1/glacerol-propostas-v1.png",
+      "source": "art/soulgen/campaign-redesigns-v1/catalogo-concepts.json"
+    },
+    {
+      "id": "reserva-gelo-mariposa",
+      "name": "Mariposa de seda gelada",
+      "option": "C",
+      "art": "art/soulgen/campaign-redesigns-v1/glacerol-propostas-v1.png",
+      "source": "art/soulgen/campaign-redesigns-v1/catalogo-concepts.json"
+    },
+    {
+      "id": "reserva-vento-tamandua",
+      "name": "Tamandua de cauda em leque espiralado",
+      "option": "B",
+      "art": "art/soulgen/campaign-redesigns-v1/tufanocorte-propostas-v1.png",
+      "source": "art/soulgen/campaign-redesigns-v1/catalogo-concepts.json"
+    },
+    {
+      "id": "reserva-vento-espiral",
+      "name": "Criatura aerea de espiral vazada",
+      "option": "C",
+      "art": "art/soulgen/campaign-redesigns-v1/tufanocorte-propostas-v1.png",
+      "source": "art/soulgen/campaign-redesigns-v1/catalogo-concepts.json"
+    },
+    {
+      "id": "mormaco-v1-a",
+      "name": "Reserva mormaco-v1 opção A",
+      "option": "A",
+      "art": "art/creatures/mormaco/concept-v1/exploracao-abcd.png",
+      "source": "art/creatures/reservas/quatro-guardioes-v1.md"
+    },
+    {
+      "id": "mormaco-v1-b",
+      "name": "Reserva mormaco-v1 opção B",
+      "option": "B",
+      "art": "art/creatures/mormaco/concept-v1/exploracao-abcd.png",
+      "source": "art/creatures/reservas/quatro-guardioes-v1.md"
+    },
+    {
+      "id": "mormaco-v1-c",
+      "name": "Reserva mormaco-v1 opção C",
+      "option": "C",
+      "art": "art/creatures/mormaco/concept-v1/exploracao-abcd.png",
+      "source": "art/creatures/reservas/quatro-guardioes-v1.md"
+    },
+    {
+      "id": "mormaco-v1-d",
+      "name": "Reserva mormaco-v1 opção D",
+      "option": "D",
+      "art": "art/creatures/mormaco/concept-v1/exploracao-abcd.png",
+      "source": "art/creatures/reservas/quatro-guardioes-v1.md"
+    },
+    {
+      "id": "mormaco-geiser-v2-a",
+      "name": "Reserva mormaco-geiser-v2 opção A",
+      "option": "A",
+      "art": "art/creatures/mormaco/concept-v2-geiser/exploracao-abcd.png",
+      "source": "art/creatures/reservas/quatro-guardioes-v1.md"
+    },
+    {
+      "id": "mormaco-geiser-v2-b",
+      "name": "Reserva mormaco-geiser-v2 opção B",
+      "option": "B",
+      "art": "art/creatures/mormaco/concept-v2-geiser/exploracao-abcd.png",
+      "source": "art/creatures/reservas/quatro-guardioes-v1.md"
+    },
+    {
+      "id": "mormaco-geiser-v2-d",
+      "name": "Reserva mormaco-geiser-v2 opção D",
+      "option": "D",
+      "art": "art/creatures/mormaco/concept-v2-geiser/exploracao-abcd.png",
+      "source": "art/creatures/reservas/quatro-guardioes-v1.md"
+    },
+    {
+      "id": "puma-pipa-dragao-v3-a",
+      "name": "Puma roxo preservado A",
+      "option": "A",
+      "art": "art/creatures/pipa-dragao/concept-v3/exploracao.png",
+      "source": "art/creatures/dragao-quimico/concept-v1/brief.md"
+    },
+    {
+      "id": "puma-pipa-dragao-v3-b",
+      "name": "Puma roxo preservado B",
+      "option": "B",
+      "art": "art/creatures/pipa-dragao/concept-v3/exploracao.png",
+      "source": "art/creatures/dragao-quimico/concept-v1/brief.md"
+    }
+  ],
+  "warnings": [
+    "Brotim aparece no cervo e em Mata Verde; IDs precisam ser qualificados por família.",
+    "Azulão e Azulongo são registros distintos; não foi inventada ligação entre eles.",
+    "Micofolha e mico-samurai; Rexal e Rexestrato; Jaguarluar e Yaguarú também não foram fundidos por semelhança.",
+    "Há aprovações na conversa que não chegaram aos charts antigos. O catálogo conserva o estado registral e aponta a divergência, sem reaprovar automaticamente.",
+    "Nomes de trabalho aprovados visualmente não se tornam nomes definitivos de espécie.",
+    "Existência de rig não comprova integração, animação aprovada ou uso atual no jogo.",
+    "Ghinues e Zokk são criaturas mencionadas como origem de relíquias; sem design próprio identificado neste levantamento.",
+    "O tema Onze Cavaleiros é uma coleção transversal, não família biológica nem lista fechada de onze membros aprovados."
+  ]
+}

@@ -1,0 +1,3 @@
+# Conferência
+
+Guardião-lanterna sem pernas, dois braços-nadadeiras com dedos de papel controlam gomos, cauda longa e dorsal ampla. Imagem individual inspecionada e comparada à maturidade proposta. Nenhuma perna. Dois braços ligados aos ombros, cotovelos e mãos visíveis, cordas ligadas aos gomos; gola de nadadeira faz parte do colar, não par adicional de braços. Abertura das janelas ainda precisa de vistas e movimento para validar. Cauda com fio e flâmula(s) completa. Gomos amplos evitam textura excessiva; há suaves gradientes residuais. Contorno limpo, não pixel art de grade. Branco opaco, sem recorte, rig ou integração. Concepts em avaliação.

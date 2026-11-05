@@ -1,0 +1,85 @@
+{
+  "family_id": "cacaurama-preguica",
+  "scope": "Ramo alternativo de concepts a partir do bebe existente; sem integração.",
+  "nodes": [
+    {
+      "id": "cacau-baby",
+      "name": "Bebê compartilhado",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Fruto verde fechado e ganchos pequenos.",
+      "story": "Origem compartilhada com a rota mais vegetal.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cacaurama-family-v1/cacau-baby/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cacaurama-family-v1/cacau-baby/concept-v2/brief.md",
+      "approval_note": "Autor: \"aprovado\", em 2026-11-04, após apresentação da linha completa. Aprovação visual dos quatro estágios; nomes, mecânicas e integração não incluídos."
+    },
+    {
+      "id": "preguicau-child",
+      "name": "Criança (nome pendente)",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "A casca se abre para revelar rosto e membros; aprende a se prender à própria linha.",
+      "story": "A casca se abre para revelar rosto e membros; aprende a se prender à própria linha.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cacaurama-family-v1/preguicau-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cacaurama-family-v1/preguicau-child/concept-v1/brief.md",
+      "approval_note": "Autor: \"aprovado\", em 2026-11-04, após apresentação da linha completa. Aprovação visual dos quatro estágios; nomes, mecânicas e integração não incluídos."
+    },
+    {
+      "id": "preguicau-young",
+      "name": "Jovem (nome pendente)",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Braços alongados e membranas tensionadas sustentam o corpo; a casca vira cobertura dorsal.",
+      "story": "Braços alongados e membranas tensionadas sustentam o corpo; a casca vira cobertura dorsal.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cacaurama-family-v1/preguicau-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cacaurama-family-v1/preguicau-young/concept-v1/brief.md",
+      "approval_note": "Autor: \"aprovado\", em 2026-11-04, após apresentação da linha completa. Aprovação visual dos quatro estágios; nomes, mecânicas e integração não incluídos."
+    },
+    {
+      "id": "preguicau-adult",
+      "name": "Adulto (nome pendente)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Casca madura se abre em manto; a preguiça guardiã ancora linhas com braços de grande alcance.",
+      "story": "Casca madura se abre em manto; a preguiça guardiã ancora linhas com braços de grande alcance.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cacaurama-family-v1/preguicau-adult/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cacaurama-family-v1/preguicau-adult/concept-v1/brief.md",
+      "approval_note": "Autor: \"aprovado\", em 2026-11-04, após apresentação da linha completa. Aprovação visual dos quatro estágios; nomes, mecânicas e integração não incluídos."
+    }
+  ],
+  "edges": [
+    {
+      "from": "cacau-baby",
+      "to": "preguicau-child",
+      "kind": "reweaving",
+      "reason": "A casca se abre para revelar rosto e membros; aprende a se prender à própria linha.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "preguicau-child",
+      "to": "preguicau-young",
+      "kind": "reweaving",
+      "reason": "Braços alongados e membranas tensionadas sustentam o corpo; a casca vira cobertura dorsal.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "preguicau-young",
+      "to": "preguicau-adult",
+      "kind": "reweaving",
+      "reason": "Casca madura se abre em manto; a preguiça guardiã ancora linhas com braços de grande alcance.",
+      "decision_status": "proposed"
+    }
+  ]
+}

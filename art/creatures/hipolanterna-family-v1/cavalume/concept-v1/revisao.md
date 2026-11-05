@@ -1,0 +1,3 @@
+# Conferência
+
+Ventre redondo de pipa-abóbora, pescoço curto, pequenas nadadeiras e cauda de uma curva curta. Imagem individual inspecionada e comparada à maturidade proposta. Nenhuma perna. Duas abas/nadadeiras peitorais, sem mãos; dorsal só nas formas após bebê. Cauda com fio e flâmula(s) completa. Gomos amplos evitam textura excessiva; há suaves gradientes residuais. Contorno limpo, não pixel art de grade. Branco opaco, sem recorte, rig ou integração. Concepts em avaliação.

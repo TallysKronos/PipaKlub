@@ -1,0 +1,3 @@
+# Conferência
+
+Quadrúpede arredondado, quatro cascos fendidos, galhadas pequenas em Y com membranas rosadas e peito de pipa. Conferida continuidade do corpo, raízes de orelhas/galhadas, apoios e rabiola. Uma pata dianteira levantada; três apoios no chão, quatro membros presentes. Quantidade de pintas e detalhes de dobras diverge do prompt; é o desenho atual a avaliar. Uma única imagem em três quartos não valida anatomia em todos os ângulos. Há transições suaves residuais e contorno predominantemente contínuo: concept 2D mangá, não pixel art técnico. Fundo branco opaco. Não recortado, animado ou integrado. Em avaliação.

@@ -1,0 +1,3 @@
+# Conferência
+
+Anel de vértebra e papel com pescoço curto; sem membros; uma flâmula. Imagem inspecionada antes da continuidade. Massa compacta sem membros; pescoço e cauda ligados ao anel. Canal branco opaco, suaves transições residuais, não pixel art de grade. Contagens de segmentos e unhas precisam padronização em vistas técnicas. Função estrutural não testada em rig. Em avaliação, sem recortes, animações ou integração.

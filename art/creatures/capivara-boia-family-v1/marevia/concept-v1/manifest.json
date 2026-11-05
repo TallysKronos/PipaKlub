@@ -1,0 +1,24 @@
+{
+  "id": "marevia",
+  "name": "Marévia",
+  "stage": 4,
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-bc63fc6c-04c4-4b14-9277-8394e72b7ded.png",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "sha256": "e8394252dc4dcba54b1c8d0c018f5b60aefa47433e1eddb21cfd75697219e7db",
+  "references": [
+    "art/creatures/capivara-boia/child-manga-v1/concept.png",
+    "art/creatures/capivara-boia-family-v1/remansa/concept-v1/concept.png"
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "prompt": "prompt.txt",
+  "review": "revisao.md",
+  "brief": "brief.md"
+}

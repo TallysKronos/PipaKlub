@@ -1,0 +1,3 @@
+# Conferência
+
+Tiranossauro de tórax-fole profundo e ressonador de membrana ligado à mandíbula; dois braços pequenos e duas pernas. Corpo e rabiola inspecionados, contagem de membros conferida. Mãos com dois dedos; garras traseiras acessórias e número de segmentos precisam padronização numa prancha técnica. Não se promete contagem exata de dentes ou costelas pelo prompt. Peito ampliado e anel de membrana têm pontos de ligação visíveis. A função acústica é invenção proposta, não mecânica testada nem afirmação paleontológica. Leves transições suaves residuais; concept mangá, não pixel art em grade. Fundo branco opaco. Sem recorte, rig, animação ou integração. Em avaliação.

@@ -1,0 +1,23 @@
+{
+  "id": "tricordio",
+  "version": 4,
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-c44e4baf-589e-41de-8f41-306925e9e98b.png",
+  "sha256": "e0b567800b03d765e4d11992ca9a4a471c5c07d1b3320dbc05b862568fd27d52",
+  "width": 1024,
+  "height": 1536,
+  "mode": "RGB",
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "../concept-v2/concept.png",
+      "role": "alvo de edição próprio"
+    }
+  ],
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "approval_note": "Autor aprovou concept-v4 e pediu as formas bebê e jovem; escopo visual, sem integração ou requisitos."
+}

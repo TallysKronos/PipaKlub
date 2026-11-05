@@ -1,0 +1,22 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-576459c1-cbf7-4d20-a58e-7f989230e938.png",
+  "sha256": "ff56436e419f3bbd6da1bd24d99ec8c9fea477a51bb13a819eb007971368bfa8",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    {
+      "path": "../concept-v1/concept.png",
+      "role": "Alvo: edição dirigida da cabeça, preservando restante do design"
+    }
+  ],
+  "decision_status": "approved",
+  "production_status": "concept",
+  "integration_status": "not_integrated",
+  "approval_note": "Autor: \"Aprovadissimo\", em 2026-11-04, após a revisão da cabeça. Aprovação visual do adulto Borealvo concept-v2; não estendida às outras formas, nomes ou mecânicas."
+}

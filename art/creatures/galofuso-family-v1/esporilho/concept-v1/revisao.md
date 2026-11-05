@@ -1,0 +1,3 @@
+# Conferência
+
+Galo esguio de pescoço comprido, duas pernas, uma asa-trilho e outra de equilíbrio, cauda de três velas. Imagem gerada e inspecionada antes da etapa seguinte. Asa-lançador e asa livre têm raízes distintas; quatro membros, duas pernas e duas asas. A armação é longa e precisa de estudos de dobra. A função descrita ainda é proposta: não foi validada em ação. Leves transições de sombra residuais; concept mangá, não pixel art de grade. Fundo branco opaco, não recortado, sem rig, animação ou integração. Em avaliação do autor.

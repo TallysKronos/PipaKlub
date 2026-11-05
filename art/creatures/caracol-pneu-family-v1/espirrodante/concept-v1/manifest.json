@@ -1,0 +1,19 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-a37a7ad5-98ae-4702-9df8-57762cf2af34.png",
+  "sha256": "57e25a3fe86391e3805b50fe360f6116aa9b4c9ffd2a1eee3c69c4a38ab51155",
+  "dimensions": [
+    1199,
+    1312
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "../gambalhote/gambalhote-adult/concept-v2/concept.png: acabamento apenas"
+  ],
+  "reference_paths_relative_to": "art/creatures/caracol-pneu-family-v1",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "integration_status": "not_integrated"
+}
