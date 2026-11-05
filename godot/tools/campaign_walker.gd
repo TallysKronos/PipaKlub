@@ -347,11 +347,16 @@ func step(beat: Dictionary) -> bool:
 		# Some story events exist only once the scene is open (Mormaço in the Pântano):
 		# go to the beat's place first and look again there.
 		var place: String = beat.get("place", "")
-		var entry_scene := ""
-		for scene in CP.MAPS: if CP.region_of(scene) == place and (entry_scene.is_empty() or scene < entry_scene): entry_scene = scene
-		if not entry_scene.is_empty() and CP.region_of(scene_now()) != place:
-			note("   indo ao lugar do passo para procurar: " + entry_scene)
-			if await go_to(entry_scene): found = target(beat)
+		var parts: Array = []
+		for scene in CP.MAPS: if CP.region_of(scene) == place: parts.append(scene)
+		parts.sort()
+		# Walk the place's parts in order (A, B, C) until the event shows up.
+		for scene in parts:
+			if scene == scene_now(): continue
+			note("   procurando o passo em " + scene)
+			if not await go_to(scene): break
+			found = target(beat)
+			if not found.is_empty(): break
 	if found.is_empty():
 		issue("nenhum evento abre o passo; cena " + scene_now())
 		return false
