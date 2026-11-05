@@ -347,7 +347,9 @@ func walk_to(goal: Vector2, reach: float) -> bool:
 		await process_frame
 		if handle_battle() or await handle_dialogs():
 			await settle()
-			if not park_ready() or view.park != park: return false
+			# A wild duel reloads the map: walk again from where the game put Kael.
+			if not park_ready(): return false
+			if view.park != park: return await walk_to(goal, reach)
 			park.path = model.path_to(park.player, best)
 			continue
 		if park.path.is_empty(): break

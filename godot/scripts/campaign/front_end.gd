@@ -1656,7 +1656,7 @@ func _park_event(id: String) -> void:
 			if player.flags.get("aracatiRabiolavaLivre",false):
 				_notice("A brisa voltou a atravessar o terreiro.")
 				return
-			_confirm_park("Rabiolava", "Kael: Essa linha é do Carretel Negro. Rabbito, vamos soltar o Rabiolava!", "Enfrentar", func():
+			_confirm_park("Rabiolava", "Kael: Essa linha é do Carretel Negro. Rabbito, vamos soltar a Rabiolava!", "Enfrentar", func():
 				if _result(load("res://scripts/campaign/ruinas_elo.gd").begin(session,park.player)):_show_saved.call_deferred())
 			return
 		if action=="blueExam":
@@ -3671,7 +3671,7 @@ func _return_ruinas(outcome: String = "") -> void:
 				await release.finished
 				cord.queue_free()
 				break
-		_notice("Kael: Pronto. A linha cedeu. Você está livre, Rabiolava.\n\nCorrente de Ar disponível." if outcome=="won" else "Kael: Vou me recompor. Ainda dá tempo de soltar o Rabiolava.")
+		_notice("Kael: Pronto. A linha cedeu. Você está livre, Rabiolava.\n\nO vento quente volta a soprar sobre a ilha." if outcome=="won" else "Kael: Vou me recompor. Ainda dá tempo de soltar a Rabiolava.")
 		return
 	if lines.RESCUES.has(scene):
 		if scene == "kronasta-coracao-c" and outcome == "won":
