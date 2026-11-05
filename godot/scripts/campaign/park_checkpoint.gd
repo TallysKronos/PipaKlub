@@ -148,6 +148,8 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	if props.get("acao","")=="endgameStep": return endgame.ready(player,str(props.get("step","")))
 	# The Rato makes his invitation in the Bosque storm (decision of 04/11), not in Aracati.
 	if props.get("acao","")=="aracatiRato": return false
+	# The Veredas trail clues lead to the guardian; after the duel they would repeat stale text.
+	if props.get("acao","") in ["veredasTrace","veredasPipes","parkBossGuide"] and flags.get("guardianDefeated",false): return false
 	if props.get("acao","")=="ruinasDuel":
 		return not flags.get(props.rescueFlag,false)
 	if props.get("acao","")=="pipeiroFantasma":

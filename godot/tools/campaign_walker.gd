@@ -30,6 +30,7 @@ var duels := 0
 var exhausted := {}
 var beat_steps := 0
 var duel_counts := {}
+var wild_count := 0
 
 ## Story actions that finish (part of) a beat, by beat id. District beats use the next
 ## duel of the district; endgame steps use their own event.
@@ -168,10 +169,12 @@ func handle_battle() -> bool:
 	b.set("_walker_done", true)
 	var enc: Dictionary = view.session.snapshot().player.get("encounter", {})
 	duels += 1
+	if str(enc.get("kind", "")) == "wild": wild_count += 1
 	note("   duelo: %s (%s, Nv %s)" % [str(enc.get("state", {}).get("q", {}).get("name", "?")), str(enc.get("kind", "")), str(enc.get("state", {}).get("q", {}).get("level", "?"))])
 	var name := str(enc.get("state", {}).get("q", {}).get("name", "?"))
-	duel_counts[name] = int(duel_counts.get(name, 0)) + 1
-	if duel_counts[name] > 4:
+	# Wild encounters are expected to repeat; only story duels count as a loop.
+	if str(enc.get("kind", "")) != "wild": duel_counts[name] = int(duel_counts.get(name, 0)) + 1
+	if int(duel_counts.get(name, 0)) > 4:
 		issue("o duelo '%s' reabriu %d vezes (ciclo)" % [name, duel_counts[name]])
 		finish(); return true
 	# Story duels with a mid-fight turn: play the turn the way the battle model does.
@@ -529,7 +532,7 @@ func nearest_event(at: Vector2) -> Vector2:
 	return found
 
 func finish() -> void:
-	var report := PackedStringArray(["# Percurso da campanha", "", "Início: salto QA `%s`. Duelos: %d. Problemas: %d." % [arg("from", "serra"), duels, issues.size()], ""])
+	var report := PackedStringArray(["# Percurso da campanha", "", "Início: salto QA `%s`. Duelos: %d (selvagens: %d). Problemas: %d." % [arg("from", "serra"), duels, wild_count, issues.size()], ""])
 	if not issues.is_empty():
 		report.append("## Problemas"); report.append("")
 		for i in issues: report.append("- " + i)
