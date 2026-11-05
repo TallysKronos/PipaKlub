@@ -10,8 +10,6 @@ var app:Control
 var service:RefCounted
 var checks:=0
 var failures:=0
-class FailedStore extends "res://scripts/campaign/save_store.gd":
- func save_slot(_data:Dictionary)->Dictionary:return {"status":"io_error"}
 func check(ok:bool,label:String)->void:
  checks+=1
  if not ok:failures+=1;printerr("FAIL "+label)
@@ -125,34 +123,45 @@ func run()->void:
  check(service.advance(6,Trust.RESCUE).status=="ok","choice recorded before grant")
  await current_full_bank_test()
  Story.qa_override=qa
+ var streams:Array[WeakRef]=[]
+ for child in app.sound.get_children():
+  if child is AudioStreamPlayer and child.stream!=null:streams.append(weakref(child.stream))
+ app.free();await process_frame;await process_frame
+ var deadline:=Time.get_ticks_msec()+2000;var pending:=true
+ while pending and Time.get_ticks_msec()<deadline:
+  pending=false
+  for ref:WeakRef in streams:
+   if ref.get_ref()!=null:pending=true
+  if pending:await create_timer(.02).timeout
+ check(not pending,"audio teardown")
  print("RETALHO TRUST ",checks," checks; ",failures," failures; combat outcomes are fixtures")
- app.free();quit(0 if failures==0 else 1)
+ quit(0 if failures==0 else 1)
 func current_full_bank_test()->void:
  var p:Dictionary=app.session.snapshot().player
  while p.partners.size()<30:p.partners.append({"id":State.new_id(),"modelId":"basica","xp":0})
  app.session.checkpoint(app.session.snapshot().checkpoint,p)
  var before:Dictionary=app.session.snapshot()
- check(service.claim(Trust.RESCUE).status=="bank_full" and app.session.snapshot().player.flags.get("retalhoAceitoKael",false) and app.session.snapshot().player.partners==before.player.partners,"full bank records acceptance without replacing partners")
+ var accepted:Dictionary=service.claim(Trust.RESCUE)
+ check(accepted.status=="ok" and app.session.snapshot().player.flags.get("retalhoAceitoKael",false) and JSON.stringify(JSON.parse_string(JSON.stringify(app.session.snapshot().player.partners)),"",true)==JSON.stringify(JSON.parse_string(JSON.stringify(before.player.partners)),"",true),"full bank reserves Retalho without replacing partners")
+ var pending:Array=app.session.snapshot().player.get("pendingPartners",[])
+ check(pending.size()==1 and pending[0].partner.modelId=="retalho-original" and pending[0].mandatory,"Retalho has durable essential reservation")
+ var reserved_id:String=pending[0].id
  app._show_retalho_bank();await frames();await shot("04-banco-cheio")
- check(app.session.resume_slot("slot-1").status=="ok" and Trust.stage(app.session.snapshot().player)==7,"pending choice survives reload")
+ check(app.session.resume_slot("slot-1").status=="ok" and app.session.snapshot().player.pendingPartners[0].id==reserved_id,"pending choice survives reload")
  check(service.release("r").status=="equipped","cannot release equipped partner")
+ app._show_reward_replacement(reserved_id,"Retalho");await frames()
  var buttons:Array=app.page.find_children("*","Button",true,false).filter(func(b):return b.text.begins_with("Liberar "))
  check(not buttons.is_empty(),"bank exposes release choices")
  if buttons.is_empty():return
  buttons[0].pressed.emit();await frames()
- var dialog:Control=app.get_node_or_null("RetalhoBankReleaseDialogue")
+ var dialog:Control=app.get_tree().get_first_node_in_group("manga_dialogue")
  check(is_instance_valid(dialog),"release requires separate confirmation")
  if not is_instance_valid(dialog):return
  dialog.canceled.emit();await frames()
  check(app.session.snapshot().player.partners.size()==30,"cancel never releases a partner")
- buttons[0].pressed.emit();await frames();dialog=app.get_node("RetalhoBankReleaseDialogue")
- while dialog.page_index<dialog.pages.size()-1:dialog.next_page()
- dialog.get_ok_button().pressed.emit();await frames()
- check(app.session.snapshot().player.partners.size()==29,"confirmed release opens one slot")
- var working=app.session._store;before=app.session.snapshot();app.session._store=FailedStore.new()
- check(service.claim(Trust.RESCUE).status=="io_error" and app.session.snapshot()==before,"failed adoption grants nothing")
- app.session._store=working
- check(service.claim(Trust.RESCUE).status=="ok","Retalho adopted")
+ buttons[0].pressed.emit();await frames();dialog=app.get_tree().get_first_node_in_group("manga_dialogue")
+ dialog.confirmed.emit();await frames()
+ check(app.session.snapshot().player.partners.size()==30 and app.session.snapshot().player.get("pendingPartners",[]).is_empty(),"release and adoption share one commit")
  var after:Dictionary=app.session.snapshot()
  check(after.player.partners.size()==30 and after.player.partners.filter(func(x):return x.get("origin","")==Trust.ORIGIN).size()==1,"one Retalho in bank")
  check(not after.player.flags.get("leagueBlue",false) and not after.player.flags.get("exameAzulOrientadoV2",false),"trust never grants league progress")

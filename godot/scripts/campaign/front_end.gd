@@ -68,6 +68,8 @@ var settings_focus_controls:=false
 var team_load_state:="ready"
 var scene_loading:CanvasLayer
 var save_status: CanvasLayer
+var rewards_deferred := false
+var rewards_seen_count := 0
 
 func _ready() -> void:
 	if preload("res://scripts/diagnostics/dispatch.gd").try_run(self): return
@@ -97,6 +99,10 @@ func _ready() -> void:
 	session.saving_started.connect(save_status.started)
 	session.saving_finished.connect(save_status.finished)
 	session.changed.connect(sound.saved)
+	session.changed.connect(func(value: Dictionary):
+		var count: int=value.get("player",{}).get("pendingPartners",[]).size()
+		if count>rewards_seen_count:rewards_deferred=false
+		rewards_seen_count=count)
 	session.storage_failed.connect(func(_reason: String): sound.play_event("progress.save_error"))
 	opening = Opening.new(session)
 	journey = Journey.new(session)
@@ -448,6 +454,8 @@ func _result(result: Dictionary) -> bool:
 	return false
 
 func _show_saved() -> void:
+	if not rewards_deferred and not session.snapshot().get("player",{}).get("pendingPartners",[]).is_empty():
+		_show_pending_rewards();return
 	if not _result(PipeiroIdentity.ensure_legacy(session)): return
 	if PipeiroIdentity.pending(session.snapshot()):
 		TutorialStaging.resume_documents(self)
@@ -868,7 +876,8 @@ func _name() -> void:
 	if opening_busy:return
 	var result: Dictionary = opening.name_partner(name_input.text)
 	if result.status == "ok":
-		_show_opening()
+		if not session.snapshot().player.get("pendingPartners",[]).is_empty():_show_pending_rewards()
+		else:_show_opening()
 	else:
 		status.text = _error(result.status)
 
@@ -1447,7 +1456,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu:slots":
 		_menu();get_viewport().set_input_as_handled();return
 	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
-		if last_scene_key=="page:CARTEIRA DE PIPEIRO": _close_identity()
+		if last_scene_key=="page:RECOMPENSAS RESERVADAS":_defer_pending_rewards()
+		elif last_scene_key=="page:ABRIR ESPAÇO":_show_pending_rewards()
+		elif last_scene_key=="page:CARTEIRA DE PIPEIRO": _close_identity()
 		elif last_scene_key=="page:DEMO CONCLUÍDA": _finish_demo("explore")
 		elif last_scene_key=="page:CUIDAR DO PARCEIRO":_leave_partner_care()
 		elif last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
@@ -2096,6 +2107,7 @@ func _show_collection() -> void:
 	var player: Dictionary = session.snapshot().player
 	_simple_page("EQUIPE",true)
 	_label("Escolha quem vai voar ao seu lado.",page,17).add_theme_color_override("font_color",Hud.MUTED)
+	if not player.get("pendingPartners",[]).is_empty():_button("Recompensas reservadas · %d"%player.pendingPartners.size(),page,_show_pending_rewards)
 	if team_load_state!="ready":
 		var state_view=load("res://scripts/campaign/hud_list_state.gd").new()
 		state_view.state=team_load_state
@@ -2221,6 +2233,7 @@ func _show_partner_bank() -> void:
 	if not _result(synced): return
 	saved = synced.data
 	_simple_page("BANCO DE PIPAMONS", true)
+	if not saved.player.get("pendingPartners",[]).is_empty():_button("Recompensas reservadas · %d"%saved.player.pendingPartners.size(),page,_show_pending_rewards)
 	_label("Compartilhado entre as jornadas deste perfil, somente neste computador.", page, 17)
 	_label("Transferir grava a campanha, mesmo com autosave desligado. Saves antigos respeitam a propriedade atual de cada criatura.", page, 16)
 	var columns := HBoxContainer.new(); columns.add_theme_constant_override("separation",24)
@@ -2283,6 +2296,87 @@ func _execute_bank_transfer(id: String, direction: String, operation: String) ->
 		retry.confirmed.connect(func():_execute_bank_transfer(id,direction,operation))
 		retry.confirmed.connect(retry.queue_free); retry.canceled.connect(retry.queue_free)
 	else: _notice(_error(result.status))
+
+func _show_pending_rewards() -> void:
+	var sync: Dictionary=session.bank_reconcile(session.snapshot())
+	if not _result(sync):return
+	var saved: Dictionary=sync.data
+	var queue: Array=saved.player.get("pendingPartners",[])
+	if queue.is_empty():rewards_deferred=true;_show_saved();return
+	_simple_page("RECOMPENSAS RESERVADAS",true)
+	_label("Suas criaturas estão protegidas. Escolha um destino; fechar esta tela não apaga a reserva.",page,18)
+	var contents: Dictionary=session.bank_contents()
+	if not _result(contents):return
+	_label("Campanha · %d / 30     Depósito do perfil · %d / 20"%[saved.player.partners.size(),contents.partners.size()],page,22)
+	var safe: bool=saved.checkpoint.get("kind") not in ["encounter","workshop"]
+	if not safe:_label("Conclua a cena ou batalha atual para receber estas recompensas.",page,18)
+	var scroll:=ScrollContainer.new();scroll.follow_focus=true;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",16);scroll.add_child(list)
+	var first: Button
+	for reward: Dictionary in queue:
+		var id: String=reward.id
+		var name: String=reward.partner.get("personalName",reward.partner.modelId)
+		var card=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(card)
+		var body:=VBoxContainer.new();card.add_child(body)
+		var heading:=HBoxContainer.new();heading.add_theme_constant_override("separation",16);body.add_child(heading)
+		var art:=TextureRect.new();art.custom_minimum_size=Vector2(80,80);art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		art.texture=_partner_portrait(reward.partner.modelId) if reward.partner.modelId in ["rabbito","basica","mata","azulao","raio","doberman-c","retalho-original","lacertubo"] else Hud.icon("pipa",true)
+		heading.add_child(art)
+		var caption:=VBoxContainer.new();caption.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(caption)
+		_label(name+(" · PARCEIRO DE HISTÓRIA" if reward.mandatory else " · RESERVADO"),caption,24)
+		_label("Registro · "+id.right(8),caption,15)
+		var claim:=_button("Receber na campanha",Hud.focus_space(body),func():_confirm_reward(id,"campaign","",name))
+		claim.disabled=not safe or saved.player.partners.size()>=30;Hud.secondary_button(claim)
+		if first==null and not claim.disabled:first=claim
+		var replace:=_button("Abrir espaço para receber",Hud.focus_space(body),func():_show_reward_replacement(id,name))
+		replace.disabled=not safe or saved.player.partners.size()<30;Hud.secondary_button(replace)
+		if first==null and not replace.disabled:first=replace
+		if not reward.mandatory:
+			var global:=_button("Guardar no depósito do perfil",Hud.focus_space(body),func():_confirm_reward(id,"global","",name))
+			global.disabled=not safe or contents.partners.size()>=20;Hud.secondary_button(global)
+			var decline:=_button("Recusar esta criatura",Hud.focus_space(body),func():_confirm_reward(id,"decline","",name));decline.disabled=not safe;Hud.secondary_button(decline)
+	var mandatory: bool=queue.any(func(r):return r.mandatory)
+	var back:=_button("Voltar ao menu · reserva mantida" if mandatory and safe else "Receber depois",page,_defer_pending_rewards)
+	Hud.secondary_button(back)
+	Hud.focus_later(first if first!=null else back)
+
+func _defer_pending_rewards() -> void:
+	var saved: Dictionary=session.snapshot()
+	var mandatory: bool=saved.player.get("pendingPartners",[]).any(func(r):return r.mandatory)
+	if mandatory and saved.checkpoint.get("kind") not in ["encounter","workshop"]:_menu()
+	else:rewards_deferred=true;_show_saved()
+
+func _show_reward_replacement(id: String, reward_name: String) -> void:
+	_simple_page("ABRIR ESPAÇO",true)
+	_label("Escolha quem liberar permanentemente para receber "+reward_name+". Seu parceiro ativo e os parceiros de história estão protegidos.",page,18)
+	var saved: Dictionary=session.snapshot()
+	var scroll:=ScrollContainer.new();scroll.follow_focus=true;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",10);scroll.add_child(list)
+	for partner in saved.player.partners:
+		if partner.id==saved.player.get("equippedPartnerId","") or preload("res://scripts/campaign/partner_bank.gd").new(session._store).story_bound(partner):continue
+		var victim: String=partner.id
+		var name: String=partner.get("personalName",partner.modelId)
+		var button:=_button("Liberar %s · %s"%[name,victim.right(8)],Hud.focus_space(list),func():_confirm_reward(id,"replace",victim,reward_name,name))
+		Hud.secondary_button(button)
+	_button("Voltar sem liberar ninguém",page,_show_pending_rewards)
+
+func _confirm_reward(id: String, destination: String, victim: String, name: String, victim_name: String="") -> void:
+	var copy:= "Receber %s na campanha?"%name if destination=="campaign" else "Guardar %s no depósito compartilhado deste perfil?"%name
+	if destination=="replace":copy="Liberar %s permanentemente para receber %s? A troca será gravada em conjunto; a criatura liberada não voltará ao carregar um save antigo."%[victim_name,name]
+	if destination=="decline":copy="Recusar %s permanentemente? A reserva será encerrada. Itens já utilizados não serão devolvidos."%name
+	copy+="\n\nRegistro · "+id.right(8)+"\nEsta decisão grava o progresso, mesmo com autosave desligado."
+	var dialog:=_confirmation("Destino da recompensa",copy,"Confirmar decisão")
+	var operation: String="bank-transfer-"+preload("res://scripts/campaign/state.gd").new_id()
+	dialog.confirmed.connect(func():_resolve_reward(id,destination,victim,operation))
+	dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free);dialog.popup_centered()
+
+func _resolve_reward(id: String, destination: String, victim: String, operation: String) -> void:
+	var result: Dictionary=session.resolve_reward(id,destination,victim,operation)
+	if result.status in ["ok","already_applied"]:rewards_deferred=false;_show_pending_rewards();return
+	if result.status=="bank_pending":
+		var retry:=_dialog("Concluir recebimento",_error(result.status),"Tentar novamente","Fechar aviso")
+		retry.confirmed.connect(func():_resolve_reward(id,destination,victim,operation));retry.confirmed.connect(retry.queue_free);retry.canceled.connect(retry.queue_free)
+	else:_notice(_error(result.status))
 
 func _route_action(id: String) -> void:
 	for place in park.data.places:
@@ -2613,7 +2707,7 @@ func _show_settings() -> void:
 	if settings_tab == "Áudio": _audio_settings()
 	if settings_tab == "Jornada":
 		_label("Autosave · espaço 0", page, 24)
-		_label("Ligado por padrão. Desligado, os avanços ficam em memória até você salvar manualmente. Sair sem salvar perde esses avanços.", page, 18)
+		_label("Ligado por padrão. Desligado, a história fica em memória até salvar. Aquisições, recompensas e transferências gravam um ponto de segurança para proteger suas criaturas.", page, 18)
 		var automatic := CheckButton.new()
 		automatic.text = "Autosave ligado" if preferences.autosave else "Autosave desligado"
 		automatic.button_pressed = preferences.autosave
@@ -3441,24 +3535,10 @@ func _after_retalho_trust(n:int)->void:
 func _show_retalho_bank()->void:
 	var service=load("res://scripts/campaign/retalho_trust.gd").new(session)
 	var p:Dictionary=session.snapshot().player
-	if service.stage(p)!=7:return
-	_simple_page("Banco cheio · Retalho está esperando",true)
-	_label("Retalho já escolheu você. Libere uma vaga quando quiser; ele não será perdido.",page,22)
-	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.follow_focus=true;page.add_child(scroll)
-	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(list)
-	for partner:Dictionary in p.partners:
-		var id:String=partner.id
-		if id==p.get("equippedPartnerId","") or partner.get("origin","")==service.ORIGIN:continue
-		var partner_name:String=partner.get("personalName",partner.modelId)
-		_button("Liberar "+partner_name+" · Nv. "+str(preload("res://scripts/campaign/partner_levels.gd").level_for_xp(partner.get("xp",0))),list,func():
-			var dialog:=_dialog("Liberar parceiro?",partner_name+" sairá permanentemente do banco deste save. Esta ação não pode ser desfeita. Nenhum outro parceiro será alterado.","Liberar permanentemente","Manter parceiro")
-			dialog.name="RetalhoBankReleaseDialogue"
-			dialog.confirmed.connect(func():
-				if _result(service.release(id)):
-					dialog.queue_free();_show_retalho_bank.call_deferred())
-			dialog.canceled.connect(dialog.queue_free);dialog.popup_centered())
-	_button("Voltar sem liberar ninguém",page,_show_saved)
-	if p.partners.size()<service.CAPACITY:_button("Voltar para acolher Retalho",page,_show_saved)
+	# Migrate the previous accepted-but-bank-full state to a durable reward.
+	if service.stage(p)==7 and p.flags.get("retalhoAceitoKael",false):
+		if not _result(service.claim(service.RESCUE)):return
+	_show_pending_rewards()
 
 func _blue_station(action:String)->void:
 	if flow_busy or not is_instance_valid(park):return

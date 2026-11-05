@@ -8,6 +8,7 @@ signal saving_finished(status: String)
 
 const Store = preload("res://scripts/campaign/save_store.gd")
 const Bank = preload("res://scripts/campaign/partner_bank.gd")
+const Rewards = preload("res://scripts/campaign/partner_rewards.gd")
 var _store := Store.new()
 var _snapshot: Dictionary = {}
 var _unsaved_play_seconds:=0.0
@@ -88,6 +89,10 @@ func bank_reconcile(value: Dictionary) -> Dictionary:
 	if status != "ok": return {"status":status}
 	var loaded: Dictionary = Bank.new(_store).load_ledger()
 	if loaded.status != "ok": return loaded
+	for operation in value.player.get("completedOperations",[]):
+		if str(operation).begins_with("bank-transfer-") and not loaded.data.operations.has(operation):return {"status":"bank_corrupt"}
+	for reward in value.player.get("pendingPartners",[]):
+		if not loaded.data.entries.has(reward.id):return {"status":"bank_corrupt"}
 	var reconciled: Dictionary = Bank.new(_store).reconcile(value, loaded.data) if not loaded.data.entries.is_empty() else value
 	if value.checkpoint.get("kind") == "encounter":
 		var fighter: String = value.player.get("encounter",{}).get("state",{}).get("partnerId","")
@@ -151,7 +156,48 @@ func commit_operation(operation_id: String, checkpoint_data: Dictionary, player_
 	next.player.completedOperations = _snapshot.player.completedOperations.duplicate()
 	next.player.completedOperations.append(operation_id)
 	# Reward and receipt share one snapshot, so a restarted caller can reuse its ID.
+	var old_ids: Array=_snapshot.player.partners.map(func(p):return p.id)
+	var additions: Array=next.player.partners.filter(func(p):return not p.get("id","") in old_ids)
+	if not additions.is_empty():
+		var inspection: String=preload("res://scripts/campaign/state.gd").inspect(next,str(next.slotId))
+		if inspection!="ok":return _accept({"status":inspection})
+		return _grant_partners(next,additions,operation_id)
 	return _persist(_with_play_time(next))
+
+func _grant_partners(next: Dictionary, additions: Array, source: String) -> Dictionary:
+	var status: String=_store._recover_archives()
+	if status!="ok":return _accept({"status":status})
+	var target: String="slot-0" if separate_autosave else str(_snapshot.slotId)
+	var current: Dictionary=_store.load_slot(target)
+	if current.status not in ["ok","missing"]:return _accept(current)
+	saving_started.emit()
+	var result: Dictionary=Rewards.new(Bank.new(_store)).grant(_with_play_time(next),additions,source,target,int(current.data.revision) if current.status=="ok" else -1,str(_snapshot.player.get("equippedPartnerId","")))
+	return _reward_saved(result,target)
+
+func resolve_reward(id: String, destination: String, victim: String, operation: String) -> Dictionary:
+	if _snapshot.is_empty():return {"status":"no_session"}
+	var synced:=bank_reconcile(snapshot())
+	if synced.status!="ok":return _accept(synced)
+	var target: String="slot-0" if separate_autosave else str(_snapshot.slotId)
+	var current: Dictionary=_store.load_slot(target)
+	if current.status not in ["ok","missing"]:return _accept(current)
+	saving_started.emit()
+	var result: Dictionary=Rewards.new(Bank.new(_store)).resolve(_with_play_time(synced.data),id,destination,victim,operation,target,int(current.data.revision) if current.status=="ok" else -1)
+	return _reward_saved(result,target)
+
+func _reward_saved(result: Dictionary, target: String) -> Dictionary:
+	if result.status in ["ok","already_applied"]:
+		var committed: Dictionary=_store.load_slot(target)
+		if committed.status=="ok" and preload("res://scripts/campaign/state.gd").campaign_key(committed.data)==preload("res://scripts/campaign/state.gd").campaign_key(_snapshot):
+			if target=="slot-0":_auto_revision=int(committed.data.revision)
+			result=_accept(committed)
+		elif result.status=="already_applied":
+			var synced:=bank_reconcile(snapshot())
+			if synced.status=="ok":_snapshot=synced.data.duplicate(true);changed.emit(snapshot())
+		else:result={"status":"bank_pending"}
+	elif result.status!="already_applied":storage_failed.emit(str(result.status))
+	saving_finished.emit(str(result.status))
+	return result
 
 func close_session() -> void:
 	_snapshot.clear()

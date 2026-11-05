@@ -429,7 +429,7 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R40 — Banco 30 por save e depósito global 20
 
-**Execução em 05/11:** banco da campanha 30 (inclui parceiro ativo), depósito compartilhado 20 neste perfil local, transferência e liberação confirmadas em Pipamons → Banco e depósito. Registro independente de propriedade impede recuperar a mesma instância por save antigo ou desfazer exclusão. Transferência pendente é retomada após falha/reabertura; novas aquisições acima de 30 são recusadas sem publicar a mutação. Conta Steam/online e resolução de recompensas pendentes (R41) ainda não integradas. [Relatório](refinamentos/r40-banco/README.md).
+**Execução em 05/11:** banco da campanha 30 (inclui parceiro ativo), depósito compartilhado 20 neste perfil local, transferência e liberação confirmadas em Pipamons → Banco e depósito. Registro independente de propriedade impede recuperar a mesma instância por save antigo ou desfazer exclusão. Transferência pendente é retomada após falha/reabertura. Na continuação R41, aquisições sem espaço passam à reserva persistente. Conta Steam/online ainda não integrada. [Relatório](refinamentos/r40-banco/README.md).
 
 **Situação:** contrato definido pelo produto, integração precisa de comprovação; obrigatório.
 
@@ -440,6 +440,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 **Aceite:** limites 29/30/31 e 19/20/21; dois saves, transferir nos dois sentidos, falhar entre gravações, deletar origem depois e descartar; nenhuma instância perdida ou duplicada.
 
 ### R41 — Recompensas com banco/time cheio
+
+**Execução em 05/11:** aquisição e escolha de destino separadas por identidade/recibo de campanha; banco cheio reserva a criatura sem ultrapassar 30. Rabbito, Retalho e invocação têm cobertura pelos serviços reais; entrega opcional também tem API genérica. Recebimento, depósito, substituição ou recusa são recuperáveis e confirmados, com proteção de parceiros essenciais/ativos. Perfil v1 migra a v2 na próxima operação; perfil ausente/incompatível não é tratado como vazio. Captura direta de criaturas não existe neste Godot: encontros atuais entregam rabiolas. Restam playtest prolongado, outros viewports e conta online. [Relatório](refinamentos/r41-recompensas/README.md).
 
 **Situação:** teste transversal necessário; obrigatório.
 

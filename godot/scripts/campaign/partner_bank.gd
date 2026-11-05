@@ -2,12 +2,14 @@ extends RefCounted
 ## Local-profile ownership ledger, independent of campaign rollback/deletion.
 ## Immutable generations avoid rolling back ownership through an older .bak.
 const State = preload("res://scripts/campaign/state.gd")
+const Rewards = preload("res://scripts/campaign/partner_rewards.gd")
 const CAMPAIGN_LIMIT := 30
 const GLOBAL_LIMIT := 20
 const MAX_BYTES := 16 * 1024 * 1024
+const VERSION := 2
 var store: RefCounted
 func _init(value: RefCounted) -> void: store = value
-func fresh() -> Dictionary: return {"version":1,"revision":0,"entries":{},"operations":{},"pending":{}}
+func fresh() -> Dictionary: return {"version":VERSION,"revision":0,"entries":{},"operations":{},"pending":{}}
 func _canonical(data: Dictionary) -> String:
 	return JSON.stringify(JSON.parse_string(JSON.stringify(data)), "", true)
 func load_ledger() -> Dictionary:
@@ -30,11 +32,12 @@ func load_ledger() -> Dictionary:
 	if not envelope is Dictionary or not envelope.get("data") is Dictionary: return {"status":"bank_corrupt"}
 	var data: Dictionary = envelope.data
 	if envelope.get("hash") != _canonical(data).sha256_text() or data.get("revision") != revision: return {"status":"bank_corrupt"}
-	if data.get("version",0) > 1: return {"status":"bank_future"}
+	if not State.whole(data.get("version")):return {"status":"bank_corrupt"}
+	if data.version > VERSION: return {"status":"bank_future"}
 	if not valid(data): return {"status":"bank_corrupt"}
 	return {"status":"ok","data":data}
 func valid(data: Dictionary) -> bool:
-	if data.get("version") != 1 or not State.whole(data.get("revision")) or not data.get("entries") is Dictionary or not data.get("operations") is Dictionary or not data.get("pending") is Dictionary: return false
+	if (data.get("version") != 1 and data.get("version") != VERSION) or not State.whole(data.get("revision")) or not data.get("entries") is Dictionary or not data.get("operations") is Dictionary or not data.get("pending") is Dictionary: return false
 	var all: Array = []
 	var global_count := 0
 	for id: String in data.entries:
@@ -47,7 +50,17 @@ func valid(data: Dictionary) -> bool:
 	if State.inspect(sample, "slot-1") != "ok": return false
 	for operation: String in data.operations:
 		var op: Variant = data.operations[operation]
-		if not operation.begins_with("bank-transfer-") or operation.length()>128 or not op is Dictionary or not op.get("id") is String or not op.get("campaignId") is String or op.get("direction") not in ["deposit","withdraw","discard"]: return false
+		if not operation.begins_with("bank-transfer-") or operation.length()>128 or not op is Dictionary or not op.get("id") is String or not op.get("campaignId") is String or op.get("direction") not in ["deposit","withdraw","discard","award","claim"]: return false
+	if data.has("awards"):
+		if not data.awards is Dictionary:return false
+		for ids in data.awards.values():
+			if not ids is Array or ids.is_empty():return false
+			for id in ids:
+				if not id is String or not data.entries.has(id):return false
+	for entry in data.entries.values():
+		if entry.owner=="pending":
+			if not entry.get("campaignId") is String or not entry.get("reward") is Dictionary:return false
+			if not entry.reward.get("source") is String or not entry.reward.get("mandatory") is bool or not entry.reward.get("equip") is bool:return false
 	if not data.pending.is_empty():
 		var p: Dictionary = data.pending
 		var expected: Variant = p.get("expected")
@@ -60,7 +73,7 @@ func _commit(data: Dictionary, revision: int) -> Dictionary:
 	var current := load_ledger()
 	if current.status != "ok": return current
 	if int(current.data.revision) != revision: return {"status":"stale"}
-	var next := data.duplicate(true); next.revision = revision + 1
+	var next := data.duplicate(true); next.revision = revision + 1;next.version=VERSION
 	if not valid(next) or next.revision > 999999999999: return {"status":"bank_corrupt"}
 	if DirAccess.make_dir_recursive_absolute(store.bank_directory) != OK: return {"status":"io_error"}
 	var path: String = store.bank_directory.path_join("%012d-%s.json" % [next.revision, State.new_id()])
@@ -104,8 +117,14 @@ func reconcile(snapshot: Dictionary, ledger: Dictionary) -> Dictionary:
 		if ledger.entries.has(partner.id) and ledger.entries[partner.id].owner != campaign: continue
 		partners.append(partner); ids[partner.id] = true
 	for id: String in ledger.entries:
-		if ledger.entries[id].owner == campaign and not ids.has(id): partners.append(ledger.entries[id].partner.duplicate(true)); ids[id] = true
+		if ledger.entries[id].owner == campaign and ledger.entries[id].get("inject",true) and not ids.has(id): partners.append(ledger.entries[id].partner.duplicate(true)); ids[id] = true
 	next.player.partners = partners
+	var queue: Array=[]
+	for reward in next.player.get("pendingPartners",[]):
+		if not ledger.entries.has(reward.id):queue.append(reward)
+	for entry in ledger.entries.values():
+		if entry.owner=="pending" and entry.get("campaignId")==campaign:queue.append(Rewards.item(entry))
+	if not queue.is_empty() or next.player.has("pendingPartners"):next.player.pendingPartners=queue
 	if not ids.has(next.player.get("equippedPartnerId","")):
 		if partners.is_empty(): next.player.erase("equippedPartnerId")
 		else: next.player.equippedPartnerId = partners[0].id
@@ -156,11 +175,15 @@ func transfer(snapshot: Dictionary, id: String, direction: String, operation: St
 	# Register remaining partners too, so an older save cannot drop companions
 	# acquired before this transaction when it rolls back the campaign snapshot.
 	for candidate in next.player.partners:
-		if not story_bound(candidate): ledger.entries[candidate.id] = {"owner":campaign,"partner":candidate.duplicate(true)}
+		if not story_bound(candidate):
+			var record: Dictionary=ledger.entries.get(candidate.id,{})
+			record.owner=campaign;record.partner=candidate.duplicate(true);ledger.entries[candidate.id]=record
 	if direction == "deposit":
 		next.player.partners = next.player.partners.filter(func(candidate): return candidate.id != id)
 	elif direction == "withdraw": next.player.partners.append(partner)
-	ledger.entries[id] = {"owner":"global" if direction == "deposit" else "released" if direction == "discard" else campaign,"partner":partner}
+	var moved: Dictionary=ledger.entries.get(id,{})
+	moved.owner="global" if direction == "deposit" else "released" if direction == "discard" else campaign
+	moved.partner=partner;ledger.entries[id]=moved
 	next.player.completedOperations.append(operation)
 	ledger.operations[operation] = request
 	ledger.pending = {"snapshot":next,"target":target,"expected":revision,"operation":operation}

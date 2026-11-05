@@ -133,7 +133,7 @@ func run() -> void:
 			var file:=FileAccess.open(path,FileAccess.WRITE)
 			if fault=="corrupt":file.store_string("truncated")
 			else:
-				envelope.data.version=2;envelope.hash=Bank.new(store)._canonical(envelope.data).sha256_text();file.store_string(JSON.stringify(envelope))
+				envelope.data.version=Bank.VERSION+1;envelope.hash=Bank.new(store)._canonical(envelope.data).sha256_text();file.store_string(JSON.stringify(envelope))
 			file.close()
 		var expected: String={"corrupt":"bank_corrupt","future":"bank_future","conflict":"bank_conflict"}[fault]
 		check(Bank.new(store).load_ledger().status==expected,"integrity error is explicit "+fault)

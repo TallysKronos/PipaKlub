@@ -124,6 +124,15 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			for field in ["line", "structure"]:
 				if not number(partner.condition.get(field)) or partner.condition[field] < 0 or partner.condition[field] > 100: return "invalid"
 	if player.has("equippedPartnerId") and not partner_ids.has(player.equippedPartnerId): return "invalid"
+	if player.has("pendingPartners"):
+		if not player.pendingPartners is Array:return "invalid"
+		var reserved: Dictionary=partner_ids.duplicate()
+		for reward in player.pendingPartners:
+			if not reward is Dictionary or not reward.get("id") is String or reserved.has(reward.id) or not reward.get("partner") is Dictionary or reward.partner.get("id")!=reward.id:return "invalid"
+			if not reward.get("source") is String or reward.source.is_empty() or reward.source.length()>128 or not reward.get("mandatory") is bool or not reward.get("equip") is bool:return "invalid"
+			var probe:=fresh("slot-1");probe.player.partners=[reward.partner]
+			if inspect(probe,"slot-1")!="ok":return "invalid"
+			reserved[reward.id]=true
 	if not whole(player.get("tamerXp", 0)) or player.get("tamerXp", 0) > 31383: return "invalid"
 	for field in ["sightings", "acquiredModels"]:
 		if player.has(field):

@@ -3,6 +3,9 @@ extends RefCounted
 const RECOVERED := "Recuperamos um ponto anterior da sua jornada pelo backup. Confira seu progresso antes de continuar."
 const BACKUP_AVAILABLE := "Backup disponível · a recuperação retoma um ponto anterior da jornada."
 const ERRORS := {
+	"reward_missing":"Esta reserva já foi resolvida ou mudou de destino. Atualize a lista; nenhuma nova criatura foi criada.",
+	"reward_space_available":"Já há uma vaga. Receba a recompensa na campanha sem liberar ninguém.",
+	"reward_essential":"Este parceiro faz parte da história e precisa ser recebido na campanha. Abra espaço sem liberar outro parceiro de história.",
 	"bank_battle_changed":"O parceiro desta batalha antiga foi transferido ou liberado. Carregue um save de exploração; os arquivos foram mantidos.",
 	"bank_pending":"A transferência ainda precisa concluir a gravação da campanha. Libere o acesso à pasta e tente novamente; o registro de propriedade foi preservado.",
 	"bank_corrupt":"Não foi possível validar o depósito. Os registros foram preservados; nenhuma cópia antiga será usada automaticamente. Consulte o suporte.",
