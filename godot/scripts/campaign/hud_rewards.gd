@@ -4,6 +4,8 @@ const Encounters = preload("res://scripts/campaign/encounters.gd")
 const Morro = preload("res://scripts/campaign/morro.gd")
 const Rules = preload("res://scripts/campaign/morro_rules.gd")
 const Progression = preload("res://scripts/campaign/progression.gd")
+## Story duels pay Progression.story_xp (the same amount their settlement credits).
+const STORY_KINDS := ["canal-gate","endgame-step","feira-story","mormaco-story","retalho-rescue","retalho-story","ruinas-elo","tufanocorte-story","tyler-lab","warehouse-story"]
 static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted) -> Dictionary:
 	var summary := {"xp": 0, "coins": 0, "stars": 0, "items": [], "before": 0, "after": 0, "name": "Seu parceiro"}
 	var partner: Dictionary = {}
@@ -43,7 +45,9 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 			if encounter.feiraOpponent=="lalau":summary.coins=20
 	elif encounter.get("kind","")=="canal-gate":
 		if won:summary.unlock="Grampo recuou · a comporta pode ser destrancada"
-	elif won:
+	if won and encounter.get("kind","") in STORY_KINDS:
+		amount = Progression.story_xp(player, model.snapshot())
+	elif won and encounter.get("kind","") not in ["district","morro"]:
 		var boss: bool = encounter.get("kind", "") == "lacertubo"
 		amount = Encounters.reward_for(encounter,model.snapshot())
 		if boss: summary.items.append("Rabiola de Lacertubo")

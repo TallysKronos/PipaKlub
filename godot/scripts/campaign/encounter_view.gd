@@ -430,6 +430,20 @@ func _draw_feedback() -> void:
 		SkySignals.draw_on(self,model,_project_field,live_age,reduced_motion)
 	impacts.protected_points.clear()
 	var actors: Array = model.actors if model.get("actors")!=null else [model.p,model.q]
+	# Duel bot (tools/duel_balance.gd): Mata verde rivals shield exactly when Kael
+	# threatens them, and a player who pulls into the shield loses. The leaf ring shows
+	# the shield; the note says what to do.
+	for rival: Dictionary in actors.slice(1):
+		if int(rival.get("color",-1))!=2 or float(rival.get("skillTime",0))<=0 or rival.get("hp",0)<=0:continue
+		var at: Vector2=_project_field(Vector2(rival.x,rival.y))
+		var radius: float=64.0*_field_scale().x
+		draw_arc(at,radius,0,TAU,40,Tokens.NANQUIM,7,true)
+		draw_arc(at,radius,0,TAU,40,Tokens.FOLHA,4,true)
+		var note:="Defesa da folha · espere baixar"
+		var width: float=Hud.font().get_string_size(note,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x
+		var spot:=Vector2(clampf(at.x-width*.5,12,size.x-width-12),at.y-radius-12)
+		draw_string_outline(Hud.font(),spot,note,HORIZONTAL_ALIGNMENT_LEFT,-1,18,6,Tokens.NANQUIM)
+		draw_string(Hud.font(),spot,note,HORIZONTAL_ALIGNMENT_LEFT,-1,18,Tokens.FOLHA)
 	for actor: Dictionary in actors: impacts.protected_points.append(_project_field(Vector2(actor.x,actor.y)))
 	impacts.visible_rect=Rect2(10,_field_top()-20,size.x-20,maxf(80,bottom_panel.position.y-_field_top()+10))
 	impacts.suppress_secondary=actors.slice(1).any(func(actor:Dictionary):return actor.get("signatureWindup",0)>0 or model.attack_notice(actor).active)

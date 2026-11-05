@@ -66,6 +66,7 @@ func settle()->Dictionary:
  if not State.valid_encounter(e) or not available(saved.player) or state.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
  for partner:Dictionary in saved.player.partners:
   if partner.id==state.partnerId:partner.condition={"line":clampf(state.p.hp/state.p.stats.line*100,0,100),"structure":clampf(state.p.hull/state.p.stats.line*100,0,100)}
+ if state.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,state)
  if state.q.get("mormacoForm","")=="ambush" and state.outcome=="won":
   saved.player.flags.mormacoEmboscada=true
   saved.player.erase("encounter")

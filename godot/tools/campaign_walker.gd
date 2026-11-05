@@ -15,6 +15,7 @@ const QA = preload("res://scripts/campaign/qa_jump.gd")
 const Rules = preload("res://scripts/campaign/district_rules.gd")
 const Story = preload("res://scripts/campaign/kronasta_story.gd")
 const Endgame = preload("res://scripts/campaign/endgame_story.gd")
+const DuelBot = preload("res://tools/duel_bot.gd")
 
 var view: Node
 var store_path := ""
@@ -33,6 +34,11 @@ var duel_counts := {}
 var wild_count := 0
 var crossing := false
 var covered := PackedStringArray()
+## --fight=<1..10>: duels are played by a bot at that skill instead of being settled.
+var fight_skill := 0
+var fights: Array[Dictionary] = []
+var needs_care := false
+var cares := 0
 
 ## Story actions that finish (part of) a beat, by beat id. District beats use the next
 ## duel of the district; endgame steps use their own event.
@@ -76,6 +82,7 @@ func run() -> void:
 	Story.qa_override = 0 if not "--qa" in OS.get_cmdline_user_args() else 1
 	shots = "--shots" in OS.get_cmdline_user_args()
 	motion = "--motion" in OS.get_cmdline_user_args()
+	fight_skill = int(arg("fight", "0"))
 	Engine.time_scale = float(arg("speed", "3"))
 	folder = ProjectSettings.globalize_path("res://").get_base_dir().path_join("../tmp/campaign-walk").simplify_path()
 	DirAccess.make_dir_recursive_absolute(folder)
@@ -122,8 +129,9 @@ func open_app(fresh: bool, from: String = "") -> void:
 		view.session.start("slot-1")
 		var result: Dictionary = install_early(from) if from == "lohan" else QA.install(view.session, from)
 		if result.status != "ok": issue("salto QA recusado: " + str(result)); return
-	# Same path as "Continuar" on the title screen.
-	view._choose("slot-1", false)
+	# Same path as the journey card on the title screen: play saves to the autosave
+	# (slot-0) once the journey has started; the manual slot keeps the starting point.
+	view._choose("slot-0" if not fresh and view.session.inspect_slot("slot-0").status == "ok" else "slot-1", false)
 	await settle()
 	if not is_instance_valid(view.park) and not is_instance_valid(view.room): issue("save não reabriu a exploração")
 
@@ -170,6 +178,8 @@ func settle(limit: int = 900) -> void:
 			continue
 		if is_instance_valid(view.scene_loading) or view.flow_busy:
 			idle = 0; continue
+		if needs_care and heal():
+			idle = 0; continue
 		idle += 1
 		if idle > 20: return
 
@@ -188,6 +198,10 @@ func handle_battle() -> bool:
 	if int(duel_counts.get(name, 0)) > 4:
 		issue("o duelo '%s' reabriu %d vezes (ciclo)" % [name, duel_counts[name]])
 		finish(); return true
+	if fight_skill > 0:
+		play_duel(b, name, str(enc.get("kind", "")))
+		b.finish_requested.emit()
+		return true
 	# Story duels with a mid-fight turn: play the turn the way the battle model does.
 	var q: Dictionary = b.model.q
 	if q.get("platyxRefusal", "") == "pending":
@@ -604,8 +618,52 @@ func finish() -> void:
 		report.append("## Problemas"); report.append("")
 		for i in issues: report.append("- " + i)
 		report.append("")
+	var fought := fight_report()
+	if fought != "": report.append(fought); report.append("")
 	report.append("## Registro"); report.append_array(log)
 	var file := FileAccess.open(folder.path_join("report.md"), FileAccess.WRITE)
 	file.store_string("\n".join(report) + "\n")
 	print("REPORT ", folder.path_join("report.md"), " issues=", issues.size())
 	quit(1 if not issues.is_empty() else 0)
+
+
+## Plays the duel to its end on the real model with a bot holding the controls (the
+## same reading of the lines the rivals use, at fight_skill). Mid-fight story turns
+## (Platyx, Mormaço) end the model the way the game does.
+func play_duel(b, name: String, kind: String) -> void:
+	var m = b.model
+	var level := int(m.p.get("level", 0))
+	var foe_level := int(m.q.get("level", m.get("enemy_level") if m.get("enemy_level") != null else 0))
+	var t: float = DuelBot.play(m, fight_skill, duels)
+	var entry := {"beat": beat_id, "name": name, "kind": kind, "level": level, "foe": foe_level, "outcome": m.outcome, "time": t, "hp": float(m.p.hp) / maxf(1.0, float(m.p.stats.line))}
+	fights.append(entry)
+	if m.outcome != "won": needs_care = true
+	note("   luta real: %s · Nv %d x %d · %s em %.0fs · linha %d%%" % [name, level, foe_level, m.outcome, t, int(entry.hp * 100)])
+
+func fight_report() -> String:
+	if fights.is_empty(): return ""
+	var lines := PackedStringArray(["", "## Lutas reais (bot nível %d)" % fight_skill, "", "| Passo | Rival | Tipo | Nv Kael | Nv rival | Resultado | Tempo | Linha restante |", "|---|---|---|---|---|---|---|---|"])
+	var lost := 0
+	for f in fights:
+		if f.outcome != "won": lost += 1
+		lines.append("| %s | %s | %s | %d | %d | %s | %.0fs | %d%% |" % [f.beat, f.name, f.kind, f.level, f.foe, f.outcome, f.time, int(f.hp * 100)])
+	lines.insert(2, "%d lutas, %d derrotas, %d cuidados com Kit de Remendo." % [fights.size(), lost, cares])
+	return "\n".join(lines)
+
+
+## After a lost duel the player repairs the partner the way the game offers it:
+## Equipe → Cuidar with a Kit de Remendo (the first one is free, then 12 coins).
+func heal() -> bool:
+	var saved: Dictionary = view.session.snapshot()
+	if saved.get("checkpoint", {}).get("kind", "") != "world": return false
+	needs_care = false
+	var care = load("res://scripts/campaign/partner_care.gd").new(view.session)
+	var id: String = saved.player.get("equippedPartnerId", "")
+	if int(saved.player.inventory.get(care.ITEM, 0)) <= 0:
+		var bought: Dictionary = care.supplies()
+		if bought.status != "ok": issue("sem kit de remendo depois da derrota (%s, %d moedas)" % [bought.status, int(saved.player.coins)]); return false
+	var done: Dictionary = care.finish(id, "partner-care-walker-" + str(cares), ["clean", "frame", "line"])
+	cares += 1
+	note("   [cuidar] Kit de Remendo no parceiro: %s" % done.status)
+	if done.status == "ok": view._show_saved()
+	return true

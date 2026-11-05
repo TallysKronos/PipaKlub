@@ -124,6 +124,7 @@ static func settle(session: Node) -> Dictionary:
 		return {"status":"wrong_step"}
 	if battle.scene=="kronasta-coracao-c" and result.outcome=="won" and result.q.get("platyxRefusal","")!="stopped":
 		return {"status":"wrong_step"}
+	if result.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,result)
 	if result.outcome == "won":
 		saved.player.flags[battle_stage(battle)[3]] = true
 		if battle.scene=="kronasta-aracati-c":saved.player.flags.canCorrenteDeAr=true

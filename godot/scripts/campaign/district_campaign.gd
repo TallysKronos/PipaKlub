@@ -28,6 +28,11 @@ static func reward(player:Dictionary,context:Dictionary,outcome:String)->Diction
 	var entry:=stage(context.duel)
 	var first:bool=context.duel not in Rules.entry(player,context.district).wonDuels
 	var amount:int=int(entry.reward.xp)
+	# BIBLIA §8: the authored amounts kept Kael near Lv.23 at the Mirante (rivals 44).
+	var equipped:Dictionary=preload("res://scripts/campaign/progression.gd")._partner(player,str(player.get("equippedPartnerId","")))
+	if not equipped.is_empty():
+		var levels=preload("res://scripts/campaign/partner_levels.gd")
+		amount=maxi(amount,levels.win_xp(int(entry.level),levels.level_for_xp(int(equipped.get("xp",0))),"champion" if str(entry.get("role",""))=="champion" else "lieutenant"))
 	if context.mode in ["defense","reclaim"]:
 		for source:Dictionary in Rules.definition(context.district).stages:
 			if source.npcId==context.opponent:

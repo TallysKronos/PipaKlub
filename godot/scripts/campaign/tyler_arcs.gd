@@ -28,6 +28,7 @@ static func settle_lab(session: Node) -> Dictionary:
 	for partner: Dictionary in saved.player.partners:
 		if partner.id == result.partnerId:
 			partner.condition = {"line":clampf(result.p.hp / result.p.stats.line * 100, 0, 100), "structure":clampf(result.p.hull / result.p.stats.line * 100, 0, 100)}
+	if result.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,result)
 	if result.outcome == "won":
 		saved.player.flags.tylerCreatedKnown = true
 	saved.player.erase("encounter")

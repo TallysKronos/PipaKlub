@@ -75,6 +75,7 @@ func settle()->Dictionary:
  if s.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
  for partner:Dictionary in saved.player.partners:
   if partner.id==s.partnerId:partner.condition={"line":clampf(s.p.hp/s.p.stats.line*100,0,100),"structure":clampf(s.p.hull/s.p.stats.line*100,0,100)}
+ if s.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,s)
  if s.outcome=="won":saved.player.flags.retalhoPalafitasLivre=true
  saved.player.erase("encounter")
  return session.commit_operation("encounter-"+e.id,CP.make(C,CP.spawn(C) if s.outcome=="lost" else Vector2(e.returnPoint[0],e.returnPoint[1]),CP.SPACE),saved.player)
