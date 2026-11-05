@@ -51,6 +51,11 @@ func run()->void:
  var cp:={"kind":"world","scene":Care.SPACE,"position":[Care.APPROACH.x,Care.APPROACH.y]}
  check(app.session.checkpoint(cp,p).status=="ok","fixture persisted")
  check(Prep.confirm(app.session,Vector2.ZERO).status=="wrong_step","remote refused")
+ # Talking to Sr. Assis where he stands (his room hotspot) counts as near him.
+ var by_assis:=Vector2.INF
+ for offset in [Vector2(0,64),Vector2(64,0),Vector2(-64,0),Vector2(0,96),Vector2(64,64),Vector2(-64,64)]:
+  if preload("res://scripts/campaign/retalho_care.gd").walkable(Prep.PROFESSOR+offset):by_assis=Prep.PROFESSOR+offset;break
+ check(by_assis.is_finite() and Prep.near(app.session,by_assis),"next to Sr. Assis is near enough")
  var wrong_scene:Dictionary=cp.duplicate(true);wrong_scene.scene="quintal"
  check(app.session.checkpoint(wrong_scene,p).status=="ok" and Prep.confirm(app.session,Care.APPROACH).status=="wrong_step","wrong scene refused")
  check(app.session.checkpoint(cp,p).status=="ok","return to atelier")
