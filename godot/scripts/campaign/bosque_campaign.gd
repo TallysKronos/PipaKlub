@@ -100,7 +100,8 @@ static func objective(player: Dictionary, scene: String) -> String:
 	# The Bosque keeps its exploration hints in the early acts; a conquered district always
 	# points onwards (after Dona Zulmira, the Caverna do Mural).
 	var conquered:bool=Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"] and preload("res://scripts/campaign/district_rules.gd").completed(player,Checkpoint.region_of(scene))
-	if away and (conquered or (Checkpoint.is_bosque(scene) and int(beat.get("act",0))>=4)):
+	var clareira:bool=player.get("flags",{}).get("bosqueClareiraDescoberta",false)
+	if away and (conquered or (Checkpoint.is_bosque(scene) and (clareira or int(beat.get("act",0))>=4))):
 		return "Próximo passo · "+Story.objective(player)+" Use o mapa de Kronasta (M)."
 	if Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"]:return preload("res://scripts/campaign/district_campaign.gd").objective(player,Checkpoint.region_of(scene))
 	if not Checkpoint.is_bosque(scene):
