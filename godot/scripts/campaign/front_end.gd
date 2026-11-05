@@ -69,6 +69,7 @@ var team_load_state:="ready"
 var scene_loading:CanvasLayer
 
 func _ready() -> void:
+	if preload("res://scripts/diagnostics/dispatch.gd").try_run(self): return
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	get_tree().auto_accept_quit = false
 	preferences.load_settings()

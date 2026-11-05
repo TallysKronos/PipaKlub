@@ -637,6 +637,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R60 — Instalação limpa e atualização
 
+**Execução em 05/11:** release Windows real passou em 58 checks de recursos e 38 de início/save/reinício/instalação movida, com perfil isolado. Corrigido o acionamento da sonda no template release. PC/VM limpo, Steam e atualização entre versões continuam pendentes. [Relatório R60](refinamentos/r60-windows/README.md).
+
 **Situação:** exportador Windows existe; comprovação externa necessária; obrigatório.
 
 **Execução:** gerar release com engine/templates fixos, exe/PCK, licenças e manifesto. Instalar em máquina/perfil sem Godot, Node ou repositório. Testar usuário comum, biblioteca em outro disco e caminho Unicode. Rodar primeira abertura, prólogo, save/load, cenas de arte dinâmica e final preparado. Atualizar de uma build anterior sem apagar progresso; rollback deve seguir política de compatibilidade, não tentar abrir schema futuro silenciosamente.

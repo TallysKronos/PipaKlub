@@ -26,15 +26,17 @@ $probeInfo.RedirectStandardError=$true
 $probeProfile=Join-Path ([IO.Path]::GetTempPath()) ('soulmonsters-export-probe-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Force $probeProfile | Out-Null
 $probeInfo.Environment['APPDATA']=$probeProfile
-foreach($argument in @('--headless','--script','res://scripts/diagnostics/export_resources.gd','--log-file',(Join-Path $destination 'resource-check.log'))){$probeInfo.ArgumentList.Add($argument)}
+$probeInfo.Environment['SOULMONSTERS_PACKAGE_PROBE']='1'
+foreach($argument in @('--headless','--log-file',(Join-Path $destination 'resource-check.log'),'--','--package-probe','resources')){$probeInfo.ArgumentList.Add($argument)}
 $probe=[Diagnostics.Process]::new();$probe.StartInfo=$probeInfo
 $null=$probe.Start()
 $probeOut=$probe.StandardOutput.ReadToEndAsync();$probeErr=$probe.StandardError.ReadToEndAsync()
-if(-not $probe.WaitForExit(120000)){$probe.Kill($true);$probe.WaitForExit();throw 'A verificação do pacote exportado excedeu o tempo limite.'}
+$probeTimeout=-not $probe.WaitForExit(120000)
+if($probeTimeout){$probe.Kill($true);$probe.WaitForExit()}
 $probeLog=$probeOut.GetAwaiter().GetResult()+"`n"+$probeErr.GetAwaiter().GetResult()
 if(Test-Path -LiteralPath (Join-Path $destination 'resource-check.log')){$probeLog+="`n"+(Get-Content -LiteralPath (Join-Path $destination 'resource-check.log') -Raw)}
 [IO.File]::WriteAllText((Join-Path $destination 'resource-check.log'),$probeLog)
-$probeFailed=$probe.ExitCode -ne 0 -or $probeLog -match '(?m)SCRIPT ERROR:|Parse Error:|Compile Error:|^ERROR:' -or $probeLog -notmatch 'EXPORT RESOURCES \d+ checks; 0 failures'
+$probeFailed=$probeTimeout -or $probe.ExitCode -ne 0 -or $probeLog -match '(?m)SCRIPT ERROR:|Parse Error:|Compile Error:|^ERROR:' -or $probeLog -notmatch 'EXPORT RESOURCES \d+ checks; 0 failures'
 $probe.Dispose()
 if($probeFailed){throw 'Recursos inválidos no executável exportado. Consulte resource-check.log.'}
 $licenseDirectory=Join-Path $destination 'licenses'

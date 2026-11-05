@@ -10,7 +10,8 @@ Atualizado em 05/11/2026. O produto ativo é exclusivamente a campanha Godot. A 
 2. Prepara a importação inicial e exige uma segunda passagem sem erros em `godot/Validar.ps1`, em Windows. Na primeira abertura sem cache, o tema pode tentar resolver fontes/imagens antes de serem importadas; o log inicial é preservado como diagnóstico não bloqueante apenas se o processo encerrar normalmente. Erros que persistam na segunda passagem bloqueiam a execução.
 3. Executa 17 suítes de regressão: overworld, Morro, campanha/saves, controles, história final, encenação, viagens release, avisos após load, nomes, flor, recuperação da cidade, reunião, apresentação/libertação Trovareta, fluxo Beira-Canal, menu do título e ciclos de vida do menu.
 4. Verifica também os recursos importados do título, casa, loja e previews, e gera a exportação Windows release por `godot/Exportar.ps1`. O exportador rejeita erros no log mesmo com retorno zero e executa a mesma sonda de recursos no executável/PCK entregue, fora da pasta fonte, com perfil temporário isolado.
-5. Disponibiliza logs/resultados e, em sucesso, o pacote Windows como artefatos da execução.
+5. `godot/ValidarPacote.ps1` confere hashes, copia somente exe/PCK a uma pasta com espaços/acentos e executa três processos: criar campanha de teste, retomar e retomar após mover a instalação. Todos usam o mesmo perfil descartável e um diretório de trabalho sem projeto.
+6. Disponibiliza logs/resultados e, em sucesso, o pacote Windows como artefatos da execução.
 
 O runner falha em retorno não zero, erro de script/parse/compilação ou timeout nas etapas obrigatórias. Cada suíte usa um perfil isolado: não grava no save do desenvolvedor/jogador. Todas as suítes selecionadas são tentadas após uma importação bem-sucedida; o resumo fica em `results.json`, com `required` distinguindo a preparação inicial do gate obrigatório.
 
@@ -29,6 +30,16 @@ Com PowerShell 7, a partir da raiz do repositório:
 `-OutputDirectory` escolhe a pasta de resultados; o padrão cria pasta única no temporário. `-TimeoutSeconds` define o limite por suíte. `-SkipImport` serve apenas para diagnóstico com recursos já importados; a CI sempre importa.
 
 O pacote release exige templates instalados no perfil do exportador. A CI instala isso automaticamente; executar o runner de testes sozinho não instala templates nem prova a exportação.
+
+Depois de exportar, com uma pasta nova para os resultados:
+
+```powershell
+./godot/ValidarPacote.ps1 -PackageDirectory 'C:/build/release' -OutputDirectory 'C:/teste-pacote-novo'
+```
+
+O release oficial não aceita necessariamente `--script`: essa opção depende de suporte a path overrides no template. Por isso as sondas exportadas entram pela cena principal, exigindo **simultaneamente** `SOULMONSTERS_PACKAGE_PROBE=1` e argumentos de usuário `--package-probe resources|create|resume`. O dispatcher aceita somente esses modos fixos, não um caminho arbitrário de script. Sem os dois sinais o título normal continua sendo aberto. O wrapper `export_resources.gd` permanece disponível para `--script` no editor.
+
+Essa prova cobre persistência e mudança de pasta do mesmo pacote. Não comprova migração entre versões, instalação Steam, VM limpa, renderização visual ou funcionamento de todo o jogo.
 
 ## Política do PR
 

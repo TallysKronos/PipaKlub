@@ -56,12 +56,19 @@ jobs:
         timeout-minutes: 10
         shell: pwsh
         run: ./godot/Exportar.ps1 -GodotPath $env:GODOT_PATH -OutputDirectory "$env:RUNNER_TEMP/soulmonsters-windows"
+      - name: Validate standalone Windows save and relocated install
+        timeout-minutes: 8
+        shell: pwsh
+        run: ./godot/ValidarPacote.ps1 -PackageDirectory "$env:RUNNER_TEMP/soulmonsters-windows" -OutputDirectory "$env:RUNNER_TEMP/package-validation"
       - name: Upload validation logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: godot-validation-logs
-          path: ${{ runner.temp }}/godot-validation
+          path: |
+            ${{ runner.temp }}/godot-validation
+            ${{ runner.temp }}/package-validation/*.log
+            ${{ runner.temp }}/package-validation/results.json
           if-no-files-found: warn
       - name: Upload Windows release
         uses: actions/upload-artifact@v4
