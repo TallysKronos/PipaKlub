@@ -177,10 +177,11 @@ func handle_dialogs() -> bool:
 			return true
 	return false
 
+## The frontend's own error messages (front_end._error) and its step refusals.
 func looks_like_error(text: String) -> bool:
-	for word in ["Não foi possível", "não está disponível", "Conclua", "Vença os quatro", "primeiro", "ainda"]:
-		if text.contains(word): return true
-	return false
+	for code in ["wrong_step", "stale", "repair_needed", "io_error", "unknown"]:
+		if text == view._error(code): return true
+	return text.begins_with("Conclua o desafio anterior") or text.begins_with("Vença os quatro pipeiros na ordem")
 
 func shot(tag: String) -> void:
 	if not shots or DisplayServer.get_name() == "headless": return
