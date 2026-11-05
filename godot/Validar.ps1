@@ -11,7 +11,7 @@ if (-not $OutputDirectory) { $OutputDirectory = Join-Path ([IO.Path]::GetTempPat
 $output = [IO.Path]::GetFullPath($OutputDirectory)
 New-Item -ItemType Directory -Force $output | Out-Null
 $results = [Collections.Generic.List[object]]::new()
-function Invoke-Check([string]$Name, [string[]]$Arguments, [int]$Limit) {
+function Invoke-Check([string]$Name, [string[]]$Arguments, [int]$Limit, [bool]$Required = $true) {
  $info = [Diagnostics.ProcessStartInfo]::new()
  $info.FileName = [IO.Path]::GetFullPath($GodotPath)
  $info.UseShellExecute = $false
@@ -34,10 +34,10 @@ function Invoke-Check([string]$Name, [string[]]$Arguments, [int]$Limit) {
  $log = $stdout.GetAwaiter().GetResult() + "`n" + $stderr.GetAwaiter().GetResult()
  [IO.File]::WriteAllText((Join-Path $output "$Name.log"), $log)
  $failed = $timedOut -or $process.ExitCode -ne 0 -or $log -match '(?m)SCRIPT ERROR:|Parse Error:|Compile Error:'
- if ($Name -eq 'import' -and $log -match '(?m)^ERROR:') { $failed = $true }
- $results.Add(@{name=$Name;exitCode=$process.ExitCode;timedOut=$timedOut;passed=(-not $failed)})
+ if ($Name.StartsWith('import') -and $log -match '(?m)^ERROR:') { $failed = $true }
+ $results.Add(@{name=$Name;exitCode=$process.ExitCode;timedOut=$timedOut;passed=(-not $failed);required=$Required})
  $process.Dispose()
- if ($failed) { Write-Warning "$Name failed. See $output/$Name.log"; Write-Host ($log -split "`n" | Select-Object -Last 15 | Out-String) }
+ if ($failed) { Write-Warning "$Name reported errors (required=$Required). See $output/$Name.log"; Write-Host ($log -split "`n" | Select-Object -Last 15 | Out-String) }
  else { Write-Host "$Name passed" }
  return (-not $failed)
 }
@@ -45,6 +45,10 @@ $version = & $GodotPath --version
 if ($LASTEXITCODE -ne 0 -or "$version" -notmatch '^4\.7\.2\.stable') { throw "Godot inesperado: $version; use 4.7.2 stable." }
 try {
  if (-not $SkipImport) {
+  # The editor resolves the custom theme before its first font/image import.
+  # Retain bootstrap diagnostics, then require a second, clean import to pass.
+  $null = Invoke-Check 'import-bootstrap' @('--headless','--path',$project,'--editor','--import') 600 $false
+  if ($results[-1].timedOut -or $results[-1].exitCode -ne 0) { throw 'A preparação inicial da importação falhou.' }
   if (-not (Invoke-Check 'import' @('--headless','--path',$project,'--editor','--import') 600)) { throw 'A importação de recursos falhou.' }
  }
  $suites = @(
@@ -59,8 +63,9 @@ try {
   $limit = if ($suite -eq 'overworld_checks') { [Math]::Max(600, $TimeoutSeconds) } else { $TimeoutSeconds }
   $null = Invoke-Check $suite @('--headless','--path',$project,'--script',"res://tests/$suite.gd") $limit
  }
+ $null = Invoke-Check 'export_resources' @('--headless','--path',$project,'--script','res://scripts/diagnostics/export_resources.gd') $TimeoutSeconds
 } finally {
  @{engine="$version";results=@($results.ToArray())} | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $output 'results.json') -Encoding utf8
  Write-Host "Validation logs: $output"
 }
-if (@($results | Where-Object { -not $_.passed }).Count) { throw 'Godot validation failed. Consulte results.json e os logs.' }
+if (@($results | Where-Object { $_.required -and -not $_.passed }).Count) { throw 'Godot validation failed. Consulte results.json e os logs.' }

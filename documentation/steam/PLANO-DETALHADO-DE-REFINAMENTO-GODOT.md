@@ -601,6 +601,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R57 — Confirmar a CI Godot e manter falhas visíveis
 
+**Execução iniciada em 05/11:** preparação/importação verificadas em fixture sem cache; runner corrigido. Aguardar CI integral. [Relatório R57–R58](refinamentos/r57-r58/README.md).
+
 **Situação:** workflow web substituído em `b51fd293`; execução remota precisa de resultado confirmado.
 
 **Execução:** verificar instalação oficial/checksum, importação, quinze suítes selecionadas, logs e exportação Windows. Triar timeout da checagem completa de mapas separadamente de falha de geometria. Não substituir teste falhando por job vazio. Se proteção de branch exigir o nome antigo, atualizar o requisito administrativo após existir o novo check. Ampliar cobertura por risco, sem afirmar que quinze suítes são todos os testes do jogo.
@@ -610,6 +612,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 **Aceite:** execução verde vinculada ao commit candidato; falha deliberada de teste produz job vermelho; logs identificam a suíte e o pacote corresponde à mesma origem.
 
 ### R58 — Carregamento de recursos na versão exportada
+
+**Execução iniciada em 05/11:** corrigidos título/casa/loja/previews; 58 checks passaram com PCK montado fora da fonte. Exe Windows final e inventário completo continuam pendentes. [Relatório R57–R58](refinamentos/r57-r58/README.md).
 
 **Situação:** risco confirmado por chamadas/alertas de `Image.load_from_file` em recursos internos.
 

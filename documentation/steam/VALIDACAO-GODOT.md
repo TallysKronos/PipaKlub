@@ -7,12 +7,12 @@ Atualizado em 05/11/2026. O produto ativo é exclusivamente a campanha Godot. A 
 `.github/workflows/godot.yml` substitui o antigo workflow `Demo validation`:
 
 1. Baixa Godot **4.7.2 stable** e templates correspondentes da distribuição oficial, verificando SHA-512.
-2. Importa os recursos e executa `godot/Validar.ps1` em Windows.
+2. Prepara a importação inicial e exige uma segunda passagem sem erros em `godot/Validar.ps1`, em Windows. Na primeira abertura sem cache, o tema pode tentar resolver fontes/imagens antes de serem importadas; o log inicial é preservado como diagnóstico não bloqueante apenas se o processo encerrar normalmente. Erros que persistam na segunda passagem bloqueiam a execução.
 3. Executa 15 suítes de regressão: overworld, Morro, campanha/saves, controles, história final, encenação, viagens release, avisos após load, nomes, flor, recuperação da cidade, reunião, apresentação/libertação Trovareta e fluxo Beira-Canal.
-4. Gera a exportação Windows release pelo script existente `godot/Exportar.ps1`.
+4. Verifica também os recursos importados do título, casa, loja e previews, e gera a exportação Windows release por `godot/Exportar.ps1`. O exportador rejeita erros no log mesmo com retorno zero e executa a mesma sonda de recursos no executável/PCK entregue, fora da pasta fonte, com perfil temporário isolado.
 5. Disponibiliza logs/resultados e, em sucesso, o pacote Windows como artefatos da execução.
 
-O runner falha em retorno não zero, erro de script/parse/compilação ou timeout. Cada suíte usa um perfil isolado: não grava no save do desenvolvedor/jogador. Todas as suítes selecionadas são tentadas após uma importação bem-sucedida; o resumo fica em `results.json`.
+O runner falha em retorno não zero, erro de script/parse/compilação ou timeout nas etapas obrigatórias. Cada suíte usa um perfil isolado: não grava no save do desenvolvedor/jogador. Todas as suítes selecionadas são tentadas após uma importação bem-sucedida; o resumo fica em `results.json`, com `required` distinguindo a preparação inicial do gate obrigatório.
 
 Esse conjunto é uma regressão inicial explícita, não a totalidade dos testes existentes e não uma aprovação comercial da versão. Exportar com sucesso não substitui abrir o pacote em instalação limpa e fazer playtest.
 

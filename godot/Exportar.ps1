@@ -13,8 +13,30 @@ if(-not $GodotPath -or -not(Test-Path -LiteralPath $GodotPath)){throw 'Informe o
 $destination=if($OutputDirectory){[System.IO.Path]::GetFullPath($OutputDirectory)}else{Join-Path $project 'exports/windows'}
 New-Item -ItemType Directory -Path $destination -Force | Out-Null
 $executable=Join-Path $destination 'Soulmonsters.exe'
-& $GodotPath --headless --path $project --export-release 'Windows Desktop' $executable
-if($LASTEXITCODE -ne 0){throw 'A exportação falhou. Consulte as mensagens do Godot.'}
+$exportLog=& $GodotPath --headless --path $project --export-release 'Windows Desktop' $executable 2>&1 | Tee-Object -FilePath (Join-Path $destination 'export.log')
+if($LASTEXITCODE -ne 0 -or ($exportLog -join "`n") -match '(?m)^ERROR:|SCRIPT ERROR:|Parse Error:|Compile Error:'){throw 'A exportação falhou. Consulte export.log.'}
+# Probe the actual executable/PCK outside the source tree, with a disposable profile.
+$probeInfo=[Diagnostics.ProcessStartInfo]::new()
+$probeInfo.FileName=$executable
+$probeInfo.WorkingDirectory=$destination
+$probeInfo.UseShellExecute=$false
+$probeInfo.CreateNoWindow=$true
+$probeInfo.RedirectStandardOutput=$true
+$probeInfo.RedirectStandardError=$true
+$probeProfile=Join-Path ([IO.Path]::GetTempPath()) ('soulmonsters-export-probe-'+[guid]::NewGuid().ToString('N'))
+New-Item -ItemType Directory -Force $probeProfile | Out-Null
+$probeInfo.Environment['APPDATA']=$probeProfile
+foreach($argument in @('--headless','--script','res://scripts/diagnostics/export_resources.gd','--log-file',(Join-Path $destination 'resource-check.log'))){$probeInfo.ArgumentList.Add($argument)}
+$probe=[Diagnostics.Process]::new();$probe.StartInfo=$probeInfo
+$null=$probe.Start()
+$probeOut=$probe.StandardOutput.ReadToEndAsync();$probeErr=$probe.StandardError.ReadToEndAsync()
+if(-not $probe.WaitForExit(120000)){$probe.Kill($true);$probe.WaitForExit();throw 'A verificação do pacote exportado excedeu o tempo limite.'}
+$probeLog=$probeOut.GetAwaiter().GetResult()+"`n"+$probeErr.GetAwaiter().GetResult()
+if(Test-Path -LiteralPath (Join-Path $destination 'resource-check.log')){$probeLog+="`n"+(Get-Content -LiteralPath (Join-Path $destination 'resource-check.log') -Raw)}
+[IO.File]::WriteAllText((Join-Path $destination 'resource-check.log'),$probeLog)
+$probeFailed=$probe.ExitCode -ne 0 -or $probeLog -match '(?m)SCRIPT ERROR:|Parse Error:|Compile Error:|^ERROR:' -or $probeLog -notmatch 'EXPORT RESOURCES \d+ checks; 0 failures'
+$probe.Dispose()
+if($probeFailed){throw 'Recursos inválidos no executável exportado. Consulte resource-check.log.'}
 $licenseDirectory=Join-Path $destination 'licenses'
 New-Item -ItemType Directory -Path $licenseDirectory -Force | Out-Null
 Get-ChildItem -LiteralPath (Join-Path $project 'licenses') -File | Copy-Item -Destination $licenseDirectory
