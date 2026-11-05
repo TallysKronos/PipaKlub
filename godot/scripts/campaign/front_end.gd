@@ -70,9 +70,21 @@ var scene_loading:CanvasLayer
 var save_status: CanvasLayer
 var rewards_deferred := false
 var rewards_seen_count := 0
+@export var protect_profile := false
+var _profile_lock: RefCounted
 
 func _ready() -> void:
 	if preload("res://scripts/diagnostics/dispatch.gd").try_run(self): return
+	if protect_profile:
+		_profile_lock = preload("res://scripts/campaign/profile_lock.gd").new()
+		if not _profile_lock.acquire():
+			var message := "Não foi possível abrir o perfil local. Feche outra janela do Soulmonsters e tente de novo."
+			if DisplayServer.get_name() != "headless": OS.alert(message, "Perfil indisponível")
+			printerr(message)
+			sound.free()
+			session.free()
+			get_tree().quit(1)
+			return
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	get_tree().auto_accept_quit = false
 	preferences.load_settings()

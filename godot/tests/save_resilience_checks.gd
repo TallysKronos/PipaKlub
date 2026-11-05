@@ -52,8 +52,51 @@ func _initialize() -> void:
 	test_read_failures()
 	test_creation_retry()
 	test_invalid_payloads()
+	test_legacy_progression()
 	print("SAVE RESILIENCE ", checks, " checks; ", failures, " failures; isolated directory ", test_root)
 	quit(0 if failures == 0 else 1)
+
+func test_legacy_progression() -> void:
+	# Representative checkpoints in the supported legacy format, not player saves.
+	var checkpoints := [
+		{"kind":"opening","step":7},
+		{"kind":"world","scene":"kronasta-bambuzal-b","position":[120,90]},
+		{"kind":"world","scene":"kronasta-coracao-d","position":[120,90]},
+		{"kind":"world","scene":"kronasta-estadio-a","position":[120,90]}
+	]
+	for index in checkpoints.size():
+		var directory := test_root.path_join("legacy-%d" % index)
+		DirAccess.make_dir_recursive_absolute(directory)
+		var store := Store.new(directory)
+		var old := State.fresh("slot-1")
+		old.erase("campaignId")
+		old.rulesVersion = "demo-1"
+		old.revision = 7
+		old.checkpoint = checkpoints[index]
+		old.player.coins = 37
+		old.player.flags = {"retalho_aceito":index % 2 == 0}
+		old.player.inventory = {"rabiola-antiga":1}
+		old.player.completedOperations = ["legacy-receipt"]
+		old.player.partners = [{"id":"legacy-partner","modelId":"mata","xp":120,"craftBonus":2,"condition":{"line":83,"structure":71}}]
+		old.player.equippedPartnerId = "legacy-partner"
+		var path := directory.path_join("slot-1.json")
+		write_text(path, JSON.stringify(old))
+		var original_hash := FileAccess.get_sha256(path)
+		var loaded := store.load_slot("slot-1")
+		if not check(loaded.status == "ok","legacy loads at checkpoint %d" % index): continue
+		var expected := serialized(old)
+		expected.rulesVersion = State.RULES_VERSION
+		expected.player.partners[0].xp = 110.0
+		check(serialized(loaded.data) == expected,"migration changes only XP and rules")
+		check(FileAccess.get_sha256(path) == original_hash,"opening legacy does not write")
+		var saved := store.save_slot(loaded.data)
+		if not check(saved.status == "ok","migrated slot saves"): continue
+		check(store._read(path + ".bak","slot-1").data == serialized(old),"backup keeps original legacy content")
+		var reopened := Store.new(directory).load_slot("slot-1")
+		check(reopened.status == "ok" and reopened.data.player.partners[0].xp == 110,"XP migrated exactly once")
+		DirAccess.remove_absolute(path)
+		var recovered := Store.new(directory).load_slot("slot-1")
+		check(recovered.status == "ok" and recovered.recovered and serialized(recovered.data) == expected,"legacy backup recovers exactly")
 
 func seeded(directory: String) -> Session:
 	var session := Session.new()

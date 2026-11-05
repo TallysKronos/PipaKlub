@@ -21,6 +21,8 @@ A suíte de resiliência usa arquivos descartáveis e uma subclasse de teste par
 
 Além dessas suítes, a CI executa `godot/ValidarInterrupcoes.ps1`: 16 casos com encerramento real do filho Godot e duas reaberturas independentes, usando apenas fixtures descartáveis. Inclui save, depósito global, recompensa pendente, exclusão e restauração. Rodar somente `Validar.ps1` não inclui esse gate separado. [Matriz, comando e limites](refinamentos/r42-processos/README.md).
 
+O mesmo gate tem um 17º caso: uma segunda instância do jogo é recusada enquanto o perfil está ocupado e o perfil volta a abrir após o encerramento forçado do dono. `save_resilience_checks` também verifica quatro checkpoints reconstruídos no formato antigo. [Migração e exclusividade do perfil](refinamentos/r42-migracao-perfil/README.md).
+
 `save_feedback_checks` exercita o frontend real com erros injetados e entradas de teclado/gamepad simuladas. Confere cards de versão/corrupção/IO, recuperação por backup, retry e pausa/restauração dos avisos. Capturas opcionais exigem renderizador gráfico: executar a suíte sem `--headless`, com `-- --capture`; imagens em `tmp/save-feedback`.
 
 Esse conjunto é uma regressão inicial explícita, não a totalidade dos testes existentes e não uma aprovação comercial da versão. Exportar com sucesso não substitui abrir o pacote em instalação limpa e fazer playtest.

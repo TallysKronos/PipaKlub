@@ -66,6 +66,16 @@ func run() -> void:
 	if not folder.is_absolute_path() or not FileAccess.file_exists(folder.path_join("fixture-only")):
 		quit(2); return
 	var store := PausingStore.new(folder.path_join("campaign"))
+	if scenario == "profile":
+		var lock := preload("res://scripts/campaign/profile_lock.gd").new()
+		check(lock.acquire(), "profile available")
+		if mode == "write" and failures == 0:
+			store.phase = phase
+			store.marker = folder.path_join("ready")
+			store.barrier(phase)
+			check(false, "owner returned without being killed")
+		quit(0 if failures == 0 else 1)
+		return
 	if mode == "prepare":
 		var created: Dictionary = store.create_slot("slot-1")
 		check(created.status == "ok", "create")

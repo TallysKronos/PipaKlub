@@ -453,6 +453,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R42 — Migração, corrupção e encerramento durante save
 
+**Migração e perfil:** quatro checkpoints reconstruídos no formato antigo validam conversão, preservação de conteúdo e recuperação pelo backup. A cena principal impede outra janela de usar o mesmo perfil; o gate prova disputa real e reabertura após encerramento forçado no Windows. [Evidência e limites](refinamentos/r42-migracao-perfil/README.md).
+
 **Complemento em 05/11:** 16 casos de encerramento real de processos Godot, com duas reaberturas independentes por caso: save, depósito global, recompensa pendente, exclusão e restauração. Gate separado adicionado à CI; sem mudanças na persistência de produção. Migração representativa dos atos, concorrência e falhas físicas seguem pendentes. [Relatório de processos R42](refinamentos/r42-processos/README.md).
 
 **Execução em 05/11:** matriz de falhas de escrita/cópia/rename/leitura, recuperação e idempotência passou em 152 checks; campanha passou em mais 207. Cobertura adicionada à CI. Migração representativa completa, falhas físicas e concorrência real permanecem pendentes. [Relatório R42](refinamentos/r42-saves/README.md).

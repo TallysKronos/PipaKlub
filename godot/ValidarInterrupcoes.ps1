@@ -1,4 +1,4 @@
-param([string]$GodotPath = $env:GODOT_PATH, [string]$OutputDirectory = '')
+param([string]$GodotPath = $env:GODOT_PATH, [string]$OutputDirectory = '', [switch]$ProfileOnly)
 $ErrorActionPreference = 'Stop'
 if (-not $GodotPath -or -not (Test-Path -LiteralPath $GodotPath)) { throw 'Informe o executável Godot.' }
 if (-not $OutputDirectory) { $OutputDirectory = Join-Path ([IO.Path]::GetTempPath()) ('soulmonsters-process-' + [guid]::NewGuid().ToString('N')) }
@@ -11,7 +11,9 @@ function Invoke-Worker([string]$Mode, [string]$Scenario, [string]$Phase, [string
  $info.FileName = [IO.Path]::GetFullPath($GodotPath)
  $info.UseShellExecute = $false; $info.CreateNoWindow = $true
  $info.RedirectStandardOutput = $true; $info.RedirectStandardError = $true
- foreach ($arg in @('--headless','--path',$PSScriptRoot,'--script','res://tests/process_save_worker.gd','--',$Mode,$Scenario,$Phase,$Folder)) { $info.ArgumentList.Add($arg) }
+ $arguments = @('--headless','--path',$PSScriptRoot)
+ if ($Mode -ne 'contender') { $arguments += @('--script','res://tests/process_save_worker.gd','--',$Mode,$Scenario,$Phase,$Folder) }
+ foreach ($arg in $arguments) { $info.ArgumentList.Add($arg) }
  $info.Environment['APPDATA'] = Join-Path $Folder 'profile'
  $process = [Diagnostics.Process]::new(); $process.StartInfo = $info
  $killed = $false
@@ -26,6 +28,10 @@ function Invoke-Worker([string]$Mode, [string]$Scenario, [string]$Phase, [string
    while (-not $process.HasExited -and -not (Test-Path -LiteralPath $marker) -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 20 }
    if (-not $process.HasExited -and (Test-Path -LiteralPath $marker)) {
     if ([IO.File]::ReadAllText($marker) -ne $Phase) { throw 'Barreira incorreta.' }
+    if ($Scenario -eq 'profile') {
+     Invoke-Worker 'contender' $Scenario $Phase $Folder
+     if ($process.HasExited) { throw 'O dono do perfil encerrou antes de testar a disputa.' }
+    }
     $process.Kill($true); $killed = $true
    }
   }
@@ -34,6 +40,9 @@ function Invoke-Worker([string]$Mode, [string]$Scenario, [string]$Phase, [string
   [IO.File]::WriteAllText((Join-Path $Folder "$Mode.log"),$log)
   if ($log -match 'SCRIPT ERROR:|Parse Error:|Compile Error:|FAIL process recovery|ObjectDB instances.*leaked|resources still in use') { throw "Erros no worker $Mode. $log" }
   if ($Mode -eq 'write') { if (-not $killed) { throw "Não atingiu a barreira $Phase. $log" } }
+  elseif ($Mode -eq 'contender') {
+   if ($process.ExitCode -ne 1 -or $log -notmatch 'Não foi possível abrir o perfil local') { throw "A segunda instância não foi bloqueada. $log" }
+  }
   elseif ($process.ExitCode -ne 0) { throw "Worker $Mode falhou. $log" }
  } finally {
   if ($started -and -not $process.HasExited) { $process.Kill($true); $process.WaitForExit() }
@@ -46,8 +55,9 @@ $cases = @(
  @('bank','bank-intent'), @('bank','after-primary'), @('bank','bank-complete'),
  @('reward','bank-intent'), @('reward','after-primary'), @('reward','bank-complete'),
  @('delete','delete-intent'), @('delete','delete-first'),
- @('restore','restore-copy'), @('restore','restore-published')
+ @('restore','restore-copy'), @('restore','restore-published'), @('profile','owner-held')
 )
+if ($ProfileOnly) { $cases = ,@('profile','owner-held') }
 try {
  foreach ($case in $cases) {
   $scenario,$phase = $case

@@ -163,8 +163,13 @@ func _save(snapshot: Dictionary, creating: bool) -> Dictionary:
 			error = _copy_file(path, damaged)
 			if error != OK:
 				return {"status": "io_error", "error": error}
-	elif not creating:
-		error = _write_checked(path + ".bak.tmp", current.data)
+	elif not creating and not current.recovered:
+		# load_slot migrates in memory. Keep the original on-disk rules in the
+		# backup on the first write, so a rollback can still read the old format.
+		var previous := _read(path, slot_id)
+		if previous.status != "ok" or previous.data.revision != current.data.revision:
+			return {"status":"stale"}
+		error = _write_checked(path + ".bak.tmp", previous.data)
 		if error == OK:
 			error = _replace_file(path + ".bak.tmp", path + ".bak")
 		if error != OK:
