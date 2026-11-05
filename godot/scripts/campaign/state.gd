@@ -16,6 +16,7 @@ static func fresh(slot_id: String) -> Dictionary:
 	return {
 		"schemaVersion": SCHEMA_VERSION, "contentVersion": CONTENT_VERSION,
 		"rulesVersion": RULES_VERSION, "slotId": slot_id, "revision": 0,"playSeconds":0.0,
+		"campaignId": new_id(),
 		"checkpoint": {"kind": "opening", "step": 0},
 		"player": {"name": "Kael", "avatar": {}, "coins": 0,
 			"inventory": {}, "partners": [], "flags": {}, "openedChests": [],
@@ -24,6 +25,11 @@ static func fresh(slot_id: String) -> Dictionary:
 
 static func valid_slot(slot_id: String) -> bool:
 	return slot_id in ["slot-0", "slot-1", "slot-2", "slot-3"]
+
+static func campaign_key(snapshot: Dictionary) -> String:
+	if snapshot.get("campaignId") is String and not snapshot.campaignId.is_empty(): return snapshot.campaignId
+	# Legacy copies cannot safely be grouped by name, partner or slot number.
+	return "legacy-" + JSON.stringify(snapshot, "", true).sha256_text()
 
 static func new_id() -> String:
 	var bytes := Crypto.new().generate_random_bytes(16)
@@ -49,6 +55,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 		return "unsupported"
 	if value.get("slotId") != slot_id or not valid_slot(slot_id) or not whole(value.get("revision")):
 		return "invalid"
+	if value.has("campaignId") and (not value.campaignId is String or value.campaignId.is_empty() or value.campaignId.length() > 128): return "invalid"
 	if not value.get("checkpoint") is Dictionary or not value.get("player") is Dictionary:
 		return "invalid"
 	for key in ["playSeconds","savedAt"]:

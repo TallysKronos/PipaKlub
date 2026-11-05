@@ -40,7 +40,7 @@ func resume_slot(slot_id: String) -> Dictionary:
 
 func _prepare_autosave() -> void:
 	if not separate_autosave or _snapshot.is_empty(): return
-	if not _snapshot.has("campaignId"): _snapshot.campaignId = preload("res://scripts/campaign/state.gd").new_id()
+	if not _snapshot.has("campaignId"): _snapshot.campaignId = preload("res://scripts/campaign/state.gd").campaign_key(_snapshot)
 	if not _snapshot.has("originSlotId"): _snapshot.originSlotId = _snapshot.slotId
 	var automatic := _store.load_slot("slot-0")
 	_auto_revision = int(automatic.data.revision) if automatic.status == "ok" else -1

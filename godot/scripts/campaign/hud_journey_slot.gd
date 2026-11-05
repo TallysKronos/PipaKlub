@@ -93,11 +93,12 @@ func _ready() -> void:
 	commands.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	row.add_child(commands)
 	action=Button.new()
-	action.text="Começar" if empty else "Recuperar" if valid and inspection.get("recovered",false) else "Continuar" if valid else "Tentar novamente" if inspection.status=="io_error" else "Indisponível"
+	var retryable: bool = inspection.status in ["io_error", "archive_pending"]
+	action.text="Começar" if empty else "Recuperar" if valid and inspection.get("recovered",false) else "Continuar" if valid else "Tentar novamente" if retryable else "Indisponível"
 	action.tooltip_text="Jornada %s · Novo jogo"%slot_id.trim_prefix("slot-") if empty else "Jornada %s · Continuar — %s"%[slot_id.trim_prefix("slot-"),player.get("name","Kael")]
 	Hud.navigation_button(action,true)
-	action.custom_minimum_size=Vector2(240 if inspection.status=="io_error" else 168,52)
-	action.disabled=not empty if available_for_new else not valid and inspection.status!="io_error"
+	action.custom_minimum_size=Vector2(240 if retryable else 168,52)
+	action.disabled=not empty if available_for_new else not valid and not retryable
 	action.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	action.pressed.connect(func():selected.emit())
 	var action_space:=Hud.focus_space(commands)

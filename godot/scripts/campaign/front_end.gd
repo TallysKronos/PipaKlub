@@ -194,7 +194,7 @@ func _menu() -> void:
 	if qa_real_store!=null:session._store=qa_real_store;qa_real_store=null
 	var menu=load("res://scripts/campaign/hud_title_menu.gd").new()
 	for index in range(0,4):
-		if session.inspect_slot("slot-%d"%index).status=="ok":menu.has_saves=true
+		if session.inspect_slot("slot-%d"%index).status!="missing":menu.has_saves=true
 	menu.reduced_motion=preferences.reduced_motion
 	add_child(menu)
 	menu.selected.connect(_main_menu_action)
@@ -330,9 +330,17 @@ func _show_slots(new_journey:bool=false) -> void:
 
 func _confirm_erase_slot(id:String,inspection:Dictionary,new_journey:bool) -> void:
 	sound.play_event("ui.warning")
-	var dialog:=_confirmation("Excluir jornada", "Excluir a jornada de %s?\n\nVocê poderá desfazer na lista de jornadas enquanto esse espaço continuar vazio."%inspection.data.player.name,"Excluir jornada")
+	var plan: Dictionary = session._store.plan_campaign_archive(id, int(inspection.data.revision))
+	if not _result(plan): return
+	var spaces: Array[String] = []
+	for member: String in plan.members: spaces.append("Autosave 0" if member == "slot-0" else "Espaço " + member.trim_prefix("slot-"))
+	var copy := "Excluir a campanha de %s?\n\nSaves vinculados: %s.\nA história, os itens e os Pipamons desses saves sairão da lista. Configurações e arquivos fora da campanha não serão apagados.\n\nVocê poderá desfazer enquanto todos esses espaços estiverem livres. Uma nova jornada permitirá obter outro Rabbito." % [inspection.data.player.name, ", ".join(spaces)]
+	if plan.legacy or not plan.unidentified.is_empty(): copy += "\n\nHá saves antigos ou ilegíveis sem vínculo confirmado. Eles serão mantidos; não podemos assegurar que todas as cópias antigas desta campanha foram identificadas."
+	var dialog:=_confirmation("Excluir campanha", copy,"Excluir campanha")
 	dialog.confirmed.connect(func():
-		if _result(session._store.archive_slot(id,int(inspection.data.revision))):_show_slots(new_journey))
+		var result: Dictionary = session._store.archive_campaign(plan)
+		_show_slots(new_journey)
+		if result.status != "ok": _notice(_error(result.status)))
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.popup_centered()
@@ -352,6 +360,7 @@ func _choose(slot_id: String, create: bool) -> void:
 	session.autosave_enabled = preferences.autosave
 	var result: Dictionary = session.start(slot_id) if create else session.resume_slot(slot_id)
 	if result.status != "ok":
+		if result.status == "missing": _show_slots(false); return
 		status.text = _error(result.status)
 		return
 	_show_saved()

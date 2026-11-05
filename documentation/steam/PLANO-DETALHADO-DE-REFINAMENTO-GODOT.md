@@ -417,6 +417,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R39 — Excluir e reiniciar campanha
 
+**Execução parcial em 05/11:** exclusão por identidade remove autosave e cópias manuais vinculadas após confirmação; cópias verificadas e diário recuperável permitem concluir exclusão/desfazer interrompidos. Reiniciar concede outro Rabbito com nova identidade e recibos separados. Saves antigos sem vínculo confirmado são mantidos com aviso. Depósito global ainda ausente no Godot: preservação de coleção real fica dependente de R40. [Relatório](refinamentos/r39-campanha/README.md).
+
 **Situação:** regras de persistência global precisam de fechamento; obrigatório.
 
 **Execução:** explicar antes da exclusão o que some: história, itens e banco do save; e o que permanece no depósito global conforme decisão. Não usar a mesma ação visual de carregar sem confirmação clara. Invalidar retomada/autosave pertencentes à campanha removida para não ressuscitá-la. Permitir novo Rabbito na nova campanha, como autorizado, preservando identidade de instância e depósitos anteriores legítimos.
