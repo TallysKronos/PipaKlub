@@ -1,4 +1,5 @@
 extends Node2D
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 
 func configure(_view: Node2D, staging: Node2D, target: Vector2) -> void:
 	name="WindRelease"
@@ -22,7 +23,7 @@ func configure(_view: Node2D, staging: Node2D, target: Vector2) -> void:
 		add_child(stream)
 	var core:=Polygon2D.new()
 	core.name="Convergence"
-	core.color=Color("#fff3c4")
+	core.color=Tokens.WIND_CORE
 	core.position=target
 	core.polygon=PackedVector2Array([Vector2(0,-12),Vector2(7,0),Vector2(0,12),Vector2(-7,0)])
 	add_child(core)

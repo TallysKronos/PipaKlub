@@ -1,4 +1,5 @@
 extends CanvasLayer
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 ## Brief cutaways into the actual city maps. No campaign mutation or player travel.
 signal restored(scene: String)
 var current_view: Node2D
@@ -55,7 +56,7 @@ func play(player: Dictionary, content: Dictionary, reduced: bool) -> void:
 		await capture(viewport,id+"-before")
 		if not reduced:await get_tree().create_timer(.45).timeout
 		var mote:=Polygon2D.new()
-		mote.color=Color("#fff0b0")
+		mote.color=Tokens.CITY_MOTE
 		mote.polygon=PackedVector2Array([Vector2(0,-8),Vector2(5,0),Vector2(0,8),Vector2(-5,0)])
 		var hand: Vector2=view.model.project(at)+Vector2(0,-42)
 		mote.position=hand+Vector2(-90,-110)

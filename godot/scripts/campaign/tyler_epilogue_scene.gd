@@ -1,4 +1,5 @@
 extends Node2D
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 const Navigation=preload("res://scripts/campaign/tutorial_staging.gd")
 var world: Node2D
 var tyler: Sprite2D
@@ -55,7 +56,7 @@ func give_flower() -> void:
 	world.add_child(flower)
 	for petal in 5:
 		var shape:=Polygon2D.new()
-		shape.color=Color("#edb1cf")
+		shape.color=Tokens.CHERRY_BLOSSOM
 		var vertices:=PackedVector2Array()
 		for index in 10:
 			var angle:=float(index)*TAU/10.0

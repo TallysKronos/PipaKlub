@@ -1,4 +1,5 @@
 extends Node
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 signal beat_finished(beat: String)
 var capture_folder:=""
 var world: Node2D
@@ -30,7 +31,7 @@ func play(view: Node2D, reduced: bool) -> bool:
 	for endpoints in [[source,middle],[middle,target]]:
 		var strand:=Line2D.new()
 		strand.width=3.0
-		strand.default_color=Color("#24202b")
+		strand.default_color=Tokens.CAROL_STRAND
 		strand.points=PackedVector2Array(endpoints)
 		broken.add_child(strand)
 	if not reduced:
@@ -38,9 +39,9 @@ func play(view: Node2D, reduced: bool) -> bool:
 		snap.tween_method(func(t: float):
 			broken.get_child(0).points=PackedVector2Array([source,middle.lerp(source,t)])
 			broken.get_child(1).points=PackedVector2Array([middle.lerp(target,t),target]),0.0,1.0,.45)
-		snap.tween_property(mon,"modulate",Color.WHITE,.45)
+		snap.tween_property(mon,"modulate",Tokens.UNTINTED,.45)
 		await snap.finished
-	else:mon.modulate=Color.WHITE
+	else:mon.modulate=Tokens.UNTINTED
 	broken.queue_free()
 	await capture("line-broken")
 	beat_finished.emit("line")
@@ -54,7 +55,7 @@ func play(view: Node2D, reduced: bool) -> bool:
 		for id in ["StoryRain","StoryLight"]:
 			var effect:=sky.get_node_or_null(id)
 			if effect==null:continue
-			if id=="StoryLight":flight.tween_property(effect,"color",Color.WHITE,1.0)
+			if id=="StoryLight":flight.tween_property(effect,"color",Tokens.UNTINTED,1.0)
 			else:
 				var rain_material: ShaderMaterial=effect.material
 				flight.tween_method(func(amount: float):rain_material.set_shader_parameter("strength",amount),1.0,0.0,1.0)
