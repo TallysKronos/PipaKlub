@@ -104,8 +104,6 @@ func run() -> void:
 	check(quest(player).done, "diary records the epilogue")
 	check(not view._tyler_study() and Arcs.finish_finale(view.session).status == "wrong_step", "single delivery")
 	check(view.session.resume_slot("slot-1").status == "ok" and view.session.snapshot().player.flags.get("tylerFlowerGiven", false), "epilogue survives reloading")
-	view.queue_free()
-	await process_frame
-	await process_frame
+	check(await preload("res://tests/audio_teardown.gd").free_view(self,view), "audio released before exit")
 	print("FLOWER EPILOGUE: %d checks; %d failures" % [checks, failures])
 	quit(1 if failures else 0)

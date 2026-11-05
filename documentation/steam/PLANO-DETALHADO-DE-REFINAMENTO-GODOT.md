@@ -687,6 +687,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R59 — Nós, sinais, memória e encerramento
 
+**Avisos e epílogo:** as suítes agora liberam a interface e aguardam a liberação das faixas pelo mixer com limite de dois segundos. As 29 verificações passaram sem os avisos de instâncias e recursos vistos nas execuções anteriores. A CI passa a rejeitar esses avisos nas duas suítes. Campanha longa permanece pendente.
+
 **Execução em 05/11:** teardown do menu corrigido no teste; título passou em 350 checks e cinco ciclos de menu passaram em 55, sem diagnósticos de recursos vivos nem crescimento de nós/órfãos. Campanha longa e demais cenas continuam pendentes. [Relatório R59/menu](refinamentos/r59-menu/README.md).
 
 **Situação:** avisos de instâncias/recursos vivos apareceram em testes anteriores; investigar sem assumir vazamento comercial.

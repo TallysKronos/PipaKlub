@@ -31,5 +31,6 @@ func run() -> void:
 	view.scene_loading = null
 	for i in 3: await process_frame
 	check(notices(view).size() == 1, "notice shown once the load ends")
+	check(await preload("res://tests/audio_teardown.gd").free_view(self,view), "audio released before exit")
 	print("NOTICE AFTER LOAD: %d checks; %d failures" % [checks, failures])
 	quit(1 if failures else 0)

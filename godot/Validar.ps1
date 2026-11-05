@@ -35,7 +35,7 @@ function Invoke-Check([string]$Name, [string[]]$Arguments, [int]$Limit, [bool]$R
  [IO.File]::WriteAllText((Join-Path $output "$Name.log"), $log)
  $failed = $timedOut -or $process.ExitCode -ne 0 -or $log -match '(?m)SCRIPT ERROR:|Parse Error:|Compile Error:'
  if ($Name.StartsWith('import') -and $log -match '(?m)^ERROR:') { $failed = $true }
- if ($Name -in @('title_menu_checks','menu_lifecycle_checks','save_feedback_checks','autosave_recovery_checks','autosave_slots_checks','campaign_reset_checks','partner_bank_checks','pending_rewards_checks','retalho_trust_checks') -and $log -match 'ObjectDB instances.*leaked|resources still in use|Leaked instance:') { $failed = $true }
+ if ($Name -in @('title_menu_checks','menu_lifecycle_checks','notice_after_load_checks','flower_epilogue_checks','save_feedback_checks','autosave_recovery_checks','autosave_slots_checks','campaign_reset_checks','partner_bank_checks','pending_rewards_checks','retalho_trust_checks') -and $log -match 'ObjectDB instances.*leaked|resources still in use|Leaked instance:') { $failed = $true }
  $results.Add(@{name=$Name;exitCode=$process.ExitCode;timedOut=$timedOut;passed=(-not $failed);required=$Required})
  $process.Dispose()
  if ($failed) { Write-Warning "$Name reported errors (required=$Required). See $output/$Name.log"; Write-Host ($log -split "`n" | Select-Object -Last 15 | Out-String) }
