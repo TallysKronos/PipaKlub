@@ -47,9 +47,50 @@ func run() -> void:
 				for npc in view.npc_nodes:
 					if npc.point==Story.point(scene,Story.STEPS[id].anchor):
 						check(npc.visual.position.length()<1,"Gollia returns to anchor")
+			if id=="gerador":
+				var sample:=preload("res://scripts/campaign/wind_release.gd").new()
+				view.actors.add_child(sample)
+				var tower: Node2D=view.actors.get_node("WindTower")
+				check(not tower.active,"tower starts dormant")
+				for cell in [Vector2(29.5,6.5),Vector2(30.5,6.5)]:
+					check(not view.model.point_walkable(cell),"tower base is on blocked rock")
+					check(is_equal_approx(view.model.height_at(cell),7.0),"tower has continuous support")
+				check(not view.model.path_to(view.player,Vector2(24.5,10.5)).is_empty(),"summit route remains open")
+				var target: Vector2=tower.receptor_position()
+				sample.configure(view,staging,target)
+				check(sample.get_child_count()==5,"four sources and one convergence")
+				for index in 4:
+					var stream: Line2D=sample.get_child(index)
+					check(stream.points[0].distance_to(staging.get_child(index).position+Vector2(0,-48))<.01,"wind starts at its creature")
+					check(stream.points[-1].distance_to(target)<.01,"wind reaches tower anchor")
+				if "--capture" in OS.get_cmdline_user_args() and DisplayServer.get_name()!="headless":
+					view.exploration_hud.hide()
+					view.camera.position=view.model.project(view.player).lerp(target,.4)
+					view.camera.zoom=Vector2.ONE
+					await RenderingServer.frame_post_draw
+					var folder:=ProjectSettings.globalize_path("res://../tmp/wind-review")
+					DirAccess.make_dir_recursive_absolute(folder)
+					root.get_texture().get_image().save_png(folder.path_join("convergencia.png"))
+				sample.queue_free()
+				await process_frame
+			var before_camera: Vector2=view.camera.position
 			await view.finish_endgame_scene(id)
+			if id=="gerador":check(view.camera.position.distance_to(before_camera)<.01,"camera restores after activation")
+			if id=="gerador":
+				view.reduced_motion=true
+				await view.finish_endgame_scene(id)
 			await process_frame
 			check(view.actors.get_node_or_null("WindRelease")==null,"wind effect cleaned")
+			if id=="gerador":
+				var tower: Node2D=view.actors.get_node("WindTower")
+				check(tower.active and tower.reduced_motion,"tower remains active without rotation after reduced presentation")
+				var saved: Dictionary=view.saved_player.duplicate(true)
+				saved.flags.geradorLigado=true
+				view.refresh(saved)
+				check(tower.active,"refresh preserves the saved activation")
+				saved.flags.geradorLigado=false
+				view.refresh(saved)
+				check(not tower.active,"refresh restores dormant state")
 			view.clear_endgame_staging()
 			await process_frame
 			check(view.actors.get_node_or_null("EndgameStaging")==null,"staging cleaned")

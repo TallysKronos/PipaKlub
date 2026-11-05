@@ -3,6 +3,7 @@ extends Control
 signal confirmed
 signal canceled
 signal choice_selected(id:String)
+signal speaker_changed(speaker:String)
 const Hud=preload("res://scripts/campaign/hud.gd")
 const Layout=preload("res://scripts/campaign/hud_layout.gd")
 const Surface=preload("res://scripts/campaign/hud_dialogue_surface.gd")
@@ -174,6 +175,7 @@ func _show_page() -> void:
 	var page:Dictionary=pages[page_index]
 	body.text=page.text
 	name_label.text=page.speaker
+	speaker_changed.emit(str(page.speaker))
 	portrait.texture=_portrait_for(page.speaker)
 	portrait.visible=portrait.texture!=null
 	portrait.emotion=page.emotion;portrait.reaction=page.reaction;portrait.queue_redraw()

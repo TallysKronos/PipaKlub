@@ -897,7 +897,9 @@ func _show_world() -> void:
 		if id=="collection":_show_collection()
 		elif id=="bag":_show_bag()
 		else:_pause_game())
-	if professor and room.actor.distance_to(Vector2(1056,1232))<4:
+	if professor and load("res://scripts/campaign/tyler_arcs.gd").presentation_pending(session.snapshot().player):
+		_play_tyler_flower.call_deferred()
+	if professor and room.actor.distance_to(Vector2(1056,1232))<4 and not load("res://scripts/campaign/tyler_arcs.gd").presentation_pending(session.snapshot().player):
 		TutorialStaging.enter_atelier.call_deferred(self)
 
 func _equip_room_companion()->void:
@@ -1600,6 +1602,7 @@ func _show_park() -> void:
 	park.action_requested.connect(_park_action)
 	park.menu_requested.connect(_pause_game)
 	park.exit_requested.connect(_park_exit)
+	if preload("res://scripts/campaign/endgame_story.gd").release_pending(session.snapshot()):_present_trovareta_release.call_deferred()
 
 func _save_park(quiet:bool=false) -> bool:
 	var space: String = park.get("checkpoint_space") if park.get("checkpoint_space")!=null else ""
@@ -1960,7 +1963,8 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/ruinas_elo.gd").settle(session)):_return_ruinas.call_deferred(outcome)
 		elif session.snapshot().player.encounter.kind=="endgame-step":
 			var step_id:String=str(session.snapshot().player.encounter.step)
-			if _result(load("res://scripts/campaign/endgame_story.gd").new(session).settle()):_return_endgame.call_deferred(step_id)
+			var outcome: String=session.snapshot().player.encounter.state.outcome
+			if _result(load("res://scripts/campaign/endgame_story.gd").new(session).settle()):_return_endgame.call_deferred(step_id,outcome)
 		elif session.snapshot().player.encounter.kind=="tyler-lab":
 			if _result(load("res://scripts/campaign/tyler_arcs.gd").settle_lab(session)):_return_tyler_lab.call_deferred()
 		elif session.snapshot().player.encounter.kind=="tufanocorte-story":
@@ -3420,34 +3424,82 @@ func _endgame_step(id:String)->void:
 			if not is_instance_valid(view) or park!=view:return
 		var closing := {"accepted":false,"finished":false}
 		var scene_view=park
+		var meeting=preload("res://scripts/campaign/champions_meeting.gd").new() if id=="reuniao" else null
+		if meeting!=null:meeting.configure(scene_view)
 		var dialog := _confirm_park(step.name,step.intro,"Continuar",func():
 			if _result(story.talk(id,at)):
 				closing.accepted=true
 				scene_view.paused=true
+				if id in ["gerador","reuniao"]:flow_busy=true
 				await scene_view.finish_endgame_scene(id)
 				if not is_instance_valid(scene_view) or park!=scene_view:return
+				if id=="gerador":
+					var city:=preload("res://scripts/campaign/city_restoration_scene.gd").new()
+					add_child(city)
+					await city.play(session.snapshot().player,content,preferences.reduced_motion)
+					city.queue_free()
+					if not is_instance_valid(scene_view) or park!=scene_view:return
+				if meeting!=null:meeting.dispose()
 				scene_view.clear_endgame_staging()
 				await get_tree().process_frame
 				if not is_instance_valid(scene_view) or park!=scene_view:return
 				scene_view.refresh(session.snapshot().player)
 				closing.finished=true
+				if id in ["gerador","reuniao"]:flow_busy=false
 				scene_view.paused=false
 				_notice.call_deferred(step.outro))
 		dialog.tree_exiting.connect(func():
 			if is_instance_valid(scene_view):
 				scene_view.paused=closing.accepted and not closing.finished
-				if not closing.accepted:scene_view.clear_endgame_staging())
+				if not closing.accepted:
+					if meeting!=null:meeting.dispose()
+					scene_view.clear_endgame_staging())
+		if meeting!=null:
+			dialog.speaker_changed.connect(meeting.focus)
+			if not dialog.pages.is_empty():meeting.focus(str(dialog.pages[dialog.page_index].speaker))
 		return
 	# The title follows the opponent in front of the player (Navalha, then Trovareta...).
 	var index:int=endgame.duel_index(player,id)
 	_confirm_park(step.name if index==0 else str(step.duels[index][0]),endgame.prompt(player,id),"Enfrentar",func():
 		if _result(story.begin(id,at)):_show_saved.call_deferred())
 
-func _return_endgame(id:String)->void:
+func _return_endgame(id:String,outcome:String="won")->void:
 	_show_saved()
+	if outcome!="won":return
+	if id=="trovareta" and preload("res://scripts/campaign/endgame_story.gd").release_pending(session.snapshot()):return
 	var text:String=load("res://scripts/campaign/endgame_story.gd").after(session.snapshot().player,id)
 	if not text.is_empty() and session.snapshot().player.get("flags",{}).get("endgame-%s-0"%id,false):
 		_notice.call_deferred(text)
+
+func _present_trovareta_release() -> void:
+	var generation:=opening_generation
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+		if generation!=opening_generation:return
+	var story=preload("res://scripts/campaign/endgame_story.gd")
+	if not is_instance_valid(park) or not story.release_pending(session.snapshot()):return
+	var view: Node2D=park
+	flow_busy=true
+	view.paused=true
+	view.path.clear()
+	var cut:=preload("res://scripts/campaign/trovareta_release_scene.gd").new()
+	cut.name="TrovaretaRelease"
+	add_child(cut)
+	var played: bool=await cut.play(view,preferences.reduced_motion)
+	cut.queue_free()
+	if not is_instance_valid(view) or view!=park:return
+	if played:
+		var dialogue:=_dialog("Rato","Você também deu alma a uma coisa que fez. Podia vir com a gente.\n\nKael: O Rabbito fica comigo porque quer. Não porque eu mando.\n\nRato: Então guarde essa resposta. Vai precisar dela nas Ruínas.","Continuar")
+		dialogue.confirmed.connect(dialogue.queue_free)
+		dialogue.canceled.connect(dialogue.queue_free)
+		dialogue.popup_centered(Vector2i(640,300))
+		await dialogue.tree_exited
+		if not is_instance_valid(view) or view!=park:return
+	var result: Dictionary=story.new(session).finish_release() if played else {"status":"wrong_step"}
+	view.refresh(session.snapshot().player)
+	flow_busy=false
+	view.paused=false
+	if not _result(result):return
 
 func _return_tufanocorte()->void:
 	_show_saved()
@@ -3476,19 +3528,34 @@ func _ride_serra_wind()->void:
 
 func _tyler_study() -> bool:
 	var arcs = load("res://scripts/campaign/tyler_arcs.gd")
-	var player: Dictionary = session.snapshot().player
+	var player: Dictionary=session.snapshot().player
+	if arcs.presentation_pending(player):
+		_play_tyler_flower.call_deferred()
+		return true
 	if arcs.finale_ready(player):
-		# F29: Kael already knows Tyler was made here (laboratory); the new part is whose
-		# DNA it is. Kael answers with choices the player saw: the Fantasma and the Câmara.
-		var dialog := _dialog("Tyler · Flor de Cerejeira", "Tyler está sentado diante da gaveta com o nome dele.\n\nTyler: Você já sabe que eu fui criado aqui. O que eu não contei é o resto do registro: o DNA é do Assis. Se eu fui feito para ser alguém que já existe, quem sobra quando eu tiro isso?\n\nKael: Sobra quem soltava as almas presas nos fios antes do Bando chegar. Quem tirou a Nina, a Mikka e a Jamile da Câmara do Elo. Ninguém mandou você fazer isso. Você se importa, Tyler.", "Entregar a flor", "Agora não")
+		if flow_busy:return true
+		if not is_instance_valid(room):_show_world()
+		var scene=_prepare_tyler_flower()
+		if scene==null:return false
+		flow_busy=true
+		room.can_walk=false
+		room.set_story_paused(true)
+		var accepted:={"value":false}
+		var dialog := _dialog("Tyler · Flor de Cerejeira", "Tyler: Você já sabe que eu fui criado aqui. O que eu não contei é o resto do registro: o DNA é do Assis. Se eu fui feito para ser alguém que já existe, quem sobra quando eu tiro isso?
+
+Kael: Sobra quem soltava as almas presas nos fios antes do Bando chegar. Quem tirou a Nina, a Mikka e a Jamile da Câmara do Elo. Ninguém mandou você fazer isso. Você se importa, Tyler.", "Entregar a flor", "Agora não")
 		dialog.confirmed.connect(func():
 			if not _result(arcs.finish_finale(session)):return
-			_show_saved()
-			var given := _dialog("Tyler · Flor de Cerejeira", "Kael tira a flor de cerejeira da bolsa e coloca na mão de Tyler.\n\nTyler gira a flor entre os dedos, devagar.\n\nTyler: Caiu junto da última pipa que eu soltei. Achei que tinha perdido.\n\nTyler: Vamos subir. O Rai deve estar com fome.\n\nOs dois sobem a escada, e o laboratório fica para trás.", "Continuar")
-			given.confirmed.connect(given.queue_free)
-			given.canceled.connect(given.queue_free))
+			accepted.value=true
+			flow_busy=false
+			_play_tyler_flower.call_deferred())
 		dialog.confirmed.connect(dialog.queue_free)
 		dialog.canceled.connect(dialog.queue_free)
+		dialog.tree_exiting.connect(func():
+			if not accepted.value:
+				flow_busy=false
+				if is_instance_valid(scene):scene.dispose()
+				if is_instance_valid(room):room.can_walk=true;room.set_story_paused(false))
 		return true
 	if not arcs.Rules.completed(player, "centro") or player.flags.get("tylerCreatedKnown", false):
 		return false
@@ -3500,6 +3567,55 @@ func _tyler_study() -> bool:
 	dialog.canceled.connect(dialog.queue_free)
 	return true
 
+
+func _prepare_tyler_flower() -> Node2D:
+	if not is_instance_valid(room):return null
+	var scene=room.get_node_or_null("TylerEpilogue")
+	if scene!=null:return scene
+	scene=load("res://scripts/campaign/tyler_epilogue_scene.gd").new()
+	room.add_child(scene)
+	if not scene.configure(room,preferences.reduced_motion):
+		scene.queue_free()
+		return null
+	return scene
+
+func _play_tyler_flower() -> void:
+	if flow_busy:return
+	var arcs=load("res://scripts/campaign/tyler_arcs.gd")
+	if not arcs.presentation_pending(session.snapshot().player):return
+	if not is_instance_valid(room):_show_world()
+	var scene=_prepare_tyler_flower()
+	if scene==null:return
+	flow_busy=true
+	var generation:=opening_generation
+	var target_room=room
+	target_room.can_walk=false
+	await scene.give_flower()
+	if not TutorialStaging.valid(self,generation):return
+	target_room.set_story_paused(true)
+	var given := _dialog("Tyler · Flor de Cerejeira", "Tyler: Caiu junto da última pipa que eu soltei. Achei que tinha perdido.
+
+Tyler: Vamos ver o Rai. Ele deve estar com fome.", "Continuar")
+	given.confirmed.connect(given.queue_free)
+	given.canceled.connect(given.queue_free)
+	given.popup_centered()
+	await given.tree_exited
+	if not TutorialStaging.valid(self,generation):return
+	target_room.set_story_paused(false)
+	var left: bool=await scene.leave_together()
+	if not TutorialStaging.valid(self,generation):return
+	if not left:
+		scene.dispose()
+		flow_busy=false
+		target_room.can_walk=true
+		_notice("O caminho está bloqueado. Você pode continuar a conversa no estudo.")
+		return
+	var result: Dictionary=arcs.finish_presentation(session,target_room.actor)
+	scene.dispose()
+	flow_busy=false
+	target_room.can_walk=true
+	target_room.set_story_paused(false)
+	if _result(result):_show_saved.call_deferred()
 func _return_tyler_lab() -> void:
 	_show_saved()
 	if session.snapshot().player.flags.get("tylerCreatedKnown", false):

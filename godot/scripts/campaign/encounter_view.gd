@@ -70,6 +70,8 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	model.restore(state)
 	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "rai":"rai", "lacertubo": "lacertubo"}
 	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["rabiolava","platyx-draft","retalho-original","pipa-dragao-desatada","mormaco-possuido","tufanocorte","eremor"] else assets.get(model.enemy_model_id, "lacertubo")])
+	# Presentation-only alias preserves the saved encounter and existing Raio mechanics.
+	if model.enemy_model_id=="raio" and model.q.get("name","")=="Trovareta":art_ids[1]="trovareta"
 	if model.q.has("mormacoForm"):
 		if model.q.get("tylerAlly",false):rai_ally=load("res://assets/campaign/tyler-clareira-v1/rai.png")
 		if model.q.mormacoForm!="possessed":art_ids[1]="mormaco-normal"

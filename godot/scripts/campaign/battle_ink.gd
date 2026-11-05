@@ -88,7 +88,7 @@ static func facing_flip(id:String, x:float, target_x:float) -> bool:
 	if id.begins_with("mormaco-"):return x<target_x
 	if id.begins_with("rascunho-"):return x<target_x
 	if id in ["pipa-dragao-desatada","eremor"]:return x<target_x
-	return id in ["rabbito","nozinho","lacertubo","doberman-c","platyx-draft","retalho-original"] and x>target_x
+	return id in ["rabbito","nozinho","lacertubo","doberman-c","platyx-draft","retalho-original","trovareta"] and x>target_x
 
 static func live_sprite(canvas: CanvasItem, texture: Texture2D, id: String, frame: Dictionary, center: Vector2, extent: float, tint: Color = Tokens.UNTINTED, projection: Vector2 = Vector2.ONE, flip_horizontal:bool=false) -> void:
 	if sprite_bounds.is_empty(): sprite_bounds = JSON.parse_string(FileAccess.get_file_as_string(ROOT + "sprite-bounds.json"))

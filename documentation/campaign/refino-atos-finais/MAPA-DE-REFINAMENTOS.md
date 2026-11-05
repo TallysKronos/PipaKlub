@@ -1,14 +1,78 @@
 # Mapa de refinamentos de fluxo — 04/11/2026
 
-Base auditada: main 07e4a7de mais a branch codex/refino-atos-finais até 67ca8ef8.
+Base da revisão atual: claude/unificacao no commit 46a6c6cd, que incorpora os refinamentos anteriores. O inventário inicial abaixo foi escrito antes desses 12 commits; a matriz de revisão atual determina o que ainda falta.
 
 Escopo: fluxo de história, encenação, navegação entre áreas e continuidade de saves. Balanceamento fica para uma etapa posterior, por decisão do projeto.
 
 Este levantamento cruza código, Bíblia, testes existentes e capturas já revisadas. Não equivale a uma partida humana integral. “Confirmado” identifica uma lacuna observada no código ou na imagem. “Validar” identifica uma cobertura ainda insuficiente para afirmar um defeito.
 
+## Revisão atual após receber as melhorias
+
+Esta matriz substitui os estados do inventário inicial. “Implementado e testado” cobre o comportamento indicado e não equivale a aprovação visual de toda a cena. “Validar” não afirma a existência de um defeito.
+
+| ID | Estado atual | O que ainda falta |
+| --- | --- | --- |
+| [F01](#f01) | Implementado e testado | Revisão pela interface do diário e do HUD, nas duas ordens da missão opcional e do laboratório. A separação da missão principal passou. |
+| [F02](#f02) | Implementado e testado | Rejogar acolhimento, recusa e banco cheio pela interface com Retalho presente no cenário. A orientação principal já permanece livre. |
+| [F03](#f03) | Bíblia e texto corrigidos | Conferir a evacuação A–D em movimento com Tyler, Grampo, Platyx e as três resgatadas. A divergência documental sobre Heleana e Assis foi resolvida. |
+| [F04](#f04) | Condições e falas revisadas | Ver as revelações na tela nas duas ordens, incluindo cancelamento e retorno. A lógica de independência e a recompensa da flor passaram. |
+| [F05](#f05) | Pendente | Partida contínua dos atos 4–6 sem saltar marcos nem inserir vitórias no save. |
+| [F06](#f06) | Cobertura ampliada | Matriz de fechamento e reabertura do aplicativo em todas as cenas. Créditos já têm falha de gravação, nova tentativa e persistência testadas. |
+| [F07](#f07) | Validar | Prólogo completo com exploração, nome e retomada. As melhorias recebidas não substituem esse playtest. |
+| [F08](#f08) | Validar | Rua, professor, treino, Morro e inscrição com save novo e retorno após derrota. |
+| [F09](#f09) | Validar | Nina, Bambuzal, encontro de Tyler, rabiola e promoção em saves novos e antigos. |
+| [F10](#f10) | Validar | Percurso e retorno da comporta e passagem Clareira–Veredas em ambos os sentidos. |
+| [F11](#f11) | Validar | Apito falso, retorno ao vendedor e apito verdadeiro sem diálogo ou cobrança repetidos. |
+| [F12](#f12) | Validar | Câmera frontal do mural, leitura, aparição de Retalho e restauração da exploração. |
+| [F13](#f13) | Validar | Transição da derrota prevista para a Pipa-Dragão desatada com as intervenções visíveis. |
+| [F14](#f14) | Parcial | Desenvolver a elipse do Varal e da fuga; mostrar a escolha de Retalho e sua reação em vez de depender da explicação. |
+| [F15](#f15) | Validar | As duas vertentes de Heleana na casa e na rua, interrompidas e retomadas com o time correto. |
+| [F16](#f16) | Validar | Exame Azul e prática de Remar completos, com erro, saída, retomada e concessão única. |
+| [F17](#f17) | Validar | Mormaço normal, limiar de 30%, transformação no overworld e segunda fase com Tyler/Rai em sequência contínua. |
+| [F18](#f18) | Validar | Primeira subida a pé e ensino de Cavar e Corrente de Ar antes dos obstáculos dependentes. |
+| [F19](#f19) | Encenação ampliada no código | Arte aprovada e libertação integradas: linha rompe, voo, fim da tempestade e entrada do Rato antes do diálogo. 28 verificações da sequência passaram nos dois modos. Retomada cobre interrupção antes de concluir o diálogo. Falta ciclo de caminhada próprio do Rato e playtest humano contínuo dos dois duelos. |
+| [F20](#f20) | Grupo implementado no código | Reunião com os oito campeões, separação por silhueta, destaque ligado à fala, câmera e retorno integrados. 118 verificações passaram nos dois modos de movimento. Dona Neve usa o professor como mock autorizado; sua arte própria e o playtest humano contínuo permanecem pendentes. |
+| [F21](#f21) | Laboratório em três etapas | Validar apresentação da Sentinela, revelação e transição para a noite visualmente. O texto ainda descreve ações que podem precisar de encenação. |
+| [F22](#f22) | Guardas e nós implementados | Playtest noturno das barreiras e do galpão; conferir o desaparecimento de cada nó e o desbloqueio das saídas após as conquistas. |
+| [F23](#f23) | Torre e emissão integradas | Marco físico, receptor e ativação persistente. Recuperação encenada no Centro e no Condomínio, com retorno ao cume. 25 verificações da integração passaram. Ainda faltam variantes próprias dos Desalmados sem rabiola e refinamento dos cenários urbanos legados. Trovareta já usa o atlas aprovado na torre. |
+| [F24](#f24) | Fluxo existente, revisão pendente | Gravar A–D de ponta a ponta com posições, resgates, Platyx a 50%, partida, Gollia, Rato, pedra, Eremor e evacuação. |
+| [F25](#f25) | Orientação implementada e testada | Verificar se o jogador encontra as saídas e a viagem pelo mapa sem orientação externa. Chegada ao Mirante já apresenta percurso e Ícaro. |
+| [F26](#f26) | Roteiro ampliado e testado | Arte própria dos adversários/Ícaro e playtest da classificação obtida normalmente. A motivação de Ícaro e a indicação do próximo adversário já estão no roteiro. |
+| [F27](#f27) | Lobby e reações implementados | Conferir elenco entre rodadas, atualização após vitória/derrota e falas de retorno em tela. Evitar empilhamento e preservar acesso ao atendente. |
+| [F28](#f28) | Passagem do título implementada | Conferir Jamile chegando, fita dourada, Rabbito, câmera e comemoração. Pipa TV já está integrada. Retorno cinematográfico ao quarto continua pendente. |
+| [F29](#f29) | Entrega e saída encenadas e testadas | Flor entregue no cenário, reação e saída por rotas livres. Falta o interior próprio do laboratório com escada. |
+| [F30](#f30) | Validar transversalmente | Chegadas com grupo completo, oclusão, escadas e entradas nos dois sentidos. |
+| [F31](#f31) | Validar transversalmente | Preparação, derrota, fuga e revanche de cada família de duelo, preservando suas regras de descanso. |
+| [F32](#f32) | Validar transversalmente | Travessias com equipe alterada, empréstimos e retomada após interrupção. |
+| [F33](#f33) | Melhorias de orientação integradas | Harmonização completa de nomes e retirada de narração de movimentos, especialmente no epílogo da flor. |
+| [F34](#f34) | Validar transversalmente | Encontro aleatório quase disparando ao entrar e sair de cada cena ou travessia. |
+| [F35](#f35) | Cobertura local existente | Revisão da campanha inteira com teclado e controle; distinguir simulação de teste com dispositivo físico. |
+| [F36](#f36) | Validar transversalmente | Migração e retomada de saves representativos de todos os atos e decisões opcionais. |
+
+### Testes executados nesta revisão
+
+- Tyler opcional, 12 verificações sem falhas.
+- Retalho opcional, 14 verificações sem falhas.
+- Roteiro do Mirante, 43 verificações sem falhas.
+- Epílogo da flor, 25 verificações sem falhas.
+- Créditos e nova tentativa após falha de gravação, 9 verificações sem falhas.
+- História dos atos finais, 98 verificações sem falhas.
+
+Total de 201 verificações nessas seis suítes. A suíte do Mirante também emitiu avisos de instâncias e recursos ainda em uso ao encerrar. Investigar a limpeza do teste antes de considerar o encerramento técnico dessa suíte totalmente limpo.
+
+Não foi feita uma nova captura visual de todos os cenários alterados nesta revisão. O epílogo foi capturado com movimento ativado. A entrega, reação e saída usam o ateliê atual, sem escada própria.
+
+### Próxima ordem de execução
+
+1. Revisar visualmente F19–F22 e F26–F28, que receberam novos participantes e ações.
+2. Encerrar a animação do epílogo F29 e a função física da torre F23.
+3. Fazer o percurso contínuo F05, cobrindo F03, F24 e F25 durante a mesma sessão.
+4. Revalidar o início F07–F18 e os casos transversais F06 e F30–F36.
+5. Atualizar os estados desta matriz por evidência, sem reabrir como ausentes as funcionalidades já implementadas.
+
 ## Prioridade 1 — coerência e progressão
 
-| ID | Trecho | Estado | Refinamento e condição de fechamento |
+| ID | Trecho | Estado inicial | Refinamento e condição de fechamento |
 | --- | --- | --- | --- |
 | [F01](#f01) | Pipeiro Fantasma e laboratório | Confirmado | A entrada fantasma em BEATS é devolvida por current_beat até pipeiroFantasmaResolvido. Retirar a missão opcional da seleção obrigatória de objetivo, preservar sua recompensa e testar chegar ao laboratório sem fazê-la. begin_lab já aceita esse caminho. |
 | [F02](#f02) | Retalho e objetivo principal | Validar | retalho-atelie e retalho-confianca também entram na lista linear de BEATS. Confirmar que recusar, deixar para depois ou estar com banco cheio não mantém a orientação principal presa no arco pessoal. Fechar com saves das três escolhas. |
@@ -19,7 +83,7 @@ Este levantamento cruza código, Bíblia, testes existentes e capturas já revis
 
 ## Prioridade 2 — capítulos e encenação
 
-| ID | Trecho | Estado | Refinamento e condição de fechamento |
+| ID | Trecho | Estado inicial | Refinamento e condição de fechamento |
 | --- | --- | --- | --- |
 | [F07](#f07) | Prólogo, Rabbito e saída de casa | Validar | Rejogar TV → mesa → aniversário → Rabiola Antiga → invocação → nome → saída. Conferir liberdade de exploração, retomada, nome vazio e o momento em que o jogo ensina interação. Evitar repetir tutorial para save antigo. |
 | [F08](#f08) | Primeiro ciclo e Mikka | Validar | Conferir quarto → rua → professor → treino → Morro → inscrição. O jogador deve reconhecer descanso, retorno para casa e destino após a primeira vitória sem recorrer ao mapa de QA. |
@@ -47,7 +111,7 @@ Este levantamento cruza código, Bíblia, testes existentes e capturas já revis
 
 ## Prioridade 3 — consistência entre todos os capítulos
 
-| ID | Frente | Estado | Refinamento e condição de fechamento |
+| ID | Frente | Estado inicial | Refinamento e condição de fechamento |
 | --- | --- | --- | --- |
 | [F30](#f30) | Chegadas e saídas de mapa | Validar | Revisar os pontos de chegada com a equipe completa. Evitar atores empilhados, personagem atrás de cenário e retorno direto à porta que acabou de atravessar. |
 | [F31](#f31) | Preparação para duelos | Validar | Conferir aviso de sequência sem descanso, acesso à bolsa/save antes do desafio e destino após derrota ou fuga. Eremor deve continuar dependendo da aproximação e da interação. |
@@ -79,7 +143,7 @@ Existir uma suíte não demonstra aprovação visual nem uma partida integral. O
 
 ## Especificação detalhada dos refinamentos
 
-Esta seção descreve o comportamento pretendido para implementação e revisão. Os detalhes de encenação são propostas de execução dentro das decisões de história já aprovadas. Novas revelações, novos personagens e mudanças nas condições de recompensa exigem uma decisão narrativa específica antes de entrar no jogo. O estado de cada item permanece o indicado nas tabelas anteriores até a implementação ser validada.
+Esta seção descreve o comportamento pretendido para implementação e revisão. Os detalhes de encenação são propostas de execução dentro das decisões de história já aprovadas. Novas revelações, novos personagens e mudanças nas condições de recompensa exigem uma decisão narrativa específica antes de entrar no jogo. O estado vigente de cada item está na matriz de revisão atual. As tabelas de prioridade preservam o diagnóstico inicial, e esta especificação continua definindo o resultado esperado.
 
 Cada fluxo deve ser entregue com uma captura do início, uma do momento principal e uma do estado posterior. Onde houver movimento, a evidência deve incluir gravação. A validação de save deve usar slots isolados. O controle físico deve ser identificado separadamente da simulação de entrada.
 

@@ -1,5 +1,6 @@
 shader_type canvas_item;
 uniform bool motion = true;
+uniform float strength : hint_range(0.0, 1.0) = 1.0;
 
 void fragment() {
 	float time = motion ? TIME : 0.0;
@@ -10,5 +11,5 @@ void fragment() {
 	float streak = (1.0 - smoothstep(.035, .11, abs(fract(rain.x) - .5)))
 		* smoothstep(.73, .84, drop) * (1.0 - smoothstep(.89, .98, drop));
 	float flash = motion ? max(0.0, 1.0 - abs(mod(time, 7.0) - 5.0) * 6.0) : 0.0;
-	COLOR = vec4(.66, .79, .94, streak * .28 + flash * .12);
+	COLOR = vec4(.66, .79, .94, (streak * .28 + flash * .12) * strength);
 }

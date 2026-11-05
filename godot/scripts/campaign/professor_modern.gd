@@ -62,7 +62,7 @@ static func create_prop(room,p:Dictionary) -> Node2D:
   return root
  var manifest:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(BASE+"kit.json"));var spec:Dictionary=manifest.pieces[id]
  var bounds:=Rect2(spec.bounds[0],spec.bounds[1],spec.bounds[2],spec.bounds[3])
- var sprite:=Sprite2D.new();sprite.name="Art";sprite.texture=ImageTexture.create_from_image(Image.load_from_file(BASE+id+".png"));sprite.centered=false;sprite.region_enabled=true;sprite.region_rect=bounds
+ var sprite:=Sprite2D.new();sprite.name="Art";sprite.texture=load(BASE+id+".png");sprite.centered=false;sprite.region_enabled=true;sprite.region_rect=bounds
  var fit:float=minf(r.size.x/bounds.size.x,r.size.y/bounds.size.y);sprite.scale=Vector2.ONE*fit
  sprite.position=Vector2(r.position.x+(r.size.x-bounds.size.x*fit)*.5,r.end.y-bounds.size.y*fit)
  sprite.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR

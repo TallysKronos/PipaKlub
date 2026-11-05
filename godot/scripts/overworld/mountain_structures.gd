@@ -2,6 +2,10 @@ extends RefCounted
 const S=preload("res://scripts/overworld/forest_structures.gd")
 const Assets=preload("res://scripts/overworld/industrial_structures.gd")
 static func build(view) -> void:
+ if view.model.data.id=="kronasta-montanha-c":
+  var tower:=preload("res://scripts/overworld/wind_tower.gd").new()
+  tower.configure(view.model,S.geometry())
+  view.actors.add_child(tower)
  var sky:=Polygon2D.new();sky.polygon=PackedVector2Array([Vector2(-10000,-10000),Vector2(10000,-10000),Vector2(10000,10000),Vector2(-10000,10000)]);sky.color=Color.BLACK;sky.z_index=-100;view.actors.add_child(sky)
  if not S.geometry():
   field(view)

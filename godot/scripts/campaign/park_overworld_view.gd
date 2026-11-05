@@ -97,6 +97,8 @@ func _ready() -> void:
 	ui.add_child(exploration_hud)
 	hint = exploration_hud.prompt
 	_apply_story_light()
+	var tower:=actors.get_node_or_null("WindTower")
+	if tower!=null:tower.set_active(saved_player.flags.get("geradorLigado",false),reduced_motion)
 	exploration_hud.map = Hud.map_for(self,ui)
 	exploration_hud.chosen.connect(func(id: String):
 		if id=="menu": menu_requested.emit()
@@ -253,6 +255,8 @@ func _build_markers() -> void:
 
 func refresh(value: Dictionary) -> void:
 	saved_player = value.duplicate(true)
+	var tower:=actors.get_node_or_null("WindTower")
+	if tower!=null:tower.set_active(saved_player.flags.get("geradorLigado",false),reduced_motion)
 	if saved_checkpoint.get("scene")=="parque-patio-liga":
 		var at:Vector2=load("res://scripts/campaign/blue_exam.gd").escort_start(saved_player)
 		for event:Dictionary in interaction_events:
@@ -261,7 +265,11 @@ func refresh(value: Dictionary) -> void:
 	for actor in npc_nodes:
 		for event in model.data.events:
 			if event.type=="npc" and actor.point==Vector2(event.u+.5,event.v+.5): actor.root.visible=Checkpoint.allowed(event,saved_player,area_id)
+		var own_event: Dictionary=actor.root.get_meta("event",{})
+		if own_event.get("props",{}).get("acao","")=="endgameStep":actor.root.visible=Checkpoint.allowed(own_event,saved_player,area_id)
 	for marker in markers: marker.node.visible=Checkpoint.allowed(marker.event,saved_player,area_id)
+	preload("res://scripts/campaign/city_soul.gd").refresh(self)
+	_apply_story_light()
 	for piece in model.data.pieces:
 		if piece.asset!="bau": continue
 		var id: String = piece.props.get("bau","parque:"+area_id+":"+str(int(piece.id)))
@@ -364,7 +372,7 @@ func celebrate_item(message: String) -> bool:
 	return true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if guardian_focus: return
+	if guardian_focus or paused: return
 	if Controls.cancel(event):
 		get_viewport().set_input_as_handled()
 		menu_requested.emit()
@@ -385,6 +393,7 @@ func stage_endgame(id: String) -> void:
 	actors.add_child(staging)
 	var center := Vector2i(player.floor())
 	if id=="reuniao":
+		center=Vector2i(preload("res://scripts/campaign/endgame_story.gd").point(area_id,preload("res://scripts/campaign/endgame_story.gd").STEPS.reuniao.anchor).floor())
 		_stage_champions(staging,center)
 		return
 	if id=="gerador":
@@ -401,7 +410,7 @@ func stage_endgame(id: String) -> void:
 	var occupied := {center:true,Vector2i(follower.floor()):true}
 	var occupied_screen := [model.project(player),model.project(follower)]
 	var offsets := [Vector2i(-4,-1),Vector2i(4,-1),Vector2i(-3,3),Vector2i(3,3)] if id=="gerador" else [Vector2i(-3,-1),Vector2i(3,1)]
-	var cast := ["tufanocorte","rabiolava","basic-raio-de-sol","mormaco-normal"] if id=="gerador" else ["capanga-feminina","capanga-masculino"]
+	var cast := ["tufanocorte","rabiolava","trovareta","mormaco-normal"] if id=="gerador" else ["capanga-feminina","capanga-masculino"]
 	for i in cast.size():
 		var desired: Vector2i=center+offsets[i]
 		var cell := Vector2i(-1,-1)
@@ -418,8 +427,14 @@ func stage_endgame(id: String) -> void:
 		if cell.x<0:continue
 		occupied[cell]=true
 		occupied_screen.append(model.project(Vector2(cell)+Vector2(.5,.5)))
-		var sprite := Sprite2D.new()
-		if cast[i]=="rabiolava":
+		var sprite: Sprite2D
+		if cast[i]=="trovareta":
+			sprite=preload("res://scripts/campaign/trovareta_overworld.gd").new()
+			sprite.configure(content,96.0)
+			sprite.reduced_motion=reduced_motion
+		else:sprite=Sprite2D.new()
+		if cast[i]=="trovareta":pass
+		elif cast[i]=="rabiolava":
 			sprite.texture=load("res://assets/overworld/kits/aracati-v1/rabiolava.png")
 		elif id=="gerador":
 			var atlas: Dictionary=content.combat[cast[i]]
@@ -439,8 +454,9 @@ func stage_endgame(id: String) -> void:
 		else:
 			sprite.texture=load("res://assets/overworld/kits/camara-do-elo-v1/"+cast[i]+"-0.png")
 		var size: Vector2=sprite.region_rect.size if sprite.region_enabled else sprite.texture.get_size()
-		sprite.scale=Vector2.ONE*(96.0/size.y)
-		sprite.offset.y=-size.y*.5
+		if cast[i]!="trovareta":
+			sprite.scale=Vector2.ONE*(96.0/size.y)
+			sprite.offset.y=-size.y*.5
 		sprite.position=model.project(Vector2(cell)+Vector2(.5,.5))
 		sprite.set_meta("rest_y",sprite.position.y)
 		sprite.set_meta("ground_point",Vector2(cell)+Vector2(.5,.5))
@@ -456,23 +472,30 @@ const CHAMPIONS := [
 	{"name":"Marisol","path":"res://assets/npc-ds/cais-v1/marisol.png"},
 	{"name":"Bruno Solda","path":"res://assets/npc-ds/vila-operaria-v1/bruno-solda.png"},
 	{"name":"Caio Garça","path":"res://assets/npc-ds/palafitas-v1/caio.png"},
+	{"name":"Dona Neve","mock":"professor"},
 ]
 const CHAMPION_SPOTS := [Vector2i(-3,-2),Vector2i(-4,0),Vector2i(-3,2),Vector2i(0,-3),Vector2i(2,-3),Vector2i(4,-1),Vector2i(4,1)]
 
 func _stage_champions(staging: Node2D, center: Vector2i) -> void:
 	var occupied := {center:true,Vector2i(follower.floor()):true}
-	var occupied_screen := [model.project(player),model.project(follower)]
+	var occupied_screen := [model.project(player),model.project(follower),model.project(Vector2(center)+Vector2(.5,.5))]
+	for npc: Dictionary in npc_nodes:
+		if npc.root.visible and Vector2i(npc.point.floor())!=center:occupied_screen.append(model.project(npc.point))
 	for i in CHAMPIONS.size():
 		var entry: Dictionary=CHAMPIONS[i]
 		var cell := Vector2i(-1,-1)
-		for delta in [Vector2i.ZERO,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN,Vector2i(-1,-1),Vector2i(1,1),Vector2i(-2,0),Vector2i(2,0)]:
-			var candidate: Vector2i=center+CHAMPION_SPOTS[i]+delta
+		var preferred: Vector2i=center+CHAMPION_SPOTS[i]
+		var options: Array[Vector2i]=[]
+		for du in range(-7,8):
+			for dv in range(-7,8):options.append(center+Vector2i(du,dv))
+		options.sort_custom(func(a: Vector2i,b: Vector2i):return a.distance_squared_to(preferred)<b.distance_squared_to(preferred))
+		for candidate: Vector2i in options:
 			var point := Vector2(candidate)+Vector2(.5,.5)
 			var screen: Vector2=model.project(point)
 			var separate := true
 			for used: Vector2 in occupied_screen:
-				if screen.distance_to(used)<64.0:separate=false
-			if separate and not occupied.has(candidate) and model.point_walkable(point) and absf(model.height_at(point)-model.height_at(player))<.25:
+				if screen.distance_to(used)<64.0 or (absf(screen.x-used.x)<60.0 and absf(screen.y-used.y)<100.0):separate=false
+			if separate and not occupied.has(candidate) and model.point_walkable(point) and model.cell_at(candidate).get("ramp")==null and absf(model.height_at(point)-model.height_at(player))<.25 and not model.path_to(Vector2(center)+Vector2(.5,.5),point).is_empty():
 				cell=candidate
 				break
 		if cell.x<0:continue
@@ -480,7 +503,10 @@ func _stage_champions(staging: Node2D, center: Vector2i) -> void:
 		occupied_screen.append(model.project(Vector2(cell)+Vector2(.5,.5)))
 		var sprite := Sprite2D.new()
 		sprite.name=str(entry.name)
-		if entry.has("atlas"):
+		if entry.has("mock"):
+			preload("res://scripts/npc_pixel_sprite.gd").setup(sprite,str(entry.mock),86.0)
+			sprite.set_meta("placeholder",true)
+		elif entry.has("atlas"):
 			var atlas: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(str(entry.atlas)+"atlas.json"))
 			sprite.texture=load(str(entry.atlas)+"atlas.png")
 			for frame: Dictionary in atlas.sprites:
@@ -493,8 +519,9 @@ func _stage_champions(staging: Node2D, center: Vector2i) -> void:
 				sprite.region_enabled=true
 				sprite.region_rect=Rect2(0,0,64,96)
 		var size: Vector2=sprite.region_rect.size if sprite.region_enabled else sprite.texture.get_size()
-		sprite.scale=Vector2.ONE*(96.0/size.y)
-		sprite.offset.y=-size.y*.5
+		if not entry.has("mock"):
+			sprite.scale=Vector2.ONE*(86.0/size.y)
+			sprite.offset.y=-size.y*.5
 		sprite.position=model.project(Vector2(cell)+Vector2(.5,.5))
 		sprite.set_meta("ground_point",Vector2(cell)+Vector2(.5,.5))
 		staging.add_child(sprite)
@@ -527,11 +554,18 @@ func _apply_story_light() -> void:
 	_stage_storm_cast()
 	_stage_stadium_lobby()
 	if load("res://scripts/campaign/endgame_story.gd").night_active(saved_player):_stage_night_marks()
-	var storm: bool=endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene)
+	var storm: bool=(endgame.storm_active(saved_player) or saved_player.get("flags",{}).get("trovaretaReleasePending",false)) and Checkpoint.is_bosque(saved_checkpoint.scene)
 	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.2)
 	elif storm:tint=Tokens.TINTA_3.lightened(.32)
-	if tint==Tokens.UNTINTED:return
 	var layer: Node = exploration_hud.get_parent() if is_instance_valid(exploration_hud) else null
+	if not storm and layer!=null:
+		var old_rain:=layer.get_node_or_null("StoryRain")
+		if old_rain!=null:layer.remove_child(old_rain);old_rain.queue_free()
+	if tint==Tokens.UNTINTED:
+		if layer!=null:
+			var old_light:=layer.get_node_or_null("StoryLight")
+			if old_light!=null:layer.remove_child(old_light);old_light.queue_free()
+		return
 	endgame.veil(layer,tint)
 	if storm and layer != null and not layer.has_node("StoryRain"):
 		var rain := ColorRect.new()
@@ -548,28 +582,32 @@ func _apply_story_light() -> void:
 ## F19: Bosque C during the storm shows the bound Trovareta and the black line from
 ## Navalha; after her release the Rato watches from the edge until the next story step.
 func _stage_storm_cast() -> void:
-	if saved_checkpoint.scene!="kronasta-bosque-c" or actors.has_node("StormCast"):return
+	if saved_checkpoint.scene!="kronasta-bosque-c":return
 	var endgame=load("res://scripts/campaign/endgame_story.gd")
 	var flags_now: Dictionary=saved_player.get("flags",{})
+	var bound_now: bool=endgame.storm_active(saved_player) or flags_now.get("trovaretaReleasePending",false)
+	var phase:="bound" if bound_now else "rato" if flags_now.get("trovaretaLivre",false) and not flags_now.get("reuniaoCampeoes",false) else "none"
+	var previous:=actors.get_node_or_null("StormCast")
+	if previous!=null:
+		if previous.get_meta("phase","")==phase:return
+		actors.remove_child(previous)
+		previous.queue_free()
+	if phase=="none":return
 	var anchor: Vector2i=endgame.STEPS.trovareta.anchor
 	var navalha: Vector2=endgame.point(saved_checkpoint.scene,anchor)
 	if not navalha.is_finite():return
 	var cast := Node2D.new()
 	cast.name="StormCast"
+	cast.set_meta("phase",phase)
 	cast.y_sort_enabled=true
 	actors.add_child(cast)
-	if endgame.storm_active(saved_player):
+	if bound_now:
 		var bound: Vector2=endgame.point(saved_checkpoint.scene,anchor+Vector2i(0,-4))
 		if not bound.is_finite() or bound.distance_to(navalha)<2.0:return
-		var atlas: Dictionary=content.combat["basic-raio-de-sol"]
-		var frame: Dictionary=atlas.animations.idle[0]
-		var creature := Sprite2D.new()
+		var creature := preload("res://scripts/campaign/trovareta_overworld.gd").new()
 		creature.name="TrovaretaBound"
-		creature.texture=load("res://assets/campaign/"+atlas.image)
-		creature.region_enabled=true
-		creature.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
-		creature.scale=Vector2.ONE*(150.0/float(frame.h))
-		creature.offset.y=-float(frame.h)*.5
+		creature.configure(content,150.0)
+		creature.reduced_motion=reduced_motion
 		creature.position=model.project(bound)
 		creature.modulate=Tokens.POSSESSED
 		cast.add_child(creature)
@@ -581,13 +619,23 @@ func _stage_storm_cast() -> void:
 		cord.points=PackedVector2Array([model.project(navalha)+Vector2(0,-48),model.project(bound)+Vector2(0,-70)])
 		cast.add_child(cord)
 	elif flags_now.get("trovaretaLivre",false) and not flags_now.get("reuniaoCampeoes",false):
-		var edge: Vector2=endgame.point(saved_checkpoint.scene,anchor+Vector2i(5,-2))
+		var edge:=Vector2.INF
+		for offset in [Vector2i(-4,0),Vector2i(0,4),Vector2i(4,0),Vector2i(0,-4)]:
+			var candidate: Vector2=endgame.point(saved_checkpoint.scene,anchor+offset)
+			if not candidate.is_finite() or absf(model.height_at(candidate)-model.height_at(navalha))>.25:continue
+			if model.project(candidate).distance_to(model.project(player))<85.0:continue
+			if not model.clear_segment(navalha,candidate):continue
+			edge=candidate
+			break
 		if not edge.is_finite():return
 		var rato := Sprite2D.new()
 		rato.name="RatoWatching"
-		rato.texture=load("res://assets/overworld/kits/camara-do-elo-v1/rato-0.png")
+		rato.texture=load("res://assets/overworld/kits/camara-do-elo-v1/rato-idle-eight.png")
+		rato.region_enabled=true
+		rato.region_rect=Rect2(448,0,64,96)
 		rato.offset.y=-48
 		rato.position=model.project(edge)
+		rato.set_meta("ground_point",edge)
 		cast.add_child(rato)
 
 ## F27: the next opponent waits by the attendant; earlier opponents watch from the side.
@@ -777,7 +825,7 @@ func _pass_title(gathering: Node2D, finals) -> void:
 			hop.tween_property(companion,"position:y",companion.position.y,.18).set_trans(Tween.TRANS_SINE)
 			await hop.finished
 func finish_endgame_scene(id: String) -> void:
-	if reduced_motion:return
+	if reduced_motion and id!="gerador":return
 	if id in ["gollia-arrependimento","reuniao"]:
 		var staging := actors.get_node_or_null("EndgameStaging")
 		if staging == null:return
@@ -785,26 +833,30 @@ func finish_endgame_scene(id: String) -> void:
 		for actor: Node2D in staging.get_children():
 			var start: Vector2=actor.get_meta("ground_point")
 			var destination := start+Vector2(0,2)
-			if model.clear_segment(start,destination) and absf(model.height_at(start)-model.height_at(destination))<.25:
+			var near_player: Vector2=Geometry2D.get_closest_point_to_segment(model.project(player),model.project(start),model.project(destination))
+			if model.clear_segment(start,destination) and absf(model.height_at(start)-model.height_at(destination))<.25 and near_player.distance_to(model.project(player))>=65.0:
 				retreat.tween_property(actor,"position",model.project(destination),.7)
 			retreat.tween_property(actor,"modulate:a",0.0,.7)
 		await retreat.finished
 	elif id=="gerador":
-		var release := Node2D.new()
-		release.name="WindRelease"
-		release.z_index=2
-		release.position=model.project(player)
+		var staging := actors.get_node_or_null("EndgameStaging")
+		if staging==null:return
+		var release := preload("res://scripts/campaign/wind_release.gd").new()
 		actors.add_child(release)
-		var colors: Array = Tokens.WIND_RIBBONS
-		for i in 4:
-			var ribbon := Line2D.new()
-			ribbon.width=3.0
-			ribbon.default_color=colors[i]
-			for step in 40:
-				var angle := float(step)*.12+float(i)*TAU/4.0
-				var radius := 26.0+float(step)*3.0
-				ribbon.add_point(Vector2(cos(angle)*radius,sin(angle)*radius*.5-float(step)*1.3))
-			release.add_child(ribbon)
+		var step: Dictionary=preload("res://scripts/campaign/endgame_story.gd").STEPS.gerador
+		var tower:=actors.get_node_or_null("WindTower")
+		var target: Vector2=tower.receptor_position() if tower!=null else model.project(Vector2(step.anchor)+Vector2(.5,.5))+Vector2(0,-90)
+		var old_camera: Vector2=camera.position
+		var focus: Vector2=model.project(player).lerp(target,.4)
+		if reduced_motion:camera.position=focus
+		else:await create_tween().tween_property(camera,"position",focus,.45).set_trans(Tween.TRANS_SINE).finished
+		release.configure(self,staging,target)
+		if tower!=null:tower.set_active(true,reduced_motion)
+		if reduced_motion:
+			await get_tree().create_timer(.4).timeout
+			release.queue_free()
+			camera.position=old_camera
+			return
 		var dawn := ColorRect.new()
 		dawn.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		dawn.color=Tokens.DAWN
@@ -817,7 +869,7 @@ func finish_endgame_scene(id: String) -> void:
 		layer.add_child(dawn)
 		layer.move_child(dawn,0)
 		var wind := create_tween().set_parallel(true)
-		wind.tween_property(release,"position:y",release.position.y-90.0,1.4)
+		wind.tween_property(release.get_node("Convergence"),"scale",Vector2.ONE*2.0,1.4)
 		wind.tween_property(release,"modulate:a",0.0,1.4)
 		wind.tween_property(dawn,"modulate:a",.22,.7)
 		await wind.finished
@@ -826,3 +878,4 @@ func finish_endgame_scene(id: String) -> void:
 		await clear.finished
 		release.queue_free()
 		dawn.queue_free()
+		await create_tween().tween_property(camera,"position",old_camera,.4).set_trans(Tween.TRANS_SINE).finished
