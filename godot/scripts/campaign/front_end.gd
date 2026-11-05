@@ -1640,7 +1640,6 @@ func _save_park(quiet:bool=false) -> bool:
 	var at:Vector2=park.checkpoint_point() if park.has_method("checkpoint_point") else park.player
 	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), at,space)
 	if result.status != "ok":
-		park.paused = true
 		_notice(_error(result.status))
 		return false
 	if is_instance_valid(park.exploration_hud):

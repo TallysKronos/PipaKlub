@@ -405,6 +405,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R38 — Autosave e slots manuais
 
+**Execução parcial em 05/11:** corrigido travamento da exploração após dispensar erro de autosave. Teste no mapa real confirma preservação do arquivo/memória e nova tentativa bem-sucedida (12 checks). A configuração, o slot 0 separado e o indicador de gravação continuam pendentes. [Relatório](refinamentos/r38-autosave/README.md).
+
 **Situação:** fundação de save existe; validar toda a interface; obrigatório.
 
 **Execução:** conferir slot 0 reservado ao autosave, opção ligada no primeiro uso e ícone somente durante gravação real. Separar estado “gravando”, “salvo” e “falhou”, sem notificação enganosa de sucesso. Gravar em pontos seguros de transição/resultado e evitar posição no meio de uma parede ou estado incompleto de cutscene. Slots manuais precisam mostrar informação suficiente para reconhecer a partida e confirmar overwrite.
