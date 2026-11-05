@@ -5,11 +5,14 @@ const State = preload("res://scripts/campaign/state.gd")
 const DIRECTORY := "user://campaign"
 const MAX_BYTES := 8 * 1024 * 1024
 var directory: String
+var bank_directory: String
+const PartnerBank = preload("res://scripts/campaign/partner_bank.gd")
 var _recovering_archives := false
 const CampaignArchive = preload("res://scripts/campaign/campaign_archive.gd")
 
 func _init(storage_directory: String = DIRECTORY) -> void:
 	directory = storage_directory
+	bank_directory = "user://account/partner-bank" if directory == DIRECTORY else directory.path_join("profile-bank")
 
 func _path(slot_id: String) -> String:
 	return directory.path_join(slot_id + ".json")
@@ -84,12 +87,25 @@ func _remove_file(path: String) -> Error:
 func _recover_archives() -> String:
 	if _recovering_archives: return "ok"
 	_recovering_archives = true
-	var status: String = CampaignArchive.new(self).recover()
+	var status: String = PartnerBank.new(self).recover()
+	if status == "ok": status = CampaignArchive.new(self).recover()
 	_recovering_archives = false
 	return status
 
 func plan_campaign_archive(slot_id: String, revision: int) -> Dictionary:
 	return CampaignArchive.new(self).plan(slot_id, revision)
+
+func _bank_write_json(path: String, envelope: Dictionary) -> Error:
+	var text := JSON.stringify(envelope)
+	if text.to_utf8_buffer().size() > PartnerBank.MAX_BYTES: return ERR_OUT_OF_MEMORY
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	if file == null: return FileAccess.get_open_error()
+	file.store_string(text); file.flush()
+	var error := file.get_error(); file.close()
+	if error != OK: return error
+	var parser := JSON.new()
+	if parser.parse(FileAccess.get_file_as_string(path)) != OK: return ERR_FILE_CORRUPT
+	return OK if parser.data == JSON.parse_string(text) else ERR_FILE_CORRUPT
 
 func archive_campaign(plan: Dictionary) -> Dictionary:
 	return CampaignArchive.new(self).erase(plan)

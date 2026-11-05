@@ -35,7 +35,7 @@ function Invoke-Check([string]$Name, [string[]]$Arguments, [int]$Limit, [bool]$R
  [IO.File]::WriteAllText((Join-Path $output "$Name.log"), $log)
  $failed = $timedOut -or $process.ExitCode -ne 0 -or $log -match '(?m)SCRIPT ERROR:|Parse Error:|Compile Error:'
  if ($Name.StartsWith('import') -and $log -match '(?m)^ERROR:') { $failed = $true }
- if ($Name -in @('title_menu_checks','menu_lifecycle_checks','save_feedback_checks','autosave_recovery_checks','autosave_slots_checks','campaign_reset_checks') -and $log -match 'ObjectDB instances.*leaked|resources still in use|Leaked instance:') { $failed = $true }
+ if ($Name -in @('title_menu_checks','menu_lifecycle_checks','save_feedback_checks','autosave_recovery_checks','autosave_slots_checks','campaign_reset_checks','partner_bank_checks') -and $log -match 'ObjectDB instances.*leaked|resources still in use|Leaked instance:') { $failed = $true }
  $results.Add(@{name=$Name;exitCode=$process.ExitCode;timedOut=$timedOut;passed=(-not $failed);required=$Required})
  $process.Dispose()
  if ($failed) { Write-Warning "$Name reported errors (required=$Required). See $output/$Name.log"; Write-Host ($log -split "`n" | Select-Object -Last 15 | Out-String) }
@@ -59,7 +59,7 @@ try {
   'city_restoration_checks', 'champions_meeting_checks',
   'trovareta_presentation_checks', 'trovareta_release_checks',
   'beira_canal_flow_checks', 'title_menu_checks', 'menu_lifecycle_checks',
-  'save_resilience_checks', 'save_feedback_checks', 'autosave_recovery_checks', 'autosave_slots_checks', 'campaign_reset_checks'
+  'save_resilience_checks', 'save_feedback_checks', 'autosave_recovery_checks', 'autosave_slots_checks', 'campaign_reset_checks', 'partner_bank_checks'
  )
  foreach ($suite in $suites) {
   $limit = if ($suite -eq 'overworld_checks') { [Math]::Max(600, $TimeoutSeconds) } else { $TimeoutSeconds }

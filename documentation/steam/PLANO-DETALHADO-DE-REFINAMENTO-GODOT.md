@@ -417,7 +417,7 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R39 — Excluir e reiniciar campanha
 
-**Execução parcial em 05/11:** exclusão por identidade remove autosave e cópias manuais vinculadas após confirmação; cópias verificadas e diário recuperável permitem concluir exclusão/desfazer interrompidos. Reiniciar concede outro Rabbito com nova identidade e recibos separados. Saves antigos sem vínculo confirmado são mantidos com aviso. Depósito global ainda ausente no Godot: preservação de coleção real fica dependente de R40. [Relatório](refinamentos/r39-campanha/README.md).
+**Execução parcial em 05/11:** exclusão por identidade remove autosave e cópias manuais vinculadas após confirmação; cópias verificadas e diário recuperável permitem concluir exclusão/desfazer interrompidos. Reiniciar concede outro Rabbito com nova identidade e recibos separados. Saves antigos sem vínculo confirmado são mantidos com aviso. Na continuação R40, a preservação do depósito local foi testada com propriedade real de criatura; conta Steam/online permanece pendente. [Relatório](refinamentos/r39-campanha/README.md).
 
 **Situação:** regras de persistência global precisam de fechamento; obrigatório.
 
@@ -428,6 +428,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 **Aceite:** cancelar, confirmar, fechar durante operação, reiniciar imediatamente e carregar slot antigo relacionado; nenhuma duplicação por reexecutar o mesmo reset incompleto.
 
 ### R40 — Banco 30 por save e depósito global 20
+
+**Execução em 05/11:** banco da campanha 30 (inclui parceiro ativo), depósito compartilhado 20 neste perfil local, transferência e liberação confirmadas em Pipamons → Banco e depósito. Registro independente de propriedade impede recuperar a mesma instância por save antigo ou desfazer exclusão. Transferência pendente é retomada após falha/reabertura; novas aquisições acima de 30 são recusadas sem publicar a mutação. Conta Steam/online e resolução de recompensas pendentes (R41) ainda não integradas. [Relatório](refinamentos/r40-banco/README.md).
 
 **Situação:** contrato definido pelo produto, integração precisa de comprovação; obrigatório.
 

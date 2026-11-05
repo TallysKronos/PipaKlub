@@ -2200,6 +2200,7 @@ func _show_collection() -> void:
 	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
+	_button("Banco e depósito", footer, _show_partner_bank).custom_minimum_size.x=250
 	if team_pages>1:
 		_button("Anterior",footer,func():team_page-=1;_show_collection()).disabled=team_page==0
 		_button("Próxima",footer,func():team_page+=1;_show_collection()).disabled=team_page==team_pages-1
@@ -2207,6 +2208,81 @@ func _show_collection() -> void:
 		page_number.autowrap_mode=TextServer.AUTOWRAP_OFF
 		page_number.custom_minimum_size.x=90
 		page_number.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+
+func _show_partner_bank() -> void:
+	if is_instance_valid(battle) or is_instance_valid(workshop) or flow_busy or opening_busy:
+		_notice(_error("bank_unsafe")); return
+	if not _remember_world_position(): return
+	var saved: Dictionary = session.snapshot()
+	if saved.get("checkpoint",{}).get("kind") != "world": _notice(_error("bank_unsafe")); return
+	var contents: Dictionary = session.bank_contents()
+	if not _result(contents): return
+	var synced: Dictionary = session.bank_reconcile(saved)
+	if not _result(synced): return
+	saved = synced.data
+	_simple_page("BANCO DE PIPAMONS", true)
+	_label("Compartilhado entre as jornadas deste perfil, somente neste computador.", page, 17)
+	_label("Transferir grava a campanha, mesmo com autosave desligado. Saves antigos respeitam a propriedade atual de cada criatura.", page, 16)
+	var columns := HBoxContainer.new(); columns.add_theme_constant_override("separation",24)
+	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL; page.add_child(columns)
+	var first: Button
+	for side in ["campaign", "global"]:
+		var panel := VBoxContainer.new(); panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		columns.add_child(panel)
+		var partners: Array = saved.player.partners if side == "campaign" else contents.partners
+		_label(("ESTA CAMPANHA · %d / 30" if side == "campaign" else "DEPÓSITO GLOBAL · %d / 20") % partners.size(), panel, 24)
+		var scroll := ScrollContainer.new(); scroll.follow_focus = true
+		scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL; scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		panel.add_child(scroll)
+		var list := VBoxContainer.new(); list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		list.add_theme_constant_override("separation",14); scroll.add_child(list)
+		if partners.is_empty(): _label("Nenhuma criatura aqui.",list,18)
+		for partner in partners:
+			var card = load("res://scripts/campaign/hud_result_plate.gd").new(); list.add_child(card)
+			var details := VBoxContainer.new(); card.add_child(details)
+			var heading := HBoxContainer.new(); heading.add_theme_constant_override("separation",14); details.add_child(heading)
+			var art := TextureRect.new(); art.custom_minimum_size=Vector2(64,64)
+			art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			art.texture = _partner_portrait(partner.modelId) if partner.modelId in ["rabbito","basica","mata","azulao","raio","doberman-c","retalho-original","lacertubo"] else Hud.icon("pipa",true)
+			heading.add_child(art)
+			var copy := VBoxContainer.new(); copy.size_flags_horizontal=Control.SIZE_EXPAND_FILL; heading.add_child(copy)
+			_label("%s · Nv. %d" % [partner.get("personalName",partner.modelId),EncounterView.Model.level_for_xp(partner.get("xp",0))],copy,22)
+			_label("%s · Linha %d%% · Armação %d%%" % [partner.modelId,partner.get("condition",{}).get("line",100),partner.get("condition",{}).get("structure",100)],copy,16)
+			var id: String = partner.id
+			var direction := "deposit" if side == "campaign" else "withdraw"
+			var name: String = partner.get("personalName",partner.modelId)
+			var blocked: String = preload("res://scripts/campaign/partner_bank.gd").new(session._store).restriction(saved,id) if side == "campaign" else "ok"
+			if blocked == "ok" and side == "campaign" and contents.partners.size() >= 20: blocked = "bank_global_full"
+			if side == "global" and saved.player.partners.size() >= 30: blocked = "bank_campaign_full"
+			if blocked != "ok": _label(_error(blocked),details,15)
+			var button := _button("Guardar no depósito" if side == "campaign" else "Trazer para campanha",Hud.focus_space(details),func():_confirm_bank_transfer(id,direction,name))
+			Hud.secondary_button(button); button.disabled = blocked != "ok"
+			if first == null and not button.disabled: first = button
+			if side == "global":
+				var release := _button("Liberar criatura", Hud.focus_space(details), func():_confirm_bank_transfer(id,"discard",name))
+				Hud.secondary_button(release)
+				if first == null: first = release
+	var back := _button("Voltar aos Pipamons",page,_show_collection)
+	Hud.focus_later(first if first != null else back)
+
+func _confirm_bank_transfer(id: String, direction: String, name: String) -> void:
+	var copy := "Guardar %s no depósito global deste perfil?" % name if direction == "deposit" else "Trazer %s para esta campanha?" % name
+	if direction == "discard": copy = "Liberar %s permanentemente? Essa criatura sairá do depósito e não poderá ser recuperada carregando saves antigos." % name
+	copy += "\n\nEsta ação também grava o progresso atual da campanha."
+	var dialog := _confirmation("Liberar criatura" if direction == "discard" else "Transferir Pipamon", copy, "Liberar permanentemente" if direction == "discard" else "Confirmar transferência")
+	var operation := "bank-transfer-" + preload("res://scripts/campaign/state.gd").new_id()
+	dialog.confirmed.connect(func():_execute_bank_transfer(id,direction,operation))
+	dialog.confirmed.connect(dialog.queue_free); dialog.canceled.connect(dialog.queue_free)
+	dialog.popup_centered()
+
+func _execute_bank_transfer(id: String, direction: String, operation: String) -> void:
+	var result: Dictionary = session.transfer_partner(id,direction,operation)
+	if result.status in ["ok","already_applied"]: _show_partner_bank(); return
+	if result.status == "bank_pending":
+		var retry := _dialog("Concluir transferência",_error(result.status),"Tentar novamente","Fechar aviso")
+		retry.confirmed.connect(func():_execute_bank_transfer(id,direction,operation))
+		retry.confirmed.connect(retry.queue_free); retry.canceled.connect(retry.queue_free)
+	else: _notice(_error(result.status))
 
 func _route_action(id: String) -> void:
 	for place in park.data.places:
