@@ -39,7 +39,8 @@ func begin(id:String,at:Vector2)->Dictionary:
  if cp.get("kind")!="world" or cp.get("scene")!=data().scene or cp.get("space")!=CP.SPACE or not allowed(saved.player) or not valid_link(entry) or not at.is_finite():return {"status":"wrong_step"}
  if saved.player.has("marisolRowTrip") or saved.player.has("ninaGlideFlight"):return {"status":"wrong_step"}
  var origin:=point(entry.from)
- if at.distance_to(origin)>.85 or not CP.model_for(cp.scene).clear_segment(at,origin):return {"status":"wrong_step"}
+ # Same reach as the interact prompt (1.8), like Planar: the trip starts from the bank anyway.
+ if at.distance_to(origin)>1.8 or not CP.model_for(cp.scene).clear_segment(at,origin):return {"status":"wrong_step"}
  saved.player.marisolRowTrip={"version":1,"id":State.new_id(),"link":id,"scene":data().scene}
  return session.checkpoint(CP.make(cp.scene,origin,CP.SPACE),saved.player)
 func finish(token:String,motion:RefCounted)->Dictionary:

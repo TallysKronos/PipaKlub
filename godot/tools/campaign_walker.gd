@@ -299,6 +299,7 @@ func generic_target(beat: Dictionary) -> Array:
 		if e.type in ["saida", "entrada", "item"] or a in IDLE or a == "districtDuel" or exhausted.has(scene_key(e)): return false
 		# Planar is a way across the river; it is the goal only in its own beat.
 		if a == "ninaGlide" and beat.get("id", "") != "planar-nina": return false
+		if a == "marisolRow" and beat.get("id", "") != "remar-pratica": return false
 		if a.is_empty() and e.name != "Nina": return false
 		return CP.allowed(e, player, ""))
 
@@ -525,7 +526,7 @@ func walk_to(goal: Vector2, reach: float) -> bool:
 	if best == Vector2.INF and not crossing:
 		# The target may be on the other bank: cross with Planar, then try again.
 		for e in park.interaction_events:
-			if e.props.get("acao", "") != "ninaGlide" or not CP.allowed(e, park.saved_player, park.area_id): continue
+			if e.props.get("acao", "") not in ["ninaGlide", "marisolRow"] or not CP.allowed(e, park.saved_player, park.area_id): continue
 			var arrow := Vector2(e.u + .5, e.v + .5)
 			if model.path_to(park.player, arrow).is_empty() and park.player.distance_to(arrow) > 1.5: continue
 			note("   alvo na outra margem: Planar em (%d, %d)" % [e.u, e.v])
