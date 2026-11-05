@@ -31,6 +31,7 @@ var exhausted := {}
 var beat_steps := 0
 var duel_counts := {}
 var wild_count := 0
+var crossing := false
 
 ## Story actions that finish (part of) a beat, by beat id. District beats use the next
 ## duel of the district; endgame steps use their own event.
@@ -291,6 +292,8 @@ func generic_target(beat: Dictionary) -> Array:
 	return find_event(scenes, func(e):
 		var a: String = e.props.get("acao", "")
 		if e.type in ["saida", "entrada", "item"] or a in IDLE or a == "districtDuel" or exhausted.has(scene_key(e)): return false
+		# Planar is a way across the river; it is the goal only in its own beat.
+		if a == "ninaGlide" and beat.get("id", "") != "planar-nina": return false
 		if a.is_empty() and e.name != "Nina": return false
 		return CP.allowed(e, player, ""))
 
@@ -487,6 +490,20 @@ func walk_to(goal: Vector2, reach: float) -> bool:
 		var clear: bool = reach > 1.0 and nearest_event(candidate) == goal
 		if best == Vector2.INF or (clear and not best_clear) or (clear == best_clear and route.size() < path.size()):
 			best = candidate; path = route; best_clear = clear
+	if best == Vector2.INF and not crossing:
+		# The target may be on the other bank: cross with Planar, then try again.
+		for e in park.interaction_events:
+			if e.props.get("acao", "") != "ninaGlide" or not CP.allowed(e, park.saved_player, park.area_id): continue
+			var arrow := Vector2(e.u + .5, e.v + .5)
+			if model.path_to(park.player, arrow).is_empty() and park.player.distance_to(arrow) > 1.5: continue
+			note("   alvo na outra margem: Planar em (%d, %d)" % [e.u, e.v])
+			crossing = true
+			var ok := await walk_to(arrow, 1.5)
+			if ok:
+				view.park.interact()
+				await settle()
+			crossing = false
+			if ok and park_ready(): return await walk_to(goal, reach)
 	if best == Vector2.INF:
 		issue("sem caminho até (%.1f, %.1f) em %s" % [goal.x, goal.y, scene_now()])
 		await shot("noroute")
