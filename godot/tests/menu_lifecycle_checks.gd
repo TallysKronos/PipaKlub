@@ -44,6 +44,8 @@ func run() -> void:
 			released.append(weakref(front.sound.music.stream))
 		front.sound.play_event("ui.confirm")
 		check(not front.sound.voices.is_empty(), "UI voice is active before teardown")
+		front.sound.observer._damage({"body":true,"critical":true,"cut_line":true,"broke_hull":true})
+		check(front.sound.connected_events.has("battle.hull_break") and not front.sound.connected_events.has("battle.hull_hit") and not front.sound.connected_events.has("battle.critical") and not front.sound.connected_events.has("battle.line_snap"), "a decisive impact plays only the break cue")
 		for voice: AudioStreamPlayer in front.sound.voices:
 			if is_instance_valid(voice) and voice.stream != null:
 				released.append(weakref(voice))

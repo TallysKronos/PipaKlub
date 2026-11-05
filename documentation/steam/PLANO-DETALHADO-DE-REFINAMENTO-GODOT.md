@@ -607,6 +607,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R53 — Efeitos de ação e mixagem
 
+**Impactos em combate:** cada evento toca um efeito sonoro, com prioridade para quebra da armação, corte da linha, crítico e acerto comum, nessa ordem. A regressão combina os indicadores no mesmo evento para verificar que só o efeito prioritário toca. A escuta em fones e alto-falantes e a revisão das demais ações seguem pendentes.
+
 **Situação:** revisão de cobertura e qualidade; acabamento.
 
 **Execução:** conferir passos, interação, ataque, defesa, dano, cooldown, cura, compra, save, invocação, posse e rugido. Sincronizar com eventos visuais; usar variações discretas para repetição. Normalizar ganho e limitar sobreposição, com buses e controles compreensíveis. Não tratar volume alto como impacto e não esconder informação crítica somente no áudio.
