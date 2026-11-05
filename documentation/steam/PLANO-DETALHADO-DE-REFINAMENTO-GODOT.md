@@ -631,6 +631,10 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R55 — Idiomas e texto variável
 
+**Proposta para lançamento:** português do Brasil para interface e texto narrativo. Listar áudio completo somente se houver locução correspondente. Qualquer outro idioma depende de revisão do jogo inteiro, incluindo menus, avisos, diálogos e controles.
+
+**Validação local:** a suíte da campanha confirma que “Açucena do Céu” mantém espaços internos e acentos após salvar e reabrir. O teste também cobre o limite de 24 caracteres no primeiro parceiro. A cobertura de fontes para outros alfabetos e a decisão final de idiomas permanecem pendentes.
+
 **Situação:** idiomas de lançamento a decidir; condicional além do português.
 
 **Execução:** declarar idiomas completos por interface, legenda e áudio. Se houver tradução, extrair strings com contexto, placeholders e identidade do falante; evitar concatenar partes que impeçam tradução. Revisar acentos, nomes longos e símbolos, com fonte licenciada e fallback. Não considerar a tradução da página Steam como tradução do jogo.
