@@ -32,6 +32,11 @@ func run() -> void:
 			var jamile: Node2D=crowd.get_node("Jamile")
 			check(jamile.get_meta("ground_point").distance_to(view.player)<=1.01,"Jamile stands beside Kael")
 			check(crowd.get_node("TitleRibbon").position.distance_to(view.model.project(view.player))<60,"ribbon ends at Kael's reel")
+			var ribbon: Line2D=crowd.get_node("TitleRibbon")
+			if is_instance_valid(view.companion):
+				check(ribbon.get_meta("pulled_by_partner",false) and ribbon.get_point_count()==5,"partner visibly pulls the ribbon's end")
+			var spoken: String=preload("res://scripts/campaign/front_end.gd").CHAMPION_LINES
+			check(not spoken.contains("amarra a fita") and not spoken.contains("puxa a ponta") and spoken.contains("pela TV"),"podium text keeps the TV line and drops narrated gestures")
 			await view.present_championship_victory()
 			check(view.actors.get_node("ChampionshipVictory")==crowd,"ending staging is idempotent")
 		else:
@@ -96,5 +101,27 @@ func run() -> void:
 			check(view.actors.get_node_or_null("EndgameStaging")==null,"staging cleaned")
 		view.queue_free()
 		await process_frame
+	# Playtest: after the Eremor, the broken Elo key is shown at the altar (both motions),
+	# and the victory text no longer narrates it.
+	for motion in [false,true]:
+		var chamber=View.new()
+		chamber.campaign_mode=true
+		chamber.saved_checkpoint=CP.make("kronasta-coracao-d",CP.spawn("kronasta-coracao-d"),CP.SPACE)
+		var p: Dictionary=preload("res://scripts/campaign/state.gd").fresh("slot-1").player
+		p.flags.enamorDerrotado=true
+		chamber.saved_player=p
+		chamber.content=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
+		root.add_child(chamber)
+		chamber.set_physics_process(false)
+		chamber.reduced_motion=not motion
+		var camera_before: Vector2=chamber.camera.position
+		await preload("res://scripts/overworld/elo_chamber.gd").shatter_key(chamber,not motion)
+		var shards=chamber.actors.get_node_or_null("EloKeyShards")
+		check(shards!=null and shards.get_child_count()==5,"key shards shown at the altar")
+		check(chamber.camera.position.distance_to(camera_before)<1,"camera returns after the key shot")
+		chamber.queue_free()
+		await process_frame
+	var victory: String=preload("res://scripts/campaign/ruinas_dialogue.gd").VICTORY
+	check(victory.contains("Rato") and not victory.contains("No altar"),"victory keeps the Rato note, the key is shown")
 	print("Endgame staging: ",failures.size()," failures")
 	quit(int(not failures.is_empty()))

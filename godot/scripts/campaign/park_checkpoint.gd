@@ -141,6 +141,10 @@ static func encounter_weight(checkpoint: Dictionary, point: Vector2) -> float:
 	if not MAPS.has(scene) or not valid_position(scene,point): return 0.0
 	return preload("res://scripts/campaign/park_pacing.gd").weight(model_for(scene),point)
 
+## Between Jurandir's warning (Porto Novo done) and the rescue in the Ruínas.
+static func held(rescue_flag: String, player: Dictionary) -> bool:
+	return preload("res://scripts/campaign/district_rules.gd").completed(player,"porto") and not player.get("flags",{}).get(rescue_flag,false)
+
 static func allowed(event: Dictionary, player: Dictionary, area: String = "") -> bool:
 	var props: Dictionary = event.get("props",{})
 	var flags: Dictionary = player.get("flags",{})
@@ -150,6 +154,8 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	if props.get("acao","")=="aracatiRato": return false
 	# The Veredas trail clues lead to the guardian; after the duel they would repeat stale text.
 	if props.get("acao","") in ["veredasTrace","veredasPipes","parkBossGuide"] and flags.get("guardianDefeated",false): return false
+	# Nina is held in the Ruínas from the Porto Novo kidnapping until Kael frees her.
+	if event.get("name","")=="Nina" and not area.begins_with("kronasta-coracao") and held("ruinasNinaLivre",player): return false
 	if props.get("acao","")=="ruinasDuel":
 		return not flags.get(props.rescueFlag,false)
 	if props.get("acao","")=="pipeiroFantasma":

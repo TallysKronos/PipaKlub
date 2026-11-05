@@ -54,6 +54,26 @@ func run() -> void:
 	check(home.player.flags.get("kronastaEndingSeen", false) and home.player.flags.get("campeaoKronasta", false), "retry records the ending with the title")
 	check(home.checkpoint.scene == "quintal", "retry returns to the city")
 	check(credits(view) == null, "credits closed after the retry")
+	# BIBLIA §13: the epilogue closes the arcs once, then the post-credits hook.
+	var seen := PackedStringArray()
+	var started := Time.get_ticks_msec()
+	while not view.session.snapshot().player.flags.get("kronastaEpilogueSeen", false) and Time.get_ticks_msec() - started < 20000:
+		await process_frame
+		for child in view.get_children():
+			if child.get("dialog_text") != null and child.has_method("_finish") and child.visible and not child.get("_closed") and not child.is_queued_for_deletion():
+				seen.append(str(child.title) + "|" + str(child.dialog_text))
+				child._finish(true)
+	var told := "\n".join(seen)
+	check(view.session.snapshot().player.flags.get("kronastaEpilogueSeen", false), "epilogue recorded after the credits")
+	check(told.contains("câmara do ovo") and told.contains("Você é o Tyler") and told.contains("voltar a pesquisar") and told.contains("remendo"), "Elo stays, Assis accepts Tyler, Heleana researches, post-credits hook")
+	check(seen.size() == 4, "four epilogue pages, shown once (got %d)" % seen.size())
+	check(view.session.snapshot().checkpoint.scene == "quintal", "epilogue keeps the player in the city")
+	var branch: Dictionary = QA.build("final").player
+	branch.flags.retalhoParceiraHeleana = true
+	check(str(FrontEnd.epilogue_pages(branch)[2][1]).contains("A Retalho e eu"), "Heleana researches with Retalho when she took her back")
+	branch.flags.erase("retalhoParceiraHeleana")
+	branch.flags.heleanaLacoKael = true
+	check(str(FrontEnd.epilogue_pages(branch)[2][1]).contains("Você e a Retalho"), "Retalho comes with Kael when she chose him")
 	check(view.session.resume_slot("slot-1").status == "ok" and view.session.snapshot().player.flags.get("campeaoKronasta", false), "title survives reloading")
 	print("ENDING CREDITS: %d checks; %d failures" % [checks, failures])
 	quit(1 if failures else 0)

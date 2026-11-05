@@ -25,3 +25,15 @@ Base `57c20e10`, Godot 4.7.2 no Windows, perfil descartável. Esta rodada combin
 Capturas locais a 1280×720 do quarto, nascimento, nomeação e entrega da flor. Os passos do quarto foram abertos em estados preparados, sem simular o deslocamento entre eles. A captura da flor veio do fluxo executado na suíte do epílogo.
 
 Ainda falta percorrer uma campanha única do prólogo ao pós-jogo no executável Windows. Esse percurso precisa cobrir o ritmo entre bairros, os duelos com resultado obtido por jogo, a ordem alternativa de sidequests e a saída/reabertura durante os créditos. Os resultados atuais justificam uma rodada de refinamento narrativo antes de selecionar cenas para o trailer.
+
+## Ajustes aplicados (05/11)
+
+| Cena | O que mudou |
+| --- | --- |
+| Pódio | Rabbito puxa a ponta da fita dourada (a linha se estica até ele) depois que Jamile a passa para o carretel. O diálogo mantém a fala sobre a TV e não narra mais os dois gestos. |
+| Câmara do Elo após Eremor | Um plano curto mostra a chave do Elo caindo em cinco pedaços no altar (com câmera e sem animação, se o movimento estiver reduzido). A fala de vitória ficou com duas linhas: a chave quebrada, a fuga do Rato e a saída do grupo, sem repetir o que a cena mostra. |
+| Bancada no prólogo | "Pronto, Rabbito! Agora só falta a sua rabiola… Mas onde eu acho a rabiola de um Pipamon que eu mesmo inventei?" Fica a dúvida essencial; o presente da Heleana responde. |
+| Entrega da flor | Um único bloco com Tyler como falante, uma pausa ("…") antes do convite e "o Rai" sem quebra de linha. |
+| Nina no Jardim | Entre o aviso do Jurandir (Porto Novo concluído) e o resgate nas Ruínas, Nina não aparece mais no Jardim conversando como se nada tivesse acontecido. |
+| Falas repetidas | Nina e Tyler alternam duas falas por visita e mudam com a história (antes do ato 4, ato 4 em diante, depois do resgate, depois do registro do laboratório, campeão). A promessa da "pipa que eu estava construindo", que nunca se cumpria, saiu. |
+| Epílogo (§13) | Ver a bíblia: Elo na câmara, Assis aceita o Tyler, Heleana volta a pesquisar (três vertentes da Retalho), gancho pós-créditos. |

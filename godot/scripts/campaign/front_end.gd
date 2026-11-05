@@ -370,7 +370,7 @@ func _error(code: String) -> String:
 	return {"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
 		"feira_no_coins":"O apito custa 20 moedas. Os desafios do bairro ajudam a conseguir moedas.",
 		"not_enough_coins":"Você precisa de 12 moedas para descansar aqui. O ateliê do professor continua gratuito.",
-		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
+		"repair_needed": "Seu parceiro precisa de reparos. Descanse num banco, use um Kit de Remendo em Equipe → Cuidar ou procure o professor."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
 
 func _choose(slot_id: String, create: bool) -> void:
 	sound.reset_session()
@@ -487,6 +487,7 @@ func _show_saved() -> void:
 		"world":
 			_show_world()
 			_present_pending_ending.call_deferred()
+			_present_epilogue.call_deferred()
 		"practice": _show_practice()
 		"starter": _show_starter()
 		"workshop": _show_workshop()
@@ -1994,7 +1995,7 @@ func _park_action(id: String) -> void:
 		if player.flags.get("ninaReturned",false) and preload("res://scripts/campaign/league_promotion.gd").eligible(player) and not preload("res://scripts/campaign/league_promotion.gd").promoted(player):
 			if _result(preload("res://scripts/campaign/league_promotion.gd").claim(session,point)):_present_green_promotion()
 			return
-		if player.flags.get("ninaReturned", false): _notice("Nina: O Carcará está comigo de novo. Ainda quero te mostrar a pipa que eu estava construindo!")
+		if player.flags.get("ninaReturned", false): _notice(_idle_line("nina", _nina_lines(player)))
 		elif player.flags.get("ninaTail", false):
 			if _result(exploration.return_tail(point)):
 				park.refresh(session.snapshot().player)
@@ -3195,6 +3196,33 @@ func _return_district_result()->void:
 		if load("res://scripts/campaign/tyler_arcs.gd").finale_ready(player):text+="\n\nOpcional · Tyler quer conversar no laboratório do Sr. Assis. Leve a flor de cerejeira."
 	_notice(text)
 
+## Idle talk changes with the story and alternates between visits, so a character
+## spoken to again does not repeat the same line (walker: Nina and Tyler 6× each).
+var idle_turns := {}
+func _idle_line(who: String, lines: Array) -> String:
+	var turn: int = int(idle_turns.get(who, -1)) + 1
+	idle_turns[who] = turn
+	return lines[turn % lines.size()]
+
+func _nina_lines(player: Dictionary) -> Array:
+	var flags: Dictionary = player.get("flags", {})
+	if flags.get("campeaoKronasta", false):
+		return ["Nina: Campeão de Kronasta! O Carcará deu uma volta inteira no céu quando passou na TV.", "Nina: Ainda sinto o nó no pulso às vezes. Mas olha o céu agora: dá até pra ver a linha de todo mundo."]
+	if flags.get("ruinasNinaLivre", false):
+		return ["Nina: Obrigada por ter descido lá, Kael. Ainda sinto o nó no pulso.", "Nina: O Carcará não sai do meu lado desde as Ruínas. Acho que ele também ficou com medo."]
+	var act: int = preload("res://scripts/campaign/kronasta_story.gd").act(player)
+	if act >= 4:
+		return ["Nina: Falam de você na TV, sabia? Kael, da Rabiola Vermelha. Cuida dessa linha lá fora.", "Nina: O Carcará está comigo de novo, graças a você. Quando passar pelo Parque, a gente treina um voo."]
+	return ["Nina: O Carcará está comigo de novo, graças a você. Quando ele ficar mais forte, a gente treina junto.", "Nina: Os canos das Veredas pararam de vibrar. Acho que o Lacertubo também está descansando."]
+
+func _tyler_lines(player: Dictionary) -> Array:
+	var flags: Dictionary = player.get("flags", {})
+	if flags.get("campeaoKronasta", false):
+		return ["Tyler: Campeão! Quando quiser uma revanche de verdade, a Clareira é a nossa arena.", "Tyler: O Rai ainda imita o seu último corte. Ele não admite, mas gostou."]
+	if flags.get("tylerCreatedKnown", false):
+		return ["Tyler: Ainda penso no que li no laboratório. Aqui na Clareira fica mais fácil pensar.", "Tyler: O Rai não liga de onde eu vim. Acho que isso já é uma resposta."]
+	return ["Tyler: Rai e eu vamos conferir este lado. O banco está livre se vocês precisarem descansar.", "Tyler: O vento da Clareira muda antes da chuva. O Rai sempre percebe primeiro."]
+
 ## Joins a stage's authored lines; lines from someone other than the dialog's
 ## speaker carry their name.
 func _stage_lines(lines:Array,speaker:String)->String:
@@ -3206,7 +3234,7 @@ func _show_tyler_clareira()->void:
 	var service=load("res://scripts/campaign/tyler_clareira.gd").new(session)
 	if not service.available(park.player):return
 	if service.done(session.snapshot().player):
-		_notice("Tyler: Rai e eu vamos conferir este lado. O banco está livre se vocês precisarem descansar.");return
+		_notice(_idle_line("tyler", _tyler_lines(session.snapshot().player)));return
 	var index:int=service.step(session.snapshot().player)
 	var line:Dictionary=service.nodes()[index]
 	park.path.clear();park.paused=true
@@ -3894,6 +3922,8 @@ func _prepare_tyler_flower() -> Node2D:
 		return null
 	return scene
 
+const TYLER_FLOWER_REACTION := "Caiu junto da última pipa que eu soltei. Achei que tinha perdido.\n\n…\n\nVamos ver o\u00a0Rai? Ele deve estar com fome."
+
 func _play_tyler_flower() -> void:
 	if flow_busy:return
 	var arcs=load("res://scripts/campaign/tyler_arcs.gd")
@@ -3908,12 +3938,11 @@ func _play_tyler_flower() -> void:
 	await scene.give_flower()
 	if not TutorialStaging.valid(self,generation):return
 	target_room.set_story_paused(true)
-	var given := _dialog("Tyler · Flor de Cerejeira", "Tyler: Caiu junto da última pipa que eu soltei. Achei que tinha perdido.
-
-Tyler: Vamos ver o Rai. Ele deve estar com fome.", "Continuar")
+	# Playtest: one block with Tyler as the speaker; a pause before the invitation.
+	var given := _dialog("Tyler", TYLER_FLOWER_REACTION, "Continuar")
 	given.confirmed.connect(given.queue_free)
 	given.canceled.connect(given.queue_free)
-	given.popup_centered()
+	given.popup_centered(Vector2i(640,300))
 	await given.tree_exited
 	if not TutorialStaging.valid(self,generation):return
 	target_room.set_story_paused(false)
@@ -3997,6 +4026,15 @@ func _return_ruinas(outcome: String = "") -> void:
 		return
 	var flags: Dictionary = session.snapshot().player.flags
 	if flags.get("enamorDerrotado",false):
+		if outcome=="won":
+			park.path.clear()
+			park.paused=true
+			flow_busy=true
+			var shot=park
+			await preload("res://scripts/overworld/elo_chamber.gd").shatter_key(shot,preferences.reduced_motion)
+			flow_busy=false
+			if not is_instance_valid(shot):return
+			shot.paused=false
 		_notice(lines.VICTORY+"\n\nKael: Primeiro, vamos recuperar a equipe. Depois, falta o Alto do Mirante. Ícaro é o último campeão de bairro.")
 	elif flags.get("ruinasChefeVencido",false) and not flags.get("enamorDesperto",false):
 		_request_enamor(load("res://scripts/campaign/ruinas_elo.gd"))
@@ -4067,7 +4105,7 @@ func _show_stadium_bracket(finals: GDScript) -> void:
 
 ## F28: the title passes from Jamile to Kael, and the group reacts. Kael started the
 ## journey watching Jamile's final on TV in his room.
-const CHAMPION_LINES := "Jamile: Da última vez, você assistiu à minha final pela TV, do seu quarto. Hoje a cidade inteira assistiu à sua.\n\nJamile amarra a fita dourada da Liga no carretel de Kael.\n\nJamile: A linha é sua, campeão. Cuide bem dela.\n\nRabbito pula de alegria e puxa a ponta da fita.\n\nTyler: Eu falei que ia ser você!\n\nGrampo: O Platyx quer ver a fita de perto.\n\nHeleana: Você foi lá e voltou com todo mundo, filho."
+const CHAMPION_LINES := "Jamile: Da última vez, você assistiu à minha final pela TV, do seu quarto. Hoje a cidade inteira assistiu à sua.\n\nJamile: A fita da Liga é sua, campeão. Cuide bem dela.\n\nTyler: Eu falei que ia ser você!\n\nGrampo: O Platyx quer ver a fita de perto.\n\nHeleana: Você foi lá e voltou com todo mundo, filho."
 
 func _present_pending_ending() -> void:
 	var saved: Dictionary = session.snapshot()
@@ -4094,6 +4132,43 @@ func _present_pending_ending() -> void:
 	dialog.confirmed.connect(_show_kronasta_credits.call_deferred)
 	dialog.popup_centered(Vector2i(680,420))
 
+## BIBLIA §13: after the credits, the story closes its arcs once. The Elo stays in the
+## egg chamber (its key broke), Assis accepts Tyler as a person, Heleana goes back to
+## research with her son (and with Retalho, by the branch the player chose). The
+## post-credits hook keeps Tyler's thread open for the sequel.
+static func epilogue_pages(player: Dictionary) -> Array:
+	var flags: Dictionary = player.get("flags", {})
+	var heleana := "Heleana: Vou voltar a pesquisar as Ruínas. Desta vez para entender, não para esconder. Quer vir comigo, filho?\n\nKael: Eu, o Rabbito e a linha inteira."
+	if flags.get("retalhoParceiraHeleana", false):
+		heleana = "Heleana: A Retalho e eu vamos voltar às Ruínas. Desta vez para entender, não para esconder. Vem com a gente, filho?\n\nKael: Eu, o Rabbito e a linha inteira.\n\nA Retalho encosta a rabiola na mão de Heleana."
+	elif flags.get("heleanaLacoKael", false):
+		heleana = "Heleana: Vou voltar a pesquisar as Ruínas. Desta vez para entender, não para esconder. Você e a Retalho vêm comigo?\n\nKael: A gente vai. Ela escolheu esse caminho também."
+	return [
+		["Depois da final", "Kael e Tyler descem uma última vez à câmara do ovo. A chave do Elo continua em pedaços no altar.\n\nKael: O Elo fica aqui. É o lugar dele.\n\nTyler: E sem a chave, ninguém mais estica essa linha à força."],
+		["Ateliê do Sr. Assis", "Sr. Assis: Tyler, passei anos tentando terminar uma coisa que eu comecei. Mas você nunca foi o que faltava em mim.\n\nTyler: Então eu não sou a sua continuação?\n\nSr. Assis: Você é o Tyler. O resto, você escreve."],
+		["Casa de Kael", heleana],
+		["Mais tarde", "No quarto do Tyler, o carretel remendado está sobre a mesa.\n\nUm fio escapa do remendo e se solta mais um pouco, sozinho."],
+	]
+
+func _present_epilogue() -> void:
+	var saved: Dictionary = session.snapshot()
+	if not saved.player.flags.get("kronastaEndingSeen", false) or saved.player.flags.get("kronastaEpilogueSeen", false): return
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+	if session.snapshot().player.flags.get("kronastaEpilogueSeen", false): return
+	flow_busy = true
+	var pages: Array = epilogue_pages(session.snapshot().player)
+	for i in pages.size():
+		var page_dialog := _dialog(pages[i][0], pages[i][1], "Continuar" if i < pages.size() - 1 else "Voltar a Kronasta")
+		page_dialog.confirmed.connect(page_dialog.queue_free)
+		page_dialog.canceled.connect(page_dialog.queue_free)
+		page_dialog.popup_centered(Vector2i(660, 340))
+		await page_dialog.tree_exited
+	flow_busy = false
+	var done: Dictionary = session.snapshot()
+	done.player.flags.kronastaEpilogueSeen = true
+	if _result(session.commit_operation("kronasta-epilogue-v1", done.checkpoint, done.player)): _show_saved.call_deferred()
+
 func _show_kronasta_credits() -> void:
 	var credits_text := "CAMPEONATO DE KRONASTA\n\nCriação e desenvolvimento · Equipe Soulmonsters\nMotor · Godot Engine\nFontes · Lilita One, Bangers, Barlow Condensed e Nunito\nÍcones de controle · Kenney Input Prompts\n\nObrigado por jogar!"
 	var credits := _dialog("Soulmonsters", credits_text, "Voltar à cidade")
@@ -4105,6 +4180,7 @@ func _show_kronasta_credits() -> void:
 		if _result(result):
 			credits.queue_free()
 			_show_saved.call_deferred()
+			_present_epilogue.call_deferred()
 		else:
 			# F28: a failed save keeps the title and the credits; the button works again.
 			credits._closed=false)

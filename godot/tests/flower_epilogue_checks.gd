@@ -72,6 +72,8 @@ func run() -> void:
 	check(player.flags.get("tylerFlowerGiven", false) and not player.inventory.has(Arcs.Flower), "flower given and consumed")
 	var reaction: Array = dialogs(view).filter(func(d): return d.dialog_text.contains("Caiu junto"))
 	check(reaction.size()==1, "spoken reaction follows the visible delivery")
+	if reaction.size()==1:
+		check(not reaction[0].dialog_text.contains("Tyler:") and reaction[0].title=="Tyler" and reaction[0].dialog_text.contains("o Rai"),"reaction is one block spoken by Tyler, invitation kept on one line")
 	var scene=view.room.get_node_or_null("TylerEpilogue")
 	check(scene!=null and is_instance_valid(scene.flower),"flower exists in the scene")
 	check(scene.flower.position.distance_to(view.room.project(scene.point)+Vector2(0,-42))<1,"flower reaches Tyler")

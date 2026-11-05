@@ -485,6 +485,8 @@ O Kael e o Tyler derrotam o Bando e devolvem o Elo à câmara do ovo. O Assis ac
 
 **[Decidido]** O fio do Tyler não se resolve neste jogo: fica para a continuação. Proposta de gancho: na cena pós-créditos, o remendo do carretel do Tyler se desfaz um pouco mais.
 
+**[Implementado 05/11]** O epílogo roda uma vez, logo depois dos créditos, em quatro páginas: (1) Kael e Tyler descem à câmara do ovo; a chave do Elo continua quebrada no altar e o Elo fica ali, sem que ninguém consiga mais forçá-lo; (2) no ateliê, o Assis diz ao Tyler que ele nunca foi o que faltava nele ("Você é o Tyler. O resto, você escreve."); (3) a Heleana volta a pesquisar as Ruínas com o filho. Na vertente em que acolheu a Retalho, vai junto com ela; na vertente em que a Retalho escolheu o Kael, convida os dois; sem o arco da Retalho, convida só o filho; (4) cena pós-créditos: no quarto do Tyler, um fio escapa do remendo do carretel e se solta mais um pouco. A chave quebrada concilia o "devolvem o Elo" com a vitória sobre o Eremor: o Elo não sai da câmara, só deixa de poder ser usado.
+
 **Temas:**
 - criar o próprio parceiro e a responsabilidade de quem cria;
 - jogo limpo contra o cerol;

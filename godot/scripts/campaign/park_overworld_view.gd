@@ -827,6 +827,19 @@ func _pass_title(gathering: Node2D, finals) -> void:
 			hop.tween_property(companion,"position:y",companion.position.y-14.0,.14).set_trans(Tween.TRANS_SINE)
 			hop.tween_property(companion,"position:y",companion.position.y,.18).set_trans(Tween.TRANS_SINE)
 			await hop.finished
+	# Playtest: Rabbito pulls the end of the ribbon, so the gesture is seen, not narrated.
+	if is_instance_valid(companion):
+		var tail: Vector2=ribbon.to_local(companion.global_position+Vector2(0,-18))
+		var tug := PackedVector2Array(ribbon.points)
+		tug.append(tail)
+		if reduced_motion:ribbon.points=tug
+		else:
+			var from: Vector2=ribbon.points[ribbon.points.size()-1]
+			ribbon.add_point(from)
+			var pull := create_tween()
+			pull.tween_method(func(p: Vector2):ribbon.set_point_position(ribbon.get_point_count()-1,p),from,tail,.35).set_trans(Tween.TRANS_SINE)
+			await pull.finished
+	ribbon.set_meta("pulled_by_partner",is_instance_valid(companion))
 func finish_endgame_scene(id: String) -> void:
 	if reduced_motion and id!="gerador":return
 	if id in ["gollia-arrependimento","reuniao"]:

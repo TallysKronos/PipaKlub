@@ -25,6 +25,6 @@ const BETRAYAL := "Kael: Acabou, Rato. A chave.\n\nRato: Eu prometi um duelo. N�
 const EVACUATE := "Tyler: Nina, Mikka, Jamile, comigo! Grampo, segura a retaguarda."
 const AWAKENED := "Kael: Eremor! Olha pra mim. Você fica aqui."
 const REMATCH := "Tyler: A passagem ainda aguenta. Respira, confere a linha e me avisa quando estiver pronto.\n\nKael: Dessa vez eu seguro Eremor aqui."
-const VICTORY := "Kael: A linha parou de puxar.\n\nNo altar, só restaram os pedaços da chave do Elo. O Rato sumiu pela fenda durante o desabamento.\n\nTyler: Todo mundo passou. Vem, Kael.\n\nGrampo: Platyx, pronto pra sair?"
+const VICTORY := "Kael: A linha parou de puxar. A chave do Elo era só isso, pedaços.\n\nTyler: E o Rato fugiu pela fenda. Deixa ele. Todo mundo já passou, vem, Kael."
 const LOST_GUARD := "Kael: Minha linha cedeu. Vou me recompor e volto pra soltar você."
 const LOST_CHIEF := "Rato: Enquanto a chave estiver comigo, o altar é meu.\n\nKael: Ainda dá tempo. Vou tentar de novo."
