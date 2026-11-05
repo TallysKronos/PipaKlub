@@ -2041,15 +2041,34 @@ func _park_training(id: String) -> void:
 		var result: Dictionary=encounters.start_training(id,park.player)
 		if _result(result) and result.status=="ok": _show_saved.call_deferred())
 
+## Duels chain without healing; a partner that walks in hurt loses in seconds (walker
+## with real duels: Gollia and the Pipa-Dragão at 0% line). The invitation says so.
+const DUEL_ACCEPTS := ["Disputar","Enfrentar","Lutar juntos","Aceitar desafio","Defender meu título","Vamos treinar"]
+func _duel_condition_note() -> String:
+	var player: Dictionary = session.snapshot().get("player", {})
+	for partner in player.get("partners", []):
+		if partner.get("id", "") != player.get("equippedPartnerId", ""): continue
+		var condition: Dictionary = partner.get("condition", {"line": 100, "structure": 100})
+		var lowest: float = minf(float(condition.get("line", 100)), float(condition.get("structure", 100)))
+		if lowest < 50:
+			return "\n\nAtenção: %s está com %d%% de linha. Descanse num banco ou use um Kit de Remendo (Equipe → Cuidar) antes do duelo." % [partner.get("personalName", "Seu parceiro"), int(lowest)]
+	return ""
+
 func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> Control:
 	park.path.clear()
 	park.paused = true
+	if DUEL_ACCEPTS.any(func(verb: String): return accept.begins_with(verb)): text += _duel_condition_note()
 	var dialog := _dialog(title, text, accept, "Agora não")
 	dialog.confirmed.connect(callback)
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.tree_exiting.connect(func():
-		if is_instance_valid(park): park.paused = false)
+		if not is_instance_valid(park): return
+		# A notice opened from the callback (deferred) recorded the park as paused by
+		# this dialog; it must restore movement, not this pause (after "Aprender Cavar"
+		# Kael stayed frozen: campaign walker).
+		if int(park.get_meta("system_notice_depth", 0)) > 0: park.set_meta("system_notice_was_paused", false)
+		else: park.paused = false)
 	dialog.popup_centered(Vector2i(620, 200))
 	return dialog
 

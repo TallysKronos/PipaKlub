@@ -314,8 +314,13 @@ func _physics_process(delta: float) -> void:
 		if event.type=="piece" and collected_pieces.has(str(int(str(event.get("piece_id","0")).to_float()))): continue
 		var at := Vector2(event.u+.5,event.v+.5)
 		var gap := player.distance_to(at)
-		if gap<nearest and absf(model.height_at(player)-model.height_at(at))<.25:
-			nearby=event; nearest=gap
+		# Objects win ties with people: between the Tatutrama and the soft earth the
+		# button pointed to the tatu, and the dig could not be reached (campaign walker).
+		var rank := gap-(.35 if event.type=="interacao" else 0.0)
+		# After the lesson the tatu only repeats a hint; the soft earth is the step.
+		if event.props.get("acao","")=="learnDig" and saved_player.get("flags",{}).get("canCavar",false): rank+=.6
+		if gap<1.8 and rank<nearest and absf(model.height_at(player)-model.height_at(at))<.25:
+			nearby=event; nearest=rank
 	hint.text = "" if nearby.is_empty() else nearby.name
 	if nearby.get("type")=="item" and nearby.props.get("visibilidade","")=="escondido":
 		hint.text = "Investigar o chão"

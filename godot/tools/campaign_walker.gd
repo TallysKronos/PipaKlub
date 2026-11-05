@@ -384,9 +384,14 @@ func step(beat: Dictionary) -> bool:
 	if hud.strip_edges().is_empty(): issue("HUD sem objetivo em " + scene_now())
 	var event: Dictionary = found[1]
 	if not await walk_to(Vector2(event.u + .5, event.v + .5), 1.5): return false
+	# The button target is recomputed on the next unpaused physics frame (a dialogue may
+	# have just closed with the player already in reach).
+	for i in 3: await physics_frame
 	var nearby: Dictionary = view.park.nearby
 	if nearby.is_empty() or str(nearby.get("id")) != str(event.get("id")):
-		issue("ao lado de '%s' o botão aponta para '%s'" % [event.get("name"), nearby.get("name", "nada")])
+		var spot := Vector2(event.u + .5, event.v + .5)
+		var other := Vector2(nearby.get("u", 0) + .5, nearby.get("v", 0) + .5)
+		issue("ao lado de '%s' o botão aponta para '%s' (Kael %s, %.2f do alvo, %.2f do outro, pausado=%s)" % [event.get("name"), nearby.get("name", "nada"), str(view.park.player), view.park.player.distance_to(spot), view.park.player.distance_to(other), str(view.park.paused)])
 	var before := JSON.stringify(view.session.snapshot().player)
 	view.park.interact()
 	await settle()
