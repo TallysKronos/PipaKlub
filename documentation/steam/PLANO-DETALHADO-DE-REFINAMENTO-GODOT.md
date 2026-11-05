@@ -715,6 +715,10 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R61 — Desempenho medido e requisitos mínimos
 
+**Primeira medição gráfica:** `godot/tests/exploration_performance.gd` abre Parque duas vezes no mesmo processo e coleta 240 quadros parados por passagem. Em Windows, Godot 4.7.2 Compatibility, GTX 1650 e 1280×720, a primeira abertura levou 2,59 s e a segunda 1,90 s. Mediana de 40,3/41,8 ms, p95 de 55,6/61,0 ms e pico de 67,1/87,7 ms. O monitor do motor reportou 127 MB de memória estática e 161/166 MB de vídeo. A abertura inclui a transição visual.
+
+Para repetir, execute o binário gráfico do Godot com `--path godot --resolution 1280x720 --script res://tests/exploration_performance.gd`. A sonda usa uma campanha descartável e imprime JSON. As medições são do binário do editor, com cache de disco não controlado. A comparação no executável exportado, combate, outros mapas, sessões longas e outros computadores segue pendente para definir requisitos mínimos.
+
 **Situação:** requisitos finais não devem ser presumidos; obrigatório para publicação honesta.
 
 **Execução:** selecionar hardware mínimo/recomendado e cenas de maior custo: grupo, chuva, atlas grandes, Eremor e mapas com muita decoração. Medir FPS/frametime, picos, RAM/VRAM e carga fria/quente. Identificar CPU versus GPU antes de otimizar. Reduzir duplicação de textura, trabalho por frame e efeitos desnecessários sem destruir o estilo. Fixar metas com base no produto, não em uma média isolada.
