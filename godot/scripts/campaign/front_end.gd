@@ -3439,7 +3439,7 @@ func _endgame_step(id:String)->void:
 		var scene_view=park
 		var meeting=preload("res://scripts/campaign/champions_meeting.gd").new() if id=="reuniao" else null
 		if meeting!=null:meeting.configure(scene_view)
-		var dialog := _confirm_park(step.name,step.intro,"Continuar",func():
+		var dialog := _confirm_park(step.name,story.intro(session.snapshot().player,id),"Continuar",func():
 			if _result(story.talk(id,at)):
 				closing.accepted=true
 				scene_view.paused=true

@@ -47,7 +47,7 @@ const STEPS:={
 	"galpao":{"act":5,"scene":"kronasta-industrial-d","anchor":Vector2i(14,26),"name":"Cadeado de três nós","sprite":CAPANGA,"flag":"galpaoInvadido","requiresDistrict":"lajes",
 		"intro":"O galpão do Bando tem um cadeado de três nós. Cada tenente guarda um. Depois deles, os capangas até o fundo.",
 		"duels":[["Peteca","mata",34,"Peteca: O primeiro nó é meu."],["Cola-Fina","raio",35,"Cola-Fina: O segundo nó não solta fácil."],["Navalha","mata",36,"Navalha: Na tempestade você teve sorte. Aqui dentro, não."],["Capanga do galpão","lacertubo",35,"Capanga: Ninguém chega ao fundo."],["Capanga do galpão","azulao",36,"Capanga: Último aviso."]],
-		"outro":"Os três nós cedem e o cadeado cai. As almas guardadas no galpão se soltam e voam pela claraboia."},
+		"outro":"O último guarda cai entre as caixas, e a porta do fundo se abre. As almas guardadas no galpão se soltam e voam pela claraboia."},
 	"gollia-bando":{"act":5,"scene":"kronasta-industrial-d","anchor":Vector2i(20,16),"name":"Gollia","sprite":{"path":"res://assets/campaign/warehouse-v1/gollia.png"},"flag":"golliaFugiu","requires":"galpaoInvadido",
 		"intro":"No fundo do galpão, o Gollia espera com o Carretel Negro preso ao parceiro.\n\nGollia: O Rato me deu força. Eu fico do lado de quem tem força.",
 		"duels":[["Gollia","azulao",36,"Gollia: Vem."],["Parceiro descontrolado","pipa-dragao-desatada",37,"O Carretel Negro sobrecarrega o parceiro do Gollia. Ele perde o controle e ataca tudo.\n\nGollia: Para! Eu não mandei isso!"]],
@@ -133,8 +133,15 @@ static func duel_index(p:Dictionary,id:String)->int:
 static func prompt(p:Dictionary,id:String)->String:
 	var step:Dictionary=STEPS[id]
 	var index:=duel_index(p,id)
-	if index==0 or not step.has("duels"):return step.intro
+	if index==0 or not step.has("duels"):return intro(p,id)
 	return step.duels[index][3]
+
+## A step's opening line, adjusted to the player's optional choices (Retalho, F02).
+static func intro(p:Dictionary,id:String)->String:
+	var text:String=STEPS[id].intro
+	if id=="gollia-arrependimento" and not flags(p).get("retalhoAcolhido",false):
+		text=text.replace("No galpão, o Retalho me protegeu.","No galpão, o seu parceiro me protegeu.")
+	return text
 
 static func _near(saved:Dictionary,id:String,point_value:Vector2)->bool:
 	var step:Dictionary=STEPS[id];var cp:Dictionary=saved.checkpoint
@@ -216,7 +223,11 @@ const BETWEEN := {
 
 ## Text after a step closes, or after a single duel of a longer sequence.
 static func after(p:Dictionary,id:String)->String:
-	if done(p,id):return STEPS[id].outro
+	if done(p,id):
+		# Retalho is optional (F02): only a welcomed Retalho steps in for Gollia.
+		if id=="gollia-bando" and not flags(p).get("retalhoAcolhido",false):
+			return str(STEPS[id].outro).replace("O Retalho se põe na frente do Gollia","Rabbito se põe na frente do Gollia")
+		return STEPS[id].outro
 	var index:=duel_index(p,id)
 	if index<=0:return ""
 	var lines:Array=BETWEEN.get(id,[])

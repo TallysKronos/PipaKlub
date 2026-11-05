@@ -231,6 +231,9 @@ static func objective(player: Dictionary) -> String:
 	if beat.get("id","").begins_with("mormaco-"):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
 	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
+	# The galpão: three knots (lieutenants), then the guards to the back.
+	if beat.get("id")=="galpao" and load("res://scripts/campaign/endgame_story.gd").duel_index(player,"galpao")>=3:
+		return "Os três nós cederam. Vença os guardas até o fundo do galpão."
 	if beat.get("id")=="serra-habilidades":
 		if not flags(player).get("canCavar",false):return "Observe o tatu no cume da Serra para aprender Cavar."
 		if "serra-primeira-escavacao-v1" not in player.get("completedOperations",[]):return "Experimente Cavar na terra fofa do cume."
@@ -379,7 +382,7 @@ static func region_objective(player: Dictionary, scene: String) -> String:
 		return "Campeão de Kronasta · seus amigos esperam por você." if flags(player).get("campeaoKronasta",false) else "Fale com o atendente no balcão para disputar a próxima rodada. Você pode salvar e cuidar da equipe no lobby."
 	# An act 4-6 story step placed here wins over the area's district progress.
 	var step_beat:=current_beat(player)
-	if load("res://scripts/campaign/endgame_story.gd").STEPS.has(step_beat.get("id","")) and step_beat.place==str(place_for_scene(scene).get("id",region)):return step_beat.text
+	if load("res://scripts/campaign/endgame_story.gd").STEPS.has(step_beat.get("id","")) and step_beat.place==str(place_for_scene(scene).get("id",region)):return objective(player)
 	# The Serra's district waits for the climb and its two lessons (beats tufanocorte and
 	# serra-habilidades); until then the HUD follows the story.
 	if region=="montanha" and step_beat.get("id","") not in ["tufanocorte","serra-habilidades"] and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"alto-da-serra"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"alto-da-serra")

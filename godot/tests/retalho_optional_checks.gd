@@ -43,5 +43,13 @@ func _initialize() -> void:
 	check(Story.optional_quests(refused).any(func(q): return q.title == "Heleana e Retalho" and q.text == "Volte para casa."), "refusal keeps the reunion at home as a side step")
 	var welcomed := base(); welcomed.flags.assisReconheceuNoRetalho = true; welcomed.flags.retalhoAcolhido = true
 	check(arc(welcomed).done, "welcomed arc shows as done")
+	# Late acts never put an absent Retalho in a scene (Gollia in the galpão and the Ruínas).
+	var Endgame = preload("res://scripts/campaign/endgame_story.gd")
+	var without: Dictionary = QA.build("rato").player
+	without.flags.erase("retalhoAcolhido")
+	check(not Endgame.intro(without, "gollia-arrependimento").contains("Retalho"), "Gollia's repentance without Retalho")
+	check(not Endgame.after(without, "gollia-bando").contains("Retalho") and Endgame.after(without, "gollia-bando").contains("Rabbito"), "galpão: Rabbito steps in without Retalho")
+	var with: Dictionary = QA.build("rato").player
+	check(Endgame.after(with, "gollia-bando").contains("Retalho") and Endgame.intro(with, "gollia-arrependimento").contains("Retalho"), "a welcomed Retalho stays in both scenes")
 	print("RETALHO OPTIONAL: %d checks; %d failures" % [checks, failures])
 	quit(1 if failures else 0)
