@@ -1,6 +1,7 @@
 param(
  [Parameter(Mandatory)][string]$PackageDirectory,
- [string]$OutputDirectory = ''
+ [string]$OutputDirectory = '',
+ [string]$PreviousPackageDirectory = ''
 )
 $ErrorActionPreference='Stop'
 $package=[IO.Path]::GetFullPath($PackageDirectory)
@@ -75,6 +76,27 @@ try{
   throw 'A troca de perfil ou reinstalação alterou um save existente.'
  }
  $results.Add(@{stage='profile-isolation';passed=$true})
+ if($PreviousPackageDirectory){
+  $previous=[IO.Path]::GetFullPath($PreviousPackageDirectory)
+  $previousManifest=Get-Content -LiteralPath (Join-Path $previous 'build-info.json') -Raw | ConvertFrom-Json
+  if($previousManifest.sourceCommit -eq $manifest.sourceCommit){throw 'Informe uma versão anterior distinta para validar a atualização.'}
+  $updateInstall=Join-Path $output 'Instalação para atualização'
+  $updateProfile=Join-Path $output 'Perfil para atualização'
+  New-Item -ItemType Directory -Path $updateInstall,$updateProfile | Out-Null
+  foreach($name in @('Soulmonsters.exe','Soulmonsters.pck')){
+   $entry=@($previousManifest.files | Where-Object {$_.name -eq $name})
+   $source=Join-Path $previous $name
+   if($entry.Count -ne 1 -or (Get-FileHash -LiteralPath $source).Hash -ne $entry[0].sha256){throw "Pacote anterior divergente do manifesto: $name"}
+   Copy-Item -LiteralPath $source -Destination $updateInstall
+  }
+  Run-Package 'previous-version-create' $updateInstall 'create' $updateProfile
+  $updateSave=Join-Path $updateProfile $saveRelative
+  $previousHash=(Get-FileHash -LiteralPath $updateSave).Hash
+  foreach($name in @('Soulmonsters.exe','Soulmonsters.pck')){Copy-Item -LiteralPath (Join-Path $package $name) -Destination $updateInstall -Force}
+  Run-Package 'updated-version-resume' $updateInstall 'resume' $updateProfile
+  if((Get-FileHash -LiteralPath $updateSave).Hash -ne $previousHash){throw 'A retomada após atualização alterou o arquivo salvo.'}
+  $results.Add(@{stage='update-preserves-save';passed=$true;previousCommit=$previousManifest.sourceCommit})
+ }
 }finally{
  @{sourceCommit=$manifest.sourceCommit;scope='Windows release headless: two disposable APPDATA profiles, restart, relocation and fresh installation';results=@($results.ToArray())} | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $output 'results.json') -Encoding utf8
 }

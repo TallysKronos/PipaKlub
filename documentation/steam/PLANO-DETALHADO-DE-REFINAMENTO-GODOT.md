@@ -701,6 +701,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R60 — Instalação limpa e atualização
 
+**Atualização local:** o validador aceita `-PreviousPackageDirectory`. A build anterior cria um save em perfil descartável, o executável e o PCK são substituídos e a versão nova retoma a campanha. A prova com os pacotes de referência `9951cbac` e `0553eaa3` preservou o hash do save. Instalação pela Steam, rollback e execução em máquina limpa continuam pendentes.
+
 **Execução em 05/11:** release Windows real passou em 58 checks de recursos e 38 de início/save/reinício/instalação movida, com perfil isolado. Corrigido o acionamento da sonda no template release. PC/VM limpo, Steam e atualização entre versões continuam pendentes. [Relatório R60](refinamentos/r60-windows/README.md).
 
 **Situação:** exportador Windows existe; comprovação externa necessária; obrigatório.
