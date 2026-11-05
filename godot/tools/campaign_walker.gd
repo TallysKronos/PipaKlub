@@ -494,7 +494,16 @@ func walk_to(goal: Vector2, reach: float) -> bool:
 			if view.park != park: return await walk_to(goal, reach)
 			park.path = model.path_to(park.player, best)
 			continue
-		if park.path.is_empty(): break
+		# A story presentation (the Lacertubo reveal) pauses and clears the path; wait
+		# for control to come back, then keep walking.
+		if park.paused or park.get("guardian_focus"):
+			still = 0
+			continue
+		if park.path.is_empty():
+			if park.player.distance_to(best) > .3 and not model.path_to(park.player, best).is_empty():
+				park.path = model.path_to(park.player, best)
+				continue
+			break
 		if park.player == last:
 			still += 1
 			if still > 240: issue("parado no caminho em %s perto de %s" % [scene_now(), str(park.player)]); return false
