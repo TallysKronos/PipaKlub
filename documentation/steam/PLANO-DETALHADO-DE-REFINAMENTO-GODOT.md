@@ -595,6 +595,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R52 — Música e ambiente por estado da história
 
+**Mix atual:** título e menus usam Vento Menu, e a abertura usa Vento Aventura a partir do passo 2. Configurações preservam a faixa em curso. Exploração usa vento ou folhas conforme a cena, enquanto as demais rotas encerram a música de abertura. Trocas rápidas mantêm até uma faixa atual e uma em fade de saída. O ambiente anterior para antes de iniciar outro. A matriz regional e a escuta dos loops e níveis permanecem pendentes.
+
 **Situação:** auditar conteúdo e mix atual; acabamento.
 
 **Execução:** tabelar cue por região e estado: dia/noite, exploração, ameaça, duelo, vitória, derrota e recuperação. Conferir crossfade, loop e prioridade; garantir que abrir/carregar uma cena não empilhe players. Preservar silêncios com intenção, sem buracos por arquivo faltando. Ajustar ambiente para apoiar lugar/ação sem disputar com efeitos importantes.

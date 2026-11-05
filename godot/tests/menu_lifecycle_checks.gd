@@ -28,7 +28,15 @@ func run() -> void:
 		front._show_settings()
 		front._menu()
 		front._title()
+		front.sound.play_music("opening")
+		front.sound.play_music("menu")
+		front.sound.play_music("opening")
+		front.sound.play_music("menu")
 		for frame in 4: await process_frame
+		var music_players := 0
+		for child in front.sound.get_children():
+			if child.has_meta("soul_music"): music_players += 1
+		check(music_players <= 2 and front.sound.music_id == "menu","rapid changes keep only the current and outgoing themes")
 		var released := [weakref(front), weakref(front.session), weakref(front.sound)]
 		check(is_instance_valid(front.sound.music), "music is active before teardown")
 		if is_instance_valid(front.sound.music):
