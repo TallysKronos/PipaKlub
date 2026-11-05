@@ -377,6 +377,11 @@ func _confirmation(title:String,text:String,ok:String) -> Control:
 	return dialog
 
 func _notice(message: String) -> void:
+	# A notice opened while a map loads would be erased when the load clears the screen;
+	# it waits for the load instead (story lines after duels, F05).
+	if is_instance_valid(scene_loading):
+		_notice_after_load(message)
+		return
 	if is_instance_valid(park) and (message.begins_with("Baú encontrado") or message=="Rabiola do Carcará de Nina recebida."):
 		if park.has_method("celebrate_item") and park.celebrate_item(message):return
 		park.exploration_hud.push_notice(message,"item")
@@ -391,6 +396,11 @@ func _notice(message: String) -> void:
 		if is_instance_valid(park): park.paused = false
 		if is_instance_valid(room) and was_walking: room.can_walk = true)
 	dialog.popup_centered(Vector2i(640, 300))
+
+func _notice_after_load(message: String) -> void:
+	while is_instance_valid(scene_loading):
+		await get_tree().process_frame
+	if is_inside_tree():_notice(message)
 
 func _result(result: Dictionary) -> bool:
 	if result.status in ["ok", "already_applied"]:
