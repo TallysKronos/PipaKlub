@@ -1,0 +1,11 @@
+TITLE MENU: 349 checks; 0 failures
+Leaked instance: AudioStreamOggVorbis:9223372159814993537 - Reference count: 1
+Leaked instance: OggPacketSequence:9223372159731107463 - Reference count: 3
+Leaked instance: AudioStreamPlaybackOggVorbis:9223372159882102415 - Reference count: 1
+Leaked instance: OggPacketSequencePlayback:9223372159898879633 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372173320652875 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372472877844728 - Reference count: 1
+Resource still in use: res://assets/audio/music/opening-theme-v1/vento-menu.ogg::OggPacketSequence_o3k61 (OggPacketSequence)
+Resource still in use: res://assets/audio/sfx-v1/ui/confirm_01.wav (AudioStreamWAV)
+WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+ERROR: 2 resources still in use at exit.

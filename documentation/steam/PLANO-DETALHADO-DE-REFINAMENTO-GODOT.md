@@ -625,6 +625,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R59 — Nós, sinais, memória e encerramento
 
+**Execução em 05/11:** teardown do menu corrigido no teste; título passou em 350 checks e cinco ciclos de menu passaram em 55, sem diagnósticos de recursos vivos nem crescimento de nós/órfãos. Campanha longa e demais cenas continuam pendentes. [Relatório R59/menu](refinamentos/r59-menu/README.md).
+
 **Situação:** avisos de instâncias/recursos vivos apareceram em testes anteriores; investigar sem assumir vazamento comercial.
 
 **Execução:** distinguir teardown inadequado do teste de retenção real. Repetir criação/remoção de mapas, diálogos, aliados e batalha, monitorando nós, conexões, players e memória. Desconectar sinais e cancelar tweens/awaits pertencentes à cena encerrada; callbacks não podem atingir objeto liberado ou outra sessão. Validar também falha/cancelamento, não só o caminho feliz.
