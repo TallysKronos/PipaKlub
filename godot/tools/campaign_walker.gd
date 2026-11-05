@@ -32,6 +32,7 @@ var beat_steps := 0
 var duel_counts := {}
 var wild_count := 0
 var crossing := false
+var covered := PackedStringArray()
 
 ## Story actions that finish (part of) a beat, by beat id. District beats use the next
 ## duel of the district; endgame steps use their own event.
@@ -44,12 +45,14 @@ const ACTIONS := {
 	"eremor": ["ruinasDuel","ruinasChamber"],
 	"final": ["ruinasDuel"],
 	"homunculo": ["study"],
+	"exame-azul": ["blueExam"],
 }
 const DISTRICTS := {"dona-neve":"alto-da-serra","leo-antena":"centro","taina":"lajes","jurandir":"porto","icaro":"mirante"}
 const BEAT_SCENES := {
 	"tufanocorte": ["kronasta-montanha-c"], "serra-habilidades": ["kronasta-montanha-c","mina-ferro-a"],
 	"rabiolava": ["kronasta-aracati-c"], "ruinas-aliados": ["kronasta-coracao-a","kronasta-coracao-b","kronasta-coracao-c"],
 	"rato": ["kronasta-coracao-c","kronasta-coracao-d"], "eremor": ["kronasta-coracao-d"], "final": ["kronasta-estadio-a"],
+	"exame-azul": ["parque-patio-liga"],
 }
 
 func _initialize() -> void:
@@ -189,6 +192,8 @@ func handle_battle() -> bool:
 	var q: Dictionary = b.model.q
 	if q.get("platyxRefusal", "") == "pending":
 		q.platyxRefusal = "stopped"; q.hp = q.stats.line * .5
+	if q.get("mormacoForm", "") == "normal":
+		q.mormacoForm = "ambush"; q.hp = q.stats.line * .7
 	b.model.outcome = "won"
 	b.finish_requested.emit()
 	return true
@@ -313,7 +318,23 @@ const ROOM_STEPS := {"homunculo": ["professor-home", "professor-home", "study"],
 ## Beats that end by reaching a place (discovery), not by an event.
 const ARRIVALS := {"bosque": "kronasta-bosque-c"}
 
+## Minigames with their own real-input tests: the walker records their result the
+## way the minigame would and says so in the report (never silently).
+const COVERED := {
+	"exame-azul": {"flags": ["leagueBlue"], "tests": "blue_exam_checks, blue_yard_walk_checks"},
+	"remar-pratica": {"flags": ["marisolRemarPratica", "canRemar"], "tests": "marisol_row_checks, marisol_row_trip_checks"},
+}
+
 func step(beat: Dictionary) -> bool:
+	if COVERED.has(beat.get("id", "")):
+		var plan: Dictionary = COVERED[beat.id]
+		note("   minijogo coberto por %s · resultado registrado pelo caminhante" % plan.tests)
+		covered.append("%s (%s)" % [beat.id, plan.tests])
+		var saved: Dictionary = view.session.snapshot()
+		for flag in plan.flags: saved.player.flags[flag] = true
+		var result: Dictionary = view.session.commit_operation("walker-covered-" + str(beat.id), saved.checkpoint, saved.player)
+		await settle()
+		return result.status == "ok"
 	if ROOM_STEPS.has(beat.get("id", "")): return await room_step(ROOM_STEPS[beat.id])
 	if ARRIVALS.has(beat.get("id", "")):
 		if not await go_to(ARRIVALS[beat.id]): return false
@@ -558,6 +579,10 @@ func nearest_event(at: Vector2) -> Vector2:
 
 func finish() -> void:
 	var report := PackedStringArray(["# Percurso da campanha", "", "Início: salto QA `%s`. Duelos: %d (selvagens: %d). Problemas: %d." % [arg("from", "serra"), duels, wild_count, issues.size()], ""])
+	if not covered.is_empty():
+		report.append("## Minijogos registrados pelo caminhante (cobertos por testes próprios)"); report.append("")
+		for c in covered: report.append("- " + c)
+		report.append("")
 	if not issues.is_empty():
 		report.append("## Problemas"); report.append("")
 		for i in issues: report.append("- " + i)
