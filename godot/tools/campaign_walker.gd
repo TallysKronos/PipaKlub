@@ -338,7 +338,10 @@ func walk_room(target_point: Vector2) -> bool:
 				if pair[1] > 0: Input.action_press("campaign_" + pair[0], pair[1])
 				else: Input.action_release("campaign_" + pair[0])
 			await process_frame
-			if tick == 399: issue("parado na sala perto de " + str(room.actor)); return false
+			if tick == 399:
+				issue("parado na sala perto de %s (pode andar=%s, alvo=%s, próximo=%s, direção=%s)" % [str(room.actor), str(room.can_walk), str(target_point), str(point), str(Input.get_vector("campaign_left", "campaign_right", "campaign_up", "campaign_down", .2))])
+				await shot("room-stall")
+				return false
 	for action in ["left", "right", "up", "down"]: Input.action_release("campaign_" + action)
 	return room.actor.distance_to(target_point) < 110
 
