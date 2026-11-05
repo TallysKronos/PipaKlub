@@ -673,6 +673,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R58 — Carregamento de recursos na versão exportada
 
+**Validação ampliada:** 362 verificações passaram no projeto e no executável Windows exportado fora da pasta fonte. A sonda também verifica os atlas declarados no catálogo de combate, os JSON de mapas do parque/overworld e os efeitos sonoros declarados. A renderização de todos os mapas e a reprodução de todas as faixas ainda precisam de validação em jogo.
+
 **Execução iniciada em 05/11:** corrigidos título/casa/loja/previews; 58 checks passaram com PCK montado fora da fonte. Exe Windows final e inventário completo continuam pendentes. [Relatório R57–R58](refinamentos/r57-r58/README.md).
 
 **Situação:** risco confirmado por chamadas/alertas de `Image.load_from_file` em recursos internos.

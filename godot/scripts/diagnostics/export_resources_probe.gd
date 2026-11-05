@@ -5,6 +5,7 @@ const Room = preload("res://scripts/campaign/room_view.gd")
 const Shop = preload("res://scripts/campaign/shop_data.gd")
 const Front = preload("res://scripts/campaign/front_end.gd")
 const Title = preload("res://scripts/campaign/hud_title_menu.gd")
+const Park = preload("res://scripts/campaign/park_checkpoint.gd")
 var checks := 0
 var failures := 0
 
@@ -49,6 +50,18 @@ func run(tree: SceneTree) -> int:
 	front.free()
 	for file in ["logo.png", "neighborhood-starters-soulgen-v4.png"]:
 		check(Title.artwork("res://assets/campaign/title-v1/" + file) is CompressedTexture2D, "title uses imported art: " + file)
+	for actor: Dictionary in content.get("combat", {}).values():
+		var path := "res://assets/campaign/" + str(actor.get("image", ""))
+		check(ResourceLoader.exists(path, "Texture2D"), "combat atlas: " + path)
+	for file: String in Park.MAPS.values():
+		var path := "res://assets/overworld/maps/" + file + ".json"
+		check(JSON.parse_string(FileAccess.get_file_as_string(path)) is Dictionary, "map data: " + path)
+	var catalog: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://assets/audio/sfx-v1/catalog.json"))
+	check(catalog is Dictionary and not catalog.get("events", []).is_empty(), "sound catalog is packaged")
+	if catalog is Dictionary:
+		for event: Dictionary in catalog.get("events", []):
+			for entry: Dictionary in event.files:
+				check(ResourceLoader.exists(entry.path, "AudioStream"), "sound effect: " + str(entry.path))
 	print("EXPORT RESOURCES ", checks, " checks; ", failures, " failures")
 	return 0 if failures == 0 else 1
 
