@@ -531,6 +531,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R47 — Estados vazio, bloqueado, cheio, erro e confirmação
 
+**Equipe e depósito:** erro da Equipe com motivo, foco inicial em Tentar de novo e saída para o jogo. O depósito vazio explica como guardar um parceiro elegível e a campanha vazia indica como trazê-lo de volta. Captura em 1280×720 e 114 verificações na suíte de banco.
+
 **Execução em 05/11:** cards/avisos de save refinados e capturados; corrigidos avisos escondidos pelo filme e retry cortado. 35 checks de interface passaram, com regressão de diálogos/menu/saves. Estados das demais funcionalidades continuam pendentes. [Relatório de feedback R42/R47](refinamentos/r42-feedback/README.md).
 
 **Situação:** validar cenários de exceção; obrigatório quando afeta ação/descarte.

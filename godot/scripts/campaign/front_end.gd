@@ -2128,9 +2128,11 @@ func _show_collection() -> void:
 		var state_view=load("res://scripts/campaign/hud_list_state.gd").new()
 		state_view.state=team_load_state
 		state_view.reduced_motion=preferences.reduced_motion
+		state_view.message = "A equipe não pôde ser exibida. Tente abrir a lista novamente ou volte ao jogo." if team_load_state == "error" else ""
 		page.add_child(state_view)
 		state_view.retry_requested.connect(func():team_load_state="ready";_show_collection())
-		_button("Voltar",page,_return_to_game)
+		var back := _button("Voltar ao jogo",Hud.focus_space(page),_return_to_game)
+		Hud.focus_later(state_view.retry_button if state_view.retry_button != null else back)
 		return
 	var scroll := ScrollContainer.new()
 	scroll.follow_focus = true
@@ -2274,7 +2276,11 @@ func _show_partner_bank() -> void:
 		panel.add_child(scroll)
 		var list := VBoxContainer.new(); list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		list.add_theme_constant_override("separation",14); scroll.add_child(list)
-		if partners.is_empty(): _label("Nenhuma criatura aqui.",list,18)
+		if partners.is_empty():
+			var empty_message := "Nenhum parceiro no depósito. Use Guardar no depósito em um parceiro elegível da campanha."
+			if side == "campaign":
+				empty_message = "Nenhum parceiro nesta campanha. Se houver um parceiro no depósito, use Trazer para campanha."
+			_label(empty_message,list,18).theme_type_variation = "RecorteMutedText"
 		for partner in partners:
 			var card = load("res://scripts/campaign/hud_result_plate.gd").new(); list.add_child(card)
 			var details := VBoxContainer.new(); card.add_child(details)

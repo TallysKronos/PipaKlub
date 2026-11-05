@@ -148,6 +148,18 @@ func run() -> void:
 	var front:=Front.new();front.session._store=store;front.preferences.storage_path=directory.path_join("settings.cfg")
 	root.add_child(front);front.preferences.reduced_motion=true;front.session.separate_autosave=true
 	front.session.resume_slot("slot-0")
+	front.team_load_state = "error"
+	front._show_collection()
+	await settle()
+	var retry := root.gui_get_focus_owner() as Button
+	if retry != null and retry.text == "Tentar de novo":
+		await capture("team-error")
+		retry.pressed.emit()
+		await settle()
+		check(front.team_load_state == "ready" and front.last_scene_key == "page:EQUIPE","retry reopens team")
+	else:
+		check(false,"team error focuses retry")
+		front.team_load_state = "ready"
 	if "--capture" in OS.get_cmdline_user_args():
 		front._show_collection();await settle();await capture("team")
 	front._show_partner_bank();await settle()
