@@ -2144,6 +2144,21 @@ func _show_collection() -> void:
 	var team_capacity:=maxi(1,floori((size.y-300)/(260*preferences.text_scale)))
 	var team_pages:=maxi(1,ceili(float(player.partners.size())/team_capacity))
 	team_page=clampi(team_page,0,team_pages-1)
+	if team_pages > 1:
+		var pagination := HBoxContainer.new()
+		pagination.add_theme_constant_override("separation",32)
+		page.add_child(pagination)
+		page.move_child(pagination,scroll.get_index())
+		var page_number := _label("Página %d de %d" % [team_page+1,team_pages],pagination,16)
+		page_number.theme_type_variation = "RecorteMutedText"
+		page_number.autowrap_mode = TextServer.AUTOWRAP_OFF
+		page_number.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var previous_page := _button("Anterior",pagination,func():team_page-=1;_show_collection())
+		var next_page := _button("Próxima",pagination,func():team_page+=1;_show_collection())
+		Hud.secondary_button(previous_page)
+		Hud.secondary_button(next_page)
+		previous_page.disabled = team_page == 0
+		next_page.disabled = team_page == team_pages-1
 	for partner in player.partners.slice(team_page*team_capacity,(team_page+1)*team_capacity):
 		var card=load("res://scripts/campaign/hud_result_plate.gd").new()
 		var selected:bool=partner.id==player.get("equippedPartnerId", "")
@@ -2213,29 +2228,23 @@ func _show_collection() -> void:
 		details.add_child(progress)
 		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16).theme_type_variation="RecorteMutedText"
 		var id: String = partner.id
-		var care_id:String=partner.id
-		_button("Cuidar",details,func():_show_partner_care(care_id)).disabled=session.snapshot().checkpoint.get("kind","")!="world"
-		var action_space := Hud.focus_space(row)
-		action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", action_space, func():
-			if _result(exploration.equip(id)): _show_collection())
-		button.custom_minimum_size.x = 256
-		Hud.secondary_button(button)
-		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		button.disabled = id == player.get("equippedPartnerId", "")
+		var care := _button("Cuidar",details,func():_show_partner_care(id))
+		Hud.secondary_button(care)
+		care.disabled = session.snapshot().checkpoint.get("kind","") != "world"
+		if not selected:
+			var action_space := Hud.focus_space(row)
+			action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			var button := _button("Escolher parceiro", action_space, func():
+				if _result(exploration.equip(id)): _show_collection())
+			button.custom_minimum_size.x = 256
 	if player.partners.is_empty():_label("Sua equipe começa com o primeiro elo. Continue sua história com o professor.",list,22)
 	var footer:=HBoxContainer.new()
 	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
-	_button("Banco e depósito", footer, _show_partner_bank).custom_minimum_size.x=250
-	if team_pages>1:
-		_button("Anterior",footer,func():team_page-=1;_show_collection()).disabled=team_page==0
-		_button("Próxima",footer,func():team_page+=1;_show_collection()).disabled=team_page==team_pages-1
-		var page_number:=_label("%d / %d"%[team_page+1,team_pages],footer,16)
-		page_number.autowrap_mode=TextServer.AUTOWRAP_OFF
-		page_number.custom_minimum_size.x=90
-		page_number.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	var bank := _button("Banco e depósito", footer, _show_partner_bank)
+	bank.custom_minimum_size.x=250
+	Hud.secondary_button(bank)
 
 func _show_partner_bank() -> void:
 	if is_instance_valid(battle) or is_instance_valid(workshop) or flow_busy or opening_busy:

@@ -147,7 +147,10 @@ func run() -> void:
 	check(policy.restriction(a.snapshot(),next.player.partners[2].id)=="bank_story","Retalho protected")
 	var front:=Front.new();front.session._store=store;front.preferences.storage_path=directory.path_join("settings.cfg")
 	root.add_child(front);front.preferences.reduced_motion=true;front.session.separate_autosave=true
-	front.session.resume_slot("slot-0");front._show_partner_bank();await settle()
+	front.session.resume_slot("slot-0")
+	if "--capture" in OS.get_cmdline_user_args():
+		front._show_collection();await settle();await capture("team")
+	front._show_partner_bank();await settle()
 	check(front.last_scene_key=="page:BANCO DE PIPAMONS","bank integrated into frontend")
 	await capture("bank")
 	check(root.gui_get_focus_owner() is Button and not root.gui_get_focus_owner().disabled,"bank focuses usable action and scrolls to it")

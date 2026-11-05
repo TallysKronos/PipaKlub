@@ -519,6 +519,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R46 — Hierarquia e consistência do kit de interface
 
+**Equipe:** a paginação fica junto à lista, o parceiro ativo é identificado por rótulo e as ações auxiliares usam o estilo secundário do Recorte. O rodapé reúne Voltar e Banco e depósito. Conferido em captura Godot de 1280×720 e nas suítes de título, banco e recompensas. A revisão das demais telas e escalas permanece pendente.
+
 **Situação:** revisão de todas as telas; acabamento.
 
 **Execução:** catalogar componentes existentes e escolher padrão para título, subtítulo, contador, botão, aba, item selecionado e aviso. Diferenciar informação passiva de comando; não dar aparência idêntica ao contador de espécies e ao botão de menu. Reduzir listas gigantes usando agrupamento e detalhe contextual, mantendo funções descobríveis. Aplicar o kit aprovado em vez de criar um tema diferente por funcionalidade.
