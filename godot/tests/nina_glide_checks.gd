@@ -26,6 +26,17 @@ func _initialize()->void:
 	p.flags.leagueGreen=true;p.flags.ninaGlideLoanAvailable=true
 	check(session.checkpoint(CP.make("park-veredas",a,CP.SPACE),p).status=="ok","permission")
 	check(service.begin(entry.id,Vector2.INF).status=="wrong_step" and service.begin(entry.id,a+Vector2(6,0)).status=="wrong_step","remote/invalid takeoff rejected")
+	# Wherever the interact prompt reaches (up to 1.8 cells, clear line), Planar starts.
+	var reach:Vector2=Vector2.INF
+	for offset in [Vector2(1.5,0),Vector2(-1.5,0),Vector2(0,1.5),Vector2(0,-1.5),Vector2(1,1),Vector2(-1,1),Vector2(1,-1),Vector2(-1,-1)]:
+		var spot:Vector2=a+offset
+		if model.point_walkable(spot) and model.clear_segment(spot,a):reach=spot;break
+	check(reach.is_finite(),"walkable spot within the prompt reach")
+	if reach.is_finite():
+		check(service.begin(entry.id,reach).status=="ok" and session.snapshot().player.has("ninaGlideFlight"),"Planar starts from the prompt reach, not only on the arrow")
+		var undo:Dictionary=session.snapshot().player
+		undo.erase("ninaGlideFlight")
+		check(session.checkpoint(CP.make("park-veredas",a,CP.SPACE),undo).status=="ok","back to the arrow")
 	var disk:RefCounted=session._store;session._store=FailedStore.new()
 	check(service.begin(entry.id,a).status=="io_error" and not session.snapshot().player.has("ninaGlideFlight"),"failed takeoff save never starts")
 	session._store=disk
