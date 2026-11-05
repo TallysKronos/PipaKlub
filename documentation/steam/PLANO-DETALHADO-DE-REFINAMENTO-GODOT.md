@@ -645,6 +645,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R56 — Créditos, epílogo e pós-jogo
 
+**Créditos:** incluídas as atribuições do Godot, das fontes e dos ícones de controle conforme o registro do kit. A CI passa a verificar a retomada após falha de gravação nos créditos. Passaram 9 verificações de créditos e 25 do epílogo da flor. A suíte da flor emitiu alertas de recursos na saída. A revisão de atribuições de pessoas e áudio e a leitura integral do pós-jogo seguem pendentes.
+
 **Situação:** créditos e flor têm implementação; validar apresentação final; acabamento/continuidade.
 
 **Execução:** conferir créditos de pessoas, ferramentas, motor, fontes, áudio e atribuições aplicáveis. Ajustar entrada/saída e opções de avançar/voltar sem perder o marco concluído. Definir o estado pós-título, áreas visitáveis, missões restantes e como reencontrar parceiros/NPCs. Sidequest da flor deve reconhecer presença/ausência do item e entrega anterior, sem transformar o final em propaganda de DLC.

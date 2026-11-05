@@ -4094,7 +4094,8 @@ func _present_pending_ending() -> void:
 	dialog.popup_centered(Vector2i(680,420))
 
 func _show_kronasta_credits() -> void:
-	var credits := _dialog("Soulmonsters", "CAMPEONATO DE KRONASTA\n\nCriação e desenvolvimento\nEquipe Soulmonsters\n\nObrigado por jogar!", "Voltar à cidade")
+	var credits_text := "CAMPEONATO DE KRONASTA\n\nCriação e desenvolvimento · Equipe Soulmonsters\nMotor · Godot Engine\nFontes · Lilita One, Bangers, Barlow Condensed e Nunito\nÍcones de controle · Kenney Input Prompts\n\nObrigado por jogar!"
+	var credits := _dialog("Soulmonsters", credits_text, "Voltar à cidade")
 	credits.confirmed.connect(func():
 		var saved: Dictionary = session.snapshot()
 		saved.player.flags.kronastaEndingSeen = true

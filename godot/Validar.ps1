@@ -54,7 +54,7 @@ try {
  }
  $suites = @(
   'overworld_checks', 'morro_map_checks', 'campaign_checks', 'controls_checks',
-  'endgame_story_checks', 'endgame_staging_checks', 'release_travel_checks',
+  'endgame_story_checks', 'endgame_staging_checks', 'ending_credits_checks', 'release_travel_checks',
   'notice_after_load_checks', 'district_names_checks', 'flower_epilogue_checks',
   'city_restoration_checks', 'champions_meeting_checks',
   'trovareta_presentation_checks', 'trovareta_release_checks',
