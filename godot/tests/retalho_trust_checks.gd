@@ -10,6 +10,9 @@ var app:Control
 var service:RefCounted
 var checks:=0
 var failures:=0
+class FailedStore extends "res://scripts/campaign/save_store.gd":
+ func save_slot(_data:Dictionary)->Dictionary:
+  return {"status":"io_error"}
 func check(ok:bool,label:String)->void:
  checks+=1
  if not ok:failures+=1;printerr("FAIL "+label)
