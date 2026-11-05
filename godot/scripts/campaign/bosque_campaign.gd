@@ -91,6 +91,11 @@ static func objective(player: Dictionary, scene: String) -> String:
 	if scene=="kronasta-industrial-d" and Story.current_beat(player).get("id","") in ["galpao","gollia-bando"]:return Story.current_beat(player).text
 	if scene=="kronasta-industrial-d":return preload("res://scripts/campaign/warehouse_story.gd").objective(player)
 	if scene=="kronasta-bosque-d":return "Retalho recuou. Guarde a pista do nó de expedição e volte pela trilha." if player.get("flags",{}).get("retalhoBosqueVencido",false) else "Procure Retalho na clareira elevada · Nv.22. O mato dos desvios é opcional."
+	# A conquered place with the story elsewhere points to the next step (F25/F33).
+	var beat:Dictionary=Story.current_beat(player)
+	var away:bool=not beat.is_empty() and str(beat.get("place",""))!=Checkpoint.region_of(scene) and not (Checkpoint.is_bosque(scene) and beat.get("place","")=="bosque")
+	if away and int(beat.get("act",0))>=4 and (Checkpoint.is_bosque(scene) or (Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"] and preload("res://scripts/campaign/district_rules.gd").completed(player,Checkpoint.region_of(scene)))):
+		return "Próximo passo · "+Story.objective(player)+" Use o mapa de Kronasta (M)."
 	if Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"]:return preload("res://scripts/campaign/district_campaign.gd").objective(player,Checkpoint.region_of(scene))
 	if not Checkpoint.is_bosque(scene): return Story.region_objective(player,scene)
 	# The Trovareta storm (act 4) overrides the Bosque's exploration hints.

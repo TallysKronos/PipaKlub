@@ -204,11 +204,24 @@ func finish_release() -> Dictionary:
 	saved.player.flags.trovaretaReleaseSeen=true
 	return session.commit_operation("trovareta-release-v1",saved.checkpoint,saved.player)
 
+## Lines between chained duels, by step: one per duel already won (F33). A step
+## without its own lines names who comes next.
+const BETWEEN := {
+	"trovareta":["Navalha recua para dentro da chuva. A linha negra fica solta no ar, ainda presa à Trovareta."],
+	"exame-vermelho":["Dona Cida: Primeiro duelo aprovado. Cuide do parceiro: o segundo vem sem pausa."],
+	"galpao":["O primeiro nó do cadeado cede. Peteca sai correndo pela porta lateral.","O segundo nó cede. Cola-Fina larga o carretel e foge.","O último nó estala. Navalha some entre as prateleiras, mas ainda há guardas no fundo do galpão.","Um capanga cai sentado entre as caixas. Resta um no fundo."],
+	"gollia-bando":["Gollia cai de joelhos. Atrás dele, o parceiro começa a tremer, puxado pelo Carretel Negro."],
+	"copa-relampago":["Locutor: Primeira rodada vencida! A arquibancada pede a segunda!","Locutor: Kael está na final da Copa Relâmpago!"],
+}
+
 ## Text after a step closes, or after a single duel of a longer sequence.
 static func after(p:Dictionary,id:String)->String:
 	if done(p,id):return STEPS[id].outro
 	var index:=duel_index(p,id)
-	return "Vitória. Próximo: %s."%STEPS[id].duels[index][0] if index>0 else ""
+	if index<=0:return ""
+	var lines:Array=BETWEEN.get(id,[])
+	if index-1<lines.size():return lines[index-1]
+	return "%s ainda espera por você."%STEPS[id].duels[index][0]
 
 ## Night exits: without the bracelet, the Bando barriers hold the night scenes.
 static func exit_blocked(event:Dictionary,p:Dictionary,area:String)->bool:

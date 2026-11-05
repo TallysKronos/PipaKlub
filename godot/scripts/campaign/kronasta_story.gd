@@ -309,6 +309,8 @@ static func state(player: Dictionary, id: String) -> String:
 		"porto":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"porto") else "fechado"
 		"lajes":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"lajes") else "fechado"
 		"centro":return "vencido" if rules.completed(player,"centro") else "aberto" if flags(player).get("trovaretaLivre",false) or rules.unlocked(player,"centro") else "fechado"
+		# Vila Operária opens after the Cais (district order), by day as well.
+		"industrial":return "vencido" if rules.completed(player,"industrial") else "aberto" if rules.unlocked(player,"industrial") else "fechado"
 		"aracati":return "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"alto-da-serra") else "fechado"
 		"montanha":return "aberto" if serra_open(player) or (qa() and prologue_done(player)) else "fechado"
 		"palafitas":return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,id) or load("res://scripts/campaign/retalho_trust.gd").docks_open(player) else "fechado"

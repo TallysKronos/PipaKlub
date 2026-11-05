@@ -124,10 +124,11 @@ func select(index:int) -> void:
 	if story_region:state_label.text=Story.requirement(saved_player,region.id)
 	detail.tooltip_text=Story.objective(saved_player)
 	for child in parts.get_children():parts.remove_child(child);child.queue_free()
-	if region.get("preview",false) and not Story.qa() and not (region.id=="pantano" and Story.swamp_open(saved_player)):
-		var disabled:=action(parts,"Ainda não disponível",func():pass);disabled.disabled=true
-	elif story_region and not Story.can_travel(saved_player,region.id):
+	# Campaign places follow the story first; only non-story previews wait for QA.
+	if story_region and not Story.can_travel(saved_player,region.id):
 		var disabled:=action(parts,"Caminho ainda fechado",func():pass);disabled.disabled=true
+	elif not story_region and region.get("preview",false) and not Story.qa():
+		var disabled:=action(parts,"Ainda não disponível",func():pass);disabled.disabled=true
 	elif story_region:
 		# Regional travel enters part A; B/C are reached by walking the authored exits.
 		action(parts,region.parts[0],func():travel_requested.emit(region.scenes[0]))

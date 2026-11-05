@@ -66,6 +66,8 @@ func issue(text: String) -> void:
 	note("ISSUE " + text)
 
 func run() -> void:
+	# Play as a release build: debug builds turn QA on, which opens preview places.
+	Story.qa_override = 0 if not "--qa" in OS.get_cmdline_user_args() else 1
 	shots = "--shots" in OS.get_cmdline_user_args()
 	motion = "--motion" in OS.get_cmdline_user_args()
 	Engine.time_scale = float(arg("speed", "3"))
