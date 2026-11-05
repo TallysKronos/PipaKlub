@@ -17,7 +17,7 @@ $profile=Join-Path $output 'perfil isolado'
 $working=Join-Path $output 'diretório sem projeto'
 New-Item -ItemType Directory -Force $profile,$working | Out-Null
 $results=[Collections.Generic.List[object]]::new()
-function Run-Package([string]$Stage,[string]$Directory,[string]$Mode){
+function Run-Package([string]$Stage,[string]$Directory,[string]$Mode,[string]$ProfilePath=$profile){
  $info=[Diagnostics.ProcessStartInfo]::new()
  $info.FileName=Join-Path $Directory 'Soulmonsters.exe'
  $info.WorkingDirectory=$working
@@ -25,7 +25,7 @@ function Run-Package([string]$Stage,[string]$Directory,[string]$Mode){
  $info.CreateNoWindow=$true
  $info.RedirectStandardOutput=$true
  $info.RedirectStandardError=$true
- $info.Environment['APPDATA']=$profile
+ $info.Environment['APPDATA']=$ProfilePath
  $info.Environment['SOULMONSTERS_PACKAGE_PROBE']='1'
  $file=Join-Path $output "$Stage-engine.log"
  foreach($arg in @('--headless','--log-file',$file,'--','--package-probe',$Mode)){$info.ArgumentList.Add($arg)}
@@ -57,7 +57,25 @@ try{
  if(-not $sourceInstall.StartsWith($boundary,[StringComparison]::OrdinalIgnoreCase) -or -not $destinationInstall.StartsWith($boundary,[StringComparison]::OrdinalIgnoreCase)){throw 'Instalação de teste fora do diretório isolado.'}
  Move-Item -LiteralPath $sourceInstall -Destination $destinationInstall
  Run-Package 'relocated' $second 'resume'
+ $otherProfile=Join-Path $output 'perfil B separado'
+ New-Item -ItemType Directory -Path $otherProfile | Out-Null
+ $saveRelative='PipaKlub/package-probe/slot-1.json'
+ $saveA=Join-Path $profile $saveRelative
+ $saveB=Join-Path $otherProfile $saveRelative
+ $hashA=(Get-FileHash -LiteralPath $saveA).Hash
+ Run-Package 'second-profile-create' $second 'create' $otherProfile
+ $hashB=(Get-FileHash -LiteralPath $saveB).Hash
+ if($hashA -eq $hashB){throw 'Os perfis deveriam ter IDs de campanha distintos.'}
+ $freshInstall=Join-Path $output 'Instalação C nova'
+ New-Item -ItemType Directory -Path $freshInstall | Out-Null
+ foreach($name in @('Soulmonsters.exe','Soulmonsters.pck')){Copy-Item -LiteralPath (Join-Path $package $name) -Destination $freshInstall}
+ Run-Package 'reinstalled-profile-a' $freshInstall 'resume'
+ Run-Package 'reinstalled-profile-b' $freshInstall 'resume' $otherProfile
+ if((Get-FileHash -LiteralPath $saveA).Hash -ne $hashA -or (Get-FileHash -LiteralPath $saveB).Hash -ne $hashB){
+  throw 'A troca de perfil ou reinstalação alterou um save existente.'
+ }
+ $results.Add(@{stage='profile-isolation';passed=$true})
 }finally{
- @{sourceCommit=$manifest.sourceCommit;profileIsolated=$true;scope='Windows release headless: main scene, save, restart, moved install; not a clean VM/Steam install';results=@($results.ToArray())} | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $output 'results.json') -Encoding utf8
+ @{sourceCommit=$manifest.sourceCommit;scope='Windows release headless: two disposable APPDATA profiles, restart, relocation and fresh installation';results=@($results.ToArray())} | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $output 'results.json') -Encoding utf8
 }
 Write-Host "Package validation: $output"

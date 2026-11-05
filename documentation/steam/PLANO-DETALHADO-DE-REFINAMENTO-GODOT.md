@@ -469,6 +469,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R43 — Isolamento por usuário e reinstalação
 
+**Validação local:** o pacote Windows de referência (`9951cbac`) passou em seis aberturas com dois perfis APPDATA descartáveis. Ambos retomaram suas campanhas em uma instalação nova, com hashes distintos e preservados. A validação com contas Steam reais permanece pendente.
+
 **Situação:** diretório local PipaKlub existe; política por conta ainda precisa de decisão/comprovação.
 
 **Execução:** definir seleção de perfil e importação de progresso antigo. Testar duas contas Steam no mesmo Windows e dois usuários Windows; não misturar saves só porque compartilham pasta padrão. Conferir caminhos com Unicode/espaços e instalação em biblioteca diferente. Preservar save em atualização/reinstalação; não levar dados pessoais no pacote.
