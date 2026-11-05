@@ -132,7 +132,8 @@ func install_early(_from: String) -> Dictionary:
 	player.flags = {"pipeiroDocumentsSeen": true, "firstInsigniaSeen": true, "ninaAccepted": true, "ninaBambuzalOrder": true}
 	var entry: Dictionary = Rules.entry(player, "morro")
 	entry.completed = true; entry.rewardClaimed = true; entry.champion = "player"
-	for stage: Dictionary in Rules.definition("morro").stages.slice(0, 4): entry.qualification.append(stage.id)
+	for stage: Dictionary in Rules.definition("morro").stages.slice(0, 4):
+		if stage.id not in entry.qualification: entry.qualification.append(stage.id)
 	Rules.store(player, "morro", entry)
 	Rules.award_emblem(player, "morro")
 	return view.session.checkpoint(load("res://scripts/campaign/neighborhood_checkpoint.gd").make(Vector2(1792, 1808), player), player)
