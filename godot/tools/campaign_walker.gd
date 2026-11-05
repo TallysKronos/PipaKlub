@@ -28,6 +28,7 @@ var beat_id := ""
 var seen_dialogs := {}
 var duels := 0
 var exhausted := {}
+var beat_steps := 0
 
 ## Story actions that finish (part of) a beat, by beat id. District beats use the next
 ## duel of the district; endgame steps use their own event.
@@ -82,9 +83,14 @@ func run() -> void:
 		if player.flags.get("campeaoKronasta", false) and player.flags.get("kronastaEndingSeen", false):
 			note("== campanha concluída"); break
 		var id: String = beat.get("id", "final")
+		if id == beat_id:
+			beat_steps += 1
+			if beat_steps > 30:
+				issue("passo não avança depois de 30 ações (ciclo?) em " + scene_now()); break
 		if id != beat_id:
 			if beat_id == until: break
 			beat_id = id
+			beat_steps = 0
 			note("\n## " + id + " — " + str(beat.get("text", "")))
 			await restart_app()
 		if not await step(beat):
@@ -212,14 +218,17 @@ func target(beat: Dictionary) -> Array:
 				return find_event(Rules.definition(district).stages.map(func(s): return str(s.get("scene", ""))), func(e): return e.props.get("duel", "") == stage.id)
 		return []
 	else: scenes = BEAT_SCENES.get(id, [])
-	var wanted: Array = ACTIONS.get(id, [])
-	return find_event(scenes, func(e):
-		var a: String = e.props.get("acao", "")
-		if Endgame.STEPS.has(id): return a == "endgameStep" and e.props.get("step", "") == id
-		if a not in wanted or not CP.allowed(e, player, ""): return false
-		if exhausted.has(str(scene_key(e))): return false
-		if a == "ruinasDuel" and e.props.has("rescueFlag") and player.flags.get(e.props.rescueFlag, false): return false
-		return true)
+	if Endgame.STEPS.has(id):
+		return find_event(scenes, func(e): return e.props.get("acao", "") == "endgameStep" and e.props.get("step", "") == id)
+	# Actions in priority order: the first open one wins, wherever it is.
+	for wanted in ACTIONS.get(id, []):
+		var found := find_event(scenes, func(e):
+			if e.props.get("acao", "") != wanted or not CP.allowed(e, player, ""): return false
+			if exhausted.has(str(scene_key(e))): return false
+			if wanted == "ruinasDuel" and e.props.has("rescueFlag") and player.flags.get(e.props.rescueFlag, false): return false
+			return true)
+		if not found.is_empty(): return found
+	return []
 
 func find_event(scenes: Array, matcher: Callable) -> Array:
 	var ordered: Array = scenes.duplicate()

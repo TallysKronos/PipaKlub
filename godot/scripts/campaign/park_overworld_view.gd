@@ -285,7 +285,10 @@ func refresh(value: Dictionary) -> void:
 		exploration_hud.refresh(saved_player)
 		var scene: String=saved_checkpoint.get("scene","park-trail")
 		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_kronasta(scene) else Training.objective(saved_player,scene)
-		if Checkpoint.is_regional_preview(scene) and not Checkpoint.is_kronasta(scene):exploration_hud.objective.text="Explore os caminhos · M para viajar por Kronasta."
+		if Checkpoint.is_regional_preview(scene) and not Checkpoint.is_kronasta(scene):
+			# A story step inside a preview area (the Serra gallery) keeps its own text.
+			var story_text: String=load("res://scripts/campaign/kronasta_story.gd").region_objective(saved_player,scene)
+			exploration_hud.objective.text=story_text if not story_text.is_empty() and scene=="mina-ferro-a" else "Explore os caminhos · M para viajar por Kronasta."
 		if scene=="parque-patio-liga":exploration_hud.objective.text=load("res://scripts/campaign/blue_exam.gd").objective(saved_player)
 	if is_instance_valid(mormaco):mormaco.refresh()
 
