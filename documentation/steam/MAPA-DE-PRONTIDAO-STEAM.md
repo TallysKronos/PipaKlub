@@ -1,5 +1,7 @@
 # Soulmonsters — mapeamento de prontidão para a Steam
 
+Detalhamento de execução atualizado: [Plano detalhado de refinamento Godot — R01–R68](PLANO-DETALHADO-DE-REFINAMENTO-GODOT.md). Ele desdobra os pontos por cena/sistema em trabalho, resultado final e critérios de aceite; não declara as tarefas como concluídas.
+
 Revisão: **04/11/2026**. Produto: **Soulmonsters: Elo das Ruínas**, campanha Godot.
 
 Atualização de escopo em **05/11/2026**: o dono confirmou que o produto ativo é **somente Godot**, sem versão web. Os itens de paridade abaixo se referem apenas às funcionalidades que forem escolhidas para o jogo Godot; não exigem manter a versão web funcionando. A substituição do gate web pelo Godot está descrita em [Validação Godot](VALIDACAO-GODOT.md). A necessidade ou não de conexão à conta é uma decisão separada da escolha de engine.
