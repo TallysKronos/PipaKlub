@@ -1514,17 +1514,17 @@
   "lessons": [
     {
       "title": "Encontre o vento",
-      "hint": "Mova o mouse ou use WASD / setas. Leve seu parceiro até o círculo.",
+      "hint": "Guie seu parceiro até o círculo. Ali o vento está a seu favor.",
       "success": "Seu parceiro acompanha você. Agora vamos cruzar as linhas."
     },
     {
       "title": "Ataque no cruzamento",
-      "hint": "Seu alvo é Nozinho. Mantenha distância e cruze sua linha na faixa tracejada dele. Quando a mira ficar verde, clique ou pressione Espaço para atacar. De perto, o ataque atinge a armação; aqui vamos praticar a linha.",
-      "success": "Acertou! Ataque é clique / Espaço. Rebicada é outra ação: uma manobra da linha, usada com R."
+      "hint": "Mantenha distância e cruze a linha de Nozinho na faixa tracejada. Quando a mira ficar verde, ataque. De perto, o golpe acerta a armação.",
+      "success": "Boa! Você acertou a linha. A rebicada é outra manobra. Vamos praticá-la daqui a pouco."
     },
     {
       "title": "Recupere o fôlego",
-      "hint": "A barra azul é sua energia. Solte Espaço ou o botão Atacar e espere ela chegar a 90%. A recuperação é automática; pode continuar voando. Evite habilidades enquanto recarrega.",
+      "hint": "A barra azul mostra sua energia. Solte o ataque e deixe a energia chegar a 90%. Pode continuar voando, mas guarde suas habilidades por enquanto.",
       "success": "Muito bem! Você recuperou energia sem precisar parar. Soltar o ataque recupera mais rápido; habilidades e especiais gastam energia."
     },
     {
@@ -1534,7 +1534,7 @@
     },
     {
       "title": "Uma rodada com o Nozinho",
-      "hint": "Escolha a linha de Nozinho como alvo: cruze a faixa tracejada e ataque com clique / Espaço. O centro dourado, em ângulo aberto e em movimento, favorece o crítico.",
+      "hint": "Cruze a faixa tracejada de Nozinho e ataque. Para tentar um crítico, passe pelo centro dourado em movimento, com as linhas em ângulo aberto.",
       "success": "Primeiro corte! Nozinho está bem e o professor está orgulhoso."
     }
   ],

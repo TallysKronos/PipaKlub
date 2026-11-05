@@ -619,6 +619,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R54 — Revisão editorial de toda a campanha
 
+**Primeiro voo:** instruções de movimento, cruzamento, energia e rodada final descrevem a ação. Os comandos específicos continuam nos indicadores dinâmicos do HUD. As suítes de campanha e controles passaram em 253 verificações. A leitura integral das rotas e sidequests continua pendente.
+
 **Situação:** falas integradas são base de revisão; acabamento.
 
 **Execução:** organizar texto por cena/estado/falante, comparar nomes e fatos com a Bíblia e cortar repetições. Conferir voz de Kael, Tyler, Grampo, Heleana e campeões; NPCs não devem todos falar como tutoriais. Distinguir explicação de regra necessária de narração de movimento. Harmonizar Eremor/aliases, Retalho/nome escolhido, nomes de bairros e comandos realmente mapeados.
