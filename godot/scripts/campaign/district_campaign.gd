@@ -29,6 +29,8 @@ static func reward(player:Dictionary,context:Dictionary,outcome:String)->Diction
 	var first:bool=context.duel not in Rules.entry(player,context.district).wonDuels
 	var amount:int=int(entry.reward.xp)
 	# BIBLIA §8: the authored amounts kept Kael near Lv.23 at the Mirante (rivals 44).
+	# A loss pays 30% of the win: a champion beaten on the sixth try (Tainá, walker with
+	# real duels) leaves Kael stronger for each attempt instead of 20 XP each.
 	var equipped:Dictionary=preload("res://scripts/campaign/progression.gd")._partner(player,str(player.get("equippedPartnerId","")))
 	if not equipped.is_empty():
 		var levels=preload("res://scripts/campaign/partner_levels.gd")
@@ -38,7 +40,7 @@ static func reward(player:Dictionary,context:Dictionary,outcome:String)->Diction
 			if source.npcId==context.opponent:
 				var species:String=Model.foe_model(source)
 				amount=preload("res://scripts/campaign/opponent_rewards.gd").xp(species,int(entry.level))
-	return {"coins":int(entry.reward.coins)*(2 if first else 1) if outcome=="won" else 0,"xp":amount if outcome=="won" else 20 if outcome=="lost" else 0}
+	return {"coins":int(entry.reward.coins)*(2 if first else 1) if outcome=="won" else 0,"xp":amount if outcome=="won" else maxi(20,roundi(amount*.3)) if outcome=="lost" else 0}
 func _near(saved:Dictionary,id:String,point:Vector2)->bool:
 	var cp:Dictionary=saved.checkpoint
 	if cp.kind!="world" or cp.get("space","")!=Checkpoint.SPACE or cp.get("scene","")!=stage(id).get("scene","") or not point.is_finite():return false
@@ -63,6 +65,10 @@ func start(id:String,point:Vector2,defense:bool=false)->Dictionary:
 		if partner.id==saved.player.get("equippedPartnerId",""):active=partner
 	if active.is_empty() or active.get("condition",{}).get("line",100)<=0 or active.get("condition",{}).get("structure",100)<=0:return {"status":"repair_needed"}
 	var model:=Model.new(active,duel)
+	# Each loss in a row to the same rival lowers its reading one step (up to three); a
+	# win resets it. With real duels Tervan (Porto Novo) won nine times in a row.
+	var streak:int=int(saved.player.get("districtLossStreak",{}).get(duel,0))
+	if streak>0:model.ai_level=maxi(1,model.ai_level-mini(3,streak))
 	if planned.context.mode in ["defense","reclaim"]:
 		for source:Dictionary in Rules.definition(district).stages:
 			if source.npcId!=planned.context.opponent:continue
@@ -90,6 +96,10 @@ func settle()->Dictionary:
 	if result.status!="ok":return result
 	var awarded:=reward(saved.player,encounter.districtContext,outcome)
 	var player:Dictionary=result.player
+	var streaks:Dictionary=player.get("districtLossStreak",{})
+	if outcome=="lost":streaks[model.stage_id]=int(streaks.get(model.stage_id,0))+1
+	elif outcome=="won":streaks.erase(model.stage_id)
+	player.districtLossStreak=streaks
 	player.coins+=awarded.coins
 	var xp:=0
 	for partner:Dictionary in player.partners:

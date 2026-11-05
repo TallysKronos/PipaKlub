@@ -49,5 +49,27 @@ func run() -> void:
 	if rest!=null: rest._finish(true)
 	await settle()
 	check(not front.park.paused,"a confirmation alone gives movement back")
+	# A short staging pauses the park and then tells the result (rescue in the Ruínas):
+	# closing the notice gives movement back.
+	front.park.paused=true
+	front._notice("Nina: Pronto. A linha afrouxou.")
+	await settle()
+	var freed:=dialog_with(front,"Nina: Pronto")
+	if freed!=null: freed._finish(true)
+	await settle()
+	check(not front.park.paused,"after a staging pause, closing the notice gives movement back")
+	# Another dialog still open keeps the park paused.
+	var ask2:=front._confirm_park("Cadeado","Três nós.","Enfrentar",func(): pass)
+	await settle()
+	front._notice("Aviso por cima.")
+	await settle()
+	var over:=dialog_with(front,"Aviso por cima")
+	if over!=null: over._finish(true)
+	await settle()
+	check(front.park.paused,"a dialog still open keeps the park paused")
+	var still:=dialog_with(front,"Três nós")
+	if still!=null: still._finish(false)
+	await settle()
+	check(not front.park.paused,"closing the last dialog gives movement back")
 	print("CONFIRM NOTICE PAUSE: %d checks; %d failures"%[checks,failures])
 	quit(1 if failures else 0)

@@ -445,7 +445,10 @@ func _notice(message: String) -> void:
 		if is_instance_valid(previous_park) and previous_park.is_inside_tree():
 			var depth: int = maxi(0, int(previous_park.get_meta("system_notice_depth", 1)) - 1)
 			previous_park.set_meta("system_notice_depth", depth)
-			if depth == 0: previous_park.paused = previous_park.get_meta("system_notice_was_paused", false)
+			# Give the pause back only while something still holds the screen; a flow that
+			# paused the park for a short animation before the notice (rescue in the
+			# Ruínas, Aracati) left Kael frozen after closing it (campaign walker).
+			if depth == 0: previous_park.paused = previous_park.get_meta("system_notice_was_paused", false) and _screen_held(dialog)
 		var previous_room: Node = notice_room.get_ref() if notice_room != null else null
 		if is_instance_valid(previous_room) and previous_room.is_inside_tree():
 			var depth: int = maxi(0, int(previous_room.get_meta("system_notice_depth", 1)) - 1)
@@ -454,6 +457,15 @@ func _notice(message: String) -> void:
 				previous_room.can_walk = previous_room.get_meta("system_notice_was_walking", false)
 				previous_room.set_story_paused(previous_room.get_meta("system_notice_was_paused", false)))
 	dialog.popup_centered(Vector2i(640, 300))
+
+## Something modal still on screen besides the closing dialog: a running flow, the
+## pause lobby, a loading cover or another open dialog.
+func _screen_held(closing: Node) -> bool:
+	if flow_busy or opening_busy or is_instance_valid(pause_overlay) or is_instance_valid(scene_loading): return true
+	for child in get_children():
+		if child == closing or child.is_queued_for_deletion() or not child.get("visible"): continue
+		if child.get("dialog_text") != null and not child.get("_closed"): return true
+	return false
 
 func _notice_after_load(message: String) -> void:
 	while is_instance_valid(scene_loading):

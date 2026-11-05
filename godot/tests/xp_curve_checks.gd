@@ -50,6 +50,11 @@ func _initialize() -> void:
 				worst = mini(worst, gap); best = maxi(best, gap)
 	check(worst >= -6, "never far behind a champion (worst %+d)" % worst)
 	check(best <= 4, "never far ahead of a champion (best %+d)" % best)
+	# A lost championship duel still moves Kael forward (30% of the win).
+	var ctx_champion := {"district": "lajes", "duel": "lajes-5", "mode": "normal"}
+	var at36 := player_at(36)
+	var lost_xp: int = District.reward(at36, ctx_champion, "lost").xp
+	check(lost_xp > 20 and lost_xp == roundi(District.reward(at36, ctx_champion, "won").xp * .3), "a loss pays 30%% of the win (%d)" % lost_xp)
 	# Rival skill climbs across the acts instead of peaking at Lv.14.
 	var Trail = preload("res://scripts/campaign/morro_model.gd")
 	check(Trail.district_ai({"level": 12, "role": "lieutenant"}) < Trail.district_ai({"level": 33, "role": "lieutenant"}), "rivals read better later in the campaign")
