@@ -745,6 +745,10 @@ Para repetir, execute o binário gráfico do Godot com `--path godot --resolutio
 
 ### R63 — Branch privada e depot correto do Godot
 
+**Preparação local:** `godot/PrepararSteamPipe.ps1` verifica os hashes do release, copia o executável, PCK, manifesto, instruções e licenças para uma pasta nova e gera um VDF em modo Preview. Execute com `-AppId`, `-DepotId`, `-PackageDirectory` e `-OutputDirectory`. O depot mapeia apenas a pasta preparada. A opção de inicialização Windows deve apontar para `Soulmonsters.exe` na raiz.
+
+O teste local usou IDs fictícios e conferiu 12 arquivos no conteúdo preparado. A validação pelo SteamCMD e a instalação pelo cliente ainda dependem de IDs reais, licença de teste e uma branch privada. O modo Preview do SteamPipe gera o manifesto e os logs para revisão. [Documentação oficial](https://partner.steamgames.com/doc/sdk/uploading).
+
 **Situação:** ferramentas SteamPipe antigas apontam para Electron; Godot precisa de configuração própria; obrigatório.
 
 **Execução:** apontar depot para a pasta release Godot e configurar o executável correto. Conferir package/licença de teste, conteúdo recebido e diferença entre branch privada e padrão. Não reaproveitar caminho de artefato antigo só porque o upload funciona. Instalar pelo cliente em outra máquina e conta autorizada, com versão/hash conferidos.
