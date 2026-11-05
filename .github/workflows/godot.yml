@@ -52,6 +52,10 @@ jobs:
         timeout-minutes: 25
         shell: pwsh
         run: ./godot/Validar.ps1 -GodotPath $env:GODOT_PATH -OutputDirectory "$env:RUNNER_TEMP/godot-validation"
+      - name: Validate interrupted save processes
+        timeout-minutes: 8
+        shell: pwsh
+        run: ./godot/ValidarInterrupcoes.ps1 -GodotPath $env:GODOT_PATH -OutputDirectory "$env:RUNNER_TEMP/process-validation"
       - name: Export Windows release
         timeout-minutes: 10
         shell: pwsh
@@ -67,6 +71,7 @@ jobs:
           name: godot-validation-logs
           path: |
             ${{ runner.temp }}/godot-validation
+            ${{ runner.temp }}/process-validation
             ${{ runner.temp }}/package-validation/*.log
             ${{ runner.temp }}/package-validation/results.json
           if-no-files-found: warn

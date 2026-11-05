@@ -453,6 +453,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R42 — Migração, corrupção e encerramento durante save
 
+**Complemento em 05/11:** 16 casos de encerramento real de processos Godot, com duas reaberturas independentes por caso: save, depósito global, recompensa pendente, exclusão e restauração. Gate separado adicionado à CI; sem mudanças na persistência de produção. Migração representativa dos atos, concorrência e falhas físicas seguem pendentes. [Relatório de processos R42](refinamentos/r42-processos/README.md).
+
 **Execução em 05/11:** matriz de falhas de escrita/cópia/rename/leitura, recuperação e idempotência passou em 152 checks; campanha passou em mais 207. Cobertura adicionada à CI. Migração representativa completa, falhas físicas e concorrência real permanecem pendentes. [Relatório R42](refinamentos/r42-saves/README.md).
 
 **Situação:** armazenamento já possui validação e backup; validar resistência; obrigatório.

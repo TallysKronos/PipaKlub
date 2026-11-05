@@ -226,6 +226,8 @@ Aceite: testar 29/30/31 e 19/20/21, duplicatas legítimas, transferência interr
 
 ### S39 · P0 / V — falhas, migração e concorrência
 
+Complemento verificado em 05/11: 16 encerramentos reais de processos com recuperação de save, transferência, recompensa, exclusão e restauração, e duas reaberturas por caso. [Evidência e limites R42](refinamentos/r42-processos/README.md). Concorrência simultânea, migrações representativas e falhas físicas continuam pendentes.
+
 O contrato atual é de processo único. Definir proteção contra duas instâncias, validar disco cheio/sem permissão, primário truncado, backup corrupto, schema futuro e falha entre passos. Preservar cópia antes de migrar; informar incompatibilidade sem sobrescrever.
 
 Aceite: injeção de falhas e encerramento abrupto em pontos definidos, saves representativos dos atos e escolhas; após cada caso o jogador recupera estado válido ou recebe erro recuperável. Não prometer fsync/power-loss absoluto sem ensaio e implementação apropriados.
