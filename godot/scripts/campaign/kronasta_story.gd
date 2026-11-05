@@ -231,6 +231,8 @@ static func objective(player: Dictionary) -> String:
 	if beat.get("id","").begins_with("mormaco-"):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
 	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
+	if beat.get("id")=="canal-comporta" and flags(player).get("grampoVeredasVencido",false):
+		return "Grampo recuou. Destranque a comporta no controle do canal, nas Veredas."
 	# The Ruínas rescue names who is still held, in the order of the parts.
 	if beat.get("id")=="ruinas-aliados":
 		var held:Array=[]

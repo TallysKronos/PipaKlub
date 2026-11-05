@@ -1993,7 +1993,11 @@ func _show_encounter() -> void:
 		elif session.snapshot().player.encounter.kind=="feira-story":
 			if _result(load("res://scripts/campaign/feira_story.gd").new(session).settle()):_return_feira_story.call_deferred()
 		elif session.snapshot().player.encounter.kind=="canal-gate":
-			if _result(load("res://scripts/campaign/canal_gate.gd").new(session).settle()):_show_saved.call_deferred()
+			var gate_outcome: String=session.snapshot().player.encounter.state.outcome
+			if _result(load("res://scripts/campaign/canal_gate.gd").new(session).settle()):
+				_show_saved.call_deferred()
+				# F10: the duel closes with Grampo's reaction and points to the canal control.
+				_notice.call_deferred("Grampo: Tá, tá! Pode mexer no controle. Platyx, vamos embora.\n\nO controle do canal está livre. Destranque a comporta." if gate_outcome=="won" else "Grampo: Viu? O controle é nosso. Volte quando quiser perder de novo.")
 		elif _result(encounters.settle()): _show_saved.call_deferred())
 
 func _remember_world_position() -> bool:
