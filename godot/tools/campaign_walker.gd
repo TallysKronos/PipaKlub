@@ -29,6 +29,7 @@ var seen_dialogs := {}
 var duels := 0
 var exhausted := {}
 var beat_steps := 0
+var duel_counts := {}
 
 ## Story actions that finish (part of) a beat, by beat id. District beats use the next
 ## duel of the district; endgame steps use their own event.
@@ -93,6 +94,7 @@ func run() -> void:
 			if beat_id == until: break
 			beat_id = id
 			beat_steps = 0
+			duel_counts.clear()
 			note("\n## " + id + " — " + str(beat.get("text", "")))
 			await restart_app()
 		if not await step(beat):
@@ -151,6 +153,15 @@ func handle_battle() -> bool:
 	var enc: Dictionary = view.session.snapshot().player.get("encounter", {})
 	duels += 1
 	note("   duelo: %s (%s, Nv %s)" % [str(enc.get("state", {}).get("q", {}).get("name", "?")), str(enc.get("kind", "")), str(enc.get("state", {}).get("q", {}).get("level", "?"))])
+	var name := str(enc.get("state", {}).get("q", {}).get("name", "?"))
+	duel_counts[name] = int(duel_counts.get(name, 0)) + 1
+	if duel_counts[name] > 4:
+		issue("o duelo '%s' reabriu %d vezes (ciclo)" % [name, duel_counts[name]])
+		finish(); return true
+	# Story duels with a mid-fight turn: play the turn the way the battle model does.
+	var q: Dictionary = b.model.q
+	if q.get("platyxRefusal", "") == "pending":
+		q.platyxRefusal = "stopped"; q.hp = q.stats.line * .5
 	b.model.outcome = "won"
 	b.finish_requested.emit()
 	return true
