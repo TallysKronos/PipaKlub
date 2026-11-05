@@ -253,13 +253,13 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 		name=ParkCheckpoint.data(scene).get("name","Kronasta")
 		texture=load("res://assets/campaign/maps/kronasta-atlas-v1.png")
 	elif scene=="kite-shop":
-		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/loja-tcg-v1/preview.png"))
+		texture=load("res://assets/campaign/loja-tcg-v1/preview.png") as Texture2D
 	elif scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")
 		if not data.get("images",[]).is_empty():texture=load("res://assets/campaign/morro/"+data.images[0].image)
 	elif scene=="professor-home":
-		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/professor-moderno-v1/preview.png"))
+		texture=load("res://assets/campaign/professor-moderno-v1/preview.png") as Texture2D
 	elif scene=="quintal":
 		texture=load("res://assets/campaign/"+content.rooms.street.floorImage)
 	elif scene in ["park-trail","park-clearing"]:
