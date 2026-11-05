@@ -38,7 +38,7 @@ func _ready() -> void:
 	text.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	text.add_theme_constant_override("separation",4)
 	row.add_child(text)
-	caption("JORNADA "+slot_id.trim_prefix("slot-").pad_zeros(2),text,14).theme_type_variation="RecorteAccentText"
+	caption("AUTOSAVE · ESPAÇO 0" if slot_id == "slot-0" else "JORNADA "+slot_id.trim_prefix("slot-").pad_zeros(2),text,14).theme_type_variation="RecorteAccentText"
 	var valid:bool=inspection.status=="ok"
 	var empty:bool=inspection.status=="missing"
 	var snapshot:Dictionary=inspection.get("data",{})
@@ -54,7 +54,7 @@ func _ready() -> void:
 		text.add_child(line)
 		var partner_label:=caption("Parceiro · "+partner_name,line,15)
 		partner_label.autowrap_mode=TextServer.AUTOWRAP_OFF
-		var badge:=caption(" AUTO ",line,14)
+		var badge:=caption(" AUTO " if slot_id == "slot-0" else " MANUAL ",line,14)
 		badge.autowrap_mode=TextServer.AUTOWRAP_OFF
 		badge.add_theme_color_override("font_color",Hud.INK)
 		var style:=StyleBoxFlat.new()

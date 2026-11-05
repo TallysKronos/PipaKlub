@@ -34,6 +34,7 @@ func run() -> void:
 	front.preferences.storage_path = directory.path_join("settings.cfg")
 	root.add_child(front)
 	front.preferences.reduced_motion = true
+	front.session.separate_autosave = true
 	check(front.session.start("slot-1").status == "ok", "create fixture")
 	var saved: Dictionary = front.session.snapshot()
 	saved.player.partners = [{"id":"fixture-rabbito", "modelId":"rabbito", "personalName":"Rabbito", "xp":0, "craftBonus":0, "condition":{"line":100, "structure":100}}]
@@ -53,7 +54,7 @@ func run() -> void:
 	front.park.set_process(false)
 	front.park.paused = false
 	var previous: Dictionary = front.session.snapshot()
-	var path := directory.path_join("slot-1.json")
+	var path := directory.path_join("slot-0.json")
 	var hash_before := FileAccess.get_sha256(path)
 	store.deny_write = true
 	front._park_action("autosave")
@@ -68,13 +69,18 @@ func run() -> void:
 	await settle()
 	check(int(front.session.snapshot().revision) == int(previous.revision) + 1, "retry actually commits once")
 	check(warning(front) == null and not front.park.paused, "successful retry leaves no error or pause")
-	check(store.load_slot("slot-1").data.revision == front.session.snapshot().revision, "retry is persisted")
+	check(store.load_slot("slot-0").data.revision == front.session.snapshot().revision, "retry is persisted")
 	front.park.paused = true
 	store.deny_write = true
 	check(not front._save_park(), "paused context also reports IO failure")
 	await settle()
 	await close_warning(front)
 	check(front.park.paused, "pre-existing pause is preserved")
+	front.park.paused = false
+	front._pause_game()
+	front.pause_overlay.chosen.emit("save")
+	await settle()
+	check(front.last_scene_key == "page:SALVAR JORNADA", "manual recovery remains accessible while automatic writes fail")
 	var streams: Array[WeakRef] = []
 	for child: Node in front.sound.get_children():
 		if child is AudioStreamPlayer and child.stream != null: streams.append(weakref(child.stream))

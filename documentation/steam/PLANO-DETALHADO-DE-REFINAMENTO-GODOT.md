@@ -405,7 +405,7 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R38 — Autosave e slots manuais
 
-**Execução parcial em 05/11:** corrigido travamento da exploração após dispensar erro de autosave. Teste no mapa real confirma preservação do arquivo/memória e nova tentativa bem-sucedida (12 checks). A configuração, o slot 0 separado e o indicador de gravação continuam pendentes. [Relatório](refinamentos/r38-autosave/README.md).
+**Execução em 05/11:** corrigido travamento após falha de autosave; implementados espaço 0 separado, opção ligada por padrão em Configurações → Jornada, três saves manuais com confirmação e estados de gravação/sucesso/erro. Autosave desligado mantém avanços em memória e pede confirmação ao sair sem salvar. Nova suíte com 55 checks passou também no renderizador real, além das regressões. Restam percurso prolongado da campanha, formatos de tela adicionais e política de exclusão conjunta em R39. [Relatório](refinamentos/r38-autosave/README.md).
 
 **Situação:** fundação de save existe; validar toda a interface; obrigatório.
 

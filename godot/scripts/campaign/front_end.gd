@@ -67,6 +67,7 @@ var settings_tab:="Vídeo"
 var settings_focus_controls:=false
 var team_load_state:="ready"
 var scene_loading:CanvasLayer
+var save_status: CanvasLayer
 
 func _ready() -> void:
 	if preload("res://scripts/diagnostics/dispatch.gd").try_run(self): return
@@ -91,6 +92,10 @@ func _ready() -> void:
 	_apply_preferences()
 	content = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 	add_child(session)
+	save_status = preload("res://scripts/campaign/hud_save_status.gd").new()
+	add_child(save_status)
+	session.saving_started.connect(save_status.started)
+	session.saving_finished.connect(save_status.finished)
 	session.changed.connect(sound.saved)
 	session.storage_failed.connect(func(_reason: String): sound.play_event("progress.save_error"))
 	opening = Opening.new(session)
@@ -112,7 +117,7 @@ func _clear(route: String = "") -> void:
 	flow_busy=false
 	if not binding_target.is_empty():_cancel_binding()
 	for child in get_children():
-		if child != session and child != crt_layer and child != sound and child != scene_loading and child.name != "RecorteUX":
+		if child != session and child != crt_layer and child != sound and child != scene_loading and child != save_status and child.name != "RecorteUX":
 			remove_child(child)
 			child.queue_free()
 	stage = null
@@ -188,7 +193,7 @@ func _menu() -> void:
 	# Leaving a QA jump returns to the player's real save folder.
 	if qa_real_store!=null:session._store=qa_real_store;qa_real_store=null
 	var menu=load("res://scripts/campaign/hud_title_menu.gd").new()
-	for index in range(1,4):
+	for index in range(0,4):
 		if session.inspect_slot("slot-%d"%index).status=="ok":menu.has_saves=true
 	menu.reduced_motion=preferences.reduced_motion
 	add_child(menu)
@@ -293,9 +298,10 @@ func _show_slots(new_journey:bool=false) -> void:
 	_label("NOVA JORNADA" if new_journey else "SUAS JORNADAS",heading,38)
 	status=_label("Escolha um espaço vazio." if new_journey else "Retome de onde parou.",page,18)
 	var first:Button
-	for index in range(1,4):
+	for index in range(1 if new_journey else 0,4):
 		var id:="slot-%d"%index
 		var inspection:Dictionary=session.inspect_slot(id)
+		if index == 0 and inspection.status == "missing": continue
 		var card=load("res://scripts/campaign/hud_journey_slot.gd").new()
 		card.slot_id=id;card.inspection=inspection;card.available_for_new=new_journey
 		if inspection.status=="ok":
@@ -341,6 +347,9 @@ func _error(code: String) -> String:
 
 func _choose(slot_id: String, create: bool) -> void:
 	sound.reset_session()
+	if slot_id == "slot-0" and create: return
+	session.separate_autosave = true
+	session.autosave_enabled = preferences.autosave
 	var result: Dictionary = session.start(slot_id) if create else session.resume_slot(slot_id)
 	if result.status != "ok":
 		status.text = _error(result.status)
@@ -1299,7 +1308,7 @@ func _show_starter() -> void:
 			var choose := _button(Journey.STARTERS[chosen], Hud.focus_space(detail), func(): _confirm_starter(chosen))
 			Hud.secondary_button(choose)
 
-	_button("Salvar e voltar ao menu", page, _menu)
+	_button("Salvar jornada", page, _show_manual_slots)
 
 func _confirm_starter(model_id: String) -> void:
 	sound.play_event("workshop.select_tail")
@@ -1421,7 +1430,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_pause_game();menu_origin="map";_show_map()
 		get_viewport().set_input_as_handled();return
 	if last_scene_key=="page:Configurações" and event is InputEventJoypadButton and event.pressed and event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
-		var categories:=["Vídeo","Áudio","Acessibilidade","Controles"]
+		var categories:=["Vídeo","Áudio","Acessibilidade","Controles","Jornada"]
 		settings_tab=categories[posmod(categories.find(settings_tab)+(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1),categories.size())]
 		_show_settings();get_viewport().set_input_as_handled();return
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu":
@@ -1481,8 +1490,17 @@ func _pause_game() -> void:
 			if partner.id==pause_overlay.player.get("equippedPartnerId",""):
 				partner.condition={"line":clampf(battle.model.p.hp/battle.model.p.stats.line*100,0,100),"structure":clampf(battle.model.p.hull/battle.model.p.stats.line*100,0,100)}
 	add_child(pause_overlay)
+	pause_overlay.buttons.save.disabled = is_instance_valid(battle) or is_instance_valid(workshop) or flow_busy or opening_busy
 	pause_overlay.chosen.connect(func(action: String):
-		if action in ["team", "bag", "settings","map","save","identity","emblems","missions","workshop"] and not _remember_world_position(): return
+		if action in ["save", "settings"] and session.separate_autosave:
+			# Recovery routes must remain accessible even when the autosave file is
+			# unavailable. Capture the safe checkpoint in memory before leaving the view.
+			var automatic: bool = session.autosave_enabled
+			session.autosave_enabled = false
+			var captured := _remember_world_position()
+			session.autosave_enabled = automatic
+			if not captured: return
+		elif action in ["team", "bag", "settings","map","save","identity","emblems","missions","workshop"] and not _remember_world_position(): return
 		if action in ["team","bag","settings","map","identity","emblems","missions","workshop"]:menu_origin=action
 		match action:
 			"resume": _resume_game()
@@ -1496,12 +1514,36 @@ func _pause_game() -> void:
 			"map":_show_map()
 			"save":
 				menu_origin="save"
-				sound.play_event("progress.save_ok")
-				pause_overlay.buttons.save.text="Jornada salva"
-				pause_overlay.description.text="Jornada salva. Pode continuar sua aventura."
-				pause_overlay.buttons.save.queue_redraw()
+				_show_manual_slots()
 			"menu": _return_to_menu()
 	)
+
+func _show_manual_slots() -> void:
+	_simple_page("SALVAR JORNADA", true)
+	_label("O autosave usa o espaço 0. Escolha um dos três espaços manuais.", page, 18)
+	for index in range(1, 4):
+		var id := "slot-%d" % index
+		var inspection: Dictionary = session.inspect_slot(id)
+		var valid: bool = inspection.status in ["ok", "missing"]
+		var title := "Espaço %d · Vazio" % index
+		if inspection.status == "ok": title = "Espaço %d · %s · %s" % [index, inspection.data.player.name, _slot_location(inspection.data).name]
+		elif not valid: title = "Espaço %d · %s" % [index, _error(inspection.status)]
+		var button := _button(title, page, func():
+			var revision := int(inspection.data.revision) if inspection.status == "ok" else -1
+			if revision < 0: _save_manual_to(id, revision); return
+			var confirm := _confirmation("Substituir save manual", "Substituir o espaço %d? O autosave permanece separado." % index, "Substituir")
+			confirm.confirmed.connect(func(): _save_manual_to(id, revision))
+			confirm.confirmed.connect(confirm.queue_free)
+			confirm.canceled.connect(confirm.queue_free)
+			confirm.popup_centered())
+		Hud.secondary_button(button)
+		button.disabled = not valid
+	_button("Voltar", page, _return_to_game)
+
+func _save_manual_to(id: String, revision: int) -> void:
+	if _result(session.save_manual(id, revision)):
+		_show_manual_slots()
+		_notice("Jornada salva no espaço " + id.trim_prefix("slot-") + ".")
 
 func _resume_game() -> void:
 	if not is_instance_valid(pause_overlay): return
@@ -1529,7 +1571,7 @@ func _practice_view() -> Control:
 		if child.get_script() == FlightView: return child
 	return null
 
-func _return_to_menu() -> void:
+func _return_to_menu(discard_confirmed: bool = false) -> void:
 	if is_instance_valid(workshop) and not _result(journey.save_workshop(workshop.model.run.duplicate(true))):return
 	if is_instance_valid(battle):
 		battle.paused = true
@@ -1539,12 +1581,23 @@ func _return_to_menu() -> void:
 	if not saved.is_empty() and saved.checkpoint.kind == "world" and is_instance_valid(room):
 		if not _result(journey.enter_world(saved.checkpoint.scene, room.actor)):
 			return
+	if session.has_unpersisted_changes and not discard_confirmed:
+		_confirm_unsaved_exit(func(): _return_to_menu(true))
+		return
 	_menu()
+
+func _confirm_unsaved_exit(leave: Callable) -> void:
+	var dialog := _dialog("Avanços não salvos", "Há avanços que ainda não foram gravados. Voltar ao menu ou fechar o jogo perde esses avanços. Cancele e use Salvar para guardá-los.", "Sair sem salvar", "Continuar jogando")
+	dialog.confirmed.connect(leave)
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
 
 func _notification(what: int) -> void:
 	if what==NOTIFICATION_WM_CLOSE_REQUEST and is_instance_valid(scene_loading):
 		# The destination checkpoint is already committed; don't save a half-built view.
-		get_tree().quit();return
+		if session.has_unpersisted_changes: _confirm_unsaved_exit(func(): get_tree().quit())
+		else: get_tree().quit()
+		return
 	if what==NOTIFICATION_WM_WINDOW_FOCUS_OUT and is_instance_valid(room) and (flow_busy or opening_busy or room.has_meta("opening_room")):
 		room.set_story_paused(true)
 	if what==NOTIFICATION_WM_WINDOW_FOCUS_IN and is_instance_valid(room) and not is_instance_valid(pause_overlay):
@@ -1561,7 +1614,8 @@ func _notification(what: int) -> void:
 		if not saved.is_empty() and saved.checkpoint.kind == "world" and is_instance_valid(room):
 			if not _result(journey.enter_world(saved.checkpoint.scene, room.actor)):
 				return
-		get_tree().quit()
+		if session.has_unpersisted_changes: _confirm_unsaved_exit(func(): get_tree().quit())
+		else: get_tree().quit()
 
 func _load_park() -> void:
 	if DisplayServer.get_name()=="headless": _show_park(); return
@@ -1644,7 +1698,7 @@ func _save_park(quiet:bool=false) -> bool:
 		return false
 	if is_instance_valid(park.exploration_hud):
 		park.exploration_hud.refresh(session.snapshot().player)
-		if not quiet:park.exploration_hud.push_notice("Progresso salvo","saved")
+		if not quiet and (not session.separate_autosave or session.autosave_enabled):park.exploration_hud.push_notice("Progresso salvo","saved")
 	return true
 
 func _park_exit(event: Dictionary) -> void:
@@ -2024,7 +2078,7 @@ func _remember_world_position() -> bool:
 	if is_instance_valid(workshop):return _result(journey.save_workshop(workshop.model.run.duplicate(true)))
 	if is_instance_valid(battle): return _result(encounters.save_battle(battle.model.snapshot()))
 	if is_instance_valid(park): return _save_park()
-	if is_instance_valid(room): return _result(journey.enter_world(session.snapshot().checkpoint.scene, room.actor))
+	if is_instance_valid(room) and session.snapshot().checkpoint.kind == "world": return _result(journey.enter_world(session.snapshot().checkpoint.scene, room.actor))
 	return true
 
 func _show_collection() -> void:
@@ -2429,6 +2483,7 @@ func _show_tail_workshop() -> void:
 		else:_show_saved())
 
 func _apply_preferences() -> void:
+	session.autosave_enabled = preferences.autosave
 	if sound.is_inside_tree(): sound.configure(preferences.audio_levels, preferences.dialogue_blips)
 	Controls.set_family(preferences.pad_family)
 	var recorte := get_node_or_null("RecorteUX")
@@ -2460,18 +2515,36 @@ func _show_settings() -> void:
 	category_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	var active_tab:Button
 	page.add_child(category_row)
-	for category in ["Vídeo","Áudio","Acessibilidade","Controles"]:
+	for category in ["Vídeo","Áudio","Acessibilidade","Controles","Jornada"]:
 		var tab:=Button.new();tab.text=category;Hud.navigation_button(tab,true)
 		tab.theme_type_variation="RecorteTabButton"
 		tab.toggle_mode=true;tab.button_pressed=category==settings_tab
-		tab.custom_minimum_size=Vector2(200,48)
+		tab.custom_minimum_size=Vector2(170,48)
+		tab.add_theme_font_size_override("font_size", 20)
 		category_row.add_child(tab)
 		if category==settings_tab:active_tab=tab
 		tab.pressed.connect(func():sound.play_event("ui.tab");settings_tab=category;_show_settings())
 	_label(settings_tab.to_upper(),page,20).add_theme_color_override("font_color",Hud.CYAN)
 	if settings_tab == "Áudio": _audio_settings()
+	if settings_tab == "Jornada":
+		_label("Autosave · espaço 0", page, 24)
+		_label("Ligado por padrão. Desligado, os avanços ficam em memória até você salvar manualmente. Sair sem salvar perde esses avanços.", page, 18)
+		var automatic := CheckButton.new()
+		automatic.text = "Autosave ligado" if preferences.autosave else "Autosave desligado"
+		automatic.button_pressed = preferences.autosave
+		automatic.custom_minimum_size.y = 56
+		page.add_child(automatic)
+		automatic.toggled.connect(func(enabled: bool):
+			var previous: bool = preferences.autosave
+			preferences.autosave = enabled
+			if preferences.save_settings() != OK:
+				preferences.autosave = previous
+				_notice("Não foi possível guardar a configuração.")
+			automatic.set_pressed_no_signal(preferences.autosave)
+			automatic.text = "Autosave ligado" if preferences.autosave else "Autosave desligado"
+			_apply_preferences())
 	for item in [["Filtro de TV (CRT)", "crt", "Linhas suaves de uma TV de tubo sobre o jogo."], ["Tela cheia", "fullscreen", "Use toda a tela para explorar e batalhar."], ["Reduzir animações da interface", "reduced_motion", "Suaviza transições e mantém os avisos estáticos."]]:
-		if settings_tab == "Áudio": continue
+		if settings_tab in ["Áudio", "Jornada"]: continue
 		if (settings_tab=="Vídeo" and item[1]=="reduced_motion") or (settings_tab=="Acessibilidade" and item[1]!="reduced_motion") or settings_tab=="Controles":continue
 		var toggle := CheckButton.new()
 		toggle.tooltip_text=item[0]+" — "+item[2]

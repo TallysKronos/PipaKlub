@@ -51,6 +51,19 @@ func create_slot(slot_id: String) -> Dictionary:
 func save_slot(snapshot: Dictionary) -> Dictionary:
 	return _save(snapshot, false)
 
+## Explicit copy to another slot. Existing validation, backups and revision check
+## still apply; never overwrite an unreadable or newer-format destination.
+func copy_to_slot(snapshot: Dictionary, slot_id: String, expected_revision: int) -> Dictionary:
+	if not State.valid_slot(slot_id): return {"status":"invalid_slot"}
+	var current := load_slot(slot_id)
+	if current.status not in ["ok", "missing"]: return current
+	var revision := int(current.data.revision) if current.status == "ok" else -1
+	if revision != expected_revision: return {"status":"stale"}
+	var next := snapshot.duplicate(true)
+	next.slotId = slot_id
+	next.revision = maxi(0, revision)
+	return _save(next, current.status == "missing")
+
 # Keep filesystem boundaries individually testable without changing production
 # ordering or relying on platform-specific permissions/locks for fault injection.
 func _replace_file(source: String, destination: String) -> Error:

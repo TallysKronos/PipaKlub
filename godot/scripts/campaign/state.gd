@@ -23,7 +23,7 @@ static func fresh(slot_id: String) -> Dictionary:
 	}
 
 static func valid_slot(slot_id: String) -> bool:
-	return slot_id in ["slot-1", "slot-2", "slot-3"]
+	return slot_id in ["slot-0", "slot-1", "slot-2", "slot-3"]
 
 static func new_id() -> String:
 	var bytes := Crypto.new().generate_random_bytes(16)
