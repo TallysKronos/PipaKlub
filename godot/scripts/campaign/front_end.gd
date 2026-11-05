@@ -2994,9 +2994,9 @@ func _controller_changed(device: int, connected: bool) -> void:
 	if connected:
 		Controls.configure_device(device,Input.get_joy_name(device),int(Input.get_joy_info(device).get("vendor_id",0)))
 	else: Controls.remove_device(device)
-	if connected or not Controls.gamepad: return
+	if connected or not Controls.gamepad or device != Controls.device_id: return
 	Controls.use_keyboard()
-	if is_instance_valid(battle): battle.paused = true
+	if is_instance_valid(battle): _pause_game()
 	if is_instance_valid(workshop): workshop._pause()
 	for child in get_children():
 		if child.get_script() == FlightView:

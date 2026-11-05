@@ -581,6 +581,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R51 — Pausa, foco e troca de dispositivo
 
+**Desconexão:** apenas a remoção do controle em uso troca os glifos para teclado. Em combate, a desconexão abre a pausa normal, que suspende ações mantidas e oferece Retomar. Foram executadas as regressões de controles, título e história final. Desconexão física, suspensão do sistema e troca de saída de áudio seguem pendentes.
+
 **Situação:** validar transversalmente; obrigatório onde pode causar derrota ou perda.
 
 **Execução:** definir pausa em combate, exploração e cutscene; tratar Alt-Tab, desconexão do controle, tela de sistema, resize e suspensão. Limpar ações mantidas ao perder foco; evitar delta grande ao retomar, que pode saltar movimento ou animação. Preservar estado de áudio e janela, com retorno seguro se o monitor/dispositivo não existir mais.
