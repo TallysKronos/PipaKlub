@@ -51,6 +51,14 @@ func create_slot(slot_id: String) -> Dictionary:
 func save_slot(snapshot: Dictionary) -> Dictionary:
 	return _save(snapshot, false)
 
+# Keep filesystem boundaries individually testable without changing production
+# ordering or relying on platform-specific permissions/locks for fault injection.
+func _replace_file(source: String, destination: String) -> Error:
+	return DirAccess.rename_absolute(source, destination)
+
+func _copy_file(source: String, destination: String) -> Error:
+	return DirAccess.copy_absolute(source, destination)
+
 func _write_checked(path: String, data: Dictionary) -> Error:
 	var text := JSON.stringify(data, "\t")
 	if text.to_utf8_buffer().size() > MAX_BYTES:
@@ -99,16 +107,16 @@ func _save(snapshot: Dictionary, creating: bool) -> Dictionary:
 	if not creating and current.recovered and FileAccess.file_exists(path):
 		var damaged := path + ".damaged-" + FileAccess.get_sha256(path)
 		if not FileAccess.file_exists(damaged):
-			error = DirAccess.copy_absolute(path, damaged)
+			error = _copy_file(path, damaged)
 			if error != OK:
 				return {"status": "io_error", "error": error}
 	elif not creating:
 		error = _write_checked(path + ".bak.tmp", current.data)
 		if error == OK:
-			error = DirAccess.rename_absolute(path + ".bak.tmp", path + ".bak")
+			error = _replace_file(path + ".bak.tmp", path + ".bak")
 		if error != OK:
 			return {"status": "io_error", "error": error}
-	error = DirAccess.rename_absolute(path + ".tmp", path)
+	error = _replace_file(path + ".tmp", path)
 	if error != OK:
 		return {"status": "io_error", "error": error}
 	return {"status": "ok", "data": next, "recovered": current.get("recovered", false)}

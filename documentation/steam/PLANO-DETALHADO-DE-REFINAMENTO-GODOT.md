@@ -445,6 +445,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R42 — Migração, corrupção e encerramento durante save
 
+**Execução em 05/11:** matriz de falhas de escrita/cópia/rename/leitura, recuperação e idempotência passou em 152 checks; campanha passou em mais 207. Cobertura adicionada à CI. Migração representativa completa, falhas físicas e concorrência real permanecem pendentes. [Relatório R42](refinamentos/r42-saves/README.md).
+
 **Situação:** armazenamento já possui validação e backup; validar resistência; obrigatório.
 
 **Execução:** criar amostras representativas por versão/ato/escolha e testar migração com cópia preservada. Injetar falhas em temporário, gravação, substituição e conclusão de recompensa. Manter distinção entre arquivo corrompido, schema futuro e erro de permissão; não restaurar um backup antigo silenciosamente em todos os erros. Conferir proteção contra escrita desatualizada e duas instâncias abertas.

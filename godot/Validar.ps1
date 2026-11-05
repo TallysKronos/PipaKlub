@@ -58,7 +58,8 @@ try {
   'notice_after_load_checks', 'district_names_checks', 'flower_epilogue_checks',
   'city_restoration_checks', 'champions_meeting_checks',
   'trovareta_presentation_checks', 'trovareta_release_checks',
-  'beira_canal_flow_checks', 'title_menu_checks', 'menu_lifecycle_checks'
+  'beira_canal_flow_checks', 'title_menu_checks', 'menu_lifecycle_checks',
+  'save_resilience_checks'
  )
  foreach ($suite in $suites) {
   $limit = if ($suite -eq 'overworld_checks') { [Math]::Max(600, $TimeoutSeconds) } else { $TimeoutSeconds }
