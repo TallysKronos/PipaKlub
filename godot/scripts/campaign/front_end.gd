@@ -2799,7 +2799,10 @@ func _show_settings() -> void:
 	text_size.item_selected.connect(func(index:int):
 		var old:float=preferences.text_scale
 		preferences.text_scale=[1.0,1.15,1.3][index]
-		if preferences.save_settings()!=OK:preferences.text_scale=old;text_size.select([1.0,1.15,1.3].find(old))
+		if preferences.save_settings() != OK:
+			preferences.text_scale = old
+			text_size.select([1.0,1.15,1.3].find(old))
+			_notice("Não foi possível guardar o tamanho do texto. A configuração anterior foi mantida.")
 		_apply_preferences())
 	var controls_card=load("res://scripts/campaign/hud_result_plate.gd").new()
 	controls_card.visible=settings_tab=="Controles"

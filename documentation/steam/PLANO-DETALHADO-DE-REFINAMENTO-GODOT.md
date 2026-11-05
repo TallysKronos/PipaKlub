@@ -569,6 +569,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R50 — Acessibilidade e ajustes persistentes
 
+**Ajustes locais:** falha ao gravar tamanho do texto agora mostra aviso e mantém a seleção anterior. Testes confirmam a leitura de texto a 130%, movimento reduzido, música silenciada e sons de diálogo após recarregar as preferências. Passaram 431 verificações de controles, título e avisos. A auditoria de contraste e das cenas com movimento reduzido permanece pendente.
+
 **Situação:** movimento reduzido já tem cobertura parcial; validar conjunto; acabamento.
 
 **Execução:** revisar tamanho/velocidade do texto, contraste, ícone+texto além de cor, volumes separados, tremor/flashes e vibração. Manter eventos essenciais legíveis com movimento reduzido; substituir animação intensa por estado claro, não remover o acontecimento. Permitir reler objetivo e instruções. Conferir remapeamento com conflitos e restauração do padrão.
