@@ -103,8 +103,9 @@ const BEATS := [
 static var qa_override := -1
 
 static func qa() -> bool:
+	if not OS.is_debug_build(): return false
 	if qa_override>=0: return qa_override==1
-	return OS.is_debug_build() and OS.get_environment("SOULMONSTERS_QA")!="0"
+	return OS.get_environment("SOULMONSTERS_QA")!="0"
 
 static func flags(player: Dictionary) -> Dictionary:
 	return player.get("flags",{})

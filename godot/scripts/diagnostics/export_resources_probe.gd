@@ -16,6 +16,15 @@ func check(ok: bool, label: String) -> void:
 		printerr("FAIL export resources: ", label)
 
 func run(tree: SceneTree) -> int:
+	if not OS.is_debug_build():
+		var story := preload("res://scripts/campaign/kronasta_story.gd")
+		story.qa_override = 1
+		check(not story.qa(), "release refuses a QA override")
+		var menu := Title.new()
+		tree.root.add_child(menu)
+		check(menu.column.get_child_count() == 4, "release menu has only player actions")
+		menu.free()
+		story.qa_override = -1
 	var content: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 	check(not content.is_empty(), "campaign data is in the package")
 	var theme: Theme = load("res://assets/ui/recorte-v1/theme/recorte_theme.tres")

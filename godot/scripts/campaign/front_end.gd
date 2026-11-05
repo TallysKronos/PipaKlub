@@ -244,6 +244,7 @@ func _show_qa_jump() -> void:
 	_button("Voltar",page,_menu)
 
 func _qa_jump(id:String) -> void:
+	if not preload("res://scripts/campaign/kronasta_story.gd").qa(): return
 	var qa=preload("res://scripts/campaign/qa_jump.gd")
 	if qa.jump(id).is_empty():return
 	if qa_real_store==null:qa_real_store=session._store

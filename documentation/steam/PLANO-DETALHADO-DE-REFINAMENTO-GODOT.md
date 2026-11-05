@@ -729,6 +729,10 @@ Para repetir, execute o binário gráfico do Godot com `--path godot --resolutio
 
 ### R62 — Logs, build comercial e ausência de ferramentas de QA
 
+**Bloqueio na build Windows:** a decisão de expor QA retorna falso no executável release antes de consultar overrides. O salto de história também verifica essa decisão antes de tocar na sessão. A sonda do pacote força o override e verifica que o menu comercial mantém quatro ações de jogador.
+
+**Suporte local:** ao relatar erro no Windows, informe o commit de `build-info.json`, a cena, a ação e o horário aproximado. Consulte `%APPDATA%\PipaKlub\logs\godot.log` logo após reproduzir. Revise o conteúdo antes de compartilhar e envie somente o trecho relevante. Se o suporte precisar reproduzir um save, mantenha o original e envie uma cópia do slot solicitado em `%APPDATA%\PipaKlub\campaign` por canal privado. A auditoria completa do conteúdo dos logs e dos arquivos do pacote permanece pendente.
+
 **Situação:** validar pacote e configurações; obrigatório.
 
 **Execução:** conferir flags de QA, atalhos de história, menus de teste e dados pessoais. Preservar diagnóstico útil de erro com versão/cena/ação, sem tokens ou nomes sensíveis desnecessários. Documentar como o jogador encontra e envia log/save para suporte. Usar a build sem QA para regressões de viagem — os relatórios já mostraram que caminhos exclusivos de debug podem esconder problemas de release.
