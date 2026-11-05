@@ -1659,6 +1659,9 @@ func _park_event(id: String) -> void:
 			var point:Vector2=park.player
 			if action=="serraGalleryReturn":
 				if _result(lesson.leave_gallery(point)):_show_saved.call_deferred()
+			elif action=="learnDig" and session.snapshot().player.flags.get("canCavar",false):
+				# After the lesson the tatu points to the next sub-step instead of repeating it.
+				_notice("Tatutrama cava ao lado da terra fofa, perto do mirante, e olha para você." if "serra-galeria-cavar-v1" not in session.snapshot().player.completedOperations else "Tatutrama aponta o focinho para o paredão abaixo do mirante, onde o vento sobe.")
 			elif action=="learnDig":
 				_confirm_park("Tatutrama","O tatu arranha a terra com as garras, para, depois escuta o chão. Sob a camada solta, aparece a ponta de uma vareta.\n\nKael: Entendi. Primeiro eu procuro onde a terra cede. Depois cavo sem forçar.","Aprender Cavar",func():
 					var result:Dictionary=lesson.learn_dig(point)

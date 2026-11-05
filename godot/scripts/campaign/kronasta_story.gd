@@ -122,7 +122,9 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 	var rules=preload("res://scripts/campaign/district_rules.gd")
 	match id:
 		"tufanocorte":return f.get("tufanocorteLiberto",false)
-		"serra-habilidades":return "serra-corrente-de-ar-v1" in player.get("completedOperations",[]) or rules.completed(player,"alto-da-serra")
+		# F18: Cavar (lesson, first dig, gallery) comes before the wind; riding the wind
+		# alone does not skip the lesson.
+		"serra-habilidades":return rules.completed(player,"alto-da-serra") or (f.get("canCavar",false) and "serra-galeria-cavar-v1" in player.get("completedOperations",[]) and "serra-corrente-de-ar-v1" in player.get("completedOperations",[]))
 		"dona-neve":return rules.completed(player,"alto-da-serra")
 		"rabiolava":return f.get("aracatiRabiolavaLivre",false)
 		"leo-antena":return rules.completed(player,"centro")
@@ -367,6 +369,8 @@ static func region_objective(player: Dictionary, scene: String) -> String:
 			# F25: on arrival, the course and Ícaro come before the first challenge.
 			if rules.entry(player,"mirante").get("qualification",[]).is_empty():return "Último bairro · quatro pipeiros guardam a subida até Ícaro, o ex-campeão que largou o título. "+course
 			return course
+	if scene=="mina-ferro-a" and current_beat(player).get("id","")=="serra-habilidades":
+		return "Galeria sob a Serra · volte à superfície pela abertura por onde você desceu."
 	if region=="coracao" and flags(player).get("enamorDerrotado",false):
 		return "Eremor foi contido. Recupere sua equipe e viaje pelo mapa da cidade ao Alto do Mirante, o último bairro."
 	if scene=="kronasta-estadio-a":
@@ -374,11 +378,14 @@ static func region_objective(player: Dictionary, scene: String) -> String:
 	# An act 4-6 story step placed here wins over the area's district progress.
 	var step_beat:=current_beat(player)
 	if load("res://scripts/campaign/endgame_story.gd").STEPS.has(step_beat.get("id","")) and step_beat.place==str(place_for_scene(scene).get("id",region)):return step_beat.text
-	if region=="montanha" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"alto-da-serra"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"alto-da-serra")
+	# The Serra's district waits for the climb and its two lessons (beats tufanocorte and
+	# serra-habilidades); until then the HUD follows the story.
+	if region=="montanha" and step_beat.get("id","") not in ["tufanocorte","serra-habilidades"] and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"alto-da-serra"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"alto-da-serra")
 	if region=="palafitas" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,region):return preload("res://scripts/campaign/district_campaign.gd").objective(player,region)
 	var beat:=current_beat(player)
 	var here:String=str(place_for_scene(scene).get("id",region))
-	if not beat.is_empty() and (beat.place==region or beat.place==here) and (region!="bosque" or beat.id=="trovareta"): return beat.text
+	# Same text as the diary: some beats (Serra lessons, Mormaço, exams) show their sub-step.
+	if not beat.is_empty() and (beat.place==region or beat.place==here) and (region!="bosque" or beat.id=="trovareta"): return objective(player)
 	var part:=scene.right(1)
 	return {
 		"industrial":{"a":"Siga pelo Pátio de Cargas até o Canal das Caldeiras.","b":"Atravesse o Canal das Caldeiras até a Usina do Vento.","c":"Usina do Vento · o atalho leva de volta ao Pátio de Cargas."},

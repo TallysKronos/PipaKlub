@@ -10,7 +10,7 @@ const Endgame=preload("res://scripts/campaign/endgame_story.gd")
 const STORE_PATH:="user://qa-jump"
 
 ## Acts 1-3 and the start of act 4, as the beats in kronasta_story.gd record them.
-const BASE_FLAGS:=["ninaAccepted","guardianDefeated","ninaReturned","ninaGlideTutorialDone","leagueGreen","leagueGreenSeen","tylerClareiraMet","bosqueClareiraDescoberta","comportaVeredasAberta","muralPrimeiroLaco","feiraApitoComprado","feiraApitoFalsoTestado","feiraApitoVerdadeiro","retalhoBosqueVencido","fotoExpedicaoLida","golliaCarretelVencida","pipaDragaoDesatadaVencida","exameAzulOrientadoV2","leagueBlue","marisolRemarOrientado","marisolRemarPratica","canRemar","assisReconheceuNoRetalho","retalhoAcolhido","mormacoVentosPararam","mormacoLiberto"]
+const BASE_FLAGS:=["ninaAccepted","guardianDefeated","ninaReturned","ninaGlideTutorialDone","demoEndingSeen","leagueGreen","leagueGreenSeen","tylerClareiraMet","bosqueClareiraDescoberta","comportaVeredasAberta","muralPrimeiroLaco","feiraApitoComprado","feiraApitoFalsoTestado","feiraApitoVerdadeiro","retalhoBosqueVencido","fotoExpedicaoLida","golliaCarretelVencida","pipaDragaoDesatadaVencida","exameAzulOrientadoV2","leagueBlue","marisolRemarOrientado","marisolRemarPratica","canRemar","assisReconheceuNoRetalho","retalhoAcolhido","mormacoVentosPararam","mormacoLiberto"]
 const BASE_DISTRICTS:=["morro","bambuzal","beira-canal","feira","cais","industrial","palafitas"]
 
 ## Each jump adds districts and flags on top of the previous ones, in story order.
