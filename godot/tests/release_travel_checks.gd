@@ -39,5 +39,14 @@ func _initialize() -> void:
 	check(not Atlas.can_travel("kronasta-centro-b", QA.build("reuniao").player), "map enters the Centro by part A only")
 	# Non-story previews stay off in a release build.
 	check(not Atlas.can_travel("gelo-a", act3), "Geleira stays a preview")
+	# The pause map works indoors: travel from the workshop (found by the walker).
+	var session = load("res://scripts/campaign/session.gd").new()
+	session._store = load("res://scripts/campaign/save_store.gd").new("user://release-travel-" + load("res://scripts/campaign/state.gd").new_id())
+	root.add_child(session)
+	session.start("slot-1")
+	var night: Dictionary = QA.build("noite").player
+	check(session.checkpoint({"kind":"world","scene":"professor-home","position":[1056,1232]}, night).status == "ok", "in the workshop at night")
+	check(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel("kronasta-centro-a").status == "ok", "travel from the workshop to the Centro")
+	check(session.snapshot().checkpoint.scene == "kronasta-centro-a", "arrives at the Centro")
 	print("RELEASE TRAVEL: %d checks; %d failures" % [checks, failures])
 	quit(1 if failures else 0)
