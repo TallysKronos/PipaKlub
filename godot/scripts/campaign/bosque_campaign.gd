@@ -17,6 +17,8 @@ func travel(destination: String) -> Dictionary:
 	var saved: Dictionary=session.snapshot()
 	var source: String=saved.get("checkpoint",{}).get("scene","")
 	if saved.get("checkpoint",{}).get("kind","")!="world" or not available(saved.player): return {"status":"wrong_step"}
+	# The Câmara do Elo closes behind Kael until the Eremor falls (no city map either).
+	if source=="kronasta-coracao-d" and not saved.player.get("flags",{}).get("enamorDerrotado",false): return {"status":"wrong_step"}
 	# The pause map opens indoors too (ateliê, loja, casa): those rooms are in the Vila.
 	if source not in ["quintal","professor-home","kite-shop","kael-home"] and not Checkpoint.MAPS.has(source) and not preload("res://scripts/campaign/morro.gd").maps().has(source): return {"status":"wrong_step"}
 	if not preload("res://scripts/campaign/kronasta_atlas.gd").can_travel(destination,saved.player):return {"status":"wrong_step"}

@@ -2295,6 +2295,10 @@ func _show_local_map() -> void:
 		_button("Região de Kronasta",footer,_show_kronasta)
 
 func _show_kronasta() -> void:
+	var here: Dictionary=session.snapshot()
+	if here.get("checkpoint",{}).get("scene","")=="kronasta-coracao-d" and not here.get("player",{}).get("flags",{}).get("enamorDerrotado",false):
+		_notice("A Câmara do Elo se fechou atrás de você. Só será possível sair depois de vencer o Eremor.")
+		return
 	if not _remember_world_position(): return
 	var saved: Dictionary=session.snapshot()
 	var region=load("res://scripts/campaign/bosque_campaign.gd")

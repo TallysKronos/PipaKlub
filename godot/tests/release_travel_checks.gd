@@ -48,5 +48,9 @@ func _initialize() -> void:
 	check(session.checkpoint({"kind":"world","scene":"professor-home","position":[1056,1232]}, night).status == "ok", "in the workshop at night")
 	check(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel("kronasta-centro-a").status == "ok", "travel from the workshop to the Centro")
 	check(session.snapshot().checkpoint.scene == "kronasta-centro-a", "arrives at the Centro")
+	# Inside the Câmara do Elo there is no way out (map included) until the Eremor falls.
+	var chamber: Dictionary = QA.build("rato").player
+	check(session.checkpoint(CP.make("kronasta-coracao-d", CP.spawn("kronasta-coracao-d"), CP.SPACE), chamber).status == "ok", "inside the Câmara do Elo")
+	check(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel("kronasta-coracao-a").status == "wrong_step", "city map closed inside the Câmara")
 	print("RELEASE TRAVEL: %d checks; %d failures" % [checks, failures])
 	quit(1 if failures else 0)

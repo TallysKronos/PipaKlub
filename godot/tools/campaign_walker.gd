@@ -38,8 +38,8 @@ const ACTIONS := {
 	"serra-habilidades": ["learnDig","serraGalleryReturn","serraWind","serraDig"],
 	"rabiolava": ["aracatiTerreiro"],
 	"ruinas-aliados": ["ruinasDuel"],
-	"rato": ["ruinasChamber","ruinasDuel"],
-	"eremor": ["ruinasChamber","ruinasDuel"],
+	"rato": ["ruinasDuel","ruinasChamber"],
+	"eremor": ["ruinasDuel","ruinasChamber"],
 	"final": ["ruinasDuel"],
 	"homunculo": ["study"],
 }
