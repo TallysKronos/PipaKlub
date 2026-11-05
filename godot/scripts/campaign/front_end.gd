@@ -1691,16 +1691,6 @@ func _show_park() -> void:
 		if not _result(load("res://scripts/campaign/marisol_row_trip.gd").new(session).recover()):return
 	if session.snapshot().player.has("ninaGlideFlight"):
 		if not _result(load("res://scripts/campaign/nina_glide.gd").new(session).recover()):return
-	_clear()
-	var container := SubViewportContainer.new()
-	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	container.stretch = true
-	add_child(container)
-	var viewport := SubViewport.new()
-	viewport.size = Vector2i(size)
-	viewport.handle_input_locally = true
-	viewport.world_2d = World2D.new()
-	container.add_child(viewport)
 	var saved: Dictionary = session.snapshot()
 	var resolved: Vector2=ParkCheckpoint.resolve(saved.checkpoint)
 	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE or not resolved.is_equal_approx(Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])):
@@ -1712,6 +1702,18 @@ func _show_park() -> void:
 			_result(discovery)
 			return
 		saved=session.snapshot()
+	# Keep the previous screen available until the destination checkpoint and
+	# arrival writes succeed. A failed write can then present a usable notice.
+	_clear()
+	var container := SubViewportContainer.new()
+	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	container.stretch = true
+	add_child(container)
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(size)
+	viewport.handle_input_locally = true
+	viewport.world_2d = World2D.new()
+	container.add_child(viewport)
 	park = load("res://scripts/campaign/park_row_view.gd").new() if saved.checkpoint.scene=="kronasta-pantano-a" else load("res://scripts/campaign/park_glide_view.gd").new() if saved.checkpoint.scene in ["park-veredas","kronasta-beira-canal-b"] else ParkOverworldView.new()
 	park.ui_theme = theme
 	park.content = content

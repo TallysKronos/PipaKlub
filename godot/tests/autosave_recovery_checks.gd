@@ -53,6 +53,17 @@ func run() -> void:
 		front.free(); quit(1); return
 	front.park.set_process(false)
 	front.park.paused = false
+	var previous_park: Node = front.park
+	var legacy_point := point.duplicate(true)
+	legacy_point.erase("space")
+	check(front.session.checkpoint(legacy_point,front.session.snapshot().player).status == "ok","seed checkpoint needing normalization")
+	store.deny_write = true
+	front._show_park()
+	await settle()
+	check(is_instance_valid(previous_park) and front.park == previous_park and warning(front) != null,"failed transition keeps previous map and explains error")
+	await close_warning(front)
+	store.deny_write = false
+	check(front.session.checkpoint(point,front.session.snapshot().player).status == "ok","restore normalized checkpoint")
 	var previous: Dictionary = front.session.snapshot()
 	var path := directory.path_join("slot-0.json")
 	var hash_before := FileAccess.get_sha256(path)

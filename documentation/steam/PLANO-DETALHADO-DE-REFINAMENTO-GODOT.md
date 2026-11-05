@@ -557,6 +557,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R49 — Loading e transições sem telas incompletas
 
+**Exploração:** o mapa anterior fica disponível até a normalização do checkpoint e as gravações de chegada concluírem. Uma falha de gravação mantém a tela anterior e mostra o aviso. O teste injeta falha real na gravação do checkpoint. Passaram 58 verificações entre recuperação, avisos e viagens. A suíte de avisos emitiu alertas de recursos na saída. Carga fria em disco lento e recurso ausente continuam pendentes.
+
 **Situação:** infraestrutura existente a validar; obrigatório se houver entrada inválida/travamento.
 
 **Execução:** listar trocas que carregam mapa, atlas, duelo e conteúdo de save. Mostrar camada de loading quando necessário; só devolver input depois de recursos, posição, câmera e HUD estarem prontos. Consumir o botão que abriu a transição para não pular o primeiro diálogo. Tratar erro de recurso com mensagem e retorno seguro; não usar loading infinito. Não adicionar atraso artificial a cargas instantâneas.
