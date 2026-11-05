@@ -121,6 +121,12 @@ func gate_flow()->void:
 	if not is_instance_valid(app.battle):return
 	await capture("07-grampo-duelo")
 	app.battle.model.outcome="won";app.battle.finish_requested.emit();await ready_park()
+	# F10: Grampo reacts to the duel and points to the canal control; close it first.
+	for wait in 30:
+		if is_instance_valid(dialog()):break
+		await process_frame
+	check(is_instance_valid(dialog()) and str(dialog().dialog_text).begins_with("Grampo:") and str(dialog().dialog_text).contains("comporta"),"Grampo reacts and points to the canal control")
+	if is_instance_valid(dialog()):dialog().get_ok_button().pressed.emit();await frames()
 	app._park_event("10901");await frames()
 	check(is_instance_valid(dialog()),"valve confirmation after victory")
 	if not is_instance_valid(dialog()):return
