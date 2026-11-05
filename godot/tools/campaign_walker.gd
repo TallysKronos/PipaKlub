@@ -157,6 +157,13 @@ func settle(limit: int = 900) -> void:
 		if handle_battle() or await handle_dialogs():
 			idle = 0
 			continue
+		# Chapter card after Nina's rabiola: the player picks "Continuar explorando".
+		if view.last_scene_key == "page:DEMO CONCLUÍDA":
+			note("   [cartão de capítulo] Continuar explorando")
+			await shot("chapter")
+			view._finish_demo("explore")
+			idle = 0
+			continue
 		if is_instance_valid(view.scene_loading) or view.flow_busy:
 			idle = 0; continue
 		idle += 1
