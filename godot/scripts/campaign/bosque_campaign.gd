@@ -97,7 +97,10 @@ static func objective(player: Dictionary, scene: String) -> String:
 	# A conquered place with the story elsewhere points to the next step (F25/F33).
 	var beat:Dictionary=Story.current_beat(player)
 	var away:bool=not beat.is_empty() and str(beat.get("place",""))!=Checkpoint.region_of(scene) and not (Checkpoint.is_bosque(scene) and beat.get("place","")=="bosque")
-	if away and int(beat.get("act",0))>=4 and (Checkpoint.is_bosque(scene) or (Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"] and preload("res://scripts/campaign/district_rules.gd").completed(player,Checkpoint.region_of(scene)))):
+	# The Bosque keeps its exploration hints in the early acts; a conquered district always
+	# points onwards (after Dona Zulmira, the Caverna do Mural).
+	var conquered:bool=Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"] and preload("res://scripts/campaign/district_rules.gd").completed(player,Checkpoint.region_of(scene))
+	if away and (conquered or (Checkpoint.is_bosque(scene) and int(beat.get("act",0))>=4)):
 		return "Próximo passo · "+Story.objective(player)+" Use o mapa de Kronasta (M)."
 	if Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"]:return preload("res://scripts/campaign/district_campaign.gd").objective(player,Checkpoint.region_of(scene))
 	if not Checkpoint.is_bosque(scene):

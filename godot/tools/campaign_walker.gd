@@ -450,6 +450,7 @@ func go_to(scene: String) -> bool:
 
 func entry_of(scene: String) -> String:
 	var region := CP.region_of(scene)
+	if region == "caverna": return "caverna-mural-a"
 	return "kronasta-%s-a" % region if not region.is_empty() else scene
 
 ## Exits to take inside a region, by breadth-first search over map exits.
