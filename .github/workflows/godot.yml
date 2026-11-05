@@ -1,0 +1,72 @@
+name: Godot validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: godot-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  godot:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    env:
+      GODOT_VERSION: 4.7.2
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install official Godot and matching export templates
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = "https://github.com/godotengine/godot-builds/releases/download/$env:GODOT_VERSION-stable"
+          $downloads = Join-Path $env:RUNNER_TEMP 'godot-downloads'
+          New-Item -ItemType Directory -Force $downloads | Out-Null
+          Invoke-WebRequest "$base/SHA512-SUMS.txt" -OutFile "$downloads/SHA512-SUMS.txt"
+          foreach ($name in @("Godot_v$env:GODOT_VERSION-stable_win64.exe.zip", "Godot_v$env:GODOT_VERSION-stable_export_templates.tpz")) {
+            Invoke-WebRequest "$base/$name" -OutFile "$downloads/$name"
+            $line = @(Get-Content "$downloads/SHA512-SUMS.txt" | Where-Object { ($_ -split '\s+')[-1].TrimStart('*') -eq $name })
+            if ($line.Count -ne 1) { throw "Missing unique checksum for $name" }
+            $expected = ($line[0] -split '\s+')[0]
+            if ((Get-FileHash "$downloads/$name" -Algorithm SHA512).Hash -ne $expected) { throw "Checksum mismatch: $name" }
+          }
+          Expand-Archive "$downloads/Godot_v$env:GODOT_VERSION-stable_win64.exe.zip" "$downloads/editor"
+          $target = Join-Path $env:APPDATA "Godot/export_templates/$env:GODOT_VERSION.stable"
+          New-Item -ItemType Directory -Force $target | Out-Null
+          $archive = [IO.Compression.ZipFile]::OpenRead("$downloads/Godot_v$env:GODOT_VERSION-stable_export_templates.tpz")
+          try {
+            foreach ($entry in $archive.Entries) {
+              if ($entry.FullName -match '^templates/(version.txt|windows_(debug|release)_x86_64(_console)?\.exe)$') {
+                [IO.Compression.ZipFileExtensions]::ExtractToFile($entry, (Join-Path $target $entry.Name), $true)
+              }
+            }
+          } finally { $archive.Dispose() }
+          if (-not (Test-Path "$target/windows_release_x86_64.exe")) { throw 'Windows release template missing' }
+          "GODOT_PATH=$downloads/editor/Godot_v$env:GODOT_VERSION-stable_win64_console.exe" >> $env:GITHUB_ENV
+      - name: Import resources and run Godot regression suites
+        timeout-minutes: 25
+        shell: pwsh
+        run: ./godot/Validar.ps1 -GodotPath $env:GODOT_PATH -OutputDirectory "$env:RUNNER_TEMP/godot-validation"
+      - name: Export Windows release
+        timeout-minutes: 10
+        shell: pwsh
+        run: ./godot/Exportar.ps1 -GodotPath $env:GODOT_PATH -OutputDirectory "$env:RUNNER_TEMP/soulmonsters-windows"
+      - name: Upload validation logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-validation-logs
+          path: ${{ runner.temp }}/godot-validation
+          if-no-files-found: warn
+      - name: Upload Windows release
+        uses: actions/upload-artifact@v4
+        with:
+          name: soulmonsters-windows-${{ github.sha }}
+          path: ${{ runner.temp }}/soulmonsters-windows
+          if-no-files-found: error
+          retention-days: 7

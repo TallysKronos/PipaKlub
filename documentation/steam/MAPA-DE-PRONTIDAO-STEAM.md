@@ -2,6 +2,8 @@
 
 Revisão: **04/11/2026**. Produto: **Soulmonsters: Elo das Ruínas**, campanha Godot.
 
+Atualização de escopo em **05/11/2026**: o dono confirmou que o produto ativo é **somente Godot**, sem versão web. Os itens de paridade abaixo se referem apenas às funcionalidades que forem escolhidas para o jogo Godot; não exigem manter a versão web funcionando. A substituição do gate web pelo Godot está descrita em [Validação Godot](VALIDACAO-GODOT.md). A necessidade ou não de conexão à conta é uma decisão separada da escolha de engine.
+
 ## Parecer e limites
 
 O projeto tem uma campanha extensa implementada e várias sequências refinadas, mas **ainda não há evidência suficiente para classificá-lo como uma versão candidata ao lançamento**. Os riscos principais são exportação e distribuição reais, continuidade integral da campanha, identidade visual ainda provisória em partes do elenco/cenários, equilíbrio da progressão, integridade dos saves e escopo da conta online.
