@@ -231,6 +231,12 @@ static func objective(player: Dictionary) -> String:
 	if beat.get("id","").begins_with("mormaco-"):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
 	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
+	# The Ruínas rescue names who is still held, in the order of the parts.
+	if beat.get("id")=="ruinas-aliados":
+		var held:Array=[]
+		for pair in [["ruinasNinaLivre","a Nina"],["ruinasMikkaLivre","a Mikka"],["ruinasJamileLivre","a Jamile"]]:
+			if not flags(player).get(pair[0],false):held.append(pair[1])
+		if held.size()<3:return "Siga pelas Ruínas e solte "+(" e ".join(held) if held.size()<=2 else ", ".join(held))+"."
 	# The galpão: three knots (lieutenants), then the guards to the back.
 	if beat.get("id")=="galpao" and load("res://scripts/campaign/endgame_story.gd").duel_index(player,"galpao")>=3:
 		return "Os três nós cederam. Vença os guardas até o fundo do galpão."

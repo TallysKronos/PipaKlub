@@ -376,7 +376,7 @@ func go_to(scene: String) -> bool:
 			if scene_now() == here: issue("mapa da cidade recusou viajar para " + entry_of(scene)); return false
 			continue
 		var exit: Dictionary = route[0]
-		note("   saída '%s' (%s → %s)" % [exit.name, here, exit.props.destino])
+		note("   saída '%s' (%s → %s)" % [exit.name, here, exit.props.get("destino", "kronasta-coracao-d")])
 		if not await walk_to(Vector2(exit.u + .5, exit.v + .5), .4): return false
 		for i in 60:
 			await process_frame
@@ -384,7 +384,7 @@ func go_to(scene: String) -> bool:
 		if scene_now() == here and park_ready():
 			view.park.interact()
 			await settle()
-		if scene_now() == here: issue("saída '%s' não levou a %s" % [exit.name, exit.props.destino]); return false
+		if scene_now() == here: issue("saída '%s' não levou adiante" % exit.name); return false
 	issue("não chegou a " + scene)
 	return false
 
@@ -402,9 +402,11 @@ func route_between(from: String, to: String) -> Array:
 		var item: Array = queue.pop_front()
 		if item[0] == to: return item[1]
 		for e in events_of(str(item[0])):
-			if e.type != "saida" or not CP.MAPS.has(str(e.props.get("destino", ""))): continue
+			# The Câmara do Elo door is an action, not an exit, but it leads to part D.
+			var chamber: bool = e.props.get("acao", "") == "ruinasChamber"
+			if not chamber and (e.type != "saida" or not CP.MAPS.has(str(e.props.get("destino", "")))): continue
 			if not CP.allowed(e, player, ""): continue
-			var next: String = e.props.destino
+			var next: String = "kronasta-coracao-d" if chamber else str(e.props.destino)
 			if seen.has(next): continue
 			seen[next] = true
 			queue.append([next, item[1] + [e]])
