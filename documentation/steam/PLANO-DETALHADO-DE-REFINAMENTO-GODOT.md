@@ -481,6 +481,20 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R44 — Local, conta online e Cloud são responsabilidades diferentes
 
+**Proposta para a primeira versão, pendente de aprovação de produto**
+
+| Responsabilidade | Comportamento proposto |
+| --- | --- |
+| Campanha | Jogável offline. Slots, autosave e backups pertencem ao perfil local do sistema. Atualizar ou reinstalar em outra pasta mantém o progresso quando o perfil é preservado. |
+| Depósito de parceiros | Compartilhado entre campanhas do mesmo perfil local. A exclusão de uma campanha preserva os parceiros já depositados. A interface já informa que o depósito fica neste computador. |
+| Conta Steam | Distribuição do jogo. Separação de progresso por SteamID e importação de saves locais exigem implementação e teste próprios antes de serem anunciadas. |
+| Steam Cloud | Fora do escopo inicial proposto. Para adotar, definir como sincronizar campanha, depósito e registros de exclusão como um conjunto consistente. Manter preferências de hardware fora desse conjunto. |
+| Economia online | Fora do escopo inicial proposto. Se adotada, o servidor valida a origem dos parceiros e registra concessões e transferências de forma idempotente. |
+
+**Texto proposto para a loja:** “A campanha e o depósito de parceiros ficam salvos no perfil local deste computador. Você pode jogar a campanha offline.”
+
+**Validação pendente:** abrir uma candidata instalada pela Steam com a rede desligada, verificar atualização e reinstalação e conferir o comportamento ao alternar contas Steam no mesmo usuário Windows. Se Cloud entrar no escopo, testar alterações offline em dois PCs, conflito entre versões, exclusão seguida de sincronização e retomada de upload interrompido. A escolha do jogador em um conflito deve preservar uma cópia recuperável do outro progresso.
+
 **Situação:** decisão de produto; condicional, obrigatório se anunciado.
 
 **Execução:** definir campanha local versus conectada, vinculação Steam, propriedade do banco global e recursos online incluídos. Se houver economia compartilhada, servidor deve arbitrar concessão/transferência e deduplicação; save local editável não é comprovante confiável. Se adotar Cloud, escolher o conjunto de arquivos, política de conflito, exclusão e compatibilidade; não sincronizar preferências de hardware como se fossem progresso.
