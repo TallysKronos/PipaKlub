@@ -659,6 +659,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R57 — Confirmar a CI Godot e manter falhas visíveis
 
+**Diagnóstico adicional:** a execução remota 42063377496 encerrou com violação de acesso no bootstrap, após erros de fontes e SVGs do tema. O runner agora prepara os imports com o tema padrão, restaura o projeto e exige as duas passagens sem erros. A prova local sem cache com as dependências do tema passou. A execução remota integral do novo runner ainda precisa ser confirmada.
+
 **Execução iniciada em 05/11:** preparação/importação verificadas em fixture sem cache; runner corrigido. Aguardar CI integral. [Relatório R57–R58](refinamentos/r57-r58/README.md).
 
 **Situação:** workflow web substituído em `b51fd293`; execução remota precisa de resultado confirmado.

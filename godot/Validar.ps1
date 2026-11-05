@@ -46,10 +46,15 @@ $version = & $GodotPath --version
 if ($LASTEXITCODE -ne 0 -or "$version" -notmatch '^4\.7\.2\.stable') { throw "Godot inesperado: $version; use 4.7.2 stable." }
 try {
  if (-not $SkipImport) {
-  # The editor resolves the custom theme before its first font/image import.
-  # Retain bootstrap diagnostics, then require a second, clean import to pass.
-  $null = Invoke-Check 'import-bootstrap' @('--headless','--path',$project,'--editor','--import') 600 $false
-  if ($results[-1].timedOut -or $results[-1].exitCode -ne 0) { throw 'A preparação inicial da importação falhou.' }
+  # Godot initializes the project theme before importing its font and SVG dependencies.
+  # Use the built-in theme for bootstrap, then restore the real project configuration.
+  $settings = Join-Path $project 'project.godot'
+  $originalSettings = [IO.File]::ReadAllBytes($settings)
+  $bootstrapSettings = [Text.Encoding]::UTF8.GetString($originalSettings) -replace '(?m)^theme/custom="[^"]+"', 'theme/custom=""'
+  try {
+   [IO.File]::WriteAllText($settings, $bootstrapSettings)
+   if (-not (Invoke-Check 'import-bootstrap' @('--headless','--path',$project,'--editor','--import') 600)) { throw 'A preparação inicial da importação falhou.' }
+  } finally { [IO.File]::WriteAllBytes($settings, $originalSettings) }
   if (-not (Invoke-Check 'import' @('--headless','--path',$project,'--editor','--import') 600)) { throw 'A importação de recursos falhou.' }
  }
  $suites = @(
