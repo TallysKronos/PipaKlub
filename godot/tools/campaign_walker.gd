@@ -379,7 +379,8 @@ func step(beat: Dictionary) -> bool:
 		# Probably an earlier sub-step of this beat; try the next action before giving up.
 		note("   (sem mudança em '%s'; tentando a próxima ação)" % event.get("name"))
 		exhausted[scene_key(event)] = true
-		return not target(beat).is_empty()
+		# Keep going: the next round tries another event or searches the other parts.
+		return true
 	exhausted.clear()
 	return true
 
