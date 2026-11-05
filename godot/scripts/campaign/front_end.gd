@@ -793,8 +793,12 @@ func _show_opening() -> void:
 		name_input.max_length = 24
 		page.add_child(name_input)
 		name_input.text_submitted.connect(func(_value: String): _name())
-		next = _button("Confirmar nome", Hud.focus_space(page), _name)
-		Hud.focus_later(name_input)
+		next = _button("Confirmar · Rabbito", Hud.focus_space(page), _name)
+		name_input.text_changed.connect(func(value: String):
+			next.text = "Confirmar · Rabbito" if value.strip_edges().is_empty() else "Confirmar nome")
+		next.focus_neighbor_top = next.get_path_to(name_input)
+		name_input.focus_neighbor_bottom = name_input.get_path_to(next)
+		Hud.focus_later(next if Controls.gamepad else name_input)
 	elif current_step < 14 and current_step not in [3, 11, 13]:
 		var next_space := Hud.focus_space(page)
 		next_space.size_flags_horizontal = Control.SIZE_SHRINK_END

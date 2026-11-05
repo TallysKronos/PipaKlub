@@ -507,6 +507,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R45 — Campanha inteira com controle físico
 
+**Avanço:** a nomeação de Rabbito abre com foco em confirmar o nome padrão quando o controle é o dispositivo ativo. O direcional para cima leva ao campo de nome personalizado. A validação com controle físico e a digitação de nome personalizado sem teclado físico permanecem pendentes.
+
 **Situação:** mapeamento/glifos já existem; validar dispositivos; obrigatório para suporte prometido.
 
 **Execução:** percorrer título, nomeação, diálogo, escolhas, exploração, duelo, coleção, classes, ritual, loja, save/exclusão e erros sem mouse. Definir primeiro foco, vizinhos, confirmação, voltar e retorno ao item anterior. Oferecer teclado virtual quando o alvo exigir texto sem teclado físico. Evitar dupla interpretação do mesmo botão entre mundo e menu.
