@@ -322,6 +322,7 @@ const ARRIVALS := {"bosque": "kronasta-bosque-c"}
 ## way the minigame would and says so in the report (never silently).
 const COVERED := {
 	"exame-azul": {"flags": ["leagueBlue"], "tests": "blue_exam_checks, blue_yard_walk_checks"},
+	"remar-orientacao": {"flags": ["marisolRemarOrientado"], "tests": "marisol_row_checks"},
 	"remar-pratica": {"flags": ["marisolRemarPratica", "canRemar"], "tests": "marisol_row_checks, marisol_row_trip_checks"},
 }
 
