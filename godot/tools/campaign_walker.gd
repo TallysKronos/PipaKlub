@@ -489,7 +489,8 @@ func walk_to(goal: Vector2, reach: float) -> bool:
 		if handle_battle() or await handle_dialogs():
 			await settle()
 			# A wild duel reloads the map: walk again from where the game put Kael.
-			if not park_ready(): return false
+			if not park_ready():
+				issue("depois de um duelo ou diálogo no caminho, o mapa não voltou (cena %s)" % scene_now()); return false
 			if view.park != park: return await walk_to(goal, reach)
 			park.path = model.path_to(park.player, best)
 			continue
@@ -499,7 +500,11 @@ func walk_to(goal: Vector2, reach: float) -> bool:
 			if still > 240: issue("parado no caminho em %s perto de %s" % [scene_now(), str(park.player)]); return false
 		else: still = 0
 		last = park.player
-	return park.player.distance_to(goal) <= reach + 1.5
+	if park.player.distance_to(goal) > reach + 1.5:
+		issue("não alcançou (%.1f, %.1f) em %s; parou em %s (pausado=%s, foco=%s)" % [goal.x, goal.y, scene_now(), str(park.player), str(park.paused), str(park.get("guardian_focus"))])
+		await shot("short")
+		return false
+	return true
 
 ## The event the interact button would pick standing at a point (same rule as the view).
 func nearest_event(at: Vector2) -> Vector2:
