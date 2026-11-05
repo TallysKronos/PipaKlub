@@ -20,7 +20,7 @@ func _init(partner: Dictionary = {}, id: String = "morro-1", progress: Dictionar
 	stage_id = id
 	var entry := stage_definition(id)
 	if entry.is_empty(): return
-	ai_level = Rules.ai_level(entry, Rules.defaults() if progress.is_empty() else progress) if id.begins_with("morro-") else clampi(int(entry.level)-4,1,10)
+	ai_level = Rules.ai_level(entry, Rules.defaults() if progress.is_empty() else progress) if id.begins_with("morro-") else district_ai(entry)
 	rounds_to_win = int(entry.rounds)
 	p.merge({"name": "Seu parceiro", "rounds": 0, "out": false, "target": -1, "slot": 0, "style": "", "threatTime": 0.0})
 	actors = [p]
@@ -218,6 +218,14 @@ func restore(saved: Dictionary) -> void:
 	ai_level = int(saved.aiLevel)
 	veskoro=saved.get("veskoro",Veskoro.fresh()).duplicate(true) if enemy_model_id=="veskoro" else {}
 
+
+## Rival skill climbs across the six acts instead of peaking at Lv.14 (level-4, capped
+## at 10, left two thirds of the campaign against the perfect reader). Champions read
+## one step better than their lieutenants. Measured with tools/duel_balance.gd.
+static func district_ai(entry: Dictionary) -> int:
+	var skill := 2 + (int(entry.level) - 9) / 6
+	if str(entry.get("role", "")) == "champion": skill += 1
+	return clampi(skill, 1, 10)
 
 static func stage_definition(id:String) -> Dictionary:
 	if id.begins_with("morro-"):return Rules.stage(id)

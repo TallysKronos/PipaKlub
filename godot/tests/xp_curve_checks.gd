@@ -50,5 +50,11 @@ func _initialize() -> void:
 				worst = mini(worst, gap); best = maxi(best, gap)
 	check(worst >= -6, "never far behind a champion (worst %+d)" % worst)
 	check(best <= 4, "never far ahead of a champion (best %+d)" % best)
+	# Rival skill climbs across the acts instead of peaking at Lv.14.
+	var Trail = preload("res://scripts/campaign/morro_model.gd")
+	check(Trail.district_ai({"level": 12, "role": "lieutenant"}) < Trail.district_ai({"level": 33, "role": "lieutenant"}), "rivals read better later in the campaign")
+	check(Trail.district_ai({"level": 15, "role": "lieutenant"}) <= 4, "act 2 rivals are not the perfect reader")
+	check(Trail.district_ai({"level": 44, "role": "champion"}) > Trail.district_ai({"level": 44, "role": "lieutenant"}), "champions read better than lieutenants")
+	check(Trail.district_ai({"level": 50, "role": "champion"}) <= 10, "skill capped")
 	print("XP CURVE: %d checks; %d failures (gaps %+d..%+d)" % [checks, failures, worst, best])
 	quit(1 if failures else 0)

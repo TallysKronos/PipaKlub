@@ -195,7 +195,8 @@ func handle_battle() -> bool:
 	var name := str(enc.get("state", {}).get("q", {}).get("name", "?"))
 	# Wild encounters are expected to repeat; only story duels count as a loop.
 	if str(enc.get("kind", "")) != "wild": duel_counts[name] = int(duel_counts.get(name, 0)) + 1
-	if int(duel_counts.get(name, 0)) > 4:
+	# Real duels can be lost a few times before a win; settled ones reopen only by a loop.
+	if int(duel_counts.get(name, 0)) > (8 if fight_skill > 0 else 4):
 		issue("o duelo '%s' reabriu %d vezes (ciclo)" % [name, duel_counts[name]])
 		finish(); return true
 	if fight_skill > 0:
