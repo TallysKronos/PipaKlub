@@ -759,6 +759,8 @@ O teste local usou IDs fictícios e conferiu 12 arquivos no conteúdo preparado.
 
 ### R64 — Página da loja e promessas
 
+**Rascunho disponível:** descrição curta, texto da página e matriz de evidência para as promessas da campanha. A publicação depende da revisão de produto e da validação no cliente Steam. [Rascunho da página](PAGINA-DA-LOJA-RASCUNHO.md).
+
 **Situação:** revisão de produção; obrigatório antes de submissão/publicação.
 
 **Execução:** fechar descrição do que o jogador faz, estrutura da campanha, coleção, combate, idioma, controles e duração somente se medida. Remover menções a recursos não incluídos. Vincular cada feature publicada a uma evidência jogável. Informar necessidade de internet/login conforme decisão real, sem chamar conectado de offline. Definir preço, plataformas e lançamento pelo responsável do produto.
