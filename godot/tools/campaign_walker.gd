@@ -115,12 +115,27 @@ func open_app(fresh: bool, from: String = "") -> void:
 	view.session._store = Store.new(store_path)
 	if fresh:
 		view.session.start("slot-1")
-		var result: Dictionary = QA.install(view.session, from)
+		var result: Dictionary = install_early(from) if from == "lohan" else QA.install(view.session, from)
 		if result.status != "ok": issue("salto QA recusado: " + str(result)); return
 	# Same path as "Continuar" on the title screen.
 	view._choose("slot-1", false)
 	await settle()
 	if not park_ready() and not is_instance_valid(view.room): issue("save não reabriu a exploração")
+
+## Acts 1-3 start: right after Mikka (Morro, covered by demo_championship_playthrough)
+## and Nina's request, in the Vila. Nothing of the Bambuzal onwards is done.
+func install_early(_from: String) -> Dictionary:
+	var built: Dictionary = QA.build("serra")
+	var player: Dictionary = State.fresh("slot-1").player
+	for key in ["name", "partners", "equippedPartnerId", "journey", "pipeiroIdentity", "morro"]: player[key] = built.player[key]
+	player.partners[0].xp = load("res://scripts/campaign/partner_levels.gd").xp_for_level(14)
+	player.flags = {"pipeiroDocumentsSeen": true, "firstInsigniaSeen": true, "ninaAccepted": true, "ninaBambuzalOrder": true}
+	var entry: Dictionary = Rules.entry(player, "morro")
+	entry.completed = true; entry.rewardClaimed = true; entry.champion = "player"
+	for stage: Dictionary in Rules.definition("morro").stages.slice(0, 4): entry.qualification.append(stage.id)
+	Rules.store(player, "morro", entry)
+	Rules.award_emblem(player, "morro")
+	return view.session.checkpoint(load("res://scripts/campaign/neighborhood_checkpoint.gd").make(Vector2(1792, 1808), player), player)
 
 func restart_app() -> void:
 	var before: Dictionary = view.session.snapshot()
@@ -231,7 +246,8 @@ func target(beat: Dictionary) -> Array:
 			if Rules.prepare(player, district, stage.id).status == "ok":
 				return find_event(Rules.definition(district).stages.map(func(s): return str(s.get("scene", ""))), func(e): return e.props.get("duel", "") == stage.id)
 		return []
-	else: scenes = BEAT_SCENES.get(id, [])
+	elif BEAT_SCENES.has(id): scenes = BEAT_SCENES[id]
+	else: return generic_target(beat)
 	if Endgame.STEPS.has(id):
 		return find_event(scenes, func(e): return e.props.get("acao", "") == "endgameStep" and e.props.get("step", "") == id)
 	# Actions in priority order: the first open one wins, wherever it is.
@@ -244,6 +260,29 @@ func target(beat: Dictionary) -> Array:
 		if not found.is_empty(): return found
 	return []
 
+## Actions that never advance a beat (rest, maps, guides, menus, side views).
+const IDLE := ["wildRest","districtRest","warehouseRest","muralRest","retalhoTrustRest","parkMap","wildGuide","parkBossGuide","collection","friends","trades","farm","parkTraining","road_gate"]
+const PLACE_SCENES := {"parque": ["park-trail","park-clearing","park-veredas","parque-patio-liga"], "caverna": ["caverna-mural-a","caverna-mural-b","caverna-mural-c"]}
+
+## Acts 1-3: any open story event in the beat's place, district duels in order.
+func generic_target(beat: Dictionary) -> Array:
+	var player: Dictionary = view.session.snapshot().player
+	var place: String = beat.get("place", "")
+	var scenes: Array = PLACE_SCENES.get(place, [])
+	if scenes.is_empty():
+		for scene in CP.MAPS: if CP.region_of(scene) == place: scenes.append(scene)
+		scenes.sort()
+	if Rules.definition(place).size() > 0:
+		for stage in Rules.definition(place).stages:
+			if Rules.prepare(player, place, stage.id).status == "ok":
+				var duel := find_event(scenes, func(e): return e.props.get("duel", "") == stage.id)
+				if not duel.is_empty() and not exhausted.has(scene_key(duel[1])): return duel
+	return find_event(scenes, func(e):
+		var a: String = e.props.get("acao", "")
+		if e.type in ["saida", "entrada", "item"] or a in IDLE or a == "districtDuel" or exhausted.has(scene_key(e)): return false
+		if a.is_empty() and e.name != "Nina": return false
+		return CP.allowed(e, player, ""))
+
 func find_event(scenes: Array, matcher: Callable) -> Array:
 	var ordered: Array = scenes.duplicate()
 	if scene_now() in ordered: ordered.erase(scene_now()); ordered.push_front(scene_now())
@@ -255,7 +294,7 @@ func find_event(scenes: Array, matcher: Callable) -> Array:
 ## ---------------------------------------------------------------- acting
 
 ## Steps played indoors: [room scene, street doorway, hotspot].
-const ROOM_STEPS := {"homunculo": ["professor-home", "professor-home", "study"]}
+const ROOM_STEPS := {"homunculo": ["professor-home", "professor-home", "study"], "foto-expedicao": ["professor-home", "professor-home", "study"], "azul-preparacao": ["professor-home", "professor-home", "professor"]}
 
 func step(beat: Dictionary) -> bool:
 	if ROOM_STEPS.has(beat.get("id", "")): return await room_step(ROOM_STEPS[beat.id])
