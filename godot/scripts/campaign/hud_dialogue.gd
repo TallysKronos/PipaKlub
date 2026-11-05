@@ -50,6 +50,9 @@ func _ready() -> void:
 	if previous_focus!=null:
 		var previous_reference:WeakRef=weakref(previous_focus)
 		tree_exiting.connect(func():
+			# Closing a lower modal must not steal focus from another live dialogue.
+			for other: Node in get_tree().get_nodes_in_group("manga_dialogue"):
+				if other != self and not other.is_queued_for_deletion() and other.is_visible_in_tree(): return
 			var target:Control=previous_reference.get_ref()
 			if target!=null and target.is_inside_tree() and target.is_visible_in_tree():Hud.focus_later(target))
 	for hud:Control in get_tree().get_nodes_in_group("exploration_hud"):

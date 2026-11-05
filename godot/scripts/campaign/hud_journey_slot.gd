@@ -1,5 +1,6 @@
 extends "res://scripts/campaign/hud_result_plate.gd"
 const Hud=preload("res://scripts/campaign/hud.gd")
+const SaveMessages=preload("res://scripts/campaign/save_messages.gd")
 signal selected
 signal erase_requested
 var inspection:Dictionary={}
@@ -9,6 +10,7 @@ var action:Button
 var erase:Button
 var detail:Label
 var timestamp:Label
+var state_notice:Label
 var area_name:=""
 var thumbnail:Texture2D
 var partner_portrait:Texture2D
@@ -66,7 +68,11 @@ func _ready() -> void:
 		var date:Dictionary=Time.get_datetime_dict_from_unix_time(seconds)
 		timestamp=caption("%s   /   %02d/%02d/%04d · %02d:%02d UTC"%[played,date.day,date.month,date.year,date.hour,date.minute],text,14)
 		timestamp.add_theme_color_override("font_color",Hud.MUTED)
-	else:caption("Espaço livre para sua próxima aventura." if empty else "Os arquivos foram preservados para recuperação.",text,16)
+		if inspection.get("recovered",false):
+			state_notice=caption(SaveMessages.BACKUP_AVAILABLE,text,16)
+	else:
+		var reason:String=SaveMessages.error(str(inspection.status))
+		state_notice=caption("Espaço livre para sua próxima aventura." if empty else reason if not reason.is_empty() else "Jornada indisponível. Os arquivos foram mantidos.",text,16)
 	if valid and thumbnail!=null:
 		var place:=VBoxContainer.new()
 		place.custom_minimum_size.x=144
@@ -87,11 +93,11 @@ func _ready() -> void:
 	commands.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	row.add_child(commands)
 	action=Button.new()
-	action.text="Começar" if empty else "Continuar" if valid else "Indisponível"
+	action.text="Começar" if empty else "Recuperar" if valid and inspection.get("recovered",false) else "Continuar" if valid else "Tentar novamente" if inspection.status=="io_error" else "Indisponível"
 	action.tooltip_text="Jornada %s · Novo jogo"%slot_id.trim_prefix("slot-") if empty else "Jornada %s · Continuar — %s"%[slot_id.trim_prefix("slot-"),player.get("name","Kael")]
 	Hud.navigation_button(action,true)
-	action.custom_minimum_size=Vector2(168,52)
-	action.disabled=not empty if available_for_new else not valid
+	action.custom_minimum_size=Vector2(240 if inspection.status=="io_error" else 168,52)
+	action.disabled=not empty if available_for_new else not valid and inspection.status!="io_error"
 	action.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	action.pressed.connect(func():selected.emit())
 	var action_space:=Hud.focus_space(commands)

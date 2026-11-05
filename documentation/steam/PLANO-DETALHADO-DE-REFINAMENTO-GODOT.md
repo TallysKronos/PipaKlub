@@ -499,6 +499,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R47 — Estados vazio, bloqueado, cheio, erro e confirmação
 
+**Execução em 05/11:** cards/avisos de save refinados e capturados; corrigidos avisos escondidos pelo filme e retry cortado. 35 checks de interface passaram, com regressão de diálogos/menu/saves. Estados das demais funcionalidades continuam pendentes. [Relatório de feedback R42/R47](refinamentos/r42-feedback/README.md).
+
 **Situação:** validar cenários de exceção; obrigatório quando afeta ação/descarte.
 
 **Execução:** desenhar cada estado com motivo e próximo passo: não visto, falta item, classe indisponível, banco cheio, saldo insuficiente e falha de gravação. Manter informações relevantes visíveis durante confirmação; descarte deve identificar exatamente a criatura/item. Não fechar a tela em silêncio quando uma ação falha. Separar indisponível por história de erro técnico.

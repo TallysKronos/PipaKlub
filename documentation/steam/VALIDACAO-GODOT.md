@@ -8,7 +8,7 @@ Atualizado em 05/11/2026. O produto ativo é exclusivamente a campanha Godot. A 
 
 1. Baixa Godot **4.7.2 stable** e templates correspondentes da distribuição oficial, verificando SHA-512.
 2. Prepara a importação inicial e exige uma segunda passagem sem erros em `godot/Validar.ps1`, em Windows. Na primeira abertura sem cache, o tema pode tentar resolver fontes/imagens antes de serem importadas; o log inicial é preservado como diagnóstico não bloqueante apenas se o processo encerrar normalmente. Erros que persistam na segunda passagem bloqueiam a execução.
-3. Executa 18 suítes de regressão: overworld, Morro, campanha/saves, controles, história final, encenação, viagens release, avisos após load, nomes, flor, recuperação da cidade, reunião, apresentação/libertação Trovareta, fluxo Beira-Canal, menu do título, ciclos de vida do menu e resiliência dos saves.
+3. Executa 19 suítes de regressão: overworld, Morro, campanha/saves, controles, história final, encenação, viagens release, avisos após load, nomes, flor, recuperação da cidade, reunião, apresentação/libertação Trovareta, fluxo Beira-Canal, menu do título, ciclos de vida do menu, resiliência dos saves e feedback visual/controle de recuperação e erro.
 4. Verifica também os recursos importados do título, casa, loja e previews, e gera a exportação Windows release por `godot/Exportar.ps1`. O exportador rejeita erros no log mesmo com retorno zero e executa a mesma sonda de recursos no executável/PCK entregue, fora da pasta fonte, com perfil temporário isolado.
 5. `godot/ValidarPacote.ps1` confere hashes, copia somente exe/PCK a uma pasta com espaços/acentos e executa três processos: criar campanha de teste, retomar e retomar após mover a instalação. Todos usam o mesmo perfil descartável e um diretório de trabalho sem projeto.
 6. Disponibiliza logs/resultados e, em sucesso, o pacote Windows como artefatos da execução.
@@ -18,6 +18,8 @@ O runner falha em retorno não zero, erro de script/parse/compilação ou timeou
 As duas suítes de menu também rejeitam avisos de instâncias vazadas/recursos ainda em uso. O teste de ciclo de vida acompanha nós, sessões, players e streams por referências fracas, com espera limitada pela liberação assíncrona do mixer, e verifica que a contagem de nós/órfãos não cresce em cinco ciclos.
 
 A suíte de resiliência usa arquivos descartáveis e uma subclasse de teste para injetar falhas nas fronteiras de escrita/cópia/rename. Confere recuperação, recompensa idempotente, ausência de confirmação em memória antes do commit, formatos incompatíveis e temporários incompletos. Isso não simula falta física de energia nem certifica uso simultâneo por vários processos.
+
+`save_feedback_checks` exercita o frontend real com erros injetados e entradas de teclado/gamepad simuladas. Confere cards de versão/corrupção/IO, recuperação por backup, retry e pausa/restauração dos avisos. Capturas opcionais exigem renderizador gráfico: executar a suíte sem `--headless`, com `-- --capture`; imagens em `tmp/save-feedback`.
 
 Esse conjunto é uma regressão inicial explícita, não a totalidade dos testes existentes e não uma aprovação comercial da versão. Exportar com sucesso não substitui abrir o pacote em instalação limpa e fazer playtest.
 

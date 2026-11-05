@@ -332,15 +332,12 @@ func _confirm_erase_slot(id:String,inspection:Dictionary,new_journey:bool) -> vo
 	dialog.popup_centered()
 
 func _error(code: String) -> String:
-	return {"corrupt": "Save danificado; mantenha os arquivos para recuperação.",
-		"future": "Este save precisa de uma versão mais recente do jogo.",
-		"unsupported": "Versão do save incompatível.", "occupied": "Esta jornada já existe.",
-		"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
+	var save_message: String = preload("res://scripts/campaign/save_messages.gd").error(code)
+	if not save_message.is_empty(): return save_message
+	return {"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
 		"feira_no_coins":"O apito custa 20 moedas. Os desafios do bairro ajudam a conseguir moedas.",
 		"not_enough_coins":"Você precisa de 12 moedas para descansar aqui. O ateliê do professor continua gratuito.",
-		"stale": "A jornada foi alterada. Volte ao menu e carregue novamente.",
-		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor.",
-		"io_error": "Não foi possível acessar o save. Confira o espaço e a permissão da pasta."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
+		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
 
 func _choose(slot_id: String, create: bool) -> void:
 	sound.reset_session()
@@ -356,7 +353,7 @@ func _choose(slot_id: String, create: bool) -> void:
 	wipe.finished.connect(wipe.queue_free,CONNECT_ONE_SHOT)
 	wipe.play(Hud.CYAN,preferences.reduced_motion,false)
 	if result.get("recovered", false):
-		_notice("Recuperamos sua jornada a partir do backup.")
+		_notice(preload("res://scripts/campaign/save_messages.gd").RECOVERED)
 
 func _dialog(title: String, text: String, ok: String, cancel: String = "") -> Control:
 	sound.play_event("dialogue.open")
@@ -387,15 +384,38 @@ func _notice(message: String) -> void:
 		if park.has_method("celebrate_item") and park.celebrate_item(message):return
 		park.exploration_hud.push_notice(message,"item")
 		return
-	if is_instance_valid(park): park.paused = true
-	var was_walking: bool = is_instance_valid(room) and room.can_walk
-	if was_walking: room.can_walk = false
+	var notice_park: WeakRef = weakref(park) if is_instance_valid(park) else null
+	var notice_room: WeakRef = weakref(room) if is_instance_valid(room) else null
+	if notice_park != null:
+		var depth: int = park.get_meta("system_notice_depth", 0)
+		if depth == 0: park.set_meta("system_notice_was_paused", park.paused)
+		park.set_meta("system_notice_depth", depth + 1)
+		park.paused = true
+	if notice_room != null:
+		var depth: int = room.get_meta("system_notice_depth", 0)
+		if depth == 0:
+			room.set_meta("system_notice_was_walking", room.can_walk)
+			room.set_meta("system_notice_was_paused", room.story_paused)
+		room.set_meta("system_notice_depth", depth + 1)
+		room.can_walk = false
+		room.set_story_paused(true)
 	var dialog := _dialog("Aviso", message, "Entendi")
+	dialog.z_index = 200 # Above full-screen OpeningTV (z=100), not just the room.
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.tree_exiting.connect(func():
-		if is_instance_valid(park): park.paused = false
-		if is_instance_valid(room) and was_walking: room.can_walk = true)
+		var previous_park: Node = notice_park.get_ref() if notice_park != null else null
+		if is_instance_valid(previous_park) and previous_park.is_inside_tree():
+			var depth: int = maxi(0, int(previous_park.get_meta("system_notice_depth", 1)) - 1)
+			previous_park.set_meta("system_notice_depth", depth)
+			if depth == 0: previous_park.paused = previous_park.get_meta("system_notice_was_paused", false)
+		var previous_room: Node = notice_room.get_ref() if notice_room != null else null
+		if is_instance_valid(previous_room) and previous_room.is_inside_tree():
+			var depth: int = maxi(0, int(previous_room.get_meta("system_notice_depth", 1)) - 1)
+			previous_room.set_meta("system_notice_depth", depth)
+			if depth == 0:
+				previous_room.can_walk = previous_room.get_meta("system_notice_was_walking", false)
+				previous_room.set_story_paused(previous_room.get_meta("system_notice_was_paused", false)))
 	dialog.popup_centered(Vector2i(640, 300))
 
 func _notice_after_load(message: String) -> void:
