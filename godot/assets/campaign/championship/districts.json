@@ -1770,7 +1770,7 @@
           "lost": [
             [
               "Veyl",
-              "Recupere a linha e volte quando estiver pronto."
+              "O rajado do posto de vigia não perdoa pé solto. Recupere a linha e volte."
             ]
           ],
           "reward": {
@@ -1818,7 +1818,7 @@
           "lost": [
             [
               "Sora",
-              "Recupere a linha e volte quando estiver pronto."
+              "Você atacou antes de o vento abrir espaço. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
@@ -1866,7 +1866,7 @@
           "lost": [
             [
               "Oren",
-              "Recupere a linha e volte quando estiver pronto."
+              "Faltou esperar. Descanse a equipe e volte com calma."
             ]
           ],
           "reward": {
@@ -1914,7 +1914,7 @@
           "lost": [
             [
               "Kaiva",
-              "Recupere a linha e volte quando estiver pronto."
+              "Na passarela, um passo apressado derruba a linha. Volte quando estiver pronto."
             ]
           ],
           "reward": {
@@ -1962,7 +1962,7 @@
           "lost": [
             [
               "Dona Neve",
-              "Recupere a linha e volte quando estiver pronto."
+              "O cume cobra quem chega cansado. Recupere a equipe e suba de novo."
             ]
           ],
           "reward": {
@@ -2021,7 +2021,7 @@
           "before": [
             [
               "Vitra",
-              "Mostre como se sai com a linha e eu conto o que vi."
+              "A Pipa TV quer saber quem derrubou a pipa da última transmissão. Duela comigo e eu conto o que vi da calçada."
             ]
           ],
           "won": [
@@ -2033,7 +2033,7 @@
           "lost": [
             [
               "Vitra",
-              "Recupere a linha e tente de novo."
+              "Da calçada, eu vi você soltar a linha cedo demais. Recupere e volte."
             ]
           ],
           "reward": {
@@ -2069,7 +2069,7 @@
           "before": [
             [
               "Noxen",
-              "Mostre como se sai com a linha e eu conto o que vi."
+              "Eu estava debaixo dos fios quando a pipa caiu. Se ganhar, conto de onde veio o puxão."
             ]
           ],
           "won": [
@@ -2081,7 +2081,7 @@
           "lost": [
             [
               "Noxen",
-              "Recupere a linha e tente de novo."
+              "O puxão que você levou foi igual ao daquele dia. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
@@ -2117,7 +2117,7 @@
           "before": [
             [
               "Sinal",
-              "Mostre como se sai com a linha e eu conto o que vi."
+              "Sou eu que opero o sinal da Pipa TV. A fita guarda o que ninguém viu ao vivo. Mostre sua linha primeiro."
             ]
           ],
           "won": [
@@ -2129,7 +2129,7 @@
           "lost": [
             [
               "Sinal",
-              "Recupere a linha e tente de novo."
+              "A fita fica guardada até você vencer. Recupere a linha e volte."
             ]
           ],
           "reward": {
@@ -2165,7 +2165,7 @@
           "before": [
             [
               "Oriel",
-              "Mostre como se sai com a linha e eu conto o que vi."
+              "Eu tenho a gravação completa, mas só mostro para quem segura a linha até o fim."
             ]
           ],
           "won": [
@@ -2177,7 +2177,7 @@
           "lost": [
             [
               "Oriel",
-              "Recupere a linha e tente de novo."
+              "Você largou antes do fim, como na fita. Recupere e tente de novo."
             ]
           ],
           "reward": {
@@ -2219,13 +2219,13 @@
           "won": [
             [
               "Leo Antena",
-              "A Insígnia do Centro é sua. A próxima etapa é no Conjunto das Lajes."
+              "A Insígnia do Centro é sua. E a pista da fita aponta para longe da TV: alguém soltava as almas presas nos fios antes do Bando chegar. Fale com o Sr. Assis; ele sabe mais do que conta."
             ]
           ],
           "lost": [
             [
               "Leo Antena",
-              "Recupere a linha e tente de novo."
+              "Ao vivo não tem repetição. Recupere a linha e volte para o segundo bloco."
             ]
           ],
           "reward": {
@@ -2284,19 +2284,19 @@
           "before": [
             [
               "Portaria",
-              "A praça está aberta. Quer começar o circuito?"
+              "Toque de recolher no condomínio. Ei, essa braçadeira é do Bando... mas o jeito de segurar a linha, não. Duela comigo antes que alguém veja."
             ]
           ],
           "won": [
             [
               "Portaria",
-              "Bom duelo. Pode seguir pelo circuito."
+              "Você não é do Bando. Siga pelos jardins, e mantenha a braçadeira à vista."
             ]
           ],
           "lost": [
             [
               "Portaria",
-              "Recupere a linha e volte para tentar de novo."
+              "Com essa linha frouxa, a braçadeira não engana ninguém. Recupere e volte."
             ]
           ],
           "reward": {
@@ -2332,19 +2332,19 @@
           "before": [
             [
               "Jardins",
-              "Aqui o vento muda atrás dos jardins. Quero ver como você segura a linha."
+              "Os capangas passam pelos jardins de hora em hora. Quero ver se você segura a linha no escuro."
             ]
           ],
           "won": [
             [
               "Jardins",
-              "Bom duelo. Pode seguir pelo circuito."
+              "Segurou no escuro. O clube fica logo acima; lá a vigia é mais dura."
             ]
           ],
           "lost": [
             [
               "Jardins",
-              "Recupere a linha e volte para tentar de novo."
+              "No escuro, quem hesita perde a linha. Recupere e volte."
             ]
           ],
           "reward": {
@@ -2380,19 +2380,19 @@
           "before": [
             [
               "Clube",
-              "O próximo desafio é no clube. Sua linha aguenta?"
+              "O Bando fechou o clube para guardar carretéis. Se você quer passar, prove que não está com eles."
             ]
           ],
           "won": [
             [
               "Clube",
-              "Bom duelo. Pode seguir pelo circuito."
+              "Ninguém do Bando puxa assim. Vá pela piscina até o terraço."
             ]
           ],
           "lost": [
             [
               "Clube",
-              "Recupere a linha e volte para tentar de novo."
+              "Recupere a linha. O clube continua fechado para quem cai."
             ]
           ],
           "reward": {
@@ -2428,19 +2428,19 @@
           "before": [
             [
               "Piscina",
-              "O vento cruza a piscina e sobe pro terraço. Vamos testar seu controle."
+              "O vento da piscina sobe direto para o terraço da Tainá. Ela só recebe quem passa por aqui."
             ]
           ],
           "won": [
             [
               "Piscina",
-              "Bom duelo. Pode seguir pelo circuito."
+              "Pronto. A Tainá já viu sua luz do terraço. Suba."
             ]
           ],
           "lost": [
             [
               "Piscina",
-              "Recupere a linha e volte para tentar de novo."
+              "A água devolve o vento torto. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
@@ -2476,19 +2476,19 @@
           "before": [
             [
               "Tainá",
-              "Do terraço dá pra ver a cidade toda. Vamos disputar a insígnia?"
+              "Do terraço dá pra ver a cidade toda apagada. Você entrou de braçadeira, mas veio pela insígnia. Vamos disputar?"
             ]
           ],
           "won": [
             [
               "Tainá",
-              "A Insígnia do Condomínio é sua. Siga para o próximo bairro."
+              "A Insígnia do Condomínio é sua. Daqui de cima eu vejo o galpão do Bando aceso na Vila Operária: é lá que eles guardam os carretéis. Desfaça os três nós do cadeado."
             ]
           ],
           "lost": [
             [
               "Tainá",
-              "Recupere a linha e volte para tentar de novo."
+              "O terraço não tem parede contra o vento. Recupere a linha e volte."
             ]
           ],
           "reward": {
