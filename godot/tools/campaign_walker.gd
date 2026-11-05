@@ -330,9 +330,16 @@ func walk_room(target_point: Vector2) -> bool:
 			if cells.has(point + offset) and room_safe_path(room, point, point + offset): graph.connect_points(cells[point], cells[point + offset])
 	if graph.get_point_count() == 0: issue("sala sem chão navegável"); return false
 	var path := graph.get_point_path(graph.get_closest_point(room.actor), graph.get_closest_point(target_point))
-	for point in path:
+	for index in path.size():
+		var point: Vector2 = path[index]
+		var stuck := 0
+		var previous: Vector2 = room.actor
 		for tick in 400:
-			if room.actor.distance_to(point) < 5: break
+			if room.actor.distance_to(point) < 12: break
+			# A grid point a few pixels off a wall can be unreachable; go for the next one.
+			stuck = stuck + 1 if room.actor.distance_to(previous) < .5 else 0
+			previous = room.actor
+			if stuck > 30 and index < path.size() - 1: break
 			var heading: Vector2 = (room.project(point) - room.project(room.actor)).normalized()
 			for pair in [["left", -heading.x], ["right", heading.x], ["up", -heading.y], ["down", heading.y]]:
 				if pair[1] > 0: Input.action_press("campaign_" + pair[0], pair[1])
