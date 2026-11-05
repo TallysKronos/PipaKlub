@@ -9,6 +9,7 @@ e preserve o DNA. Atualize a coluna "Estado" a cada entrega.
 | --- | --- | --- | --- |
 | **Kael** (15) | protagonista; criou o Rabbito; topete azul e preto, fone de cristal ciano, jaqueta azul com tiras de rabiola | referência; não redesenhar | aprovado (prancha 30/10/2026) |
 | **Locutor** (Pipa TV) | gola de penas verdes, punhos azuis em leque, fone com microfone, cabelo cacheado com mecha clara | referência de intensidade | aprovado (V4) |
+| **Lemna** (17) | nome, idade e cabelo roxo com mechas loiras definidos pelo dono | proposta: laço lateral, carretel direito, verde-sálvia/ameixa; papel e parceiro indefinidos | concept-v1 em revisão; silhueta B/paleta C escolhidas pelo agente, não aprovadas |
 | **Heleana** (mãe) | foi jovem pesquisadora; achou a Rabiola Antiga nas Ruínas; deixou a pesquisa | duas idades: jovem pesquisadora (flashback) e mãe hoje, com o mesmo sinal de assinatura nas duas | a criar |
 | **Sr. Assis** | professor, dono do ateliê; colega de expedição da Heleana; criou o Tyler | preservar `professor-identity-v3`; versão jovem fica para o Tyler | existe; conferir |
 | **Tyler** + **Rai** (tigre dente-de-sabre) | homúnculo, o Assis jovem; acredita ser filho do professor | traços do Assis jovem; listras e presas do Rai na roupa | existe (`tyler-saber-manga-v2`); conferir |
