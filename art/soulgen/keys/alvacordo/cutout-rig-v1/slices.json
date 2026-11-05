@@ -1,0 +1,219 @@
+{
+  "sourceSize": [
+    1246,
+    1263
+  ],
+  "boxes": {
+    "body": [
+      62,
+      8,
+      276,
+      316
+    ],
+    "head": [
+      349,
+      2,
+      613,
+      316
+    ],
+    "upperNear": [
+      650,
+      41,
+      883,
+      313
+    ],
+    "upperFar": [
+      979,
+      31,
+      1182,
+      314
+    ],
+    "foreNear": [
+      60,
+      330,
+      267,
+      628
+    ],
+    "foreFar": [
+      375,
+      330,
+      555,
+      631
+    ],
+    "thighNear": [
+      682,
+      323,
+      877,
+      622
+    ],
+    "thighFar": [
+      979,
+      324,
+      1171,
+      623
+    ],
+    "shinNear": [
+      67,
+      632,
+      224,
+      941
+    ],
+    "shinFar": [
+      387,
+      632,
+      555,
+      941
+    ],
+    "bowRaised": [
+      648,
+      633,
+      906,
+      951
+    ],
+    "bowLowered": [
+      990,
+      648,
+      1178,
+      943
+    ],
+    "tail": [
+      38,
+      950,
+      260,
+      1258
+    ],
+    "fierce": [
+      346,
+      948,
+      603,
+      1253
+    ],
+    "hurt": [
+      648,
+      951,
+      908,
+      1255
+    ],
+    "happy": [
+      955,
+      948,
+      1212,
+      1253
+    ]
+  },
+  "parts": {
+    "body": {
+      "size": [
+        214,
+        308
+      ],
+      "sha256": "c576a4e146e11a34749635e24f048ad36e46585a947e34406de58df62c871547"
+    },
+    "head": {
+      "size": [
+        264,
+        314
+      ],
+      "sha256": "2ede88aa2d634656a403136f504f706dc0a9dd215903075c17d4ff7329a9ebdb"
+    },
+    "upperNear": {
+      "size": [
+        233,
+        272
+      ],
+      "sha256": "cdd6f8ff943e2914d05f516413b4c216c2ff0a50af36ce472c614aebb3aac40d"
+    },
+    "upperFar": {
+      "size": [
+        203,
+        283
+      ],
+      "sha256": "ec1e964b49dcebbf9632abc913f80c6d833f1bd5657261be67cad27c6090c1b1"
+    },
+    "foreNear": {
+      "size": [
+        207,
+        298
+      ],
+      "sha256": "bfa23d55be042e8b2c8b23d9b5315c1e119f5e45f0ba05a178b6f1b7e792007b"
+    },
+    "foreFar": {
+      "size": [
+        180,
+        301
+      ],
+      "sha256": "14f93b6824241c0a7428dfa1c1db42dd96c4c6138cf5c631aee13dfa258a3732"
+    },
+    "thighNear": {
+      "size": [
+        195,
+        299
+      ],
+      "sha256": "147452ef039eb616e446948c9d1ed7dc434fb267f4df65c1b9e00bbb62f612d5"
+    },
+    "thighFar": {
+      "size": [
+        192,
+        299
+      ],
+      "sha256": "6e0dc70e32d5bf1bcee6e707d9497e91f097571808ceb74edc864a108c441df6"
+    },
+    "shinNear": {
+      "size": [
+        157,
+        309
+      ],
+      "sha256": "c97adad48c6a33c754babf4ccd99055a869a029a8aedd66e7222e76190ac014e"
+    },
+    "shinFar": {
+      "size": [
+        168,
+        309
+      ],
+      "sha256": "550c2b92073962f2ad8bb59f45f11b8247c6f7b6dcd30cd09f236d3d80db68a1"
+    },
+    "bowRaised": {
+      "size": [
+        258,
+        318
+      ],
+      "sha256": "053959968bd1d35e3060b77f16022bb1c5abc4c9d7be750bdddd03675ac1a32c"
+    },
+    "bowLowered": {
+      "size": [
+        188,
+        295
+      ],
+      "sha256": "f255c5878520f00a8f42e015948ce640d37b2773b9c6042d49697192dff3e3b0"
+    },
+    "tail": {
+      "size": [
+        222,
+        308
+      ],
+      "sha256": "4c5810900a71c5f60ef38408cb45273fdc315fa11b88642c1bf1aa86092b086e"
+    },
+    "fierce": {
+      "size": [
+        257,
+        305
+      ],
+      "sha256": "9245bb877a9c8eaef396fdd4e293364e271a287a61e51e49f88d423400139d17"
+    },
+    "hurt": {
+      "size": [
+        260,
+        304
+      ],
+      "sha256": "2983b1079905e50f07b9e29882d02365c19d2e6f7248662bbc9bf7a00f559e41"
+    },
+    "happy": {
+      "size": [
+        257,
+        305
+      ],
+      "sha256": "12374de96dfb22efa76985ce2d055699902060d4ca8a1468cd1db5bc9f0f1f37"
+    }
+  },
+  "method": "Cell crop; connected alpha cleanup; no redrawing; full helmets registered on identical canvas."
+}
