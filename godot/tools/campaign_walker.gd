@@ -120,7 +120,7 @@ func open_app(fresh: bool, from: String = "") -> void:
 	# Same path as "Continuar" on the title screen.
 	view._choose("slot-1", false)
 	await settle()
-	if not park_ready() and not is_instance_valid(view.room): issue("save não reabriu a exploração")
+	if not is_instance_valid(view.park) and not is_instance_valid(view.room): issue("save não reabriu a exploração")
 
 ## Acts 1-3 start: right after Mikka (Morro, covered by demo_championship_playthrough)
 ## and Nina's request, in the Vila. Nothing of the Bambuzal onwards is done.
@@ -297,8 +297,15 @@ func find_event(scenes: Array, matcher: Callable) -> Array:
 ## Steps played indoors: [room scene, street doorway, hotspot].
 const ROOM_STEPS := {"homunculo": ["professor-home", "professor-home", "study"], "foto-expedicao": ["professor-home", "professor-home", "study"], "azul-preparacao": ["professor-home", "professor-home", "professor"]}
 
+## Beats that end by reaching a place (discovery), not by an event.
+const ARRIVALS := {"bosque": "kronasta-bosque-c"}
+
 func step(beat: Dictionary) -> bool:
 	if ROOM_STEPS.has(beat.get("id", "")): return await room_step(ROOM_STEPS[beat.id])
+	if ARRIVALS.has(beat.get("id", "")):
+		if not await go_to(ARRIVALS[beat.id]): return false
+		note("   em %s · HUD: %s" % [scene_now(), hud_objective()])
+		return Story.current_beat(view.session.snapshot().player).get("id", "") != beat.id
 	var found := target(beat)
 	if found.is_empty():
 		issue("nenhum evento abre o passo; cena " + scene_now())
