@@ -2201,8 +2201,7 @@ func _show_collection() -> void:
 		if selected:
 			_label("PARCEIRO ATIVO",details,16).theme_type_variation="RecorteAccentText"
 		var partner_title:=_label("%s · Nv. %d" % [partner.get("personalName", partner.modelId), level], details,26)
-		partner_title.autowrap_mode=TextServer.AUTOWRAP_OFF
-		partner_title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		partner_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 		partner_title.tooltip_text=partner_title.text
 		for stat in [["Linha",condition.line,Hud.LINE],["Armação",condition.structure,Hud.GOLD]]:
 			var stat_row:=HBoxContainer.new()

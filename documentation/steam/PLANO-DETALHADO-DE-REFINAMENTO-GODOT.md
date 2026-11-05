@@ -545,6 +545,8 @@ Não adicionar nomes, revelações, regiões ou regras econômicas ausentes da B
 
 ### R48 — Resolução, texto e posicionamento de HUD
 
+**Equipe:** nomes podem quebrar linha em vez de depender de reticências e hover. A suíte de banco gera capturas em janela com texto a 130% em 1280×800, 1920×1080, 2560×1440 e 2560×1080. Inspeção visual desta etapa em 1280×800 e 2560×1080. Fullscreen, escala do sistema e câmeras de exploração continuam pendentes.
+
 **Situação:** projeto expansível 1280×720; validar; acabamento e usabilidade.
 
 **Execução:** testar janela e fullscreen em 720p, 800p, 1080p e 1440p; ultrawide se suportado. Conferir escala do sistema, safe areas, textos longos, nomes personalizados e legendas. Revisar limites de câmera quando expandir viewport; não mostrar bordas inacabadas do mapa. Garantir que retratos e barras não encubram alvos, inimigos ou entradas.

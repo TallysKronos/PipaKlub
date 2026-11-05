@@ -141,6 +141,7 @@ func run() -> void:
 		a.free()
 	store=FaultStore.new("user://partner-bank-ui-"+State.new_id());a=fixture(store,"slot-1",4)
 	next=a.snapshot();next.player.partners[1].borrowed=true;next.player.partners[2].modelId="retalho-original"
+	next.player.partners[0].personalName = "Sentinela do Vento do Norte"
 	check(a.checkpoint(next.checkpoint,next.player).status=="ok","story fixtures")
 	var policy:=Bank.new(store)
 	check(policy.restriction(a.snapshot(),next.player.partners[1].id)=="bank_story","loan protected")
@@ -162,6 +163,20 @@ func run() -> void:
 		front.team_load_state = "ready"
 	if "--capture" in OS.get_cmdline_user_args():
 		front._show_collection();await settle();await capture("team")
+		var window_size := root.size
+		var original_scale: float = front.preferences.text_scale
+		front.preferences.text_scale = 1.3
+		front._apply_preferences()
+		for resolution in [Vector2i(1280,800),Vector2i(1920,1080),Vector2i(2560,1440),Vector2i(2560,1080)]:
+			root.size = resolution
+			await settle()
+			front._show_collection()
+			await settle()
+			await capture("team-%dx%d-text130" % [root.size.x,root.size.y])
+		root.size = window_size
+		front.preferences.text_scale = original_scale
+		front._apply_preferences()
+		await settle()
 	front._show_partner_bank();await settle()
 	check(front.last_scene_key=="page:BANCO DE PIPAMONS","bank integrated into frontend")
 	await capture("bank")
