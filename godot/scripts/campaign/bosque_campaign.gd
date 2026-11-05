@@ -97,7 +97,11 @@ static func objective(player: Dictionary, scene: String) -> String:
 	if away and int(beat.get("act",0))>=4 and (Checkpoint.is_bosque(scene) or (Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"] and preload("res://scripts/campaign/district_rules.gd").completed(player,Checkpoint.region_of(scene)))):
 		return "Próximo passo · "+Story.objective(player)+" Use o mapa de Kronasta (M)."
 	if Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"]:return preload("res://scripts/campaign/district_campaign.gd").objective(player,Checkpoint.region_of(scene))
-	if not Checkpoint.is_bosque(scene): return Story.region_objective(player,scene)
+	if not Checkpoint.is_bosque(scene):
+		var local:String=Story.region_objective(player,scene)
+		# Nothing to do here and the story is elsewhere: show the next step (F25).
+		if local.strip_edges().is_empty() and away and int(beat.get("act",0))>=4:return "Próximo passo · "+Story.objective(player)+" Use o mapa de Kronasta (M)."
+		return local
 	# The Trovareta storm (act 4) overrides the Bosque's exploration hints.
 	if Story.current_beat(player).get("id","")=="trovareta": return Story.current_beat(player).text
 	if preload("res://scripts/campaign/park_training.gd").needs_rest(player): return "Seu parceiro precisa descansar. Há bancos na Clareira do Marco."

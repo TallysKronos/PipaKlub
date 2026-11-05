@@ -243,7 +243,11 @@ func find_event(scenes: Array, matcher: Callable) -> Array:
 
 ## ---------------------------------------------------------------- acting
 
+## Steps played indoors: [room scene, street doorway, hotspot].
+const ROOM_STEPS := {"homunculo": ["professor-home", "professor-home", "study"]}
+
 func step(beat: Dictionary) -> bool:
+	if ROOM_STEPS.has(beat.get("id", "")): return await room_step(ROOM_STEPS[beat.id])
 	var found := target(beat)
 	if found.is_empty():
 		issue("nenhum evento abre o passo; cena " + scene_now())
@@ -273,6 +277,70 @@ func step(beat: Dictionary) -> bool:
 
 func scene_key(e: Dictionary) -> String:
 	return "%s:%s:%s" % [str(e.get("name")), str(e.u), str(e.v)]
+
+## Indoors: city map to the Vila, the street doorway, then the room's hotspot.
+func room_step(plan: Array) -> bool:
+	if scene_now() != plan[0]:
+		if scene_now() != "quintal":
+			note("   viagem pelo mapa da cidade: %s → quintal" % scene_now())
+			view._travel_kronasta("quintal")
+			await settle()
+		if not (is_instance_valid(view.park) and view.park.get_meta("campaign_scene", "") == "quintal"):
+			issue("a Vila não abriu pelo mapa da cidade"); return false
+		note("   porta '%s' na rua" % plan[1])
+		view.park.action_requested.emit(plan[1])
+		for i in 900:
+			await process_frame
+			if scene_now() == plan[0] and is_instance_valid(view.room) and view.room.can_walk and not view.flow_busy: break
+		await settle()
+	if not is_instance_valid(view.room): issue("sala %s não abriu" % plan[0]); return false
+	var spot: Dictionary = {}
+	for h in view.room.data.hotspots:
+		if h.id == plan[2]: spot = h
+	if spot.is_empty(): issue("sala sem o ponto '%s'" % plan[2]); return false
+	if not await walk_room(Vector2(spot.x, spot.y)): return false
+	if view.room.near != plan[2]: issue("perto de '%s' a sala aponta para '%s'" % [spot.name, view.room.near])
+	var before := JSON.stringify(view.session.snapshot().player)
+	var key := InputEventKey.new()
+	key.physical_keycode = KEY_E
+	key.pressed = true
+	view.room._unhandled_input(key)
+	await settle()
+	if JSON.stringify(view.session.snapshot().player) == before: issue("'%s' não mudou nada" % spot.name); return false
+	return true
+
+func room_safe_path(room: Node2D, a: Vector2, b: Vector2) -> bool:
+	for index in range(ceili(a.distance_to(b) / 6) + 1):
+		if not room._safe(a.lerp(b, minf(1, index * 6 / maxf(1, a.distance_to(b))))): return false
+	return true
+
+func walk_room(target_point: Vector2) -> bool:
+	var room: Node2D = view.room
+	var graph := AStar2D.new()
+	var cells := {}
+	for rect in room.data.walkable:
+		for y in range(int(rect[1]), int(rect[1] + rect[3]) + 1, 32):
+			for x in range(int(rect[0]), int(rect[0] + rect[2]) + 1, 32):
+				var point := Vector2(roundf(x / 32.0) * 32, roundf(y / 32.0) * 32)
+				if cells.has(point) or not room._safe(point): continue
+				cells[point] = graph.get_available_point_id()
+				graph.add_point(cells[point], point)
+	for point: Vector2 in cells:
+		for offset in [Vector2(32, 0), Vector2(0, 32), Vector2(32, 32), Vector2(-32, 32)]:
+			if cells.has(point + offset) and room_safe_path(room, point, point + offset): graph.connect_points(cells[point], cells[point + offset])
+	if graph.get_point_count() == 0: issue("sala sem chão navegável"); return false
+	var path := graph.get_point_path(graph.get_closest_point(room.actor), graph.get_closest_point(target_point))
+	for point in path:
+		for tick in 400:
+			if room.actor.distance_to(point) < 5: break
+			var heading: Vector2 = (room.project(point) - room.project(room.actor)).normalized()
+			for pair in [["left", -heading.x], ["right", heading.x], ["up", -heading.y], ["down", heading.y]]:
+				if pair[1] > 0: Input.action_press("campaign_" + pair[0], pair[1])
+				else: Input.action_release("campaign_" + pair[0])
+			await process_frame
+			if tick == 399: issue("parado na sala perto de " + str(room.actor)); return false
+	for action in ["left", "right", "up", "down"]: Input.action_release("campaign_" + action)
+	return room.actor.distance_to(target_point) < 110
 
 func go_to(scene: String) -> bool:
 	for hop in 12:

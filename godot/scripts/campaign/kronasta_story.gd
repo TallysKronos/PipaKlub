@@ -21,7 +21,7 @@ const PLACES := [
 	{"scene":"kronasta-feira-a","id":"feira","name":"Feira do Largo","kind":"bairro","bairro":4,"act":2,"levels":"15–18","note":"Bairro 4."},
 	{"scene":"caverna-mural-a","id":"caverna","name":"Caverna do Mural","kind":"ruinas","act":2,"levels":"15–18","note":"O primeiro laço."},
 	{"scene":"kronasta-cais-a","id":"cais","name":"Cais Velho","kind":"bairro","bairro":5,"act":3,"levels":"18–21","note":"Bairro 5."},
-	{"id":"industrial","name":"Distrito Industrial","kind":"bairro","bairro":6,"act":3,"levels":"4–6 na prévia","scene":"kronasta-industrial-a","preview":true,"note":"Pátio de Cargas, Canal das Caldeiras e Usina do Vento."},
+	{"id":"industrial","name":"Distrito Industrial","kind":"bairro","bairro":6,"act":3,"levels":"20–24","scene":"kronasta-industrial-a","note":"Pátio de Cargas, Canal das Caldeiras e Usina do Vento."},
 	{"id":"pantano","name":"Pântano do Mormaço","kind":"natural","act":4,"levels":"5–7 na prévia","scene":"kronasta-pantano-a","preview":true,"note":"Entrada alagada, Desvio dos cipós e Lago profundo."},
 	{"id":"palafitas","scene":"kronasta-palafitas-a","name":"Palafitas","kind":"bairro","bairro":7,"act":4,"levels":"24–27","note":"Resgate de Retalho e campeonato de Caio Garça."},
 	{"id":"montanha","name":"Serra de Kronasta","kind":"natural","act":4,"levels":"26–32","scene":"kronasta-montanha-a","note":"Sopé, Encosta e Cume."},
