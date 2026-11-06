@@ -88,6 +88,8 @@ func run() -> void:
 	check(reaction.size()==1,"pending presentation resumes automatically")
 	check(not view.session.snapshot().player.inventory.has(Arcs.Flower),"resume does not recreate the flower")
 	if reaction.is_empty():quit(1);return
+	var tyler_portrait: TextureRect = reaction[0].portrait
+	check(tyler_portrait.visible and tyler_portrait.texture != null and tyler_portrait.texture.resource_path.ends_with("/portrait-tyler-manga-v1.png"), "Tyler's dialogue uses his manga portrait")
 	scene=view.room.get_node_or_null("TylerEpilogue")
 	if "--capture" in OS.get_cmdline_user_args() and DisplayServer.get_name()!="headless":
 		await RenderingServer.frame_post_draw

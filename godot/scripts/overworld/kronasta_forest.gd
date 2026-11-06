@@ -61,6 +61,7 @@ static func build(view) -> void:
 		material.set_shader_parameter("still",OS.get_environment("SUBMERSO_CAPTURE")=="1")
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
+		industrial_surface.set_shader_parameter("yard", 0 if model.data.forest.get("interior", false) else 1)
 		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
 		industrial_surface.set_shader_parameter("map_size",Vector2(w,h))
 	var blank:=Image.create(1,1,false,Image.FORMAT_RGBA8)
@@ -80,6 +81,13 @@ static func build(view) -> void:
 	var stadium: bool = model.data.get("id")=="kronasta-estadio-a"
 	var aracati: bool = str(model.data.get("id","")).begins_with("kronasta-aracati-")
 	var mirante := str(model.data.id).begins_with("kronasta-mirante-")
+	var district_paving: ShaderMaterial
+	var district_id := str(model.data.id).trim_prefix("kronasta-").get_slice("-", 0)
+	var district_index := ["centro", "lajes", "porto", "palafitas"].find(district_id)
+	if district_index >= 0 and not Structures.geometry():
+		district_paving = ShaderMaterial.new()
+		district_paving.shader = preload("res://shaders/district_paving.gdshader")
+		district_paving.set_shader_parameter("district", district_index)
 	var paving := {}
 	if mirante and not Structures.geometry():
 		for height_level in range(5):
@@ -173,6 +181,11 @@ static func build(view) -> void:
 			if mirante and inside and not Structures.geometry() and model.cell_at(Vector2i(u,v)).material == "piso":
 				poly.material = paving[level]
 			Structures.floor_cut(model,node,poly,corners,u,v,coastal_tiles)
+			if district_paving and inside and model.cell_at(Vector2i(u,v)).material == "piso":
+				poly.texture = white
+				poly.uv = uvs
+				poly.material = district_paving
+
 			if stadium and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 				preload("res://scripts/overworld/stadium_structures.gd").trim_floor(node,points,u)
 			if inside:

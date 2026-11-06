@@ -31,6 +31,10 @@ static func build(view)->void:
   var node:=Node2D.new();node.position=view.model.project(at,false);node.set_meta("scenery",true);view.actors.add_child(node)
   var floor:=PackedVector2Array()
   for uv in [Vector2(b.u,b.v),Vector2(b.u+b.w,b.v),at,Vector2(b.u,b.v+b.h)]:floor.append(view.model.project(uv)-node.position)
+  var district:=str(view.model.data.id).trim_prefix("kronasta-").get_slice("-",0)
+  if district in ["porto","palafitas"] and not S.geometry():
+   preload("res://scripts/overworld/district_architecture.gd").build(node,floor,district,float(b.height))
+   continue
   var top:=PackedVector2Array()
   for p in floor:top.append(p-Vector2(0,b.height))
   surface(node,PackedVector2Array([top[1],top[2],floor[2],floor[1]]),Color.WHITE if not S.geometry() else Color("6d818a"),"fachada.png")

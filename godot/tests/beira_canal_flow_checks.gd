@@ -42,7 +42,9 @@ func walk(at:Vector2)->bool:
 func capture(name:String)->void:
 	if DisplayServer.get_name()=="headless":return
 	await frames();await RenderingServer.frame_post_draw
-	var folder:=ProjectSettings.globalize_path("res://../documentation/qa/beira-canal-v1")
+	var folder := OS.get_environment("SOULMONSTERS_CAPTURE_DIR")
+	if folder.is_empty():
+		folder = ProjectSettings.globalize_path("res://../documentation/qa/beira-canal-v1")
 	DirAccess.make_dir_recursive_absolute(folder)
 	check(root.get_texture().get_image().save_png(folder.path_join(name+".png"))==OK,"capture "+name)
 func exit_to(scene:String)->void:
@@ -115,6 +117,9 @@ func gate_flow()->void:
 	app._park_event("10900");await frames()
 	check(is_instance_valid(dialog()),"Grampo introduction")
 	if not is_instance_valid(dialog()):return
+	var portrait: TextureRect = dialog().portrait
+	check(portrait.visible and portrait.texture != null and portrait.texture.resource_path.ends_with("/portrait-grampo-manga-v1.png"),"Grampo uses his manga portrait")
+	await capture("06-grampo-retrato")
 	while dialog().page_index<dialog().pages.size()-1:dialog().next_page()
 	dialog().get_ok_button().pressed.emit();await frames()
 	check(is_instance_valid(app.battle) and app.battle.model.enemy_model_id=="platyx-draft","actual Platyx battle")

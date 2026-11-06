@@ -819,6 +819,11 @@ func _pass_title(gathering: Node2D, finals) -> void:
 	ribbon.z_index=3
 	ribbon.position=jamile.position+Vector2(0,-44)
 	gathering.add_child(ribbon)
+	var ribbon_art := Sprite2D.new()
+	ribbon_art.name = "RibbonArt"
+	ribbon_art.texture = preload("res://assets/ui/key-items/fita-dourada-liga.svg")
+	ribbon_art.scale = Vector2.ONE * .26
+	ribbon.add_child(ribbon_art)
 	var hand: Vector2=model.project(player)+Vector2(8,-36)
 	if reduced_motion:ribbon.position=hand
 	else:

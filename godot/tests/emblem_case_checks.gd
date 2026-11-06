@@ -17,7 +17,8 @@ func current() -> Control:
 	return null
 func capture(view:Control,name:String) -> void:
 	if "--capture" not in OS.get_cmdline_user_args():return
-	var directory:=ProjectSettings.globalize_path("res://../documentation/qa/emblem-case-v1")
+	var directory := OS.get_environment("SOULMONSTERS_CAPTURE_DIR")
+	if directory.is_empty(): directory = ProjectSettings.globalize_path("res://../documentation/qa/emblem-case-v1")
 	DirAccess.make_dir_recursive_absolute(directory)
 	await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png(directory.path_join(name+".png"))
@@ -74,19 +75,24 @@ func run() -> void:
 	check(root.gui_get_focus_owner()==app.pause_overlay.buttons.emblems,"pause focus restored")
 	check(app.pause_overlay.buttons.resume.focus_mode==Control.FOCUS_ALL,"underlying focus modes restored")
 	check(not app.session.snapshot().player.has("districtEmblems"),"view never grants emblems")
-	# Three purely visual examples. Never write these into the campaign slot.
+	# Fill every slot for visual inspection without writing awards into the campaign.
 	var examples:Dictionary=app.session.snapshot().player
-	for i in 3:
-		check(Identity.award_district(examples,i,"preview-chief-%d"%i,["Selo da Rajada","Selo dos Elos","Selo da Pipa"][i],{"districtName":"Bairro de exemplo","bossName":"Chefe de exemplo","description":"Uma conquista de bairro, guardada junto aos fios da sua jornada."}),"example metadata supported")
+	for i in 12:
+		check(Identity.award_district(examples,i,"preview-chief-%d"%i,"Insígnia %02d"%(i+1),{"districtName":"Bairro de exemplo","bossName":"Chefe de exemplo","description":"Uma conquista de bairro, guardada junto aos fios da sua jornada."}),"example metadata supported")
 	check(Identity.valid_emblems(examples.districtEmblems),"metadata valid")
 	view=load("res://scripts/campaign/hud_emblem_case.gd").new();view.player=examples
 	app.add_child(view);app.pause_overlay.hide();await settle()
-	check(view.count.text.ends_with("3 / 12") and view.art.earned,"earned state and enlarged emblem")
-	check(view.title.text=="Selo da Rajada" and "Chefe de exemplo" in view.chief.text,"selected earned details")
+	check(view.count.text.ends_with("12 / 12") and view.art.earned,"earned state and enlarged emblem")
+	check(view.title.text=="Insígnia 01" and "Chefe de exemplo" in view.chief.text,"selected earned details")
+	var textures := {}
+	for i in 12:
+		view.select_slot(i)
+		if view.art.seal_texture != null: textures[view.art.seal_texture.resource_path] = true
+	check(textures.size() == 12,"every earned district has distinct art")
 	view.set_filter(1)
-	check(view.slots.filter(func(slot):return slot.visible).size()==3,"earned filter has three")
+	check(view.slots.filter(func(slot):return slot.visible).size()==12,"earned filter shows the complete collection")
 	view.set_filter(2)
-	check(view.slots.filter(func(slot):return slot.visible).size()==9,"pending filter has nine")
+	check(view.slots.all(func(slot):return not slot.visible),"complete collection has no pending slots")
 	view.set_filter(0);view.select_slot(0)
 	for viewport in [Vector2i(1280,720),Vector2i(1920,1080)]:
 		root.size=viewport

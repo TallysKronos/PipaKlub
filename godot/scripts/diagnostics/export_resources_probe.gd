@@ -27,6 +27,9 @@ func run(tree: SceneTree) -> int:
 		story.qa_override = -1
 	var content: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 	check(not content.is_empty(), "campaign data is in the package")
+	for file: String in content.get("portraits", {}).values():
+		var portrait_path := "res://assets/campaign/" + file
+		check(ResourceLoader.exists(portrait_path, "Texture2D"), "dialogue portrait: " + portrait_path)
 	var theme: Theme = load("res://assets/ui/recorte-v1/theme/recorte_theme.tres")
 	check(theme != null and theme.default_font != null, "theme and imported font load")
 	for base in ["casa-moderna-v1", "loja-tcg-v1", "professor-moderno-v1"]:

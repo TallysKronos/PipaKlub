@@ -33,13 +33,13 @@ Formato de referência: `godot/assets/campaign/portrait-kael-manga-v4.png` (800 
 
 | Prioridade | Personagem | Falas na campanha | Observação |
 | --- | --- | --- | --- |
-| A | Tyler | 36 | O maior buraco: fala em todos os atos, sem retrato. |
-| A | Grampo | 15 | |
+| A | Tyler | 36 | Retrato mangá integrado em `content.json`. Conferido no epílogo da flor a 1280×720. |
+| A | Grampo | 15 | Retrato mangá integrado em `content.json`. Conferido no encontro da comporta a 1280×720. |
 | A | Dona Cida | 13 | Liga. |
-| A | Jamile | 9 | Campeã; a final e o pódio dependem dela. |
-| A | Rato | 9 | Vilão. A bíblia ainda marca o visual dele como pendente (§15): decidir o design antes do retrato. |
-| A | Gollia | 7 | |
-| A | Os 12 campeões de bairro | 2+ cada | Lohan, Kleie, Zulmira, Marisol, Bruno Solda, Caio Garça, Dona Neve, Leo Antena, Tainá, Jurandir, Ícaro (Mikka já tem). |
+| A | Jamile | 9 | Integrado. Retrato da campeã na final e no pódio. |
+| A | Rato | 9 | Integrado com base na prancha aprovada em `art/characters/bando-do-cerol/rato-prancha.png`. |
+| A | Gollia | 7 | Integrado com base na arte de identidade da Pipa TV. |
+| A | Os 12 campeões de bairro | 2+ cada | Lohan, Kleie, Dona Zulmira, Marisol, Bruno Solda e Caio Garça integrados e conferidos no HUD. Pendentes Dona Neve, Leo Antena, Tainá, Jurandir e Ícaro (Mikka já tem). |
 | B | Faye, Navalha, Peteca, Cola-Fina, Capanga (masc./fem.), Atendente, Produtor | 1–9 | |
 | C | Os ~45 tenentes de bairro | 1 cada | Podem usar um retrato por bairro ou o recorte do sprite, como no Morro. |
 
@@ -67,9 +67,9 @@ Hoje os duelos de bairro usam o mesmo terraço, menos nas Palafitas. Todos os du
 | A | Estádio de Kronasta | toda a chave final (Grampo, Tyler, Faye, Jamile) |
 | A | Cume da Serra | Tufanocorte, Dona Neve e o Alto da Serra |
 | A | Galpão do Bando | tenentes, capangas e Pipa-Dragão |
-| B | Uma por bairro | Bambuzal, Beira-Canal, Feira, Cais, Vila Operária, Centro, Condomínio, Porto Novo e Mirante (Palafitas já tem) |
-| B | Aracati (terreiro) e Bosque (Clareira na tempestade) | Rabiolava, Navalha e Trovareta |
-| C | Pântano | Mormaço |
+| B | Uma por bairro | Bambuzal, Beira-Canal, Feira, Cais, Centro, Condomínio, Porto Novo e Mirante integrados e renderizados em Godot. Vila Operária integrada. Palafitas já tem arte própria. |
+| B | Aracati (terreiro) e Bosque (Clareira na tempestade) | Integrados para Rabiolava, Navalha e Trovareta. |
+| C | Pântano | Integrado para Mormaço. |
 
 O código escolhe o fundo em `encounter_view.gd` (linha do `background`) e em `morro_battle_view.gd`. Com os arquivos prontos, eu ligo cada um ao seu lugar.
 
@@ -104,7 +104,7 @@ Formato de referência: `godot/assets/ui/key-items/insignia-morro-do-sol.png` (1
 | A | Braçadeira do Bando, Flor de cerejeira, Apito de vento, Apito de Lalau, Agulha de desatar (esta já tem SVG; refazer no padrão PNG se quiser unificar) | ícone genérico da mochila |
 | B | Certificados das rabiolas Verde e Azul; Autorização do Carcará da Nina; Fecho da guia; Página do caderno | ícone genérico |
 | B | Materiais da oficina: papel de seda, vareta de bambu, cola de reparo, linha encerada | ícone genérico |
-| C | Rabiolas dos rascunhos (Bicho-pau, Joaninha) | ícone genérico |
+| C | Rabiolas dos rascunhos (Bicho-pau, Joaninha) | Ícones próprios ligados à mochila e à recompensa. |
 
 ## 7. Mapa da cidade
 
@@ -114,8 +114,8 @@ Formato de referência: `godot/assets/ui/key-items/insignia-morro-do-sol.png` (1
 
 | Prioridade | Cena | Hoje |
 | --- | --- | --- |
-| B | Epílogo (§13): câmara do ovo com a chave em pedaços; Assis e Tyler no ateliê; Heleana convidando o Kael (três vertentes da Retalho); carretel do Tyler se desfazendo (pós-créditos) | quatro páginas de texto, sem ilustração |
-| B | Câmara após o Eremor: pedaços da chave do Elo | cinco traços desenhados em código (`elo_chamber.shatter_key`) |
+| B | Epílogo (§13): câmara do ovo com a chave em pedaços; Assis e Tyler no ateliê; Heleana convidando o Kael (três vertentes da Retalho); carretel do Tyler se desfazendo (pós-créditos) | quatro quadros integrados, capturados no fluxo de créditos |
+| B | Câmara após o Eremor: pedaços da chave do Elo | cinco fragmentos ilustrados em atlas e animados na cena |
 | C | Fita passando ao carretel no pódio | linha desenhada em código (`TitleRibbon`) |
 
 Para as ilustrações, um quadro por página no formato das cenas da Pipa TV (`art/pipa-tv-cinematic-v3`) basta. O código já exibe as páginas; eu troco o fundo de cada uma pela imagem.
@@ -134,3 +134,15 @@ Para as ilustrações, um quadro por página no formato das cenas da Pipa TV (`a
 - No Estádio, o Tyler lutava com uma Mata verde; agora luta com o Rai, que já tinha arte de batalha.
 - As falas da Heleana nos atos finais não mostravam retrato, porque o retrato estava registrado como "Mãe"; agora usa o mesmo.
 - A Braçadeira do Bando e a Flor de cerejeira apareciam na mochila com o nome interno; agora têm nome.
+
+## Entregas do lote visual
+
+- Retratos de Jamile, Gollia e Rato ligados ao diálogo. Os títulos com nível ou afiliação também resolvem o retrato do personagem.
+- Onze insígnias regionais ligadas à grade e ao detalhe do porta-emblemas. Treze ícones de missão e fabricação ligados ao inventário, além da fita dourada do encerramento.
+- Atlas v2 ligado ao mapa e à seleção de save, com marcadores reposicionados sobre os cinco marcos novos.
+- Fundos de combate do Estádio, Cume da Serra e Galpão ligados aos encontros correspondentes e renderizados com o HUD. Galpão com iluminação noturna. O fluxo automatizado do Galpão passou em 129 verificações com resultados de batalha simulados.
+
+### Refino explorável dos bairros
+
+- Centro, Condomínio, Porto Novo e Palafitas receberam pisos e volumes próprios nas pegadas existentes. O Centro recebeu um campanário como marco. O Alto do Mirante foi renderizado para conferência.
+- O passe preserva os caminhos, cotas, colisões e eventos. A leitura de cada acesso em escala de jogo, os marcos adicionais e a revisão dos percursos A–C ainda estão pendentes.

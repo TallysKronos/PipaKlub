@@ -276,7 +276,7 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 		name="Treino com o Sr. Assis"
 	elif ParkCheckpoint.is_regional_preview(scene):
 		name=ParkCheckpoint.data(scene).get("name","Kronasta")
-		texture=load("res://assets/campaign/maps/kronasta-atlas-v1.png")
+		texture=load("res://assets/campaign/maps/kronasta-atlas-manga-v3.png")
 	elif scene=="kite-shop":
 		texture=load("res://assets/campaign/loja-tcg-v1/preview.png") as Texture2D
 	elif scene.begins_with("morro"):
@@ -4183,12 +4183,24 @@ func _present_epilogue() -> void:
 	if session.snapshot().player.flags.get("kronastaEpilogueSeen", false): return
 	flow_busy = true
 	var pages: Array = epilogue_pages(session.snapshot().player)
+	var illustrations := ["elo", "atelie", "casa", "carretel"]
+	var backdrop := TextureRect.new()
+	backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	backdrop.z_index = 79
+	add_child(backdrop)
+	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for i in pages.size():
+		backdrop.texture = load("res://assets/campaign/epilogue/epilogue-%s.png" % illustrations[i])
 		var page_dialog := _dialog(pages[i][0], pages[i][1], "Continuar" if i < pages.size() - 1 else "Voltar a Kronasta")
+		if illustrations[i] == "atelie":
+			page_dialog.show_portraits = false
 		page_dialog.confirmed.connect(page_dialog.queue_free)
 		page_dialog.canceled.connect(page_dialog.queue_free)
 		page_dialog.popup_centered(Vector2i(660, 340))
 		await page_dialog.tree_exited
+	backdrop.queue_free()
 	flow_busy = false
 	var done: Dictionary = session.snapshot()
 	done.player.flags.kronastaEpilogueSeen = true

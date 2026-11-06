@@ -38,6 +38,17 @@ static func build(view) -> void:
    if S.geometry():
     S.quad(node,PackedVector2Array([Vector2(-128,-64-height),Vector2(0,-height),Vector2(128,-64-height),Vector2(0,-128-height)]),Color("5d7281"))
    else:
+    var district:=str(model.data.id).trim_prefix("kronasta-").get_slice("-",0)
+    if district in ["centro","lajes"]:
+     var feet:=PackedVector2Array()
+     for at in [Vector2(piece.u,piece.v),Vector2(piece.u+4,piece.v),p,Vector2(piece.u,piece.v+4)]:
+      feet.append(S.iso(at,height)-node.position)
+     var architecture=preload("res://scripts/overworld/district_architecture.gd")
+     var height_px:=172.0 if district=="centro" else 198.0
+     architecture.build(node,feet,district,height_px)
+     if district=="centro" and piece.u==6 and piece.v==5:
+      architecture.bell_tower(node,feet,height_px)
+     continue
     var house:=Building.new();house.width_cells=4;house.depth_cells=4
     house.modulate=Color(1,.95,.86) if piece.props.get("variante")=="creme" else Color(.84,.96,1) if piece.props.get("variante")=="azul" else Color(1,.87,.81)
     house.position=Vector2(0,-height);node.add_child(house)

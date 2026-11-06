@@ -119,7 +119,7 @@ func _unhandled_input(event:InputEvent) -> void:
 		page_index=0;populate(tabs[index].text);tabs[index].grab_focus()
 		get_viewport().set_input_as_handled()
 func category(id: String) -> String:
-	if id.begins_with("certificado-"):return "Missão"
+	if id.begins_with("certificado-") or id in ["bracadeira-do-bando","flor-de-cerejeira","emprestimo-carcara-nina"]:return "Missão"
 	return "Missão" if id.begins_with("quest-") or id.begins_with("pista-") or id in ["agulha-desatar","apito-falso","apito-de-vento","apito-de-elo","carteira-pipeiro","porta-emblemas","insignia-morro-do-sol"] else "Rabiolas" if "rabiola" in id else "Materiais"
 func populate(filter: String) -> void:
 	current_filter=filter

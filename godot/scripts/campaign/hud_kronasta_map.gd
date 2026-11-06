@@ -26,23 +26,31 @@ var back:Button
 var area_button:Button
 
 class Marker extends Button:
+	const ICONS := {
+		"open": preload("res://assets/campaign/maps/travel-open.svg"),
+		"current": preload("res://assets/campaign/maps/travel-current.svg"),
+		"locked": preload("res://assets/campaign/maps/travel-locked.svg"),
+	}
 	var title:=""
+	var label_above:=false
+	var label_left:=false
 	var lit:=true
 	var current:=false
 	var selected:=false
 	func _draw() -> void:
 		var at:=Vector2(18,18)
 		var active:bool=is_hovered() or has_focus() or selected
-		var color:=Tokens.SOL if current else Tokens.CEU if lit else Tokens.MAP_MUTED
-		draw_circle(at,14,Tokens.TINTA)
-		if active:draw_arc(at,18,0,TAU,32,Tokens.PAPEL,2,true)
-		draw_arc(at,12,0,TAU,32,color,2,true)
-		draw_circle(at,7 if lit else 4,color)
-		if current:draw_colored_polygon(PackedVector2Array([at+Vector2(-5,-24),at+Vector2(5,-24),at+Vector2(0,-17)]),color)
+		var state := "current" if current else "open" if lit else "locked"
+		if active:
+			var outline := PackedVector2Array([Vector2(18, -4), Vector2(39, 13), Vector2(18, 40), Vector2(-3, 13), Vector2(18, -4)])
+			draw_polyline(outline, Tokens.PAPEL, 2.0, true)
+		draw_texture_rect(ICONS[state], Rect2(0, 0, 36, 36), false)
 		var width:=minf(190,Hud.font(true).get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,14).x+16)
-		var rect:=Rect2(12,34,width,24)
+		var label_y:= -32.0 if label_above else 34.0
+		var label_x:= 24.0-width if label_left else 12.0
+		var rect:=Rect2(label_x,label_y,width,24)
 		draw_style_box(Hud.panel("dark"),rect)
-		draw_string(Hud.font(true),Vector2(20,51),title,HORIZONTAL_ALIGNMENT_LEFT,width-16,14,Tokens.PAPEL if lit else Tokens.MAP_MUTED_TEXT)
+		draw_string(Hud.font(true),Vector2(label_x+8,label_y+17),title,HORIZONTAL_ALIGNMENT_LEFT,width-16,14,Tokens.PAPEL if lit else Tokens.MAP_MUTED_TEXT)
 
 func label(parent:Node,text:String,font_size:int=18) -> Label:
 	var result:=Label.new();result.text=text
@@ -58,8 +66,8 @@ func action(parent:Node,text:String,callback:Callable) -> Button:
 func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	theme=Hud.make_theme();mouse_filter=MOUSE_FILTER_STOP
-	if ResourceLoader.exists("res://assets/campaign/maps/kronasta-atlas-v1.png"):
-		art=load("res://assets/campaign/maps/kronasta-atlas-v1.png")
+	if ResourceLoader.exists("res://assets/campaign/maps/kronasta-atlas-manga-v3.png"):
+		art=load("res://assets/campaign/maps/kronasta-atlas-manga-v3.png")
 	top=label(self,"KRONASTA  /  CARTA DOS CAMINHOS",30)
 	top.add_theme_font_override("font",Hud.display())
 	objective_label=label(self,Story.objective(saved_player),16)
@@ -76,6 +84,8 @@ func _ready() -> void:
 	for i in Atlas.REGIONS.size():
 		var region:Dictionary=Atlas.REGIONS[i]
 		var marker:=Marker.new();marker.title=region.name;marker.lit=not region.scenes.is_empty()
+		marker.label_above=region.id in ["planicies","mina","bambuzal"]
+		marker.label_left=region.id in ["planicies","beira-canal","bambuzal"]
 		marker.current=region.id==Atlas.region_for(current_scene)
 		marker.flat=true;marker.mouse_default_cursor_shape=CURSOR_POINTING_HAND
 		for style in ["normal","hover","pressed","focus","disabled"]:marker.add_theme_stylebox_override(style,StyleBoxEmpty.new())
@@ -91,8 +101,17 @@ func _ready() -> void:
 	back.custom_minimum_size.x=190
 	area_button=action(footer,"Mapa da área",func():local_requested.emit())
 	area_button.custom_minimum_size.x=190
-	var legend:=label(footer,"● Acesso aberto     ○ Em breve     ◆ Você está aqui",14)
-	legend.autowrap_mode=TextServer.AUTOWRAP_OFF
+	var legend:=HBoxContainer.new()
+	footer.add_child(legend)
+	legend.add_theme_constant_override("separation",5)
+	for state in ["open","locked","current"]:
+		var icon:=TextureRect.new()
+		icon.texture=Marker.ICONS[state]
+		icon.custom_minimum_size=Vector2(18,18)
+		icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		legend.add_child(icon)
+		label(legend,{"open":"Acesso aberto","locked":"Em breve","current":"Você está aqui"}[state],14).autowrap_mode=TextServer.AUTOWRAP_OFF
 	footer.minimum_size_changed.connect(_layout)
 	selected=0
 	for i in Atlas.REGIONS.size():

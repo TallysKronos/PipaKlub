@@ -403,13 +403,14 @@ static func shatter_key(view, reduced_motion: bool) -> void:
 	shards.z_index = 4
 	shards.position = altar+Vector2(0,-36)
 	view.actors.add_child(shards)
-	var pieces: Array[Line2D] = []
+	var pieces: Array[Sprite2D] = []
+	var atlas: Texture2D = load("res://assets/ui/key-items/chave-elo-fragmentos.svg")
 	for i in 5:
-		var piece := Line2D.new()
-		piece.width = 3.0
-		piece.default_color = Color("#dea3e8")
-		piece.points = PackedVector2Array([Vector2(-5,0),Vector2(0,-7),Vector2(5,0)])
-		piece.position = Vector2(-10+i*5,0)
+		var piece := Sprite2D.new()
+		piece.texture = atlas
+		piece.hframes = 5
+		piece.frame = i
+		piece.position = Vector2(-10 + i * 5, 0)
 		shards.add_child(piece)
 		pieces.append(piece)
 	var camera: Camera2D = view.camera

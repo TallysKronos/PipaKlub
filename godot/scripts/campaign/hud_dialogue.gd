@@ -114,6 +114,8 @@ func _portrait_for(speaker:String) -> Texture2D:
 	var texture:Texture2D
 	# The same person under the name the later acts use.
 	var key:String={"Heleana":"Mãe","Assis":"Sr. Assis","Professor Assis":"Sr. Assis"}.get(speaker,speaker)
+	if not data.portraits.has(key) and " · " in key:
+		key = key.get_slice(" · ",0)
 	if data.portraits.has(key):texture=load("res://assets/campaign/"+data.portraits[key])
 	else:
 		var maps:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/morro/maps.json"))

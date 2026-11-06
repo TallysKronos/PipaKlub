@@ -76,9 +76,39 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 		if model.q.get("tylerAlly",false):rai_ally=load("res://assets/campaign/tyler-clareira-v1/rai.png")
 		if model.q.mormacoForm!="possessed":art_ids[1]="mormaco-normal"
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
-	background = load("res://assets/campaign/elo-arena.png" if reward_encounter.get("scene","").begins_with("kronasta-coracao-") else "res://assets/campaign/veredas-arena-wide-v2.png")
+	background = load(arena_path(reward_encounter))
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
 	panel_styles.assign([_panel("dark"), _panel("danger")])
+
+const DISTRICT_ARENAS := {
+	"industrial": "res://assets/campaign/vila-operaria-arena-wide-v1.png",
+	"aracati": "res://assets/campaign/aracati-arena-wide-v1.png",
+	"bosque": "res://assets/campaign/bosque-arena-wide-v1.png",
+	"pantano": "res://assets/campaign/pantano-arena-wide-v1.png",
+	"bambuzal": "res://assets/campaign/bambuzal-arena-wide-v1.png",
+	"beira-canal": "res://assets/campaign/beira-canal-arena-wide-v1.png",
+	"feira": "res://assets/campaign/feira-arena-wide-v1.png",
+	"cais": "res://assets/campaign/cais-arena-wide-v1.png",
+	"lajes": "res://assets/campaign/lajes-arena-wide-v1.png",
+	"centro": "res://assets/campaign/centro-arena-wide-v1.png",
+	"porto": "res://assets/campaign/porto-arena-wide-v1.png",
+	"mirante": "res://assets/campaign/mirante-arena-wide-v1.png",
+}
+
+static func district_arena_path(area_id: String) -> String:
+	var separator := area_id.rfind("-")
+	return DISTRICT_ARENAS.get(area_id.left(separator), "") if separator >= 0 else ""
+
+static func arena_path(encounter: Dictionary) -> String:
+	var scene: String = encounter.get("scene", "")
+	if scene.begins_with("kronasta-coracao-"): return "res://assets/campaign/elo-arena.png"
+	if scene == "kronasta-industrial-d" or encounter.get("kind") == "warehouse-story": return "res://assets/campaign/galpao-arena-wide-v2.png"
+	var district_arena := district_arena_path(scene.trim_prefix("kronasta-"))
+	if not district_arena.is_empty(): return district_arena
+	if scene == "kronasta-estadio-a": return "res://assets/campaign/estadio-arena-wide-v1.png"
+
+	if scene.begins_with("kronasta-montanha-") or encounter.get("kind") == "tufanocorte-story": return "res://assets/campaign/serra-arena-wide-v1.png"
+	return "res://assets/campaign/veredas-arena-wide-v2.png"
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -469,7 +499,10 @@ func _project_field(point: Vector2) -> Vector2:
 	return _field_origin() + point * _field_scale()
 
 func _draw_foreground() -> void:
-	if reward_encounter.get("kind")=="warehouse-story":return
+	if background != null and (background.resource_path in DISTRICT_ARENAS.values() or background.resource_path.get_file() in [
+		"galpao-arena-wide-v2.png", "serra-arena-wide-v1.png", "estadio-arena-wide-v1.png",
+	]):
+		return
 	var source: Texture2D = foreground
 	var cap := source.get_width() / 4.0
 	var height := size.y * .15

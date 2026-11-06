@@ -27,7 +27,7 @@ export function industrialPart(part){
  const access=(u,v,width=2)=>{for(let x=u;x<u+width;x++){rect(x,v-2,1,2,'grama',1);rect(x,v,1,4,'terra',0);ramps[ix(x,v)]=24;}};
  access(12,28,3);access(24,16);access(40,28);
  if(part==='C')path([[36,39],[36,32]],4);
- const feature={nativeProps:true,industrial:true,followTrail:true,stairs:[{u:12,v:28,width:3,length:2}],guards:[],buildings:[],shots:[]};
+ const feature={nativeProps:true,industrial:true,followTrail:true,closedStairs:true,stairs:[{u:12,v:28,width:3,length:2},{u:24,v:16,width:2,length:2},{u:40,v:28,width:2,length:2}],guards:[],buildings:[],shots:[]};
  const building=(name,u,v,w,h,z,style)=>{piece('industrial-volume',name,u,v,w,h,{style});feature.buildings.push({name,u,v,w,h,z,style});feature.shots.push({name:'implantacao-'+feature.buildings.length,u:u+w/2,v:v+h,zoom:2.3});};
  building(part==='C'?'Usina':'Galpão de manutenção',6,5,10,7,part==='A'?320:128,part==='C'?'usina':'galpao');
  building('Depósito de peças',23,5,6,6,part==='A'?192:80,'galpao');

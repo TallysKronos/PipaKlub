@@ -360,6 +360,78 @@
       "name": "Alto do Mirante · C",
       "scene": "kronasta-mirante-c",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-centro-a",
+      "name": "Praça da Matriz",
+      "scene": "kronasta-centro-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-centro-b",
+      "name": "Estúdio da Pipa TV",
+      "scene": "kronasta-centro-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-centro-c",
+      "name": "Arena do Centro",
+      "scene": "kronasta-centro-c",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-lajes-a",
+      "name": "Portaria e Praça",
+      "scene": "kronasta-lajes-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-lajes-b",
+      "name": "Clube e Piscina",
+      "scene": "kronasta-lajes-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-lajes-c",
+      "name": "Terraço do Condomínio",
+      "scene": "kronasta-lajes-c",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-porto-a",
+      "name": "Terminal de chegada",
+      "scene": "kronasta-porto-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-porto-b",
+      "name": "Docas de carga",
+      "scene": "kronasta-porto-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-porto-c",
+      "name": "Cais do Capitão",
+      "scene": "kronasta-porto-c",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-coracao-a",
+      "name": "Entrada das Ruínas",
+      "scene": "kronasta-coracao-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-coracao-b",
+      "name": "Galeria das Linhas",
+      "scene": "kronasta-coracao-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-coracao-c",
+      "name": "Corredor do Elo",
+      "scene": "kronasta-coracao-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -421,7 +493,19 @@
     "kronasta-aracati-c": "kronasta-aracati-c",
     "kronasta-mirante-a": "kronasta-mirante-a",
     "kronasta-mirante-b": "kronasta-mirante-b",
-    "kronasta-mirante-c": "kronasta-mirante-c"
+    "kronasta-mirante-c": "kronasta-mirante-c",
+    "kronasta-centro-a": "kronasta-centro-a",
+    "kronasta-centro-b": "kronasta-centro-b",
+    "kronasta-centro-c": "kronasta-centro-c",
+    "kronasta-lajes-a": "kronasta-lajes-a",
+    "kronasta-lajes-b": "kronasta-lajes-b",
+    "kronasta-lajes-c": "kronasta-lajes-c",
+    "kronasta-porto-a": "kronasta-porto-a",
+    "kronasta-porto-b": "kronasta-porto-b",
+    "kronasta-porto-c": "kronasta-porto-c",
+    "kronasta-coracao-a": "kronasta-coracao-a",
+    "kronasta-coracao-b": "kronasta-coracao-b",
+    "kronasta-coracao-c": "kronasta-coracao-c"
   },
   "campaignReplacement": false
 }
