@@ -74,5 +74,6 @@ func run() -> void:
 	if still!=null: still._finish(false)
 	await settle()
 	check(not front.park.paused,"closing the last dialog gives movement back")
+	check(await preload("res://tests/audio_teardown.gd").free_view(self,front),"audio released before exit")
 	print("CONFIRM NOTICE PAUSE: %d checks; %d failures"%[checks,failures])
 	quit(1 if failures else 0)

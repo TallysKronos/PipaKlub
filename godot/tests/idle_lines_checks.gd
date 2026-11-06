@@ -30,6 +30,8 @@ func _initialize() -> void:
 	check(view._tyler_lines(freed)[0].contains("laboratório"), "Tyler remembers the laboratory after the record")
 	for lines in [view._nina_lines(before), view._nina_lines(held), view._nina_lines(freed), view._tyler_lines(before), view._tyler_lines(freed), view._tyler_lines(champion)]:
 		check(not "\n".join(lines).contains("pipa que eu estava construindo"), "no promise that never pays off")
+	view.sound.free()
+	view.session.free()
 	view.free()
 	print("IDLE LINES: %d checks; %d failures" % [checks, failures])
 	quit(1 if failures else 0)
