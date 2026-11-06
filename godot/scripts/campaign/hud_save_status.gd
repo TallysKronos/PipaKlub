@@ -7,8 +7,12 @@ func _ready() -> void:
 	layer = 110
 	label = Label.new()
 	label.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	# Below the top-right column (Esc button, minimap, rival card in battle), which the
+	# status used to cover (Windows candidate review, 1a8e8b66).
 	label.offset_left = -330; label.offset_right = -24
-	label.offset_top = 24; label.offset_bottom = 62
+	label.offset_top = 168; label.offset_bottom = 206
+	label.add_theme_constant_override("outline_size", 6)
+	label.add_theme_color_override("font_outline_color", Hud.BLACK)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	label.add_theme_font_size_override("font_size", 20)
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
