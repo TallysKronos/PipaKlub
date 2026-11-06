@@ -18,7 +18,7 @@ godot --headless --path godot -s tools/duel_balance.gd -- --stages=all --level=+
 | A Tainá venceu 5 vezes seguidas e o Tervan 9, e cada derrota rendia 20 XP. | Percurso Serra → Porto Novo. | Cada derrota seguida baixa um passo a leitura do rival de bairro (até três). Perder paga 30% do XP da vitória, e vencer zera a contagem. |
 | O parceiro entrava em lutas encadeadas com a armação gasta e caía em 10 s. | Navalha e Capanga com 29% de armação. | O convite do duelo avisa quando o parceiro está abaixo de 50%. |
 | Depois de "Aprender Cavar", o Kael ficava parado. | O aviso aberto pelo callback da confirmação devolvia a pausa da própria confirmação. | `_confirm_park` repassa a liberação ao aviso. |
-| Depois de soltar a Nina nas Ruínas (e no Aracati), o Kael ficava parado. | O aviso devolvia a pausa de uma encenação curta. | O aviso só mantém a pausa se algo ainda segura a tela (`_screen_held`). |
+| Depois de soltar a Nina nas Ruínas (e no Aracati), o Kael ficava parado. | O aviso devolvia a pausa de uma encenação curta. | As duas encenações liberam a própria pausa antes do aviso. Uma pausa que já existia antes de um aviso continua valendo (`autosave_recovery_checks`). |
 | No cume da Serra, o botão apontava para o Tatutrama ou o Tufanocorte ao lado da terra fofa. | Empate de distância. | Objetos vencem empates; depois da lição, o tatu cede a vez. |
 | Os selvagens de Cais, Aracati, Vila Operária, Pântano e Serra eram de Nv.1 a 8. | Níveis de prévia. | Os selvagens seguem a faixa de nível de cada região. |
 

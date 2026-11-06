@@ -445,10 +445,7 @@ func _notice(message: String) -> void:
 		if is_instance_valid(previous_park) and previous_park.is_inside_tree():
 			var depth: int = maxi(0, int(previous_park.get_meta("system_notice_depth", 1)) - 1)
 			previous_park.set_meta("system_notice_depth", depth)
-			# Give the pause back only while something still holds the screen; a flow that
-			# paused the park for a short animation before the notice (rescue in the
-			# Ruínas, Aracati) left Kael frozen after closing it (campaign walker).
-			if depth == 0: previous_park.paused = previous_park.get_meta("system_notice_was_paused", false) and _screen_held(dialog)
+			if depth == 0: previous_park.paused = previous_park.get_meta("system_notice_was_paused", false)
 		var previous_room: Node = notice_room.get_ref() if notice_room != null else null
 		if is_instance_valid(previous_room) and previous_room.is_inside_tree():
 			var depth: int = maxi(0, int(previous_room.get_meta("system_notice_depth", 1)) - 1)
@@ -457,15 +454,6 @@ func _notice(message: String) -> void:
 				previous_room.can_walk = previous_room.get_meta("system_notice_was_walking", false)
 				previous_room.set_story_paused(previous_room.get_meta("system_notice_was_paused", false)))
 	dialog.popup_centered(Vector2i(640, 300))
-
-## Something modal still on screen besides the closing dialog: a running flow, the
-## pause lobby, a loading cover or another open dialog.
-func _screen_held(closing: Node) -> bool:
-	if flow_busy or opening_busy or is_instance_valid(pause_overlay) or is_instance_valid(scene_loading): return true
-	for child in get_children():
-		if child == closing or child.is_queued_for_deletion() or not child.get("visible"): continue
-		if child.get("dialog_text") != null and not child.get("_closed"): return true
-	return false
 
 func _notice_after_load(message: String) -> void:
 	while is_instance_valid(scene_loading):
@@ -4033,6 +4021,9 @@ func _return_ruinas(outcome: String = "") -> void:
 				await release.finished
 				cord.queue_free()
 				break
+			# The staging pause ends here; the notice keeps its own pause while open
+			# (Kael stayed frozen after it: campaign walker).
+			if is_instance_valid(park): park.paused = false
 		_notice("Kael: Pronto. A linha cedeu. Você está livre, Rabiolava.\n\nO vento quente volta a soprar sobre a ilha." if outcome=="won" else "Kael: Vou me recompor. Ainda dá tempo de soltar a Rabiolava.")
 		return
 	if lines.RESCUES.has(scene):
@@ -4053,6 +4044,9 @@ func _return_ruinas(outcome: String = "") -> void:
 			park.path.clear()
 			park.paused = true
 			await preload("res://scripts/overworld/elo_chamber.gd").untie_prisoner(park)
+			# The staging pause ends here; the notice keeps its own pause while open
+			# (after freeing Nina, Kael stayed frozen: campaign walker).
+			if is_instance_valid(park): park.paused = false
 		_notice(lines.RESCUES[scene].freed if outcome=="won" else lines.LOST_GUARD)
 		return
 	var flags: Dictionary = session.snapshot().player.flags

@@ -49,15 +49,18 @@ func run() -> void:
 	if rest!=null: rest._finish(true)
 	await settle()
 	check(not front.park.paused,"a confirmation alone gives movement back")
-	# A short staging pauses the park and then tells the result (rescue in the Ruínas):
-	# closing the notice gives movement back.
+	# A pause that existed before the notice is kept (the flow that set it releases it;
+	# the rescue in the Ruínas and the Aracati now release theirs before the notice).
 	front.park.paused=true
 	front._notice("Nina: Pronto. A linha afrouxou.")
 	await settle()
 	var freed:=dialog_with(front,"Nina: Pronto")
 	if freed!=null: freed._finish(true)
 	await settle()
-	check(not front.park.paused,"after a staging pause, closing the notice gives movement back")
+	check(front.park.paused,"a pause set before the notice is kept")
+	front.park.paused=false
+	var source:=FileAccess.get_file_as_string("res://scripts/campaign/front_end.gd")
+	check(source.count("The staging pause ends here")==2,"rescue and Aracati release their staging pause before the notice")
 	# Another dialog still open keeps the park paused.
 	var ask2:=front._confirm_park("Cadeado","Três nós.","Enfrentar",func(): pass)
 	await settle()
