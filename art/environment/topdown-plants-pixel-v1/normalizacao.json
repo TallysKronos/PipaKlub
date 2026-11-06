@@ -1,0 +1,169 @@
+{
+  "palette": [
+    "#071722",
+    "#0c2b31",
+    "#103e3c",
+    "#17544a",
+    "#206956",
+    "#2e805d",
+    "#489366",
+    "#79a34c",
+    "#a9bc57",
+    "#d6d972",
+    "#eaf092",
+    "#08494b",
+    "#126064",
+    "#237e7a",
+    "#41988b",
+    "#70b5a0",
+    "#422c1a",
+    "#765024",
+    "#b57d38",
+    "#edc370",
+    "#fff0cb",
+    "#9e483e",
+    "#e67f60",
+    "#ffb78b"
+  ],
+  "sourceSize": [
+    1536,
+    1024
+  ],
+  "sampledSize": [
+    192,
+    128
+  ],
+  "cellSize": [
+    64,
+    64
+  ],
+  "alphaThreshold": 128,
+  "anchors": [
+    {
+      "id": "capim-rabiola-a",
+      "originalBounds": {
+        "minx": 19,
+        "miny": 24,
+        "maxx": 48,
+        "maxy": 47
+      },
+      "rootSource": [
+        32,
+        47
+      ],
+      "translation": [
+        0,
+        5
+      ],
+      "pivot": [
+        32,
+        52
+      ]
+    },
+    {
+      "id": "arbusto-folha-pipa-a",
+      "originalBounds": {
+        "minx": 11,
+        "miny": 16,
+        "maxx": 52,
+        "maxy": 47
+      },
+      "rootSource": [
+        32,
+        47
+      ],
+      "translation": [
+        0,
+        5
+      ],
+      "pivot": [
+        32,
+        52
+      ]
+    },
+    {
+      "id": "bromelia-do-vento-a",
+      "originalBounds": {
+        "minx": 11,
+        "miny": 13,
+        "maxx": 54,
+        "maxy": 50
+      },
+      "rootSource": [
+        32,
+        47
+      ],
+      "translation": [
+        0,
+        5
+      ],
+      "pivot": [
+        32,
+        52
+      ]
+    },
+    {
+      "id": "capim-rabiola-b",
+      "originalBounds": {
+        "minx": 11,
+        "miny": 19,
+        "maxx": 54,
+        "maxy": 48
+      },
+      "rootSource": [
+        32,
+        48
+      ],
+      "translation": [
+        0,
+        4
+      ],
+      "pivot": [
+        32,
+        52
+      ]
+    },
+    {
+      "id": "arbusto-folha-pipa-b",
+      "originalBounds": {
+        "minx": 3,
+        "miny": 11,
+        "maxx": 57,
+        "maxy": 49
+      },
+      "rootSource": [
+        32,
+        49
+      ],
+      "translation": [
+        0,
+        3
+      ],
+      "pivot": [
+        32,
+        52
+      ]
+    },
+    {
+      "id": "bromelia-do-vento-b",
+      "originalBounds": {
+        "minx": 4,
+        "miny": 10,
+        "maxx": 57,
+        "maxy": 51
+      },
+      "rootSource": [
+        32,
+        48
+      ],
+      "translation": [
+        0,
+        4
+      ],
+      "pivot": [
+        32,
+        52
+      ]
+    }
+  ]
+}

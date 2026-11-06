@@ -1,0 +1,46 @@
+{
+  "canvas": [
+    96,
+    96
+  ],
+  "pivotProposed": [
+    48,
+    81
+  ],
+  "inGameValidated": false,
+  "animationValidated": false,
+  "entries": [
+    {
+      "id": "gambalhote-baby",
+      "view": "frente-3q",
+      "bboxExclusive": [
+        35,
+        50,
+        61,
+        82
+      ],
+      "occupiedSize": [
+        26,
+        32
+      ],
+      "opaqueColors": 18,
+      "opaquePixels": 488
+    },
+    {
+      "id": "gambalhote-baby",
+      "view": "costas-3q",
+      "bboxExclusive": [
+        35,
+        50,
+        61,
+        82
+      ],
+      "occupiedSize": [
+        26,
+        32
+      ],
+      "opaqueColors": 16,
+      "opaquePixels": 471
+    }
+  ]
+}

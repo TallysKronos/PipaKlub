@@ -1,0 +1,36 @@
+[
+  {
+    "id": "attack",
+    "name": "Ataque",
+    "left": "../battle-attack-v1/attack-left.png",
+    "right": "../battle-attack-v1/attack-right.png",
+    "durations": [
+      150,
+      100,
+      60,
+      50,
+      80,
+      80,
+      70,
+      80,
+      100,
+      180
+    ]
+  },
+  {
+    "id": "damage",
+    "name": "Dano",
+    "left": "../battle-damage-v1/damage-left.png",
+    "right": "../battle-damage-v1/damage-right.png",
+    "durations": [
+      50,
+      110,
+      50,
+      80,
+      90,
+      100,
+      80,
+      160
+    ]
+  }
+]

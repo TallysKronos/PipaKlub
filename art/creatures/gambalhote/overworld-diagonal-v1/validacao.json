@@ -1,0 +1,44 @@
+{
+  "canvas": [
+    80,
+    80
+  ],
+  "pivotProposed": [
+    40,
+    65
+  ],
+  "staticViews": 2,
+  "inGameValidated": false,
+  "entries": [
+    {
+      "view": "frente-sw",
+      "bboxExclusive": [
+        14,
+        9,
+        66,
+        65
+      ],
+      "occupiedSize": [
+        52,
+        56
+      ],
+      "opaqueColors": 23,
+      "opaquePixels": 1438
+    },
+    {
+      "view": "costas-nw",
+      "bboxExclusive": [
+        14,
+        9,
+        66,
+        64
+      ],
+      "occupiedSize": [
+        52,
+        55
+      ],
+      "opaqueColors": 20,
+      "opaquePixels": 1424
+    }
+  ]
+}
