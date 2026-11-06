@@ -6,7 +6,7 @@ const State = preload("res://scripts/campaign/state.gd")
 const Rules = preload("res://scripts/campaign/district_rules.gd")
 const BRACKET := [
 	["Grampo","platyx-draft",47,"kronastaQuartas"],
-	["Tyler","mata",48,"kronastaSemifinal"],
+	["Tyler","rai",48,"kronastaSemifinal"],
 	["Faye","lacertubo",49,"kronastaChaveVencida"],
 	["Jamile","azulao",50,"campeaoKronasta"],
 ]
