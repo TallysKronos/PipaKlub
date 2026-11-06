@@ -1,3 +1,4 @@
+import {installIsoPanel} from './iso-panel.mjs';
 import {varyTerrain} from './variation.mjs';
 import {resizeMap} from './resize-map.mjs';
 import {validateCustomAssets} from './custom-assets.mjs';
@@ -322,3 +323,27 @@ try{
   await Promise.all([...ASSETS,{id:'tree-atlas'},{id:'waterfall-atlas'},{id:'kael-walk'},{id:'kael-back'},...NATURE_ASSETS.filter(n=>n.tree).map(n=>({id:'tree-atlas-'+n.id}))].map(async a=>{const im=new Image();im.src='/assets/'+a.id+'.png';await im.decode();images.set(a.id,im);const c=document.createElement('canvas');c.width=im.width;c.height=im.height;const ic=c.getContext('2d',{willReadFrequently:true});ic.drawImage(im,0,0);pixels.set(a.id,ic.getImageData(0,0,c.width,c.height).data);}));
   await loadCustomAssets(layout);document.querySelector('.document-tab>span:last-child').textContent=layout.width+' × '+layout.height;resize();center();syncFocus();inspect();chooseTool('plant');syncButtons();$('saveState').textContent='Salvo · '+layout.objects.length+' peças';$('loading').hidden=true;requestAnimationFrame(draw);
 }catch(e){$('loading').textContent='Não foi possível carregar os sprites: '+e.message;console.error(e);}
+
+installIsoPanel({
+  current:()=>layout,
+  edit(hit,event){
+    if(playing||stroke||!['floor','height','ramp','fill'].includes(tool))return false;
+    const point={x:(hit.u+.5)*TILE,y:(hit.v+.5)*TILE,cell:hit.index,kind:'top'};
+    point.raw=project(layout,point);
+    stroke={button:0,changed:false,shift:event.shiftKey,floorLevel:layout.levels[hit.index]};
+    paint(point);
+    const changed=stroke.changed;
+    finishStroke();
+    return changed;
+  },
+  walk(spawn,[dx,dy]){
+    const from={x:spawn.u*TILE,y:spawn.v*TILE};
+    const to=moveOnTerrain(layout,from,{x:dx*8,y:dy*8});
+    return blockedByObjects(layout,from,to)?spawn:{u:to.x/TILE,v:to.y/TILE};
+  },
+  sprite(entity){
+    const definition=ASSETS.find(asset=>asset.id===entity.asset);
+    const image=images.get(entity.asset);
+    return definition&&image?{image,anchor:definition.anchor}:null;
+  },
+});

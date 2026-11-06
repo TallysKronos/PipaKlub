@@ -36,3 +36,8 @@ body[data-tool=face] .face-material{display:flex}.wall-picker{display:flex;gap:1
 .category-tabs{flex-wrap:nowrap;overflow:auto;flex:1;min-width:180px}.category-tabs button{flex:none}.browser-toolbar .search{flex:0 1 170px}.browser-toolbar #biomePick{max-width:125px}#favoriteAsset{padding:3px 7px;min-width:28px}
 
 #variantProperties{font-size:11px;margin:10px 0}#variantProperties label,#regionPanel details label{display:flex;flex-direction:column;gap:4px;margin:8px 0}#variantProperties input,#regionPanel details input{width:100%;min-width:0}#variantProperties p{line-height:1.5}#variantProperties button{font-size:11px;margin:3px 0}#waterProperties select{max-width:100%}
+#isoOpen {position:absolute;right:16px;top:16px;z-index:3}
+#isoDialog {width:min(1080px,94vw);max-width:none}
+#isoCanvas {display:block;width:100%;height:min(64vh,620px);background:#17202a;cursor:crosshair;touch-action:none}
+.iso-controls {display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0}
+#isoInfo {min-height:2.6em;margin-bottom:0}

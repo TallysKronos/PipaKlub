@@ -30,3 +30,9 @@ node tools/plant-lab/performance-benchmark.mjs
 Os scripts de UI usam Chromium via Playwright do ambiente local. Capturas e relatórios ficam em `documentation/plant-lab-v1/captures/`. O benchmark mede CPU do raster Node; não representa FPS de navegador.
 
 `node tools/plant-lab/prepare-godot.mjs` regenera a bancada nativa separada em `godot-preview/`. Aceita `--ramps`, `--waterfalls`, `--surface-corners` e `--layout arquivo.json`. A integração na campanha é uma ação distinta da exportação; nenhum merge foi feito por esta entrega.
+
+## Vista isométrica e campanha
+
+Abra **Vista isométrica 2:1** no palco. **Projeto atual** usa a mesma planta da vista top-down. Escolha o pincel antes de abrir a vista e clique para aplicar Piso, Preencher, Relevo ou Rampa. Com o canvas em foco, use as setas para testar Kael sem gravar o deslocamento. A roda aproxima e o botão central move a câmera.
+
+O seletor também lista os mapas nativos `overworld-godot-1` do jogo. A vista de campanha é geométrica e de consulta: clique para inspecionar a célula e baixe o JSON nativo com todos os dados. Os projetos do Studio continuam usando o fluxo de exportação Godot existente.
