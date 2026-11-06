@@ -1,11 +1,19 @@
+import {rampSample} from './ramp-sample.mjs';
+import {waterfallSample} from './waterfalls.mjs';
+import {wallSample} from './wall-kit.mjs';
+import {groundSample,groundReliefSample} from './ground-kit.mjs';
+import {natureSample} from './nature-kit.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {forestSample} from './forest-sample.mjs';
 import {initialLayout} from './model.mjs';
+import {waterSample} from './water.mjs';
+import {treeSample} from './trees.mjs';
 import {exportProject} from './server.mjs';
 const target=fileURLToPath(new URL('./godot-preview/',import.meta.url));
 await fs.mkdir(target,{recursive:true});
-const data=await exportProject(initialLayout());
+const data=await exportProject(process.argv.includes('--layout')?JSON.parse(await fs.readFile(process.argv[process.argv.indexOf('--layout')+1],'utf8')):process.argv.includes('--ramps')?rampSample(initialLayout()):process.argv.includes('--waterfalls')?waterfallSample(initialLayout()):process.argv.includes('--surface-corners')?JSON.parse(await fs.readFile('documentation/plant-lab-v1/cases/surface-corners.json','utf8')):process.argv.includes('--wall-regression')?wallSample(initialLayout(),1):process.argv.includes('--walls')?wallSample(initialLayout()):process.argv.includes('--ground-relief')?groundReliefSample(initialLayout()):process.argv.includes('--grounds')?groundSample(initialLayout()):process.argv.includes('--nature')?natureSample(initialLayout()):process.argv.includes('--trees')?treeSample(initialLayout()):process.argv.includes('--water')?waterSample(initialLayout()):forestSample(initialLayout(),{keepObjects:false}));
 let offset=0;
 while(data.readUInt32LE(offset)===0x04034b50){const size=data.readUInt32LE(offset+18),n=data.readUInt16LE(offset+26),extra=data.readUInt16LE(offset+28),name=data.subarray(offset+30,offset+30+n).toString(),start=offset+30+n+extra,file=path.resolve(target,name);if(!file.startsWith(path.resolve(target)+path.sep))throw Error('Entrada fora do projeto.');await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,data.subarray(start,start+size));offset=start+size;}
 await fs.writeFile(path.join(target,'.gitignore'),'.godot/\n');

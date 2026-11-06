@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "checks": [
+    "reprodução do mapa legado",
+    "bosque reconstruído",
+    "juntas sem vegetação em 2x",
+    "subida e descida por teclado nos dois percursos"
+  ],
+  "routes": [
+    {
+      "x": 176,
+      "upper": {
+        "x": 176,
+        "y": 72.9375
+      },
+      "lower": {
+        "x": 176,
+        "y": 347.9124999999999
+      }
+    },
+    {
+      "x": 592,
+      "upper": {
+        "x": 592,
+        "y": 75
+      },
+      "lower": {
+        "x": 592,
+        "y": 352.0875000000001
+      }
+    }
+  ],
+  "errors": []
+}

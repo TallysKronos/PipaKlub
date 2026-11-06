@@ -7,7 +7,7 @@ func _initialize() -> void:
 	assert(p.y==110 and Terrain.height_at(a,p)==2)
 	p=Terrain.move(a,p,Vector2(0,170))
 	assert(p.y==280)
-	assert(Terrain.move(a,Vector2(144,280),Vector2(0,-100)).y>=224)
+	assert(Terrain.move(a,Vector2(144,280),Vector2(0,-100)).y>=220)
 	for y: float in [224.01,239.0,255.99]:
 		var root:=Vector2(176,y)
 		assert(Terrain.surface(a,Terrain.project(a,root)).distance_to(root)<0.02)

@@ -1,3 +1,11 @@
+import {validateCustomAssets} from './custom-assets.mjs';
+import {rampValid} from './ramp-rules.mjs';
+import {validateEvents} from './map-events.mjs';
+import {validateCollision} from './collision-shapes.mjs';
+import {WATERFALLS} from './waterfall-assets.mjs';
+import {WALL_IDS} from './wall-kit.mjs';
+import {GROUNDS} from './ground-kit.mjs';
+import {NATURE_ASSETS} from './nature-kit.mjs';
 export const MAX_LEVEL=12;
 export const TILE = 32;
 export const PLANTS = [
@@ -6,13 +14,18 @@ export const PLANTS = [
   {id:'arbusto-folha-pipa-a',name:'Arbusto de folhas',family:'Arbustos',anchor:[32,52]},
   {id:'arbusto-folha-pipa-b',name:'Arbusto florido',family:'Arbustos',anchor:[32,52]},
   {id:'bromelia-do-vento-a',name:'Bromélia coral',family:'Bromélias',anchor:[32,52]},
-  {id:'bromelia-do-vento-b',name:'Bromélia dupla',family:'Bromélias',anchor:[32,52]}
+  {id:'bromelia-do-vento-b',name:'Bromélia dupla',family:'Bromélias',anchor:[32,52]},
+  {id:'pedra-da-margem',name:'Pedra de margem',family:'Margens',anchor:[32,52]},
+  {id:'junco-da-margem',name:'Junco',family:'Margens',anchor:[32,52]},
+  {id:'vitoria-regia',name:'Vitória-régia',family:'Aquáticas',anchor:[32,52]},
+  {id:'arvore-kronasta',name:'Árvores de Kronasta',family:'Floresta conectada',anchor:[32,80]}
 ];
+PLANTS.push(...NATURE_ASSETS,...WATERFALLS);
 export const ASSETS = [...PLANTS,{id:'kael',name:'Kael',anchor:[40,65]}];
-export const FLOORS = ['grass','dirt','stone'];
+export const FLOORS = ['grass','dirt','stone','sand','water',...GROUNDS.map(g=>g.id)];
 export const clone = value => JSON.parse(JSON.stringify(value));
 export function validateLayout(raw) {
-  if(!raw || raw.version!==1 || !Number.isInteger(raw.width) || !Number.isInteger(raw.height) || raw.width<8 || raw.width>40 || raw.height<8 || raw.height>32) throw Error('Projeto inválido: dimensões entre 8×8 e 40×32.');
+  if(!raw || raw.version!==1 || !Number.isInteger(raw.width) || !Number.isInteger(raw.height) || raw.width<8 || raw.width>64 || raw.height<8 || raw.height>64) throw Error('Projeto inválido: dimensões entre 8×8 e 64×64.');
   const {width,height}=raw;
   if(!Array.isArray(raw.floors)||raw.floors.length!==width*height||raw.floors.some(t=>!FLOORS.includes(t)))throw Error('O piso contém células inválidas.');
   const count=width*height;
@@ -20,18 +33,23 @@ export function validateLayout(raw) {
   const ramps=raw.ramps===undefined?Array(count).fill(null):raw.ramps;
   const cliffs=raw.cliffs===undefined?Array(count).fill('earth'):raw.cliffs;
   if(!Array.isArray(levels)||levels.length!==count||levels.some(h=>!Number.isInteger(h)||h<0||h>MAX_LEVEL))throw Error('Cotas inválidas: use níveis de 0 a 12.');
-  if(!Array.isArray(ramps)||ramps.length!==count||ramps.some(r=>r!==null&&r!=='n'))throw Error('Rampas inválidas.');
-  if(!Array.isArray(cliffs)||cliffs.length!==count||cliffs.some(m=>!['earth','rock'].includes(m)))throw Error('Material de barranco inválido.');
-  for(let i=0;i<count;i++)if(ramps[i]&&(i<width||i>=count-width||levels[i-width]!==levels[i]+1||levels[i+width]!==levels[i]||ramps[i-width]||ramps[i+width]))throw Error('Uma rampa precisa ligar a cota alta ao norte à cota baixa ao sul.');
+  if(!Array.isArray(ramps)||ramps.length!==count||ramps.some(r=>r!==null&&!['n','s','e','w'].includes(r)))throw Error('Rampas inválidas.');
+  if(!Array.isArray(cliffs)||cliffs.length!==count||cliffs.some(m=>!WALL_IDS.includes(m)))throw Error('Material de barranco inválido.');
+  for(let i=0;i<count;i++)if(ramps[i]&&!rampValid({width,height,levels,ramps},i))throw Error('Uma rampa precisa ligar dois patamares planos com uma cota de diferença.');
+  if(raw.waterDepth&&(!Array.isArray(raw.waterDepth)||raw.waterDepth.length!==count||raw.waterDepth.some(v=>!Number.isInteger(v)||v<0||v>3)))throw Error('Profundidade da água inválida.');
+  if(raw.flow&&(!Array.isArray(raw.flow)||raw.flow.length!==count||raw.flow.some(v=>v!==null&&!['n','s','e','w'].includes(v))))throw Error('Correnteza inválida.');
+  if(raw.variants&&(!Array.isArray(raw.variants)||raw.variants.length!==count||raw.variants.some(v=>v!==null&&![0,1,2].includes(v))))throw Error('Variantes de piso inválidas.');
+  if(raw.stairs&&(!Array.isArray(raw.stairs)||raw.stairs.length!==count||raw.stairs.some(v=>typeof v!=='boolean')))throw Error('Escadas inválidas.');
   if(!Array.isArray(raw.objects)||raw.objects.length>1500)throw Error('Máximo de 1.500 peças.');
   const point=p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=0&&p.y>=0&&p.x<=width*TILE&&p.y<=height*TILE;
+  const customAssets=raw.customAssets?validateCustomAssets(raw.customAssets):[];
   const seen=new Set();
   const objects=raw.objects.map(o=>{
-    if(!o||!PLANTS.some(p=>p.id===o.asset)||!Number.isSafeInteger(o.id)||o.id<1||seen.has(o.id)||!point(o))throw Error('Há uma peça inválida ou ID repetido.');
-    seen.add(o.id);return {id:o.id,asset:o.asset,x:Math.round(o.x),y:Math.round(o.y),flip:!!o.flip};
+    if(!o||!PLANTS.some(p=>p.id===o.asset)&&!customAssets.some(p=>p.id===o.asset)||!Number.isSafeInteger(o.id)||o.id<1||seen.has(o.id)||!point(o))throw Error('Há uma peça inválida ou ID repetido.');
+    seen.add(o.id);return {id:o.id,asset:o.asset,x:Math.round(o.x),y:Math.round(o.y),flip:!!o.flip,layer:o.layer==='objects'?'objects':'vegetation',collidable:!!o.collidable,...(o.decorative?{decorative:true}:{}),...(o.collision?{collision:validateCollision(o.collision)}:{})};
   });
   if(!point(raw.player))throw Error('Posição de Kael inválida.');
-  return {version:1,width,height,tileSize:TILE,floors:[...raw.floors],levels:[...levels],ramps:[...ramps],cliffs:[...cliffs],objects,player:{x:Math.round(raw.player.x),y:Math.round(raw.player.y)},nextId:Math.max(0,...objects.map(o=>o.id))+1};
+  return {...(raw.variants?{variants:[...raw.variants]}:{}),...(raw.customAssets?{customAssets}:{}),...(raw.waterDepth?{waterDepth:[...raw.waterDepth]}:{}),...(raw.flow?{flow:[...raw.flow]}:{}),...(raw.stairs?{stairs:raw.stairs.map((v,i)=>!!v&&!!ramps[i])}:{}),...(raw.events?{events:validateEvents(raw.events,width,height)}:{}),version:1,width,height,tileSize:TILE,autotiling:raw.autotiling!==false,floors:[...raw.floors],levels:[...levels],ramps:[...ramps],cliffs:[...cliffs],objects,player:{x:Math.round(raw.player.x),y:Math.round(raw.player.y)},nextId:Math.max(0,...objects.map(o=>o.id))+1};
 }
 export function initialLayout() {
   const width=24,height=16,floors=Array(width*height).fill('grass');
