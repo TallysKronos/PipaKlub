@@ -1,0 +1,19 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-52f02d14-7490-43c9-8c6d-b77f6395abee.png",
+  "sha256": "df3a253a84e8b467bd5026100839368cac22ee204400343daa957bf520efe6de",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "borealvo/concept-v1/concept.png: identidade e acabamento"
+  ],
+  "reference_paths_relative_to": "art/creatures/urso-polar-family-v1",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "integration_status": "not_integrated"
+}

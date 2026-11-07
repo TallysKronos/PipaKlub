@@ -23,8 +23,8 @@ const STEPS:={
 		"duels":[["Navalha","mata",30,"Navalha: Vamos ver quanto a sua linha aguenta."],["Trovareta","raio",31,"A Trovareta desce com a tempestade. Os fios do Carretel Negro brilham nas varetas dela.\n\nKael: Rabbito, corte só os fios. Não a rabiola."]],
 		"outro":"A linha negra se rompe. A Trovareta sobe e o trovão se afasta.\n\nUma figura de capuz assiste da beira da clareira.\n\nRato: Você também deu alma a uma coisa que você fez. Podia vir com a gente.\n\nKael: O Rabbito fica comigo porque quer. Não porque eu mando.\n\nRato: Então guarde essa resposta. Vai precisar dela nas Ruínas."},
 	"reuniao":{"act":4,"scene":"kronasta-centro-a","anchor":Vector2i(19,33),"name":"Mikka","sprite":{"path":KIT+"mikka-0.png","region":NPC_FRAME},"flag":"reuniaoCampeoes",
-		"intro":"Na Praça da Matriz, os campeões dos bairros esperam por você: Mikka, Lohan, Kleie, Dona Zulmira, Marisol, Bruno Solda, Caio Garça e Dona Neve.\n\nMikka: Os Ventos voltaram por sua causa. Mas o Bando não parou.\n\nLohan: Cada um cuida do seu bairro. Juntos, a gente cobre Kronasta inteira.\n\nDona Neve: A partir de hoje, patrulhamos juntos.",
-		"outro":"O campeonato virou comunidade. A Dona Cida, da Liga, chama você do outro lado da praça."},
+		"intro":"Mikka: Os quatro Ventos voltaram por sua causa. Mas o Bando continua soltando o Carretel Negro pela cidade.\n\nLohan: Sozinho, cada um só protege o próprio bairro. Isso não basta mais.\n\nKleie: Então a gente divide as ruas. Canal e Feira ficam comigo e com a Zulmira.\n\nMarisol: O Cais e as Palafitas, eu e o Caio cobrimos pela água.\n\nBruno Solda: E a Vila Operária fica de olho no galpão do Bando.\n\nDona Neve: A subida da Serra fica comigo. O Bando não vai passar despercebido.\n\nMikka: Está decidido: a partir de hoje, os campeões patrulham Kronasta juntos.",
+		"outro":"Dona Cida: Kael! Venha ao posto da Liga. Está na hora da avaliação Vermelha."},
 	"exame-vermelho":{"act":4,"scene":"kronasta-centro-a","anchor":Vector2i(29,33),"name":"Dona Cida","sprite":{"path":"res://assets/npc-ds/celina.png","region":NPC_FRAME},"flag":"leagueRed","requires":"reuniaoCampeoes",
 		"intro":"Dona Cida: Exame da categoria Vermelha. Dois duelos de avaliação, um atrás do outro, sem descanso no meio. Quero ver como você conduz o parceiro cansado.",
 		"duels":[["Avaliação Vermelha","azulao",31,"Dona Cida: Primeiro duelo. Comece."],["Avaliação Vermelha","lacertubo",32,"Dona Cida: Segundo duelo. Sem pausa: observe o seu parceiro."]],
@@ -47,20 +47,20 @@ const STEPS:={
 	"galpao":{"act":5,"scene":"kronasta-industrial-d","anchor":Vector2i(14,26),"name":"Cadeado de três nós","sprite":CAPANGA,"flag":"galpaoInvadido","requiresDistrict":"lajes",
 		"intro":"O galpão do Bando tem um cadeado de três nós. Cada tenente guarda um. Depois deles, os capangas até o fundo.",
 		"duels":[["Peteca","mata",34,"Peteca: O primeiro nó é meu."],["Cola-Fina","raio",35,"Cola-Fina: O segundo nó não solta fácil."],["Navalha","mata",36,"Navalha: Na tempestade você teve sorte. Aqui dentro, não."],["Capanga do galpão","lacertubo",35,"Capanga: Ninguém chega ao fundo."],["Capanga do galpão","azulao",36,"Capanga: Último aviso."]],
-		"outro":"Os três nós cedem e o cadeado cai. As almas guardadas no galpão se soltam e voam pela claraboia."},
+		"outro":"O último guarda cai entre as caixas, e a porta do fundo se abre. As almas guardadas no galpão se soltam e voam pela claraboia."},
 	"gollia-bando":{"act":5,"scene":"kronasta-industrial-d","anchor":Vector2i(20,16),"name":"Gollia","sprite":{"path":"res://assets/campaign/warehouse-v1/gollia.png"},"flag":"golliaFugiu","requires":"galpaoInvadido",
 		"intro":"No fundo do galpão, o Gollia espera com o Carretel Negro preso ao parceiro.\n\nGollia: O Rato me deu força. Eu fico do lado de quem tem força.",
 		"duels":[["Gollia","azulao",36,"Gollia: Vem."],["Parceiro descontrolado","pipa-dragao-desatada",37,"O Carretel Negro sobrecarrega o parceiro do Gollia. Ele perde o controle e ataca tudo.\n\nGollia: Para! Eu não mandei isso!"]],
 		"outro":"O Retalho se põe na frente do Gollia e segura o golpe. O parceiro dele cai, sem forças.\n\nGollia: ...Eu não queria isso.\n\nEle foge com o Bando, abalado."},
-	"gerador":{"act":5,"scene":"kronasta-montanha-c","anchor":Vector2i(28,13),"name":"Torre do vento","sprite":{"path":"res://assets/campaign/tufanocorte.png"},"flag":"geradorLigado","requires":"golliaFugiu",
-		"intro":"No alto da Serra, a velha torre do vento. O Tufanocorte, a Rabiolava, a Trovareta e o Mormaço chegam ao mesmo tempo.\n\nKael: Juntos, vocês conseguem devolver as almas.",
-		"outro":"Os Quatro Ventos sopram juntos da torre. As almas cortadas voltam aos corpos e Kronasta amanhece.\n\nA noite do cerol acabou. A Pipa TV anuncia a Copa Relâmpago."},
+	"gerador":{"act":5,"scene":"kronasta-montanha-c","anchor":Vector2i(28,13),"name":"Torre do vento","sprite":{"path":"res://assets/campaign/tufanocorte.png","region":{"x":0,"y":0,"w":384,"h":354}},"flag":"geradorLigado","requires":"golliaFugiu",
+		"intro":"No Cume, a torre do vento está apagada. Um a um, os Ventos que Kael soltou chegam ao alto da Serra: Mormaço, Tufanocorte, Rabiolava e Trovareta.\n\nKael: O Bando prendeu as almas da cidade nesta noite. Juntos, vocês conseguem devolver todas.",
+		"outro":"A torre acende. O vento desce a Serra e atravessa Kronasta, e as luzes voltam bairro por bairro. As almas presas pelo Bando encontram o caminho de casa.\n\nKael: Acabou a noite do cerol.\n\nPipa TV: Kronasta voltou ao ar! E estão abertas as inscrições para a Copa Relâmpago, na Praça da Matriz!"},
 	"copa-relampago":{"act":5,"scene":"kronasta-centro-a","anchor":Vector2i(29,28),"name":"Copa Relâmpago","sprite":{"path":"res://assets/npc-ds/celina.png","region":NPC_FRAME},"flag":"leagueGold","requires":"geradorLigado",
 		"intro":"Dona Cida: Exame da categoria Dourada: a Copa Relâmpago. Três rodadas seguidas, ao vivo na Pipa TV.",
 		"duels":[["Copa · 1ª rodada","raio",34,"Locutor: Primeira rodada da Copa Relâmpago!"],["Copa · 2ª rodada","mata",35,"Locutor: Segunda rodada, sem descanso!"],["Copa · final","azulao",36,"Locutor: A final da Copa Relâmpago!"]],
 		"outro":"Dona Cida: Categoria Rabiola Dourada. O Porto Novo espera por você."},
 	"gollia-arrependimento":{"act":6,"scene":"kronasta-coracao-d","anchor":Vector2i(22,30),"name":"Gollia","sprite":{"path":"res://assets/campaign/warehouse-v1/gollia.png"},"flag":"golliaArrependido","requires":"ruinasJamileLivre",
-		"intro":"Na porta da câmara, os capangas do Bando cercam o Kael. Então o Gollia aparece e se põe entre eles.\n\nGollia: No galpão, o Retalho me protegeu. Eu não esqueci.\n\nGollia: Vai, Kael. Eu seguro a porta.",
+		"intro":"Gollia: No galpão, o Retalho me protegeu. Eu não esqueci.\n\nGollia: Vai, Kael. Eu seguro a porta.",
 		"outro":"O Gollia larga o Bando e segura os capangas na entrada. O caminho até o Rato está livre."},
 }
 ## Story order of the steps (the beat list in kronasta_story.gd uses the same ids).
@@ -133,8 +133,15 @@ static func duel_index(p:Dictionary,id:String)->int:
 static func prompt(p:Dictionary,id:String)->String:
 	var step:Dictionary=STEPS[id]
 	var index:=duel_index(p,id)
-	if index==0 or not step.has("duels"):return step.intro
+	if index==0 or not step.has("duels"):return intro(p,id)
 	return step.duels[index][3]
+
+## A step's opening line, adjusted to the player's optional choices (Retalho, F02).
+static func intro(p:Dictionary,id:String)->String:
+	var text:String=STEPS[id].intro
+	if id=="gollia-arrependimento" and not flags(p).get("retalhoAcolhido",false):
+		text=text.replace("No galpão, o Retalho me protegeu.","No galpão, o seu parceiro me protegeu.")
+	return text
 
 static func _near(saved:Dictionary,id:String,point_value:Vector2)->bool:
 	var step:Dictionary=STEPS[id];var cp:Dictionary=saved.checkpoint
@@ -163,6 +170,7 @@ func begin(id:String,point_value:Vector2)->Dictionary:
 	var duel:Array=STEPS[id].duels[index]
 	var model:=Model.new(active,{"modelId":duel[1],"level":duel[2]})
 	model.q.name=duel[0];model.q.boss=true
+	preload("res://scripts/campaign/progression.gd").story_assist(saved.player,model)
 	saved.player.encounter={"id":State.new_id(),"kind":"endgame-step","step":id,"duel":index,"scene":STEPS[id].scene,"space":CP.SPACE,"returnPoint":[point_value.x,point_value.y],"rewardXp":0,"state":model.snapshot()}
 	return session.checkpoint({"kind":"encounter"},saved.player)
 
@@ -183,21 +191,51 @@ func settle()->Dictionary:
 	if s.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
 	for p:Dictionary in saved.player.partners:
 		if p.id==s.partnerId:p.condition={"line":clampf(s.p.hp/s.p.stats.line*100,0,100),"structure":clampf(s.p.hull/s.p.stats.line*100,0,100)}
+	preload("res://scripts/campaign/progression.gd").story_result(saved.player,s)
+	if s.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,s)
 	if s.outcome=="won":
 		var id:String=e.step
 		saved.player.flags["endgame-%s-%d"%[id,int(e.duel)]]=true
 		if int(e.duel)==STEPS[id].duels.size()-1:
 			saved.player.flags[STEPS[id].flag]=true
+			if id=="trovareta":saved.player.flags.trovaretaReleasePending=true
 			if id=="barreira":saved.player.inventory[BRACELET]=1
 	saved.player.erase("encounter")
 	var back:Vector2=CP.spawn(e.scene) if s.outcome=="lost" else Vector2(e.returnPoint[0],e.returnPoint[1])
 	return session.commit_operation("encounter-"+e.id,CP.make(e.scene,back,CP.SPACE),saved.player)
 
+static func release_pending(saved: Dictionary) -> bool:
+	return saved.get("checkpoint",{}).get("kind","")=="world" and saved.checkpoint.get("scene","")=="kronasta-bosque-c" and flags(saved.player).get("trovaretaLivre",false) and flags(saved.player).get("trovaretaReleasePending",false)
+
+func finish_release() -> Dictionary:
+	var saved: Dictionary=session.snapshot()
+	if not release_pending(saved):return {"status":"wrong_step"}
+	saved.player.flags.trovaretaReleasePending=false
+	saved.player.flags.trovaretaReleaseSeen=true
+	return session.commit_operation("trovareta-release-v1",saved.checkpoint,saved.player)
+
+## Lines between chained duels, by step: one per duel already won (F33). A step
+## without its own lines names who comes next.
+const BETWEEN := {
+	"trovareta":["Navalha recua para dentro da chuva. A linha negra fica solta no ar, ainda presa à Trovareta."],
+	"exame-vermelho":["Dona Cida: Primeiro duelo aprovado. Cuide do parceiro: o segundo vem sem pausa."],
+	"galpao":["O primeiro nó do cadeado cede. Peteca sai correndo pela porta lateral.","O segundo nó cede. Cola-Fina larga o carretel e foge.","O último nó estala. Navalha some entre as prateleiras, mas ainda há guardas no fundo do galpão.","Um capanga cai sentado entre as caixas. Resta um no fundo."],
+	"gollia-bando":["Gollia cai de joelhos. Atrás dele, o parceiro começa a tremer, puxado pelo Carretel Negro."],
+	"copa-relampago":["Locutor: Primeira rodada vencida! A arquibancada pede a segunda!","Locutor: Kael está na final da Copa Relâmpago!"],
+}
+
 ## Text after a step closes, or after a single duel of a longer sequence.
 static func after(p:Dictionary,id:String)->String:
-	if done(p,id):return STEPS[id].outro
+	if done(p,id):
+		# Retalho is optional (F02): only a welcomed Retalho steps in for Gollia.
+		if id=="gollia-bando" and not flags(p).get("retalhoAcolhido",false):
+			return str(STEPS[id].outro).replace("O Retalho se põe na frente do Gollia","Rabbito se põe na frente do Gollia")
+		return STEPS[id].outro
 	var index:=duel_index(p,id)
-	return "Vitória. Próximo: %s."%STEPS[id].duels[index][0] if index>0 else ""
+	if index<=0:return ""
+	var lines:Array=BETWEEN.get(id,[])
+	if index-1<lines.size():return lines[index-1]
+	return "%s ainda espera por você."%STEPS[id].duels[index][0]
 
 ## Night exits: without the bracelet, the Bando barriers hold the night scenes.
 static func exit_blocked(event:Dictionary,p:Dictionary,area:String)->bool:

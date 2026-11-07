@@ -42,7 +42,9 @@ func walk(at:Vector2)->bool:
 func capture(name:String)->void:
 	if DisplayServer.get_name()=="headless":return
 	await frames();await RenderingServer.frame_post_draw
-	var folder:=ProjectSettings.globalize_path("res://../documentation/qa/beira-canal-v1")
+	var folder := OS.get_environment("SOULMONSTERS_CAPTURE_DIR")
+	if folder.is_empty():
+		folder = ProjectSettings.globalize_path("res://../documentation/qa/beira-canal-v1")
 	DirAccess.make_dir_recursive_absolute(folder)
 	check(root.get_texture().get_image().save_png(folder.path_join(name+".png"))==OK,"capture "+name)
 func exit_to(scene:String)->void:
@@ -115,12 +117,21 @@ func gate_flow()->void:
 	app._park_event("10900");await frames()
 	check(is_instance_valid(dialog()),"Grampo introduction")
 	if not is_instance_valid(dialog()):return
+	var portrait: TextureRect = dialog().portrait
+	check(portrait.visible and portrait.texture != null and portrait.texture.resource_path.ends_with("/portrait-grampo-manga-v1.png"),"Grampo uses his manga portrait")
+	await capture("06-grampo-retrato")
 	while dialog().page_index<dialog().pages.size()-1:dialog().next_page()
 	dialog().get_ok_button().pressed.emit();await frames()
 	check(is_instance_valid(app.battle) and app.battle.model.enemy_model_id=="platyx-draft","actual Platyx battle")
 	if not is_instance_valid(app.battle):return
 	await capture("07-grampo-duelo")
 	app.battle.model.outcome="won";app.battle.finish_requested.emit();await ready_park()
+	# F10: Grampo reacts to the duel and points to the canal control; close it first.
+	for wait in 30:
+		if is_instance_valid(dialog()):break
+		await process_frame
+	check(is_instance_valid(dialog()) and str(dialog().dialog_text).begins_with("Grampo:") and str(dialog().dialog_text).contains("comporta"),"Grampo reacts and points to the canal control")
+	if is_instance_valid(dialog()):dialog().get_ok_button().pressed.emit();await frames()
 	app._park_event("10901");await frames()
 	check(is_instance_valid(dialog()),"valve confirmation after victory")
 	if not is_instance_valid(dialog()):return

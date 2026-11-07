@@ -290,11 +290,11 @@
           "lost": [
             [
               "Nara",
-              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+              "O bambu ainda está aqui. Descanse com seu parceiro e volte."
             ]
           ],
           "reward": {
-            "coins": 20,
+            "coins": 30,
             "xp": 46,
             "item": ""
           },
@@ -310,7 +310,8 @@
           ],
           "styles": [
             "mobile"
-          ]
+          ],
+          "ai": 2
         },
         {
           "id": "bambuzal-2",
@@ -334,11 +335,11 @@
           "lost": [
             [
               "Dito",
-              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+              "Força demais quebra a vareta. Tente de novo com calma."
             ]
           ],
           "reward": {
-            "coins": 25,
+            "coins": 30,
             "xp": 34,
             "item": ""
           },
@@ -354,7 +355,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "bambuzal-3",
@@ -378,7 +380,7 @@
           "lost": [
             [
               "Célia",
-              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+              "Cuide do seu parceiro primeiro. O banco do bambuzal está logo ali."
             ]
           ],
           "reward": {
@@ -398,7 +400,8 @@
           ],
           "styles": [
             "guard"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "bambuzal-4",
@@ -422,7 +425,7 @@
           "lost": [
             [
               "Bento",
-              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+              "Os cortes não vão sumir. Recupere a linha e volte."
             ]
           ],
           "reward": {
@@ -442,7 +445,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 2
         },
         {
           "id": "bambuzal-5",
@@ -466,11 +470,11 @@
           "lost": [
             [
               "Lohan",
-              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+              "Toda vareta precisa de outra tentativa às vezes. Descanse e volte a voar comigo."
             ]
           ],
           "reward": {
-            "coins": 40,
+            "coins": 50,
             "xp": 73,
             "item": ""
           },
@@ -486,7 +490,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 5
         }
       ]
     },
@@ -532,7 +537,7 @@
           "lost": [
             [
               "Vaeli",
-              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+              "Sem ritmo, o vento empaca como a água. Cuide do parceiro e volte."
             ]
           ],
           "reward": {
@@ -552,7 +557,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 3
         },
         {
           "id": "beira-canal-2",
@@ -576,7 +582,7 @@
           "lost": [
             [
               "Noxen",
-              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+              "Escute o canal antes de puxar. Estou aqui quando quiser."
             ]
           ],
           "reward": {
@@ -596,7 +602,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "beira-canal-3",
@@ -620,7 +627,7 @@
           "lost": [
             [
               "Soryn",
-              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+              "Peça boa também precisa de ajuste. Descanse perto da oficina e tente de novo."
             ]
           ],
           "reward": {
@@ -640,7 +647,8 @@
           ],
           "styles": [
             "aggressive"
-          ]
+          ],
+          "ai": 3
         },
         {
           "id": "beira-canal-4",
@@ -664,7 +672,7 @@
           "lost": [
             [
               "Eriska",
-              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+              "A linha cedeu antes da hora. Volte quando estiver inteiro."
             ]
           ],
           "reward": {
@@ -684,7 +692,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "beira-canal-5",
@@ -708,7 +717,7 @@
           "lost": [
             [
               "Kleie",
-              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+              "O canal corre, mas hoje o vento foi meu. Cuide do parceiro e volte."
             ]
           ],
           "reward": {
@@ -728,7 +737,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 5
         }
       ]
     },
@@ -768,17 +778,17 @@
           "won": [
             [
               "Veyra",
-              "Boa disputa! Continue pelo mercado."
+              "Boa! Você não atravessou a linha de ninguém. Orven vigia os toldos mais à frente."
             ]
           ],
           "lost": [
             [
               "Veyra",
-              "Recupere seu parceiro e volte quando quiser."
+              "Você invadiu a rua do vizinho. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
-            "coins": 50,
+            "coins": 55,
             "xp": 100,
             "item": ""
           },
@@ -788,13 +798,14 @@
           "rounds": 2,
           "foes": [
             {
-              "name": "Vaeli",
+              "name": "Veyra",
               "color": 2
             }
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 3
         },
         {
           "id": "feira-2",
@@ -812,13 +823,13 @@
           "won": [
             [
               "Orven",
-              "Boa disputa! Continue pelo mercado."
+              "Acompanhou o vento pelos toldos. Zafri está na banca das ofertas."
             ]
           ],
           "lost": [
             [
               "Orven",
-              "Recupere seu parceiro e volte quando quiser."
+              "Os toldos mudaram e você não viu. Volte quando quiser."
             ]
           ],
           "reward": {
@@ -832,13 +843,14 @@
           "rounds": 2,
           "foes": [
             {
-              "name": "Noxen",
+              "name": "Orven",
               "color": 3
             }
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "feira-3",
@@ -856,13 +868,13 @@
           "won": [
             [
               "Zafri",
-              "Boa disputa! Continue pelo mercado."
+              "Você olhou antes de puxar. Nymel cuida do largo, logo adiante."
             ]
           ],
           "lost": [
             [
               "Zafri",
-              "Recupere seu parceiro e volte quando quiser."
+              "A oferta enganou você. Observe mais e volte."
             ]
           ],
           "reward": {
@@ -876,13 +888,14 @@
           "rounds": 2,
           "foes": [
             {
-              "name": "Soryn",
+              "name": "Zafri",
               "color": 0
             }
           ],
           "styles": [
             "aggressive"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "feira-4",
@@ -900,13 +913,13 @@
           "won": [
             [
               "Nymel",
-              "Boa disputa! Continue pelo mercado."
+              "Seu parceiro confia em você. Dona Zulmira espera no centro do largo."
             ]
           ],
           "lost": [
             [
               "Nymel",
-              "Recupere seu parceiro e volte quando quiser."
+              "O largo continua de todos. Cuide do parceiro e volte."
             ]
           ],
           "reward": {
@@ -920,13 +933,14 @@
           "rounds": 2,
           "foes": [
             {
-              "name": "Eriska",
+              "name": "Nymel",
               "color": 1
             }
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "feira-5",
@@ -944,13 +958,13 @@
           "won": [
             [
               "Dona Zulmira",
-              "O emblema é seu! O próximo bairro é o Cais."
+              "O emblema é seu! O Tyler passou aqui procurando a Caverna do Mural. Dizem que tem marcas antigas lá dentro."
             ]
           ],
           "lost": [
             [
               "Dona Zulmira",
-              "Recupere seu parceiro e volte quando quiser."
+              "Escute seu parceiro e volte para outra rodada."
             ]
           ],
           "reward": {
@@ -964,13 +978,14 @@
           "rounds": 3,
           "foes": [
             {
-              "name": "Kleie",
+              "name": "Dona Zulmira",
               "color": 1
             }
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 5
         }
       ]
     },
@@ -1018,7 +1033,7 @@
             ]
           ],
           "reward": {
-            "coins": 18,
+            "coins": 65,
             "xp": 160,
             "item": ""
           },
@@ -1034,7 +1049,8 @@
             "patient"
           ],
           "npcName": "Neril",
-          "scene": "kronasta-cais-a"
+          "scene": "kronasta-cais-a",
+          "ai": 5
         },
         {
           "id": "cais-2",
@@ -1062,7 +1078,7 @@
             ]
           ],
           "reward": {
-            "coins": 20,
+            "coins": 65,
             "xp": 180,
             "item": ""
           },
@@ -1078,7 +1094,8 @@
             "reader"
           ],
           "npcName": "Ossian",
-          "scene": "kronasta-cais-a"
+          "scene": "kronasta-cais-a",
+          "ai": 4
         },
         {
           "id": "cais-3",
@@ -1106,7 +1123,7 @@
             ]
           ],
           "reward": {
-            "coins": 22,
+            "coins": 65,
             "xp": 200,
             "item": ""
           },
@@ -1122,7 +1139,8 @@
             "aggressive"
           ],
           "npcName": "Vaelis",
-          "scene": "kronasta-cais-b"
+          "scene": "kronasta-cais-b",
+          "ai": 5
         },
         {
           "id": "cais-4",
@@ -1150,7 +1168,7 @@
             ]
           ],
           "reward": {
-            "coins": 24,
+            "coins": 65,
             "xp": 220,
             "item": ""
           },
@@ -1166,7 +1184,8 @@
             "reader"
           ],
           "npcName": "Rhuna",
-          "scene": "kronasta-cais-b"
+          "scene": "kronasta-cais-b",
+          "ai": 3
         },
         {
           "id": "cais-5",
@@ -1184,7 +1203,7 @@
           "won": [
             [
               "Marisol",
-              "O quinto emblema é seu. Leve o vento do cais na próxima jornada."
+              "O quinto emblema é seu. Uma coisa: uns pescadores viram uma almática mascarada rondando o norte da Clareira do Marco. Fique de olho no Bosque."
             ]
           ],
           "lost": [
@@ -1194,7 +1213,7 @@
             ]
           ],
           "reward": {
-            "coins": 26,
+            "coins": 80,
             "xp": 240,
             "item": ""
           },
@@ -1210,7 +1229,8 @@
             "patient"
           ],
           "npcName": "Marisol",
-          "scene": "kronasta-cais-c"
+          "scene": "kronasta-cais-c",
+          "ai": 5
         }
       ]
     },
@@ -1263,7 +1283,7 @@
             ]
           ],
           "reward": {
-            "coins": 28,
+            "coins": 65,
             "xp": 260,
             "item": ""
           },
@@ -1277,7 +1297,8 @@
           ],
           "styles": [
             "aggressive"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "industrial-2",
@@ -1308,7 +1329,7 @@
             ]
           ],
           "reward": {
-            "coins": 30,
+            "coins": 65,
             "xp": 280,
             "item": ""
           },
@@ -1322,7 +1343,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "industrial-3",
@@ -1353,7 +1375,7 @@
             ]
           ],
           "reward": {
-            "coins": 32,
+            "coins": 65,
             "xp": 300,
             "item": ""
           },
@@ -1367,7 +1389,8 @@
           ],
           "styles": [
             "aggressive"
-          ]
+          ],
+          "ai": 3
         },
         {
           "id": "industrial-4",
@@ -1398,7 +1421,7 @@
             ]
           ],
           "reward": {
-            "coins": 34,
+            "coins": 65,
             "xp": 320,
             "item": ""
           },
@@ -1412,7 +1435,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "industrial-5",
@@ -1433,7 +1457,7 @@
           "won": [
             [
               "Bruno Solda",
-              "O bairro tem um novo campeão. Cuide desse laço: força nenhuma substitui confiança."
+              "O bairro tem um novo campeão. Cuide desse laço: força nenhuma substitui confiança. E fale com o Sr. Assis; a Liga vai pedir uma prova de cuidado antes da próxima categoria."
             ]
           ],
           "lost": [
@@ -1443,7 +1467,7 @@
             ]
           ],
           "reward": {
-            "coins": 36,
+            "coins": 85,
             "xp": 340,
             "item": ""
           },
@@ -1457,7 +1481,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 5
         }
       ]
     },
@@ -1505,7 +1530,7 @@
             ]
           ],
           "reward": {
-            "coins": 38,
+            "coins": 65,
             "xp": 360,
             "item": ""
           },
@@ -1526,7 +1551,8 @@
               "name": "Seyran",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "palafitas-2",
@@ -1554,7 +1580,7 @@
             ]
           ],
           "reward": {
-            "coins": 40,
+            "coins": 65,
             "xp": 380,
             "item": ""
           },
@@ -1575,7 +1601,8 @@
               "name": "Oruvo",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "palafitas-3",
@@ -1603,7 +1630,7 @@
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 65,
             "xp": 400,
             "item": ""
           },
@@ -1624,7 +1651,8 @@
               "name": "Kessai",
               "color": 1
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "palafitas-4",
@@ -1652,7 +1680,7 @@
             ]
           ],
           "reward": {
-            "coins": 44,
+            "coins": 65,
             "xp": 420,
             "item": ""
           },
@@ -1673,7 +1701,8 @@
               "name": "Veldren",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "palafitas-5",
@@ -1691,7 +1720,7 @@
           "won": [
             [
               "Caio Garça",
-              "O emblema é de vocês. Mantenham firme o vínculo, não a mão."
+              "O emblema é de vocês. Mantenham firme o vínculo, não a mão. O vento parou no Pântano e agora quem chama é a Serra: suba a pé até o Cume."
             ]
           ],
           "lost": [
@@ -1701,7 +1730,7 @@
             ]
           ],
           "reward": {
-            "coins": 46,
+            "coins": 95,
             "xp": 440,
             "item": ""
           },
@@ -1723,7 +1752,8 @@
               "color": 2,
               "modelId": "veskoro"
             }
-          ]
+          ],
+          "ai": 7
         }
       ],
       "startFlag": "mormacoLiberto"
@@ -1770,11 +1800,11 @@
           "lost": [
             [
               "Veyl",
-              "Recupere a linha e volte quando estiver pronto."
+              "O rajado do posto de vigia não perdoa pé solto. Recupere a linha e volte."
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 65,
             "xp": 420,
             "item": ""
           },
@@ -1794,7 +1824,8 @@
               "name": "Veyl",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "alto-da-serra-2",
@@ -1818,11 +1849,11 @@
           "lost": [
             [
               "Sora",
-              "Recupere a linha e volte quando estiver pronto."
+              "Você atacou antes de o vento abrir espaço. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 65,
             "xp": 420,
             "item": ""
           },
@@ -1842,7 +1873,8 @@
               "name": "Sora",
               "color": 1
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "alto-da-serra-3",
@@ -1866,11 +1898,11 @@
           "lost": [
             [
               "Oren",
-              "Recupere a linha e volte quando estiver pronto."
+              "Faltou esperar. Descanse a equipe e volte com calma."
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 65,
             "xp": 420,
             "item": ""
           },
@@ -1890,7 +1922,8 @@
               "name": "Oren",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "alto-da-serra-4",
@@ -1914,11 +1947,11 @@
           "lost": [
             [
               "Kaiva",
-              "Recupere a linha e volte quando estiver pronto."
+              "Na passarela, um passo apressado derruba a linha. Volte quando estiver pronto."
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 70,
             "xp": 420,
             "item": ""
           },
@@ -1938,7 +1971,8 @@
               "name": "Kaiva",
               "color": 3
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "alto-da-serra-5",
@@ -1962,11 +1996,11 @@
           "lost": [
             [
               "Dona Neve",
-              "Recupere a linha e volte quando estiver pronto."
+              "O cume cobra quem chega cansado. Recupere a equipe e suba de novo."
             ]
           ],
           "reward": {
-            "coins": 65,
+            "coins": 105,
             "xp": 540,
             "item": ""
           },
@@ -1977,7 +2011,7 @@
             29,
             8
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -1986,7 +2020,8 @@
               "name": "Dona Neve",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         }
       ],
       "startFlag": "tufanocorteLiberto"
@@ -2021,23 +2056,23 @@
           "before": [
             [
               "Vitra",
-              "Mostre como se sai com a linha e eu conto o que vi."
+              "Todo mundo olhou pra pipa presa. Eu olhei pra linha. Quer ver como ela se soltou?"
             ]
           ],
           "won": [
             [
               "Vitra",
-              "O produtor da Pipa TV pediu ajuda. Noxen viu o fio afrouxar."
+              "A linha afrouxou antes de a pipa cair. Davi viu de onde veio o puxão."
             ]
           ],
           "lost": [
             [
               "Vitra",
-              "Recupere a linha e tente de novo."
+              "Da calçada, eu vi você soltar a linha cedo demais. Recupere e volte."
             ]
           ],
           "reward": {
-            "coins": 45,
+            "coins": 70,
             "xp": 450,
             "item": ""
           },
@@ -2057,35 +2092,36 @@
               "name": "Vitra",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "centro-2",
           "part": "A",
           "role": "lieutenant",
           "npcId": "noxen",
-          "name": "Noxen",
+          "name": "Davi",
           "level": 31,
           "before": [
             [
-              "Noxen",
-              "Mostre como se sai com a linha e eu conto o que vi."
+              "Davi",
+              "Daqui eu vejo os fios todos. Se você acompanhar minha pipa, eu mostro qual deles mexeu."
             ]
           ],
           "won": [
             [
-              "Noxen",
-              "O puxão veio da Pipa TV. Pergunte a Sinal."
+              "Davi",
+              "O fio balançou pro lado da Pipa TV. Pergunte a Sinal se alguma câmera pegou."
             ]
           ],
           "lost": [
             [
-              "Noxen",
-              "Recupere a linha e tente de novo."
+              "Davi",
+              "O puxão que você levou foi igual ao daquele dia. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
-            "coins": 45,
+            "coins": 70,
             "xp": 450,
             "item": ""
           },
@@ -2102,10 +2138,11 @@
           ],
           "foes": [
             {
-              "name": "Noxen",
+              "name": "Davi",
               "color": 1
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "centro-3",
@@ -2117,23 +2154,23 @@
           "before": [
             [
               "Sinal",
-              "Mostre como se sai com a linha e eu conto o que vi."
+              "Voltei a fita três vezes. Tem coisa no canto que ninguém reparou. Acerta meu ritmo e eu te mostro."
             ]
           ],
           "won": [
             [
               "Sinal",
-              "A fita mostra a pipa caindo sem a rabiola. Oriel tem a gravação completa."
+              "A fita mostra a pipa caindo, mas a rabiola já tinha sumido. Oriel guardou o trecho inteiro."
             ]
           ],
           "lost": [
             [
               "Sinal",
-              "Recupere a linha e tente de novo."
+              "A fita fica guardada até você vencer. Recupere a linha e volte."
             ]
           ],
           "reward": {
-            "coins": 45,
+            "coins": 70,
             "xp": 450,
             "item": ""
           },
@@ -2153,7 +2190,8 @@
               "name": "Sinal",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "centro-4",
@@ -2165,23 +2203,23 @@
           "before": [
             [
               "Oriel",
-              "Mostre como se sai com a linha e eu conto o que vi."
+              "Quer ver a gravação sem os cortes do programa? Primeiro me mostra como você se sai com a sua linha."
             ]
           ],
           "won": [
             [
               "Oriel",
-              "O rosto ficou fora do quadro. Leve a pista ao Leo."
+              "Tá aqui. Dá pra ver o fio e a pipa, mas o rosto ficou fora do quadro. Leva isso pro Leo."
             ]
           ],
           "lost": [
             [
               "Oriel",
-              "Recupere a linha e tente de novo."
+              "Você largou antes do fim, como na fita. Recupere e tente de novo."
             ]
           ],
           "reward": {
-            "coins": 45,
+            "coins": 75,
             "xp": 450,
             "item": ""
           },
@@ -2201,7 +2239,8 @@
               "name": "Oriel",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "centro-5",
@@ -2213,23 +2252,23 @@
           "before": [
             [
               "Leo Antena",
-              "Agora é a sua vez de ir ao vivo."
+              "Você já viu o que ficou fora do ar. Agora é a sua vez de ir ao vivo."
             ]
           ],
           "won": [
             [
               "Leo Antena",
-              "A Insígnia do Centro é sua. A próxima etapa é no Conjunto das Lajes."
+              "A Insígnia do Centro é sua. E a pista da fita aponta para longe da TV: alguém soltava as almas presas nos fios antes do Bando chegar. Fale com o Sr. Assis; ele sabe mais do que conta."
             ]
           ],
           "lost": [
             [
               "Leo Antena",
-              "Recupere a linha e tente de novo."
+              "Ao vivo não tem repetição. Recupere a linha e volte para o segundo bloco."
             ]
           ],
           "reward": {
-            "coins": 70,
+            "coins": 115,
             "xp": 580,
             "item": ""
           },
@@ -2240,7 +2279,7 @@
             24,
             6
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -2249,7 +2288,8 @@
               "name": "Leo Antena",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         }
       ],
       "startFlag": "pipaTvPedido"
@@ -2279,28 +2319,28 @@
           "part": "A",
           "role": "lieutenant",
           "npcId": "lajes-desafiante-1",
-          "name": "Portaria",
+          "name": "Jair",
           "level": 33,
           "before": [
             [
-              "Portaria",
-              "A praça está aberta. Quer começar o circuito?"
+              "Jair",
+              "Toque de recolher no condomínio. Ei, essa braçadeira é do Bando... mas o jeito de segurar a linha, não. Duela comigo antes que alguém veja."
             ]
           ],
           "won": [
             [
-              "Portaria",
-              "Bom duelo. Pode seguir pelo circuito."
+              "Jair",
+              "Você não é do Bando. Siga pelos jardins, e mantenha a braçadeira à vista."
             ]
           ],
           "lost": [
             [
-              "Portaria",
-              "Recupere a linha e volte para tentar de novo."
+              "Jair",
+              "Com essa linha frouxa, a braçadeira não engana ninguém. Recupere e volte."
             ]
           ],
           "reward": {
-            "coins": 48,
+            "coins": 75,
             "xp": 480,
             "item": ""
           },
@@ -2317,38 +2357,39 @@
           ],
           "foes": [
             {
-              "name": "Portaria",
+              "name": "Jair",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "lajes-2",
           "part": "A",
           "role": "lieutenant",
           "npcId": "lajes-desafiante-2",
-          "name": "Jardins",
+          "name": "Lívia",
           "level": 34,
           "before": [
             [
-              "Jardins",
-              "Aqui o vento muda atrás dos jardins. Quero ver como você segura a linha."
+              "Lívia",
+              "Os capangas passam pelos jardins de hora em hora. Quero ver se você segura a linha no escuro."
             ]
           ],
           "won": [
             [
-              "Jardins",
-              "Bom duelo. Pode seguir pelo circuito."
+              "Lívia",
+              "Segurou no escuro. O clube fica logo acima; lá a vigia é mais dura."
             ]
           ],
           "lost": [
             [
-              "Jardins",
-              "Recupere a linha e volte para tentar de novo."
+              "Lívia",
+              "No escuro, quem hesita perde a linha. Recupere e volte."
             ]
           ],
           "reward": {
-            "coins": 48,
+            "coins": 80,
             "xp": 480,
             "item": ""
           },
@@ -2365,38 +2406,39 @@
           ],
           "foes": [
             {
-              "name": "Jardins",
+              "name": "Lívia",
               "color": 1
             }
-          ]
+          ],
+          "ai": 6
         },
         {
           "id": "lajes-3",
           "part": "B",
           "role": "lieutenant",
           "npcId": "lajes-desafiante-3",
-          "name": "Clube",
+          "name": "Tomé",
           "level": 35,
           "before": [
             [
-              "Clube",
-              "O próximo desafio é no clube. Sua linha aguenta?"
+              "Tomé",
+              "O Bando fechou o clube para guardar carretéis. Se você quer passar, prove que não está com eles."
             ]
           ],
           "won": [
             [
-              "Clube",
-              "Bom duelo. Pode seguir pelo circuito."
+              "Tomé",
+              "Ninguém do Bando puxa assim. Vá pela piscina até o terraço."
             ]
           ],
           "lost": [
             [
-              "Clube",
-              "Recupere a linha e volte para tentar de novo."
+              "Tomé",
+              "Recupere a linha. O clube continua fechado para quem cai."
             ]
           ],
           "reward": {
-            "coins": 48,
+            "coins": 80,
             "xp": 480,
             "item": ""
           },
@@ -2413,38 +2455,39 @@
           ],
           "foes": [
             {
-              "name": "Clube",
+              "name": "Tomé",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "lajes-4",
           "part": "B",
           "role": "lieutenant",
           "npcId": "lajes-desafiante-4",
-          "name": "Piscina",
+          "name": "Rute",
           "level": 35,
           "before": [
             [
-              "Piscina",
-              "O vento cruza a piscina e sobe pro terraço. Vamos testar seu controle."
+              "Rute",
+              "O vento da piscina sobe direto para o terraço da Tainá. Ela só recebe quem passa por aqui."
             ]
           ],
           "won": [
             [
-              "Piscina",
-              "Bom duelo. Pode seguir pelo circuito."
+              "Rute",
+              "Pronto. A Tainá já viu sua luz do terraço. Suba."
             ]
           ],
           "lost": [
             [
-              "Piscina",
-              "Recupere a linha e volte para tentar de novo."
+              "Rute",
+              "A água devolve o vento torto. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
-            "coins": 48,
+            "coins": 80,
             "xp": 480,
             "item": ""
           },
@@ -2461,10 +2504,11 @@
           ],
           "foes": [
             {
-              "name": "Piscina",
+              "name": "Rute",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "lajes-5",
@@ -2476,23 +2520,23 @@
           "before": [
             [
               "Tainá",
-              "Do terraço dá pra ver a cidade toda. Vamos disputar a insígnia?"
+              "Do terraço dá pra ver a cidade toda apagada. Você entrou de braçadeira, mas veio pela insígnia. Vamos disputar?"
             ]
           ],
           "won": [
             [
               "Tainá",
-              "A Insígnia do Condomínio é sua. Siga para o próximo bairro."
+              "A Insígnia do Condomínio é sua. Daqui de cima eu vejo o galpão do Bando aceso na Vila Operária: é lá que eles guardam os carretéis. Desfaça os três nós do cadeado."
             ]
           ],
           "lost": [
             [
               "Tainá",
-              "Recupere a linha e volte para tentar de novo."
+              "O terraço não tem parede contra o vento. Recupere a linha e volte."
             ]
           ],
           "reward": {
-            "coins": 75,
+            "coins": 125,
             "xp": 620,
             "item": ""
           },
@@ -2503,7 +2547,7 @@
             24,
             6
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -2512,7 +2556,8 @@
               "name": "Tainá",
               "color": 0
             }
-          ]
+          ],
+          "ai": 7
         }
       ],
       "startFlag": "bracadeiraBando"
@@ -2559,11 +2604,11 @@
           "lost": [
             [
               "Neris",
-              "Recupere a linha e volte quando estiver pronto."
+              "A bandeira baixou e você puxou mesmo assim. Recupere a linha e volte."
             ]
           ],
           "reward": {
-            "coins": 55,
+            "coins": 80,
             "xp": 540,
             "item": ""
           },
@@ -2583,7 +2628,8 @@
               "name": "Neris",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "porto-2",
@@ -2607,11 +2653,11 @@
           "lost": [
             [
               "Varko",
-              "Recupere a linha e volte quando estiver pronto."
+              "Carga mal amarrada voa longe. Ajuste a linha e tente de novo."
             ]
           ],
           "reward": {
-            "coins": 55,
+            "coins": 85,
             "xp": 540,
             "item": ""
           },
@@ -2631,7 +2677,8 @@
               "name": "Varko",
               "color": 1
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "porto-3",
@@ -2655,11 +2702,11 @@
           "lost": [
             [
               "Elune",
-              "Recupere a linha e volte quando estiver pronto."
+              "A armação cedeu no tranco. Conserte e volte."
             ]
           ],
           "reward": {
-            "coins": 55,
+            "coins": 85,
             "xp": 540,
             "item": ""
           },
@@ -2679,7 +2726,8 @@
               "name": "Elune",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "porto-4",
@@ -2703,11 +2751,11 @@
           "lost": [
             [
               "Tervan",
-              "Recupere a linha e volte quando estiver pronto."
+              "Puxou cedo na curva. Volte quando estiver pronto."
             ]
           ],
           "reward": {
-            "coins": 55,
+            "coins": 90,
             "xp": 540,
             "item": ""
           },
@@ -2727,7 +2775,8 @@
               "name": "Tervan",
               "color": 3
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "porto-5",
@@ -2745,17 +2794,21 @@
           "won": [
             [
               "Capitão Jurandir",
-              "A Insígnia do Porto Novo é sua. O caminho para o Coração das Ruínas está aberto."
+              "A Insígnia do Porto Novo é sua. Agora escute: ontem à noite um barco do Bando saiu daqui sem luz, levando três pessoas amarradas. A menina do Carcará, uma de óculos e a Jamile."
+            ],
+            [
+              "Capitão Jurandir",
+              "Eles desembarcaram na entrada do Coração das Ruínas, no fim do cais. Se vai atrás delas, vá agora."
             ]
           ],
           "lost": [
             [
               "Capitão Jurandir",
-              "Recupere a linha e volte quando estiver pronto."
+              "O mar do Porto Novo testa todo mundo. Recupere a equipe e volte ao cais."
             ]
           ],
           "reward": {
-            "coins": 85,
+            "coins": 135,
             "xp": 700,
             "item": ""
           },
@@ -2766,7 +2819,7 @@
             24,
             7
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -2775,7 +2828,8 @@
               "name": "Capitão Jurandir",
               "color": 0
             }
-          ]
+          ],
+          "ai": 7
         }
       ],
       "startFlag": "leagueGold"
@@ -2810,23 +2864,23 @@
           "before": [
             [
               "Vael",
-              "Aqui a subida muda o vento. Quer testar sua linha?"
+              "Você é quem desceu às Ruínas e voltou com o Eremor acalmado? Então veio ver o Ícaro. Primeiro, a subida: aqui o vento muda a cada passo."
             ]
           ],
           "won": [
             [
               "Vael",
-              "Bom duelo. Pode seguir."
+              "Puxou contra a virada sem perder a linha. Ilyra cuida das bandeiras logo acima."
             ]
           ],
           "lost": [
             [
               "Vael",
-              "Recupere a linha e tente de novo."
+              "A subida cobra quem puxa cedo demais. Recupere a linha e volte."
             ]
           ],
           "reward": {
-            "coins": 60,
+            "coins": 90,
             "xp": 560,
             "item": ""
           },
@@ -2846,7 +2900,8 @@
               "name": "Vael",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "mirante-2",
@@ -2858,23 +2913,23 @@
           "before": [
             [
               "Ilyra",
-              "Observe as bandeiras antes de puxar."
+              "Repare nas bandeiras. O Ícaro ensinou a gente a ler o céu antes de ler o placar."
             ]
           ],
           "won": [
             [
               "Ilyra",
-              "Bom duelo. Pode seguir."
+              "Você leu o vento, e não a plateia. É isso que ele quer ver. Orvik guarda as passagens."
             ]
           ],
           "lost": [
             [
               "Ilyra",
-              "Recupere a linha e tente de novo."
+              "Você puxou olhando para mim, e não para as bandeiras. Tente de novo."
             ]
           ],
           "reward": {
-            "coins": 60,
+            "coins": 90,
             "xp": 560,
             "item": ""
           },
@@ -2894,7 +2949,8 @@
               "name": "Ilyra",
               "color": 1
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "mirante-3",
@@ -2906,23 +2962,23 @@
           "before": [
             [
               "Orvik",
-              "Cuido das passagens do mirante. Vamos ver como você lida com as rajadas."
+              "Cuido das passagens do mirante. Quando a Pipa TV quis subir com câmeras, fomos nós que fechamos a trilha."
             ]
           ],
           "won": [
             [
               "Orvik",
-              "Bom duelo. Pode seguir."
+              "Rajada nenhuma te tirou do eixo. Pode passar. Senael espera na praça do topo."
             ]
           ],
           "lost": [
             [
               "Orvik",
-              "Recupere a linha e tente de novo."
+              "As rajadas aqui não avisam. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
-            "coins": 60,
+            "coins": 95,
             "xp": 560,
             "item": ""
           },
@@ -2942,7 +2998,8 @@
               "name": "Orvik",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "mirante-4",
@@ -2954,23 +3011,23 @@
           "before": [
             [
               "Senael",
-              "O vento da praça sobe até o topo. Sinta a mudança antes de enfrentar Ícaro."
+              "O Ícaro só desafia quem passou por nós quatro. Ele largou o título no dia em que viu a final decidida num estúdio. Prove que sua linha é sua."
             ]
           ],
           "won": [
             [
               "Senael",
-              "Bom duelo. Pode seguir."
+              "Pronto. Ele já sabe que você está subindo. Sinta a mudança do vento antes de chegar até ele."
             ]
           ],
           "lost": [
             [
               "Senael",
-              "Recupere a linha e tente de novo."
+              "Quase. O Ícaro não recebe quem chega cansado. Cuide da equipe e volte."
             ]
           ],
           "reward": {
-            "coins": 60,
+            "coins": 95,
             "xp": 560,
             "item": ""
           },
@@ -2990,7 +3047,8 @@
               "name": "Senael",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "mirante-5",
@@ -3002,23 +3060,35 @@
           "before": [
             [
               "Ícaro",
-              "Já fui campeão. Saí quando achei que a TV decidia quem merecia vencer. Aqui em cima, a linha é nossa."
+              "Já fui campeão de Kronasta. Saí quando percebi que a TV escolhia quem merecia vencer antes do primeiro corte."
+            ],
+            [
+              "Ícaro",
+              "Mas ouvi falar de você: soltou os Ventos do Carretel, ligou o gerador na noite do cerol e desceu às Ruínas pelos seus amigos. Ninguém filmou isso."
+            ],
+            [
+              "Ícaro",
+              "Por isso aceito. Aqui em cima não tem câmera nem patrocínio. Só a linha. Mostre se ela aguenta o topo."
             ]
           ],
           "won": [
             [
               "Ícaro",
-              "A última insígnia é sua. Jamile espera no Estádio de Kronasta."
+              "Fazia tempo que eu não perdia assim, de verdade. Essa luta ninguém comprou."
+            ],
+            [
+              "Ícaro",
+              "A última insígnia é sua. Leve essa linha para o Estádio de Kronasta. A Jamile defende o título lá, e o título dela ainda vale alguma coisa. Faça a TV ver uma final que ela não escreveu."
             ]
           ],
           "lost": [
             [
               "Ícaro",
-              "Recupere a linha e tente de novo."
+              "O topo não perdoa pressa. Desça, cuide da equipe e volte quando sua linha estiver inteira. Eu espero."
             ]
           ],
           "reward": {
-            "coins": 90,
+            "coins": 145,
             "xp": 740,
             "item": ""
           },
@@ -3029,7 +3099,7 @@
             24,
             6
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -3038,7 +3108,8 @@
               "name": "Ícaro",
               "color": 0
             }
-          ]
+          ],
+          "ai": 6
         }
       ],
       "startFlag": "enamorDerrotado"

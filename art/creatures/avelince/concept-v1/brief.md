@@ -1,0 +1,25 @@
+# Avelince — Lorde da Contracorrente
+
+## Definido pelo autor
+
+Criar oito Lords Creatures com base no estudo destrinchado da fera armadurada.
+
+Direção: 45% criatura, 45% pipa viva e 10% acabamento pixel/2D mangá; corpo e rosto bestiais, proteção localizada, cor por material.
+
+## Proposta
+
+Adulto (IV), Lince de vela. Ação: **Desviar**.
+
+Atravessa investidas com um desvio mínimo e devolve a força para o chão. Suas velas só funcionam quando o corpo aceita girar junto.
+
+## Construção solicitada
+
+Create ONE NEW ORIGINAL adult SOULMONSTER LORD CREATURE, not an ordinary human knight with animal head, not an animal simply dressed in armor. Our attached OWN griffin is only a guide to clean 2D manga finish and broad living-paper anatomy; never copy its species, blue palette, diamond crystal, silhouette or wings. Design from a specific BEAST BODY and physical action first, add LOCALIZED functional armor second. 45% expressive living creature,45% functional living kite construction,10% selective stepped dark contour and CLEAN FLAT 2D MANGA. FACE exposed mature monstrous nonhuman anatomy, small narrow eyes with iris/pupil, characteristic skull/jaw/muzzle, no human face, smiling puppy, giant eyes, closed helmet or robotic metal mask. Living body is broad taut colored PAPER membrane masses with 2-3 meaningful compression folds and a FEW directional folded-paper tufts at cheek/neck/joints; not realistic flesh/fur/scales/muscle fibers, not a solid origami toy with triangular tessellation. Paper supports/ribs/knots appear ONLY where they carry load and don't outline every surface. Strong adult proportion: head smaller than major body masses, hands/feet/neck designed for action, root anatomy coherent. Considerable visible creature torso and limbs between protective pieces, not full suit of armor. Armor LOCALIZED in 2-3 regions with broad quiet surfaces, thickness and clear joints. Few large details, medium construction, small restrained signature. COLOR by material: dominant BODY neutral or one colored paper mass, ONE ARMOR color in continuous fields, ONE CAPE/SAIL contrast if needed, ONE tiny energy/eye accent. No multicolor borders/inlays in every plate, rainbow bands, ornate filigree, repeated gold trim or face relief on every plate. One base + one hard shadow + restrained hard highlight per material, matte, no gradients/gloss/PBR/noise. ONE complete rooted soul-rabiola with cord and terminal; extra anatomical tails/wing supports never become extra souls. No automatic crystal, orange eyes, text, labels, panel grid, copied insignia, external franchise motifs, scenery or other creatures. FULL creature three-quarter action-ready, all limbs/equipment/tail complete on plain WHITE with wide margins. Each signature structure must participate in its physical action, not decorative halo. LARGE QUADRUPED LYNX-like beast LORD, FOUR long sprung legs with FOUR wide taloned feline feet, high shoulder hips low stalking turn, deep chest and long flexible spine. Small exposed mature feline paper HEAD with SHORT wide snout, heavy angular muzzle not dragonbeak, small VIOLET eyes, TWO long triangular ear TUFT-SAILS built on curved bamboo ribs not horns. BODY dominant warm LIGHT GRAY taut paper with only a few dark-gray cheek/ankle tufts. ARMOR dark PLUM limited to near shoulder guard and TWO front shin rings, no full torso armor or rear greaves. Signature TWO large sweeping offwhite/plum kite membranes anchored from shoulder rib to flanks as ONE paired flexible steering mantle, one furling upward and one opening downward during lateral pivot; not bat wings or flat decorative cape. Rooted ribs meet shoulder joints clearly; face, FOUR feet and belly exposed. Tail anatomical short bobtail incorporated into ONE slim plum braided soul-rabiola ending forked pale gray flag. Small violet eye/hinge accent only, no gold borders/runes/halo. Dynamic low turning stance with near forepaw braced and opposite rear leg extended, count four roots.
+
+## Observado
+
+Quatro patas e pés distintos, cabeça felina exposta e duas orelhas-velas. Manto lateral sustentado por varetas e proteção ameixa localizada nos ombros/antepernas. Pequeno detalhe violeta na articulação é proposta de dobradiça, não Crystai Pipa. Uma rabiola completa.
+
+## Desconhecido
+
+Nomes, títulos e lore são propostas. Pré-evoluções, facção, obtenção, poderes, escala canônica e integração não definidos. Concepts não certificam recortes, rig, animações ou grade técnica de pixel art.

@@ -1,0 +1,95 @@
+{
+  "family_id": "mata-verde",
+  "scope": "Três novos concepts e base preservada; sem integração.",
+  "nodes": [
+    {
+      "id": "brotim",
+      "name": "Brotim",
+      "stage": 1,
+      "kind": "stage",
+      "age": "Bebê",
+      "action": "Espiar antes de saltar",
+      "identity": "Botão de papel-folha baixo e enrolado; seis patas curtas, duas folhas fechadas e cipó curto.",
+      "story": "Ensaiar equilíbrio permite explorar sem se abrir ao primeiro sopro.",
+      "mechanism": "Patas pequenas agarram o apoio; folhas recolhidas mantêm volume compacto.",
+      "tradeoff": "Pouco alcance e sustentação.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/mata-verde-family-v1/brotim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/mata-verde-family-v1/brotim/concept-v1/brief.md"
+    },
+    {
+      "id": "mata-verde",
+      "name": "Mata Verde",
+      "kind": "stage",
+      "stage": 2,
+      "age": "Base · criança no estudo",
+      "identity": "Pipa foliar verde com face creme, três pontas de broto, asas-folhas e cipó com folha terminal.",
+      "story": "Folha que se enrolou na linha da pipa e aprendeu a dançar entre galhos, segundo o catálogo local.",
+      "decision_status": "approved",
+      "approval_note": "Identidade existente preservada; não é nova aprovação do rig ou do grau mecânico.",
+      "production_status": "concept",
+      "implementation": "base intacta",
+      "art": "../../../art/soulgen/keys/mata-verde/color-rig-v2/concept.png",
+      "brief": "../evolucoes-v1/briefs/mata-verde.md"
+    },
+    {
+      "id": "folhante",
+      "name": "Folhante",
+      "stage": 3,
+      "kind": "stage",
+      "age": "Jovem",
+      "action": "Girar e aparar",
+      "identity": "Inseto foliar em vírgula suspensa, seis membros, asas curtas e folha-palma de aparo.",
+      "story": "Escapar amadurece em controlar o próprio eixo antes de escolher a saída.",
+      "mechanism": "Abdômen e cipó contrabalançam; membros anteriores desviam pressão.",
+      "tradeoff": "Exige espaço lateral para completar o giro.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/mata-verde-family-v1/folhante/concept-v1/concept.png",
+      "brief": "../../../art/creatures/mata-verde-family-v1/folhante/concept-v1/brief.md"
+    },
+    {
+      "id": "verdestrama",
+      "name": "Verdestrama",
+      "stage": 4,
+      "kind": "stage",
+      "age": "Adulto",
+      "action": "Desviar e avançar com precisão",
+      "identity": "Inseto-fada hexápode de tórax-quilha e quatro asas-folhas; antebraço prolongado em rapieira de nervura.",
+      "story": "Aprende a abrir uma passagem precisa em vez de somente escapar dela.",
+      "mechanism": "Seis membros distribuem funções; quatro velas e guarda de folha organizam postura e avanço.",
+      "tradeoff": "Comprometer o eixo no avanço exige recuperar a guarda.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/mata-verde-family-v1/verdestrama/concept-v1/concept.png",
+      "brief": "../../../art/creatures/mata-verde-family-v1/verdestrama/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "brotim",
+      "to": "mata-verde",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Ensaio de apoio permite abrir as folhas e explorar a corrente."
+    },
+    {
+      "from": "mata-verde",
+      "to": "folhante",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Esquiva livre amadurece em domínio do giro e aparo."
+    },
+    {
+      "from": "folhante",
+      "to": "verdestrama",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Controlar o eixo permite usar seis apoios e avanço preciso na forma de inseto-fada."
+    }
+  ]
+}

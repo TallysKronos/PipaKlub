@@ -44,10 +44,11 @@ func run() -> void:
 		await tap(KEY_ESCAPE)
 		check(is_instance_valid(front.pause_overlay),"back returns to pause")
 		check(root.gui_get_focus_owner()==front.pause_overlay.buttons.map,"map origin focus restored")
-		var before_revision:int=front.session.snapshot().revision
+		# Save opens the manual spaces (the autosave keeps space 0); Voltar returns to the lobby.
 		front.pause_overlay.buttons.save.pressed.emit();await settle()
-		check(front.session.snapshot().revision>before_revision,"standalone save persists world")
-		check(front.park.paused,"save leaves game paused")
+		check(front.last_scene_key=="page:SALVAR JORNADA","save opens the manual spaces")
+		front._return_to_game();await settle()
+		check(is_instance_valid(front.pause_overlay) and is_instance_valid(front.park) and front.park.paused,"save leaves game paused")
 		await capture("pausa")
 		front.pause_overlay.buttons.bag.pressed.emit();await settle()
 		var bag=front.page.get_children()[2]

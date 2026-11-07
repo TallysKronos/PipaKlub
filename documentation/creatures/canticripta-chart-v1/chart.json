@@ -1,0 +1,92 @@
+{
+  "family_id": "canticripta",
+  "scope": "Concepts visuais aprovados pelo autor; relações, lore e condições propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "cantim",
+      "name": "Cantim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Corpo-semente e painel ressonador único, duas antenas e rabiola. Quatro abas de apoio visíveis nesta perspectiva; seis foram pedidas, mas a vista não permite certificar todas as raízes. Conferir verso antes do rig.",
+      "story": "De pequeno ressonador a caçador que afina e interrompe vibrações.",
+      "action": "perceber",
+      "tradeoff": "Pouca autonomia e alcance.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/canticripta/cantim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/canticripta/cantim/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "cantilha",
+      "name": "Cantilha",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Correção removeu pata excedente. Quatro patas de apoio e dois braços em diapasão; duas antenas e dois painéis dorsais fechados. Uma rabiola.",
+      "story": "De pequeno ressonador a caçador que afina e interrompe vibrações.",
+      "action": "explorar",
+      "tradeoff": "Pouca resistência e controle.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/canticripta/cantilha/concept-v1/concept.png",
+      "brief": "../../../art/creatures/canticripta/cantilha/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "cantivara",
+      "name": "Cantivara",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Correção removeu pata excedente. Quatro patas e dois braços com lâminas tocando, duas antenas, dois painéis abertos. Corpo esguio e proteção parcial.",
+      "story": "De pequeno ressonador a caçador que afina e interrompe vibrações.",
+      "action": "especializar",
+      "tradeoff": "Menor sustentação e proteção que o adulto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/canticripta/cantivara/concept-v1/concept.png",
+      "brief": "../../../art/creatures/canticripta/cantivara/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "canticripta",
+      "name": "Canticripta",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Identidade da arte adulta atual preservada; cristal central, papel vivo e rabiola da própria família.",
+      "story": "De pequeno ressonador a caçador que afina e interrompe vibrações.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/canticripta/concept-v2/concept.png",
+      "brief": "../../../art/creatures/canticripta/concept-v2/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "cantim",
+      "to": "cantilha",
+      "kind": "reweaving",
+      "reason": "A construção simples de Cantim ganha corpo e órgãos de exploração em Cantilha.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cantilha",
+      "to": "cantivara",
+      "kind": "reweaving",
+      "reason": "A exploração de Cantilha exige movimento mais especializado e proteção parcial em Cantivara.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cantivara",
+      "to": "canticripta",
+      "kind": "reweaving",
+      "reason": "Cantivara desenvolve sustentação e controle para a arquitetura adulta de Canticripta; aquisição do cristal e condições continuam propostas.",
+      "decision_status": "proposed"
+    }
+  ],
+  "crystal_note": "Proposta: cristal ancestral adquirido na forma adulta; nenhum novo fragmento/alma nas formas anteriores."
+}

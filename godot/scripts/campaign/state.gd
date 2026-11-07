@@ -16,6 +16,7 @@ static func fresh(slot_id: String) -> Dictionary:
 	return {
 		"schemaVersion": SCHEMA_VERSION, "contentVersion": CONTENT_VERSION,
 		"rulesVersion": RULES_VERSION, "slotId": slot_id, "revision": 0,"playSeconds":0.0,
+		"campaignId": new_id(),
 		"checkpoint": {"kind": "opening", "step": 0},
 		"player": {"name": "Kael", "avatar": {}, "coins": 0,
 			"inventory": {}, "partners": [], "flags": {}, "openedChests": [],
@@ -23,7 +24,12 @@ static func fresh(slot_id: String) -> Dictionary:
 	}
 
 static func valid_slot(slot_id: String) -> bool:
-	return slot_id in ["slot-1", "slot-2", "slot-3"]
+	return slot_id in ["slot-0", "slot-1", "slot-2", "slot-3"]
+
+static func campaign_key(snapshot: Dictionary) -> String:
+	if snapshot.get("campaignId") is String and not snapshot.campaignId.is_empty(): return snapshot.campaignId
+	# Legacy copies cannot safely be grouped by name, partner or slot number.
+	return "legacy-" + JSON.stringify(snapshot, "", true).sha256_text()
 
 static func new_id() -> String:
 	var bytes := Crypto.new().generate_random_bytes(16)
@@ -49,6 +55,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 		return "unsupported"
 	if value.get("slotId") != slot_id or not valid_slot(slot_id) or not whole(value.get("revision")):
 		return "invalid"
+	if value.has("campaignId") and (not value.campaignId is String or value.campaignId.is_empty() or value.campaignId.length() > 128): return "invalid"
 	if not value.get("checkpoint") is Dictionary or not value.get("player") is Dictionary:
 		return "invalid"
 	for key in ["playSeconds","savedAt"]:
@@ -117,6 +124,15 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			for field in ["line", "structure"]:
 				if not number(partner.condition.get(field)) or partner.condition[field] < 0 or partner.condition[field] > 100: return "invalid"
 	if player.has("equippedPartnerId") and not partner_ids.has(player.equippedPartnerId): return "invalid"
+	if player.has("pendingPartners"):
+		if not player.pendingPartners is Array:return "invalid"
+		var reserved: Dictionary=partner_ids.duplicate()
+		for reward in player.pendingPartners:
+			if not reward is Dictionary or not reward.get("id") is String or reserved.has(reward.id) or not reward.get("partner") is Dictionary or reward.partner.get("id")!=reward.id:return "invalid"
+			if not reward.get("source") is String or reward.source.is_empty() or reward.source.length()>128 or not reward.get("mandatory") is bool or not reward.get("equip") is bool:return "invalid"
+			var probe:=fresh("slot-1");probe.player.partners=[reward.partner]
+			if inspect(probe,"slot-1")!="ok":return "invalid"
+			reserved[reward.id]=true
 	if not whole(player.get("tamerXp", 0)) or player.get("tamerXp", 0) > 31383: return "invalid"
 	for field in ["sightings", "acquiredModels"]:
 		if player.has(field):

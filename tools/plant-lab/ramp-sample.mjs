@@ -1,0 +1,2 @@
+import {rampNeighbors} from './ramp-rules.mjs';
+export function rampSample(source){const a=structuredClone(source);a.objects=[];a.nextId=1;a.levels.fill(0);a.ramps.fill(null);a.floors.fill('grass');a.stairs=Array(a.levels.length).fill(false);['n','s','e','w'].forEach((d,k)=>{const x=k%2*7+5,y=Math.floor(k/2)*6+4,i=y*a.width+x,n=rampNeighbors(a,i,d);if(n.high<0||n.low<0)return;a.levels[n.high]=1;a.ramps[i]=d;a.floors[i]='dirt';a.stairs[i]=k%2===1;});return a;}

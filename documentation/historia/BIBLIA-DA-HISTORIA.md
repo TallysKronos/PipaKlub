@@ -324,10 +324,10 @@ Se as 30 vagas do banco do save estiverem ocupadas, a escolha fica registrada e 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |
 | --- | --- | --- | --- | --- |
 | 1 | Porto Novo | Bairro 11. | Campeão 11, **Capitão Jurandir** (40) | Coração das Ruínas |
-| 2 | Coração das Ruínas A, B e C | **Aliados amarrados:** capangas guardam a Nina, a Mikka e a Jamile. Na parte C, o Grampo e o Platyx; o Platyx se recusa a puxar. | Capangas (40, 41) → Platyx (43) | — |
+| 2 | Coração das Ruínas A, B e C | **Aliados amarrados:** capangas guardam a Nina (A) e a Mikka (B). Na parte C, o Grampo e o Platyx guardam a Jamile; o Platyx se recusa a puxar, e o Grampo decide ajudar a soltá-la. Cada amiga solta volta pelo corredor para ajudar a seguinte. | Capangas (40, 41) → Platyx (43) | — |
 | 3 | Coração das Ruínas D | **O arrependimento do Gollia:** ele larga o Bando e segura os capangas na porta para o Kael passar. | — | — |
 | 4 | Coração das Ruínas D | **O Rato.** | Rato (44) | — |
-| 5 | Coração das Ruínas D | **O lendário é o Eremor.** O Bando o desperta; os pilares cedem. Heleana, Assis e Tyler seguram a saída. | **Eremor** (45) | Bairro 12 |
+| 5 | Coração das Ruínas D | **O lendário é o Eremor.** O Bando o desperta; os pilares cedem. O Tyler leva Nina, Mikka e Jamile para a saída, e o Grampo e o Platyx seguram a retaguarda. Heleana e Assis não descem às Ruínas: reaparecem depois, na arquibancada da final. | **Eremor** (45) | Bairro 12 |
 | 6 | Alto do Mirante | Bairro 12. Ícaro, que achava o campeonato "vendido para a TV". | Campeão 12, **Ícaro** (44) | Estádio |
 | 7 | Estádio de Kronasta | **A chave final:** Grampo (47), Tyler (48), Faye (49) e o título contra a Jamile (50). Na arquibancada: a Heleana, o Assis, o Tyler, o Gollia, o Grampo e os campeões dos bairros. | Chave de 4 rodadas | Créditos |
 
@@ -485,6 +485,8 @@ O Kael e o Tyler derrotam o Bando e devolvem o Elo à câmara do ovo. O Assis ac
 
 **[Decidido]** O fio do Tyler não se resolve neste jogo: fica para a continuação. Proposta de gancho: na cena pós-créditos, o remendo do carretel do Tyler se desfaz um pouco mais.
 
+**[Implementado 05/11]** O epílogo roda uma vez, logo depois dos créditos, em quatro páginas: (1) Kael e Tyler descem à câmara do ovo; a chave do Elo continua quebrada no altar e o Elo fica ali, sem que ninguém consiga mais forçá-lo; (2) no ateliê, o Assis diz ao Tyler que ele nunca foi o que faltava nele ("Você é o Tyler. O resto, você escreve."); (3) a Heleana volta a pesquisar as Ruínas com o filho. Na vertente em que acolheu a Retalho, vai junto com ela; na vertente em que a Retalho escolheu o Kael, convida os dois; sem o arco da Retalho, convida só o filho; (4) cena pós-créditos: no quarto do Tyler, um fio escapa do remendo do carretel e se solta mais um pouco. A chave quebrada concilia o "devolvem o Elo" com a vitória sobre o Eremor: o Elo não sai da câmara, só deixa de poder ser usado.
+
 **Temas:**
 - criar o próprio parceiro e a responsabilidade de quem cria;
 - jogo limpo contra o cerol;
@@ -572,3 +574,7 @@ Se Kael recusou, ao voltar para casa ouve um grunhido externo. Ele e Heleana sae
 - **Noite do cerol:** versão enxuta, com Vila, Centro e Condomínio à noite; os demais lugares fecham até o gerador (§7.6).
 - **Lendário:** é o Eremor, nas Ruínas D, depois do Rato. Sai o Santuário (§7.7).
 - **Final:** a chave de quatro rodadas no Estádio, terminando na Jamile (§7.7).
+- **Passagem do título [Decidido no refino F28, 04/11]:** depois do duelo, Jamile vem do lado da arena até Kael e amarra a **fita dourada da Liga** no carretel dele. Rabbito fica ao lado de Kael e puxa a ponta da fita. A fala retoma a abertura: Kael viu a final da Jamile pela TV, no quarto; agora a cidade assistiu à dele. A arte e a animação definitivas da fita seguem esse gesto.
+- **Ícaro [refino F26]:** aceita o desafio porque Kael fez coisas que nenhuma câmera filmou (Ventos, gerador, Ruínas). Ao perder, manda Kael ao Estádio para fazer a TV ver uma final que ela não escreveu.
+- **Lobby do Estádio [refino F27]:** o adversário da rodada espera ao lado do atendente; os já enfrentados assistem ao lado do sofá. O Grampo entra com o Platyx porque perguntou a ele antes.
+- **Destino do Rato [Proposta, refino F24, 05/11]:** depois do Eremor, a chave do Elo fica partida no altar e o Rato foge pela fenda durante o desabamento. Fica como gancho para a continuação, como o fio do Tyler (§ continuação).

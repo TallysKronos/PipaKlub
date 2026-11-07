@@ -1,0 +1,29 @@
+{
+  "id": "voto-do-elo",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-e0d5f7f6-774c-4b9b-834e-3b79ff98a4ab.png",
+  "sha256": "e209c72d07ec5fa4fa2cd6585c36b6355cc95dee59eb0e531bdae6ba6d810c06",
+  "width": 1024,
+  "height": 1536,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/soulgen/keys/lobo-cordeiro/concept-v1/lobo-cordeiro.png",
+      "role": "Identidade própria"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento aprovado"
+    },
+    {
+      "path": "art/concepts/eremor-v1/eremor.png",
+      "role": "Somente nó terracota/turquesa do peito"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

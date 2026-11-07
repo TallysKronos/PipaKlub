@@ -69,6 +69,7 @@ func settle()->Dictionary:
  if e.warehouseOpponent=="dragon" and (step(saved.player)!=3 or not saved.player.flags.get("golliaCarretelVencida",false)):return {"status":"wrong_step"}
  for partner:Dictionary in saved.player.partners:
   if partner.id==s.partnerId:partner.condition={"line":clampf(s.p.hp/s.p.stats.line*100,0,100),"structure":clampf(s.p.hull/s.p.stats.line*100,0,100)}
+ if s.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,s)
  if s.outcome=="won":
   if e.warehouseOpponent=="gollia":saved.player.flags.golliaCarretelVencida=true
   else:

@@ -92,13 +92,16 @@ func story_rules() -> void:
 	player.flags.ninaAccepted=true;player.flags.ninaBambuzalOrder=true
 	check(Story.current_beat(player).id=="bosque","then the Bosque")
 	Story.qa_override=0
-	for region in ["industrial","pantano"]: check(not Story.can_travel(player,region) and Story.state(player,region)=="em-breve",region+" hidden from players")
+	check(not Story.can_travel(player,"pantano") and Story.state(player,"pantano")=="em-breve","pantano hidden from players")
+	# The Vila Operária is a campaign place: it opens after the Cais, not as a preview.
+	check(not Story.can_travel(player,"industrial") and Story.state(player,"industrial")=="fechado","industrial closed by the story before the Cais")
 	# The Serra has its own story gate now (Mormaço and Palafitas), not a preview.
 	check(not Story.can_travel(player,"montanha") and Story.state(player,"montanha")=="fechado","montanha closed by the story for players")
 	check(Story.previews(player).is_empty(),"players get no preview list")
 	Story.qa_override=1
-	for region in ["industrial","pantano","montanha"]: check(Story.can_travel(player,region),region+" open for QA after the prologue")
-	check(Story.previews(player).size()==2,"QA preview list: industrial and pantano")
+	for region in ["pantano","montanha"]: check(Story.can_travel(player,region),region+" open for QA after the prologue")
+	check(not Story.can_travel(player,"industrial"),"industrial follows the story in QA too")
+	check(Story.previews(player).size()==1,"QA preview list: pantano")
 	check(not Story.released(player).any(func(e): return e.get("preview",false)),"previews never listed as released")
 	player.flags.bosqueClareiraDescoberta=true
 	check(Story.current_beat(player).id=="lohan","after the Bosque: Lohan")
@@ -151,6 +154,12 @@ func run() -> void:
 	player.flags.merge({"ninaAccepted":true,"guardianDefeated":true,"ninaReturned":true,"bosqueClareiraDescoberta":true,"demoEndingSeen":true})
 	player.morro=preload("res://scripts/campaign/morro_rules.gd").defaults()
 	player.morro.stars={"morro-5":3}
+	# The Vila Operária opens after the Cais (campaign order), so the explored save has it.
+	var rules=preload("res://scripts/campaign/district_rules.gd")
+	for district in ["bambuzal","beira-canal","feira","cais"]:
+		var entry: Dictionary=rules.entry(player,district)
+		entry.completed=true;entry.rewardClaimed=true;entry.champion="player"
+		rules.store(player,district,entry)
 	var progress: Dictionary=app.session.checkpoint(app.session.snapshot().checkpoint,player)
 	check(progress.status=="ok","act 1 progress "+str(progress)+" "+str(app.session.snapshot().checkpoint))
 	check(service.travel("kronasta-industrial-b").status=="wrong_step","regions are entered by part A")

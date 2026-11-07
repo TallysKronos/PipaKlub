@@ -1,0 +1,1 @@
+Histórico substituído por v2: arma e corpo próximos demais do jovem. Imagem e prompt preservados.

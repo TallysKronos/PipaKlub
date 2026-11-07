@@ -1,0 +1,19 @@
+{
+  "family_id": "cervoraculo",
+  "scope": "Um adulto proposto de Lords Creatures; sem ligações evolutivas ou integração.",
+  "nodes": [
+    {
+      "id": "cervoraculo",
+      "name": "Cervoráculo",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Cervo de arco · Orientar",
+      "story": "Seis olhos nas velas dos chifres observam rotas possíveis. Ele sustenta apenas uma travessia por vez: enxergar alternativas não permite salvar todos os caminhos.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervoraculo/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cervoraculo/concept-v2/brief.md"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,41 @@
+{
+  "family_id": "lupunhal",
+  "scope": "Jovem definido pelo autor e adulto novo proposto; sem integração.",
+  "nodes": [
+    {
+      "id": "lupunhal",
+      "name": "Lupunhal",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Duas adagas de linha · Atual · lobo-cinzento",
+      "story": "Abre uma passagem curta cortando a linha da arma adversária; precisa entrar no alcance do oponente.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/lupunhal/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lupunhal/concept-v1/brief.md",
+      "maturity": "Jovem",
+      "stage_note": "Autor: “lupunhal e miralís são como jovens [...] pode ter uma adulto pra eles com muito mais presença” (2026-11-07). Estágio dos dois concepts anteriores passa de adulto proposto para jovem por orientação do autor. Não implica aprovação das novas artes ou nomes."
+    },
+    {
+      "id": "lupregente",
+      "name": "Lupregente",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Dois braços e duas pernas completos; duas adagas curvas, cabeça menor em relação ao peito profundo, manto amplo e saia aberta sem ocultar apoios. Rabiola trançada com três terminais. A guarda craniana permanece aberta, mais próxima de diadema estrutural que de helmet completo. Corpo não reduzido a humano com cabeça de lobo.",
+      "story": "Prender e redirecionar duas linhas com lâminas curvas, dominando o espaço em vez de apenas interceptar.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/lupunhal/lupregente/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lupunhal/lupregente/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "lupunhal",
+      "to": "lupregente",
+      "kind": "reweaving",
+      "reason": "Prender e redirecionar duas linhas com lâminas curvas, dominando o espaço em vez de apenas interceptar.",
+      "decision_status": "proposed"
+    }
+  ]
+}

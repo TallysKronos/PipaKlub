@@ -130,8 +130,8 @@ static func create_prop(room,p:Dictionary) -> Node2D:
  var asset:String=id
  if room.data.floorImage=="home-floor.png" and id!="janela":asset="home-banco" if id in ["banco-jantar","banco-fundo"] else "home-"+id
  var path:String=BASE+asset+".png"
- if not FileAccess.file_exists(path):return root
- var texture:=ImageTexture.create_from_image(Image.load_from_file(path))
+ if not ResourceLoader.exists(path):return root
+ var texture:Texture2D=load(path)
  var manifest:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(BASE+"kit.json"))
  var spec:Dictionary=manifest.pieces[asset]
  var bounds:=Rect2(spec.bounds[0],spec.bounds[1],spec.bounds[2],spec.bounds[3])

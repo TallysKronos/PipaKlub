@@ -1,0 +1,43 @@
+{
+  "canvas": [
+    32,
+    32
+  ],
+  "sheet": [
+    256,
+    32
+  ],
+  "frames": 8,
+  "opaque_colors": 9,
+  "alpha_values": [
+    0,
+    255
+  ],
+  "tags": [
+    {
+      "name": "idle-so",
+      "from": 0,
+      "to": 3,
+      "direction": "forward",
+      "color": "#000000ff"
+    },
+    {
+      "name": "walk-so",
+      "from": 4,
+      "to": 7,
+      "direction": "forward",
+      "color": "#000000ff"
+    }
+  ],
+  "durations_ms": [
+    400,
+    150,
+    400,
+    150,
+    150,
+    110,
+    150,
+    110
+  ],
+  "integrated": false
+}

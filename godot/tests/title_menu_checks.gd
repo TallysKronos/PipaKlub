@@ -31,6 +31,8 @@ func buttons(node:Node) -> Array[Button]:
 		found.append_array(buttons(child))
 	return found
 func run() -> void:
+	# The player's menu: the QA jump entry only shows in QA builds (qa_jump.gd).
+	preload("res://scripts/campaign/kronasta_story.gd").qa_override=0
 	var front:=Front.new()
 	front.session._store=Store.new("user://title-menu-"+State.new_id())
 	front.preferences.storage_path="user://title-menu-"+State.new_id()+".cfg"
@@ -157,6 +159,21 @@ func run() -> void:
 	check(legacy_session.checkpoint(resumed.checkpoint,resumed.player).status=="ok","old save can continue and save normally")
 	check(legacy_session.snapshot().playTimePartial and legacy_session.snapshot().playSeconds>=60,"old playtime is explicitly partial")
 	legacy_session.free()
+	var audio_released: Array[WeakRef] = []
+	for player: Node in front.sound.get_children():
+		if player is AudioStreamPlayer and player.stream != null:
+			audio_released.append(weakref(player.stream))
 	front.free()
+	# Let deferred deletion and AudioServer playback cleanup run before shutdown.
+	await process_frame
+	await process_frame
+	var audio_deadline := Time.get_ticks_msec() + 2000
+	var audio_pending := true
+	while audio_pending and Time.get_ticks_msec() < audio_deadline:
+		audio_pending = false
+		for reference: WeakRef in audio_released:
+			if reference.get_ref() != null: audio_pending = true
+		if audio_pending: await create_timer(0.02).timeout
+	check(not audio_pending, "audio streams released before engine shutdown")
 	print("TITLE MENU: ",checks," checks; ",failures," failures")
 	quit(0 if failures==0 else 1)

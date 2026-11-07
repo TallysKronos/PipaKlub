@@ -27,6 +27,7 @@ static func build(view) -> void:
    if c.material=="rocha" and not interior:block(view,Vector2(u,v),1,1,36,"barreira",simple)
  for b:Dictionary in model.data.forest.get("buildings",[]):
   block(view,Vector2(b.u,b.v),float(b.w),float(b.h),float(b.z),str(b.style),simple)
+ if not interior and not simple:D.perimeter_gardens(view)
  if model.data.forest.get("mangaDressing",false) and not simple:
   if interior:D.warehouse(view)
   else:D.yard(view)
@@ -42,18 +43,6 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  var lift:=Vector2(0,z)
  var manga:bool=model.data.forest.get("mangaDressing",false)
  if manga:root.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
- if style=="carga" and not simple:
-  var sprite:=Sprite2D.new();sprite.centered=false
-  sprite.texture=texture("res://assets/overworld/kits/industrial-v1/pecas/carga-manga.png")
-  # Three measured pallet contacts map onto the exact blocking footprint.
-  var source:=Transform2D(Vector2(-490,-306),Vector2(460,-326),Vector2.ZERO)
-  var target:=Transform2D(d-c,b-c,Vector2.ZERO)
-  var transform:=target*source.affine_inverse()
-  transform.origin=c-transform.basis_xform(Vector2(800,966))
-  sprite.transform=transform
-  var cutout:=ShaderMaterial.new();cutout.shader=preload("res://shaders/industrial_cutout.gdshader");sprite.material=cutout
-  root.add_child(sprite)
-  return
  if style in ["carga","tambor","carretel"]:
   D.cargo(root,a,b,c,d,z,style,simple)
   return
@@ -86,6 +75,18 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  else:top.color=face_color.lightened(.18)
  if style!="barreira":S.line(root,PackedVector2Array([a-lift,b-lift,c-lift,d-lift,a-lift]),2,Color("34464d"))
  if simple:return
+ if style=="barreira":
+  var coping:=Color("b9ac93")
+  top.color=coping
+  for edge in [[d,c],[c,b]]:
+   var start:Vector2=edge[0]
+   var finish:Vector2=edge[1]
+   var wall:=S.quad(root,PackedVector2Array([start-lift,finish-lift,finish,start]),Color("917b66") if start==d else Color("726454"))
+   wall.texture=texture("res://assets/overworld/kits/industrial-v1/superficies/concreto.png")
+   wall.uv=PackedVector2Array([Vector2.ZERO,Vector2(170,0),Vector2(170,96),Vector2(0,96)])
+   S.line(root,PackedVector2Array([start-lift,finish-lift]),2.0,Color("d2c5a7"))
+   S.line(root,PackedVector2Array([start-Vector2(0,z*.32),finish-Vector2(0,z*.32)]),1.2,Color("635646"))
+  return
  if style=="parede-galpao":
   # All details are mounted on the shell's measured faces, not floating props.
   for edge in [[d,c,int(w/4)],[c,b,int(h/4)]]:

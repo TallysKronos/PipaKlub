@@ -38,12 +38,12 @@ static func wild_level(scene: String, roll: int) -> int:
 	if scene.begins_with("kronasta-bambuzal-"):return 7+roll%3
 	if scene.begins_with("kronasta-bosque-"):
 		return {"kronasta-bosque-a":1,"kronasta-bosque-b":2,"kronasta-bosque-c":3}[scene]+roll%3
-	# Preview regions: provisional levels just above the Bosque until their
-	# neighbourhoods exist (BIBLIA-DA-HISTORIA.md, section 3).
-	var preview := {"industrial":4,"pantano":5,"montanha":6}
-	for region in preview:
+	# Every campaign region follows its story band (BIBLIA §3 and §8); wild ones
+	# at Lv.1-7 next to a Lv.20-40 story only interrupted the walk (campaign walker).
+	var band := {"cais":17,"industrial":20,"pantano":23,"palafitas":24,"montanha":26,"alto-da-serra":27,"aracati":30,"centro":30,"lajes":33,"porto":36,"coracao":40,"mirante":40}
+	for region in band:
 		if scene.begins_with("kronasta-"+region+"-"):
-			return int(preview[region])+("abc".find(scene.right(1)))/2+roll%3
+			return int(band[region])+maxi(0,"abcd".find(scene.right(1)))+roll%3
 	return 5+roll%3 if scene=="park-veredas" else 2+roll%3 if scene=="park-clearing" else 1+roll%3
 
 static func level_penalty(gap: int) -> float:

@@ -1,0 +1,85 @@
+{
+  "family_id": "yaguaru-memoria",
+  "scope": "Dois concepts novos; base e cavaleiro preservados; sem integração.",
+  "nodes": [
+    {
+      "id": "yaguim",
+      "name": "Yaguim",
+      "age": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Cabeça-pipa felina sem torso ou patas, faixa diagonal e rabiola curta.",
+      "story": "Aprende a sustentar a primeira dobra e o primeiro nó.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/yaguaru-family-v1/yaguim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/yaguaru-family-v1/yaguim/concept-v1/brief.md",
+      "approval_note": "2026-11-04: autor respondeu aprovadissimos à entrega do bebê Yaguim concept-v1 e jovem Yaguarda concept-v1. Aprovação visual; requisitos e integração não incluídos."
+    },
+    {
+      "id": "yaguaru-memoria",
+      "name": "Yaguarú",
+      "age": "Criança existente",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Onça ocre de rosetas angulares, faixas creme, vela e cauda com fitas.",
+      "story": "Base autoral preservada; classificação de maturidade documental.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/soulgen/keys/yaguaru-memoria/color-rig-v2/preview.png",
+      "brief": "../../../art/soulgen/keys/yaguaru-memoria/README.md",
+      "approval_note": "README registra base final importada do autor."
+    },
+    {
+      "id": "yaguarda",
+      "name": "Yaguarda",
+      "age": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Onça quadrúpede de ombros robustos, placas iniciais e manoplas de garras.",
+      "story": "Protege com apoios firmes e aprende a distribuir tensão pelas faixas.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/yaguaru-family-v1/yaguarda/concept-v1/concept.png",
+      "brief": "../../../art/creatures/yaguaru-family-v1/yaguarda/concept-v1/brief.md",
+      "approval_note": "2026-11-04: autor respondeu aprovadissimos à entrega do bebê Yaguim concept-v1 e jovem Yaguarda concept-v1. Aprovação visual; requisitos e integração não incluídos."
+    },
+    {
+      "id": "yaguarion",
+      "name": "Yaguarion",
+      "age": "Adulto cavaleiro",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Elmo de onça cobre região ocular; nariz e boca humanoides visíveis, couraça de faixas e manoplas.",
+      "story": "Reorganiza corpo e construção em cavaleiro; origem e voto indefinidos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onze-cavaleiros-v1/yaguarion/concept-v2/concept.png",
+      "brief": "../../../art/creatures/onze-cavaleiros-v1/yaguarion/concept-v2/brief.md",
+      "approval_note": "Autor: aprovadissimo, após revisão do elmo concept-v2."
+    }
+  ],
+  "edges": [
+    {
+      "from": "yaguim",
+      "to": "yaguaru-memoria",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Primeira cabeça-pipa adquire quatro apoios e vela."
+    },
+    {
+      "from": "yaguaru-memoria",
+      "to": "yaguarda",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Faixas e apoios ganham função de proteção e contenção."
+    },
+    {
+      "from": "yaguarda",
+      "to": "yaguarion",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Postura se reorganiza em cavaleiro de elmo e couraça de faixas."
+    }
+  ]
+}

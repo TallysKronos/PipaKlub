@@ -21,7 +21,7 @@ const PLACES := [
 	{"scene":"kronasta-feira-a","id":"feira","name":"Feira do Largo","kind":"bairro","bairro":4,"act":2,"levels":"15–18","note":"Bairro 4."},
 	{"scene":"caverna-mural-a","id":"caverna","name":"Caverna do Mural","kind":"ruinas","act":2,"levels":"15–18","note":"O primeiro laço."},
 	{"scene":"kronasta-cais-a","id":"cais","name":"Cais Velho","kind":"bairro","bairro":5,"act":3,"levels":"18–21","note":"Bairro 5."},
-	{"id":"industrial","name":"Distrito Industrial","kind":"bairro","bairro":6,"act":3,"levels":"4–6 na prévia","scene":"kronasta-industrial-a","preview":true,"note":"Pátio de Cargas, Canal das Caldeiras e Usina do Vento."},
+	{"id":"industrial","name":"Distrito Industrial","kind":"bairro","bairro":6,"act":3,"levels":"20–24","scene":"kronasta-industrial-a","note":"Pátio de Cargas, Canal das Caldeiras e Usina do Vento."},
 	{"id":"pantano","name":"Pântano do Mormaço","kind":"natural","act":4,"levels":"5–7 na prévia","scene":"kronasta-pantano-a","preview":true,"note":"Entrada alagada, Desvio dos cipós e Lago profundo."},
 	{"id":"palafitas","scene":"kronasta-palafitas-a","name":"Palafitas","kind":"bairro","bairro":7,"act":4,"levels":"24–27","note":"Resgate de Retalho e campeonato de Caio Garça."},
 	{"id":"montanha","name":"Serra de Kronasta","kind":"natural","act":4,"levels":"26–32","scene":"kronasta-montanha-a","note":"Sopé, Encosta e Cume."},
@@ -67,8 +67,6 @@ const BEATS := [
 	{"id":"exame-azul","act":3,"place":"parque","text":"Faça a prova de condução e cuidado no Pátio da Liga, junto ao Parque."},
 	{"id":"remar-orientacao","act":3,"place":"cais","text":"Volte à Marisol, no Cais Velho, para preparar a travessia pela água."},
 	{"id":"remar-pratica","act":3,"place":"pantano","text":"Experimente Remar com a capivara de Marisol nas setas azuis da Entrada alagada, no Pântano."},
-	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · volte ao ateliê e aproxime-se de Retalho sem puxar sua rabiola."},
-	{"id":"retalho-confianca","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · acompanhe Retalho, sem exigir que ele fique."},
 	{"id":"mormaco-sinais","act":4,"place":"pantano","text":"O ar parou. Observe o caminho da Entrada alagada, no Pântano."},
 	{"id":"mormaco-liberto","act":4,"place":"pantano","text":"Siga até o lago da parte C e liberte Mormaço do Carretel Negro."},
 	{"id":"palafitas-emblema","act":4,"place":"palafitas","text":"Vença Seyran, Oruvo, Kessai e Veldren nas Palafitas e dispute o emblema com Caio Garça."},
@@ -83,7 +81,6 @@ const BEATS := [
 	{"id":"exame-vermelho","act":4,"place":"centro","text":"Faça o exame da categoria Vermelha com a Dona Cida, na Praça da Matriz."},
 	{"id":"pipa-tv","act":5,"place":"centro","text":"Converse com o produtor da Pipa TV na Praça da Matriz."},
 	{"id":"leo-antena","act":5,"place":"centro","text":"Vença os quatro desafios do Centro e dispute o emblema com o Leo Antena."},
-	{"id":"fantasma","act":5,"place":"centro","text":"Procure o Pipeiro Fantasma na parte C do Centro."},
 	{"id":"homunculo","act":5,"place":"rua-dos-ventos","text":"Volte ao ateliê e desça ao laboratório sob a casa do Sr. Assis."},
 	{"id":"barreira","act":5,"place":"centro","text":"A noite do cerol caiu. No Centro, tire a braçadeira de um capanga do Bando."},
 	{"id":"taina","act":5,"place":"lajes","text":"Com a braçadeira, entre no Condomínio e vença a Tainá, mesmo de noite."},
@@ -106,8 +103,9 @@ const BEATS := [
 static var qa_override := -1
 
 static func qa() -> bool:
+	if not OS.is_debug_build(): return false
 	if qa_override>=0: return qa_override==1
-	return OS.is_debug_build() and OS.get_environment("SOULMONSTERS_QA")!="0"
+	return OS.get_environment("SOULMONSTERS_QA")!="0"
 
 static func flags(player: Dictionary) -> Dictionary:
 	return player.get("flags",{})
@@ -125,7 +123,9 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 	var rules=preload("res://scripts/campaign/district_rules.gd")
 	match id:
 		"tufanocorte":return f.get("tufanocorteLiberto",false)
-		"serra-habilidades":return "serra-corrente-de-ar-v1" in player.get("completedOperations",[]) or rules.completed(player,"alto-da-serra")
+		# F18: Cavar (lesson, first dig, gallery) comes before the wind; riding the wind
+		# alone does not skip the lesson.
+		"serra-habilidades":return rules.completed(player,"alto-da-serra") or (f.get("canCavar",false) and "serra-galeria-cavar-v1" in player.get("completedOperations",[]) and "serra-corrente-de-ar-v1" in player.get("completedOperations",[]))
 		"dona-neve":return rules.completed(player,"alto-da-serra")
 		"rabiolava":return f.get("aracatiRabiolavaLivre",false)
 		"leo-antena":return rules.completed(player,"centro")
@@ -175,6 +175,36 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"bosque": return f.get("bosqueClareiraDescoberta",false)
 	return false
 
+## Side activities: never part of the main chain (BEATS), listed apart in the diary.
+## Each entry: title, current instruction, done. Only what the player can act on.
+static func optional_quests(player: Dictionary) -> Array:
+	var f:=flags(player)
+	var rules=preload("res://scripts/campaign/district_rules.gd")
+	var result:Array=[]
+	if f.get("pipaTvPedido",false) and rules.completed(player,"centro"):
+		var ghost:bool=f.get("pipeiroFantasmaResolvido",false)
+		result.append({"title":"O Pipeiro Fantasma","text":"Você descobriu quem soltava as pipas presas nos fios." if ghost else "Pedido da Pipa TV · procure o Pipeiro Fantasma na parte C do Centro.","done":ghost})
+	if f.get("pipeiroFantasmaResolvido",false):
+		var given:bool=f.get("tylerFlowerGiven",false)
+		var ready:bool=load("res://scripts/campaign/tyler_arcs.gd").finale_ready(player)
+		result.append({"title":"A Flor de Cerejeira","text":"Você entregou a flor ao Tyler." if given else "Leve a flor ao laboratório do Sr. Assis e converse com o Tyler." if ready else "Guarde a flor. Quando a final de Kronasta abrir, o Tyler vai querer conversar no laboratório do Sr. Assis.","done":given})
+	# Retalho's personal arc (F02): a choice of Kael, never a gate of the campaign.
+	if f.get("retalhoBosqueVencido",false):
+		var trust=load("res://scripts/campaign/retalho_trust.gd")
+		var reunion=preload("res://scripts/campaign/heleana_confession.gd")
+		var welcomed:bool=f.get("retalhoAcolhido",false) or f.get("retalhoParceiraHeleana",false)
+		var text:="Volte ao ateliê e aproxime-se de Retalho sem puxar a rabiola dele." if not f.get("assisReconheceuNoRetalho",false) else str(trust.objective(player))
+		if f.get("retalhoAcolhido",false):text="Retalho escolheu acompanhar você."
+		result.append({"title":"Retalho","text":text,"done":welcomed or reunion.refused(player)})
+		if reunion.available(player) or f.get("heleanaReconheceuRetalho",false):
+			var met:bool=f.get("heleanaReconheceuRetalho",false)
+			result.append({"title":"Heleana e Retalho","text":"Heleana reconheceu Retalho." if met else "Volte para casa." if reunion.refused(player) else "Leve Retalho até Heleana.","done":met})
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	if endgame.night_active(player) and f.get("bracadeiraBando",false):
+		var calmed:=int(f.get("desalmadoCentro",false))+int(f.get("desalmadoLajes",false))
+		result.append({"title":"Desalmados","text":"%d / 2 acalmados · procure-os no Centro B e no Condomínio A."%calmed,"done":calmed==2})
+	return result
+
 static func current_beat(player: Dictionary) -> Dictionary:
 	for beat in BEATS:
 		if not beat_done(player,beat.id): return beat
@@ -198,13 +228,21 @@ static func act(player: Dictionary) -> int:
 	return int(beat.act) if not beat.is_empty() else 3 if preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial") else 2 if flags(player).get("leagueGreen",false) else 1
 
 static func objective(player: Dictionary) -> String:
-	var reunion=preload("res://scripts/campaign/heleana_confession.gd")
-	if reunion.available(player) and not player.get("flags",{}).get("heleanaReconheceuRetalho",false):
-		return "Volte para casa." if reunion.refused(player) else "Leve Retalho até Heleana."
 	var beat:=current_beat(player)
 	if beat.get("id","").begins_with("mormaco-"):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
 	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
+	if beat.get("id")=="canal-comporta" and flags(player).get("grampoVeredasVencido",false):
+		return "Grampo recuou. Destranque a comporta no controle do canal, nas Veredas."
+	# The Ruínas rescue names who is still held, in the order of the parts.
+	if beat.get("id")=="ruinas-aliados":
+		var held:Array=[]
+		for pair in [["ruinasNinaLivre","a Nina"],["ruinasMikkaLivre","a Mikka"],["ruinasJamileLivre","a Jamile"]]:
+			if not flags(player).get(pair[0],false):held.append(pair[1])
+		if held.size()<3:return "Siga pelas Ruínas e solte "+(" e ".join(held) if held.size()<=2 else ", ".join(held))+"."
+	# The galpão: three knots (lieutenants), then the guards to the back.
+	if beat.get("id")=="galpao" and load("res://scripts/campaign/endgame_story.gd").duel_index(player,"galpao")>=3:
+		return "Os três nós cederam. Vença os guardas até o fundo do galpão."
 	if beat.get("id")=="serra-habilidades":
 		if not flags(player).get("canCavar",false):return "Observe o tatu no cume da Serra para aprender Cavar."
 		if "serra-primeira-escavacao-v1" not in player.get("completedOperations",[]):return "Experimente Cavar na terra fofa do cume."
@@ -283,6 +321,8 @@ static func state(player: Dictionary, id: String) -> String:
 		"porto":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"porto") else "fechado"
 		"lajes":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"lajes") else "fechado"
 		"centro":return "vencido" if rules.completed(player,"centro") else "aberto" if flags(player).get("trovaretaLivre",false) or rules.unlocked(player,"centro") else "fechado"
+		# Vila Operária opens after the Cais (district order), by day as well.
+		"industrial":return "vencido" if rules.completed(player,"industrial") else "aberto" if rules.unlocked(player,"industrial") else "fechado"
 		"aracati":return "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"alto-da-serra") else "fechado"
 		"montanha":return "aberto" if serra_open(player) or (qa() and prologue_done(player)) else "fechado"
 		"palafitas":return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,id) or load("res://scripts/campaign/retalho_trust.gd").docks_open(player) else "fechado"
@@ -335,14 +375,31 @@ static func scene_for_travel(id: String) -> String:
 ## points to this place; otherwise the part's own exploration hint.
 static func region_objective(player: Dictionary, scene: String) -> String:
 	var region:=Checkpoint.region_of(scene)
+	var rules=preload("res://scripts/campaign/district_rules.gd")
+	if region=="mirante":
+		if rules.city_final_unlocked(player):return "A Liga espera por você. Abra o mapa da cidade e viaje ao Estádio de Kronasta."
+		if rules.unlocked(player,"mirante"):
+			var course:String=preload("res://scripts/campaign/district_campaign.gd").objective(player,"mirante")
+			# F25: on arrival, the course and Ícaro come before the first challenge.
+			if rules.entry(player,"mirante").get("qualification",[]).is_empty():return "Último bairro · quatro pipeiros guardam a subida até Ícaro, o ex-campeão que largou o título. "+course
+			return course
+	if scene=="mina-ferro-a" and current_beat(player).get("id","")=="serra-habilidades":
+		return "Galeria sob a Serra · volte à superfície pela abertura por onde você desceu."
+	if region=="coracao" and flags(player).get("enamorDerrotado",false):
+		return "Eremor foi contido. Recupere sua equipe e viaje pelo mapa da cidade ao Alto do Mirante, o último bairro."
+	if scene=="kronasta-estadio-a":
+		return "Campeão de Kronasta · seus amigos esperam por você." if flags(player).get("campeaoKronasta",false) else "Fale com o atendente no balcão para disputar a próxima rodada. Você pode salvar e cuidar da equipe no lobby."
 	# An act 4-6 story step placed here wins over the area's district progress.
 	var step_beat:=current_beat(player)
-	if load("res://scripts/campaign/endgame_story.gd").STEPS.has(step_beat.get("id","")) and step_beat.place==str(place_for_scene(scene).get("id",region)):return step_beat.text
-	if region=="montanha" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"alto-da-serra"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"alto-da-serra")
+	if load("res://scripts/campaign/endgame_story.gd").STEPS.has(step_beat.get("id","")) and step_beat.place==str(place_for_scene(scene).get("id",region)):return objective(player)
+	# The Serra's district waits for the climb and its two lessons (beats tufanocorte and
+	# serra-habilidades); until then the HUD follows the story.
+	if region=="montanha" and step_beat.get("id","") not in ["tufanocorte","serra-habilidades"] and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"alto-da-serra"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"alto-da-serra")
 	if region=="palafitas" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,region):return preload("res://scripts/campaign/district_campaign.gd").objective(player,region)
 	var beat:=current_beat(player)
 	var here:String=str(place_for_scene(scene).get("id",region))
-	if not beat.is_empty() and (beat.place==region or beat.place==here) and (region!="bosque" or beat.id=="trovareta"): return beat.text
+	# Same text as the diary: some beats (Serra lessons, Mormaço, exams) show their sub-step.
+	if not beat.is_empty() and (beat.place==region or beat.place==here) and (region!="bosque" or beat.id=="trovareta"): return objective(player)
 	var part:=scene.right(1)
 	return {
 		"industrial":{"a":"Siga pelo Pátio de Cargas até o Canal das Caldeiras.","b":"Atravesse o Canal das Caldeiras até a Usina do Vento.","c":"Usina do Vento · o atalho leva de volta ao Pátio de Cargas."},

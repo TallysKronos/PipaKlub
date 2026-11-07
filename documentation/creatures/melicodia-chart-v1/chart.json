@@ -1,0 +1,79 @@
+{
+  "family_id": "melicodia",
+  "scope": "Linha com três pré-formas propostas e adulto existente; sem regras de jogo ou integração.",
+  "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+  "nodes": [
+    {
+      "id": "melicodia-baby",
+      "name": "Melicódia — Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Receber um sinal",
+      "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/melicodia/baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/melicodia/baby/concept-v1/brief.md"
+    },
+    {
+      "id": "melicodia-child",
+      "name": "Melicódia — Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Preservar uma gota",
+      "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/melicodia/child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/melicodia/child/concept-v1/brief.md"
+    },
+    {
+      "id": "melicodia-young",
+      "name": "Melicódia — Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Organizar uma lembrança",
+      "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/melicodia/young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/melicodia/young/concept-v1/brief.md"
+    },
+    {
+      "id": "melicodia",
+      "name": "Melicódia",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Abelha-colmeia processadora · Codificar",
+      "story": "Transforma sinais recebidos em cubos de mel que podem ser transportados e compartilhados. Para preservar uma lembrança, precisa escolher quais ruídos deixará de guardar.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/melicodia/concept-v1/concept.png",
+      "brief": "../../../art/creatures/melicodia/concept-v1/brief.md",
+      "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "melicodia-baby",
+      "to": "melicodia-child",
+      "kind": "reweaving",
+      "reason": "Passa de receber um sinal para preservar uma gota. Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "melicodia-child",
+      "to": "melicodia-young",
+      "kind": "reweaving",
+      "reason": "Passa de preservar uma gota para organizar uma lembrança. Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "melicodia-young",
+      "to": "melicodia",
+      "kind": "reweaving",
+      "reason": "Passa de organizar uma lembrança para codificar. Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+      "decision_status": "proposed"
+    }
+  ]
+}

@@ -34,6 +34,7 @@ func settle()->Dictionary:
 	for partner:Dictionary in saved.player.partners:
 		if partner.id!=state.partnerId:continue
 		partner.condition={"line":clampf(state.p.hp/state.p.stats.line*100,0,100),"structure":clampf(state.p.hull/state.p.stats.line*100,0,100)}
+	if state.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,state)
 	if state.outcome=="won":saved.player.flags.grampoVeredasVencido=true
 	# Story unlock only: no repeatable loot, rabiola or second guardian reward.
 	saved.player.erase("encounter")

@@ -8,17 +8,17 @@ void vertex() {
 	material_weights = COLOR.rgb;
 }
 
-vec3 surface(sampler2D source_texture, vec2 p, float column) {
+vec2 surface_uv(vec2 p, float column) {
 	vec2 texel_uv = (fract(p) * 511.0 + 0.5) / 512.0;
 	texel_uv.x = (texel_uv.x + column) / 3.0;
-	return texture(source_texture, texel_uv).rgb;
+	return texel_uv;
 }
 
 void fragment() {
 	vec2 ground_uv = UV * vec2(3.0, 1.0);
-	vec3 grass = surface(TEXTURE, ground_uv, 0.0);
-	vec3 stone = surface(TEXTURE, ground_uv, 1.0);
-	vec3 earth = surface(TEXTURE, ground_uv, 2.0);
+	vec3 grass = texture(TEXTURE, surface_uv(ground_uv, 0.0)).rgb;
+	vec3 stone = texture(TEXTURE, surface_uv(ground_uv, 1.0)).rgb;
+	vec3 earth = texture(TEXTURE, surface_uv(ground_uv, 2.0)).rgb;
 	vec3 weights = max(material_weights, vec3(0.0));
 	// A narrow soft transition, with organic variation from the same world
 	// texture on both sides of every joint; no floating border decal is used.

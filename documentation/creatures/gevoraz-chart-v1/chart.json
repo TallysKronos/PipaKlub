@@ -1,0 +1,92 @@
+{
+  "family_id": "gevoraz",
+  "scope": "Concepts visuais aprovados pelo autor; relações, lore e condições propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "gevim",
+      "name": "Gevim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Corpo e rosto em bolsa de papel, duas abas auriculares, dois apoios pequenos e rabiola. Expressão curiosa, sem máscara craniana adulta.",
+      "story": "De farejador hesitante a perseguidor capaz de encurralar sem perder o controle.",
+      "action": "perceber",
+      "tradeoff": "Pouca autonomia e alcance.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gevoraz/gevim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gevoraz/gevim/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "gevisco",
+      "name": "Gevisco",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Quatro patas, cabeça farejando, olhos rosa-gelo, três lâminas de juba e estrutura dorsal leve. Sem armadura pesada ou cristal.",
+      "story": "De farejador hesitante a perseguidor capaz de encurralar sem perder o controle.",
+      "action": "explorar",
+      "tradeoff": "Pouca resistência e controle.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gevoraz/gevisco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gevoraz/gevisco/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "gevardente",
+      "name": "Gevardente",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Quatro patas compridas, ombros altos, focinho alongado, crista ampla de papel e grevas parciais. Flancos limpos sem fibras retorcidas; rabiola contínua.",
+      "story": "De farejador hesitante a perseguidor capaz de encurralar sem perder o controle.",
+      "action": "especializar",
+      "tradeoff": "Menor sustentação e proteção que o adulto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gevoraz/gevardente/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gevoraz/gevardente/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "gevoraz",
+      "name": "Gevoraz",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Identidade da arte adulta atual preservada; cristal central, papel vivo e rabiola da própria família.",
+      "story": "De farejador hesitante a perseguidor capaz de encurralar sem perder o controle.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gevoraz/concept-v2/concept.png",
+      "brief": "../../../art/creatures/gevoraz/concept-v2/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "gevim",
+      "to": "gevisco",
+      "kind": "reweaving",
+      "reason": "A construção simples de Gevim ganha corpo e órgãos de exploração em Gevisco.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "gevisco",
+      "to": "gevardente",
+      "kind": "reweaving",
+      "reason": "A exploração de Gevisco exige movimento mais especializado e proteção parcial em Gevardente.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "gevardente",
+      "to": "gevoraz",
+      "kind": "reweaving",
+      "reason": "Gevardente desenvolve sustentação e controle para a arquitetura adulta de Gevoraz; aquisição do cristal e condições continuam propostas.",
+      "decision_status": "proposed"
+    }
+  ],
+  "crystal_note": "Proposta: cristal ancestral adquirido na forma adulta; nenhum novo fragmento/alma nas formas anteriores."
+}

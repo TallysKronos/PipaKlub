@@ -11,6 +11,11 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	for actor in model.actors.slice(1): art_ids.append("veskoro" if model.enemy_model_id=="veskoro" else ["basic-carcara", "basic-raio-de-sol", "basic-mata-verde", "basic-azulao"][int(actor.color)])
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
 	background = load("res://assets/campaign/palafitas-arena-v1.png" if model.stage_id.begins_with("palafitas-") else "res://assets/campaign/rooftop-arena-wide-v2.png")
+	var district_arena := district_arena_path(model.stage_id)
+	if not district_arena.is_empty():
+		background = load(district_arena)
+	elif model.stage_id.begins_with("alto-da-serra-"):
+		background = load("res://assets/campaign/serra-arena-wide-v1.png")
 	for role in ["dark", "danger", "danger"]: panel_styles.append(_panel(role))
 
 func _ready() -> void:

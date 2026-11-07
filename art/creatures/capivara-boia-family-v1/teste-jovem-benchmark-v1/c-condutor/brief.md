@@ -1,0 +1,7 @@
+# C — Condutor de canais
+
+Definido: criança de água da família capivara. Observado: menta/marfim/petróleo, pés palmados, focinho rombo, quilha e três abas. Proposto: estágio jovem alternativo com ação e arquitetura próprias. Não decidido: nome, rota, receita e habilidades de jogo.
+
+C: semi-upright light BIPEDAL marsh channel-guide, long springy hind legs with broad webbed feet; two elongated flexible forearms are canoe-paddle shaped tension-paper membranes, clearly rooted at shoulders with one elbow bend and no separate held tools. Four limbs total, two feet on ground and both forelimbs visible. Slender pear-shaped ivory/mint torso, lowered shoulders, long blunt capybara muzzle and modest round ears; adolescent attentive face, no baby smile. Small narrow dorsal folded keel, not giant wings. Show one paddle forearm extended low like a sluice gate and other curved inward redirecting water; a few simple two-tone curved water lines under the extended paddle can clarify the action without hiding feet. Forearm membranes have convex ivory leading edges and dark petrol underside, gold spars following anatomy, not geometric fullbody wireframe. Rabiola three diamond tabs on one continuous cord, hanging behind with clear attachment. The narrative is learning to guide water rather than raw speed or blocking it. No humanoid armor, staff, wizard hat or wings.
+
+Direção: 45% criatura / 45% pipa funcional / 10% acabamento 2D mangá. Fonte de princípios: art/benchmarks/digimon-ultimate-mega-2026-11-04/. Nenhuma arte externa fornecida à geração.

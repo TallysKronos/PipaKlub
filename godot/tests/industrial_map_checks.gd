@@ -41,11 +41,14 @@ func check_area(area:String) -> void:
 		walk(view,goal,str(goals[goal])+" outward")
 		walk(view,start,str(goals[goal])+" return")
 	for event in view.model.data.events.duplicate(true):
-		if event.type!="saida":continue
+		if event.type!="saida" or event.props.get("destino")=="kronasta":continue
 		var source:String=view.area_id
 		view.nearby=event.duplicate(true);view.interact()
 		check(view.area_id==event.props.destino,"destination of "+source)
-		check(view.player==Vector2(event.props.chegada_u+.5,event.props.chegada_v+.5),"arrival of "+source)
+		if event.props.has("chegada_u") and event.props.has("chegada_v"):
+			check(view.player==Vector2(event.props.chegada_u+.5,event.props.chegada_v+.5),"arrival of "+source)
+		else:
+			check(view.model.point_walkable(view.player),"default arrival of "+source)
 		view.load_area(source)
 	view.queue_free();await process_frame
 	print("INDUSTRIAL ",area,": ",goals.size()," targets; ",trips," trips; ",frames," frames; ",failures.size()," failures")

@@ -82,6 +82,34 @@ static func building(root,a:Vector2,b:Vector2,c:Vector2,d:Vector2,z:float,style:
  panel(root,[p+Vector2(4,13),p+Vector2(26,2),p+Vector2(26,14),p+Vector2(4,25)],Color("3b555e"))
  # The illustrated facade already owns its canopy, emblem and downpipe.
  return
+static func perimeter_gardens(view) -> void:
+ var model=view.model
+ # Landscape the rear retaining strip. Keep all roots on blocked wall cells
+ # and leave the front silhouette, stairs and exits open.
+ var kinds:=["arvore-florida","arvore-b","arvore-a"]
+ for i in [0,1,2,3,4,5]:
+  var cell:=Vector2i(5+i*6,2)
+  if model.cell_at(cell).material!="rocha":continue
+  var point:=Vector2(cell)+Vector2(.5,.5)
+  var art:=Sprite2D.new()
+  art.texture=load("res://assets/overworld/kits/comum/pecas/"+kinds[i%3]+".png")
+  if art.texture==null:continue
+  var factor:=96.0/art.texture.get_height()
+  art.centered=false
+  art.scale=Vector2.ONE*factor
+  art.position=model.project(point)-Vector2(art.texture.get_width()*factor*.5,132)
+  view.actors.add_child(art)
+  for offset in [-1,1]:
+   var bed_cell:=cell+Vector2i(offset,0)
+   if model.cell_at(bed_cell).material!="rocha":continue
+   var bed:=Sprite2D.new()
+   var variant:="a" if offset<0 else "b"
+   bed.texture=load("res://assets/overworld/kits/parque/decalques/arbusto-baixo-"+variant+".png")
+   if bed.texture==null:continue
+   bed.position=model.project(Vector2(bed_cell)+Vector2(.5,.5))-Vector2(0,36)
+   bed.offset=Vector2(0,-bed.texture.get_height()*.4)
+   view.actors.add_child(bed)
+
 static func yard(view) -> void:
  # Flat markings have no blocking silhouette and retain every junction's visibility.
  var model=view.model

@@ -1,0 +1,80 @@
+{
+  "family_id": "etruslanca",
+  "scope": "Quatro estágios documentais da Armada dos Lobos. Adultos anteriores preservados; novas pré-evoluções e vínculos propostos.",
+  "nodes": [
+    {
+      "id": "etrim",
+      "name": "Etrim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Rosto e corpo fundidos, três velas móveis em torno do losango e rabiola inferior bifurcada. Sem membros ou arma. Tem três abas e pequena aba inferior, em vez da aba única solicitada; conjunto continua simples.",
+      "story": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/etruslanca/etrim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/etruslanca/etrim/concept-v1/brief.md"
+    },
+    {
+      "id": "etrupim",
+      "name": "Etrupim",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Quatro patas, expressão curiosa e pequeno manto de papel; vela única nas costas e rabiola bifurcada. Sem arma ou couraça pesada; postura erguida e infantil.",
+      "story": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/etruslanca/etrupim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/etruslanca/etrupim/concept-v1/brief.md"
+    },
+    {
+      "id": "etrusvara",
+      "name": "Etrusvara",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Dois braços e duas pernas; duas mãos no mesmo cabo contínuo, ponta pequena e vela lateral. Colete, ombreiras e caneleiras leves. Duas velas dorsais adicionais surgiram na geração, distintas da rabiola; não implicam asas de voo ou capacidade nova aprovada.",
+      "story": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/etruslanca/etrusvara/concept-v1/concept.png",
+      "brief": "../../../art/creatures/etruslanca/etrusvara/concept-v1/brief.md"
+    },
+    {
+      "id": "etruslanca",
+      "name": "Etruslança",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Lança de estandarte · Pleistoceno Inferior · lobo-etrusco",
+      "story": "Guia a investida pelo giro de uma lança com vela lateral; a área ampla de manobra limita o uso em corredores.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/etruslanca/concept-v1/concept.png",
+      "brief": "../../../art/creatures/etruslanca/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "etrim",
+      "to": "etrupim",
+      "kind": "reweaving",
+      "reason": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "etrupim",
+      "to": "etrusvara",
+      "kind": "reweaving",
+      "reason": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "etrusvara",
+      "to": "etruslanca",
+      "kind": "reweaving",
+      "reason": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+      "decision_status": "proposed"
+    }
+  ]
+}

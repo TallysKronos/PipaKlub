@@ -1,0 +1,25 @@
+# Gravurso — Lorde do Último Apoio
+
+## Definido pelo autor
+
+Criar oito Lords Creatures com base no estudo destrinchado da fera armadurada.
+
+Direção: 45% criatura, 45% pipa viva e 10% acabamento pixel/2D mangá; corpo e rosto bestiais, proteção localizada, cor por material.
+
+## Proposta
+
+Adulto (IV), Urso-pedra. Ação: **Amparar**.
+
+Sustenta passagens que estão cedendo até que o último companheiro atravesse. Só vence quando consegue soltar o peso sem esmagar aquilo que protege.
+
+## Construção solicitada
+
+Create ONE NEW ORIGINAL adult SOULMONSTER LORD CREATURE, not an ordinary human knight with animal head, not an animal simply dressed in armor. Our attached OWN griffin is only a guide to clean 2D manga finish and broad living-paper anatomy; never copy its species, blue palette, diamond crystal, silhouette or wings. Design from a specific BEAST BODY and physical action first, add LOCALIZED functional armor second. 45% expressive living creature,45% functional living kite construction,10% selective stepped dark contour and CLEAN FLAT 2D MANGA. FACE exposed mature monstrous nonhuman anatomy, small narrow eyes with iris/pupil, characteristic skull/jaw/muzzle, no human face, smiling puppy, giant eyes, closed helmet or robotic metal mask. Living body is broad taut colored PAPER membrane masses with 2-3 meaningful compression folds and a FEW directional folded-paper tufts at cheek/neck/joints; not realistic flesh/fur/scales/muscle fibers, not a solid origami toy with triangular tessellation. Paper supports/ribs/knots appear ONLY where they carry load and don't outline every surface. Strong adult proportion: head smaller than major body masses, hands/feet/neck designed for action, root anatomy coherent. Considerable visible creature torso and limbs between protective pieces, not full suit of armor. Armor LOCALIZED in 2-3 regions with broad quiet surfaces, thickness and clear joints. Few large details, medium construction, small restrained signature. COLOR by material: dominant BODY neutral or one colored paper mass, ONE ARMOR color in continuous fields, ONE CAPE/SAIL contrast if needed, ONE tiny energy/eye accent. No multicolor borders/inlays in every plate, rainbow bands, ornate filigree, repeated gold trim or face relief on every plate. One base + one hard shadow + restrained hard highlight per material, matte, no gradients/gloss/PBR/noise. ONE complete rooted soul-rabiola with cord and terminal; extra anatomical tails/wing supports never become extra souls. No automatic crystal, orange eyes, text, labels, panel grid, copied insignia, external franchise motifs, scenery or other creatures. FULL creature three-quarter action-ready, all limbs/equipment/tail complete on plain WHITE with wide margins. Each signature structure must participate in its physical action, not decorative halo. A massive BEAR-like living-kite LORD, BIPED but very nonhuman: short thick neck, deep barrel torso, huge low shoulders, TWO long pendulous arms with enormous wide shovel-like claw hands, TWO short bowed legs and broad THREE-toed bear feet. Head squat SMALL relative to enormous forearms, short square DARK SLATE/ivory muzzle, heavy cheek paper tufts, tiny icy BLUE eyes and two short rounded folded earcorners, no helmet/horns. BODY dominant warm IVORY paper, broad slate throat and underside shadow, ARMOR only dull BRONZE block manacles at BOTH wrists and a broad open structural neck/shoulder YOKE, visible chest/upperarms/thighs; no chest cuirass. Two wide dark UMBER paper sails hang behind shoulders like folded lifting straps, not cape wings. Signature: forearm braces have TWO broad open load-bearing bamboo hooks each, attached at a single real knot hinge, allow palms to brace/fold a surface; all 2 arms visible and empty claws open as though catching falling weight. Grounded forward crouch, shoulders above hands not a bodybuilder human. ONE thick umber braided soul-rabiola rooted rump, terminal a single bronze/ivory folded square load tag. Quiet abdomen with ONE broad central tension fold, NOT muscular abs, no runes. More power in silhouette and hands than equipment.
+
+## Observado
+
+Dois braços enormes com mãos abertas e duas pernas compactas; cabeça pequena diante dos antebraços. Braçadeiras e gola bronze deixam o corpo marfim visível. As velas posteriores são amplas. Rabiola única completa. Há mais dobras de superfície que o mínimo imaginado; ainda são planos largos, sem estrias de carne.
+
+## Desconhecido
+
+Nomes, títulos e lore são propostas. Pré-evoluções, facção, obtenção, poderes, escala canônica e integração não definidos. Concepts não certificam recortes, rig, animações ou grade técnica de pixel art.

@@ -255,6 +255,8 @@ func run_journey() -> void:
 			if not interact_room("desk" if step == 3 else "stairs" if step == 11 else "exit"): return finish()
 		elif step == 10:
 			view.name_input.text = "Brisa"
+			# Typing emits text_changed, which turns "Confirmar · Rabbito" into "Confirmar nome".
+			view.name_input.text_changed.emit("Brisa")
 			if not click("Confirmar nome"): return finish()
 		elif not click("Sair para a rua" if step == 14 else "Avançar"): return finish()
 		await frame()
@@ -323,7 +325,8 @@ func run_journey() -> void:
 	await frame()
 	view._show_slots(false)
 	await frame()
-	if not click("Jornada 1 · Continuar — Kael"): return finish()
+	# Play saves to the autosave (space 0); its card comes first, focused, with the latest place.
+	if not click("Jornada 0 · Continuar — Kael"): return finish()
 	await frame()
 	var after: Dictionary = view.session.snapshot()
 	check(after.checkpoint.scene == "park-trail", "fresh frontend resumes park")
@@ -348,7 +351,7 @@ func resume_completed_journey() -> void:
 	await frame()
 	view._show_slots(false)
 	await frame()
-	if not click("Jornada 1 · Continuar — Kael"): return finish()
+	if not click("Jornada 0 · Continuar — Kael"): return finish()
 	await frame()
 	var saved: Dictionary = view.session.snapshot()
 	if not check(saved.checkpoint.kind == "world" and saved.checkpoint.scene in ["park-veredas", "professor-home"], "new process loads actual completed journey"): return finish()
@@ -631,7 +634,7 @@ func run_morro() -> bool:
 				await frame()
 				view._show_slots(false)
 				await frame()
-				if not click("Jornada 1 · Continuar — Kael"): return false
+				if not click("Jornada 0 · Continuar — Kael"): return false
 				await frame()
 				if not check(JSON.parse_string(JSON.stringify(view.battle.model.snapshot())) == JSON.parse_string(JSON.stringify(before)), "three-fighter battle resumes exactly"): return false
 				view.battle.paused = false

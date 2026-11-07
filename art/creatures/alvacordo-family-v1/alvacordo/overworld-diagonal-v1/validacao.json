@@ -1,0 +1,45 @@
+{
+  "stage": "static-pilot",
+  "canvas": [
+    80,
+    80
+  ],
+  "pivotProposed": [
+    40,
+    65
+  ],
+  "views": [
+    {
+      "file": "frente-sw.png",
+      "occupiedBoundsExclusive": [
+        10,
+        6,
+        69,
+        66
+      ],
+      "opaquePixels": 2237,
+      "opaqueColors": 19,
+      "alphaValues": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "costas-nw.png",
+      "occupiedBoundsExclusive": [
+        11,
+        5,
+        69,
+        72
+      ],
+      "opaquePixels": 2288,
+      "opaqueColors": 19,
+      "alphaValues": [
+        0,
+        255
+      ]
+    }
+  ],
+  "inGameValidated": false,
+  "animationValidated": false
+}

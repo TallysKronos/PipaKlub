@@ -70,13 +70,45 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	model.restore(state)
 	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "rai":"rai", "lacertubo": "lacertubo"}
 	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["rabiolava","platyx-draft","retalho-original","pipa-dragao-desatada","mormaco-possuido","tufanocorte","eremor"] else assets.get(model.enemy_model_id, "lacertubo")])
+	# Presentation-only alias preserves the saved encounter and existing Raio mechanics.
+	if model.enemy_model_id=="raio" and model.q.get("name","")=="Trovareta":art_ids[1]="trovareta"
 	if model.q.has("mormacoForm"):
 		if model.q.get("tylerAlly",false):rai_ally=load("res://assets/campaign/tyler-clareira-v1/rai.png")
 		if model.q.mormacoForm!="possessed":art_ids[1]="mormaco-normal"
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
-	background = load("res://assets/campaign/elo-arena.png" if reward_encounter.get("scene","").begins_with("kronasta-coracao-") else "res://assets/campaign/veredas-arena-wide-v2.png")
+	background = load(arena_path(reward_encounter))
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
 	panel_styles.assign([_panel("dark"), _panel("danger")])
+
+const DISTRICT_ARENAS := {
+	"industrial": "res://assets/campaign/vila-operaria-arena-wide-v1.png",
+	"aracati": "res://assets/campaign/aracati-arena-wide-v1.png",
+	"bosque": "res://assets/campaign/bosque-arena-wide-v1.png",
+	"pantano": "res://assets/campaign/pantano-arena-wide-v1.png",
+	"bambuzal": "res://assets/campaign/bambuzal-arena-wide-v1.png",
+	"beira-canal": "res://assets/campaign/beira-canal-arena-wide-v1.png",
+	"feira": "res://assets/campaign/feira-arena-wide-v1.png",
+	"cais": "res://assets/campaign/cais-arena-wide-v1.png",
+	"lajes": "res://assets/campaign/lajes-arena-wide-v1.png",
+	"centro": "res://assets/campaign/centro-arena-wide-v1.png",
+	"porto": "res://assets/campaign/porto-arena-wide-v1.png",
+	"mirante": "res://assets/campaign/mirante-arena-wide-v1.png",
+}
+
+static func district_arena_path(area_id: String) -> String:
+	var separator := area_id.rfind("-")
+	return DISTRICT_ARENAS.get(area_id.left(separator), "") if separator >= 0 else ""
+
+static func arena_path(encounter: Dictionary) -> String:
+	var scene: String = encounter.get("scene", "")
+	if scene.begins_with("kronasta-coracao-"): return "res://assets/campaign/elo-arena.png"
+	if scene == "kronasta-industrial-d" or encounter.get("kind") == "warehouse-story": return "res://assets/campaign/galpao-arena-wide-v2.png"
+	var district_arena := district_arena_path(scene.trim_prefix("kronasta-"))
+	if not district_arena.is_empty(): return district_arena
+	if scene == "kronasta-estadio-a": return "res://assets/campaign/estadio-arena-wide-v1.png"
+
+	if scene.begins_with("kronasta-montanha-") or encounter.get("kind") == "tufanocorte-story": return "res://assets/campaign/serra-arena-wide-v1.png"
+	return "res://assets/campaign/veredas-arena-wide-v2.png"
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -428,6 +460,20 @@ func _draw_feedback() -> void:
 		SkySignals.draw_on(self,model,_project_field,live_age,reduced_motion)
 	impacts.protected_points.clear()
 	var actors: Array = model.actors if model.get("actors")!=null else [model.p,model.q]
+	# Duel bot (tools/duel_balance.gd): Mata verde rivals shield exactly when Kael
+	# threatens them, and a player who pulls into the shield loses. The leaf ring shows
+	# the shield; the note says what to do.
+	for rival: Dictionary in actors.slice(1):
+		if int(rival.get("color",-1))!=2 or float(rival.get("skillTime",0))<=0 or rival.get("hp",0)<=0:continue
+		var at: Vector2=_project_field(Vector2(rival.x,rival.y))
+		var radius: float=64.0*_field_scale().x
+		draw_arc(at,radius,0,TAU,40,Tokens.NANQUIM,7,true)
+		draw_arc(at,radius,0,TAU,40,Tokens.FOLHA,4,true)
+		var note:="Defesa da folha · espere baixar"
+		var width: float=Hud.font().get_string_size(note,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x
+		var spot:=Vector2(clampf(at.x-width*.5,12,size.x-width-12),at.y-radius-12)
+		draw_string_outline(Hud.font(),spot,note,HORIZONTAL_ALIGNMENT_LEFT,-1,18,6,Tokens.NANQUIM)
+		draw_string(Hud.font(),spot,note,HORIZONTAL_ALIGNMENT_LEFT,-1,18,Tokens.FOLHA)
 	for actor: Dictionary in actors: impacts.protected_points.append(_project_field(Vector2(actor.x,actor.y)))
 	impacts.visible_rect=Rect2(10,_field_top()-20,size.x-20,maxf(80,bottom_panel.position.y-_field_top()+10))
 	impacts.suppress_secondary=actors.slice(1).any(func(actor:Dictionary):return actor.get("signatureWindup",0)>0 or model.attack_notice(actor).active)
@@ -453,7 +499,10 @@ func _project_field(point: Vector2) -> Vector2:
 	return _field_origin() + point * _field_scale()
 
 func _draw_foreground() -> void:
-	if reward_encounter.get("kind")=="warehouse-story":return
+	if background != null and (background.resource_path in DISTRICT_ARENAS.values() or background.resource_path.get_file() in [
+		"galpao-arena-wide-v2.png", "serra-arena-wide-v1.png", "estadio-arena-wide-v1.png",
+	]):
+		return
 	var source: Texture2D = foreground
 	var cap := source.get_width() / 4.0
 	var height := size.y * .15

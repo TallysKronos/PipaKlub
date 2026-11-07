@@ -1,0 +1,152 @@
+{
+  "title": "Lords Creatures",
+  "date": "2026-11-07",
+  "decision_status": "proposed",
+  "members": [
+    {
+      "id": "gravurso",
+      "name": "Gravurso",
+      "species": "Urso-pedra",
+      "title": "Lorde do Último Apoio",
+      "verb": "Amparar",
+      "lore": "Sustenta passagens que estão cedendo até que o último companheiro atravesse. Só vence quando consegue soltar o peso sem esmagar aquilo que protege.",
+      "version": 1,
+      "art": "../../../art/creatures/gravurso/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gravurso/concept-v1/brief.md",
+      "review": "../../../art/creatures/gravurso/concept-v1/revisao.md",
+      "materials": [
+        "Marfim / ardósia",
+        "Bronze fosco",
+        "Umber",
+        "Azul gelo"
+      ]
+    },
+    {
+      "id": "avelince",
+      "name": "Avelince",
+      "species": "Lince de vela",
+      "title": "Lorde da Contracorrente",
+      "verb": "Desviar",
+      "lore": "Atravessa investidas com um desvio mínimo e devolve a força para o chão. Suas velas só funcionam quando o corpo aceita girar junto.",
+      "version": 1,
+      "art": "../../../art/creatures/avelince/concept-v1/concept.png",
+      "brief": "../../../art/creatures/avelince/concept-v1/brief.md",
+      "review": "../../../art/creatures/avelince/concept-v1/revisao.md",
+      "materials": [
+        "Cinza claro",
+        "Ameixa",
+        "Marfim",
+        "Violeta"
+      ]
+    },
+    {
+      "id": "torvargo",
+      "name": "Torvargo",
+      "species": "Javali-aríete",
+      "title": "Lorde do Primeiro Impacto",
+      "verb": "Romper",
+      "lore": "Abre um caminho pela barreira, mas precisa reconhecer o que há atrás dela antes de avançar. A marca de um golpe certo é a passagem que permanece de pé.",
+      "version": 1,
+      "art": "../../../art/creatures/torvargo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/torvargo/concept-v1/brief.md",
+      "review": "../../../art/creatures/torvargo/concept-v1/revisao.md",
+      "materials": [
+        "Carvão / marfim",
+        "Coral",
+        "Vermelho escuro",
+        "Menta"
+      ]
+    },
+    {
+      "id": "najarcal",
+      "name": "Najarcal",
+      "species": "Naja de campânula",
+      "title": "Lorde do Círculo Aberto",
+      "verb": "Conter",
+      "lore": "Prende a ameaça num círculo que sempre conserva uma saída. Se fechar a última abertura, aprisiona também quem veio salvar.",
+      "version": 1,
+      "art": "../../../art/creatures/najarcal/concept-v1/concept.png",
+      "brief": "../../../art/creatures/najarcal/concept-v1/brief.md",
+      "review": "../../../art/creatures/najarcal/concept-v1/revisao.md",
+      "materials": [
+        "Areia / marfim",
+        "Petróleo",
+        "Cinza",
+        "Azul"
+      ]
+    },
+    {
+      "id": "raptorio",
+      "name": "Raptório",
+      "species": "Ave de carvalho e visco",
+      "title": "Lorde do Instante Partido",
+      "verb": "Interromper",
+      "lore": "Ampara linhas partidas entre seus nós de visco, abrindo asas de carvalho para distribuir a tensão. Precisa soltar cada linha antes que o abrigo vire prisão.",
+      "version": 2,
+      "art": "../../../art/creatures/raptorio/concept-v2/concept.png",
+      "brief": "../../../art/creatures/raptorio/concept-v2/brief.md",
+      "review": "../../../art/creatures/raptorio/concept-v2/revisao.md",
+      "materials": [
+        "Marfim",
+        "Nogueira",
+        "Verde de carvalho",
+        "Verde menta"
+      ]
+    },
+    {
+      "id": "cervoraculo",
+      "name": "Cervoráculo",
+      "species": "Cervo de arco",
+      "title": "Lorde da Rota Restante",
+      "verb": "Orientar",
+      "lore": "Seis olhos nas velas dos chifres observam rotas possíveis. Ele sustenta apenas uma travessia por vez: enxergar alternativas não permite salvar todos os caminhos.",
+      "version": 2,
+      "art": "../../../art/creatures/cervoraculo/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cervoraculo/concept-v2/brief.md",
+      "review": "../../../art/creatures/cervoraculo/concept-v2/revisao.md",
+      "materials": [
+        "Marfim / cinza",
+        "Verde floresta",
+        "Varetas claras",
+        "Violeta"
+      ]
+    },
+    {
+      "id": "cascoronte",
+      "name": "Cascoronte",
+      "species": "Quelônio de bastião",
+      "title": "Lorde do Abrigo Móvel",
+      "verb": "Transportar",
+      "lore": "Leva passageiros dentro da própria carapaça e conserva o passo estável enquanto atravessam o perigo. Precisa recolher a escada e fechar o abrigo antes de retomar a marcha.",
+      "version": 2,
+      "art": "../../../art/creatures/cascoronte/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cascoronte/concept-v2/brief.md",
+      "review": "../../../art/creatures/cascoronte/concept-v2/revisao.md",
+      "materials": [
+        "Marfim / cinza quente",
+        "Bordô",
+        "Grafite",
+        "Azul"
+      ]
+    },
+    {
+      "id": "melicodia",
+      "name": "Melicódia",
+      "species": "Abelha-colmeia processadora",
+      "title": "Lady dos Favos de Memória",
+      "verb": "Codificar",
+      "lore": "Transforma sinais recebidos em cubos de mel que podem ser transportados e compartilhados. Para preservar uma lembrança, precisa escolher quais ruídos deixará de guardar.",
+      "version": 1,
+      "art": "../../../art/creatures/melicodia/concept-v1/concept.png",
+      "brief": "../../../art/creatures/melicodia/concept-v1/brief.md",
+      "review": "../../../art/creatures/melicodia/concept-v1/revisao.md",
+      "materials": [
+        "Grafite",
+        "Cera marfim",
+        "Mel âmbar",
+        "Ciano"
+      ]
+    }
+  ],
+  "rejected": "Mantigardo preservado no histórico; substituído por Melicódia, não sua evolução."
+}

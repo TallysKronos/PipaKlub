@@ -1,0 +1,3 @@
+# Verdestrama — revisão
+
+Adulto proposto. Conferidos seis membros (dois braços anteriores, dois medianos curtos junto à cintura, duas pernas), quatro asas separadas e duas antenas. A crista de três folhas reforça parentesco; face agora é insetoide com olhos verdes e mandíbulas, não rosto da base colado a humano. Antebraço alongado vira rapieira e guarda foliar; palma oposta faz aparo. Rabiola completa com uma folha terminal. Tórax em pipa-quilha, bordas de vareta e membranas amplas mantêm material vivo. Pés largos aproximam-se do exemplo de acabamento: vistas posteriores e futura animação devem decidir articulações, não deduzidas aqui. Primeira chamada falhou sem imagem utilizável; a descrição simplificada produziu este resultado. Concept raster, sem rig ou integração.

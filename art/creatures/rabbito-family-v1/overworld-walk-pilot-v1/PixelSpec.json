@@ -1,0 +1,238 @@
+{
+  "canvas": [
+    32,
+    32
+  ],
+  "view": "SE/front three-quarter, pilot only",
+  "identity": "Rabbito Soulmonsters",
+  "reference": "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+  "style_reference": "Walk-Anim.png supplied by user: 32px cells, 3 drawings / 4 steps",
+  "palette": {
+    "O": "#20313e",
+    "I": "#fff0c6",
+    "C": "#efce92",
+    "S": "#be9767",
+    "T": "#30bcc4",
+    "t": "#16838f",
+    "d": "#115465",
+    "G": "#f4bd42",
+    "g": "#b97828",
+    "W": "#ffffff",
+    "E": "#294660"
+  },
+  "landmarks": {
+    "head_top": 1,
+    "eyes_y": 16,
+    "feet_baseline": 31,
+    "pivot": [
+      17,
+      31
+    ]
+  },
+  "cycle": [
+    "support",
+    "step-a",
+    "support",
+    "step-b"
+  ],
+  "durations_ms": [
+    110,
+    150,
+    110,
+    150
+  ],
+  "layers": [
+    "rabiola",
+    "pe-fundo",
+    "corpo",
+    "pe-frente",
+    "bracos",
+    "cabeca-orelhas"
+  ],
+  "deviations": [
+    "Paper facets and tiny patches omitted at 32px.",
+    "Ears narrowed to fit cell.",
+    "Only one direction; mirrored views not generated.",
+    "Walk pose interpreted as compact biped shuffle, not biological rabbit hopping."
+  ],
+  "drawing_parts": {
+    "cabeca-orelhas": {
+      "x": 9,
+      "y": 1,
+      "rows": [
+        "..........OO.....",
+        ".........OGIO....",
+        "..OO.....OITGO...",
+        ".OGIO....OITTGO..",
+        ".OITGO...OITTGO..",
+        ".OITTGO..OITTGO..",
+        "..OITTGO.OITTGO..",
+        "...OITTGOOICTGO..",
+        "....OICTGOICTGO..",
+        ".....OICGOICTGO..",
+        ".....OICGOICGO...",
+        "....OOICCIICCOO..",
+        "...OTICIIIIIIIIO.",
+        "..OTICIIIIIIIIICO",
+        ".OTtCIIIIIIIIICCO",
+        "..OtCIIEIIIIEICCO",
+        "...OCIIWIIIIWICCO",
+        "...OCIIIIgIIIICCO",
+        "....OCIIIgIIICCO.",
+        ".....OCCCCCCCCO..",
+        "......OOOOOOOO..."
+      ]
+    },
+    "corpo": {
+      "x": 12,
+      "y": 21,
+      "rows": [
+        "..OTTTtO..",
+        ".OTTTTttO.",
+        "OTtCCCTttO",
+        ".OCIIICCO.",
+        ".OCIIICCO.",
+        "..OCCCCO..",
+        "...OOOO..."
+      ]
+    },
+    "bracos": {
+      "x": 11,
+      "y": 23,
+      "rows": [
+        ".OO......OO.",
+        "OICCO...OICO",
+        "OICCO...OCCO",
+        ".OOO.....OO."
+      ]
+    },
+    "pe-fundo": {
+      "x": 19,
+      "y": 27,
+      "rows": [
+        ".OOO.",
+        "OCCCO",
+        "OCCCO",
+        ".OOO."
+      ]
+    },
+    "pe-frente": {
+      "x": 13,
+      "y": 28,
+      "rows": [
+        ".OOO..",
+        "OIIICO",
+        "OCCCCO",
+        ".OOOO."
+      ]
+    },
+    "rabiola": {
+      "x": 2,
+      "y": 22,
+      "rows": [
+        "..OG.......",
+        ".OGGGO.....",
+        "..OgO......",
+        "...Og...OG.",
+        "....OgggGGO",
+        ".....OOOgO.",
+        "........OO."
+      ]
+    }
+  },
+  "feet_revision": [
+    {
+      "near": {
+        "x": 12,
+        "y": 27,
+        "rows": [
+          "..OO...",
+          "..OCO..",
+          ".OICCO.",
+          "OIIIICO",
+          ".OOOOO."
+        ]
+      },
+      "far": {
+        "x": 20,
+        "y": 26,
+        "rows": [
+          ".OO..",
+          "OCCO.",
+          ".OCCO",
+          "OCCCO",
+          ".OOO."
+        ]
+      }
+    },
+    {
+      "near": {
+        "x": 13,
+        "y": 28,
+        "rows": [
+          "..OO...",
+          "..OICO.",
+          ".OIIIIO",
+          "..OOOO."
+        ]
+      },
+      "far": {
+        "x": 20,
+        "y": 25,
+        "rows": [
+          ".OO..",
+          "OCCO.",
+          "OCCCO",
+          ".OOO."
+        ]
+      }
+    },
+    {
+      "near": {
+        "x": 12,
+        "y": 27,
+        "rows": [
+          "..OO...",
+          "..OCO..",
+          ".OICCO.",
+          "OIIIICO",
+          ".OOOOO."
+        ]
+      },
+      "far": {
+        "x": 20,
+        "y": 26,
+        "rows": [
+          ".OO..",
+          "OCCO.",
+          ".OCCO",
+          "OCCCO",
+          ".OOO."
+        ]
+      }
+    },
+    {
+      "near": {
+        "x": 11,
+        "y": 25,
+        "rows": [
+          "...OO..",
+          "..OCCO.",
+          ".OICCO.",
+          "OICCCO.",
+          ".OOOO.."
+        ]
+      },
+      "far": {
+        "x": 20,
+        "y": 28,
+        "rows": [
+          "OO...",
+          "OCCO.",
+          "OCCCO",
+          ".OOO."
+        ]
+      }
+    }
+  ]
+}

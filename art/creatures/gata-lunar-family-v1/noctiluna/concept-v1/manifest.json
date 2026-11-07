@@ -1,0 +1,19 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-33ec245f-94c9-4b5c-b1ab-0e6a29383449.png",
+  "sha256": "8f5ef3128afafd3cdc5f63515f444315239f1857b04dd4a9e6c7a67e3ce34984",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "../../gambalhote/gambalhote-adult/concept-v2/concept.png: acabamento apenas"
+  ],
+  "decision_status": "approved",
+  "production_status": "concept",
+  "integration_status": "not_integrated",
+  "approval_note": "Autor: \"Aprovadissimos\", em 2026-11-04, após apresentação dos quatro estágios. Aprovação visual da linha completa; nomes finais, mecânicas e integração não incluídos."
+}

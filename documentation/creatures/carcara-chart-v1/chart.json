@@ -1,0 +1,99 @@
+{
+  "family_id": "carcara",
+  "scope": "Três concepts novos e base preservada; sem integração.",
+  "stage_mapping": "I/II/III/IV organizam bebê/base/jovem/adulto como proposta.",
+  "nodes": [
+    {
+      "id": "carquim",
+      "name": "Carquim",
+      "kind": "stage",
+      "stage": 1,
+      "age": "Bebê",
+      "identity": "Filhote em gota com peito arredondado, asas curtas dobradas e uma pena direcional.",
+      "story": "A forma imatura aprende a sustentar o próprio equilíbrio antes de procurar trajetórias.",
+      "action": "Ensaiar equilíbrio",
+      "mechanism": "Asas recolhidas e rabiola dupla curta ajudam nos pequenos saltos.",
+      "tradeoff": "Pouca sustentação e distância; não é um voador adulto miniaturizado.",
+      "decision_status": "approved",
+      "approval_note": "Autor: aprovados, antes do pedido Mata Verde. Aprovação visual, não integração.",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/carcara-family-v1/carquim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/carcara-family-v1/carquim/concept-v1/brief.md"
+    },
+    {
+      "id": "carcara",
+      "name": "Carcará",
+      "kind": "stage",
+      "stage": 2,
+      "age": "Base · criança neste estudo",
+      "identity": "Ave-pipa em losango laranja e creme, asas castanhas e rabiola dupla com nós.",
+      "story": "Pipa remendada que ensina a esperar a corrente; fonte do catálogo preservada.",
+      "decision_status": "approved",
+      "approval_note": "Identidade de Carcará existente preservada; II/criança é organização proposta deste chart, não regra mecânica.",
+      "production_status": "concept",
+      "implementation": "base intacta",
+      "art": "../../../art/creatures/carcara-family-v1/references/carcara-identity.png",
+      "brief": "../evolucoes-v1/briefs/carcara.md"
+    },
+    {
+      "id": "caravento",
+      "name": "Caravento",
+      "kind": "stage",
+      "stage": 3,
+      "age": "Jovem",
+      "identity": "Corpo-quilha estreito e ereto, pernas longas e asas recuadas em gesto de direção.",
+      "story": "Escolher a corrente amadurece em escolher também o ponto de apoio e a saída.",
+      "action": "Corrigir a decolagem",
+      "mechanism": "Pernas permitem travar e lançar; asas estreitas e rabiola dupla orientam a mudança.",
+      "tradeoff": "Mudanças bruscas exigem recuperação antes de uma nova saída.",
+      "decision_status": "approved",
+      "approval_note": "Autor: aprovados, antes do pedido Mata Verde. Aprovação visual, não integração.",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/carcara-family-v1/caravento/concept-v1/concept.png",
+      "brief": "../../../art/creatures/carcara-family-v1/caravento/concept-v1/brief.md"
+    },
+    {
+      "id": "caramastro",
+      "name": "Caramastro",
+      "kind": "stage",
+      "stage": 4,
+      "age": "Adulto",
+      "identity": "Corpo horizontal de pipa-quilha e asas de grandes painéis com pontas de direção separadas.",
+      "story": "De dominar a própria saída passa a oferecer um exemplo estável que outros podem seguir.",
+      "action": "Conduzir pela corrente",
+      "mechanism": "Asas amplas distribuem pressão e duas rabiolas completas estabilizam o planeio.",
+      "tradeoff": "A envergadura exige espaço para curva; não prioriza arrancadas curtas.",
+      "decision_status": "approved",
+      "approval_note": "Autor: aprovados, antes do pedido Mata Verde. Aprovação visual, não integração.",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/carcara-family-v1/caramastro/concept-v1/concept.png",
+      "brief": "../../../art/creatures/carcara-family-v1/caramastro/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "carquim",
+      "to": "carcara",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Ensaiar equilíbrio abre as asas e permite reconhecer a corrente."
+    },
+    {
+      "from": "carcara",
+      "to": "caravento",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Esperar o vento evolui para escolher apoio e corrigir a saída."
+    },
+    {
+      "from": "caravento",
+      "to": "caramastro",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Precisão própria amadurece em estabilidade para conduzir pelo exemplo."
+    }
+  ]
+}

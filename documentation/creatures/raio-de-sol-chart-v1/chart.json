@@ -1,0 +1,74 @@
+{
+  "family_id": "raio-de-sol",
+  "scope": "Três concepts e uma pose funcional; base original preservada.",
+  "stage_mapping": "Idades de design; graus mecânicos indefinidos, jovem não solicitado.",
+  "nodes": [
+    {
+      "id": "solim",
+      "name": "Solim",
+      "age": "Bebê",
+      "stage": null,
+      "kind": "stage",
+      "identity": "Botão dourado em meia-lua com duas abas, patas mínimas e braços recolhidos.",
+      "story": "O olhar curioso aprende a distinguir uma abertura antes de agir.",
+      "action": "Recolher e observar",
+      "mechanism": "Abas de papel protegem o rosto; duas rabiolas curtas equilibram.",
+      "tradeoff": "Pouco alcance e sustentação.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/raio-de-sol-family-v1/solim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/raio-de-sol-family-v1/solim/concept-v1/brief.md"
+    },
+    {
+      "id": "raio-de-sol-crianca",
+      "name": "Raio de Sol",
+      "age": "Criança · novo concept",
+      "stage": null,
+      "kind": "stage",
+      "identity": "Filhote leonino compacto, focinho curto, juba em duas abas e pequenos leques nos punhos.",
+      "story": "Observar amadurece em experimentar como se proteger.",
+      "action": "Ensaiar a guarda",
+      "mechanism": "Braços sanfonados aproximam pequenos painéis do rosto.",
+      "tradeoff": "Painéis ainda pequenos deixam passagens abertas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/raio-de-sol-family-v1/raio-de-sol-crianca/concept-v1/concept.png",
+      "brief": "../../../art/creatures/raio-de-sol-family-v1/raio-de-sol-crianca/concept-v1/brief.md"
+    },
+    {
+      "id": "solguarda",
+      "name": "Solguarda",
+      "age": "Adulto",
+      "stage": null,
+      "kind": "stage",
+      "identity": "Leão bípede magricela, juba-capuz corporal e punhos em meios-escudos complementares.",
+      "story": "Ler a situação amadurece em escolher a abertura e sustentar uma guarda.",
+      "action": "Fechar a guarda solar",
+      "mechanism": "Dois meios-discos solares unem bordas diante do peito; varetas e sanfonas articulam.",
+      "tradeoff": "Fechar a guarda compromete o alcance lateral até abri-la de novo.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/raio-de-sol-family-v1/solguarda/concept-v1/concept.png",
+      "brief": "../../../art/creatures/raio-de-sol-family-v1/solguarda/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "solim",
+      "to": "raio-de-sol-crianca",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "O botão abre em filhote que ensaia guarda."
+    },
+    {
+      "from": "raio-de-sol-crianca",
+      "to": "solguarda",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Amadurecimento visual da guarda em leão magro com dois meios-escudos. Graus intermediários e requisitos não definidos."
+    }
+  ]
+}

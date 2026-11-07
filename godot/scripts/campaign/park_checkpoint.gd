@@ -141,6 +141,10 @@ static func encounter_weight(checkpoint: Dictionary, point: Vector2) -> float:
 	if not MAPS.has(scene) or not valid_position(scene,point): return 0.0
 	return preload("res://scripts/campaign/park_pacing.gd").weight(model_for(scene),point)
 
+## Between Jurandir's warning (Porto Novo done) and the rescue in the Ruínas.
+static func held(rescue_flag: String, player: Dictionary) -> bool:
+	return preload("res://scripts/campaign/district_rules.gd").completed(player,"porto") and not player.get("flags",{}).get(rescue_flag,false)
+
 static func allowed(event: Dictionary, player: Dictionary, area: String = "") -> bool:
 	var props: Dictionary = event.get("props",{})
 	var flags: Dictionary = player.get("flags",{})
@@ -148,7 +152,10 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	if props.get("acao","")=="endgameStep": return endgame.ready(player,str(props.get("step","")))
 	# The Rato makes his invitation in the Bosque storm (decision of 04/11), not in Aracati.
 	if props.get("acao","")=="aracatiRato": return false
-	if endgame.exit_blocked(event,player,area): return false
+	# The Veredas trail clues lead to the guardian; after the duel they would repeat stale text.
+	if props.get("acao","") in ["veredasTrace","veredasPipes","parkBossGuide"] and flags.get("guardianDefeated",false): return false
+	# Nina is held in the Ruínas from the Porto Novo kidnapping until Kael frees her.
+	if event.get("name","")=="Nina" and not area.begins_with("kronasta-coracao") and held("ruinasNinaLivre",player): return false
 	if props.get("acao","")=="ruinasDuel":
 		return not flags.get(props.rescueFlag,false)
 	if props.get("acao","")=="pipeiroFantasma":
@@ -188,6 +195,8 @@ static func exit_target(checkpoint: Dictionary, id: String, player: Dictionary) 
 		if absf(model_for(source).height_at(at)-model_for(source).height_at(Vector2(event.u+.5,event.v+.5)))>=.25: return {"status":"wrong_step"}
 		var destination: String = event.props.get("destino","")
 		if destination in ["park-clearing","park-veredas"] and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,destination):return {"status":"story_gate"}
+		# F22: at night the exit stays visible; the Bando barrier explains what opens it.
+		if load("res://scripts/campaign/endgame_story.gd").exit_blocked(event,player,source):return {"status":"night_barrier"}
 		if destination=="quintal": return {"status":"ok","scene":destination,"point":Vector2(1792,1808),"space":""}
 		if not MAPS.has(destination): return {"status":"wrong_step"}
 		var entrance: String = event.props.get("entrada_destino","")

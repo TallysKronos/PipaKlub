@@ -45,7 +45,8 @@ func begin(id:String,at:Vector2)->Dictionary:
 	if cp.kind!="world" or entry.is_empty() or cp.get("scene")!=scene_for(entry) or cp.get("space")!=CP.SPACE or not allowed(saved.player) or not valid_link(entry) or not at.is_finite():return {"status":"wrong_step"}
 	if saved.player.has("ninaGlideFlight"):return {"status":"wrong_step"}
 	var model=CP.model_for(cp.scene);var origin:=point(entry.from)
-	if at.distance_to(origin)>.85 or not model.clear_segment(at,origin):return {"status":"wrong_step"}
+	# Same reach as the interact prompt (1.8): the flight starts from the arrow anyway.
+	if at.distance_to(origin)>1.8 or not model.clear_segment(at,origin):return {"status":"wrong_step"}
 	saved.player.ninaGlideFlight={"version":1,"id":State.new_id(),"link":id,"scene":cp.scene}
 	return session.checkpoint(CP.make(cp.scene,origin,CP.SPACE),saved.player)
 func finish(token:String)->Dictionary:

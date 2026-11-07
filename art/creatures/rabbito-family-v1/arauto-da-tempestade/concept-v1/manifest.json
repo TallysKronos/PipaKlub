@@ -1,0 +1,25 @@
+{
+  "id": "arauto-da-tempestade",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a1a382-5f9e-70e2-88df-2cc0d3978098/exec-03773d71-c521-4ae0-80e3-060df87d0489.png",
+  "sha256": "1848d5f2988f40c950906c9440fe4aa29384c2cb6d53614f14f9502d30a944bd",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+      "role": "Identidade autoral e acabamento"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/rastro-dos-ventos/concept-v1/concept.png",
+      "role": "Continuidade do piloto juvenil"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

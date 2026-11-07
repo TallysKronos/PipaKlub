@@ -1,0 +1,79 @@
+{
+  "family_id": "najarcal",
+  "scope": "Linha com três pré-formas propostas e adulto existente; sem regras de jogo ou integração.",
+  "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+  "nodes": [
+    {
+      "id": "najarcal-baby",
+      "name": "Najarcal — Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Recolher-se",
+      "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/najarcal/baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/najarcal/baby/concept-v1/brief.md"
+    },
+    {
+      "id": "najarcal-child",
+      "name": "Najarcal — Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Guardar um vão",
+      "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/najarcal/child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/najarcal/child/concept-v1/brief.md"
+    },
+    {
+      "id": "najarcal-young",
+      "name": "Najarcal — Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Conter sem fechar",
+      "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/najarcal/young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/najarcal/young/concept-v1/brief.md"
+    },
+    {
+      "id": "najarcal",
+      "name": "Najarcal",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Naja de campânula · Conter",
+      "story": "Prende a ameaça num círculo que sempre conserva uma saída. Se fechar a última abertura, aprisiona também quem veio salvar.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/najarcal/concept-v1/concept.png",
+      "brief": "../../../art/creatures/najarcal/concept-v1/brief.md",
+      "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "najarcal-baby",
+      "to": "najarcal-child",
+      "kind": "reweaving",
+      "reason": "Passa de recolher-se para guardar um vão. Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "najarcal-child",
+      "to": "najarcal-young",
+      "kind": "reweaving",
+      "reason": "Passa de guardar um vão para conter sem fechar. Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "najarcal-young",
+      "to": "najarcal",
+      "kind": "reweaving",
+      "reason": "Passa de conter sem fechar para conter. Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+      "decision_status": "proposed"
+    }
+  ]
+}

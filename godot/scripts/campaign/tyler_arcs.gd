@@ -28,6 +28,7 @@ static func settle_lab(session: Node) -> Dictionary:
 	for partner: Dictionary in saved.player.partners:
 		if partner.id == result.partnerId:
 			partner.condition = {"line":clampf(result.p.hp / result.p.stats.line * 100, 0, 100), "structure":clampf(result.p.hull / result.p.stats.line * 100, 0, 100)}
+	if result.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,result)
 	if result.outcome == "won":
 		saved.player.flags.tylerCreatedKnown = true
 	saved.player.erase("encounter")
@@ -51,3 +52,15 @@ static func finish_finale(session: Node) -> Dictionary:
 	saved.player.inventory.erase(Flower)
 	saved.player.flags.tylerFlowerGiven = true
 	return session.commit_operation("tyler-flor-de-cerejeira-v1", saved.checkpoint, saved.player)
+
+static func presentation_pending(player: Dictionary) -> bool:
+	return player.flags.get("tylerFlowerGiven",false) and not player.flags.get("tylerFlowerSceneSeen",false)
+
+static func finish_presentation(session: Node, point: Vector2) -> Dictionary:
+	var saved: Dictionary=session.snapshot()
+	if saved.checkpoint.get("scene")!="professor-home" or not presentation_pending(saved.player):return {"status":"wrong_step"}
+	if not point.is_finite():return {"status":"wrong_step"}
+	saved.player.flags.tylerFlowerSceneSeen=true
+	var checkpoint: Dictionary=saved.checkpoint.duplicate(true)
+	checkpoint.position=[point.x,point.y]
+	return session.commit_operation("tyler-flor-cena-v1",checkpoint,saved.player)

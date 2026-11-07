@@ -1,0 +1,18 @@
+{
+  "local_base": "../../../art/creatures/gevoraz/concept-v2/concept.png",
+  "internal_benchmarks": [
+    "../benchmark-design-evolutivo-v1/ANALISE.md",
+    "../../../art/benchmarks/loogamon-line-2026-11-06/ANALISE.md"
+  ],
+  "external_note": "Aprendizado de função e mudança de arquitetura reaproveitado dos estudos locais; imagens externas não anexadas à geração.",
+  "consulted": [
+    {
+      "url": "https://sg.portal-pokemon.com/pokedex/0736/",
+      "title": "Grubbin — Pokédex oficial",
+      "entity": "The Pokémon Company",
+      "accessed": "2026-11-07",
+      "observed": "Página identifica categoria larva, hábito subterrâneo e apresenta Grubbin/Charjabug/Vikavolt na seção Evolution.",
+      "interpretation": "Uma função inicial concreta pode guiar diferenças posteriores de órgãos; aplicação direta apenas na concepção insetoide, sem copiar a anatomia nem alegar estudo visual completo da linha."
+    }
+  ]
+}

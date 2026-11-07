@@ -16,7 +16,7 @@ func begin(point:Vector2)->Dictionary:
  if saved.player.flags.get("tufanocorteLiberto",false):return {"status":"already_applied"}
  var active:Dictionary=preload("res://scripts/campaign/park_training.gd").active(saved.player)
  if active.is_empty() or active.get("condition",{}).get("line",100)<=0 or active.get("condition",{}).get("structure",100)<=0:return {"status":"repair_needed"}
- var model:=Model.new(active,{"modelId":"tufanocorte","level":29});model.q.name="Tufanocorte";model.q.boss=true;model.duration=150
+ var model:=Model.new(active,{"modelId":"tufanocorte","level":29});model.q.name="Tufanocorte";model.q.boss=true;model.duration=150;preload("res://scripts/campaign/progression.gd").story_assist(saved.player,model)
  saved.player.encounter={"id":State.new_id(),"kind":"tufanocorte-story","scene":cp.scene,"space":CP.SPACE,"returnPoint":[point.x,point.y],"rewardXp":0,"state":model.snapshot()}
  return session.checkpoint({"kind":"encounter"},saved.player)
 func settle()->Dictionary:
@@ -26,6 +26,8 @@ func settle()->Dictionary:
  if not State.valid_encounter(e) or s.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
  for p:Dictionary in saved.player.partners:
   if p.id==s.partnerId:p.condition={"line":clampf(s.p.hp/s.p.stats.line*100,0,100),"structure":clampf(s.p.hull/s.p.stats.line*100,0,100)}
+ preload("res://scripts/campaign/progression.gd").story_result(saved.player,s)
+ if s.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,s)
  if s.outcome=="won":
   saved.player.flags.tufanocorteLiberto=true
   saved.player.flags.canCorrenteDeAr=true
@@ -91,12 +93,13 @@ const WIND_END:=Vector2(18.5,17.5)
 const WIND_RECEIPT:="serra-corrente-de-ar-v1"
 
 static func wind_events(player:Dictionary)->Array:
- if not player.get("flags",{}).get("canCorrenteDeAr",false):return []
+ # F18: the wall opens after the Cavar lesson and the gallery.
+ if not player.get("flags",{}).get("canCorrenteDeAr",false) or GALLERY_RECEIPT not in player.get("completedOperations",[]):return []
  return [{"id":19404,"type":"interacao","name":"Corrente de Ar","u":int(WIND_START.x),"v":int(WIND_START.y),"props":{"acao":"serraWind"}}]
 
 func ride_wind(point:Vector2)->Dictionary:
  var saved:Dictionary=session.snapshot()
- if not saved.player.flags.get("canCorrenteDeAr",false) or not _near_lesson(saved,point,WIND_START):return {"status":"wrong_step"}
+ if not saved.player.flags.get("canCorrenteDeAr",false) or GALLERY_RECEIPT not in saved.player.completedOperations or not _near_lesson(saved,point,WIND_START):return {"status":"wrong_step"}
  var map=CP.model_for("kronasta-montanha-c")
  if not map.point_walkable(WIND_END) or map.height_at(WIND_END)<=map.height_at(WIND_START):return {"status":"wrong_step"}
  var target:=CP.make("kronasta-montanha-c",WIND_END,CP.SPACE)

@@ -14,7 +14,7 @@ func _ready() -> void:
 	var column := VBoxContainer.new()
 	column.add_theme_constant_override("separation", 18)
 	margin.add_child(column)
-	label("SOULMONSTERS · DEMO CONCLUÍDA", column, 22, Hud.CYAN)
+	label("SOULMONSTERS · CAPÍTULO CONCLUÍDO", column, 22, Hud.CYAN)
 	label("Um fio de volta para casa", column, 44)
 	var body := HBoxContainer.new()
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -38,12 +38,12 @@ func _ready() -> void:
 	copy.add_theme_constant_override("separation", 16)
 	inset.add_child(copy)
 	label("A rabiola de Nina", copy, 30)
-	label("Você enfrentou o Lacertubo e devolveu a rabiola do Carcará à Nina. Obrigado por jogar este primeiro trecho da jornada de Kael!", copy, 22)
+	label("Você enfrentou o Lacertubo e devolveu a rabiola do Carcará à Nina. A Liga reconheceu: Kael agora é pipeiro da Rabiola Verde.", copy, 22)
 	label("Primeiro voo e oficina concluídos\nParque e Veredas explorados\nRabiola entregue à Nina", copy, 20, Hud.CYAN)
 	var space := Control.new()
 	space.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	copy.add_child(space)
-	label("Sua jornada está salva. Você pode continuar explorando; as áreas futuras aparecem apagadas no mapa.", copy, 18)
+	label("Sua jornada está salva. Próximo passo: Planar com o Carcará da Nina nas Veredas e, depois, o bairro Beira-Canal.", copy, 18)
 	var actions := HBoxContainer.new()
 	actions.add_theme_constant_override("separation", 16)
 	column.add_child(actions)

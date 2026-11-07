@@ -34,6 +34,8 @@ func dialogs(node: Node) -> Array[Control]:
 		result.append_array(dialogs(child))
 	return result
 func run_checks() -> void:
+	# The player's menu: the QA jump entry only shows in QA builds (qa_jump.gd).
+	preload("res://scripts/campaign/kronasta_story.gd").qa_override=0
 	for pair in [[Hud.INK, Hud.PAPER], [Hud.PAPER, Hud.SURFACE], [Hud.INK, Hud.GOLD], [Hud.BLACK, Hud.DANGER], [Hud.MUTED, Hud.SURFACE], [Hud.Tokens.TINTA_3, Hud.PAPER]]:
 		var ratio := contrast(pair[0], pair[1])
 		print("CONTRAST: ", pair[0].to_html(), "/", pair[1].to_html(), " = ", snappedf(ratio, .01))

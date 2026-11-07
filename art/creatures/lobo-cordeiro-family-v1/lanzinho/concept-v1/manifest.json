@@ -1,0 +1,25 @@
+{
+  "id": "lanzinho",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-2e14f566-732f-40a8-a5ea-470064b37b41.png",
+  "sha256": "f58f101471bca70d231adbdc8894b2035368e79b6580c4f8d87c451a40e45641",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/soulgen/keys/lobo-cordeiro/concept-v1/lobo-cordeiro.png",
+      "role": "Identidade própria"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento aprovado"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}
