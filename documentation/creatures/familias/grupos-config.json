@@ -1,0 +1,473 @@
+{
+  "date": "2026-11-07",
+  "groups": [
+    {
+      "id": "cavaleiros",
+      "name": "Cavaleiros e cavaleiras",
+      "kind": "colecao_transversal",
+      "description": "Formas com identidade de cavaleiro, elmo e armadura. A família completa aparece como linhagem relacionada; seus bebês não recebem patente de cavaleiro.",
+      "families": [
+        "geordraco",
+        "lacustrel",
+        "valdrisa",
+        "joanacendra",
+        "cidraco",
+        "tomoeryu",
+        "bradamara",
+        "rolandor"
+      ],
+      "nodes": [
+        "voto-do-elo",
+        "tricordio",
+        "vesperalia",
+        "riscarion",
+        "yaguarion",
+        "dobracula",
+        "capibaluarte",
+        "chaspiral-imperial",
+        "tramadraco",
+        "caramund",
+        "noctiluna",
+        "seraf-seda",
+        "gambalhote-adult",
+        "anaconda-cavaleiro",
+        "rabbitknight",
+        "rabbito-conde-da-ultima-hora"
+      ],
+      "sources": [
+        "art/creatures/onze-cavaleiros-v1",
+        "documentation/creatures/cavaleiros-draconianos-v1/grupo.json"
+      ],
+      "population_proposal": "Destacar adultos como protetores, rivais ou encontros de grande presença; decidir lealdade e lugar por indivíduo.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "draconianos",
+      "name": "Cavaleiros draconianos",
+      "kind": "conjunto_criado",
+      "description": "Os oito cavaleiros draconianos já criados. Oito Votos da Escama é nome de trabalho, não hierarquia canônica.",
+      "families": [
+        "geordraco",
+        "lacustrel",
+        "valdrisa",
+        "joanacendra",
+        "cidraco",
+        "tomoeryu",
+        "bradamara",
+        "rolandor"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/creatures/cavaleiros-draconianos-v1/grupo.json",
+        "documentation/creatures/cavaleiros-draconianos-v1/LORE.md"
+      ],
+      "population_proposal": "Planejar encontros de juramento e dilemas distintos; não distribuir como inimigos genéricos repetidos.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "mumificados",
+      "name": "Mumificados e Enfaixados do Fio Quieto",
+      "kind": "conjunto_criado",
+      "description": "As quatro famílias dos Enfaixados, mais a linhagem mumificada de Yaguarú. A união ampliada é temática; Yaguarú não ganha vínculo automático com a lore dos quatro.",
+      "families": [
+        "selacrabio",
+        "ibiscrito",
+        "crocafago",
+        "velaravan",
+        "yaguaru-memoria"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/creatures/enfaixados-v1/LORE.md",
+        "documentation/creatures/enfaixados-v1/catalogo.json",
+        "documentation/creatures/yaguaru-chart-v1/chart.json"
+      ],
+      "population_proposal": "Usar ações de conservar, lacrar, registrar, abrigar e conduzir nas Ruínas; localização e missões novas permanecem propostas.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "crystais-pipas",
+      "name": "Portadores dos Crystais Pipas",
+      "kind": "conjunto_criado",
+      "description": "Oito linhagens com portadores de energia ancestral na armadura. Descendência é navegação familiar; nem toda pré-forma possui o cristal adulto.",
+      "families": [
+        "vesperalito",
+        "nimbalio",
+        "ofirante",
+        "canticripta",
+        "grifarca",
+        "gevoraz",
+        "makareu",
+        "trancoura"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/creatures/crystais-pipas-v1/CONCEITO.md",
+        "documentation/creatures/crystais-pipas-pre-evolucoes-v1/catalogo.json"
+      ],
+      "population_proposal": "Reservar a presença do portador adulto para descobertas importantes. Cristal não é outra alma nem prova de equipamento removível.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "quatro-mares",
+      "name": "Quatro Marés",
+      "kind": "conjunto_criado",
+      "description": "Enchente, Preamar, Vazante e Baixamar, com suas quatro famílias e especialidades.",
+      "families": [
+        "alvorraia",
+        "coroabissal",
+        "vortentaculo",
+        "reciferreo"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/creatures/quatro-mares-v1/grupo.json",
+        "documentation/creatures/quatro-mares-v1/LORE.md"
+      ],
+      "population_proposal": "Diferenciar passagens aquáticas pela ação de cada maré: erguer, sustentar, recolher e ancorar. Sem transporte livre ou mecânica presumida.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "armada-lobos",
+      "name": "Armada dos Lobos",
+      "kind": "conjunto_criado",
+      "description": "Quatro linhagens de lobos e armamentos. Lupunhal e Miralís são jovens; Lupregente e Miralcaide são seus adultos.",
+      "families": [
+        "lupunhal",
+        "dirubastiao",
+        "etruslanca",
+        "miralis"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/creatures/armada-dos-lobos-v1/grupo.json",
+        "documentation/creatures/armada-dos-lobos-v1/LORE.md"
+      ],
+      "population_proposal": "Diferenciar função e distância de ação entre adagas, lança, cerco e precisão; não fazer dos bebês membros militares por herança.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "lords",
+      "name": "Lords Creatures",
+      "kind": "conjunto_criado",
+      "description": "Os oito Lords atuais e suas 24 pré-formas. Mantigardo foi rejeitado e permanece somente no histórico.",
+      "families": [
+        "gravurso",
+        "avelince",
+        "torvargo",
+        "najarcal",
+        "raptorio",
+        "cervoraculo",
+        "cascoronte",
+        "melicodia"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/creatures/lords-creatures-v1/grupo.json",
+        "documentation/creatures/lords-pre-evolucoes-v1/grupo.json"
+      ],
+      "population_proposal": "Usar cada família por uma ação reconhecível: amparar, desviar, romper, conter, interceptar, orientar, transportar e codificar.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "guardioes-encontros",
+      "name": "Guardiões e grandes encontros",
+      "kind": "classificacao_editorial",
+      "description": "Agrupa guardiões já registrados para planejamento. Não resolve divergências entre os Quatro Ventos da bíblia e nomes/coleções de outros catálogos.",
+      "families": [
+        "mormaco",
+        "trovareta",
+        "rabiolava",
+        "glacerol",
+        "tufanocorte",
+        "lacertubo"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/historia/BIBLIA-DA-HISTORIA.md",
+        "assets/pipa-dex.json"
+      ],
+      "population_proposal": "Preparar apresentação, sinais de presença e consequência narrativa antes de decidir distribuição. Ler a fonte de cada encontro.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "estados-narrativos",
+      "name": "Máscaras, possessões e sobrecargas",
+      "kind": "estados_narrativos",
+      "description": "Somente as apresentações narrativas selecionadas, não novas espécies ou estágios de crescimento.",
+      "families": [],
+      "nodes": [
+        "retalho-mascarada",
+        "mormaco-possuido",
+        "azulfazo-possuido",
+        "pipa-dragao",
+        "pipa-dragao-desatada"
+      ],
+      "sources": [
+        "documentation/historia/BIBLIA-DA-HISTORIA.md",
+        "documentation/historia/BIBLIA-DA-HISTORIA.md"
+      ],
+      "population_proposal": "Usar como estado de uma identidade e registrar causa e retorno. Conde da Última Hora não é possessão por ter cores escuras.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "entrelacos",
+      "name": "Entrelaços",
+      "kind": "mecanismo_transversal",
+      "description": "Resultados compartilhados entre famílias; participantes permanecem em suas linhas originais.",
+      "families": [],
+      "nodes": [
+        "paleorix",
+        "entreflor"
+      ],
+      "sources": [
+        "documentation/creatures/estrato-rex-entrelaco-v1/chart.json",
+        "documentation/creatures/rai-chart-v1/chart.json"
+      ],
+      "population_proposal": "Tratar a união como momento de cooperação; compatibilidade, receita e reversibilidade dependem de decisão.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "crepusculo",
+      "name": "Criaturas do crepúsculo",
+      "kind": "classificacao_editorial",
+      "description": "Afinidade visual noturna, lunar ou vampiresca; não significa vilania, mesmo elemento ou mesma ordem.",
+      "families": [
+        "flautrevo",
+        "gata-lunar",
+        "doberman-c",
+        "hipolanterna-family-v1",
+        "jaguarluar"
+      ],
+      "nodes": [
+        "rabbito-conde-da-ultima-hora"
+      ],
+      "sources": [
+        "assets/pipa-dex.json",
+        "documentation/creatures/rabbito-conde-da-ultima-hora-v1/CHART.md"
+      ],
+      "population_proposal": "Explorar encontros de sombra, escuta e confiança; definir o contexto antes de converter afinidade visual em habitat.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "fosseis",
+      "name": "Fósseis e silhuetas pré-históricas",
+      "kind": "classificacao_editorial",
+      "description": "As duas linhas fósseis e os designs pré-históricos legados. Sem afirmar que todos foram ressuscitados ou possuem origem fóssil.",
+      "families": [
+        "rexestrato-family-v1",
+        "estratonte-family-v1",
+        "rexal",
+        "stegaru",
+        "tricerafan",
+        "pteralis",
+        "platofolha",
+        "celofita"
+      ],
+      "nodes": [
+        "paleorix"
+      ],
+      "sources": [
+        "documentation/creatures/rexestrato-chart-v1/chart.json",
+        "documentation/creatures/estratonte-chart-v1/chart.json",
+        "assets/pipa-dex.json"
+      ],
+      "population_proposal": "Separar vestígio, criatura viva e Entrelaço nas cenas; Rexal não é sinônimo de Rexestrato.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "feras-rotas",
+      "name": "Feras de trilhas e rotas terrestres",
+      "kind": "classificacao_editorial",
+      "description": "Conjunto de busca para corpos terrestres de corrida, guarda e rastreio. Não define um bioma oficial.",
+      "families": [
+        "alvacordo-family-v1",
+        "lobo-cordeiro",
+        "caramund",
+        "urso-polar",
+        "javali-guerreiro",
+        "lince-de-cerco",
+        "ressonhiena",
+        "riscaz",
+        "cervarco-family-v1",
+        "trinca-brasas",
+        "javali-biscoito",
+        "celofita",
+        "tamandua-tear",
+        "ibex-astrolabio"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/creatures/familias/catalogo.json"
+      ],
+      "population_proposal": "Comparar apoio, pegadas e comportamento; variar indivíduos e estágios sem multiplicar cópias do mesmo adulto.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "aves-correntes",
+      "name": "Aves e correntes aéreas",
+      "kind": "classificacao_editorial",
+      "description": "Linhas de voo, salto e leitura de vento; sem juntar Azulão e Azulongo por semelhança de nome.",
+      "families": [
+        "azulao",
+        "carcara",
+        "araruna-memoria",
+        "guaravento",
+        "herravento",
+        "pteralis",
+        "auriflama"
+      ],
+      "nodes": [],
+      "sources": [
+        "assets/pipa-dex.json",
+        "documentation/creatures/azulao-chart-v1/chart.json"
+      ],
+      "population_proposal": "Criar trajetórias e pontos de observação; voo e uso como montaria não são deduzidos do desenho.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "insetos",
+      "name": "Insetos, tecelões e pequenos mecanismos",
+      "kind": "classificacao_editorial",
+      "description": "Afinidade de construção para insetos, aranha e caracol; não é classificação zoológica única nem facção.",
+      "families": [
+        "mata-verde",
+        "viuva-anjo",
+        "caracol-pneu"
+      ],
+      "nodes": [
+        "melicodia",
+        "canticripta"
+      ],
+      "sources": [
+        "documentation/creatures/familias/catalogo.json"
+      ],
+      "population_proposal": "Dar função local a reparar, polinizar, tecer ou rodar; não transformar isso em habilidade implementada sem especificação.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "aguas-margens",
+      "name": "Águas, rios e margens",
+      "kind": "classificacao_editorial",
+      "description": "Famílias e designs aquáticos para planejamento. Quatro Marés é um conjunto próprio, acessível separadamente.",
+      "families": [
+        "capivara-boia",
+        "azulongo",
+        "caimbira-memoria",
+        "capimansa",
+        "hiponilo",
+        "marulume",
+        "riovela",
+        "platyx",
+        "veskoro",
+        "hipolanterna-family-v1"
+      ],
+      "nodes": [
+        "makareu"
+      ],
+      "sources": [
+        "assets/pipa-dex.json",
+        "documentation/creatures/capivara-boia-chart-v1/chart.json"
+      ],
+      "population_proposal": "Escolher profundidade, margem e ação de encontro individualmente. Um concept aquático não autoriza viagem montada.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "vegetais",
+      "name": "Vegetação, frutos e copas",
+      "kind": "classificacao_editorial",
+      "description": "Afinidade vegetal e de materiais; inclui os dois ramos do cacau sem fundi-los em uma criatura só.",
+      "families": [
+        "cacaurama",
+        "micofolha",
+        "platofolha",
+        "stegaru",
+        "mata-verde"
+      ],
+      "nodes": [
+        "raptorio"
+      ],
+      "sources": [
+        "assets/pipa-dex.json",
+        "documentation/creatures/cacaurama-chart-v2/chart.json"
+      ],
+      "population_proposal": "Usar amadurecimento, coleta e abrigo como sugestões de cena; frutos/queda/coleta não implementados por esta organização.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "contos-oficios",
+      "name": "Contos, ofícios e símbolos",
+      "kind": "classificacao_editorial",
+      "description": "Famílias construídas a partir de ofícios, fábulas e figuras literárias; não implica uma sociedade única.",
+      "families": [
+        "chaspiral",
+        "gambalhote",
+        "mico-samurai",
+        "anaconda-retrato",
+        "coruja-balanca",
+        "galofuso-family-v1",
+        "lobo-cordeiro",
+        "alvaneve",
+        "auriflama",
+        "tamandua-tear",
+        "ibex-astrolabio"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/creatures/familias/catalogo.json",
+        "assets/pipa-dex.json"
+      ],
+      "population_proposal": "Usar o dilema e a ação da família para orientar cenas, mantendo referência cultural e invenção separadas.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "cascos-estruturas",
+      "name": "Cascos, galerias e estruturas",
+      "kind": "classificacao_editorial",
+      "description": "Designs com couraça, tubos, dobras antigas e apoio robusto. Afinidade de criação, sem local de spawn canônico.",
+      "families": [
+        "tramino",
+        "pangolim-trovao",
+        "pipa-dragao",
+        "lacertubo",
+        "tatutrama",
+        "jarabrasa",
+        "umbrocasco",
+        "veskoro"
+      ],
+      "nodes": [
+        "trancoura",
+        "cascoronte"
+      ],
+      "sources": [
+        "assets/pipa-dex.json",
+        "documentation/creatures/familias/catalogo.json"
+      ],
+      "population_proposal": "Planejar abrigo, passagem e sustentação a partir do corpo; não tratar casco como parede decorativa.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    },
+    {
+      "id": "identidades-campanha",
+      "name": "Parceiros e identidades da campanha",
+      "kind": "classificacao_editorial",
+      "description": "Atalho para identidades singulares e parceiros já associados à narrativa; não são uma equipe reunida.",
+      "families": [
+        "rabbito",
+        "raio-de-sol",
+        "rai",
+        "retalho",
+        "platyx",
+        "veskoro",
+        "nozinho",
+        "eremor"
+      ],
+      "nodes": [],
+      "sources": [
+        "documentation/historia/BIBLIA-DA-HISTORIA.md",
+        "assets/pipa-dex.json"
+      ],
+      "population_proposal": "Conferir dono, origem e momento narrativo na fonte antes de colocar como encontro selvagem.",
+      "affiliation": "A classificação reúne designs para criação de mundo; não define facção, aliança, spawn ou raridade de jogo."
+    }
+  ]
+}
