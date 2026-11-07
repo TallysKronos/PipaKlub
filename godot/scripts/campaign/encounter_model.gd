@@ -88,7 +88,10 @@ func contact(a: Dictionary, b: Dictionary) -> Dictionary:
 ## Story bosses (q.boss with a campaign level) were plain Lv.N stats, so every duel from
 ## Navalha (Nv.30) to Jamile (Nv.50) lasted ~14 s and was won with 65% line left
 ## (tools/story_balance.gd). They get boss line and a reading that climbs with level.
-## The park's original boss (no campaign level) keeps its authored 210 line.
+## Bosses below Nv.26 (the park's Lacertubo and its original trace) keep their authored fight.
+## Measured from the Mormaço (Nv.27) up; earlier bosses keep their authored fight.
+const SCALED_FROM := 26
+
 static func boss_line_scale(level: int) -> float:
 	return clampf(1.9 + .04 * (level - 30), 1.9, 2.7)
 
@@ -98,14 +101,14 @@ static func boss_damage(level: int) -> float:
 	return lerpf(.65, .73, clampf((level - 30) / 20.0, 0, 1))
 
 static func boss_skill(level: int, phase: int) -> int:
-	if level <= Pacing.BOSS_LEVEL: return 7 if phase == 2 else 6
+	if level < SCALED_FROM: return 7 if phase == 2 else 6
 	return clampi(4 + (level - 30) / 6 + (1 if phase == 2 else 0), 3, 10)
 
 static func recovery_scale(skill: int) -> float:
 	return clampf(1.0 - .06 * (skill - 6), .7, 1.15)
 
 func _scale_boss() -> void:
-	if not q.boss or q.get("bossScaled", false) or enemy_level <= Pacing.BOSS_LEVEL: return
+	if not q.boss or q.get("bossScaled", false) or enemy_level < SCALED_FROM: return
 	q.bossScaled = true
 	var scale := boss_line_scale(enemy_level)
 	var hp_ratio: float = q.hp / q.stats.line
@@ -284,8 +287,8 @@ func _boss_input(dt: float) -> Dictionary:
 			input.cut = true
 			q.charge = 0.0
 			q.telegraph = 0.0
-			# A sharper boss leaves a shorter opening after each cut (the old 6/7 kept 1.0).
-			q.recovery = (1.15 if phase == 2 else 1.5) * recovery_scale(skill)
+			# A sharper scaled boss leaves a shorter opening after each cut.
+			q.recovery = (1.15 if phase == 2 else 1.5) * (recovery_scale(skill) if q.get("bossScaled", false) else 1.0)
 	else: q.telegraph = 0.0
 	return input
 
