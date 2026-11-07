@@ -15,8 +15,12 @@ static func build(view) -> void:
  var interior:bool=model.data.forest.get("interior",false)
  if interior:
   # Continuous cutaway shell follows the blocking frame, never an apparent doorway.
-  block(view,Vector2(4,3),32,1,128,"parede-galpao",simple)
-  block(view,Vector2(3,4),1,28,192,"parede-galpao",simple,float(model.data.forest.get("baseLevel",0))*64)
+  var lower_floor:float=model.height_at(Vector2(4.5,30.5))*64
+  var upper_floor:float=model.height_at(Vector2(4.5,4.5))*64
+  var wall_top:float=upper_floor+128
+  block(view,Vector2(4,3),32,1,wall_top-upper_floor,"parede-galpao",simple,upper_floor)
+  block(view,Vector2(3,4),1,24,wall_top-upper_floor,"parede-galpao",simple,upper_floor)
+  block(view,Vector2(3,28),1,4,wall_top-lower_floor,"parede-galpao",simple,lower_floor)
   block(view,Vector2(36,4),1,28,22,"barreira",simple)
   block(view,Vector2(4,32),4,1,22,"barreira",simple)
   block(view,Vector2(12,32),24,1,22,"barreira",simple)
@@ -35,7 +39,9 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  var model=view.model
  var level:float=model.height_at(at+Vector2(.5,.5))*64 if base_height<0 else base_height
  var root:=Node2D.new();root.set_meta("scenery",true)
- root.position=S.iso(at+Vector2(w,h));view.actors.add_child(root)
+ # The perimeter is behind every actor in the interior, even when a long wall
+ # spans deeper screen coordinates than the machines against its base.
+ root.position=S.iso(at if style=="parede-galpao" else at+Vector2(w,h));view.actors.add_child(root)
  var a:=S.iso(at,level)-root.position
  var b:=S.iso(at+Vector2(w,0),level)-root.position
  var c:=S.iso(at+Vector2(w,h),level)-root.position
@@ -43,7 +49,7 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  var lift:=Vector2(0,z)
  var manga:bool=model.data.forest.get("mangaDressing",false)
  if manga:root.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
- if style in ["carga","tambor","carretel"]:
+ if style in ["carga","tambor","carretel","armario"]:
   D.cargo(root,a,b,c,d,z,style,simple)
   return
  if style=="caldeira" and not simple:
@@ -104,6 +110,16 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
     S.line(root,PackedVector2Array([p-Vector2(0,z-64),q-Vector2(0,z-64)]),3,Color("536b76"))
   return
  if style in ["galpao","usina"]:
+    if k%3==1:
+     # The closed service panels hang on the wall and never imply another exit.
+     var low:=p.lerp(q,.18)
+     var high:=p.lerp(q,.70)
+     var face_top:=Vector2(0,z-74)
+     var face_bottom:=Vector2(0,z-90)
+     S.quad(root,PackedVector2Array([low-face_top,high-face_top,high-face_bottom,low-face_bottom]),Color("293d45"))
+     for stripe in [.15,.35,.55,.75,.95]:
+      var notch:=low.lerp(high,stripe)
+      S.line(root,PackedVector2Array([notch-face_top+Vector2(0,4),notch-face_bottom-Vector2(0,3)]),2,Color("819b99"))
   # Brick courses follow measured wall edges; no baked perspective in the art.
   for y in range(16,int(z),16):
    S.line(root,PackedVector2Array([d-Vector2(0,y),c-Vector2(0,y),b-Vector2(0,y)]),1,Color("815f4d",.5))
