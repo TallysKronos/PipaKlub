@@ -1,0 +1,89 @@
+{
+  "family_id": "selacrabio",
+  "scope": "Concept e lore propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "selim",
+      "name": "Selim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Rosto integrado no rolo; abas de apoio parcialmente visíveis, duas antenas curtas e rabiola única. Ficou com mais camadas e aro que o brief mínimo, mas sem torso/membros adultos.",
+      "story": "Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+      "action": "perceber e proteger a si",
+      "tradeoff": "Pouca autonomia de movimento.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/selacrabio/selim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/selacrabio/selim/concept-v1/brief.md"
+    },
+    {
+      "id": "lacrulo",
+      "name": "Lácrulo",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Correção retirou uma pata central excedente. Quatro patas de apoio e dois braços com a faixa; duas antenas e rabiola. Couraça abaulada com X das faixas.",
+      "story": "Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+      "action": "explorar a função",
+      "tradeoff": "Proteção e controle ainda limitados.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/selacrabio/lacrulo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/selacrabio/lacrulo/concept-v1/brief.md"
+    },
+    {
+      "id": "selatrava",
+      "name": "Selatrava",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Quatro patas e dois braços-prensa, dois élitros abertos e rabiola. Fase baixa e larga antecede a redistribuição da carga na forma adulta bípede.",
+      "story": "Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+      "action": "coordenar apoio e ação",
+      "tradeoff": "Estrutura em desenvolvimento, alcance parcial.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/selacrabio/selatrava/concept-v1/concept.png",
+      "brief": "../../../art/creatures/selacrabio/selatrava/concept-v1/brief.md"
+    },
+    {
+      "id": "selacrabio",
+      "name": "Selacrábio",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Duas pernas e dois braços-prensa, duas portas-élitros atrás dos ombros. Selos complementares legíveis, cabeça pequena com olhos rosa e rabiola completa. Construção rica e sombra em blocos; extremidades próximas das margens, completas.",
+      "story": "Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+      "action": "Os guardadores dos lacres",
+      "tradeoff": "Especialização exige preparar apoio e controlar tensão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/selacrabio/selacrabio/concept-v1/concept.png",
+      "brief": "../../../art/creatures/selacrabio/selacrabio/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "selim",
+      "to": "lacrulo",
+      "kind": "reweaving",
+      "reason": "Selim ganha apoios e partes próprias para começar a função de os guardadores dos lacres.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "lacrulo",
+      "to": "selatrava",
+      "kind": "reweaving",
+      "reason": "Lácrulo desenvolve sustentação e articulações para coordenar essa função em Selatrava.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "selatrava",
+      "to": "selacrabio",
+      "kind": "reweaving",
+      "reason": "Selatrava reorganiza seus apoios e faixas na estrutura especializada de Selacrábio; Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+      "decision_status": "proposed"
+    }
+  ]
+}

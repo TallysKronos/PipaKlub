@@ -1,0 +1,82 @@
+{
+  "family_id": "miralis",
+  "scope": "Quatro estágios documentais da Armada dos Lobos. Adultos anteriores preservados; novas pré-evoluções e vínculos propostos.",
+  "nodes": [
+    {
+      "id": "mirim-fio",
+      "name": "Mirimfio",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Pacote central com orelhas longas e duas abas laterais amplas; olhos ciano, sem pernas ou torso separado. Rabiola curta com terminal bifurcado. Silhueta horizontal nas abas, não apenas losango estreito.",
+      "story": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/miralis/mirim-fio/concept-v1/concept.png",
+      "brief": "../../../art/creatures/miralis/mirim-fio/concept-v1/brief.md"
+    },
+    {
+      "id": "mirafim",
+      "name": "Mirafim",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Quatro pernas e quatro pés, cabeça infantil alongada, uma vela dorsal sustentada por vareta e pequeno peitoral. Sem arma ou grevas, corpo leve distinto do jovem armado.",
+      "story": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/miralis/mirafim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/miralis/mirafim/concept-v1/brief.md"
+    },
+    {
+      "id": "miralis",
+      "name": "Miralís",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Sniper almática de carretel · Atual · lobo-etíope",
+      "story": "Marca um alvo distante estabilizando a arma no próprio dorso; deve manter a posição para preservar a precisão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/miralis/concept-v1/concept.png",
+      "brief": "../../../art/creatures/miralis/concept-v1/brief.md",
+      "maturity": "Jovem",
+      "stage_note": "Autor: “lupunhal e miralís são como jovens [...] pode ter uma adulto pra eles com muito mais presença” (2026-11-07). Estágio dos dois concepts anteriores passa de adulto proposto para jovem por orientação do autor. Não implica aprovação das novas artes ou nomes."
+    },
+    {
+      "id": "miralcaide",
+      "name": "Miralcaide",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Quatro pernas e quatro pés separados; peito alto e profundo, rosto alongado com olhos pequenos sob meia-máscara, duas abas de bochecha e manto em planos largos. Arma em dois suportes dorsais, sem cruzar face nesta vista; rabiola única distinta da linha da arma. Rotação, recuo e folgas sob movimento ainda não validados.",
+      "story": "Tensionar uma linha de cobertura mantendo quatro apoios estáveis; perde a liberdade de avançar enquanto cobre a retirada.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/miralis/miralcaide/concept-v1/concept.png",
+      "brief": "../../../art/creatures/miralis/miralcaide/concept-v1/brief.md",
+      "approval_note": "Autor: “ótimo adorei agora crie as pré-evo pra todos” (2026-11-07). Aprovação visual de Lupregente e Miralcaide apresentados no turno anterior; sem certificação de integração, mecânicas ou aprovação automática das novas pré-evoluções."
+    }
+  ],
+  "edges": [
+    {
+      "from": "mirim-fio",
+      "to": "mirafim",
+      "kind": "reweaving",
+      "reason": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "mirafim",
+      "to": "miralis",
+      "kind": "reweaving",
+      "reason": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "miralis",
+      "to": "miralcaide",
+      "kind": "reweaving",
+      "reason": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+      "decision_status": "proposed"
+    }
+  ]
+}

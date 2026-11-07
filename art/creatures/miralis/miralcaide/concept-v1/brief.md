@@ -1,0 +1,19 @@
+# Miralcaide
+
+Adulto proposto de miralis, mantido como jovem por decisão do autor. Nome novo e habilidades propostos.
+
+## Mudança e função
+
+Tensionar uma linha de cobertura mantendo quatro apoios estáveis; perde a liberdade de avançar enquanto cobre a retirada.
+
+Quatro pernas e quatro pés separados; peito alto e profundo, rosto alongado com olhos pequenos sob meia-máscara, duas abas de bochecha e manto em planos largos. Arma em dois suportes dorsais, sem cruzar face nesta vista; rabiola única distinta da linha da arma. Rotação, recuo e folgas sob movimento ainda não validados.
+
+## Direção
+
+45% criatura, 45% pipa viva e 10% contorno/2D mangá. Preservar cores e função da família, mudar proporções, postura e autoridade. Referência única: jovem autoral da própria família, não desenho externo.
+
+## Construção solicitada
+
+Create a NEW NEXT MATURE ADULT evolution of our attached original YOUNG Ethiopian-wolf fantasy sniper. Proposed name Miralcaide. Do NOT just enlarge the rifle or duplicate this thin young body. The adult MUST have imposing flagship presence through a new posture, much deeper armored shoulder mass and a coherent transformed paper mantle while retaining a long narrow Ethiopian wolf face, tall ears, rust-red/ivory/petrol/copper palette and cyan-blue eyes. Remain QUADRUPED: EXACTLY FOUR complete long legs and FOUR visible feet in grounded sentinel stance, front chest higher, hindquarters lean and functional. Head smaller relative to mature deep chest, angular long narrow dignified wolf muzzle, small focused icy blue eye slit under sophisticated petrol half-helmet with tall swept ear guards and two hanging ivory cheekfolds. Body living taut rust paper, NOT biological fur/muscles. High folded dark SAGE sniper mantle behind neck forms THREE broad stepped pleated sail plates over shoulders and upper back; silhouette like a watchtower hunter's raised collar, no wings or tiny shards. Impressive but LIGHT articulated petrol/ivory armor, copper-edged deep central breastplate, overlapping long shoulder plates, four sculpted greaves and wide stable paws; flank quiet and waist still long slender, not tank or giant dire wolf. Mature armament: ONE large fantasy long precision THREAD-CANNON on dorsal articulated cradle with TWO distinct anchors on shoulder armor and pelvis. Long broad IVORY split-channel barrel, dark petrol housing, large copper dual-flange exposed thread spool. A pair of broad narrow paper stabilizing vanes form one forward V around the barrel base. Cannon aligned forward above the head, does NOT intersect ears, neck or face; give it clear empty white space over face and all barrel ends inside margins. No extra floating weapons, bullets, real firearms instructions, missiles or pipes in joints. ONE complete braided dark red soul-rabiola rooted behind pelvis ending in a large forked ivory long pennant. Adult can tension a long-range thread across the battlefield by locking all four stances, gains sustained coverage rather than a larger bullet. Controlled stern vigilance, no smile or baby eyes. 45% creature/45% meaningful living kite construction/10% crisp dark selective stepped outline and clean 2D manga. LARGE-MEDIUM-small detail hierarchy, few paper collar tufts, broad quiet membrane planes, functional bamboo ridges and knots. Matte FLAT saturated cel colors, TWO HARD shadow tones, no 3D rendering, glossy armor, gradients, texture noise, wrinkled skin or overfolded origami. FULL BODY THREE-QUARTER on plain WHITE, generous margins all directions, no labels, no panels, no other characters, no crystals, no orange eyes.
+
+Fontes zoológicas herdadas: [pesquisa do grupo](../../../../../documentation/creatures/armada-dos-lobos-v1/PESQUISA.md). Sem novas afirmações zoológicas. Obtenção e condições evolutivas indefinidas.

@@ -2,14 +2,104 @@
   "date": "2026-11-04",
   "scope": "Checkout local pipa-club-integracao-atualizada; arts/creatures, charts, Soulgen e Dex. Sem fetch, integração ou alteração de cânone.",
   "counts": {
-    "families": 73,
-    "families_with_chart": 34,
-    "unique_records": 202,
+    "families": 94,
+    "families_with_chart": 55,
+    "unique_records": 286,
     "visual_reservations": 17,
     "dex_entries": 36,
-    "chart_sources": 37
+    "chart_sources": 58
   },
   "families": [
+    {
+      "id": "alvorraia",
+      "name": "alvorraia",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/alvorraia-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "marulhim",
+          "name": "Marulhim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+          "art": "art/creatures/alvorraia/marulhim/concept-v1/concept.png",
+          "brief": "art/creatures/alvorraia/marulhim/concept-v1/brief.md",
+          "source": "documentation/creatures/alvorraia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "raivela",
+          "name": "Marivela",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+          "art": "art/creatures/alvorraia/raivela/concept-v1/concept.png",
+          "brief": "art/creatures/alvorraia/raivela/concept-v1/brief.md",
+          "source": "documentation/creatures/alvorraia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "alvorvela",
+          "name": "Alvorvela",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+          "art": "art/creatures/alvorraia/alvorvela/concept-v1/concept.png",
+          "brief": "art/creatures/alvorraia/alvorvela/concept-v1/brief.md",
+          "source": "documentation/creatures/alvorraia-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "alvorraia",
+          "name": "Alvorraia",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga (proposta)",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Quatro Marés · Enchente: erguer e conduzir. História proposta no manifesto do grupo.",
+          "art": "art/creatures/alvorraia/concept-v1/concept.png",
+          "brief": "art/creatures/alvorraia/concept-v1/brief.md",
+          "source": "documentation/creatures/alvorraia-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "marulhim",
+          "to": "raivela",
+          "kind": "reweaving",
+          "reason": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "raivela",
+          "to": "alvorvela",
+          "kind": "reweaving",
+          "reason": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "alvorvela",
+          "to": "alvorraia",
+          "kind": "reweaving",
+          "reason": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
     {
       "id": "anaconda-retrato",
       "name": "Anaconda do retrato",
@@ -498,6 +588,96 @@
       "notes": [
         "Bebê Cacau compartilhado pelos ramos fruto e preguiça; contado uma vez. Aprovação do ramo preguiça não aprova automaticamente o ramo fruto. Adulto do fruto está em brief, sem PNG atual nesta pasta."
       ]
+    },
+    {
+      "id": "canticripta",
+      "name": "canticripta",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/canticripta-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "cantim",
+          "name": "Cantim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De pequeno ressonador a caçador que afina e interrompe vibrações.",
+          "art": "art/creatures/canticripta/cantim/concept-v1/concept.png",
+          "brief": "art/creatures/canticripta/cantim/concept-v1/brief.md",
+          "source": "documentation/creatures/canticripta-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cantilha",
+          "name": "Cantilha",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De pequeno ressonador a caçador que afina e interrompe vibrações.",
+          "art": "art/creatures/canticripta/cantilha/concept-v1/concept.png",
+          "brief": "art/creatures/canticripta/cantilha/concept-v1/brief.md",
+          "source": "documentation/creatures/canticripta-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "cantivara",
+          "name": "Cantivara",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De pequeno ressonador a caçador que afina e interrompe vibrações.",
+          "art": "art/creatures/canticripta/cantivara/concept-v1/concept.png",
+          "brief": "art/creatures/canticripta/cantivara/concept-v1/brief.md",
+          "source": "documentation/creatures/canticripta-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "canticripta",
+          "name": "Canticripta",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De pequeno ressonador a caçador que afina e interrompe vibrações.",
+          "art": "art/creatures/canticripta/concept-v2/concept.png",
+          "brief": "art/creatures/canticripta/concept-v2/brief.md",
+          "source": "documentation/creatures/canticripta-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "cantim",
+          "to": "cantilha",
+          "kind": "reweaving",
+          "reason": "A construção simples de Cantim ganha corpo e órgãos de exploração em Cantilha.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "cantilha",
+          "to": "cantivara",
+          "kind": "reweaving",
+          "reason": "A exploração de Cantilha exige movimento mais especializado e proteção parcial em Cantivara.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "cantivara",
+          "to": "canticripta",
+          "kind": "reweaving",
+          "reason": "Cantivara desenvolve sustentação e controle para a arquitetura adulta de Canticripta; aquisição do cristal e condições continuam propostas.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
     },
     {
       "id": "capivara-boia",
@@ -1158,6 +1338,96 @@
       "notes": []
     },
     {
+      "id": "coroabissal",
+      "name": "coroabissal",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/coroabissal-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "bolhim",
+          "name": "Bolhim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a manter o próprio volume, sustentar a pressão de uma pequena corrente e repartir a carga pelo dorso antes de proteger uma passagem inteira.",
+          "art": "art/creatures/coroabissal/bolhim/concept-v1/concept.png",
+          "brief": "art/creatures/coroabissal/bolhim/concept-v1/brief.md",
+          "source": "documentation/creatures/coroabissal-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "corolho",
+          "name": "Corolho",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a manter o próprio volume, sustentar a pressão de uma pequena corrente e repartir a carga pelo dorso antes de proteger uma passagem inteira.",
+          "art": "art/creatures/coroabissal/corolho/concept-v1/concept.png",
+          "brief": "art/creatures/coroabissal/corolho/concept-v1/brief.md",
+          "source": "documentation/creatures/coroabissal-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "coromar",
+          "name": "Coromar",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a manter o próprio volume, sustentar a pressão de uma pequena corrente e repartir a carga pelo dorso antes de proteger uma passagem inteira.",
+          "art": "art/creatures/coroabissal/coromar/concept-v1/concept.png",
+          "brief": "art/creatures/coroabissal/coromar/concept-v1/brief.md",
+          "source": "documentation/creatures/coroabissal-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "coroabissal",
+          "name": "Coroabissal",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga (proposta)",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Quatro Marés · Preamar: sustentar e amortecer. História proposta no manifesto do grupo.",
+          "art": "art/creatures/coroabissal/concept-v1/concept.png",
+          "brief": "art/creatures/coroabissal/concept-v1/brief.md",
+          "source": "documentation/creatures/coroabissal-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "bolhim",
+          "to": "corolho",
+          "kind": "reweaving",
+          "reason": "Aprende a manter o próprio volume, sustentar a pressão de uma pequena corrente e repartir a carga pelo dorso antes de proteger uma passagem inteira.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "corolho",
+          "to": "coromar",
+          "kind": "reweaving",
+          "reason": "Aprende a manter o próprio volume, sustentar a pressão de uma pequena corrente e repartir a carga pelo dorso antes de proteger uma passagem inteira.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "coromar",
+          "to": "coroabissal",
+          "kind": "reweaving",
+          "reason": "Aprende a manter o próprio volume, sustentar a pressão de uma pequena corrente e repartir a carga pelo dorso antes de proteger uma passagem inteira.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
       "id": "coruja-balanca",
       "name": "Coruja da balança",
       "category": "Famílias com chart",
@@ -1242,6 +1512,186 @@
           "to": "coruja-balanca",
           "kind": "reweaving",
           "reason": "Usa uma base forte para manejar a balança e manter a guarda.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "crocafago",
+      "name": "crocafago",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/crocafago-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "atadim",
+          "name": "Atadim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+          "art": "art/creatures/crocafago/atadim/concept-v1/concept.png",
+          "brief": "art/creatures/crocafago/atadim/concept-v1/brief.md",
+          "source": "documentation/creatures/crocafago-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "crocote",
+          "name": "Crocote",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+          "art": "art/creatures/crocafago/crocote/concept-v1/concept.png",
+          "brief": "art/creatures/crocafago/crocote/concept-v1/brief.md",
+          "source": "documentation/creatures/crocafago-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "crocurna",
+          "name": "Crocurna",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+          "art": "art/creatures/crocafago/crocurna/concept-v1/concept.png",
+          "brief": "art/creatures/crocafago/crocurna/concept-v1/brief.md",
+          "source": "documentation/creatures/crocafago-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "crocafago",
+          "name": "Crocáfago",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+          "art": "art/creatures/crocafago/crocafago/concept-v1/concept.png",
+          "brief": "art/creatures/crocafago/crocafago/concept-v1/brief.md",
+          "source": "documentation/creatures/crocafago-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "atadim",
+          "to": "crocote",
+          "kind": "reweaving",
+          "reason": "Atadim ganha apoios e partes próprias para começar a função de os porteiros das águas.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "crocote",
+          "to": "crocurna",
+          "kind": "reweaving",
+          "reason": "Crocote desenvolve sustentação e articulações para coordenar essa função em Crocurna.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "crocurna",
+          "to": "crocafago",
+          "kind": "reweaving",
+          "reason": "Crocurna reorganiza seus apoios e faixas na estrutura especializada de Crocáfago; Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "dirubastiao",
+      "name": "dirubastiao",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/dirubastiao-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "dirum",
+          "name": "Dirum",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+          "art": "art/creatures/dirubastiao/dirum/concept-v1/concept.png",
+          "brief": "art/creatures/dirubastiao/dirum/concept-v1/brief.md",
+          "source": "documentation/creatures/dirubastiao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "dirupac",
+          "name": "Dirupac",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+          "art": "art/creatures/dirubastiao/dirupac/concept-v1/concept.png",
+          "brief": "art/creatures/dirubastiao/dirupac/concept-v1/brief.md",
+          "source": "documentation/creatures/dirubastiao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "dirubalu",
+          "name": "Dirubalu",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+          "art": "art/creatures/dirubastiao/dirubalu/concept-v1/concept.png",
+          "brief": "art/creatures/dirubastiao/dirubalu/concept-v1/brief.md",
+          "source": "documentation/creatures/dirubastiao-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "dirubastiao",
+          "name": "Dirubastião",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Ancora as quatro patas para lançar uma grande seta almática; perde mobilidade enquanto tensiona a balista.",
+          "art": "art/creatures/dirubastiao/concept-v1/concept.png",
+          "brief": "art/creatures/dirubastiao/concept-v1/brief.md",
+          "source": "documentation/creatures/dirubastiao-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "dirum",
+          "to": "dirupac",
+          "kind": "reweaving",
+          "reason": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "dirupac",
+          "to": "dirubalu",
+          "kind": "reweaving",
+          "reason": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "dirubalu",
+          "to": "dirubastiao",
+          "kind": "reweaving",
+          "reason": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
           "decision_status": "proposed"
         }
       ],
@@ -1422,6 +1872,96 @@
           "to": "estratonte",
           "kind": "reweaving",
           "reason": "Painel parcial se amplia em cobertura; torso e apoios se reforçam para abrigar.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "etruslanca",
+      "name": "etruslanca",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/etruslanca-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "etrim",
+          "name": "Etrim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+          "art": "art/creatures/etruslanca/etrim/concept-v1/concept.png",
+          "brief": "art/creatures/etruslanca/etrim/concept-v1/brief.md",
+          "source": "documentation/creatures/etruslanca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "etrupim",
+          "name": "Etrupim",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+          "art": "art/creatures/etruslanca/etrupim/concept-v1/concept.png",
+          "brief": "art/creatures/etruslanca/etrupim/concept-v1/brief.md",
+          "source": "documentation/creatures/etruslanca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "etrusvara",
+          "name": "Etrusvara",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+          "art": "art/creatures/etruslanca/etrusvara/concept-v1/concept.png",
+          "brief": "art/creatures/etruslanca/etrusvara/concept-v1/brief.md",
+          "source": "documentation/creatures/etruslanca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "etruslanca",
+          "name": "Etruslança",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Guia a investida pelo giro de uma lança com vela lateral; a área ampla de manobra limita o uso em corredores.",
+          "art": "art/creatures/etruslanca/concept-v1/concept.png",
+          "brief": "art/creatures/etruslanca/concept-v1/brief.md",
+          "source": "documentation/creatures/etruslanca-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "etrim",
+          "to": "etrupim",
+          "kind": "reweaving",
+          "reason": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "etrupim",
+          "to": "etrusvara",
+          "kind": "reweaving",
+          "reason": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "etrusvara",
+          "to": "etruslanca",
+          "kind": "reweaving",
+          "reason": "Do equilíbrio de uma vela pequena à condução do vento com o corpo; aprende a guiar uma haste e, adulto, redireciona a investida de uma formação.",
           "decision_status": "proposed"
         }
       ],
@@ -1788,6 +2328,186 @@
       "notes": []
     },
     {
+      "id": "gevoraz",
+      "name": "gevoraz",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/gevoraz-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "gevim",
+          "name": "Gevim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De farejador hesitante a perseguidor capaz de encurralar sem perder o controle.",
+          "art": "art/creatures/gevoraz/gevim/concept-v1/concept.png",
+          "brief": "art/creatures/gevoraz/gevim/concept-v1/brief.md",
+          "source": "documentation/creatures/gevoraz-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "gevisco",
+          "name": "Gevisco",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De farejador hesitante a perseguidor capaz de encurralar sem perder o controle.",
+          "art": "art/creatures/gevoraz/gevisco/concept-v1/concept.png",
+          "brief": "art/creatures/gevoraz/gevisco/concept-v1/brief.md",
+          "source": "documentation/creatures/gevoraz-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "gevardente",
+          "name": "Gevardente",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De farejador hesitante a perseguidor capaz de encurralar sem perder o controle.",
+          "art": "art/creatures/gevoraz/gevardente/concept-v1/concept.png",
+          "brief": "art/creatures/gevoraz/gevardente/concept-v1/brief.md",
+          "source": "documentation/creatures/gevoraz-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "gevoraz",
+          "name": "Gevoraz",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De farejador hesitante a perseguidor capaz de encurralar sem perder o controle.",
+          "art": "art/creatures/gevoraz/concept-v2/concept.png",
+          "brief": "art/creatures/gevoraz/concept-v2/brief.md",
+          "source": "documentation/creatures/gevoraz-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "gevim",
+          "to": "gevisco",
+          "kind": "reweaving",
+          "reason": "A construção simples de Gevim ganha corpo e órgãos de exploração em Gevisco.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "gevisco",
+          "to": "gevardente",
+          "kind": "reweaving",
+          "reason": "A exploração de Gevisco exige movimento mais especializado e proteção parcial em Gevardente.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "gevardente",
+          "to": "gevoraz",
+          "kind": "reweaving",
+          "reason": "Gevardente desenvolve sustentação e controle para a arquitetura adulta de Gevoraz; aquisição do cristal e condições continuam propostas.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "grifarca",
+      "name": "grifarca",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/grifarca-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "grifim",
+          "name": "Grifim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Da cabeça-pipa ao vigia alado; aprender a equilibrar apoio, salto e voo.",
+          "art": "art/creatures/grifarca/grifim/concept-v1/concept.png",
+          "brief": "art/creatures/grifarca/grifim/concept-v1/brief.md",
+          "source": "documentation/creatures/grifarca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "grifote",
+          "name": "Grifote",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Da cabeça-pipa ao vigia alado; aprender a equilibrar apoio, salto e voo.",
+          "art": "art/creatures/grifarca/grifote/concept-v1/concept.png",
+          "brief": "art/creatures/grifarca/grifote/concept-v1/brief.md",
+          "source": "documentation/creatures/grifarca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "grifalce",
+          "name": "Grifalce",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Da cabeça-pipa ao vigia alado; aprender a equilibrar apoio, salto e voo.",
+          "art": "art/creatures/grifarca/grifalce/concept-v1/concept.png",
+          "brief": "art/creatures/grifarca/grifalce/concept-v1/brief.md",
+          "source": "documentation/creatures/grifarca-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "grifarca",
+          "name": "Grifarca",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Da cabeça-pipa ao vigia alado; aprender a equilibrar apoio, salto e voo.",
+          "art": "art/creatures/grifarca/concept-v2/concept.png",
+          "brief": "art/creatures/grifarca/concept-v2/brief.md",
+          "source": "documentation/creatures/grifarca-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "grifim",
+          "to": "grifote",
+          "kind": "reweaving",
+          "reason": "A construção simples de Grifim ganha corpo e órgãos de exploração em Grifote.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "grifote",
+          "to": "grifalce",
+          "kind": "reweaving",
+          "reason": "A exploração de Grifote exige movimento mais especializado e proteção parcial em Grifalce.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "grifalce",
+          "to": "grifarca",
+          "kind": "reweaving",
+          "reason": "Grifalce desenvolve sustentação e controle para a arquitetura adulta de Grifarca; aquisição do cristal e condições continuam propostas.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
       "id": "hipolanterna-family-v1",
       "name": "Cavalo-marinho + abóbora",
       "category": "Famílias com chart",
@@ -1872,6 +2592,96 @@
           "to": "hipolanterna",
           "kind": "reweaving",
           "reason": "Nadadeiras amadurecem em braços que manipulam as janelas do corpo.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "ibiscrito",
+      "name": "ibiscrito",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/ibiscrito-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "penim",
+          "name": "Penim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+          "art": "art/creatures/ibiscrito/penim/concept-v1/concept.png",
+          "brief": "art/creatures/ibiscrito/penim/concept-v1/brief.md",
+          "source": "documentation/creatures/ibiscrito-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "ibisco",
+          "name": "Ibisco",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+          "art": "art/creatures/ibiscrito/ibisco/concept-v1/concept.png",
+          "brief": "art/creatures/ibiscrito/ibisco/concept-v1/brief.md",
+          "source": "documentation/creatures/ibiscrito-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "caligibis",
+          "name": "Caligíbis",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+          "art": "art/creatures/ibiscrito/caligibis/concept-v1/concept.png",
+          "brief": "art/creatures/ibiscrito/caligibis/concept-v1/brief.md",
+          "source": "documentation/creatures/ibiscrito-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "ibiscrito",
+          "name": "Ibiscrito",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+          "art": "art/creatures/ibiscrito/ibiscrito/concept-v1/concept.png",
+          "brief": "art/creatures/ibiscrito/ibiscrito/concept-v1/brief.md",
+          "source": "documentation/creatures/ibiscrito-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "penim",
+          "to": "ibisco",
+          "kind": "reweaving",
+          "reason": "Penim ganha apoios e partes próprias para começar a função de os escribas das faixas.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ibisco",
+          "to": "caligibis",
+          "kind": "reweaving",
+          "reason": "Ibisco desenvolve sustentação e articulações para coordenar essa função em Caligíbis.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "caligibis",
+          "to": "ibiscrito",
+          "kind": "reweaving",
+          "reason": "Caligíbis reorganiza seus apoios e faixas na estrutura especializada de Ibiscrito; As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
           "decision_status": "proposed"
         }
       ],
@@ -2169,6 +2979,186 @@
       "notes": []
     },
     {
+      "id": "lupunhal",
+      "name": "lupunhal",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/lupunhal-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "lunim",
+          "name": "Lunim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+          "art": "art/creatures/lupunhal/lunim/concept-v1/concept.png",
+          "brief": "art/creatures/lupunhal/lunim/concept-v1/brief.md",
+          "source": "documentation/creatures/lupunhal-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "lupisco",
+          "name": "Lupisco",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+          "art": "art/creatures/lupunhal/lupisco/concept-v1/concept.png",
+          "brief": "art/creatures/lupunhal/lupisco/concept-v1/brief.md",
+          "source": "documentation/creatures/lupunhal-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "lupunhal",
+          "name": "Lupunhal",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Abre uma passagem curta cortando a linha da arma adversária; precisa entrar no alcance do oponente.",
+          "art": "art/creatures/lupunhal/concept-v1/concept.png",
+          "brief": "art/creatures/lupunhal/concept-v1/brief.md",
+          "source": "documentation/creatures/lupunhal-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "lupregente",
+          "name": "Lupregente",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Prender e redirecionar duas linhas com lâminas curvas, dominando o espaço em vez de apenas interceptar.",
+          "art": "art/creatures/lupunhal/lupregente/concept-v1/concept.png",
+          "brief": "art/creatures/lupunhal/lupregente/concept-v1/brief.md",
+          "source": "documentation/creatures/lupunhal-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "lunim",
+          "to": "lupisco",
+          "kind": "reweaving",
+          "reason": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "lupisco",
+          "to": "lupunhal",
+          "kind": "reweaving",
+          "reason": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "lupunhal",
+          "to": "lupregente",
+          "kind": "reweaving",
+          "reason": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "makareu",
+      "name": "makareu",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/makareu-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "makim",
+          "name": "Makim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De flutuador de margem a condutor das correntes profundas.",
+          "art": "art/creatures/makareu/makim/concept-v1/concept.png",
+          "brief": "art/creatures/makareu/makim/concept-v1/brief.md",
+          "source": "documentation/creatures/makareu-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "makarim",
+          "name": "Makarim",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De flutuador de margem a condutor das correntes profundas.",
+          "art": "art/creatures/makareu/makarim/concept-v1/concept.png",
+          "brief": "art/creatures/makareu/makarim/concept-v1/brief.md",
+          "source": "documentation/creatures/makareu-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "makaronda",
+          "name": "Makaronda",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De flutuador de margem a condutor das correntes profundas.",
+          "art": "art/creatures/makareu/makaronda/concept-v1/concept.png",
+          "brief": "art/creatures/makareu/makaronda/concept-v1/brief.md",
+          "source": "documentation/creatures/makareu-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "makareu",
+          "name": "Makaréu",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De flutuador de margem a condutor das correntes profundas.",
+          "art": "art/creatures/makareu/concept-v2/concept.png",
+          "brief": "art/creatures/makareu/concept-v2/brief.md",
+          "source": "documentation/creatures/makareu-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "makim",
+          "to": "makarim",
+          "kind": "reweaving",
+          "reason": "A construção simples de Makim ganha corpo e órgãos de exploração em Makarim.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "makarim",
+          "to": "makaronda",
+          "kind": "reweaving",
+          "reason": "A exploração de Makarim exige movimento mais especializado e proteção parcial em Makaronda.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "makaronda",
+          "to": "makareu",
+          "kind": "reweaving",
+          "reason": "Makaronda desenvolve sustentação e controle para a arquitetura adulta de Makaréu; aquisição do cristal e condições continuam propostas.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
       "id": "mata-verde",
       "name": "Mata Verde",
       "category": "Famílias com chart",
@@ -2345,6 +3335,276 @@
           "to": "micoshiro",
           "kind": "reweaving",
           "reason": "O samurai esguio domina duas katanas e usa a cauda como contrapeso; o elmo fecha a proteção da cabeça.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "miralis",
+      "name": "miralis",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/miralis-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "mirim-fio",
+          "name": "Mirimfio",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+          "art": "art/creatures/miralis/mirim-fio/concept-v1/concept.png",
+          "brief": "art/creatures/miralis/mirim-fio/concept-v1/brief.md",
+          "source": "documentation/creatures/miralis-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "mirafim",
+          "name": "Mirafim",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+          "art": "art/creatures/miralis/mirafim/concept-v1/concept.png",
+          "brief": "art/creatures/miralis/mirafim/concept-v1/brief.md",
+          "source": "documentation/creatures/miralis-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "miralis",
+          "name": "Miralís",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Marca um alvo distante estabilizando a arma no próprio dorso; deve manter a posição para preservar a precisão.",
+          "art": "art/creatures/miralis/concept-v1/concept.png",
+          "brief": "art/creatures/miralis/concept-v1/brief.md",
+          "source": "documentation/creatures/miralis-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "miralcaide",
+          "name": "Miralcaide",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Tensionar uma linha de cobertura mantendo quatro apoios estáveis; perde a liberdade de avançar enquanto cobre a retirada.",
+          "art": "art/creatures/miralis/miralcaide/concept-v1/concept.png",
+          "brief": "art/creatures/miralis/miralcaide/concept-v1/brief.md",
+          "source": "documentation/creatures/miralis-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "mirim-fio",
+          "to": "mirafim",
+          "kind": "reweaving",
+          "reason": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "mirafim",
+          "to": "miralis",
+          "kind": "reweaving",
+          "reason": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "miralis",
+          "to": "miralcaide",
+          "kind": "reweaving",
+          "reason": "Começa ouvindo, depois aprende a observar sem se expor; no jovem sustenta uma linha de precisão, e no adulto mantém cobertura para a retirada dos outros.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "nimbalio",
+      "name": "nimbalio",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/nimbalio-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "nimbim",
+          "name": "Nimbim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Da deriva involuntária ao domínio das correntes; as abas crescem e articulam.",
+          "art": "art/creatures/nimbalio/nimbim/concept-v1/concept.png",
+          "brief": "art/creatures/nimbalio/nimbim/concept-v1/brief.md",
+          "source": "documentation/creatures/nimbalio-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "nimbala",
+          "name": "Nimbala",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Da deriva involuntária ao domínio das correntes; as abas crescem e articulam.",
+          "art": "art/creatures/nimbalio/nimbala/concept-v1/concept.png",
+          "brief": "art/creatures/nimbalio/nimbala/concept-v1/brief.md",
+          "source": "documentation/creatures/nimbalio-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "nimbordo",
+          "name": "Nimbordo",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Da deriva involuntária ao domínio das correntes; as abas crescem e articulam.",
+          "art": "art/creatures/nimbalio/nimbordo/concept-v1/concept.png",
+          "brief": "art/creatures/nimbalio/nimbordo/concept-v1/brief.md",
+          "source": "documentation/creatures/nimbalio-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "nimbalio",
+          "name": "Nimbálio",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Da deriva involuntária ao domínio das correntes; as abas crescem e articulam.",
+          "art": "art/creatures/nimbalio/concept-v2/concept.png",
+          "brief": "art/creatures/nimbalio/concept-v2/brief.md",
+          "source": "documentation/creatures/nimbalio-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "nimbim",
+          "to": "nimbala",
+          "kind": "reweaving",
+          "reason": "A construção simples de Nimbim ganha corpo e órgãos de exploração em Nimbala.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "nimbala",
+          "to": "nimbordo",
+          "kind": "reweaving",
+          "reason": "A exploração de Nimbala exige movimento mais especializado e proteção parcial em Nimbordo.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "nimbordo",
+          "to": "nimbalio",
+          "kind": "reweaving",
+          "reason": "Nimbordo desenvolve sustentação e controle para a arquitetura adulta de Nimbálio; aquisição do cristal e condições continuam propostas.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "ofirante",
+      "name": "ofirante",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/ofirante-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "ofita",
+          "name": "Ofita",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De fita que escorrega a serpente que redireciona força com o corpo.",
+          "art": "art/creatures/ofirante/ofita/concept-v1/concept.png",
+          "brief": "art/creatures/ofirante/ofita/concept-v1/brief.md",
+          "source": "documentation/creatures/ofirante-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "ofirisco",
+          "name": "Ofirisco",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De fita que escorrega a serpente que redireciona força com o corpo.",
+          "art": "art/creatures/ofirante/ofirisco/concept-v1/concept.png",
+          "brief": "art/creatures/ofirante/ofirisco/concept-v1/brief.md",
+          "source": "documentation/creatures/ofirante-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "ofirastro",
+          "name": "Ofirastro",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De fita que escorrega a serpente que redireciona força com o corpo.",
+          "art": "art/creatures/ofirante/ofirastro/concept-v1/concept.png",
+          "brief": "art/creatures/ofirante/ofirastro/concept-v1/brief.md",
+          "source": "documentation/creatures/ofirante-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "ofirante",
+          "name": "Ofirante",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "De fita que escorrega a serpente que redireciona força com o corpo.",
+          "art": "art/creatures/ofirante/concept-v2/concept.png",
+          "brief": "art/creatures/ofirante/concept-v2/brief.md",
+          "source": "documentation/creatures/ofirante-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "ofita",
+          "to": "ofirisco",
+          "kind": "reweaving",
+          "reason": "A construção simples de Ofita ganha corpo e órgãos de exploração em Ofirisco.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ofirisco",
+          "to": "ofirastro",
+          "kind": "reweaving",
+          "reason": "A exploração de Ofirisco exige movimento mais especializado e proteção parcial em Ofirastro.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ofirastro",
+          "to": "ofirante",
+          "kind": "reweaving",
+          "reason": "Ofirastro desenvolve sustentação e controle para a arquitetura adulta de Ofirante; aquisição do cristal e condições continuam propostas.",
           "decision_status": "proposed"
         }
       ],
@@ -2949,6 +4209,186 @@
       ]
     },
     {
+      "id": "reciferreo",
+      "name": "reciferreo",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/reciferreo-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "recim",
+          "name": "Recim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a apoiar o próprio abrigo, ancorar um lado e proteger o outro, até reconhecer o momento de soltar a proteção para permitir o retorno da água.",
+          "art": "art/creatures/reciferreo/recim/concept-v1/concept.png",
+          "brief": "art/creatures/reciferreo/recim/concept-v1/brief.md",
+          "source": "documentation/creatures/reciferreo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "recipinca",
+          "name": "Recipinça",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a apoiar o próprio abrigo, ancorar um lado e proteger o outro, até reconhecer o momento de soltar a proteção para permitir o retorno da água.",
+          "art": "art/creatures/reciferreo/recipinca/concept-v1/concept.png",
+          "brief": "art/creatures/reciferreo/recipinca/concept-v1/brief.md",
+          "source": "documentation/creatures/reciferreo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "reciforte",
+          "name": "Reciforte",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a apoiar o próprio abrigo, ancorar um lado e proteger o outro, até reconhecer o momento de soltar a proteção para permitir o retorno da água.",
+          "art": "art/creatures/reciferreo/reciforte/concept-v1/concept.png",
+          "brief": "art/creatures/reciferreo/reciforte/concept-v1/brief.md",
+          "source": "documentation/creatures/reciferreo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "reciferreo",
+          "name": "Reciférreo",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga (proposta)",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Quatro Marés · Baixamar: ancorar e resguardar. História proposta no manifesto do grupo.",
+          "art": "art/creatures/reciferreo/concept-v1/concept.png",
+          "brief": "art/creatures/reciferreo/concept-v1/brief.md",
+          "source": "documentation/creatures/reciferreo-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "recim",
+          "to": "recipinca",
+          "kind": "reweaving",
+          "reason": "Aprende a apoiar o próprio abrigo, ancorar um lado e proteger o outro, até reconhecer o momento de soltar a proteção para permitir o retorno da água.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "recipinca",
+          "to": "reciforte",
+          "kind": "reweaving",
+          "reason": "Aprende a apoiar o próprio abrigo, ancorar um lado e proteger o outro, até reconhecer o momento de soltar a proteção para permitir o retorno da água.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "reciforte",
+          "to": "reciferreo",
+          "kind": "reweaving",
+          "reason": "Aprende a apoiar o próprio abrigo, ancorar um lado e proteger o outro, até reconhecer o momento de soltar a proteção para permitir o retorno da água.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "ressonhiena",
+      "name": "ressonhiena",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/ressonhiena-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "risaco",
+          "name": "Risaco",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Nasce como um saquinho vivo; o riso faz sua membrana inflar e tombar.",
+          "art": "art/creatures/ressonhiena/risaco/concept-v1/concept.png",
+          "brief": "art/creatures/ressonhiena/risaco/concept-v1/brief.md",
+          "source": "documentation/creatures/ressonhiena-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "rasquim",
+          "name": "Rasquim",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a correr e recolher membranas; transforma a primeira camada num abrigo solto para ombros.",
+          "art": "art/creatures/ressonhiena/rasquim/concept-v1/concept.png",
+          "brief": "art/creatures/ressonhiena/rasquim/concept-v1/brief.md",
+          "source": "documentation/creatures/ressonhiena-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "rasgargal",
+          "name": "Rasgargal",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Comprime as membranas num reservatório assimétrico; o riso acumula pressão que escapa pelo primeiro rasgo.",
+          "art": "art/creatures/ressonhiena/rasgargal/concept-v1/concept.png",
+          "brief": "art/creatures/ressonhiena/rasgargal/concept-v1/brief.md",
+          "source": "documentation/creatures/ressonhiena-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "ressonhiena",
+          "name": "Ressonhiena",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Propõe-se que aprenda a distribuir pressão entre proteções e projetar o riso sem romper a estrutura.",
+          "art": "art/creatures/ressonhiena/concept-v2/concept.png",
+          "brief": "art/creatures/ressonhiena/concept-v2/brief.md",
+          "source": "documentation/creatures/ressonhiena-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "risaco",
+          "to": "rasquim",
+          "kind": "reweaving",
+          "reason": "O saquinho desenvolve apoios e corpo; a membrana antes envolvente torna-se gola protetora.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "rasquim",
+          "to": "rasgargal",
+          "kind": "reweaving",
+          "reason": "A criança aprende a comprimir matéria; o corpo alonga e surge a primeira proteção que acumula pressão.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "rasgargal",
+          "to": "ressonhiena",
+          "kind": "reweaving",
+          "reason": "O jovem distribui a pressão antes concentrada num ombro; couraça, ombreiras e grevas integram o sistema adulto.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
       "id": "rexestrato-family-v1",
       "name": "Fóssil T-rex / Rexestrato",
       "category": "Famílias com chart",
@@ -3129,6 +4569,96 @@
       "notes": []
     },
     {
+      "id": "selacrabio",
+      "name": "selacrabio",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/selacrabio-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "selim",
+          "name": "Selim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+          "art": "art/creatures/selacrabio/selim/concept-v1/concept.png",
+          "brief": "art/creatures/selacrabio/selim/concept-v1/brief.md",
+          "source": "documentation/creatures/selacrabio-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "lacrulo",
+          "name": "Lácrulo",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+          "art": "art/creatures/selacrabio/lacrulo/concept-v1/concept.png",
+          "brief": "art/creatures/selacrabio/lacrulo/concept-v1/brief.md",
+          "source": "documentation/creatures/selacrabio-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "selatrava",
+          "name": "Selatrava",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+          "art": "art/creatures/selacrabio/selatrava/concept-v1/concept.png",
+          "brief": "art/creatures/selacrabio/selatrava/concept-v1/brief.md",
+          "source": "documentation/creatures/selacrabio-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "selacrabio",
+          "name": "Selacrábio",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+          "art": "art/creatures/selacrabio/selacrabio/concept-v1/concept.png",
+          "brief": "art/creatures/selacrabio/selacrabio/concept-v1/brief.md",
+          "source": "documentation/creatures/selacrabio-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "selim",
+          "to": "lacrulo",
+          "kind": "reweaving",
+          "reason": "Selim ganha apoios e partes próprias para começar a função de os guardadores dos lacres.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "lacrulo",
+          "to": "selatrava",
+          "kind": "reweaving",
+          "reason": "Lácrulo desenvolve sustentação e articulações para coordenar essa função em Selatrava.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "selatrava",
+          "to": "selacrabio",
+          "kind": "reweaving",
+          "reason": "Selatrava reorganiza seus apoios e faixas na estrutura especializada de Selacrábio; Aprende a enrolar uma faixa, proteger uma abertura e finalmente fechar câmaras contra ventos abrasivos. Não aprisiona almáticas: o selo se desfaz quando alguém oferece a linha sem puxar.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
       "id": "tramino",
       "name": "Dragão / Tramino",
       "category": "Famílias com chart",
@@ -3215,6 +4745,96 @@
           "decision_status": "proposed",
           "reason": "O autor pediu cavaleiro acima da jovem; peito e tirantes se reorganizam em armadura, elmo e guarda de espada.",
           "requirements_status": "undefined"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "trancoura",
+      "name": "trancoura",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/trancoura-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "bobim",
+          "name": "Bobim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Começa enrolado no próprio papel, aprendendo a abrir seu abrigo para observar o mundo.",
+          "art": "art/creatures/trancoura/bobim/concept-v1/concept.png",
+          "brief": "art/creatures/trancoura/bobim/concept-v1/brief.md",
+          "source": "documentation/creatures/trancoura-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "tatimbo",
+          "name": "Tatimbo",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Abre o rolo num teto flexível e começa a explorar, farejando e cavando com as primeiras garras.",
+          "art": "art/creatures/trancoura/tatimbo/concept-v1/concept.png",
+          "brief": "art/creatures/trancoura/tatimbo/concept-v1/brief.md",
+          "source": "documentation/creatures/trancoura-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "trancasco",
+          "name": "Trancasco",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprende a deslizar as placas para cobrir um lado do corpo enquanto mantém mobilidade para interceptar.",
+          "art": "art/creatures/trancoura/trancasco/concept-v1/concept.png",
+          "brief": "art/creatures/trancoura/trancasco/concept-v1/brief.md",
+          "source": "documentation/creatures/trancoura-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "trancoura",
+          "name": "Trancoura",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Propõe-se que domine a articulação da couraça para bloquear passagem e proteger quem está atrás.",
+          "art": "art/creatures/trancoura/concept-v2/concept.png",
+          "brief": "art/creatures/trancoura/concept-v2/brief.md",
+          "source": "documentation/creatures/trancoura-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "bobim",
+          "to": "tatimbo",
+          "kind": "reweaving",
+          "reason": "O rolo ganha corpo e quatro apoios; seu papel se abre num abrigo móvel.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "tatimbo",
+          "to": "trancasco",
+          "kind": "reweaving",
+          "reason": "O abrigo passa a articular placas; o corpo alonga para interceptar e cobrir pontos vulneráveis.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "trancasco",
+          "to": "trancoura",
+          "kind": "reweaving",
+          "reason": "O jovem troca parte da mobilidade por apoio e proteção; lâminas múltiplas e garras integram o sistema adulto.",
+          "decision_status": "proposed"
         }
       ],
       "notes": []
@@ -3400,6 +5020,186 @@
       "notes": []
     },
     {
+      "id": "velaravan",
+      "name": "velaravan",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/velaravan-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "velim",
+          "name": "Velim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+          "art": "art/creatures/velaravan/velim/concept-v1/concept.png",
+          "brief": "art/creatures/velaravan/velim/concept-v1/brief.md",
+          "source": "documentation/creatures/velaravan-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "dunelo",
+          "name": "Dunelo",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+          "art": "art/creatures/velaravan/dunelo/concept-v1/concept.png",
+          "brief": "art/creatures/velaravan/dunelo/concept-v1/brief.md",
+          "source": "documentation/creatures/velaravan-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "velaruta",
+          "name": "Velaruta",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+          "art": "art/creatures/velaravan/velaruta/concept-v1/concept.png",
+          "brief": "art/creatures/velaravan/velaruta/concept-v1/brief.md",
+          "source": "documentation/creatures/velaravan-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "velaravan",
+          "name": "Velaravan",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+          "art": "art/creatures/velaravan/velaravan/concept-v1/concept.png",
+          "brief": "art/creatures/velaravan/velaravan/concept-v1/brief.md",
+          "source": "documentation/creatures/velaravan-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "velim",
+          "to": "dunelo",
+          "kind": "reweaving",
+          "reason": "Velim ganha apoios e partes próprias para começar a função de os guias do vento adormecido.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "dunelo",
+          "to": "velaruta",
+          "kind": "reweaving",
+          "reason": "Dunelo desenvolve sustentação e articulações para coordenar essa função em Velaruta.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "velaruta",
+          "to": "velaravan",
+          "kind": "reweaving",
+          "reason": "Velaruta reorganiza seus apoios e faixas na estrutura especializada de Velaravan; De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "vesperalito",
+      "name": "vesperalito",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/vesperalito-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "vespim",
+          "name": "Vespim",
+          "kind": "stage",
+          "stage": "Bebê · I Cafifa",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprender a sustentar: de abrigo dobrado a guardião que contém impactos.",
+          "art": "art/creatures/vesperalito/vespim/concept-v1/concept.png",
+          "brief": "art/creatures/vesperalito/vespim/concept-v1/brief.md",
+          "source": "documentation/creatures/vesperalito-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "vespardo",
+          "name": "Vespardo",
+          "kind": "stage",
+          "stage": "Criança · II Pipa",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprender a sustentar: de abrigo dobrado a guardião que contém impactos.",
+          "art": "art/creatures/vesperalito/vespardo/concept-v1/concept.png",
+          "brief": "art/creatures/vesperalito/vespardo/concept-v1/brief.md",
+          "source": "documentation/creatures/vesperalito-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "vesperante",
+          "name": "Vesperante",
+          "kind": "stage",
+          "stage": "Jovem · III Arraia",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprender a sustentar: de abrigo dobrado a guardião que contém impactos.",
+          "art": "art/creatures/vesperalito/vesperante/concept-v1/concept.png",
+          "brief": "art/creatures/vesperalito/vesperante/concept-v1/brief.md",
+          "source": "documentation/creatures/vesperalito-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "vesperalito",
+          "name": "Vesperálito",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Aprender a sustentar: de abrigo dobrado a guardião que contém impactos.",
+          "art": "art/creatures/vesperalito/concept-v3/concept.png",
+          "brief": "art/creatures/vesperalito/concept-v3/brief.md",
+          "source": "documentation/creatures/vesperalito-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "vespim",
+          "to": "vespardo",
+          "kind": "reweaving",
+          "reason": "A construção simples de Vespim ganha corpo e órgãos de exploração em Vespardo.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "vespardo",
+          "to": "vesperante",
+          "kind": "reweaving",
+          "reason": "A exploração de Vespardo exige movimento mais especializado e proteção parcial em Vesperante.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "vesperante",
+          "to": "vesperalito",
+          "kind": "reweaving",
+          "reason": "Vesperante desenvolve sustentação e controle para a arquitetura adulta de Vesperálito; aquisição do cristal e condições continuam propostas.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
       "id": "viuva-anjo",
       "name": "Viúva-negra / Seraf Seda",
       "category": "Famílias com chart",
@@ -3484,6 +5284,96 @@
           "to": "seraf-seda",
           "kind": "reweaving",
           "reason": "A tecelã torna-se cavaleira-anjo: dois braços, duas pernas e quatro asas protegem o espaço ao redor.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "vortentaculo",
+      "name": "vortentaculo",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/vortentaculo-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "vortim",
+          "name": "Vortim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Do novelo que agarra sem distinguir ao coordenador que aprende a soltar um ponto para liberar o próximo; o controle amadurece antes da força.",
+          "art": "art/creatures/vortentaculo/vortim/concept-v1/concept.png",
+          "brief": "art/creatures/vortentaculo/vortim/concept-v1/brief.md",
+          "source": "documentation/creatures/vortentaculo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "vortelo",
+          "name": "Vortelo",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Do novelo que agarra sem distinguir ao coordenador que aprende a soltar um ponto para liberar o próximo; o controle amadurece antes da força.",
+          "art": "art/creatures/vortentaculo/vortelo/concept-v1/concept.png",
+          "brief": "art/creatures/vortentaculo/vortelo/concept-v1/brief.md",
+          "source": "documentation/creatures/vortentaculo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "vortespira",
+          "name": "Vortespira",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Do novelo que agarra sem distinguir ao coordenador que aprende a soltar um ponto para liberar o próximo; o controle amadurece antes da força.",
+          "art": "art/creatures/vortentaculo/vortespira/concept-v1/concept.png",
+          "brief": "art/creatures/vortentaculo/vortespira/concept-v1/brief.md",
+          "source": "documentation/creatures/vortentaculo-chart-v1/chart.json",
+          "rig": null
+        },
+        {
+          "id": "vortentaculo",
+          "name": "Vortentáculo",
+          "kind": "stage",
+          "stage": "Adulto · IV Pandorga (proposta)",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Quatro Marés · Vazante: recolher e desembaraçar. História proposta no manifesto do grupo.",
+          "art": "art/creatures/vortentaculo/concept-v1/concept.png",
+          "brief": "art/creatures/vortentaculo/concept-v1/brief.md",
+          "source": "documentation/creatures/vortentaculo-chart-v1/chart.json",
+          "rig": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "vortim",
+          "to": "vortelo",
+          "kind": "reweaving",
+          "reason": "Do novelo que agarra sem distinguir ao coordenador que aprende a soltar um ponto para liberar o próximo; o controle amadurece antes da força.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "vortelo",
+          "to": "vortespira",
+          "kind": "reweaving",
+          "reason": "Do novelo que agarra sem distinguir ao coordenador que aprende a soltar um ponto para liberar o próximo; o controle amadurece antes da força.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "vortespira",
+          "to": "vortentaculo",
+          "kind": "reweaving",
+          "reason": "Do novelo que agarra sem distinguir ao coordenador que aprende a soltar um ponto para liberar o próximo; o controle amadurece antes da força.",
           "decision_status": "proposed"
         }
       ],

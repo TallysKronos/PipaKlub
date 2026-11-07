@@ -10,7 +10,13 @@ O usuário definiu este equilíbrio após rejeitar hipogrifos biológicos com as
 
 **Pixel/2D mangá:** contorno escuro nítido, pequenos degraus escolhidos, massas legíveis e sombras em blocos. Priorizar o desenho expressivo do projeto. Não lavar cores para parecer simples; não substituir o traço por render 3D, textura pictórica, ruído ou serrilhado indiscriminado. Concept de alta resolução não é grid de pixel art validado.
 
+### Correção do autor em 2026-11-07: o corpo também é pipa
+
+O Grifarca `art/creatures/grifarca/concept-v2/` foi aprovado como calibração de pipa viva: rosto e corpo construídos em planos próprios, em vez de animal naturalista com armadura. Aplicar sem copiar sua espécie ou paleta. O autor rejeitou explicitamente aparência de pele/músculo retorcido sob o casco/armadura de Trancoura, Gevoraz e Makaréu. Nessas regiões usar membranas tensionadas largas e poucas dobras de compressão nas juntas, sem estrias, fibras, tendões ou malha de triângulos por todo o corpo. Preservar proteção e autoridade adulta; não esconder o problema com mais placas ou remover grevas sem intenção. Raízes, articulação e volume continuam necessários.
+
 ## Mudança de espécie é mudança de rosto
+
+Direção explícita do autor em 2026-11-06: parar de repetir olhos laranjas. Para novas criaturas, escolher cores de olhos não alaranjadas de acordo com sua identidade, variando deliberadamente. Não alterar por isso as artes já aprovadas; a família Ressonhiena foi aprovada com a cor existente.
 
 Instrução explícita do autor: se a transformação é equina, fazer focinho, cabeça, olhos e orelhas equinos. Se é inseto, antenas, mandíbulas e cabeça de inseto. Não preservar bico e cara do Azulão como requisito universal de parentesco. Um mon inicialmente ave pode virar fera marítima sem ser uma ave fantasiada de raia.
 
@@ -37,6 +43,8 @@ Pedir uma pose completa em três quartos com margens e alpha quando a entrega fo
 Se só a cabeça falhou e corpo/asas foram aprovados, usar edição dirigida preservando o resto; guardar original. A edição generativa pode alterar pixels fora do alvo: verificar visualmente, sem prometer preservação exata. Aceitação de um corpo não aprova a nova face automaticamente.
 
 ## Conferência por forma e família
+
+Para quadrúpedes e formas bestiais, consultar o [benchmark da família Loogamon](../../../../art/benchmarks/loogamon-line-2026-11-06/ANALISE.md) e suas [diretrizes aplicadas](../../../../art/benchmarks/loogamon-line-2026-11-06/DIRETRIZES-QUADRUPEDES.md). Evitar corpo liso neutro sob equipamento expressivo: construir face, sobreposição de massas e uma camada intermediária de tufos/dobras/proteções com direção. Papel, pelo e placa não recebem o mesmo contorno. Não copiar a família externa; pose bestial baixa não prova anatomia exclusivamente quadrúpede.
 
 - Anatomia: contar membros, asas/élitros, antenas, olhos, cabeça e terminações. Conferir raízes reais e continuidade. As seis patas de um inseto não são quatro patas e duas antenas.
 - Rabiola: fio faz parte da peça, conexão legível e alma preservada. Não deixar o fio preso ao torso quando a intenção é separar a rabiola completa.

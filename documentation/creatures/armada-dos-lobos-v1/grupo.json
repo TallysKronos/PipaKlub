@@ -1,0 +1,38 @@
+{
+  "name": "Armada dos Lobos",
+  "decision_status": "proposed",
+  "members": [
+    {
+      "id": "lupunhal",
+      "name": "Lupunhal",
+      "art": "../../../art/creatures/lupunhal/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lupunhal/concept-v1/brief.md",
+      "species": "Canis lupus",
+      "weapon": "Duas adagas de linha"
+    },
+    {
+      "id": "dirubastiao",
+      "name": "Dirubastião",
+      "art": "../../../art/creatures/dirubastiao/concept-v1/concept.png",
+      "brief": "../../../art/creatures/dirubastiao/concept-v1/brief.md",
+      "species": "Aenocyon dirus",
+      "weapon": "Balista dorsal de cerco"
+    },
+    {
+      "id": "etruslanca",
+      "name": "Etruslança",
+      "art": "../../../art/creatures/etruslanca/concept-v1/concept.png",
+      "brief": "../../../art/creatures/etruslanca/concept-v1/brief.md",
+      "species": "Canis etruscus",
+      "weapon": "Lança de estandarte"
+    },
+    {
+      "id": "miralis",
+      "name": "Miralís",
+      "art": "../../../art/creatures/miralis/concept-v1/concept.png",
+      "brief": "../../../art/creatures/miralis/concept-v1/brief.md",
+      "species": "Canis simensis",
+      "weapon": "Sniper almática de carretel"
+    }
+  ]
+}

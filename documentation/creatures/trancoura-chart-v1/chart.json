@@ -1,0 +1,92 @@
+{
+  "family_id": "trancoura",
+  "scope": "Concepts visuais aprovados pelo autor; relações, lore e condições propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "bobim",
+      "name": "Bobim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Um rolo de cartaz vivo, rosto e corpo integrados, duas abas auriculares e pequenos pés; olhos azul-gelo.",
+      "story": "Começa enrolado no próprio papel, aprendendo a abrir seu abrigo para observar o mundo.",
+      "action": "enrolar e abrigar",
+      "tradeoff": "Sem pernas desenvolvidas, desloca-se em pequenos tombos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/trancoura/bobim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/trancoura/bobim/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "tatimbo",
+      "name": "Tatimbo",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Tatu pequeno de quatro patas sob uma cobertura flexível de cartaz; focinho afilado e uma orelha dobrada.",
+      "story": "Abre o rolo num teto flexível e começa a explorar, farejando e cavando com as primeiras garras.",
+      "action": "explorar e cobrir",
+      "tradeoff": "A cobertura flexível ainda não resiste a impactos fortes.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/trancoura/tatimbo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/trancoura/tatimbo/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "trancasco",
+      "name": "Trancasco",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Corpo esguio de pescoço e pernas mais longos, cobertura rasa em placas largas e proteção em um antebraço.",
+      "story": "Aprende a deslizar as placas para cobrir um lado do corpo enquanto mantém mobilidade para interceptar.",
+      "action": "interceptar e articular",
+      "tradeoff": "A proteção parcial deixa flancos e patas mais expostos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/trancoura/trancasco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/trancoura/trancasco/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "trancoura",
+      "name": "Trancoura",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Tatu pesado de quatro apoios, couraça-portão segmentada, rolo dorsal, garras grandes e olhos azul-gelo.",
+      "story": "Propõe-se que domine a articulação da couraça para bloquear passagem e proteger quem está atrás.",
+      "decision_status": "approved",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas.",
+      "production_status": "concept",
+      "art": "../../../art/creatures/trancoura/concept-v2/concept.png",
+      "brief": "../../../art/creatures/trancoura/concept-v2/brief.md",
+      "prior_approved_art": "../../../art/creatures/trancoura/concept-v1/concept.png"
+    }
+  ],
+  "edges": [
+    {
+      "from": "bobim",
+      "to": "tatimbo",
+      "kind": "reweaving",
+      "reason": "O rolo ganha corpo e quatro apoios; seu papel se abre num abrigo móvel.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "tatimbo",
+      "to": "trancasco",
+      "kind": "reweaving",
+      "reason": "O abrigo passa a articular placas; o corpo alonga para interceptar e cobrir pontos vulneráveis.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "trancasco",
+      "to": "trancoura",
+      "kind": "reweaving",
+      "reason": "O jovem troca parte da mobilidade por apoio e proteção; lâminas múltiplas e garras integram o sistema adulto.",
+      "decision_status": "proposed"
+    }
+  ]
+}

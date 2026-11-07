@@ -1,0 +1,84 @@
+{
+  "family_id": "alvorraia",
+  "scope": "Linha documental bebê → criança → jovem → adulto. Pré-evoluções e vínculos propostos; adulto anterior preservado.",
+  "nodes": [
+    {
+      "id": "marulhim",
+      "name": "Marulhim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Cabeça e corpo fundidos num losango; duas abas laterais pequenas e rabiola de leque. Silhueta simples sem os guias cefálicos adultos.",
+      "story": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/alvorraia/marulhim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/alvorraia/marulhim/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovadissimos! Agora quero que você faça para um grupo chamado armada dos lobos” (2026-11-07). Escopo: aceitação visual das 12 pré-evoluções apresentadas; não aprova automaticamente lore, nomes, mecânicas ou integração."
+    },
+    {
+      "id": "raivela",
+      "name": "Marivela",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Corpo arredondado separado das duas velas; pequenos brotos cefálicos ainda retos, expressão curiosa e apoios leves.",
+      "story": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/alvorraia/raivela/concept-v1/concept.png",
+      "brief": "../../../art/creatures/alvorraia/raivela/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovadissimos! Agora quero que você faça para um grupo chamado armada dos lobos” (2026-11-07). Escopo: aceitação visual das 12 pré-evoluções apresentadas; não aprova automaticamente lore, nomes, mecânicas ou integração."
+    },
+    {
+      "id": "alvorvela",
+      "name": "Alvorvela",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Corpo central estreito, velas alongadas, guias parcialmente enrolados e pequenas proteções nas pontas. Postura de manobra, sem o volume adulto.",
+      "story": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/alvorraia/alvorvela/concept-v1/concept.png",
+      "brief": "../../../art/creatures/alvorraia/alvorvela/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovadissimos! Agora quero que você faça para um grupo chamado armada dos lobos” (2026-11-07). Escopo: aceitação visual das 12 pré-evoluções apresentadas; não aprova automaticamente lore, nomes, mecânicas ou integração."
+    },
+    {
+      "id": "alvorraia",
+      "name": "Alvorraia",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga (proposta)",
+      "identity": "Abre caminho quando a água avança, elevando parceiros sobre obstáculos.",
+      "story": "Quatro Marés · Enchente: erguer e conduzir. História proposta no manifesto do grupo.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/alvorraia/concept-v1/concept.png",
+      "brief": "../../../art/creatures/alvorraia/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "marulhim",
+      "to": "raivela",
+      "kind": "reweaving",
+      "reason": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "raivela",
+      "to": "alvorvela",
+      "kind": "reweaving",
+      "reason": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "alvorvela",
+      "to": "alvorraia",
+      "kind": "reweaving",
+      "reason": "Primeiro flutua à deriva, depois aprende a colher corrente nas velas, manobrar e finalmente erguer outros sobre obstáculos.",
+      "decision_status": "proposed"
+    }
+  ]
+}

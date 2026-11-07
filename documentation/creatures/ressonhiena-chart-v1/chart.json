@@ -1,0 +1,91 @@
+{
+  "family_id": "ressonhiena",
+  "scope": "Quatro concepts visualmente aprovados; relações causais e regras propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "risaco",
+      "name": "Risaco",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Corpo-rosto único de membrana ameixa/preta, nó ocre com abas-orelhas, crescente ocre e focinho creme.",
+      "story": "Nasce como um saquinho vivo; o riso faz sua membrana inflar e tombar.",
+      "action": "inflar e quicar",
+      "tradeoff": "Sem pernas desenvolvidas, depende de pequenos saltos e tombos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ressonhiena/risaco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ressonhiena/risaco/concept-v1/brief.md",
+      "approval_note": "Autor: \"Todos aprovados, agora Seja criativo com o próximo, e pare de colocar olhos laranjas nas criaturas\". Aprovação visual dos quatro conceitos da família apresentada; não aprova automaticamente regras ou integração."
+    },
+    {
+      "id": "rasquim",
+      "name": "Rasquim",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Hiena compacta de quatro patas, uma orelha caída, gola preta aberta e crescentes ocres.",
+      "story": "Aprende a correr e recolher membranas; transforma a primeira camada num abrigo solto para ombros.",
+      "action": "recolher e abrigar",
+      "tradeoff": "As abas soltas protegem pouco e ainda não contêm a energia.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ressonhiena/rasquim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ressonhiena/rasquim/concept-v1/brief.md",
+      "approval_note": "Autor: \"Todos aprovados, agora Seja criativo com o próximo, e pare de colocar olhos laranjas nas criaturas\". Aprovação visual dos quatro conceitos da família apresentada; não aprova automaticamente regras ou integração."
+    },
+    {
+      "id": "rasgargal",
+      "name": "Rasgargal",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Hiena esguia com ombro alto, quadril estreito, uma grande ombreira atada e um antebraço protegido.",
+      "story": "Comprime as membranas num reservatório assimétrico; o riso acumula pressão que escapa pelo primeiro rasgo.",
+      "action": "acumular e descarregar",
+      "tradeoff": "A descarga descontrolada desequilibra sua distribuição de força.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ressonhiena/rasgargal/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ressonhiena/rasgargal/concept-v1/brief.md",
+      "approval_note": "Autor: \"Todos aprovados, agora Seja criativo com o próximo, e pare de colocar olhos laranjas nas criaturas\". Aprovação visual dos quatro conceitos da família apresentada; não aprova automaticamente regras ou integração."
+    },
+    {
+      "id": "ressonhiena",
+      "name": "Ressonhiena",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Hiena de ombros altos e quatro patas; armadura completa de sacos almáticos atados, couraça e grevas; chamas nos rasgos.",
+      "story": "Propõe-se que aprenda a distribuir pressão entre proteções e projetar o riso sem romper a estrutura.",
+      "decision_status": "approved",
+      "approval_note": "Autor: \"Todos aprovados, agora Seja criativo com o próximo, e pare de colocar olhos laranjas nas criaturas\". Aprovação visual dos quatro conceitos da família apresentada; não aprova automaticamente regras ou integração.",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ressonhiena/concept-v2/concept.png",
+      "brief": "../../../art/creatures/ressonhiena/concept-v2/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "risaco",
+      "to": "rasquim",
+      "kind": "reweaving",
+      "reason": "O saquinho desenvolve apoios e corpo; a membrana antes envolvente torna-se gola protetora.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "rasquim",
+      "to": "rasgargal",
+      "kind": "reweaving",
+      "reason": "A criança aprende a comprimir matéria; o corpo alonga e surge a primeira proteção que acumula pressão.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "rasgargal",
+      "to": "ressonhiena",
+      "kind": "reweaving",
+      "reason": "O jovem distribui a pressão antes concentrada num ombro; couraça, ombreiras e grevas integram o sistema adulto.",
+      "decision_status": "proposed"
+    }
+  ]
+}

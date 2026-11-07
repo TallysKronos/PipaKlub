@@ -1,5 +1,7 @@
 # Quadrúpedes adultos — estudo de cinco designs
 
+Complemento de 2026-11-06: [família Loogamon — corpo vivo e maturidade](../loogamon-line-2026-11-06/ANALISE.md). O novo estudo corrige uma aplicação excessivamente seca destes princípios: áreas quietas precisam conservar volume, articulação e estados de material. Clareza não significa esterilizar o corpo; acrescentar agrupamentos médios e atuação antes de mais ornamentos.
+
 2026-11-04. Cinco perfis oficiais consultados e cinco artes oficiais inspecionadas, em referencias/. Artes externas são benchmark, não referências de geração nem assets do jogo. Ilustrações de 320×320 permitem estrutura e silhueta, não microdetalhes. Estudo estático não comprova marcha ou amplitude articular.
 
 ## 1. MetalGarurumon: corpo como plataforma
