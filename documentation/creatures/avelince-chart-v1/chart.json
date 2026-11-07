@@ -1,0 +1,79 @@
+{
+  "family_id": "avelince",
+  "scope": "Linha com três pré-formas propostas e adulto existente; sem regras de jogo ou integração.",
+  "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+  "nodes": [
+    {
+      "id": "avelince-baby",
+      "name": "Avelince — Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Equilibrar-se",
+      "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/avelince/baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/avelince/baby/concept-v1/brief.md"
+    },
+    {
+      "id": "avelince-child",
+      "name": "Avelince — Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Desviar o passo",
+      "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/avelince/child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/avelince/child/concept-v1/brief.md"
+    },
+    {
+      "id": "avelince-young",
+      "name": "Avelince — Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Guiar o giro",
+      "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/avelince/young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/avelince/young/concept-v1/brief.md"
+    },
+    {
+      "id": "avelince",
+      "name": "Avelince",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Lince de vela · Desviar",
+      "story": "Atravessa investidas com um desvio mínimo e devolve a força para o chão. Suas velas só funcionam quando o corpo aceita girar junto.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/avelince/concept-v1/concept.png",
+      "brief": "../../../art/creatures/avelince/concept-v1/brief.md",
+      "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "avelince-baby",
+      "to": "avelince-child",
+      "kind": "reweaving",
+      "reason": "Passa de equilibrar-se para desviar o passo. Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "avelince-child",
+      "to": "avelince-young",
+      "kind": "reweaving",
+      "reason": "Passa de desviar o passo para guiar o giro. Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "avelince-young",
+      "to": "avelince",
+      "kind": "reweaving",
+      "reason": "Passa de guiar o giro para desviar. Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+      "decision_status": "proposed"
+    }
+  ]
+}

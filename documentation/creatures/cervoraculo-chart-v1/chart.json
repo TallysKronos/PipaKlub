@@ -1,0 +1,79 @@
+{
+  "family_id": "cervoraculo",
+  "scope": "Linha com três pré-formas propostas e adulto existente; sem regras de jogo ou integração.",
+  "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+  "nodes": [
+    {
+      "id": "cervoraculo-baby",
+      "name": "Cervoráculo — Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Perceber um sinal",
+      "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervoraculo/baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cervoraculo/baby/concept-v1/brief.md"
+    },
+    {
+      "id": "cervoraculo-child",
+      "name": "Cervoráculo — Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Comparar duas rotas",
+      "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervoraculo/child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cervoraculo/child/concept-v1/brief.md"
+    },
+    {
+      "id": "cervoraculo-young",
+      "name": "Cervoráculo — Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Escolher uma passagem",
+      "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervoraculo/young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cervoraculo/young/concept-v1/brief.md"
+    },
+    {
+      "id": "cervoraculo",
+      "name": "Cervoráculo",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Cervo de arco · Orientar",
+      "story": "Seis olhos nas velas dos chifres observam rotas possíveis. Ele sustenta apenas uma travessia por vez: enxergar alternativas não permite salvar todos os caminhos.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervoraculo/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cervoraculo/concept-v2/brief.md",
+      "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "cervoraculo-baby",
+      "to": "cervoraculo-child",
+      "kind": "reweaving",
+      "reason": "Passa de perceber um sinal para comparar duas rotas. Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cervoraculo-child",
+      "to": "cervoraculo-young",
+      "kind": "reweaving",
+      "reason": "Passa de comparar duas rotas para escolher uma passagem. Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cervoraculo-young",
+      "to": "cervoraculo",
+      "kind": "reweaving",
+      "reason": "Passa de escolher uma passagem para orientar. Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+      "decision_status": "proposed"
+    }
+  ]
+}

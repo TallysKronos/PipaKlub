@@ -2,7 +2,7 @@
 
 Atualizado em **4 de novembro de 2026**. Documento de organização de criação, não novo cânone ou lista de integração.
 
-**94 agrupamentos familiares**, sendo 55 charts principais; **286 registros únicos de formas/criaturas**, além de **17 reservas visuais**. Criaturas isoladas recebem ficha familiar de uma forma, com parentesco ainda indefinido. Contagens incluem briefs sem arte e estados; não são quantidade de espécies prontas para o jogo.
+**110 agrupamentos familiares**, sendo 71 charts principais; **326 registros únicos de formas/criaturas**, além de **17 reservas visuais**. Criaturas isoladas recebem ficha familiar de uma forma, com parentesco ainda indefinido. Contagens incluem briefs sem arte e estados; não são quantidade de espécies prontas para o jogo.
 
 ## Como ler
 
@@ -18,99 +18,115 @@ Atualizado em **4 de novembro de 2026**. Documento de organização de criação
 |---|---:|---|
 | [alvorraia](#familia-01) | 4 | Famílias com chart |
 | [Anaconda do retrato](#familia-02) | 4 | Famílias com chart |
-| [Azulão](#familia-03) | 12 | Famílias com chart |
-| [Cacau e preguiça — dois ramos](#familia-04) | 7 | Famílias com chart |
-| [canticripta](#familia-05) | 4 | Famílias com chart |
-| [Capivara aquática / Capiboia](#familia-06) | 10 | Famílias com chart |
-| [Caracol + pneu](#familia-07) | 4 | Famílias com chart |
-| [Caramelo / Caramund](#familia-08) | 4 | Famílias com chart |
-| [Carcará](#familia-09) | 4 | Famílias com chart |
-| [Cervo / Cervarco](#familia-10) | 4 | Famílias com chart |
-| [Chaspiral / chapeleira](#familia-11) | 4 | Famílias com chart |
-| [coroabissal](#familia-12) | 4 | Famílias com chart |
-| [Coruja da balança](#familia-13) | 4 | Famílias com chart |
-| [crocafago](#familia-14) | 4 | Famílias com chart |
-| [dirubastiao](#familia-15) | 4 | Famílias com chart |
-| [Dóber / Dobrácula](#familia-16) | 4 | Famílias com chart |
-| [Fóssil brontossauro / Estratonte](#familia-17) | 4 | Famílias com chart |
-| [etruslanca](#familia-18) | 4 | Famílias com chart |
-| [Flautrevo / morcego flautista](#familia-19) | 4 | Famílias com chart |
-| [Galo de combate / Galofuso](#familia-20) | 4 | Famílias com chart |
-| [Gambá / Gambalhote](#familia-21) | 4 | Famílias com chart |
-| [Gata lunar / Noctiluna](#familia-22) | 4 | Famílias com chart |
-| [gevoraz](#familia-23) | 4 | Famílias com chart |
-| [grifarca](#familia-24) | 4 | Famílias com chart |
-| [Cavalo-marinho + abóbora](#familia-25) | 4 | Famílias com chart |
-| [ibiscrito](#familia-26) | 4 | Famílias com chart |
-| [Javali guerreiro](#familia-27) | 4 | Famílias com chart |
-| [Lince de Cerco](#familia-28) | 4 | Famílias com chart |
-| [Lobo em pele de cordeiro](#familia-29) | 5 | Famílias com chart |
-| [lupunhal](#familia-30) | 4 | Famílias com chart |
-| [makareu](#familia-31) | 4 | Famílias com chart |
-| [Mata Verde](#familia-32) | 4 | Famílias com chart |
-| [Mico samurai](#familia-33) | 4 | Famílias com chart |
-| [miralis](#familia-34) | 4 | Famílias com chart |
-| [nimbalio](#familia-35) | 4 | Famílias com chart |
-| [ofirante](#familia-36) | 4 | Famílias com chart |
-| [Pangolim trovejante](#familia-37) | 5 | Famílias com chart |
-| [Husky / border collie de papel](#familia-38) | 4 | Famílias com chart |
-| [Rabbito](#familia-39) | 6 | Famílias com chart |
-| [Rai / Saber](#familia-40) | 8 | Famílias com chart |
-| [Raio de Sol](#familia-41) | 3 | Famílias com chart |
-| [reciferreo](#familia-42) | 4 | Famílias com chart |
-| [ressonhiena](#familia-43) | 4 | Famílias com chart |
-| [Fóssil T-rex / Rexestrato](#familia-44) | 4 | Famílias com chart |
-| [Riscaz](#familia-45) | 4 | Famílias com chart |
-| [selacrabio](#familia-46) | 4 | Famílias com chart |
-| [Dragão / Tramino](#familia-47) | 4 | Famílias com chart |
-| [trancoura](#familia-48) | 4 | Famílias com chart |
-| [Trinca-brasas / cérbero](#familia-49) | 4 | Famílias com chart |
-| [Urso polar / Borealvo](#familia-50) | 4 | Famílias com chart |
-| [velaravan](#familia-51) | 4 | Famílias com chart |
-| [vesperalito](#familia-52) | 4 | Famílias com chart |
-| [Viúva-negra / Seraf Seda](#familia-53) | 4 | Famílias com chart |
-| [vortentaculo](#familia-54) | 4 | Famílias com chart |
-| [Yaguarú / onça mumificada](#familia-55) | 4 | Famílias com chart |
-| [Retalho — identidade e máscara](#familia-56) | 2 | Criaturas sem linha evolutiva definida |
-| [Mormaço — livre e possuído](#familia-57) | 2 | Criaturas sem linha evolutiva definida |
-| [Pipa-Dragão — sobrecarregada e desatada](#familia-58) | 2 | Criaturas sem linha evolutiva definida |
-| [Alvaneve](#familia-59) | 1 | Criaturas sem linha evolutiva definida |
-| [Araruna](#familia-60) | 1 | Criaturas sem linha evolutiva definida |
-| [Auriflama](#familia-61) | 1 | Criaturas sem linha evolutiva definida |
-| [Azulongo](#familia-62) | 1 | Criaturas sem linha evolutiva definida |
-| [Caimbira](#familia-63) | 1 | Criaturas sem linha evolutiva definida |
-| [Capimansa](#familia-64) | 1 | Criaturas sem linha evolutiva definida |
-| [Celofita](#familia-65) | 1 | Criaturas sem linha evolutiva definida |
-| [Eremor](#familia-66) | 1 | Criaturas sem linha evolutiva definida |
-| [Glacerol](#familia-67) | 1 | Criaturas sem linha evolutiva definida |
-| [Guaravento](#familia-68) | 1 | Criaturas sem linha evolutiva definida |
-| [Herravento](#familia-69) | 1 | Criaturas sem linha evolutiva definida |
-| [Hiponilo](#familia-70) | 1 | Criaturas sem linha evolutiva definida |
-| [Jaguarluar](#familia-71) | 1 | Criaturas sem linha evolutiva definida |
-| [Jarabrasa](#familia-72) | 1 | Criaturas sem linha evolutiva definida |
-| [Javali de Biscoito](#familia-73) | 1 | Criaturas sem linha evolutiva definida |
-| [Lacertubo](#familia-74) | 1 | Criaturas sem linha evolutiva definida |
-| [Marulume](#familia-75) | 1 | Criaturas sem linha evolutiva definida |
-| [Micofolha](#familia-76) | 1 | Criaturas sem linha evolutiva definida |
-| [Nevagume](#familia-77) | 1 | Criaturas sem linha evolutiva definida |
-| [Nozinho](#familia-78) | 1 | Criaturas sem linha evolutiva definida |
-| [Platofolha](#familia-79) | 1 | Criaturas sem linha evolutiva definida |
-| [Platyx](#familia-80) | 1 | Criaturas sem linha evolutiva definida |
-| [Pteralis](#familia-81) | 1 | Criaturas sem linha evolutiva definida |
-| [Rabiolava](#familia-82) | 1 | Criaturas sem linha evolutiva definida |
-| [Rexal](#familia-83) | 1 | Criaturas sem linha evolutiva definida |
-| [Riovela](#familia-84) | 1 | Criaturas sem linha evolutiva definida |
-| [Stegaru](#familia-85) | 1 | Criaturas sem linha evolutiva definida |
-| [Tamoatá](#familia-86) | 1 | Criaturas sem linha evolutiva definida |
-| [Tatutrama](#familia-87) | 1 | Criaturas sem linha evolutiva definida |
-| [Tricerafan](#familia-88) | 1 | Criaturas sem linha evolutiva definida |
-| [Trovareta](#familia-89) | 1 | Criaturas sem linha evolutiva definida |
-| [Tufanocorte](#familia-90) | 1 | Criaturas sem linha evolutiva definida |
-| [Umbrocasco](#familia-91) | 1 | Criaturas sem linha evolutiva definida |
-| [Tamanduá-tear](#familia-92) | 1 | Criaturas sem linha evolutiva definida |
-| [Íbex-astrolábio](#familia-93) | 1 | Criaturas sem linha evolutiva definida |
-| [Veskoro — crocodiliano de Caio](#familia-94) | 1 | Criaturas sem linha evolutiva definida |
-| [Entrelaços — referências cruzadas](#familia-95) | 2 | Fusões entre famílias |
+| [avelince](#familia-03) | 4 | Famílias com chart |
+| [Azulão](#familia-04) | 12 | Famílias com chart |
+| [bradamara](#familia-05) | 1 | Famílias com chart |
+| [Cacau e preguiça — dois ramos](#familia-06) | 7 | Famílias com chart |
+| [canticripta](#familia-07) | 4 | Famílias com chart |
+| [Capivara aquática / Capiboia](#familia-08) | 10 | Famílias com chart |
+| [Caracol + pneu](#familia-09) | 4 | Famílias com chart |
+| [Caramelo / Caramund](#familia-10) | 4 | Famílias com chart |
+| [Carcará](#familia-11) | 4 | Famílias com chart |
+| [cascoronte](#familia-12) | 4 | Famílias com chart |
+| [Cervo / Cervarco](#familia-13) | 4 | Famílias com chart |
+| [cervoraculo](#familia-14) | 4 | Famílias com chart |
+| [Chaspiral / chapeleira](#familia-15) | 4 | Famílias com chart |
+| [cidraco](#familia-16) | 1 | Famílias com chart |
+| [coroabissal](#familia-17) | 4 | Famílias com chart |
+| [Coruja da balança](#familia-18) | 4 | Famílias com chart |
+| [crocafago](#familia-19) | 4 | Famílias com chart |
+| [dirubastiao](#familia-20) | 4 | Famílias com chart |
+| [Dóber / Dobrácula](#familia-21) | 4 | Famílias com chart |
+| [Fóssil brontossauro / Estratonte](#familia-22) | 4 | Famílias com chart |
+| [etruslanca](#familia-23) | 4 | Famílias com chart |
+| [Flautrevo / morcego flautista](#familia-24) | 4 | Famílias com chart |
+| [Galo de combate / Galofuso](#familia-25) | 4 | Famílias com chart |
+| [Gambá / Gambalhote](#familia-26) | 4 | Famílias com chart |
+| [Gata lunar / Noctiluna](#familia-27) | 4 | Famílias com chart |
+| [geordraco](#familia-28) | 1 | Famílias com chart |
+| [gevoraz](#familia-29) | 4 | Famílias com chart |
+| [gravurso](#familia-30) | 4 | Famílias com chart |
+| [grifarca](#familia-31) | 4 | Famílias com chart |
+| [Cavalo-marinho + abóbora](#familia-32) | 4 | Famílias com chart |
+| [ibiscrito](#familia-33) | 4 | Famílias com chart |
+| [Javali guerreiro](#familia-34) | 4 | Famílias com chart |
+| [joanacendra](#familia-35) | 1 | Famílias com chart |
+| [lacustrel](#familia-36) | 1 | Famílias com chart |
+| [Lince de Cerco](#familia-37) | 4 | Famílias com chart |
+| [Lobo em pele de cordeiro](#familia-38) | 5 | Famílias com chart |
+| [lupunhal](#familia-39) | 4 | Famílias com chart |
+| [makareu](#familia-40) | 4 | Famílias com chart |
+| [Mata Verde](#familia-41) | 4 | Famílias com chart |
+| [melicodia](#familia-42) | 4 | Famílias com chart |
+| [Mico samurai](#familia-43) | 4 | Famílias com chart |
+| [miralis](#familia-44) | 4 | Famílias com chart |
+| [najarcal](#familia-45) | 4 | Famílias com chart |
+| [nimbalio](#familia-46) | 4 | Famílias com chart |
+| [ofirante](#familia-47) | 4 | Famílias com chart |
+| [Pangolim trovejante](#familia-48) | 5 | Famílias com chart |
+| [Husky / border collie de papel](#familia-49) | 4 | Famílias com chart |
+| [Rabbito](#familia-50) | 6 | Famílias com chart |
+| [Rai / Saber](#familia-51) | 8 | Famílias com chart |
+| [Raio de Sol](#familia-52) | 3 | Famílias com chart |
+| [raptorio](#familia-53) | 4 | Famílias com chart |
+| [reciferreo](#familia-54) | 4 | Famílias com chart |
+| [ressonhiena](#familia-55) | 4 | Famílias com chart |
+| [Fóssil T-rex / Rexestrato](#familia-56) | 4 | Famílias com chart |
+| [Riscaz](#familia-57) | 4 | Famílias com chart |
+| [rolandor](#familia-58) | 1 | Famílias com chart |
+| [selacrabio](#familia-59) | 4 | Famílias com chart |
+| [tomoeryu](#familia-60) | 1 | Famílias com chart |
+| [torvargo](#familia-61) | 4 | Famílias com chart |
+| [Dragão / Tramino](#familia-62) | 4 | Famílias com chart |
+| [trancoura](#familia-63) | 4 | Famílias com chart |
+| [Trinca-brasas / cérbero](#familia-64) | 4 | Famílias com chart |
+| [Urso polar / Borealvo](#familia-65) | 4 | Famílias com chart |
+| [valdrisa](#familia-66) | 1 | Famílias com chart |
+| [velaravan](#familia-67) | 4 | Famílias com chart |
+| [vesperalito](#familia-68) | 4 | Famílias com chart |
+| [Viúva-negra / Seraf Seda](#familia-69) | 4 | Famílias com chart |
+| [vortentaculo](#familia-70) | 4 | Famílias com chart |
+| [Yaguarú / onça mumificada](#familia-71) | 4 | Famílias com chart |
+| [Retalho — identidade e máscara](#familia-72) | 2 | Criaturas sem linha evolutiva definida |
+| [Mormaço — livre e possuído](#familia-73) | 2 | Criaturas sem linha evolutiva definida |
+| [Pipa-Dragão — sobrecarregada e desatada](#familia-74) | 2 | Criaturas sem linha evolutiva definida |
+| [Alvaneve](#familia-75) | 1 | Criaturas sem linha evolutiva definida |
+| [Araruna](#familia-76) | 1 | Criaturas sem linha evolutiva definida |
+| [Auriflama](#familia-77) | 1 | Criaturas sem linha evolutiva definida |
+| [Azulongo](#familia-78) | 1 | Criaturas sem linha evolutiva definida |
+| [Caimbira](#familia-79) | 1 | Criaturas sem linha evolutiva definida |
+| [Capimansa](#familia-80) | 1 | Criaturas sem linha evolutiva definida |
+| [Celofita](#familia-81) | 1 | Criaturas sem linha evolutiva definida |
+| [Eremor](#familia-82) | 1 | Criaturas sem linha evolutiva definida |
+| [Glacerol](#familia-83) | 1 | Criaturas sem linha evolutiva definida |
+| [Guaravento](#familia-84) | 1 | Criaturas sem linha evolutiva definida |
+| [Herravento](#familia-85) | 1 | Criaturas sem linha evolutiva definida |
+| [Hiponilo](#familia-86) | 1 | Criaturas sem linha evolutiva definida |
+| [Jaguarluar](#familia-87) | 1 | Criaturas sem linha evolutiva definida |
+| [Jarabrasa](#familia-88) | 1 | Criaturas sem linha evolutiva definida |
+| [Javali de Biscoito](#familia-89) | 1 | Criaturas sem linha evolutiva definida |
+| [Lacertubo](#familia-90) | 1 | Criaturas sem linha evolutiva definida |
+| [Marulume](#familia-91) | 1 | Criaturas sem linha evolutiva definida |
+| [Micofolha](#familia-92) | 1 | Criaturas sem linha evolutiva definida |
+| [Nevagume](#familia-93) | 1 | Criaturas sem linha evolutiva definida |
+| [Nozinho](#familia-94) | 1 | Criaturas sem linha evolutiva definida |
+| [Platofolha](#familia-95) | 1 | Criaturas sem linha evolutiva definida |
+| [Platyx](#familia-96) | 1 | Criaturas sem linha evolutiva definida |
+| [Pteralis](#familia-97) | 1 | Criaturas sem linha evolutiva definida |
+| [Rabiolava](#familia-98) | 1 | Criaturas sem linha evolutiva definida |
+| [Rexal](#familia-99) | 1 | Criaturas sem linha evolutiva definida |
+| [Riovela](#familia-100) | 1 | Criaturas sem linha evolutiva definida |
+| [Stegaru](#familia-101) | 1 | Criaturas sem linha evolutiva definida |
+| [Tamoatá](#familia-102) | 1 | Criaturas sem linha evolutiva definida |
+| [Tatutrama](#familia-103) | 1 | Criaturas sem linha evolutiva definida |
+| [Tricerafan](#familia-104) | 1 | Criaturas sem linha evolutiva definida |
+| [Trovareta](#familia-105) | 1 | Criaturas sem linha evolutiva definida |
+| [Tufanocorte](#familia-106) | 1 | Criaturas sem linha evolutiva definida |
+| [Umbrocasco](#familia-107) | 1 | Criaturas sem linha evolutiva definida |
+| [Tamanduá-tear](#familia-108) | 1 | Criaturas sem linha evolutiva definida |
+| [Íbex-astrolábio](#familia-109) | 1 | Criaturas sem linha evolutiva definida |
+| [Veskoro — crocodiliano de Caio](#familia-110) | 1 | Criaturas sem linha evolutiva definida |
+| [Entrelaços — referências cruzadas](#familia-111) | 2 | Fusões entre famílias |
 
 <a id="familia-01"></a>
 ## 01. alvorraia
@@ -163,7 +179,32 @@ Identificador de organização: `anaconda-retrato`. Grupo: Famílias com chart.
 **Fontes:** [chart.json](../anaconda-retrato-chart-v1/chart.json).
 
 <a id="familia-03"></a>
-## 03. Azulão
+## 03. avelince
+
+Identificador de organização: `avelince`. Grupo: Famílias com chart.
+
+- **Remonta:** Avelince — Bebê → Avelince — Criança. Ligação: proposed.
+- **Remonta:** Avelince — Criança → Avelince — Jovem. Ligação: proposed.
+- **Remonta:** Avelince — Jovem → Avelince. Ligação: proposed.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Avelince — Bebê — `avelince-baby` | Bebê | stage | Proposto | [Arte](../../../art/creatures/avelince/baby/concept-v1/concept.png) |
+| Avelince — Criança — `avelince-child` | Criança | stage | Proposto | [Arte](../../../art/creatures/avelince/child/concept-v1/concept.png) |
+| Avelince — Jovem — `avelince-young` | Jovem | stage | Proposto | [Arte](../../../art/creatures/avelince/young/concept-v1/concept.png) |
+| Avelince — `avelince` | Adulto | stage | Proposto | [Arte](../../../art/creatures/avelince/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Avelince — Bebê:** Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.
+- **Avelince — Criança:** Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.
+- **Avelince — Jovem:** Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.
+- **Avelince:** Atravessa investidas com um desvio mínimo e devolve a força para o chão. Suas velas só funcionam quando o corpo aceita girar junto.
+
+**Fontes:** [chart.json](../avelince-chart-v1/chart.json).
+
+<a id="familia-04"></a>
+## 04. Azulão
 
 Identificador de organização: `azulao`. Grupo: Famílias com chart.
 
@@ -213,8 +254,25 @@ Identificador de organização: `azulao`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../azulao-chart-v1/chart.json).
 
-<a id="familia-04"></a>
-## 04. Cacau e preguiça — dois ramos
+<a id="familia-05"></a>
+## 05. bradamara
+
+Identificador de organização: `bradamara`. Grupo: Famílias com chart.
+
+**Parentesco evolutivo não definido.** As formas narrativas, quando presentes, não representam crescimento automático.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Bradamara — `bradamara` | Adulto | stage | Proposto | [Arte](../../../art/creatures/bradamara/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Bradamara:** Quebra os fechos que aprisionam outras almáticas. Seu golpe só deve atingir a amarra: força sem precisão machuca o corpo que pretende libertar.
+
+**Fontes:** [chart.json](../bradamara-chart-v1/chart.json).
+
+<a id="familia-06"></a>
+## 06. Cacau e preguiça — dois ramos
 
 Identificador de organização: `cacaurama`. Grupo: Famílias com chart.
 
@@ -250,8 +308,8 @@ Identificador de organização: `cacaurama`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../cacaurama-chart-v2/chart.json), [chart.json](../cacaurama-preguica-chart-v1/chart.json).
 
-<a id="familia-05"></a>
-## 05. canticripta
+<a id="familia-07"></a>
+## 07. canticripta
 
 Identificador de organização: `canticripta`. Grupo: Famílias com chart.
 
@@ -275,8 +333,8 @@ Identificador de organização: `canticripta`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../canticripta-chart-v1/chart.json).
 
-<a id="familia-06"></a>
-## 06. Capivara aquática / Capiboia
+<a id="familia-08"></a>
+## 08. Capivara aquática / Capiboia
 
 Identificador de organização: `capivara-boia`. Grupo: Famílias com chart.
 
@@ -316,8 +374,8 @@ Identificador de organização: `capivara-boia`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../capivara-boia-chart-v1/chart.json).
 
-<a id="familia-07"></a>
-## 07. Caracol + pneu
+<a id="familia-09"></a>
+## 09. Caracol + pneu
 
 Identificador de organização: `caracol-pneu`. Grupo: Famílias com chart.
 
@@ -341,8 +399,8 @@ Identificador de organização: `caracol-pneu`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../caracol-pneu-chart-v1/chart.json).
 
-<a id="familia-08"></a>
-## 08. Caramelo / Caramund
+<a id="familia-10"></a>
+## 10. Caramelo / Caramund
 
 Identificador de organização: `caramund`. Grupo: Famílias com chart.
 
@@ -366,8 +424,8 @@ Identificador de organização: `caramund`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../caramund-chart-v1/chart.json).
 
-<a id="familia-09"></a>
-## 09. Carcará
+<a id="familia-11"></a>
+## 11. Carcará
 
 Identificador de organização: `carcara`. Grupo: Famílias com chart.
 
@@ -391,8 +449,33 @@ Identificador de organização: `carcara`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../carcara-chart-v1/chart.json).
 
-<a id="familia-10"></a>
-## 10. Cervo / Cervarco
+<a id="familia-12"></a>
+## 12. cascoronte
+
+Identificador de organização: `cascoronte`. Grupo: Famílias com chart.
+
+- **Remonta:** Cascoronte — Bebê → Cascoronte — Criança. Ligação: proposed.
+- **Remonta:** Cascoronte — Criança → Cascoronte — Jovem. Ligação: proposed.
+- **Remonta:** Cascoronte — Jovem → Cascoronte. Ligação: proposed.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Cascoronte — Bebê — `cascoronte-baby` | Bebê | stage | Proposto | [Arte](../../../art/creatures/cascoronte/baby/concept-v1/concept.png) |
+| Cascoronte — Criança — `cascoronte-child` | Criança | stage | Proposto | [Arte](../../../art/creatures/cascoronte/child/concept-v1/concept.png) |
+| Cascoronte — Jovem — `cascoronte-young` | Jovem | stage | Proposto | [Arte](../../../art/creatures/cascoronte/young/concept-v1/concept.png) |
+| Cascoronte — `cascoronte` | Adulto | stage | Proposto | [Arte](../../../art/creatures/cascoronte/concept-v2/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Cascoronte — Bebê:** Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.
+- **Cascoronte — Criança:** Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.
+- **Cascoronte — Jovem:** Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.
+- **Cascoronte:** Leva passageiros dentro da própria carapaça e conserva o passo estável enquanto atravessam o perigo. Precisa recolher a escada e fechar o abrigo antes de retomar a marcha.
+
+**Fontes:** [chart.json](../cascoronte-chart-v1/chart.json).
+
+<a id="familia-13"></a>
+## 13. Cervo / Cervarco
 
 Identificador de organização: `cervarco-family-v1`. Grupo: Famílias com chart.
 
@@ -416,8 +499,33 @@ Identificador de organização: `cervarco-family-v1`. Grupo: Famílias com chart
 
 **Fontes:** [chart.json](../cervarco-chart-v1/chart.json).
 
-<a id="familia-11"></a>
-## 11. Chaspiral / chapeleira
+<a id="familia-14"></a>
+## 14. cervoraculo
+
+Identificador de organização: `cervoraculo`. Grupo: Famílias com chart.
+
+- **Remonta:** Cervoráculo — Bebê → Cervoráculo — Criança. Ligação: proposed.
+- **Remonta:** Cervoráculo — Criança → Cervoráculo — Jovem. Ligação: proposed.
+- **Remonta:** Cervoráculo — Jovem → Cervoráculo. Ligação: proposed.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Cervoráculo — Bebê — `cervoraculo-baby` | Bebê | stage | Proposto | [Arte](../../../art/creatures/cervoraculo/baby/concept-v1/concept.png) |
+| Cervoráculo — Criança — `cervoraculo-child` | Criança | stage | Proposto | [Arte](../../../art/creatures/cervoraculo/child/concept-v1/concept.png) |
+| Cervoráculo — Jovem — `cervoraculo-young` | Jovem | stage | Proposto | [Arte](../../../art/creatures/cervoraculo/young/concept-v1/concept.png) |
+| Cervoráculo — `cervoraculo` | Adulto | stage | Proposto | [Arte](../../../art/creatures/cervoraculo/concept-v2/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Cervoráculo — Bebê:** Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.
+- **Cervoráculo — Criança:** Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.
+- **Cervoráculo — Jovem:** Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.
+- **Cervoráculo:** Seis olhos nas velas dos chifres observam rotas possíveis. Ele sustenta apenas uma travessia por vez: enxergar alternativas não permite salvar todos os caminhos.
+
+**Fontes:** [chart.json](../cervoraculo-chart-v1/chart.json).
+
+<a id="familia-15"></a>
+## 15. Chaspiral / chapeleira
 
 Identificador de organização: `chaspiral`. Grupo: Famílias com chart.
 
@@ -441,8 +549,25 @@ Identificador de organização: `chaspiral`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../chaspiral-chart-v1/chart.json).
 
-<a id="familia-12"></a>
-## 12. coroabissal
+<a id="familia-16"></a>
+## 16. cidraco
+
+Identificador de organização: `cidraco`. Grupo: Famílias com chart.
+
+**Parentesco evolutivo não definido.** As formas narrativas, quando presentes, não representam crescimento automático.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Cidraco — `cidraco` | Adulto | stage | Proposto | [Arte](../../../art/creatures/cidraco/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Cidraco:** A fama o precede, mas ele protege viajantes que não reconhecem seu brasão. Aprende a abandonar a vitória espetacular para manter uma travessia segura.
+
+**Fontes:** [chart.json](../cidraco-chart-v1/chart.json).
+
+<a id="familia-17"></a>
+## 17. coroabissal
 
 Identificador de organização: `coroabissal`. Grupo: Famílias com chart.
 
@@ -466,8 +591,8 @@ Identificador de organização: `coroabissal`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../coroabissal-chart-v1/chart.json).
 
-<a id="familia-13"></a>
-## 13. Coruja da balança
+<a id="familia-18"></a>
+## 18. Coruja da balança
 
 Identificador de organização: `coruja-balanca`. Grupo: Famílias com chart.
 
@@ -491,8 +616,8 @@ Identificador de organização: `coruja-balanca`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../coruja-balanca-chart-v1/chart.json).
 
-<a id="familia-14"></a>
-## 14. crocafago
+<a id="familia-19"></a>
+## 19. crocafago
 
 Identificador de organização: `crocafago`. Grupo: Famílias com chart.
 
@@ -516,8 +641,8 @@ Identificador de organização: `crocafago`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../crocafago-chart-v1/chart.json).
 
-<a id="familia-15"></a>
-## 15. dirubastiao
+<a id="familia-20"></a>
+## 20. dirubastiao
 
 Identificador de organização: `dirubastiao`. Grupo: Famílias com chart.
 
@@ -541,8 +666,8 @@ Identificador de organização: `dirubastiao`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../dirubastiao-chart-v1/chart.json).
 
-<a id="familia-16"></a>
-## 16. Dóber / Dobrácula
+<a id="familia-21"></a>
+## 21. Dóber / Dobrácula
 
 Identificador de organização: `doberman-c`. Grupo: Famílias com chart.
 
@@ -566,8 +691,8 @@ Identificador de organização: `doberman-c`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../doberman-chart-v1/chart.json).
 
-<a id="familia-17"></a>
-## 17. Fóssil brontossauro / Estratonte
+<a id="familia-22"></a>
+## 22. Fóssil brontossauro / Estratonte
 
 Identificador de organização: `estratonte-family-v1`. Grupo: Famílias com chart.
 
@@ -591,8 +716,8 @@ Identificador de organização: `estratonte-family-v1`. Grupo: Famílias com cha
 
 **Fontes:** [chart.json](../estratonte-chart-v1/chart.json).
 
-<a id="familia-18"></a>
-## 18. etruslanca
+<a id="familia-23"></a>
+## 23. etruslanca
 
 Identificador de organização: `etruslanca`. Grupo: Famílias com chart.
 
@@ -616,8 +741,8 @@ Identificador de organização: `etruslanca`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../etruslanca-chart-v1/chart.json).
 
-<a id="familia-19"></a>
-## 19. Flautrevo / morcego flautista
+<a id="familia-24"></a>
+## 24. Flautrevo / morcego flautista
 
 Identificador de organização: `flautrevo`. Grupo: Famílias com chart.
 
@@ -641,8 +766,8 @@ Identificador de organização: `flautrevo`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../flautrevo-chart-v1/chart.json).
 
-<a id="familia-20"></a>
-## 20. Galo de combate / Galofuso
+<a id="familia-25"></a>
+## 25. Galo de combate / Galofuso
 
 Identificador de organização: `galofuso-family-v1`. Grupo: Famílias com chart.
 
@@ -666,8 +791,8 @@ Identificador de organização: `galofuso-family-v1`. Grupo: Famílias com chart
 
 **Fontes:** [chart.json](../galofuso-chart-v1/chart.json).
 
-<a id="familia-21"></a>
-## 21. Gambá / Gambalhote
+<a id="familia-26"></a>
+## 26. Gambá / Gambalhote
 
 Identificador de organização: `gambalhote`. Grupo: Famílias com chart.
 
@@ -691,8 +816,8 @@ Identificador de organização: `gambalhote`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../gambalhote-chart-v1/chart.json).
 
-<a id="familia-22"></a>
-## 22. Gata lunar / Noctiluna
+<a id="familia-27"></a>
+## 27. Gata lunar / Noctiluna
 
 Identificador de organização: `gata-lunar`. Grupo: Famílias com chart.
 
@@ -716,8 +841,25 @@ Identificador de organização: `gata-lunar`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../gata-lunar-chart-v1/chart.json).
 
-<a id="familia-23"></a>
-## 23. gevoraz
+<a id="familia-28"></a>
+## 28. geordraco
+
+Identificador de organização: `geordraco`. Grupo: Famílias com chart.
+
+**Parentesco evolutivo não definido.** As formas narrativas, quando presentes, não representam crescimento automático.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Geordraco — `geordraco` | Adulto | stage | Proposto | [Arte](../../../art/creatures/geordraco/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Geordraco:** Recusa provar coragem matando o que foi ferido. Sua lança prende linhas hostis e o escudo abre uma saída; se insistir em perseguir, abandona quem protegia.
+
+**Fontes:** [chart.json](../geordraco-chart-v1/chart.json).
+
+<a id="familia-29"></a>
+## 29. gevoraz
 
 Identificador de organização: `gevoraz`. Grupo: Famílias com chart.
 
@@ -741,8 +883,33 @@ Identificador de organização: `gevoraz`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../gevoraz-chart-v1/chart.json).
 
-<a id="familia-24"></a>
-## 24. grifarca
+<a id="familia-30"></a>
+## 30. gravurso
+
+Identificador de organização: `gravurso`. Grupo: Famílias com chart.
+
+- **Remonta:** Gravurso — Bebê → Gravurso — Criança. Ligação: proposed.
+- **Remonta:** Gravurso — Criança → Gravurso — Jovem. Ligação: proposed.
+- **Remonta:** Gravurso — Jovem → Gravurso. Ligação: proposed.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Gravurso — Bebê — `gravurso-baby` | Bebê | stage | Proposto | [Arte](../../../art/creatures/gravurso/baby/concept-v1/concept.png) |
+| Gravurso — Criança — `gravurso-child` | Criança | stage | Proposto | [Arte](../../../art/creatures/gravurso/child/concept-v1/concept.png) |
+| Gravurso — Jovem — `gravurso-young` | Jovem | stage | Proposto | [Arte](../../../art/creatures/gravurso/young/concept-v1/concept.png) |
+| Gravurso — `gravurso` | Adulto | stage | Proposto | [Arte](../../../art/creatures/gravurso/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Gravurso — Bebê:** Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.
+- **Gravurso — Criança:** Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.
+- **Gravurso — Jovem:** Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.
+- **Gravurso:** Sustenta passagens que estão cedendo até que o último companheiro atravesse. Só vence quando consegue soltar o peso sem esmagar aquilo que protege.
+
+**Fontes:** [chart.json](../gravurso-chart-v1/chart.json).
+
+<a id="familia-31"></a>
+## 31. grifarca
 
 Identificador de organização: `grifarca`. Grupo: Famílias com chart.
 
@@ -766,8 +933,8 @@ Identificador de organização: `grifarca`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../grifarca-chart-v1/chart.json).
 
-<a id="familia-25"></a>
-## 25. Cavalo-marinho + abóbora
+<a id="familia-32"></a>
+## 32. Cavalo-marinho + abóbora
 
 Identificador de organização: `hipolanterna-family-v1`. Grupo: Famílias com chart.
 
@@ -791,8 +958,8 @@ Identificador de organização: `hipolanterna-family-v1`. Grupo: Famílias com c
 
 **Fontes:** [chart.json](../hipolanterna-chart-v1/chart.json).
 
-<a id="familia-26"></a>
-## 26. ibiscrito
+<a id="familia-33"></a>
+## 33. ibiscrito
 
 Identificador de organização: `ibiscrito`. Grupo: Famílias com chart.
 
@@ -816,8 +983,8 @@ Identificador de organização: `ibiscrito`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../ibiscrito-chart-v1/chart.json).
 
-<a id="familia-27"></a>
-## 27. Javali guerreiro
+<a id="familia-34"></a>
+## 34. Javali guerreiro
 
 Identificador de organização: `javali-guerreiro`. Grupo: Famílias com chart.
 
@@ -841,8 +1008,42 @@ Identificador de organização: `javali-guerreiro`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../javali-guerreiro-chart-v1/chart.json).
 
-<a id="familia-28"></a>
-## 28. Lince de Cerco
+<a id="familia-35"></a>
+## 35. joanacendra
+
+Identificador de organização: `joanacendra`. Grupo: Famílias com chart.
+
+**Parentesco evolutivo não definido.** As formas narrativas, quando presentes, não representam crescimento automático.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Joanacendra — `joanacendra` | Adulto | stage | Proposto | [Arte](../../../art/creatures/joanacendra/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Joanacendra:** Não escuta ordens do destino: reconhece as linhas de parceiros dispersos e ergue um estandarte para reuni-los. Sua força exige permanecer visível, expondo sua posição.
+
+**Fontes:** [chart.json](../joanacendra-chart-v1/chart.json).
+
+<a id="familia-36"></a>
+## 36. lacustrel
+
+Identificador de organização: `lacustrel`. Grupo: Famílias com chart.
+
+**Parentesco evolutivo não definido.** As formas narrativas, quando presentes, não representam crescimento automático.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Lacustrel — `lacustrel` | Adulto | stage | Proposto | [Arte](../../../art/creatures/lacustrel/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Lacustrel:** Carrega dois juramentos incompatíveis e precisa escolher a quem proteger. Sua espada abre um corredor entre linhas cruzadas, mas não permite defender as duas margens sozinho.
+
+**Fontes:** [chart.json](../lacustrel-chart-v1/chart.json).
+
+<a id="familia-37"></a>
+## 37. Lince de Cerco
 
 Identificador de organização: `lince-de-cerco`. Grupo: Famílias com chart.
 
@@ -866,8 +1067,8 @@ Identificador de organização: `lince-de-cerco`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../lince-de-cerco-chart-v1/chart.json).
 
-<a id="familia-29"></a>
-## 29. Lobo em pele de cordeiro
+<a id="familia-38"></a>
+## 38. Lobo em pele de cordeiro
 
 Identificador de organização: `lobo-cordeiro`. Grupo: Famílias com chart.
 
@@ -894,8 +1095,8 @@ Identificador de organização: `lobo-cordeiro`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../lobo-cordeiro-chart-v1/chart.json).
 
-<a id="familia-30"></a>
-## 30. lupunhal
+<a id="familia-39"></a>
+## 39. lupunhal
 
 Identificador de organização: `lupunhal`. Grupo: Famílias com chart.
 
@@ -919,8 +1120,8 @@ Identificador de organização: `lupunhal`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../lupunhal-chart-v1/chart.json).
 
-<a id="familia-31"></a>
-## 31. makareu
+<a id="familia-40"></a>
+## 40. makareu
 
 Identificador de organização: `makareu`. Grupo: Famílias com chart.
 
@@ -944,8 +1145,8 @@ Identificador de organização: `makareu`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../makareu-chart-v1/chart.json).
 
-<a id="familia-32"></a>
-## 32. Mata Verde
+<a id="familia-41"></a>
+## 41. Mata Verde
 
 Identificador de organização: `mata-verde`. Grupo: Famílias com chart.
 
@@ -972,8 +1173,33 @@ Identificador de organização: `mata-verde`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../mata-verde-chart-v1/chart.json).
 
-<a id="familia-33"></a>
-## 33. Mico samurai
+<a id="familia-42"></a>
+## 42. melicodia
+
+Identificador de organização: `melicodia`. Grupo: Famílias com chart.
+
+- **Remonta:** Melicódia — Bebê → Melicódia — Criança. Ligação: proposed.
+- **Remonta:** Melicódia — Criança → Melicódia — Jovem. Ligação: proposed.
+- **Remonta:** Melicódia — Jovem → Melicódia. Ligação: proposed.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Melicódia — Bebê — `melicodia-baby` | Bebê | stage | Proposto | [Arte](../../../art/creatures/melicodia/baby/concept-v1/concept.png) |
+| Melicódia — Criança — `melicodia-child` | Criança | stage | Proposto | [Arte](../../../art/creatures/melicodia/child/concept-v1/concept.png) |
+| Melicódia — Jovem — `melicodia-young` | Jovem | stage | Proposto | [Arte](../../../art/creatures/melicodia/young/concept-v1/concept.png) |
+| Melicódia — `melicodia` | Adulto | stage | Proposto | [Arte](../../../art/creatures/melicodia/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Melicódia — Bebê:** Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.
+- **Melicódia — Criança:** Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.
+- **Melicódia — Jovem:** Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.
+- **Melicódia:** Transforma sinais recebidos em cubos de mel que podem ser transportados e compartilhados. Para preservar uma lembrança, precisa escolher quais ruídos deixará de guardar.
+
+**Fontes:** [chart.json](../melicodia-chart-v1/chart.json).
+
+<a id="familia-43"></a>
+## 43. Mico samurai
 
 Identificador de organização: `mico-samurai`. Grupo: Famílias com chart.
 
@@ -997,8 +1223,8 @@ Identificador de organização: `mico-samurai`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../mico-samurai-chart-v1/chart.json).
 
-<a id="familia-34"></a>
-## 34. miralis
+<a id="familia-44"></a>
+## 44. miralis
 
 Identificador de organização: `miralis`. Grupo: Famílias com chart.
 
@@ -1022,8 +1248,33 @@ Identificador de organização: `miralis`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../miralis-chart-v1/chart.json).
 
-<a id="familia-35"></a>
-## 35. nimbalio
+<a id="familia-45"></a>
+## 45. najarcal
+
+Identificador de organização: `najarcal`. Grupo: Famílias com chart.
+
+- **Remonta:** Najarcal — Bebê → Najarcal — Criança. Ligação: proposed.
+- **Remonta:** Najarcal — Criança → Najarcal — Jovem. Ligação: proposed.
+- **Remonta:** Najarcal — Jovem → Najarcal. Ligação: proposed.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Najarcal — Bebê — `najarcal-baby` | Bebê | stage | Proposto | [Arte](../../../art/creatures/najarcal/baby/concept-v1/concept.png) |
+| Najarcal — Criança — `najarcal-child` | Criança | stage | Proposto | [Arte](../../../art/creatures/najarcal/child/concept-v1/concept.png) |
+| Najarcal — Jovem — `najarcal-young` | Jovem | stage | Proposto | [Arte](../../../art/creatures/najarcal/young/concept-v1/concept.png) |
+| Najarcal — `najarcal` | Adulto | stage | Proposto | [Arte](../../../art/creatures/najarcal/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Najarcal — Bebê:** Aprende a desenhar limites deixando uma abertura para quem precisa sair.
+- **Najarcal — Criança:** Aprende a desenhar limites deixando uma abertura para quem precisa sair.
+- **Najarcal — Jovem:** Aprende a desenhar limites deixando uma abertura para quem precisa sair.
+- **Najarcal:** Prende a ameaça num círculo que sempre conserva uma saída. Se fechar a última abertura, aprisiona também quem veio salvar.
+
+**Fontes:** [chart.json](../najarcal-chart-v1/chart.json).
+
+<a id="familia-46"></a>
+## 46. nimbalio
 
 Identificador de organização: `nimbalio`. Grupo: Famílias com chart.
 
@@ -1047,8 +1298,8 @@ Identificador de organização: `nimbalio`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../nimbalio-chart-v1/chart.json).
 
-<a id="familia-36"></a>
-## 36. ofirante
+<a id="familia-47"></a>
+## 47. ofirante
 
 Identificador de organização: `ofirante`. Grupo: Famílias com chart.
 
@@ -1072,8 +1323,8 @@ Identificador de organização: `ofirante`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../ofirante-chart-v1/chart.json).
 
-<a id="familia-37"></a>
-## 37. Pangolim trovejante
+<a id="familia-48"></a>
+## 48. Pangolim trovejante
 
 Identificador de organização: `pangolim-trovao`. Grupo: Famílias com chart.
 
@@ -1100,8 +1351,8 @@ Identificador de organização: `pangolim-trovao`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../pangolim-trovao-chart-v1/chart.json).
 
-<a id="familia-38"></a>
-## 38. Husky / border collie de papel
+<a id="familia-49"></a>
+## 49. Husky / border collie de papel
 
 Identificador de organização: `alvacordo-family-v1`. Grupo: Famílias com chart.
 
@@ -1125,8 +1376,8 @@ Identificador de organização: `alvacordo-family-v1`. Grupo: Famílias com char
 
 **Fontes:** [chart.json](../papel-collie-chart-v1/chart.json).
 
-<a id="familia-39"></a>
-## 39. Rabbito
+<a id="familia-50"></a>
+## 50. Rabbito
 
 Identificador de organização: `rabbito`. Grupo: Famílias com chart.
 
@@ -1156,8 +1407,8 @@ Identificador de organização: `rabbito`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../rabbito-chart-v2/chart.json).
 
-<a id="familia-40"></a>
-## 40. Rai / Saber
+<a id="familia-51"></a>
+## 51. Rai / Saber
 
 Identificador de organização: `rai`. Grupo: Famílias com chart.
 
@@ -1193,8 +1444,8 @@ Identificador de organização: `rai`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../rai-chart-v1/chart.json).
 
-<a id="familia-41"></a>
-## 41. Raio de Sol
+<a id="familia-52"></a>
+## 52. Raio de Sol
 
 Identificador de organização: `raio-de-sol`. Grupo: Famílias com chart.
 
@@ -1219,8 +1470,33 @@ Identificador de organização: `raio-de-sol`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../raio-de-sol-chart-v1/chart.json).
 
-<a id="familia-42"></a>
-## 42. reciferreo
+<a id="familia-53"></a>
+## 53. raptorio
+
+Identificador de organização: `raptorio`. Grupo: Famílias com chart.
+
+- **Remonta:** Raptório — Bebê → Raptório — Criança. Ligação: proposed.
+- **Remonta:** Raptório — Criança → Raptório — Jovem. Ligação: proposed.
+- **Remonta:** Raptório — Jovem → Raptório. Ligação: proposed.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Raptório — Bebê — `raptorio-baby` | Bebê | stage | Proposto | [Arte](../../../art/creatures/raptorio/baby/concept-v1/concept.png) |
+| Raptório — Criança — `raptorio-child` | Criança | stage | Proposto | [Arte](../../../art/creatures/raptorio/child/concept-v1/concept.png) |
+| Raptório — Jovem — `raptorio-young` | Jovem | stage | Proposto | [Arte](../../../art/creatures/raptorio/young/concept-v1/concept.png) |
+| Raptório — `raptorio` | Adulto | stage | Proposto | [Arte](../../../art/creatures/raptorio/concept-v2/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Raptório — Bebê:** Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.
+- **Raptório — Criança:** Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.
+- **Raptório — Jovem:** Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.
+- **Raptório:** Ampara linhas partidas entre seus nós de visco, abrindo asas de carvalho para distribuir a tensão. Precisa soltar cada linha antes que o abrigo vire prisão.
+
+**Fontes:** [chart.json](../raptorio-chart-v1/chart.json).
+
+<a id="familia-54"></a>
+## 54. reciferreo
 
 Identificador de organização: `reciferreo`. Grupo: Famílias com chart.
 
@@ -1244,8 +1520,8 @@ Identificador de organização: `reciferreo`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../reciferreo-chart-v1/chart.json).
 
-<a id="familia-43"></a>
-## 43. ressonhiena
+<a id="familia-55"></a>
+## 55. ressonhiena
 
 Identificador de organização: `ressonhiena`. Grupo: Famílias com chart.
 
@@ -1269,8 +1545,8 @@ Identificador de organização: `ressonhiena`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../ressonhiena-chart-v1/chart.json).
 
-<a id="familia-44"></a>
-## 44. Fóssil T-rex / Rexestrato
+<a id="familia-56"></a>
+## 56. Fóssil T-rex / Rexestrato
 
 Identificador de organização: `rexestrato-family-v1`. Grupo: Famílias com chart.
 
@@ -1294,8 +1570,8 @@ Identificador de organização: `rexestrato-family-v1`. Grupo: Famílias com cha
 
 **Fontes:** [chart.json](../rexestrato-chart-v1/chart.json).
 
-<a id="familia-45"></a>
-## 45. Riscaz
+<a id="familia-57"></a>
+## 57. Riscaz
 
 Identificador de organização: `riscaz`. Grupo: Famílias com chart.
 
@@ -1319,8 +1595,25 @@ Identificador de organização: `riscaz`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../riscaz-chart-v1/chart.json).
 
-<a id="familia-46"></a>
-## 46. selacrabio
+<a id="familia-58"></a>
+## 58. rolandor
+
+Identificador de organização: `rolandor`. Grupo: Famílias com chart.
+
+**Parentesco evolutivo não definido.** As formas narrativas, quando presentes, não representam crescimento automático.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Rolandor — `rolandor` | Adulto | stage | Proposto | [Arte](../../../art/creatures/rolandor/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Rolandor:** Seu erro antigo foi chamar ajuda tarde demais. Agora prefere soar o alerta antes de exibir coragem, e sustenta a linha até o último aliado atravessar.
+
+**Fontes:** [chart.json](../rolandor-chart-v1/chart.json).
+
+<a id="familia-59"></a>
+## 59. selacrabio
 
 Identificador de organização: `selacrabio`. Grupo: Famílias com chart.
 
@@ -1344,8 +1637,50 @@ Identificador de organização: `selacrabio`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../selacrabio-chart-v1/chart.json).
 
-<a id="familia-47"></a>
-## 47. Dragão / Tramino
+<a id="familia-60"></a>
+## 60. tomoeryu
+
+Identificador de organização: `tomoeryu`. Grupo: Famílias com chart.
+
+**Parentesco evolutivo não definido.** As formas narrativas, quando presentes, não representam crescimento automático.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Tomoeryu — `tomoeryu` | Adulto | stage | Proposto | [Arte](../../../art/creatures/tomoeryu/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Tomoeryu:** Defende a retaguarda com curvas de linha em vez de golpes frontais. A lâmina desvia uma carga por vez; tentar deter todas rompe sua postura.
+
+**Fontes:** [chart.json](../tomoeryu-chart-v1/chart.json).
+
+<a id="familia-61"></a>
+## 61. torvargo
+
+Identificador de organização: `torvargo`. Grupo: Famílias com chart.
+
+- **Remonta:** Torvargo — Bebê → Torvargo — Criança. Ligação: proposed.
+- **Remonta:** Torvargo — Criança → Torvargo — Jovem. Ligação: proposed.
+- **Remonta:** Torvargo — Jovem → Torvargo. Ligação: proposed.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Torvargo — Bebê — `torvargo-baby` | Bebê | stage | Proposto | [Arte](../../../art/creatures/torvargo/baby/concept-v1/concept.png) |
+| Torvargo — Criança — `torvargo-child` | Criança | stage | Proposto | [Arte](../../../art/creatures/torvargo/child/concept-v1/concept.png) |
+| Torvargo — Jovem — `torvargo-young` | Jovem | stage | Proposto | [Arte](../../../art/creatures/torvargo/young/concept-v1/concept.png) |
+| Torvargo — `torvargo` | Adulto | stage | Proposto | [Arte](../../../art/creatures/torvargo/concept-v1/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Torvargo — Bebê:** Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.
+- **Torvargo — Criança:** Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.
+- **Torvargo — Jovem:** Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.
+- **Torvargo:** Abre um caminho pela barreira, mas precisa reconhecer o que há atrás dela antes de avançar. A marca de um golpe certo é a passagem que permanece de pé.
+
+**Fontes:** [chart.json](../torvargo-chart-v1/chart.json).
+
+<a id="familia-62"></a>
+## 62. Dragão / Tramino
 
 Identificador de organização: `tramino`. Grupo: Famílias com chart.
 
@@ -1369,8 +1704,8 @@ Identificador de organização: `tramino`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../tramino-chart-v1/chart.json).
 
-<a id="familia-48"></a>
-## 48. trancoura
+<a id="familia-63"></a>
+## 63. trancoura
 
 Identificador de organização: `trancoura`. Grupo: Famílias com chart.
 
@@ -1394,8 +1729,8 @@ Identificador de organização: `trancoura`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../trancoura-chart-v1/chart.json).
 
-<a id="familia-49"></a>
-## 49. Trinca-brasas / cérbero
+<a id="familia-64"></a>
+## 64. Trinca-brasas / cérbero
 
 Identificador de organização: `trinca-brasas`. Grupo: Famílias com chart.
 
@@ -1419,8 +1754,8 @@ Identificador de organização: `trinca-brasas`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../trinca-brasas-chart-v1/chart.json).
 
-<a id="familia-50"></a>
-## 50. Urso polar / Borealvo
+<a id="familia-65"></a>
+## 65. Urso polar / Borealvo
 
 Identificador de organização: `urso-polar`. Grupo: Famílias com chart.
 
@@ -1444,8 +1779,25 @@ Identificador de organização: `urso-polar`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../urso-polar-chart-v1/chart.json).
 
-<a id="familia-51"></a>
-## 51. velaravan
+<a id="familia-66"></a>
+## 66. valdrisa
+
+Identificador de organização: `valdrisa`. Grupo: Famílias com chart.
+
+**Parentesco evolutivo não definido.** As formas narrativas, quando presentes, não representam crescimento automático.
+
+| Forma / ID | Maturidade | Natureza | Estado registral | Arte / produção |
+|---|---|---|---|---|
+| Valdrisa — `valdrisa` | Adulto | stage | Proposto | [Arte](../../../art/creatures/valdrisa/concept-v2/concept.png) |
+
+**Identidade e função documentadas:**
+
+- **Valdrisa:** Escolhe voltar por quem perdeu a própria linha. As velas dorsais sustentam uma retirada breve, mas não carregam toda a formação de uma vez.
+
+**Fontes:** [chart.json](../valdrisa-chart-v1/chart.json).
+
+<a id="familia-67"></a>
+## 67. velaravan
 
 Identificador de organização: `velaravan`. Grupo: Famílias com chart.
 
@@ -1469,8 +1821,8 @@ Identificador de organização: `velaravan`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../velaravan-chart-v1/chart.json).
 
-<a id="familia-52"></a>
-## 52. vesperalito
+<a id="familia-68"></a>
+## 68. vesperalito
 
 Identificador de organização: `vesperalito`. Grupo: Famílias com chart.
 
@@ -1494,8 +1846,8 @@ Identificador de organização: `vesperalito`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../vesperalito-chart-v1/chart.json).
 
-<a id="familia-53"></a>
-## 53. Viúva-negra / Seraf Seda
+<a id="familia-69"></a>
+## 69. Viúva-negra / Seraf Seda
 
 Identificador de organização: `viuva-anjo`. Grupo: Famílias com chart.
 
@@ -1519,8 +1871,8 @@ Identificador de organização: `viuva-anjo`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../viuva-anjo-chart-v1/chart.json).
 
-<a id="familia-54"></a>
-## 54. vortentaculo
+<a id="familia-70"></a>
+## 70. vortentaculo
 
 Identificador de organização: `vortentaculo`. Grupo: Famílias com chart.
 
@@ -1544,8 +1896,8 @@ Identificador de organização: `vortentaculo`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../vortentaculo-chart-v1/chart.json).
 
-<a id="familia-55"></a>
-## 55. Yaguarú / onça mumificada
+<a id="familia-71"></a>
+## 71. Yaguarú / onça mumificada
 
 Identificador de organização: `yaguaru-memoria`. Grupo: Famílias com chart.
 
@@ -1569,8 +1921,8 @@ Identificador de organização: `yaguaru-memoria`. Grupo: Famílias com chart.
 
 **Fontes:** [chart.json](../yaguaru-chart-v1/chart.json).
 
-<a id="familia-56"></a>
-## 56. Retalho — identidade e máscara
+<a id="familia-72"></a>
+## 72. Retalho — identidade e máscara
 
 Identificador de organização: `retalho`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1589,8 +1941,8 @@ Identificador de organização: `retalho`. Grupo: Criaturas sem linha evolutiva 
 
 **Fontes:** [retalho-original.soulgen.json](../../../art/soulgen/keys/retalho-original/cutout-rig-v2/retalho-original.soulgen.json), [retalho-mascarada.soulgen.json](../../../art/soulgen/keys/retalho-mascarada/cutout-rig-v1/retalho-mascarada.soulgen.json).
 
-<a id="familia-57"></a>
-## 57. Mormaço — livre e possuído
+<a id="familia-73"></a>
+## 73. Mormaço — livre e possuído
 
 Identificador de organização: `mormaco`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1609,8 +1961,8 @@ Identificador de organização: `mormaco`. Grupo: Criaturas sem linha evolutiva 
 
 **Fontes:** [mormaco.soulgen.json](../../../art/soulgen/keys/mormaco/cutout-rig-v1/mormaco.soulgen.json), [pipa-dex.json](../../../assets/pipa-dex.json), [DECISOES.md](../../../art/creatures/mormaco/DECISOES.md).
 
-<a id="familia-58"></a>
-## 58. Pipa-Dragão — sobrecarregada e desatada
+<a id="familia-74"></a>
+## 74. Pipa-Dragão — sobrecarregada e desatada
 
 Identificador de organização: `pipa-dragao`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1629,8 +1981,8 @@ Identificador de organização: `pipa-dragao`. Grupo: Criaturas sem linha evolut
 
 **Fontes:** [pipa-dragao.soulgen.json](../../../art/soulgen/keys/pipa-dragao/cutout-rig-v1/pipa-dragao.soulgen.json), [pipa-dragao-desatada.soulgen.json](../../../art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/pipa-dragao-desatada.soulgen.json).
 
-<a id="familia-59"></a>
-## 59. Alvaneve
+<a id="familia-75"></a>
+## 75. Alvaneve
 
 Identificador de organização: `alvaneve`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1649,8 +2001,8 @@ Identificador de organização: `alvaneve`. Grupo: Criaturas sem linha evolutiva
 
 **Fontes:** [alvaneve.soulgen.json](../../../art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json).
 
-<a id="familia-60"></a>
-## 60. Araruna
+<a id="familia-76"></a>
+## 76. Araruna
 
 Identificador de organização: `araruna-memoria`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1669,8 +2021,8 @@ Identificador de organização: `araruna-memoria`. Grupo: Criaturas sem linha ev
 
 **Fontes:** [araruna-memoria.soulgen.json](../../../art/soulgen/keys/araruna-memoria/color-rig-v2/araruna-memoria.soulgen.json).
 
-<a id="familia-61"></a>
-## 61. Auriflama
+<a id="familia-77"></a>
+## 77. Auriflama
 
 Identificador de organização: `auriflama`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1689,8 +2041,8 @@ Identificador de organização: `auriflama`. Grupo: Criaturas sem linha evolutiv
 
 **Fontes:** [auriflama.soulgen.json](../../../art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json).
 
-<a id="familia-62"></a>
-## 62. Azulongo
+<a id="familia-78"></a>
+## 78. Azulongo
 
 Identificador de organização: `azulongo`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1709,8 +2061,8 @@ Identificador de organização: `azulongo`. Grupo: Criaturas sem linha evolutiva
 
 **Fontes:** [azulongo.soulgen.json](../../../art/soulgen/keys/azulongo/color-rig-v2/azulongo.soulgen.json).
 
-<a id="familia-63"></a>
-## 63. Caimbira
+<a id="familia-79"></a>
+## 79. Caimbira
 
 Identificador de organização: `caimbira-memoria`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1729,8 +2081,8 @@ Identificador de organização: `caimbira-memoria`. Grupo: Criaturas sem linha e
 
 **Fontes:** [caimbira-memoria.soulgen.json](../../../art/soulgen/keys/caimbira-memoria/color-rig-v2/caimbira-memoria.soulgen.json).
 
-<a id="familia-64"></a>
-## 64. Capimansa
+<a id="familia-80"></a>
+## 80. Capimansa
 
 Identificador de organização: `capimansa`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1749,8 +2101,8 @@ Identificador de organização: `capimansa`. Grupo: Criaturas sem linha evolutiv
 
 **Fontes:** [capimansa.soulgen.json](../../../art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json).
 
-<a id="familia-65"></a>
-## 65. Celofita
+<a id="familia-81"></a>
+## 81. Celofita
 
 Identificador de organização: `celofita`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1769,8 +2121,8 @@ Identificador de organização: `celofita`. Grupo: Criaturas sem linha evolutiva
 
 **Fontes:** [pipa-dex.json](../../../assets/pipa-dex.json).
 
-<a id="familia-66"></a>
-## 66. Eremor
+<a id="familia-82"></a>
+## 82. Eremor
 
 Identificador de organização: `eremor`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1788,8 +2140,8 @@ Identificador de organização: `eremor`. Grupo: Criaturas sem linha evolutiva d
 
 **Fontes:** [eremor-v3.soulgen.json](../../../art/soulgen/keys/eremor/eremor-v3.soulgen.json).
 
-<a id="familia-67"></a>
-## 67. Glacerol
+<a id="familia-83"></a>
+## 83. Glacerol
 
 Identificador de organização: `glacerol`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1807,8 +2159,8 @@ Identificador de organização: `glacerol`. Grupo: Criaturas sem linha evolutiva
 
 **Fontes:** [glacerol.soulgen.json](../../../art/soulgen/keys/glacerol/cutout-rig-v1/glacerol.soulgen.json).
 
-<a id="familia-68"></a>
-## 68. Guaravento
+<a id="familia-84"></a>
+## 84. Guaravento
 
 Identificador de organização: `guaravento`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1827,8 +2179,8 @@ Identificador de organização: `guaravento`. Grupo: Criaturas sem linha evoluti
 
 **Fontes:** [guaravento.soulgen.json](../../../art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json).
 
-<a id="familia-69"></a>
-## 69. Herravento
+<a id="familia-85"></a>
+## 85. Herravento
 
 Identificador de organização: `herravento`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1847,8 +2199,8 @@ Identificador de organização: `herravento`. Grupo: Criaturas sem linha evoluti
 
 **Fontes:** [herravento.soulgen.json](../../../art/soulgen/keys/herravento/color-rig-v2/herravento.soulgen.json).
 
-<a id="familia-70"></a>
-## 70. Hiponilo
+<a id="familia-86"></a>
+## 86. Hiponilo
 
 Identificador de organização: `hiponilo`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1867,8 +2219,8 @@ Identificador de organização: `hiponilo`. Grupo: Criaturas sem linha evolutiva
 
 **Fontes:** [hiponilo.soulgen.json](../../../art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json).
 
-<a id="familia-71"></a>
-## 71. Jaguarluar
+<a id="familia-87"></a>
+## 87. Jaguarluar
 
 Identificador de organização: `jaguarluar`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1887,8 +2239,8 @@ Identificador de organização: `jaguarluar`. Grupo: Criaturas sem linha evoluti
 
 **Fontes:** [jaguarluar.soulgen.json](../../../art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json).
 
-<a id="familia-72"></a>
-## 72. Jarabrasa
+<a id="familia-88"></a>
+## 88. Jarabrasa
 
 Identificador de organização: `jarabrasa`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1907,8 +2259,8 @@ Identificador de organização: `jarabrasa`. Grupo: Criaturas sem linha evolutiv
 
 **Fontes:** [jarabrasa.soulgen.json](../../../art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json).
 
-<a id="familia-73"></a>
-## 73. Javali de Biscoito
+<a id="familia-89"></a>
+## 89. Javali de Biscoito
 
 Identificador de organização: `javali-biscoito`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1927,8 +2279,8 @@ Identificador de organização: `javali-biscoito`. Grupo: Criaturas sem linha ev
 
 **Fontes:** [pipa-dex.json](../../../assets/pipa-dex.json).
 
-<a id="familia-74"></a>
-## 74. Lacertubo
+<a id="familia-90"></a>
+## 90. Lacertubo
 
 Identificador de organização: `lacertubo`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1947,8 +2299,8 @@ Identificador de organização: `lacertubo`. Grupo: Criaturas sem linha evolutiv
 
 **Fontes:** [lacertubo.soulgen.json](../../../art/soulgen/keys/lacertubo/color-rig-v2/lacertubo.soulgen.json).
 
-<a id="familia-75"></a>
-## 75. Marulume
+<a id="familia-91"></a>
+## 91. Marulume
 
 Identificador de organização: `marulume`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1967,8 +2319,8 @@ Identificador de organização: `marulume`. Grupo: Criaturas sem linha evolutiva
 
 **Fontes:** [marulume.soulgen.json](../../../art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json).
 
-<a id="familia-76"></a>
-## 76. Micofolha
+<a id="familia-92"></a>
+## 92. Micofolha
 
 Identificador de organização: `micofolha`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -1987,8 +2339,8 @@ Identificador de organização: `micofolha`. Grupo: Criaturas sem linha evolutiv
 
 **Fontes:** [micofolha.soulgen.json](../../../art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json).
 
-<a id="familia-77"></a>
-## 77. Nevagume
+<a id="familia-93"></a>
+## 93. Nevagume
 
 Identificador de organização: `nevagume`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2007,8 +2359,8 @@ Identificador de organização: `nevagume`. Grupo: Criaturas sem linha evolutiva
 
 **Fontes:** [nevagume.soulgen.json](../../../art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json).
 
-<a id="familia-78"></a>
-## 78. Nozinho
+<a id="familia-94"></a>
+## 94. Nozinho
 
 Identificador de organização: `nozinho`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2027,8 +2379,8 @@ Identificador de organização: `nozinho`. Grupo: Criaturas sem linha evolutiva 
 
 **Fontes:** [nozinho.soulgen.json](../../../art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json).
 
-<a id="familia-79"></a>
-## 79. Platofolha
+<a id="familia-95"></a>
+## 95. Platofolha
 
 Identificador de organização: `platofolha`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2047,8 +2399,8 @@ Identificador de organização: `platofolha`. Grupo: Criaturas sem linha evoluti
 
 **Fontes:** [pipa-dex.json](../../../assets/pipa-dex.json).
 
-<a id="familia-80"></a>
-## 80. Platyx
+<a id="familia-96"></a>
+## 96. Platyx
 
 Identificador de organização: `platyx`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2066,8 +2418,8 @@ Identificador de organização: `platyx`. Grupo: Criaturas sem linha evolutiva d
 
 **Fontes:** [platyx.soulgen.json](../../../art/soulgen/keys/platyx/cutout-rig-v1/platyx.soulgen.json).
 
-<a id="familia-81"></a>
-## 81. Pteralis
+<a id="familia-97"></a>
+## 97. Pteralis
 
 Identificador de organização: `pteralis`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2086,8 +2438,8 @@ Identificador de organização: `pteralis`. Grupo: Criaturas sem linha evolutiva
 
 **Fontes:** [pteralis.soulgen.json](../../../art/soulgen/keys/pteralis/color-rig-v2/pteralis.soulgen.json).
 
-<a id="familia-82"></a>
-## 82. Rabiolava
+<a id="familia-98"></a>
+## 98. Rabiolava
 
 Identificador de organização: `rabiolava`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2105,8 +2457,8 @@ Identificador de organização: `rabiolava`. Grupo: Criaturas sem linha evolutiv
 
 **Fontes:** [rabiolava.soulgen.json](../../../art/soulgen/keys/rabiolava/cutout-rig-v1/rabiolava.soulgen.json).
 
-<a id="familia-83"></a>
-## 83. Rexal
+<a id="familia-99"></a>
+## 99. Rexal
 
 Identificador de organização: `rexal`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2125,8 +2477,8 @@ Identificador de organização: `rexal`. Grupo: Criaturas sem linha evolutiva de
 
 **Fontes:** [rexal.soulgen.json](../../../art/soulgen/keys/rexal/color-rig-v2/rexal.soulgen.json).
 
-<a id="familia-84"></a>
-## 84. Riovela
+<a id="familia-100"></a>
+## 100. Riovela
 
 Identificador de organização: `riovela`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2145,8 +2497,8 @@ Identificador de organização: `riovela`. Grupo: Criaturas sem linha evolutiva 
 
 **Fontes:** [pipa-dex.json](../../../assets/pipa-dex.json).
 
-<a id="familia-85"></a>
-## 85. Stegaru
+<a id="familia-101"></a>
+## 101. Stegaru
 
 Identificador de organização: `stegaru`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2165,8 +2517,8 @@ Identificador de organização: `stegaru`. Grupo: Criaturas sem linha evolutiva 
 
 **Fontes:** [stegaru.soulgen.json](../../../art/soulgen/keys/stegaru/color-rig-v2/stegaru.soulgen.json).
 
-<a id="familia-86"></a>
-## 86. Tamoatá
+<a id="familia-102"></a>
+## 102. Tamoatá
 
 Identificador de organização: `tamoata-memoria`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2185,8 +2537,8 @@ Identificador de organização: `tamoata-memoria`. Grupo: Criaturas sem linha ev
 
 **Fontes:** [tamoata-memoria.soulgen.json](../../../art/soulgen/keys/tamoata-memoria/color-rig-v2/tamoata-memoria.soulgen.json).
 
-<a id="familia-87"></a>
-## 87. Tatutrama
+<a id="familia-103"></a>
+## 103. Tatutrama
 
 Identificador de organização: `tatutrama`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2205,8 +2557,8 @@ Identificador de organização: `tatutrama`. Grupo: Criaturas sem linha evolutiv
 
 **Fontes:** [tatutrama.soulgen.json](../../../art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json).
 
-<a id="familia-88"></a>
-## 88. Tricerafan
+<a id="familia-104"></a>
+## 104. Tricerafan
 
 Identificador de organização: `tricerafan`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2225,8 +2577,8 @@ Identificador de organização: `tricerafan`. Grupo: Criaturas sem linha evoluti
 
 **Fontes:** [tricerafan.soulgen.json](../../../art/soulgen/keys/tricerafan/color-rig-v2/tricerafan.soulgen.json).
 
-<a id="familia-89"></a>
-## 89. Trovareta
+<a id="familia-105"></a>
+## 105. Trovareta
 
 Identificador de organização: `trovareta`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2244,8 +2596,8 @@ Identificador de organização: `trovareta`. Grupo: Criaturas sem linha evolutiv
 
 **Fontes:** [trovareta.soulgen.json](../../../art/soulgen/keys/trovareta/cutout-rig-v1/trovareta.soulgen.json).
 
-<a id="familia-90"></a>
-## 90. Tufanocorte
+<a id="familia-106"></a>
+## 106. Tufanocorte
 
 Identificador de organização: `tufanocorte`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2263,8 +2615,8 @@ Identificador de organização: `tufanocorte`. Grupo: Criaturas sem linha evolut
 
 **Fontes:** [tufanocorte.soulgen.json](../../../art/soulgen/keys/tufanocorte/cutout-rig-v1/tufanocorte.soulgen.json).
 
-<a id="familia-91"></a>
-## 91. Umbrocasco
+<a id="familia-107"></a>
+## 107. Umbrocasco
 
 Identificador de organização: `umbrocasco`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2283,8 +2635,8 @@ Identificador de organização: `umbrocasco`. Grupo: Criaturas sem linha evoluti
 
 **Fontes:** [umbrocasco.soulgen.json](../../../art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json).
 
-<a id="familia-92"></a>
-## 92. Tamanduá-tear
+<a id="familia-108"></a>
+## 108. Tamanduá-tear
 
 Identificador de organização: `tamandua-tear`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2302,8 +2654,8 @@ Identificador de organização: `tamandua-tear`. Grupo: Criaturas sem linha evol
 
 **Fontes:** [brief.md](../../../art/creatures/tamandua-tear/concept-v1/brief.md).
 
-<a id="familia-93"></a>
-## 93. Íbex-astrolábio
+<a id="familia-109"></a>
+## 109. Íbex-astrolábio
 
 Identificador de organização: `ibex-astrolabio`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2321,8 +2673,8 @@ Identificador de organização: `ibex-astrolabio`. Grupo: Criaturas sem linha ev
 
 **Fontes:** [brief.md](../../../art/creatures/ibex-astrolabio/concept-v1/brief.md).
 
-<a id="familia-94"></a>
-## 94. Veskoro — crocodiliano de Caio
+<a id="familia-110"></a>
+## 110. Veskoro — crocodiliano de Caio
 
 Identificador de organização: `veskoro`. Grupo: Criaturas sem linha evolutiva definida.
 
@@ -2340,8 +2692,8 @@ Identificador de organização: `veskoro`. Grupo: Criaturas sem linha evolutiva 
 
 **Fontes:** [README.md](../../../art/creatures/veskoro/battle-v1/README.md), [brief.md](../../../art/creatures/crocodiliano-caio/concept-v1/brief.md).
 
-<a id="familia-95"></a>
-## 95. Entrelaços — referências cruzadas
+<a id="familia-111"></a>
+## 111. Entrelaços — referências cruzadas
 
 Identificador de organização: `entrelacos`. Grupo: Fusões entre famílias.
 
@@ -2408,7 +2760,9 @@ Os diretórios abaixo preservam estudos anteriores, correções ou candidatos. N
 - [alvorraia](../../../art/creatures/alvorraia)
 - [anaconda-retrato-family-v1](../../../art/creatures/anaconda-retrato-family-v1)
 - [antamarra](../../../art/creatures/antamarra)
+- [avelince](../../../art/creatures/avelince)
 - [azulao-family-v1](../../../art/creatures/azulao-family-v1)
+- [bradamara](../../../art/creatures/bradamara)
 - [bufarol](../../../art/creatures/bufarol)
 - [cacaurama-family-v1](../../../art/creatures/cacaurama-family-v1)
 - [canticripta](../../../art/creatures/canticripta)
@@ -2417,8 +2771,11 @@ Os diretórios abaixo preservam estudos anteriores, correções ou candidatos. N
 - [caracol-pneu-family-v1](../../../art/creatures/caracol-pneu-family-v1)
 - [caramund](../../../art/creatures/caramund)
 - [carcara-family-v1](../../../art/creatures/carcara-family-v1)
+- [cascoronte](../../../art/creatures/cascoronte)
 - [cervarco-family-v1](../../../art/creatures/cervarco-family-v1)
+- [cervoraculo](../../../art/creatures/cervoraculo)
 - [chaspiral-family-v1](../../../art/creatures/chaspiral-family-v1)
+- [cidraco](../../../art/creatures/cidraco)
 - [coroabissal](../../../art/creatures/coroabissal)
 - [coruja-balanca](../../../art/creatures/coruja-balanca)
 - [crocafago](../../../art/creatures/crocafago)
@@ -2432,21 +2789,28 @@ Os diretórios abaixo preservam estudos anteriores, correções ou candidatos. N
 - [galofuso-family-v1](../../../art/creatures/galofuso-family-v1)
 - [gambalhote](../../../art/creatures/gambalhote)
 - [gata-lunar-family-v1](../../../art/creatures/gata-lunar-family-v1)
+- [geordraco](../../../art/creatures/geordraco)
 - [gevoraz](../../../art/creatures/gevoraz)
+- [gravurso](../../../art/creatures/gravurso)
 - [grifarca](../../../art/creatures/grifarca)
 - [hipolanterna-family-v1](../../../art/creatures/hipolanterna-family-v1)
 - [ibex-astrolabio](../../../art/creatures/ibex-astrolabio)
 - [ibiscrito](../../../art/creatures/ibiscrito)
 - [javali-guerreiro](../../../art/creatures/javali-guerreiro)
+- [joanacendra](../../../art/creatures/joanacendra)
+- [lacustrel](../../../art/creatures/lacustrel)
 - [lince-de-cerco](../../../art/creatures/lince-de-cerco)
 - [lobo-cordeiro-family-v1](../../../art/creatures/lobo-cordeiro-family-v1)
 - [lupunhal](../../../art/creatures/lupunhal)
 - [makareu](../../../art/creatures/makareu)
 - [mangufio](../../../art/creatures/mangufio)
+- [mantigardo](../../../art/creatures/mantigardo)
 - [mata-verde-family-v1](../../../art/creatures/mata-verde-family-v1)
+- [melicodia](../../../art/creatures/melicodia)
 - [mico-samurai-family-v1](../../../art/creatures/mico-samurai-family-v1)
 - [miralis](../../../art/creatures/miralis)
 - [mormaco](../../../art/creatures/mormaco)
+- [najarcal](../../../art/creatures/najarcal)
 - [nimbalio](../../../art/creatures/nimbalio)
 - [ofirante](../../../art/creatures/ofirante)
 - [onze-cavaleiros-v1](../../../art/creatures/onze-cavaleiros-v1)
@@ -2457,17 +2821,22 @@ Os diretórios abaixo preservam estudos anteriores, correções ou candidatos. N
 - [rabbito-family-v1](../../../art/creatures/rabbito-family-v1)
 - [rai-family-v1](../../../art/creatures/rai-family-v1)
 - [raio-de-sol-family-v1](../../../art/creatures/raio-de-sol-family-v1)
+- [raptorio](../../../art/creatures/raptorio)
 - [reciferreo](../../../art/creatures/reciferreo)
 - [reservas](../../../art/creatures/reservas)
 - [ressonhiena](../../../art/creatures/ressonhiena)
 - [rexestrato-family-v1](../../../art/creatures/rexestrato-family-v1)
 - [riscaz-family-v1](../../../art/creatures/riscaz-family-v1)
+- [rolandor](../../../art/creatures/rolandor)
 - [selacrabio](../../../art/creatures/selacrabio)
 - [tamandua-tear](../../../art/creatures/tamandua-tear)
+- [tomoeryu](../../../art/creatures/tomoeryu)
+- [torvargo](../../../art/creatures/torvargo)
 - [tramino-family-v1](../../../art/creatures/tramino-family-v1)
 - [trancoura](../../../art/creatures/trancoura)
 - [trinca-brasas-family-v1](../../../art/creatures/trinca-brasas-family-v1)
 - [urso-polar-family-v1](../../../art/creatures/urso-polar-family-v1)
+- [valdrisa](../../../art/creatures/valdrisa)
 - [velaravan](../../../art/creatures/velaravan)
 - [veskoro](../../../art/creatures/veskoro)
 - [vesperalito](../../../art/creatures/vesperalito)

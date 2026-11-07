@@ -1,0 +1,79 @@
+{
+  "family_id": "gravurso",
+  "scope": "Linha com três pré-formas propostas e adulto existente; sem regras de jogo ou integração.",
+  "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+  "nodes": [
+    {
+      "id": "gravurso-baby",
+      "name": "Gravurso — Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Apoiar-se",
+      "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gravurso/baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gravurso/baby/concept-v1/brief.md"
+    },
+    {
+      "id": "gravurso-child",
+      "name": "Gravurso — Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Segurar",
+      "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gravurso/child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gravurso/child/concept-v1/brief.md"
+    },
+    {
+      "id": "gravurso-young",
+      "name": "Gravurso — Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Sustentar uma carga",
+      "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gravurso/young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gravurso/young/concept-v1/brief.md"
+    },
+    {
+      "id": "gravurso",
+      "name": "Gravurso",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Urso-pedra · Amparar",
+      "story": "Sustenta passagens que estão cedendo até que o último companheiro atravesse. Só vence quando consegue soltar o peso sem esmagar aquilo que protege.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gravurso/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gravurso/concept-v1/brief.md",
+      "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "gravurso-baby",
+      "to": "gravurso-child",
+      "kind": "reweaving",
+      "reason": "Passa de apoiar-se para segurar. Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "gravurso-child",
+      "to": "gravurso-young",
+      "kind": "reweaving",
+      "reason": "Passa de segurar para sustentar uma carga. Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "gravurso-young",
+      "to": "gravurso",
+      "kind": "reweaving",
+      "reason": "Passa de sustentar uma carga para amparar. Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+      "decision_status": "proposed"
+    }
+  ]
+}

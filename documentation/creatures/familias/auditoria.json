@@ -1,11 +1,11 @@
 {
   "counts": {
-    "families": 94,
-    "families_with_chart": 55,
-    "unique_records": 286,
+    "families": 110,
+    "families_with_chart": 71,
+    "unique_records": 326,
     "visual_reservations": 17,
     "dex_entries": 36,
-    "chart_sources": 58
+    "chart_sources": 74
   },
   "missing_references": [],
   "dex_not_covered": [],
@@ -25,6 +25,21 @@
     "village-isometric-v1"
   ],
   "duplicate_names": {
+    "Jovem (nome pendente)": [
+      "cacaurama:cacaulento",
+      "cacaurama:preguicau-young",
+      "caramund:caramund-young",
+      "gambalhote:gambalhote-young"
+    ],
+    "Brotim": [
+      "cervarco-family-v1:brotim",
+      "mata-verde:brotim"
+    ],
+    "Criança (nome pendente)": [
+      "cacaurama:cacau-child",
+      "cacaurama:preguicau-child",
+      "caramund:caramund-child"
+    ],
     "Bebê": [
       "anaconda-retrato:anaconda-baby",
       "caracol-pneu:caracol-pneu-baby",
@@ -36,20 +51,6 @@
       "pangolim-trovao:pangolim-baby",
       "urso-polar:urso-polar-baby",
       "viuva-anjo:viuva-baby"
-    ],
-    "Brotim": [
-      "cervarco-family-v1:brotim",
-      "mata-verde:brotim"
-    ],
-    "Adulto (nome pendente)": [
-      "cacaurama:cacaurama",
-      "cacaurama:preguicau-adult",
-      "gambalhote:gambalhote-adult"
-    ],
-    "Bebê (nome pendente)": [
-      "cacaurama:cacau-baby",
-      "caramund:caramund-baby",
-      "gambalhote:gambalhote-baby"
     ],
     "Criança": [
       "anaconda-retrato:anaconda-child",
@@ -63,11 +64,15 @@
       "urso-polar:urso-polar-child",
       "viuva-anjo:viuva-child"
     ],
-    "Jovem (nome pendente)": [
-      "cacaurama:cacaulento",
-      "cacaurama:preguicau-young",
-      "caramund:caramund-young",
-      "gambalhote:gambalhote-young"
+    "Adulto (nome pendente)": [
+      "cacaurama:cacaurama",
+      "cacaurama:preguicau-adult",
+      "gambalhote:gambalhote-adult"
+    ],
+    "Bebê (nome pendente)": [
+      "cacaurama:cacau-baby",
+      "caramund:caramund-baby",
+      "gambalhote:gambalhote-baby"
     ],
     "Jovem": [
       "anaconda-retrato:anaconda-young",
@@ -80,12 +85,7 @@
       "pangolim-trovao:pangolim-young",
       "urso-polar:urso-polar-young",
       "viuva-anjo:viuva-young"
-    ],
-    "Criança (nome pendente)": [
-      "cacaurama:cacau-child",
-      "cacaurama:preguicau-child",
-      "caramund:caramund-child"
     ]
   },
-  "inventory_files": 1741
+  "inventory_files": 1922
 }
