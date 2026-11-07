@@ -220,6 +220,7 @@ static func build(view) -> void:
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset.begins_with("canal-") or piece.asset.begins_with("feira-") or piece.asset.begins_with("cais-"):continue
+			if piece.asset.begins_with("centro-"):continue
 			if piece.asset in ["bambuzal-touceira","bambuzal-casa","bambuzal-bancada"]:continue
 			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
@@ -533,5 +534,3 @@ static func _masks(model) -> ImageTexture:
 				return lerpf(lerpf(g[v0*w+u0],g[v0*w+u1],tx),lerpf(g[v1*w+u0],g[v1*w+u1],tx),ty)
 			image.set_pixel(x,y,Color(sample.call(grids[0]),sample.call(grids[1]),noise.get_noise_2d(x*.25,y*.25)*.5+.5,sample.call(grids[2])))
 	return ImageTexture.create_from_image(image)
-
-

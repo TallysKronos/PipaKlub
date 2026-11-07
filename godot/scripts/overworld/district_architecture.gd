@@ -66,6 +66,106 @@ static func build(node:Node2D, feet:PackedVector2Array, style:String, height:flo
 	outline.append(top[0])
 	S.line(node,outline,2.5,roof.darkened(.34))
 
+static func centro(node:Node2D, feet:PackedVector2Array, role:String, height:float) -> void:
+	var palettes := {
+		"matriz":["e5c699","ab6950","614938"],
+		"tv":["699297","345664","bce6de"],
+		"liga":["c4ab86","354e65","e9be67"],
+		"sobrado":["c49370","8d5045","e4c69b"],
+	}
+	var palette:Array=palettes[role]
+	var wall:=Color(palette[0])
+	var roof:=Color(palette[1])
+	var trim:=Color(palette[2])
+	var top:=PackedVector2Array()
+	for foot in feet:
+		top.append(foot-Vector2(0,height))
+	for index in [1,2]:
+		var left:Vector2=top[index]
+		var right:Vector2=top[index+1]
+		var face:=wall.darkened(.24) if index==1 else wall
+		panel(node,left,right,0,1,0,height,face)
+		panel(node,left,right,0,1,height-14,height,face.darkened(.30))
+		panel(node,left,right,0,1,8,17,face.lightened(.21))
+		for side in [0.0,.92]:
+			panel(node,left,right,side,side+.08,17,height-14,face.lightened(.15))
+		if role=="matriz":
+			for x in [.15,.43,.71] if index==1 else [.14,.70]:
+				window(node,left,right,x,x+.16,57,124,trim)
+			if index==2:
+				window(node,left,right,.37,.63,89,height-14,trim)
+				window(node,left,right,.43,.57,33,61,trim)
+		elif role=="tv":
+			window(node,left,right,.10,.90,43,102,Color("29434d"))
+			for x in [.25,.50,.75]:
+				panel(node,left,right,x,x+.018,43,102,Color("95b1ab"))
+			if index==2:
+				panel(node,left,right,.16,.48,106,145,Color("263c49"))
+				panel(node,left,right,.19,.45,110,141,trim)
+				var screen:=left.lerp(right,.32)+Vector2(0,126)
+				S.quad(node,PackedVector2Array([screen+Vector2(-14,0),screen+Vector2(0,-9),screen+Vector2(14,0),screen+Vector2(0,9)]),Color("345664"))
+				window(node,left,right,.56,.85,117,height-14,trim)
+		else:
+			for x in [.15,.41,.67]:
+				window(node,left,right,x,x+.17,36,78,trim)
+			panel(node,left,right,.08,.92,88,95,face.darkened(.21))
+			window(node,left,right,.17,.34,108,144,trim)
+			window(node,left,right,.51,.82,103,height-14,trim)
+			if index==2 and role=="liga":
+				panel(node,left,right,.11,.88,82,100,roof)
+				for x in [.20,.47,.74]:
+					panel(node,left,right,x,x+.045,101,height-14,trim)
+		var outline:=PackedVector2Array([left,left+Vector2(0,height),right+Vector2(0,height)])
+		S.line(node,outline,2,face.darkened(.35))
+	S.quad(node,top,roof)
+	for row in 9:
+		var t:=float(row+1)/10.0
+		S.line(node,PackedVector2Array([top[0].lerp(top[3],t),top[1].lerp(top[2],t)]),2,roof.lightened(.18))
+	S.line(node,PackedVector2Array([top[0],top[1],top[2],top[3],top[0]]),3,roof.darkened(.35))
+	if role=="matriz":
+		bell_tower(node,feet,height)
+	elif role=="tv":
+		var base:Vector2=(top[0]+top[2])*.5
+		var mast:=base-Vector2(0,69)
+		S.line(node,PackedVector2Array([base,mast]),6,Color("334a52"))
+		for offset in [8,20,32]:
+			var beam:=mast+Vector2(0,offset)
+			S.line(node,PackedVector2Array([beam-Vector2(27,13.5),beam+Vector2(27,13.5)]),3,trim)
+
+static func centro_kiosk(node:Node2D,feet:PackedVector2Array,variant:int)->void:
+	var canopy:=Color("80524b") if variant==0 else Color("436d70")
+	var top:=PackedVector2Array()
+	for foot in feet:
+		top.append(foot-Vector2(0,84))
+	for index in [1,2]:
+		var left:Vector2=top[index]
+		var right:Vector2=top[index+1]
+		var wall:=Color("c5a47f").darkened(.19) if index==1 else Color("e2bd91")
+		panel(node,left,right,0,1,0,84,wall)
+		panel(node,left,right,0,1,0,12,canopy)
+		panel(node,left,right,0,1,75,84,wall.darkened(.25))
+		if index==1:
+			window(node,left,right,.2,.8,28,56,wall.lightened(.2))
+		else:
+			window(node,left,right,.13,.56,25,57,wall.lightened(.25))
+			window(node,left,right,.63,.90,24,75,canopy)
+			panel(node,left,right,.11,.59,54,61,canopy)
+	S.quad(node,top,canopy.darkened(.1))
+	for t in [.24,.48,.72]:
+		S.line(node,PackedVector2Array([top[0].lerp(top[3],t),top[1].lerp(top[2],t)]),2,canopy.lightened(.2))
+
+static func panel(node:Node2D,left:Vector2,right:Vector2,x0:float,x1:float,y0:float,y1:float,color:Color)->void:
+	var a:=left.lerp(right,x0)
+	var b:=left.lerp(right,x1)
+	S.quad(node,PackedVector2Array([a+Vector2(0,y0),b+Vector2(0,y0),b+Vector2(0,y1),a+Vector2(0,y1)]),color)
+
+static func window(node:Node2D,left:Vector2,right:Vector2,x0:float,x1:float,y0:float,y1:float,trim:Color)->void:
+	panel(node,left,right,x0,x1,y0,y1,trim)
+	panel(node,left,right,x0+.015,x1-.015,y0+4,y1-4,Color("253f4e"))
+	panel(node,left,right,x0+.027,x1-.027,y0+6,y0+13,Color("7b9ca0"))
+	var center:=(x0+x1)*.5
+	panel(node,left,right,center-.006,center+.006,y0+4,y1-4,trim)
+
 static func bell_tower(node:Node2D,feet:PackedVector2Array,height:float)->void:
 	var top:=PackedVector2Array()
 	for point in [feet[0].lerp(feet[1],.56),feet[1],feet[1].lerp(feet[2],.42),feet[0].lerp(feet[1],.56).lerp(feet[3].lerp(feet[2],.56),.42)]:
