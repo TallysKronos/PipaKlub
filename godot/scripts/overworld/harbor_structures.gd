@@ -89,7 +89,8 @@ static func mirante_props(view) -> void:
   "b": [["jacaranda",19,20],["banco",17,21],["banco",20,23],["poste",30,24],["poste",15,23],["casa",31,15],["casa",34,20],["balaustrada",14,24],["balaustrada",33,25]],
   "c": [["bandeira",16,8],["bandeira",31,8],["bandeira",16,18],["bandeira",31,18],["balaustrada",15,14],["balaustrada",32,14],["banco",29,20]],
  }
- for prop in placements.get(str(view.model.data.id).right(1),[]):
+ var part:=str(view.model.data.id).right(1)
+ for prop in placements.get(part,[]):
   var point := Vector2(prop[1]+.5,prop[2]+.5)
   if not view.model.point_walkable(point):continue
   var sprite := Sprite2D.new()
@@ -102,3 +103,24 @@ static func mirante_props(view) -> void:
    sprite.scale = Vector2.ONE * 1.55
   view.actors.add_child(holder)
   holder.add_child(sprite)
+ var waypoints:Dictionary={
+  "a":[Vector2(24.5,35.5),Vector2(24.5,25.5),Vector2(24.5,10.8)],
+  "b":[Vector2(24.5,34.5),Vector2(24.5,25.5),Vector2(24.5,18.5),Vector2(24.5,10.8)],
+  "c":[Vector2(24.5,34.5),Vector2(24.5,24.9),Vector2(24.5,19.5)],
+ }
+ for point:Vector2 in waypoints.get(part,[]):
+  mirante_waymark(view,point)
+
+static func mirante_waymark(view,point:Vector2) -> void:
+ var model=view.model
+ var tips:=PackedVector2Array()
+ for offset in [Vector2(-.38,.24),Vector2(0,-.23),Vector2(.38,.24)]:
+  var sample:Vector2=point+offset
+  if not model.point_walkable(sample) or not is_equal_approx(model.height_at(sample),model.height_at(point)):return
+  tips.append(model.project(sample)-Vector2(0,.8))
+ var ground:=Node2D.new()
+ ground.position=model.project(point,false)
+ view.actors.add_child(ground)
+ for i in tips.size():tips[i]-=ground.position
+ S.line(ground,tips,6,Color("534c3d"))
+ S.line(ground,tips,3,Color("d2bd84"))

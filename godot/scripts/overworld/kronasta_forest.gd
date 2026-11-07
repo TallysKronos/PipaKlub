@@ -261,7 +261,8 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		var neighbour:Dictionary=model.cell_at(n)
 		var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
 		var ice:bool=bool(model.data.get("forest",{}).get("ice",false)) or bool(model.data.get("forest",{}).get("submerged",false))
-		var seal_boundary:bool=bool(model.data.get("forest",{}).get("sealBoundary",false))
+		var mirante_exit:bool=side=="v" and neighbour.is_empty() and str(model.data.id).begins_with("kronasta-mirante-") and model.walkable(Vector2i(u,v))
+		var seal_boundary:bool=bool(model.data.get("forest",{}).get("sealBoundary",false)) or mirante_exit
 		if neighbour.is_empty() and not mountain and not ice and not seal_boundary:continue
 		var a:=Vector2(u+1,v) if side=="u" else Vector2(u,v+1)
 		var b:=Vector2(u+1,v+1)
