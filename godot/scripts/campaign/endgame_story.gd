@@ -170,6 +170,7 @@ func begin(id:String,point_value:Vector2)->Dictionary:
 	var duel:Array=STEPS[id].duels[index]
 	var model:=Model.new(active,{"modelId":duel[1],"level":duel[2]})
 	model.q.name=duel[0];model.q.boss=true
+	preload("res://scripts/campaign/progression.gd").story_assist(saved.player,model)
 	saved.player.encounter={"id":State.new_id(),"kind":"endgame-step","step":id,"duel":index,"scene":STEPS[id].scene,"space":CP.SPACE,"returnPoint":[point_value.x,point_value.y],"rewardXp":0,"state":model.snapshot()}
 	return session.checkpoint({"kind":"encounter"},saved.player)
 
@@ -190,6 +191,7 @@ func settle()->Dictionary:
 	if s.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
 	for p:Dictionary in saved.player.partners:
 		if p.id==s.partnerId:p.condition={"line":clampf(s.p.hp/s.p.stats.line*100,0,100),"structure":clampf(s.p.hull/s.p.stats.line*100,0,100)}
+	preload("res://scripts/campaign/progression.gd").story_result(saved.player,s)
 	if s.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,s)
 	if s.outcome=="won":
 		var id:String=e.step

@@ -108,6 +108,7 @@ static func begin(session: Node, point: Vector2) -> Dictionary:
 	var model := Model.new(active, {"modelId":stage[1], "level":stage[2]})
 	model.q.name = stage[0]
 	model.q.boss = true
+	preload("res://scripts/campaign/progression.gd").story_assist(saved.player, model)
 	if scene=="kronasta-coracao-c":model.q.platyxRefusal = "pending"
 	saved.player.encounter = {"id":State.new_id(), "kind":"ruinas-elo", "scene":scene, "space":CP.SPACE, "returnPoint":[point.x, point.y], "rewardXp":0, "state":model.snapshot()}
 	if current>=0:saved.player.encounter.stadiumRound=current
@@ -124,6 +125,7 @@ static func settle(session: Node) -> Dictionary:
 		return {"status":"wrong_step"}
 	if battle.scene=="kronasta-coracao-c" and result.outcome=="won" and result.q.get("platyxRefusal","")!="stopped":
 		return {"status":"wrong_step"}
+	preload("res://scripts/campaign/progression.gd").story_result(saved.player,result)
 	if result.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,result)
 	if result.outcome == "won":
 		saved.player.flags[battle_stage(battle)[3]] = true

@@ -294,7 +294,7 @@
             ]
           ],
           "reward": {
-            "coins": 20,
+            "coins": 30,
             "xp": 46,
             "item": ""
           },
@@ -310,7 +310,8 @@
           ],
           "styles": [
             "mobile"
-          ]
+          ],
+          "ai": 2
         },
         {
           "id": "bambuzal-2",
@@ -338,7 +339,7 @@
             ]
           ],
           "reward": {
-            "coins": 25,
+            "coins": 30,
             "xp": 34,
             "item": ""
           },
@@ -354,7 +355,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "bambuzal-3",
@@ -398,7 +400,8 @@
           ],
           "styles": [
             "guard"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "bambuzal-4",
@@ -442,7 +445,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 2
         },
         {
           "id": "bambuzal-5",
@@ -470,7 +474,7 @@
             ]
           ],
           "reward": {
-            "coins": 40,
+            "coins": 50,
             "xp": 73,
             "item": ""
           },
@@ -486,7 +490,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 5
         }
       ]
     },
@@ -552,7 +557,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 3
         },
         {
           "id": "beira-canal-2",
@@ -596,7 +602,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "beira-canal-3",
@@ -640,7 +647,8 @@
           ],
           "styles": [
             "aggressive"
-          ]
+          ],
+          "ai": 3
         },
         {
           "id": "beira-canal-4",
@@ -684,7 +692,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "beira-canal-5",
@@ -728,7 +737,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 5
         }
       ]
     },
@@ -778,7 +788,7 @@
             ]
           ],
           "reward": {
-            "coins": 50,
+            "coins": 55,
             "xp": 100,
             "item": ""
           },
@@ -794,7 +804,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 3
         },
         {
           "id": "feira-2",
@@ -838,7 +849,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "feira-3",
@@ -882,7 +894,8 @@
           ],
           "styles": [
             "aggressive"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "feira-4",
@@ -926,7 +939,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "feira-5",
@@ -970,7 +984,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 5
         }
       ]
     },
@@ -1018,7 +1033,7 @@
             ]
           ],
           "reward": {
-            "coins": 18,
+            "coins": 65,
             "xp": 160,
             "item": ""
           },
@@ -1034,7 +1049,8 @@
             "patient"
           ],
           "npcName": "Neril",
-          "scene": "kronasta-cais-a"
+          "scene": "kronasta-cais-a",
+          "ai": 5
         },
         {
           "id": "cais-2",
@@ -1062,7 +1078,7 @@
             ]
           ],
           "reward": {
-            "coins": 20,
+            "coins": 65,
             "xp": 180,
             "item": ""
           },
@@ -1078,7 +1094,8 @@
             "reader"
           ],
           "npcName": "Ossian",
-          "scene": "kronasta-cais-a"
+          "scene": "kronasta-cais-a",
+          "ai": 4
         },
         {
           "id": "cais-3",
@@ -1106,7 +1123,7 @@
             ]
           ],
           "reward": {
-            "coins": 22,
+            "coins": 65,
             "xp": 200,
             "item": ""
           },
@@ -1122,7 +1139,8 @@
             "aggressive"
           ],
           "npcName": "Vaelis",
-          "scene": "kronasta-cais-b"
+          "scene": "kronasta-cais-b",
+          "ai": 5
         },
         {
           "id": "cais-4",
@@ -1150,7 +1168,7 @@
             ]
           ],
           "reward": {
-            "coins": 24,
+            "coins": 65,
             "xp": 220,
             "item": ""
           },
@@ -1166,7 +1184,8 @@
             "reader"
           ],
           "npcName": "Rhuna",
-          "scene": "kronasta-cais-b"
+          "scene": "kronasta-cais-b",
+          "ai": 3
         },
         {
           "id": "cais-5",
@@ -1194,7 +1213,7 @@
             ]
           ],
           "reward": {
-            "coins": 26,
+            "coins": 80,
             "xp": 240,
             "item": ""
           },
@@ -1210,7 +1229,8 @@
             "patient"
           ],
           "npcName": "Marisol",
-          "scene": "kronasta-cais-c"
+          "scene": "kronasta-cais-c",
+          "ai": 5
         }
       ]
     },
@@ -1263,7 +1283,7 @@
             ]
           ],
           "reward": {
-            "coins": 28,
+            "coins": 65,
             "xp": 260,
             "item": ""
           },
@@ -1277,7 +1297,8 @@
           ],
           "styles": [
             "aggressive"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "industrial-2",
@@ -1308,7 +1329,7 @@
             ]
           ],
           "reward": {
-            "coins": 30,
+            "coins": 65,
             "xp": 280,
             "item": ""
           },
@@ -1322,7 +1343,8 @@
           ],
           "styles": [
             "reader"
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "industrial-3",
@@ -1353,7 +1375,7 @@
             ]
           ],
           "reward": {
-            "coins": 32,
+            "coins": 65,
             "xp": 300,
             "item": ""
           },
@@ -1367,7 +1389,8 @@
           ],
           "styles": [
             "aggressive"
-          ]
+          ],
+          "ai": 3
         },
         {
           "id": "industrial-4",
@@ -1398,7 +1421,7 @@
             ]
           ],
           "reward": {
-            "coins": 34,
+            "coins": 65,
             "xp": 320,
             "item": ""
           },
@@ -1412,7 +1435,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "industrial-5",
@@ -1443,7 +1467,7 @@
             ]
           ],
           "reward": {
-            "coins": 36,
+            "coins": 85,
             "xp": 340,
             "item": ""
           },
@@ -1457,7 +1481,8 @@
           ],
           "styles": [
             "patient"
-          ]
+          ],
+          "ai": 5
         }
       ]
     },
@@ -1505,7 +1530,7 @@
             ]
           ],
           "reward": {
-            "coins": 38,
+            "coins": 65,
             "xp": 360,
             "item": ""
           },
@@ -1526,7 +1551,8 @@
               "name": "Seyran",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "palafitas-2",
@@ -1554,7 +1580,7 @@
             ]
           ],
           "reward": {
-            "coins": 40,
+            "coins": 65,
             "xp": 380,
             "item": ""
           },
@@ -1575,7 +1601,8 @@
               "name": "Oruvo",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "palafitas-3",
@@ -1603,7 +1630,7 @@
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 65,
             "xp": 400,
             "item": ""
           },
@@ -1624,7 +1651,8 @@
               "name": "Kessai",
               "color": 1
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "palafitas-4",
@@ -1652,7 +1680,7 @@
             ]
           ],
           "reward": {
-            "coins": 44,
+            "coins": 65,
             "xp": 420,
             "item": ""
           },
@@ -1673,7 +1701,8 @@
               "name": "Veldren",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "palafitas-5",
@@ -1701,7 +1730,7 @@
             ]
           ],
           "reward": {
-            "coins": 46,
+            "coins": 95,
             "xp": 440,
             "item": ""
           },
@@ -1723,7 +1752,8 @@
               "color": 2,
               "modelId": "veskoro"
             }
-          ]
+          ],
+          "ai": 7
         }
       ],
       "startFlag": "mormacoLiberto"
@@ -1774,7 +1804,7 @@
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 65,
             "xp": 420,
             "item": ""
           },
@@ -1794,7 +1824,8 @@
               "name": "Veyl",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "alto-da-serra-2",
@@ -1822,7 +1853,7 @@
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 65,
             "xp": 420,
             "item": ""
           },
@@ -1842,7 +1873,8 @@
               "name": "Sora",
               "color": 1
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "alto-da-serra-3",
@@ -1870,7 +1902,7 @@
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 65,
             "xp": 420,
             "item": ""
           },
@@ -1890,7 +1922,8 @@
               "name": "Oren",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "alto-da-serra-4",
@@ -1918,7 +1951,7 @@
             ]
           ],
           "reward": {
-            "coins": 42,
+            "coins": 70,
             "xp": 420,
             "item": ""
           },
@@ -1938,7 +1971,8 @@
               "name": "Kaiva",
               "color": 3
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "alto-da-serra-5",
@@ -1966,7 +2000,7 @@
             ]
           ],
           "reward": {
-            "coins": 65,
+            "coins": 105,
             "xp": 540,
             "item": ""
           },
@@ -1977,7 +2011,7 @@
             29,
             8
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -1986,7 +2020,8 @@
               "name": "Dona Neve",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         }
       ],
       "startFlag": "tufanocorteLiberto"
@@ -2037,7 +2072,7 @@
             ]
           ],
           "reward": {
-            "coins": 45,
+            "coins": 70,
             "xp": 450,
             "item": ""
           },
@@ -2057,7 +2092,8 @@
               "name": "Vitra",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "centro-2",
@@ -2085,7 +2121,7 @@
             ]
           ],
           "reward": {
-            "coins": 45,
+            "coins": 70,
             "xp": 450,
             "item": ""
           },
@@ -2105,7 +2141,8 @@
               "name": "Davi",
               "color": 1
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "centro-3",
@@ -2133,7 +2170,7 @@
             ]
           ],
           "reward": {
-            "coins": 45,
+            "coins": 70,
             "xp": 450,
             "item": ""
           },
@@ -2153,7 +2190,8 @@
               "name": "Sinal",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "centro-4",
@@ -2181,7 +2219,7 @@
             ]
           ],
           "reward": {
-            "coins": 45,
+            "coins": 75,
             "xp": 450,
             "item": ""
           },
@@ -2201,7 +2239,8 @@
               "name": "Oriel",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "centro-5",
@@ -2229,7 +2268,7 @@
             ]
           ],
           "reward": {
-            "coins": 70,
+            "coins": 115,
             "xp": 580,
             "item": ""
           },
@@ -2240,7 +2279,7 @@
             24,
             6
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -2249,7 +2288,8 @@
               "name": "Leo Antena",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         }
       ],
       "startFlag": "pipaTvPedido"
@@ -2300,7 +2340,7 @@
             ]
           ],
           "reward": {
-            "coins": 48,
+            "coins": 75,
             "xp": 480,
             "item": ""
           },
@@ -2320,7 +2360,8 @@
               "name": "Jair",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "lajes-2",
@@ -2348,7 +2389,7 @@
             ]
           ],
           "reward": {
-            "coins": 48,
+            "coins": 80,
             "xp": 480,
             "item": ""
           },
@@ -2368,7 +2409,8 @@
               "name": "Lívia",
               "color": 1
             }
-          ]
+          ],
+          "ai": 6
         },
         {
           "id": "lajes-3",
@@ -2396,7 +2438,7 @@
             ]
           ],
           "reward": {
-            "coins": 48,
+            "coins": 80,
             "xp": 480,
             "item": ""
           },
@@ -2416,7 +2458,8 @@
               "name": "Tomé",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "lajes-4",
@@ -2444,7 +2487,7 @@
             ]
           ],
           "reward": {
-            "coins": 48,
+            "coins": 80,
             "xp": 480,
             "item": ""
           },
@@ -2464,7 +2507,8 @@
               "name": "Rute",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "lajes-5",
@@ -2492,7 +2536,7 @@
             ]
           ],
           "reward": {
-            "coins": 75,
+            "coins": 125,
             "xp": 620,
             "item": ""
           },
@@ -2503,7 +2547,7 @@
             24,
             6
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -2512,7 +2556,8 @@
               "name": "Tainá",
               "color": 0
             }
-          ]
+          ],
+          "ai": 7
         }
       ],
       "startFlag": "bracadeiraBando"
@@ -2563,7 +2608,7 @@
             ]
           ],
           "reward": {
-            "coins": 55,
+            "coins": 80,
             "xp": 540,
             "item": ""
           },
@@ -2583,7 +2628,8 @@
               "name": "Neris",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "porto-2",
@@ -2611,7 +2657,7 @@
             ]
           ],
           "reward": {
-            "coins": 55,
+            "coins": 85,
             "xp": 540,
             "item": ""
           },
@@ -2631,7 +2677,8 @@
               "name": "Varko",
               "color": 1
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "porto-3",
@@ -2659,7 +2706,7 @@
             ]
           ],
           "reward": {
-            "coins": 55,
+            "coins": 85,
             "xp": 540,
             "item": ""
           },
@@ -2679,7 +2726,8 @@
               "name": "Elune",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "porto-4",
@@ -2707,7 +2755,7 @@
             ]
           ],
           "reward": {
-            "coins": 55,
+            "coins": 90,
             "xp": 540,
             "item": ""
           },
@@ -2727,7 +2775,8 @@
               "name": "Tervan",
               "color": 3
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "porto-5",
@@ -2759,7 +2808,7 @@
             ]
           ],
           "reward": {
-            "coins": 85,
+            "coins": 135,
             "xp": 700,
             "item": ""
           },
@@ -2770,7 +2819,7 @@
             24,
             7
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -2779,7 +2828,8 @@
               "name": "Capitão Jurandir",
               "color": 0
             }
-          ]
+          ],
+          "ai": 7
         }
       ],
       "startFlag": "leagueGold"
@@ -2830,7 +2880,7 @@
             ]
           ],
           "reward": {
-            "coins": 60,
+            "coins": 90,
             "xp": 560,
             "item": ""
           },
@@ -2850,7 +2900,8 @@
               "name": "Vael",
               "color": 0
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "mirante-2",
@@ -2878,7 +2929,7 @@
             ]
           ],
           "reward": {
-            "coins": 60,
+            "coins": 90,
             "xp": 560,
             "item": ""
           },
@@ -2898,7 +2949,8 @@
               "name": "Ilyra",
               "color": 1
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "mirante-3",
@@ -2926,7 +2978,7 @@
             ]
           ],
           "reward": {
-            "coins": 60,
+            "coins": 95,
             "xp": 560,
             "item": ""
           },
@@ -2946,7 +2998,8 @@
               "name": "Orvik",
               "color": 2
             }
-          ]
+          ],
+          "ai": 4
         },
         {
           "id": "mirante-4",
@@ -2974,7 +3027,7 @@
             ]
           ],
           "reward": {
-            "coins": 60,
+            "coins": 95,
             "xp": 560,
             "item": ""
           },
@@ -2994,7 +3047,8 @@
               "name": "Senael",
               "color": 3
             }
-          ]
+          ],
+          "ai": 5
         },
         {
           "id": "mirante-5",
@@ -3034,7 +3088,7 @@
             ]
           ],
           "reward": {
-            "coins": 90,
+            "coins": 145,
             "xp": 740,
             "item": ""
           },
@@ -3045,7 +3099,7 @@
             24,
             6
           ],
-          "rounds": 2,
+          "rounds": 3,
           "styles": [
             "patient"
           ],
@@ -3054,7 +3108,8 @@
               "name": "Ícaro",
               "color": 0
             }
-          ]
+          ],
+          "ai": 6
         }
       ],
       "startFlag": "enamorDerrotado"

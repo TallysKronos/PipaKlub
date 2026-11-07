@@ -10,6 +10,9 @@ var partner_id := ""
 var model_id := "rabbito"
 var enemy_model_id := "lacertubo"
 var enemy_level := Pacing.BOSS_LEVEL
+## Consecutive losses to this story duel (Progression.story_assist, up to 2): each one
+## lowers the boss's reading a step and its damage by 10%.
+var assist := 0
 signal damage_applied(event: Dictionary)
 signal combat_feedback(event: Dictionary)
 signal signature_started(id:String,enemy:bool)
@@ -18,11 +21,11 @@ func _apply_hit(hit: Dictionary) -> void:
 	var target: Dictionary = hit.target
 	var field: String = "hull" if hit.body else "hp"
 	var previous: float = target[field]
-	var multiplier:=1.0
+	var multiplier:=boss_damage(enemy_level)*(1.0-.1*assist) if is_same(target,p) and q.get("bossScaled",false) else 1.0
 	if p.has("level") and q.has("level"):
 		var lower: Dictionary=p if p.level<q.level else q
 		var penalty:=Pacing.level_penalty(absi(int(p.level)-int(q.level)))
-		multiplier=1.0+penalty if is_same(target,lower) else 1.0-penalty
+		multiplier*=1.0+penalty if is_same(target,lower) else 1.0-penalty
 	target[field] = maxf(0, previous - hit.damage*multiplier)
 	if is_same(target,q) and q.get("mormacoForm","")=="normal":
 		if field=="hp":
@@ -82,8 +85,38 @@ func contact(a: Dictionary, b: Dictionary) -> Dictionary:
 		crossing.valid = crossing.own >= .35 and crossing.own <= .95 and crossing.enemy >= .15 and crossing.enemy <= .92
 	return crossing
 
+## Story bosses (q.boss with a campaign level) were plain Lv.N stats, so every duel from
+## Navalha (Nv.30) to Jamile (Nv.50) lasted ~14 s and was won with 65% line left
+## (tools/story_balance.gd). They get boss line and a reading that climbs with level.
+## The park's original boss (no campaign level) keeps its authored 210 line.
+static func boss_line_scale(level: int) -> float:
+	return clampf(1.9 + .04 * (level - 30), 1.9, 2.7)
+
+## Longer duels without faster deaths: a scaled boss hits for less, and a little
+## harder toward the final (×0.65 at Nv.30, ×0.73 at Nv.50).
+static func boss_damage(level: int) -> float:
+	return lerpf(.65, .73, clampf((level - 30) / 20.0, 0, 1))
+
+static func boss_skill(level: int, phase: int) -> int:
+	if level <= Pacing.BOSS_LEVEL: return 7 if phase == 2 else 6
+	return clampi(4 + (level - 30) / 6 + (1 if phase == 2 else 0), 3, 10)
+
+static func recovery_scale(skill: int) -> float:
+	return clampf(1.0 - .06 * (skill - 6), .7, 1.15)
+
+func _scale_boss() -> void:
+	if not q.boss or q.get("bossScaled", false) or enemy_level <= Pacing.BOSS_LEVEL: return
+	q.bossScaled = true
+	var scale := boss_line_scale(enemy_level)
+	var hp_ratio: float = q.hp / q.stats.line
+	var hull_ratio: float = q.hull / q.stats.line
+	q.stats.line = roundf(q.stats.line * scale)
+	q.hp = q.stats.line * hp_ratio
+	q.hull = q.stats.line * hull_ratio
+
 func tick(delta: float, input: Dictionary) -> void:
 	if not outcome.is_empty(): return
+	_scale_boss()
 	var dt := clampf(delta, 0, .05)
 	time += dt
 	if intro > 0:
@@ -206,13 +239,17 @@ func _move_fighter(actor: Dictionary, raw: Dictionary, dt: float, wind: float) -
 
 func _boss_input(dt: float) -> Dictionary:
 	if enemy_model_id=="mormaco-possuido":return _mormaco_input(dt)
-	var phase := 2 if minf(q.hp, q.hull) <= 250 * .55 else 1
+	# Phase 2 at 55% of the boss's own line (it was 55% of 250, so a Lv.30–50 boss
+	# with ~120 line started the duel already in phase 2).
+	var threshold: float = 250 * .55 if not q.get("bossScaled", false) else q.stats.line * .55
+	var phase := 2 if minf(q.hp, q.hull) <= threshold else 1
 	if phase != q.phase:
 		q.phase = phase
 		q.charge = 0.0
 		q.recovery = 1.8
 	if q.signatureWindup > 0: return {}
-	var k := pow(((7 if phase == 2 else 6) - 1) / 9.0, .75)
+	var skill := maxi(1, boss_skill(enemy_level, phase) - (assist if q.get("bossScaled", false) else 0))
+	var k := pow((skill - 1) / 9.0, .75)
 	var speed := minf(1, .6 + .4 * k) * .95
 	var fraction := .6 + .16 * (1 - k) * sin(time * 1000 / 650 + 1.7)
 	var crossing := Vector2(p.anchor, 585).lerp(Vector2(p.x, p.y), fraction)
@@ -220,7 +257,7 @@ func _boss_input(dt: float) -> Dictionary:
 	var input := {"x": clampf((target.x - q.x) / 80, -speed, speed), "y": clampf((target.y - q.y) / 80, -speed, speed), "cut": false}
 	var own_crossing := contact(q, p)
 	var threat := contact(p, q)
-	var dodge := clampf(((7 if phase == 2 else 6) - 2) / 8.0, 0, 1)
+	var dodge := clampf((skill - 2) / 8.0, 0, 1)
 	if threat.get("valid", false) and not own_crossing.get("valid", false):
 		var away: Vector2 = (Vector2(q.x, q.y) - threat.point).normalized()
 		target = Vector2(q.x, q.y) + away * 120 * dodge + (target - Vector2(q.x, q.y)) * (1 - dodge)
@@ -247,7 +284,8 @@ func _boss_input(dt: float) -> Dictionary:
 			input.cut = true
 			q.charge = 0.0
 			q.telegraph = 0.0
-			q.recovery = 1.15 if phase == 2 else 1.5
+			# A sharper boss leaves a shorter opening after each cut (the old 6/7 kept 1.0).
+			q.recovery = (1.15 if phase == 2 else 1.5) * recovery_scale(skill)
 	else: q.telegraph = 0.0
 	return input
 
@@ -352,7 +390,7 @@ func _strike(actor: Dictionary, target: Dictionary, hits: Array) -> void:
 	hits.append({"target":target,"body":body,"damage":damage,"point":Vector2(target.x,target.y) if body else crossing.point,"critical":quality.critical and not maneuver,"color":actor.color})
 
 func snapshot() -> Dictionary:
-	return _encode({"p": p, "q": q, "time": time, "intro": intro, "duration": duration, "outcome": outcome, "partnerId": partner_id, "modelId": model_id, "enemyModelId": enemy_model_id, "enemyLevel": enemy_level})
+	return _encode({"p": p, "q": q, "time": time, "intro": intro, "duration": duration, "outcome": outcome, "partnerId": partner_id, "modelId": model_id, "enemyModelId": enemy_model_id, "enemyLevel": enemy_level, "assist": assist})
 
 func restore(saved: Dictionary) -> void:
 	var decoded: Dictionary = _decode(saved)
@@ -366,6 +404,7 @@ func restore(saved: Dictionary) -> void:
 	model_id = decoded.modelId
 	enemy_model_id = decoded.get("enemyModelId", "lacertubo")
 	enemy_level = decoded.get("enemyLevel", 15)
+	assist = int(decoded.get("assist", 0))
 
 static func _encode(value: Variant) -> Variant:
 	if value is Vector2: return {"vector": [value.x, value.y]}

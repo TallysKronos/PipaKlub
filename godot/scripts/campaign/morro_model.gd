@@ -144,7 +144,9 @@ func _hunters(slot: int, self_slot: int) -> int:
 	return actors.filter(func(a: Dictionary): return a.slot != 0 and a.slot != self_slot and alive(a) and a.target == slot).size()
 
 func _rival_input(actor: Dictionary, dt: float) -> Dictionary:
-	if is_same(actor,q) and enemy_model_id=="veskoro" and veskoro.get("phase","rest")!="rest":return {"x":0.0,"y":0.0}
+	# Veskoro holds still to cast (warning and impact) and moves again while recovering:
+	# standing still for the whole 3.7 s cycle made the Palafitas champion unlosable.
+	if is_same(actor,q) and enemy_model_id=="veskoro" and veskoro.get("phase","rest") in ["warn","active"]:return {"x":0.0,"y":0.0}
 	var b := _brain(actor.style)
 	var foes := actors.filter(func(a: Dictionary): return a.slot != actor.slot and alive(a))
 	if foes.is_empty(): return {}
@@ -222,7 +224,14 @@ func restore(saved: Dictionary) -> void:
 ## Rival skill climbs across the six acts instead of peaking at Lv.14 (level-4, capped
 ## at 10, left two thirds of the campaign against the perfect reader). Champions read
 ## one step better than their lieutenants. Measured with tools/duel_balance.gd.
+## Each district duel carries its calibrated reading in districts.json ("ai", written by
+## tools/district_calibration.gd against a target win-rate curve); the formula is the
+## starting point for stages without one.
 static func district_ai(entry: Dictionary) -> int:
+	if entry.get("ai") != null: return clampi(int(entry.ai), 1, 10)
+	return district_ai_formula(entry)
+
+static func district_ai_formula(entry: Dictionary) -> int:
 	var skill := 2 + (int(entry.level) - 9) / 6
 	if str(entry.get("role", "")) == "champion": skill += 1
 	return clampi(skill, 1, 10)
