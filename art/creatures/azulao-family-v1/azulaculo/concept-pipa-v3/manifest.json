@@ -1,0 +1,31 @@
+{
+  "id": "azulaculo",
+  "name": "Azuláculo",
+  "stage": "IV · adulto · inteligência",
+  "source": "exec-9b8fd788-f674-4aad-a32a-d2140d6f56e5.png",
+  "file": "azulaculo/concept-pipa-v3/concept.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGBA",
+  "alpha": [
+    0,
+    254
+  ],
+  "sha256": "12d2738a80aca919e13a84b3f184e49fed4a31b5b88d83dace43b060d2c0dd50",
+  "tool": "image_gen integrada",
+  "status": "concept visual aprovado pelo autor; sem rig ou integração",
+  "prompt": "prompt.txt",
+  "generation_references": [
+    "art/soulgen/keys/azulao/color-rig-v2/concept.png",
+    "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png",
+    "art/creatures/azulao-family-v1/azulume/concept-pipa-v3/concept.png"
+  ],
+  "review": "../../lote-pipa-v3/REVISAO.md",
+  "visualApproval": {
+    "date": "2026-11-03",
+    "statement": "Gostei aprovados",
+    "scope": "design visual deste concept"
+  }
+}

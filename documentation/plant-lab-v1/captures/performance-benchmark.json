@@ -1,0 +1,27 @@
+{
+  "runtime": "v24.22.1",
+  "scope": "Node CPU raster; not browser FPS",
+  "results": [
+    {
+      "size": 24,
+      "fullMs": 103,
+      "materialMs": 21,
+      "heightMs": 82,
+      "rssMB": 98
+    },
+    {
+      "size": 40,
+      "fullMs": 397,
+      "materialMs": 25,
+      "heightMs": 99,
+      "rssMB": 166
+    },
+    {
+      "size": 64,
+      "fullMs": 756,
+      "materialMs": 49,
+      "heightMs": 145,
+      "rssMB": 325
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "OK · Encaixe Elmo e pescoço: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Braço próximo e ombreira: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Braço distante e ombreira: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Antebraço próximo e mão: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Antebraço distante e mão: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Coxa próxima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Coxa distante: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Canela próxima e bota: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Canela distante e bota: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Capa rasgada inteira: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Espada inteira: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Rabiola · fio, nó e duas abas: desvio máximo 0.00 unidades."
+    ]
+  },
+  "expressions": {
+    "fierce": {
+      "complete_head": true,
+      "closed_visor": true,
+      "canvas_identical": true,
+      "opaque_ratio": 0.9988075295988189
+    },
+    "hurt": {
+      "complete_head": true,
+      "closed_visor": true,
+      "canvas_identical": true,
+      "opaque_ratio": 0.9902330995712785
+    },
+    "happy": {
+      "complete_head": true,
+      "closed_visor": true,
+      "canvas_identical": true,
+      "opaque_ratio": 0.9971323926066835
+    }
+  },
+  "atlas": {
+    "frames": 129,
+    "size": [
+      2048,
+      4352
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}

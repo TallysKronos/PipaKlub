@@ -1,0 +1,79 @@
+{
+  "family_id": "cascoronte",
+  "scope": "Linha com três pré-formas propostas e adulto existente; sem regras de jogo ou integração.",
+  "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+  "nodes": [
+    {
+      "id": "cascoronte-baby",
+      "name": "Cascoronte — Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Fechar o abrigo",
+      "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cascoronte/baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cascoronte/baby/concept-v1/brief.md"
+    },
+    {
+      "id": "cascoronte-child",
+      "name": "Cascoronte — Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Guardar algo frágil",
+      "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cascoronte/child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cascoronte/child/concept-v1/brief.md"
+    },
+    {
+      "id": "cascoronte-young",
+      "name": "Cascoronte — Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Levar uma carga",
+      "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cascoronte/young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cascoronte/young/concept-v1/brief.md"
+    },
+    {
+      "id": "cascoronte",
+      "name": "Cascoronte",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Quelônio de bastião · Transportar",
+      "story": "Leva passageiros dentro da própria carapaça e conserva o passo estável enquanto atravessam o perigo. Precisa recolher a escada e fechar o abrigo antes de retomar a marcha.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cascoronte/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cascoronte/concept-v2/brief.md",
+      "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "cascoronte-baby",
+      "to": "cascoronte-child",
+      "kind": "reweaving",
+      "reason": "Passa de fechar o abrigo para guardar algo frágil. Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cascoronte-child",
+      "to": "cascoronte-young",
+      "kind": "reweaving",
+      "reason": "Passa de guardar algo frágil para levar uma carga. Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cascoronte-young",
+      "to": "cascoronte",
+      "kind": "reweaving",
+      "reason": "Passa de levar uma carga para transportar. Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+      "decision_status": "proposed"
+    }
+  ]
+}

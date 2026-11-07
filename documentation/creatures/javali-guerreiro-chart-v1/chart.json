@@ -1,0 +1,81 @@
+{
+  "family_id": "javali-guerreiro",
+  "scope": "Quatro designs visuais aprovados; regras propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "javali-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Terracota/petróleo, focinho curto, crista e linha amarela.",
+      "story": "Aprende a orientar as pequenas abas de proteção do rosto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/javali-guerreiro/javali-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/javali-guerreiro/javali-baby/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “Aprovado”, após apresentação da linha completa do javali e antes de pedir o estudo de quadrúpedes. Escopo: quatro designs visuais, sem aprovar regras."
+    },
+    {
+      "id": "javali-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Terracota/petróleo, focinho curto, crista e linha amarela.",
+      "story": "Explora o chão sobre quatro patas e aprende a firmar os cascos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/javali-guerreiro/javali-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/javali-guerreiro/javali-child/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “Aprovado”, após apresentação da linha completa do javali e antes de pedir o estudo de quadrúpedes. Escopo: quatro designs visuais, sem aprovar regras."
+    },
+    {
+      "id": "javali-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Terracota/petróleo, focinho curto, crista e linha amarela.",
+      "story": "Concentra força nos ombros e usa as proteções dianteiras para conter impactos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/javali-guerreiro/javali-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/javali-guerreiro/javali-young/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “Aprovado”, após apresentação da linha completa do javali e antes de pedir o estudo de quadrúpedes. Escopo: quatro designs visuais, sem aprovar regras."
+    },
+    {
+      "id": "javali-guerreiro",
+      "name": "Adulto — guerreiro javali",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Guerreiro robusto com escudos de antebraço e cascos fendidos.",
+      "story": "A postura bípede libera as proteções dianteiras para aparar e contra-atacar.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/javali-guerreiro/concept-v1/concept.png",
+      "brief": "../../../art/creatures/javali-guerreiro/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “Aprovado”, após apresentação da linha completa do javali e antes de pedir o estudo de quadrúpedes. Escopo: quatro designs visuais, sem aprovar regras."
+    }
+  ],
+  "edges": [
+    {
+      "from": "javali-baby",
+      "to": "javali-child",
+      "kind": "reweaving",
+      "reason": "Explora o chão sobre quatro patas e aprende a firmar os cascos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "javali-child",
+      "to": "javali-young",
+      "kind": "reweaving",
+      "reason": "Concentra força nos ombros e usa as proteções dianteiras para conter impactos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "javali-young",
+      "to": "javali-guerreiro",
+      "kind": "reweaving",
+      "reason": "A postura bípede libera as proteções dianteiras para aparar e contra-atacar.",
+      "decision_status": "proposed"
+    }
+  ]
+}

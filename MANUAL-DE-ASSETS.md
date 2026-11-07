@@ -38,6 +38,10 @@ Usar estes estados no registro de produção: **briefing**, **conceito**, **em r
 
 ## 02. Identidade do PipaKlub
 
+### Articulações no Soulgen
+
+Regra do autor, 04/11/2026: peças separadas são camadas de uma criatura contínua. Não desenhar buracos, cavidades pretas, tubos, aros ou pinos de encaixe para indicar separações; os Soulmonsters não são brinquedos desmontáveis. Usar sobreposição sólida de anatomia/armadura nas articulações. Cada ornamento pertence a uma única peça: joelheira na canela, ombreira no braço, por exemplo. Separar rabiolas com seu fio inteiro e acessórios completos, com parentesco correto no rig. Verificar as junções durante as ações, além da pose de repouso.
+
 ### 02.1 O universo
 
 PipaKlub é papel, vento, vínculos e vida de bairro. Quintais, telhados de barro, linhas, carretéis, varetas, remendos e rabiolas sustentam sua identidade. Kronasta precisa parecer um lugar habitado, com hábitos e usos reconhecíveis, não uma coleção de construções decorativas sem função.

@@ -1,0 +1,23 @@
+{
+  "id": "tricordio",
+  "version": 2,
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "tool": "image_gen.imagegen",
+  "identity": "trinca-brasas",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-6c9b0798-0638-404b-83d5-24c2a6806f33.png",
+  "sha256": "0851056001073cd6eb96737a33ea17daa1f594b42edba5e86962162ebe11dee3",
+  "width": 1024,
+  "height": 1536,
+  "mode": "RGB",
+  "prompt": "prompt.txt",
+  "references": [
+    "art/creatures/onze-cavaleiros-v1/tricordio/concept-v1/concept.png",
+    "art/soulgen/keys/trinca-brasas/color-rig-v2/preview.png",
+    "art/soulgen/keys/trinca-brasas/color-rig-v2/headCenter.png",
+    "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png"
+  ],
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false
+}

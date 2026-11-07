@@ -1,0 +1,3 @@
+# Conferência
+
+Cervo-centauro: quatro pernas com cascos e dois braços ligados ao torso ereto, galhadas-armação e placas de proteção. Conferida continuidade do corpo, raízes de orelhas/galhadas, apoios e rabiola. Seis membros presentes: quatro pernas e dois braços. Mãos ligadas a cotovelos/ombros; galhadas e mãos conduzem linhas até um losango de demonstração. O funcionamento e a amplitude exigem vistas e ações antes de rig. Uma única imagem em três quartos não valida anatomia em todos os ângulos. Há transições suaves residuais e contorno predominantemente contínuo: concept 2D mangá, não pixel art técnico. Fundo branco opaco. Não recortado, animado ou integrado. Em avaliação.

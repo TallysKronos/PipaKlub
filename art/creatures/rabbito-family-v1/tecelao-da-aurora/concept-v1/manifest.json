@@ -1,0 +1,30 @@
+{
+  "id": "tecelao-da-aurora",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a1a382-5f9e-70e2-88df-2cc0d3978098/exec-e1c99823-493a-4a9d-9451-96c5f71402f6.png",
+  "sha256": "ae3ad0600779fe0a1738a2e4240f9f20c5df01b0a2ed88b7d888970cdcb66c63",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+      "role": "Identidade autoral e acabamento"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/mestre-dos-fios/concept-v1/concept.png",
+      "role": "Continuidade da rota condutora na geração inicial"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false,
+  "correction": {
+    "prompt": "prompt-correcao.txt",
+    "input": "tentativa-01.png",
+    "reason": "Remover leitura de punhos sobre pés adicionais"
+  }
+}

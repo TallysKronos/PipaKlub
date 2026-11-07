@@ -1,0 +1,11 @@
+# Estudo — mico-samurai
+
+Consulta em 04/11/2026. Uma arte oficial de cada referência inspecionada; arquivos em referencias/. Direitos das artes permanecem com titulares. Nenhuma imagem externa foi input de geração.
+
+- [Omega-Shoutmon](https://digimon.net/reference_en/detail.php?directory_name=omegashoutmon): arte oficial acessível e observada; perfil textual falhou por timeout em duas tentativas. Não afirmar lore não lida. Observação: cabeça compacta, longas diagonais superiores e pernas afiladas organizam a silhueta. Aplicação: proporções esguias e pontas selecionadas no elmo, sem copiar antenas longas, paleta dourada ou armas/efeitos.
+- [Beelzebumon](https://digimon.net/reference_en/detail.php?directory_name=beelzebumon): perfil oficial consultado anteriormente no estudo do Gambalhote; arte revisitada. Observação: base escura flexível, placas concentradas nas extremidades e juntas livres. Aplicação: articulação e contraste de volumes com acabamento fosco, sem armas de fogo, correias em excesso, terceiro olho ou figurino.
+- [Anubismon](https://digimon.net/reference_en/detail.php?directory_name=anubimon): perfil descreve guardião/julgador da Dark Area. Essa função não é transferida. Observação visual: cabeça pequena animal, corpo alongado, mãos maiores e grande espaço entre pernas favorecem figura hierática. Aplicação: cabeça pequena e presença alongada, sem focinho de chacal, asas, ornamentos egípcios ou símbolos.
+
+Síntese autoral: mico brasileiro com tufos de papel amplos, cauda anelada e mãos de treino. Adulto usa elmo fechado de planos angulares; tufos tornam-se três placas laterais, crista de cobre em degraus interrompe a testa e visor turquesa é foco. Sem pele robótica ou antena de franquia. Duas katanas são sustentadas por mãos visíveis; peito e painéis laterais integram varetas e nós à anatomia de pipa. Verde-floresta, cobre e marfim mantêm parentesco sem reproduzir paleta completa externa.
+
+Maturidade proposta: equilibrar → coordenar → alternar → dominar. Bebê simples sem corpo; criança de rosto animal pratica com varetas; jovem alonga membros e protege parcialmente a cabeça; adulto fecha visor e assume postura calma. Nome, elemento e regras estão em aberto.

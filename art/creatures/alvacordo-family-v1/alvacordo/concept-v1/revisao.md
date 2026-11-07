@@ -1,0 +1,1 @@
+Histórico substituído por v2: flâmulas pendentes do punho confundiam a rabiola única. Prompt original preservado.

@@ -1,0 +1,85 @@
+{
+  "family_id": "viuva-anjo",
+  "scope": "Quatro concepts e pesquisa; sem integração.",
+  "nodes": [
+    {
+      "id": "viuva-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Aprende a prender seus pequenos apoios e a manter a tensão do fio.",
+      "story": "Aprende a prender seus pequenos apoios e a manter a tensão do fio.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/viuva-anjo-family-v1/viuva-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/viuva-anjo-family-v1/viuva-baby/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovadissimo, agora quero que você crie uma line pra um pangolim trovejante\", em 2026-11-04. Aprovação visual dos quatro estágios da viúva-anjo; nomes e mecânicas permanecem propostos."
+    },
+    {
+      "id": "viuva-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Coordena oito pernas e tece a primeira linha de proteção diante do corpo.",
+      "story": "Coordena oito pernas e tece a primeira linha de proteção diante do corpo.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/viuva-anjo-family-v1/viuva-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/viuva-anjo-family-v1/viuva-child/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovadissimo, agora quero que você crie uma line pra um pangolim trovejante\", em 2026-11-04. Aprovação visual dos quatro estágios da viúva-anjo; nomes e mecânicas permanecem propostos."
+    },
+    {
+      "id": "viuva-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Quatro membros sustentam o corpo e quatro passam a abrir membranas de teia-pipa.",
+      "story": "Quatro membros sustentam o corpo e quatro passam a abrir membranas de teia-pipa.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/viuva-anjo-family-v1/viuva-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/viuva-anjo-family-v1/viuva-young/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovadissimo, agora quero que você crie uma line pra um pangolim trovejante\", em 2026-11-04. Aprovação visual dos quatro estágios da viúva-anjo; nomes e mecânicas permanecem propostos."
+    },
+    {
+      "id": "seraf-seda",
+      "name": "Adulta — Seraf Seda (nome proposto)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "A tecelã torna-se cavaleira-anjo: dois braços, duas pernas e quatro asas protegem o espaço ao redor.",
+      "story": "A tecelã torna-se cavaleira-anjo: dois braços, duas pernas e quatro asas protegem o espaço ao redor.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/viuva-anjo-family-v1/seraf-seda/concept-v1/concept.png",
+      "brief": "../../../art/creatures/viuva-anjo-family-v1/seraf-seda/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovadissimo, agora quero que você crie uma line pra um pangolim trovejante\", em 2026-11-04. Aprovação visual dos quatro estágios da viúva-anjo; nomes e mecânicas permanecem propostos."
+    }
+  ],
+  "edges": [
+    {
+      "from": "viuva-baby",
+      "to": "viuva-child",
+      "kind": "reweaving",
+      "reason": "Coordena oito pernas e tece a primeira linha de proteção diante do corpo.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "viuva-child",
+      "to": "viuva-young",
+      "kind": "reweaving",
+      "reason": "Quatro membros sustentam o corpo e quatro passam a abrir membranas de teia-pipa.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "viuva-young",
+      "to": "seraf-seda",
+      "kind": "reweaving",
+      "reason": "A tecelã torna-se cavaleira-anjo: dois braços, duas pernas e quatro asas protegem o espaço ao redor.",
+      "decision_status": "proposed"
+    }
+  ]
+}

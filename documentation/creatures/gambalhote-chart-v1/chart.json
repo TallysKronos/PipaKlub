@@ -1,0 +1,86 @@
+{
+  "family_id": "gambalhote",
+  "scope": "Linha de concepts; base aceita, destinos propostos. Sem integração.",
+  "nodes": [
+    {
+      "id": "gambalhote-baby",
+      "name": "Bebê (nome pendente)",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Uma pequena pipa-rosto aprende a mover a própria rabiola.",
+      "story": "Uma pequena pipa-rosto aprende a mover a própria rabiola.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gambalhote/gambalhote-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gambalhote/gambalhote-baby/concept-v1/brief.md",
+      "approval_note": "Autor, 2026-11-04: \"Gostei muito de todos por min estariam aprovados mas achei que o ultimo teve um acabamento de luz e sombras na armadura que fugiu do estilo?\" Bebê e jovem aprovados; adulto tem design aceito com ressalva de acabamento. Nova versão de acabamento aguarda conferência."
+    },
+    {
+      "id": "gambalhote",
+      "name": "Gambalhote (nome proposto)",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Gambá-pipa com focinho de vareta e cauda que controla cruzeta.",
+      "story": "Aprende a manipular os próprios braços e a blefar com o alcance do focinho.",
+      "decision_status": "approved",
+      "approval_note": "Autor: \"ótimo crie uma baby, uma jovem, e uma adulto\", em 2026-11-04, aceita o concept anterior como base da linha. Aprovação visual da base; nomes e mecânicas seguem propostas.",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gambalhote/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gambalhote/concept-v1/brief.md"
+    },
+    {
+      "id": "gambalhote-young",
+      "name": "Jovem (nome pendente)",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Controla braços e pernas pelos fios; a membrana dorsal antecipa a pipa que ficará suspensa no adulto.",
+      "story": "Controla braços e pernas pelos fios; a membrana dorsal antecipa a pipa que ficará suspensa no adulto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gambalhote/gambalhote-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gambalhote/gambalhote-young/concept-v1/brief.md",
+      "approval_note": "Autor, 2026-11-04: \"Gostei muito de todos por min estariam aprovados mas achei que o ultimo teve um acabamento de luz e sombras na armadura que fugiu do estilo?\" Bebê e jovem aprovados; adulto tem design aceito com ressalva de acabamento. Nova versão de acabamento aguarda conferência."
+    },
+    {
+      "id": "gambalhote-adult",
+      "name": "Adulto (nome pendente)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "A pipa assume o comando de um cavaleiro articulado, mantendo uma única identidade e rabiola.",
+      "story": "A pipa assume o comando de um cavaleiro articulado, mantendo uma única identidade e rabiola.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gambalhote/gambalhote-adult/concept-v2/concept.png",
+      "brief": "../../../art/creatures/gambalhote/gambalhote-adult/concept-v2/brief.md",
+      "design_approval": "Autor, 2026-11-04: \"Gostei muito de todos por min estariam aprovados mas achei que o ultimo teve um acabamento de luz e sombras na armadura que fugiu do estilo?\" Bebê e jovem aprovados; adulto tem design aceito com ressalva de acabamento. Nova versão de acabamento aguarda conferência.",
+      "approval_note": "Autor: \"Aprovadissimo\", em 2026-11-04, após conferir o adulto com acabamento 2D manga v2. Aprovação visual do design e acabamento; sem aprovação de nomes, mecânicas ou integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "gambalhote-baby",
+      "to": "gambalhote",
+      "kind": "reweaving",
+      "reason": "Aprende a manipular os próprios braços e a blefar com o alcance do focinho.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "gambalhote",
+      "to": "gambalhote-young",
+      "kind": "reweaving",
+      "reason": "Controla braços e pernas pelos fios; a membrana dorsal antecipa a pipa que ficará suspensa no adulto.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "gambalhote-young",
+      "to": "gambalhote-adult",
+      "kind": "reweaving",
+      "reason": "A pipa assume o comando de um cavaleiro articulado, mantendo uma única identidade e rabiola.",
+      "decision_status": "proposed"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "family_id": "cervarco-family-v1",
+  "scope": "Quatro concepts, nomes e funções propostos; sem integração.",
+  "nodes": [
+    {
+      "id": "brotim",
+      "name": "Brotim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Corpo único em semente/barquinho, duas orelhas, dois botões sem galhada ramificada, sem membros.",
+      "story": "Orelhas estabilizam seu corpo enquanto aprende a seguir a linha.",
+      "action": "Sentir a corrente",
+      "tradeoff": "Sem apoios para se fixar ao chão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervarco-family-v1/brotim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cervarco-family-v1/brotim/concept-v1/brief.md"
+    },
+    {
+      "id": "galhim",
+      "name": "Galhim",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Quadrúpede arredondado, quatro cascos fendidos, galhadas pequenas em Y com membranas rosadas e peito de pipa.",
+      "story": "Primeiros apoios dão coragem para explorar sem perder o grupo.",
+      "action": "Encontrar um caminho",
+      "tradeoff": "As galhadas pequenas sustentam pouca tensão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervarco-family-v1/galhim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cervarco-family-v1/galhim/concept-v1/brief.md"
+    },
+    {
+      "id": "cervela",
+      "name": "Cervela",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Cervo quadrúpede esguio, quatro cascos, pescoço longo, galhadas-armação de três pontas por lado.",
+      "story": "De seguir trilhas passa a indicar caminhos com a tensão das linhas.",
+      "action": "Orientar a passagem",
+      "tradeoff": "A largura da armação dificulta passagens estreitas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervarco-family-v1/cervela/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cervarco-family-v1/cervela/concept-v1/brief.md"
+    },
+    {
+      "id": "cervarco",
+      "name": "Cervarco",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Cervo-centauro: quatro pernas com cascos e dois braços ligados ao torso ereto, galhadas-armação e placas de proteção.",
+      "story": "Usa mãos e galhadas para coordenar linhas e ajudar outros a atravessar.",
+      "action": "Tecer uma passagem",
+      "tradeoff": "Tecelagem exige quatro apoios e interrompe a marcha.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cervarco-family-v1/cervarco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/cervarco-family-v1/cervarco/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "brotim",
+      "to": "galhim",
+      "kind": "reweaving",
+      "reason": "Corpo flutuante ganha quatro apoios para exploração.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "galhim",
+      "to": "cervela",
+      "kind": "reweaving",
+      "reason": "Galhadas pequenas viram armação de condução e corpo ganha alcance.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cervela",
+      "to": "cervarco",
+      "kind": "reweaving",
+      "reason": "A condução amadurece em tecelagem: braços coordenam linhas e quatro pernas ancoram o peso.",
+      "decision_status": "proposed"
+    }
+  ]
+}

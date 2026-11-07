@@ -1,0 +1,25 @@
+{
+  "id": "sussurim",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-dbf062a4-fcdf-4f92-a7c9-be1e26596f05.png",
+  "sha256": "fe42a1021811ea79d39e79adae7764abc0b4f6376a1dc7e34ef116a362865a90",
+  "width": 1295,
+  "height": 1215,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/creatures/flautrevo-family-v1/sussurim/concept-v1/concept.png",
+      "role": "alvo de simplificação"
+    },
+    {
+      "path": "art/soulgen/keys/flautrevo/color-rig-v2/preview.png",
+      "role": "identidade própria"
+    }
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

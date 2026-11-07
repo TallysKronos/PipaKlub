@@ -1,0 +1,3 @@
+# Conferência
+
+Cervo quadrúpede esguio, quatro cascos, pescoço longo, galhadas-armação de três pontas por lado. Conferida continuidade do corpo, raízes de orelhas/galhadas, apoios e rabiola. Uma única imagem em três quartos não valida anatomia em todos os ângulos. Há transições suaves residuais e contorno predominantemente contínuo: concept 2D mangá, não pixel art técnico. Fundo branco opaco. Não recortado, animado ou integrado. Em avaliação.

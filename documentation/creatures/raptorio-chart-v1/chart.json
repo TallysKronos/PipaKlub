@@ -1,0 +1,79 @@
+{
+  "family_id": "raptorio",
+  "scope": "Linha com três pré-formas propostas e adulto existente; sem regras de jogo ou integração.",
+  "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+  "nodes": [
+    {
+      "id": "raptorio-baby",
+      "name": "Raptório — Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Prender um fio",
+      "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/raptorio/baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/raptorio/baby/concept-v1/brief.md"
+    },
+    {
+      "id": "raptorio-child",
+      "name": "Raptório — Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Distribuir tensão",
+      "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/raptorio/child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/raptorio/child/concept-v1/brief.md"
+    },
+    {
+      "id": "raptorio-young",
+      "name": "Raptório — Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Interromper um golpe",
+      "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/raptorio/young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/raptorio/young/concept-v1/brief.md"
+    },
+    {
+      "id": "raptorio",
+      "name": "Raptório",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Ave de carvalho e visco · Interromper",
+      "story": "Ampara linhas partidas entre seus nós de visco, abrindo asas de carvalho para distribuir a tensão. Precisa soltar cada linha antes que o abrigo vire prisão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/raptorio/concept-v2/concept.png",
+      "brief": "../../../art/creatures/raptorio/concept-v2/brief.md",
+      "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "raptorio-baby",
+      "to": "raptorio-child",
+      "kind": "reweaving",
+      "reason": "Passa de prender um fio para distribuir tensão. Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "raptorio-child",
+      "to": "raptorio-young",
+      "kind": "reweaving",
+      "reason": "Passa de distribuir tensão para interromper um golpe. Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "raptorio-young",
+      "to": "raptorio",
+      "kind": "reweaving",
+      "reason": "Passa de interromper um golpe para interromper. Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+      "decision_status": "proposed"
+    }
+  ]
+}

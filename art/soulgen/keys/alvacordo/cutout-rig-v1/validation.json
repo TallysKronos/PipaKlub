@@ -1,0 +1,54 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "OK · Encaixe Cabeça e gola de papel: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Braço erguido · ombreira e fitas: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Braço baixo · ombreira e fitas: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Antebraço erguido e mão: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Antebraço baixo e mão: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Coxa próxima e placa de quadril: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Coxa distante e placa de quadril: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Canela próxima · joelheira e pé: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Canela distante · joelheira e pé: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Arco erguido · linha e suportes: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Arco baixo · linha e suportes: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Rabiola · cauda, fio, nó e abas: desvio máximo 0.00 unidades."
+    ]
+  },
+  "expressions": {
+    "fierce": {
+      "complete_head": true,
+      "whole_mane": true,
+      "canvas_identical": true,
+      "opaque_ratio": 1.0199981266391906
+    },
+    "hurt": {
+      "complete_head": true,
+      "whole_mane": true,
+      "canvas_identical": true,
+      "opaque_ratio": 1.0182652678905957
+    },
+    "happy": {
+      "complete_head": true,
+      "whole_mane": true,
+      "canvas_identical": true,
+      "opaque_ratio": 1.0096009741476208
+    }
+  },
+  "atlas": {
+    "frames": 129,
+    "size": [
+      2048,
+      4352
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}

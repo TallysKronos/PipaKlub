@@ -1,0 +1,25 @@
+{
+  "id": "ouricorda",
+  "name": "Ouriçorda",
+  "date": "2026-11-06",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation_status": "not_integrated",
+  "maturity_proposed": "adult / Pandorga IV",
+  "tool": "built-in image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-17871314-74d8-4548-a55e-9a7b457639a8.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "transparent_pixels": false,
+  "background": "white",
+  "sha256": "11ee43b7a32b77f04fee370022aff1a1fb8b9bf9f70784fcf0f152d72fa46a9f",
+  "prompt": "prompt.txt",
+  "references_attached": [],
+  "edit_reference": "concept-inicial.png",
+  "correction_prompt": "prompt-correcao.txt",
+  "review": "revisao.md",
+  "brief": "brief.md"
+}

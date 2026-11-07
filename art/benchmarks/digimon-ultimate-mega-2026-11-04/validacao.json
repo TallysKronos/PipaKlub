@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "profiles": 40,
+  "official_images": 40,
+  "stage_counts": {
+    "ultimate": 20,
+    "mega": 20
+  },
+  "visual_inspection": "40 artes: 33 vistas em seis folhas iniciais e sete individualmente; sete folhas finais normalizadas",
+  "missing_links": [],
+  "duplicate_ids": [],
+  "all_images_have_alt": true,
+  "limits": "Estrutura, fontes, hashes e arquivos; JS não testado num navegador e anatomia não medida por landmarks.",
+  "javascript": {
+    "syntax": true,
+    "stage_filter": true,
+    "combined_filter": true,
+    "comparison_fifo": true,
+    "clear": true,
+    "method": "Node vm e DOM mínimo; sem teste visual em navegador"
+  }
+}

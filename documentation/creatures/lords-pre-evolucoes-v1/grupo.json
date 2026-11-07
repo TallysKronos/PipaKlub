@@ -1,0 +1,512 @@
+{
+  "date": "2026-11-07",
+  "new_concepts": 24,
+  "adult_references": 8,
+  "decision_status": "proposed",
+  "families": [
+    {
+      "id": "gravurso",
+      "name": "Gravurso",
+      "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+      "nodes": [
+        {
+          "id": "gravurso-baby",
+          "name": "Gravurso — Bebê",
+          "kind": "stage",
+          "stage": 1,
+          "identity": "Apoiar-se",
+          "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/gravurso/baby/concept-v1/concept.png",
+          "brief": "../../../art/creatures/gravurso/baby/concept-v1/brief.md"
+        },
+        {
+          "id": "gravurso-child",
+          "name": "Gravurso — Criança",
+          "kind": "stage",
+          "stage": 2,
+          "identity": "Segurar",
+          "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/gravurso/child/concept-v1/concept.png",
+          "brief": "../../../art/creatures/gravurso/child/concept-v1/brief.md"
+        },
+        {
+          "id": "gravurso-young",
+          "name": "Gravurso — Jovem",
+          "kind": "stage",
+          "stage": 3,
+          "identity": "Sustentar uma carga",
+          "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/gravurso/young/concept-v1/concept.png",
+          "brief": "../../../art/creatures/gravurso/young/concept-v1/brief.md"
+        },
+        {
+          "id": "gravurso",
+          "name": "Gravurso",
+          "kind": "stage",
+          "stage": 4,
+          "identity": "Urso-pedra · Amparar",
+          "story": "Sustenta passagens que estão cedendo até que o último companheiro atravesse. Só vence quando consegue soltar o peso sem esmagar aquilo que protege.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/gravurso/concept-v1/concept.png",
+          "brief": "../../../art/creatures/gravurso/concept-v1/brief.md",
+          "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+        }
+      ],
+      "arts": [
+        "../../../art/creatures/gravurso/baby/concept-v1/concept.png",
+        "../../../art/creatures/gravurso/child/concept-v1/concept.png",
+        "../../../art/creatures/gravurso/young/concept-v1/concept.png",
+        "../../../art/creatures/gravurso/concept-v1/concept.png"
+      ],
+      "chart": "../gravurso-chart-v1/chart.json"
+    },
+    {
+      "id": "avelince",
+      "name": "Avelince",
+      "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+      "nodes": [
+        {
+          "id": "avelince-baby",
+          "name": "Avelince — Bebê",
+          "kind": "stage",
+          "stage": 1,
+          "identity": "Equilibrar-se",
+          "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/avelince/baby/concept-v1/concept.png",
+          "brief": "../../../art/creatures/avelince/baby/concept-v1/brief.md"
+        },
+        {
+          "id": "avelince-child",
+          "name": "Avelince — Criança",
+          "kind": "stage",
+          "stage": 2,
+          "identity": "Desviar o passo",
+          "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/avelince/child/concept-v1/concept.png",
+          "brief": "../../../art/creatures/avelince/child/concept-v1/brief.md"
+        },
+        {
+          "id": "avelince-young",
+          "name": "Avelince — Jovem",
+          "kind": "stage",
+          "stage": 3,
+          "identity": "Guiar o giro",
+          "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/avelince/young/concept-v1/concept.png",
+          "brief": "../../../art/creatures/avelince/young/concept-v1/brief.md"
+        },
+        {
+          "id": "avelince",
+          "name": "Avelince",
+          "kind": "stage",
+          "stage": 4,
+          "identity": "Lince de vela · Desviar",
+          "story": "Atravessa investidas com um desvio mínimo e devolve a força para o chão. Suas velas só funcionam quando o corpo aceita girar junto.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/avelince/concept-v1/concept.png",
+          "brief": "../../../art/creatures/avelince/concept-v1/brief.md",
+          "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+        }
+      ],
+      "arts": [
+        "../../../art/creatures/avelince/baby/concept-v1/concept.png",
+        "../../../art/creatures/avelince/child/concept-v1/concept.png",
+        "../../../art/creatures/avelince/young/concept-v1/concept.png",
+        "../../../art/creatures/avelince/concept-v1/concept.png"
+      ],
+      "chart": "../avelince-chart-v1/chart.json"
+    },
+    {
+      "id": "torvargo",
+      "name": "Torvargo",
+      "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+      "nodes": [
+        {
+          "id": "torvargo-baby",
+          "name": "Torvargo — Bebê",
+          "kind": "stage",
+          "stage": 1,
+          "identity": "Farejar",
+          "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/torvargo/baby/concept-v1/concept.png",
+          "brief": "../../../art/creatures/torvargo/baby/concept-v1/brief.md"
+        },
+        {
+          "id": "torvargo-child",
+          "name": "Torvargo — Criança",
+          "kind": "stage",
+          "stage": 2,
+          "identity": "Empurrar",
+          "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/torvargo/child/concept-v1/concept.png",
+          "brief": "../../../art/creatures/torvargo/child/concept-v1/brief.md"
+        },
+        {
+          "id": "torvargo-young",
+          "name": "Torvargo — Jovem",
+          "kind": "stage",
+          "stage": 3,
+          "identity": "Abrir caminho",
+          "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/torvargo/young/concept-v1/concept.png",
+          "brief": "../../../art/creatures/torvargo/young/concept-v1/brief.md"
+        },
+        {
+          "id": "torvargo",
+          "name": "Torvargo",
+          "kind": "stage",
+          "stage": 4,
+          "identity": "Javali-aríete · Romper",
+          "story": "Abre um caminho pela barreira, mas precisa reconhecer o que há atrás dela antes de avançar. A marca de um golpe certo é a passagem que permanece de pé.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/torvargo/concept-v1/concept.png",
+          "brief": "../../../art/creatures/torvargo/concept-v1/brief.md",
+          "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+        }
+      ],
+      "arts": [
+        "../../../art/creatures/torvargo/baby/concept-v1/concept.png",
+        "../../../art/creatures/torvargo/child/concept-v1/concept.png",
+        "../../../art/creatures/torvargo/young/concept-v1/concept.png",
+        "../../../art/creatures/torvargo/concept-v1/concept.png"
+      ],
+      "chart": "../torvargo-chart-v1/chart.json"
+    },
+    {
+      "id": "najarcal",
+      "name": "Najarcal",
+      "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+      "nodes": [
+        {
+          "id": "najarcal-baby",
+          "name": "Najarcal — Bebê",
+          "kind": "stage",
+          "stage": 1,
+          "identity": "Recolher-se",
+          "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/najarcal/baby/concept-v1/concept.png",
+          "brief": "../../../art/creatures/najarcal/baby/concept-v1/brief.md"
+        },
+        {
+          "id": "najarcal-child",
+          "name": "Najarcal — Criança",
+          "kind": "stage",
+          "stage": 2,
+          "identity": "Guardar um vão",
+          "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/najarcal/child/concept-v1/concept.png",
+          "brief": "../../../art/creatures/najarcal/child/concept-v1/brief.md"
+        },
+        {
+          "id": "najarcal-young",
+          "name": "Najarcal — Jovem",
+          "kind": "stage",
+          "stage": 3,
+          "identity": "Conter sem fechar",
+          "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/najarcal/young/concept-v1/concept.png",
+          "brief": "../../../art/creatures/najarcal/young/concept-v1/brief.md"
+        },
+        {
+          "id": "najarcal",
+          "name": "Najarcal",
+          "kind": "stage",
+          "stage": 4,
+          "identity": "Naja de campânula · Conter",
+          "story": "Prende a ameaça num círculo que sempre conserva uma saída. Se fechar a última abertura, aprisiona também quem veio salvar.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/najarcal/concept-v1/concept.png",
+          "brief": "../../../art/creatures/najarcal/concept-v1/brief.md",
+          "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+        }
+      ],
+      "arts": [
+        "../../../art/creatures/najarcal/baby/concept-v1/concept.png",
+        "../../../art/creatures/najarcal/child/concept-v1/concept.png",
+        "../../../art/creatures/najarcal/young/concept-v1/concept.png",
+        "../../../art/creatures/najarcal/concept-v1/concept.png"
+      ],
+      "chart": "../najarcal-chart-v1/chart.json"
+    },
+    {
+      "id": "raptorio",
+      "name": "Raptório",
+      "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+      "nodes": [
+        {
+          "id": "raptorio-baby",
+          "name": "Raptório — Bebê",
+          "kind": "stage",
+          "stage": 1,
+          "identity": "Prender um fio",
+          "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/raptorio/baby/concept-v1/concept.png",
+          "brief": "../../../art/creatures/raptorio/baby/concept-v1/brief.md"
+        },
+        {
+          "id": "raptorio-child",
+          "name": "Raptório — Criança",
+          "kind": "stage",
+          "stage": 2,
+          "identity": "Distribuir tensão",
+          "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/raptorio/child/concept-v1/concept.png",
+          "brief": "../../../art/creatures/raptorio/child/concept-v1/brief.md"
+        },
+        {
+          "id": "raptorio-young",
+          "name": "Raptório — Jovem",
+          "kind": "stage",
+          "stage": 3,
+          "identity": "Interromper um golpe",
+          "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/raptorio/young/concept-v1/concept.png",
+          "brief": "../../../art/creatures/raptorio/young/concept-v1/brief.md"
+        },
+        {
+          "id": "raptorio",
+          "name": "Raptório",
+          "kind": "stage",
+          "stage": 4,
+          "identity": "Ave de carvalho e visco · Interromper",
+          "story": "Ampara linhas partidas entre seus nós de visco, abrindo asas de carvalho para distribuir a tensão. Precisa soltar cada linha antes que o abrigo vire prisão.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/raptorio/concept-v2/concept.png",
+          "brief": "../../../art/creatures/raptorio/concept-v2/brief.md",
+          "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+        }
+      ],
+      "arts": [
+        "../../../art/creatures/raptorio/baby/concept-v1/concept.png",
+        "../../../art/creatures/raptorio/child/concept-v1/concept.png",
+        "../../../art/creatures/raptorio/young/concept-v1/concept.png",
+        "../../../art/creatures/raptorio/concept-v2/concept.png"
+      ],
+      "chart": "../raptorio-chart-v1/chart.json"
+    },
+    {
+      "id": "cervoraculo",
+      "name": "Cervoráculo",
+      "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+      "nodes": [
+        {
+          "id": "cervoraculo-baby",
+          "name": "Cervoráculo — Bebê",
+          "kind": "stage",
+          "stage": 1,
+          "identity": "Perceber um sinal",
+          "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/cervoraculo/baby/concept-v1/concept.png",
+          "brief": "../../../art/creatures/cervoraculo/baby/concept-v1/brief.md"
+        },
+        {
+          "id": "cervoraculo-child",
+          "name": "Cervoráculo — Criança",
+          "kind": "stage",
+          "stage": 2,
+          "identity": "Comparar duas rotas",
+          "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/cervoraculo/child/concept-v1/concept.png",
+          "brief": "../../../art/creatures/cervoraculo/child/concept-v1/brief.md"
+        },
+        {
+          "id": "cervoraculo-young",
+          "name": "Cervoráculo — Jovem",
+          "kind": "stage",
+          "stage": 3,
+          "identity": "Escolher uma passagem",
+          "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/cervoraculo/young/concept-v1/concept.png",
+          "brief": "../../../art/creatures/cervoraculo/young/concept-v1/brief.md"
+        },
+        {
+          "id": "cervoraculo",
+          "name": "Cervoráculo",
+          "kind": "stage",
+          "stage": 4,
+          "identity": "Cervo de arco · Orientar",
+          "story": "Seis olhos nas velas dos chifres observam rotas possíveis. Ele sustenta apenas uma travessia por vez: enxergar alternativas não permite salvar todos os caminhos.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/cervoraculo/concept-v2/concept.png",
+          "brief": "../../../art/creatures/cervoraculo/concept-v2/brief.md",
+          "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+        }
+      ],
+      "arts": [
+        "../../../art/creatures/cervoraculo/baby/concept-v1/concept.png",
+        "../../../art/creatures/cervoraculo/child/concept-v1/concept.png",
+        "../../../art/creatures/cervoraculo/young/concept-v1/concept.png",
+        "../../../art/creatures/cervoraculo/concept-v2/concept.png"
+      ],
+      "chart": "../cervoraculo-chart-v1/chart.json"
+    },
+    {
+      "id": "cascoronte",
+      "name": "Cascoronte",
+      "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+      "nodes": [
+        {
+          "id": "cascoronte-baby",
+          "name": "Cascoronte — Bebê",
+          "kind": "stage",
+          "stage": 1,
+          "identity": "Fechar o abrigo",
+          "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/cascoronte/baby/concept-v1/concept.png",
+          "brief": "../../../art/creatures/cascoronte/baby/concept-v1/brief.md"
+        },
+        {
+          "id": "cascoronte-child",
+          "name": "Cascoronte — Criança",
+          "kind": "stage",
+          "stage": 2,
+          "identity": "Guardar algo frágil",
+          "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/cascoronte/child/concept-v1/concept.png",
+          "brief": "../../../art/creatures/cascoronte/child/concept-v1/brief.md"
+        },
+        {
+          "id": "cascoronte-young",
+          "name": "Cascoronte — Jovem",
+          "kind": "stage",
+          "stage": 3,
+          "identity": "Levar uma carga",
+          "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/cascoronte/young/concept-v1/concept.png",
+          "brief": "../../../art/creatures/cascoronte/young/concept-v1/brief.md"
+        },
+        {
+          "id": "cascoronte",
+          "name": "Cascoronte",
+          "kind": "stage",
+          "stage": 4,
+          "identity": "Quelônio de bastião · Transportar",
+          "story": "Leva passageiros dentro da própria carapaça e conserva o passo estável enquanto atravessam o perigo. Precisa recolher a escada e fechar o abrigo antes de retomar a marcha.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/cascoronte/concept-v2/concept.png",
+          "brief": "../../../art/creatures/cascoronte/concept-v2/brief.md",
+          "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+        }
+      ],
+      "arts": [
+        "../../../art/creatures/cascoronte/baby/concept-v1/concept.png",
+        "../../../art/creatures/cascoronte/child/concept-v1/concept.png",
+        "../../../art/creatures/cascoronte/young/concept-v1/concept.png",
+        "../../../art/creatures/cascoronte/concept-v2/concept.png"
+      ],
+      "chart": "../cascoronte-chart-v1/chart.json"
+    },
+    {
+      "id": "melicodia",
+      "name": "Melicódia",
+      "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+      "nodes": [
+        {
+          "id": "melicodia-baby",
+          "name": "Melicódia — Bebê",
+          "kind": "stage",
+          "stage": 1,
+          "identity": "Receber um sinal",
+          "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/melicodia/baby/concept-v1/concept.png",
+          "brief": "../../../art/creatures/melicodia/baby/concept-v1/brief.md"
+        },
+        {
+          "id": "melicodia-child",
+          "name": "Melicódia — Criança",
+          "kind": "stage",
+          "stage": 2,
+          "identity": "Preservar uma gota",
+          "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/melicodia/child/concept-v1/concept.png",
+          "brief": "../../../art/creatures/melicodia/child/concept-v1/brief.md"
+        },
+        {
+          "id": "melicodia-young",
+          "name": "Melicódia — Jovem",
+          "kind": "stage",
+          "stage": 3,
+          "identity": "Organizar uma lembrança",
+          "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/melicodia/young/concept-v1/concept.png",
+          "brief": "../../../art/creatures/melicodia/young/concept-v1/brief.md"
+        },
+        {
+          "id": "melicodia",
+          "name": "Melicódia",
+          "kind": "stage",
+          "stage": 4,
+          "identity": "Abelha-colmeia processadora · Codificar",
+          "story": "Transforma sinais recebidos em cubos de mel que podem ser transportados e compartilhados. Para preservar uma lembrança, precisa escolher quais ruídos deixará de guardar.",
+          "decision_status": "proposed",
+          "production_status": "concept",
+          "art": "../../../art/creatures/melicodia/concept-v1/concept.png",
+          "brief": "../../../art/creatures/melicodia/concept-v1/brief.md",
+          "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+        }
+      ],
+      "arts": [
+        "../../../art/creatures/melicodia/baby/concept-v1/concept.png",
+        "../../../art/creatures/melicodia/child/concept-v1/concept.png",
+        "../../../art/creatures/melicodia/young/concept-v1/concept.png",
+        "../../../art/creatures/melicodia/concept-v1/concept.png"
+      ],
+      "chart": "../melicodia-chart-v1/chart.json"
+    }
+  ]
+}

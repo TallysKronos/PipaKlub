@@ -1,0 +1,3 @@
+# Conferência
+
+Pequeno bípede de barriga inflada âmbar, armação de costelas, braços curtos de dois dedos e janela fóssil na face. Corpo e rabiola inspecionados, contagem de membros conferida. Primeira tentativa bloqueada na saída pela ferramenta (categoria other); nova descrição simples gerou v1 com estruturas que pareciam fril de dragão. Edição v2 removeu essas estruturas e ruído nas membranas, preservando corpo e cauda. Leves transições suaves residuais; concept mangá, não pixel art em grade. Fundo branco opaco. Sem recorte, rig, animação ou integração. Em avaliação.

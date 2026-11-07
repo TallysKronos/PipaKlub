@@ -1,0 +1,81 @@
+{
+  "family_id": "caramund",
+  "scope": "Linha visual proposta, sem integração ou regras de evolução.",
+  "nodes": [
+    {
+      "id": "caramund-baby",
+      "name": "Bebê (nome pendente)",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Uma pipa-rosto curiosa descobre o vento; orelha caída e folha já anunciam a família.",
+      "story": "Uma pipa-rosto curiosa descobre o vento; orelha caída e folha já anunciam a família.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/caramund/caramund-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/caramund/caramund-baby/concept-v1/brief.md"
+    },
+    {
+      "id": "caramund-child",
+      "name": "Criança (nome pendente)",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Ganha corpo quadrúpede, explora o bairro e aprende a se colocar na frente de quem precisa de proteção.",
+      "story": "Ganha corpo quadrúpede, explora o bairro e aprende a se colocar na frente de quem precisa de proteção.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/caramund/caramund-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/caramund/caramund-child/concept-v1/brief.md"
+    },
+    {
+      "id": "caramund-young",
+      "name": "Jovem (nome pendente)",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Passa a interceptar ameaças com ombreira de pipa e proteção de escamas, preparando a postura do futuro cavaleiro.",
+      "story": "Passa a interceptar ameaças com ombreira de pipa e proteção de escamas, preparando a postura do futuro cavaleiro.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/caramund/caramund-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/caramund/caramund-young/concept-v1/brief.md"
+    },
+    {
+      "id": "caramund",
+      "name": "Caramund (nome proposto)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Cavaleiro caramelo com elmo de orelha caída, ombreira de pipa e folha na proteção.",
+      "story": "Protege o bairro com postura firme, espada de duas mãos e armadura de grandes escamas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/caramund/concept-v1/concept.png",
+      "brief": "../../../art/creatures/caramund/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "caramund-baby",
+      "to": "caramund-child",
+      "kind": "reweaving",
+      "reason": "Ganha corpo quadrúpede, explora o bairro e aprende a se colocar na frente de quem precisa de proteção.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "caramund-child",
+      "to": "caramund-young",
+      "kind": "reweaving",
+      "reason": "Passa a interceptar ameaças com ombreira de pipa e proteção de escamas, preparando a postura do futuro cavaleiro.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "caramund-young",
+      "to": "caramund",
+      "kind": "reweaving",
+      "reason": "Protege o bairro com postura firme, espada de duas mãos e armadura de grandes escamas.",
+      "decision_status": "proposed"
+    }
+  ]
+}

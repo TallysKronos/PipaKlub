@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-07",
+  "concept_count": 16,
+  "families": [
+    {
+      "id": "selacrabio",
+      "name": "Selacrábio",
+      "chart": "../selacrabio-chart-v1/chart.json",
+      "sheet": "selacrabio-familia.png"
+    },
+    {
+      "id": "ibiscrito",
+      "name": "Ibiscrito",
+      "chart": "../ibiscrito-chart-v1/chart.json",
+      "sheet": "ibiscrito-familia.png"
+    },
+    {
+      "id": "crocafago",
+      "name": "Crocáfago",
+      "chart": "../crocafago-chart-v1/chart.json",
+      "sheet": "crocafago-familia.png"
+    },
+    {
+      "id": "velaravan",
+      "name": "Velaravan",
+      "chart": "../velaravan-chart-v1/chart.json",
+      "sheet": "velaravan-familia.png"
+    }
+  ]
+}

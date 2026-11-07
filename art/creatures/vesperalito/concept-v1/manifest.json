@@ -1,0 +1,30 @@
+{
+  "id": "vesperalito",
+  "date": "2026-11-06",
+  "tool": "built-in image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-115f05c2-55dc-4fe8-83ba-e21f6763da31.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "background": "white",
+  "sha256": "b1d280eb452a0d233018cbd2aaae077ead5ac89602efcf42867628a6a9eb1b8d",
+  "references": [
+    {
+      "path": "../../../artifacts/crystais-pipas/concept-v1/concept.png",
+      "role": "author-owned crystal identity"
+    },
+    {
+      "path": "../../trancoura/concept-v1/concept.png",
+      "role": "author-owned rendering and construction density"
+    }
+  ],
+  "external_images_attached": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation_status": "not_integrated"
+}

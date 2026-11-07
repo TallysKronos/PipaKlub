@@ -1,0 +1,25 @@
+{
+  "id": "capivara-boia",
+  "name": "Capiboia",
+  "stage": 2,
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-02f123c0-5296-4cd7-b7ba-7b8b2bb24da9.png",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "sha256": "9b4504c0324bf9b423239a7f633ee94c954b5a91501b1adf81132a4b121e670e",
+  "references": [
+    "art/creatures/capivara-boia/model-d-v1/prancha-d.png",
+    "art/creatures/yaguaru-family-v1/yaguarda/concept-v1/concept.png"
+  ],
+  "decision_status": "superseded",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "prompt": "prompt.txt",
+  "review": "revisao.md",
+  "brief": "brief.md",
+  "decision_note": "Revisão posterior solicitada pelo autor; não registrar como aprovação."
+}

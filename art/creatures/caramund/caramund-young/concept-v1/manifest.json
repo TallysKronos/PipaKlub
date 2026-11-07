@@ -1,0 +1,21 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-349a2858-84de-480f-a254-1bc1b531453e.png",
+  "sha256": "3a804de6b5886113043e537bfc22e1c175c633ff56a80eeb77ea57cf80a683a9",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    {
+      "path": "../../concept-v1/concept.png",
+      "role": "Identidade e acabamento do adulto Caramund"
+    }
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "integration_status": "not_integrated"
+}

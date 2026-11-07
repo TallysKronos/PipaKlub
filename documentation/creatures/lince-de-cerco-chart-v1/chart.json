@@ -1,0 +1,86 @@
+{
+  "family_id": "lince-de-cerco",
+  "scope": "Três pré-evoluções propostas e adulto visual aprovado preservado. Sem integração. Quatro rigs Soulgen disponíveis para revisão.",
+  "nodes": [
+    {
+      "id": "lince-de-cerco-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Índigo, marfim, coral, linha lima, rosto felino e armação dos ombros.",
+      "story": "Aprende a orientar pequenas abas de papel para manter o equilíbrio.",
+      "decision_status": "proposed",
+      "production_status": "rig-review",
+      "art": "../../../art/creatures/lince-de-cerco/lince-de-cerco-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lince-de-cerco/lince-de-cerco-baby/concept-v1/brief.md",
+      "soulgen": "../../../art/soulgen/keys/lince-de-cerco-baby/cutout-rig-v1/lince-de-cerco-baby.soulgen.json"
+    },
+    {
+      "id": "lince-de-cerco-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Índigo, marfim, coral, linha lima, rosto felino e armação dos ombros.",
+      "story": "Firma as patas enquanto descobre como puxar as linhas das pequenas bandeirolas.",
+      "decision_status": "proposed",
+      "production_status": "rig-review",
+      "art": "../../../art/creatures/lince-de-cerco/lince-de-cerco-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lince-de-cerco/lince-de-cerco-child/concept-v1/brief.md",
+      "soulgen": "../../../art/soulgen/keys/lince-de-cerco-child/cutout-rig-v1/lince-de-cerco-child.soulgen.json"
+    },
+    {
+      "id": "lince-de-cerco-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Índigo, marfim, coral, linha lima, rosto felino e armação dos ombros.",
+      "story": "Estabiliza um conjunto dobrável de arcos curtos com a força das patas dianteiras.",
+      "decision_status": "proposed",
+      "production_status": "rig-review",
+      "art": "../../../art/creatures/lince-de-cerco/lince-de-cerco-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lince-de-cerco/lince-de-cerco-young/concept-v1/brief.md",
+      "soulgen": "../../../art/soulgen/keys/lince-de-cerco-young/cutout-rig-v1/lince-de-cerco-young.soulgen.json"
+    },
+    {
+      "id": "lince-de-cerco",
+      "name": "Adulto — Lince de Cerco",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Quadrúpede de peito forte e grandes arcos dorsais separados.",
+      "story": "Ancora as patas e distribui a tensão entre dois grandes arcos de pipa.",
+      "decision_status": "approved",
+      "approval_note": "2026-11-04 — autor: “Aprovado, quais outras ideias você tem para quadrupedes?”. Escopo: concept visual do lince; funções e nomes permanecem propostos.",
+      "production_status": "rig-review",
+      "art": "../../../art/creatures/lince-de-cerco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lince-de-cerco/concept-v1/brief.md",
+      "soulgen": "../../../art/soulgen/keys/lince-de-cerco/cutout-rig-v1/lince-de-cerco.soulgen.json"
+    }
+  ],
+  "edges": [
+    {
+      "from": "lince-de-cerco-baby",
+      "to": "lince-de-cerco-child",
+      "kind": "reweaving",
+      "reason": "Firma as patas enquanto descobre como puxar as linhas das pequenas bandeirolas.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "lince-de-cerco-child",
+      "to": "lince-de-cerco-young",
+      "kind": "reweaving",
+      "reason": "Estabiliza um conjunto dobrável de arcos curtos com a força das patas dianteiras.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "lince-de-cerco-young",
+      "to": "lince-de-cerco",
+      "kind": "reweaving",
+      "reason": "Ancora as patas e distribui a tensão entre dois grandes arcos de pipa.",
+      "decision_status": "proposed"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Solguarda — conferência
+
+Adulto proposto. Leão com focinho adulto e orelhas redondas, corpo alto e estreito, dois braços sanfonados e duas pernas magras. Juba em grandes dobras envolve cabeça e pescoço como capuz corporal. Dois meios-discos integram os punhos, com faces solares complementares e eixos junto aos braços; duas rabiolas completas. Algumas dobras dos braços mantêm geometria do inicial, enquanto torso e face permanecem em planos grandes. A vista complementar de guarda deve demonstrar fechamento; esta imagem isolada não é animação nem prova de encaixe mecânico. Concept raster, sem integração.

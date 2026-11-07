@@ -1,0 +1,1089 @@
+[
+  {
+    "id": "carcara",
+    "ancoras": "Rosto creme com bico amarelo; losango laranja e castanho; asas de penas e rabiola dupla com nós.",
+    "leitura": "A pequena ave ensina a esperar a corrente certa. O remendo pertence à história desta espécie, não precisa se espalhar pelo elenco.",
+    "pre": "Filhote de peito arredondado, asas curtas ainda recolhidas e uma única pena direcional longa. O desenho de losango aparece no peito; ele salta e ensaia planar entre telhados, sem virar um losango menor idêntico.",
+    "evo": "Ave de voo controlado, corpo horizontal e asas largas com pontas separadas como dedos. Transferir o losango para peito e desenho de voo; a rabiola atua como leme. Expressão de mentor atento, não de predador raivoso.",
+    "cor": "Laranja queimado e creme como base; castanho nas pontas; testar pequeno acento azul-petróleo nos nós, sem substituir a identidade quente.",
+    "limite": "Não reutilizar o peito de águia e as nuvens do Azulfazo. Diferenciar pelo pouso preciso e pelo voo econômico, não por garras gigantes.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Carcará",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "carcara",
+        "name": "Carcará",
+        "source": "assets/creatures/starters-soulgen-v2/carcara.png",
+        "readme": "art\\soulgen\\keys\\carcara\\README.md"
+      }
+    ],
+    "brief": "briefs/carcara.md"
+  },
+  {
+    "id": "mata-verde",
+    "ancoras": "Corpo foliar verde e rosto claro; três pontas de broto na cabeça; asas-folhas e cauda de cipó segmentada.",
+    "leitura": "Curiosa, sinuosa e evasiva. Seu crescimento deve continuar parecendo uma criatura que dança entre galhos.",
+    "pre": "Broto animal com duas folhas-orelhas de tamanhos diferentes e patas que se agarram aos ramos. Corpo compacto em gota, cipó curto enrolado; espiar, recolher as folhas e dar pequenos pulos.",
+    "evo": "Criatura arborícola de tronco flexível, braços-folhas recortados em grandes massas e cauda preênsil longa. Em repouso dobra as folhas junto ao corpo; ao desviar abre uma silhueta de leque. Crescimento de mobilidade, sem transformar em árvore humana.",
+    "cor": "Verde-folha e creme; verde profundo nas faces inferiores; acento de broto coral ou amarelo-lima em um ponto, sem textura de floresta por todo o corpo.",
+    "limite": "Não cobrir tudo com folhas miúdas, flores e costuras. Manter rosto visível e intervalos entre membros e folhagem.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Mata verde",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "mata-verde",
+        "name": "Mata verde",
+        "source": "art/soulgen/keys/mata-verde/color-rig-v2/concept.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/mata-verde.md"
+  },
+  {
+    "id": "azulao",
+    "ancoras": "Azul intenso e creme; bico dourado; dois tufos de crista, nuvens em espiral nas asas e ponta de rabiola.",
+    "leitura": "Proteção e resistência são a raiz da família. A mudança para força não apaga a tendência de abrigar os outros.",
+    "pre": "Proposta ainda não aprovada: ave pequena de asas arredondadas que cobre a própria cabeça como capa de chuva. Uma espiral grande no peito, crista curta dupla e rabiola curta terminada em nuvem; evitar bebê de águia genérico.",
+    "evo": "Decisão existente: A/Azulfazo de ataque, águia de peito volumoso, asas abertas e garras fortes, usada por Gollia. B de velocidade tem pernas e pescoço longos, bico fino e asas estreitas pendentes. C de inteligência é baixa, compacta e observadora, com leque de espirais atrás da cabeça. Preservar os três concepts aprovados em vez de redesenhá-los do zero.",
+    "cor": "Azul e creme em todas as rotas; dourado no bico e nós. B admite turquesa como já aparece no concept. Não usar roxo sombrio como cor de uma quarta evolução natural.",
+    "limite": "Azulfazo possuído é um estado ligado ao Carretel Negro. A perda da almática após a derrota no arco de Gollia não é um desbloqueio reversível de evolução.",
+    "especial": "aprovada",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Azulão",
+    "estado": "Rotas evolutivas aprovadas; pré-evolução proposta",
+    "referencias": [
+      {
+        "id": "azulao",
+        "name": "Azulão",
+        "source": "art/soulgen/keys/azulao/color-rig-v2/concept.png",
+        "readme": null
+      },
+      {
+        "id": "azulfazo",
+        "name": "azulfazo",
+        "source": "art/soulgen/keys/azulfazo/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\azulfazo\\README.md"
+      },
+      {
+        "id": "azulfazo-possuido",
+        "name": "azulfazo-possuido",
+        "source": "art/soulgen/keys/azulfazo-possuido/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\azulfazo-possuido\\README.md"
+      }
+    ],
+    "brief": "briefs/azulao.md"
+  },
+  {
+    "id": "raio-de-sol",
+    "ancoras": "Rosto sem bico em painel dourado; braços angulares sanfonados; facetas creme e laranja com bandeirolas solares.",
+    "leitura": "É um observador do amanhecer que lê a situação. Não deve se tornar outra ave amarela nem apenas uma estrela com olhos.",
+    "pre": "Pequeno corpo em meia-lua de luz com rosto protegido por duas abas. Braços recolhidos como um botão que abre ao primeiro sol; pernas mínimas e uma bandeirola que marca a direção da luz.",
+    "evo": "Corpo alto e estreito, rosto em disco parcialmente cercado por painéis móveis assimétricos. Os braços abrem um arco solar que enquadra a ação, como uma criatura que mede ângulos. O disco fica corporal, não um objeto flutuante desligado.",
+    "cor": "Ouro, creme e laranja; sombra vinho suave; acento azul de madrugada apenas em juntas ou face inferior dos painéis.",
+    "limite": "Não confundir raios solares com eletricidade da Trovareta. Sem excesso de símbolos místicos, engrenagens ou coroa de espinhos.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Raio de sol",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "raio-de-sol",
+        "name": "Raio de sol",
+        "source": "art/soulgen/keys/raio-de-sol/color-rig-v2/concept.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/raio-de-sol.md"
+  },
+  {
+    "id": "flautrevo",
+    "ancoras": "Morcego violeta e creme; uma orelha enrolada; ossatura das asas com linguagem de flauta, laços e sino.",
+    "leitura": "Coleciona assobios e tem uma assimetria memorável. O som deve mudar a forma de agir, não apenas acrescentar instrumento na mão.",
+    "pre": "Morcego de orelhas grandes, uma já dobrada, asas curtas que envolvem o corpo e um único furo sonoro evidente na estrutura. Comunica-se com assobio falho; pendura-se pela rabiola curta.",
+    "evo": "Morcego de peito estreito e membranas longas, com poucos canais sonoros largos na borda das asas. A orelha curva vira concha de escuta. Abre uma asa para ouvir e outra para responder, preservando a assimetria.",
+    "cor": "Violeta e creme; interior vinho; turquesa nos laços e dourado em um sino. Evitar arco-íris musical.",
+    "limite": "Nada de roupa de flautista humano ou dezenas de furos ilegíveis. Não apagar a anatomia de morcego sob adereços.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Flautrevo",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "flautrevo",
+        "name": "Flautrevo",
+        "source": "assets/creatures/remakes-soulgen-v2/flautrevo.png",
+        "readme": "art\\soulgen\\keys\\flautrevo\\README.md"
+      }
+    ],
+    "brief": "briefs/flautrevo.md"
+  },
+  {
+    "id": "trinca-brasas",
+    "ancoras": "Cão de três cabeças; massas escuras e alaranjadas; centro turquesa, três chaves e contraste entre expressões.",
+    "leitura": "As três vontades — companhia, coragem e lar — fazem uma criatura protetora. O desafio é manter três personalidades legíveis.",
+    "pre": "Não propor cão de uma cabeça como origem automática. Estudar um filhote já tricéfalo, com pescoços curtos e corpos de cabeça pouco sobrepostos; cada rosto reage de um jeito e uma pequena marca reúne o trio.",
+    "evo": "Guardião quadrúpede largo, três pescoços em alturas diferentes e peito como abrigo. As cabeças se coordenam ao proteger o centro turquesa; três chaves viram três grandes pontos de amarração, sem multiplicar cabeças.",
+    "cor": "Carvão, brasa e creme, com turquesa reservado ao centro vital; distinguir as cabeças pelo recorte e expressão, não por três paletas incompatíveis.",
+    "limite": "Não converter em monstro infernal maligno. Aumentar cabeças, correntes e espinhos destruiria a leitura e a função afetiva.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Trinca-brasas",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "trinca-brasas",
+        "name": "Trinca-brasas",
+        "source": "assets/creatures/remakes-soulgen-v2/trinca-brasas.png",
+        "readme": "art\\soulgen\\keys\\trinca-brasas\\README.md"
+      }
+    ],
+    "brief": "briefs/trinca-brasas.md"
+  },
+  {
+    "id": "alvaneve",
+    "ancoras": "Dragão claro e lavanda; asas sustentadas por varetas; facetas frias, reparo dourado e terminal cristalino.",
+    "leitura": "Reservada, aprende a confiar. O reparo ligado ao sentimento é mais importante que tornar o gelo agressivo.",
+    "pre": "Pequeno dragão de corpo alongado, asas dobradas que parecem duas placas de espelho e peito com uma única linha dourada. Movimentos cautelosos; a cauda fria toca o chão antes do corpo se aproximar.",
+    "evo": "Dragão de pescoço arqueado e asas largas de grandes planos translúcidos desenhados em cor chapada. O reparo dourado torna-se junção visível entre peito e asas; protege alguém sob uma asa sem assumir pose de rainha humana.",
+    "cor": "Marfim, lavanda e azul acinzentado; ouro apenas na assinatura do reparo; pequeno azul mais saturado no olhar.",
+    "limite": "Sem realismo de cristal, neve pulverizada em excesso ou coroa genérica. Diferenciar da mobilidade cortante de Glacerol.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Alvaneve",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "alvaneve",
+        "name": "Alvaneve",
+        "source": "assets/creatures/remakes-soulgen-v2/alvaneve.png",
+        "readme": "art\\soulgen\\keys\\alvaneve\\README.md"
+      }
+    ],
+    "brief": "briefs/alvaneve.md"
+  },
+  {
+    "id": "chaspiral",
+    "ancoras": "Criatura assimétrica turquesa e coral; chapéu-xícara; colher e curvas em espiral nas asas.",
+    "leitura": "Tem humor, descompasso e relação com o tempo. Pode ser excêntrica sem perder anatomia e hierarquia de leitura.",
+    "pre": "Pequena criatura redonda que se enrosca dentro da própria aba em forma de xícara, com uma asa maior e uma colher curta como extensão do braço. Pausa longa e movimento súbito como surpresa.",
+    "evo": "Corpo alto em S, uma asa abre um grande arco e a outra funciona como contrapeso. A xícara permanece na cabeça, agora inclinada; a colher marca o ritmo com gestos amplos. Um único ponteiro ou marcador, sem relógios espalhados.",
+    "cor": "Turquesa, coral e creme; ameixa nas sombras; ouro no foco temporal. Conservar grandes massas, sem estampa de naipes.",
+    "limite": "Evitar fantasia de mágico com cartola, engrenagens e roupa humana. Não copiar personagens do conto que inspirou o motivo.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Chaspiral",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "chaspiral",
+        "name": "Chaspiral",
+        "source": "assets/creatures/remakes-soulgen-v2/chaspiral.png",
+        "readme": "art\\soulgen\\keys\\chaspiral\\README.md"
+      }
+    ],
+    "brief": "briefs/chaspiral.md"
+  },
+  {
+    "id": "hiponilo",
+    "ancoras": "Hipopótamo violeta de quatro patas curtas; focinho largo; vela coral nas costas e rabiola turquesa.",
+    "leitura": "Memória das promessas do rio. A vela pode ganhar função clara de abrigo e orientação, mantendo peso de hipopótamo.",
+    "pre": "Filhote barrigudo, focinho já largo, vela macia ainda dobrada sobre o dorso e rabiola curta que deixa círculos na água. A cabeça emerge antes do resto, com os olhos acima da linha d'água.",
+    "evo": "Hipopótamo de peito largo e corpo baixo, com vela em arco inclinado para abrigar a margem. Quando se move na água só olhos, focinho e topo da vela ficam acima da superfície; pernas continuam funcionais em terra.",
+    "cor": "Violeta, coral e turquesa; creme no focinho. Pode ganhar vinho na base do corpo, sem virar o mesmo magenta do Mormaço.",
+    "limite": "Não substituir por tartaruga com gêiser. Não usar barco literal, cabine ou rodas no animal.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Hiponilo",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "hiponilo",
+        "name": "Hiponilo",
+        "source": "assets/creatures/remakes-soulgen-v2/hiponilo.png",
+        "readme": "art\\soulgen\\keys\\hiponilo\\README.md"
+      }
+    ],
+    "brief": "briefs/hiponilo.md"
+  },
+  {
+    "id": "marulume",
+    "ancoras": "Golfinho azul de focinho claro; nadadeiras com linguagem de vela; laços corais e nós dourados.",
+    "leitura": "Mensageiro alegre e veloz. O desenho deve transmitir entregar e encontrar caminhos, sem inventar parentesco com répteis aquáticos.",
+    "pre": "Pequeno cetáceo de testa arredondada, nadadeiras curtas em pá e uma dobra protegendo um sinal de mensagem junto ao peito. Saltos curtos e pouso desajeitado na água.",
+    "evo": "Cetáceo alongado de nadadeiras dianteiras grandes como asas de navegação, rostro elegante e cauda forte. Um bolso natural de membrana junto ao flanco guarda a mensagem; trajetórias em arco, não corrida sobre patas.",
+    "cor": "Azul de água, creme e coral; adicionar verde-mar nas partes inferiores das nadadeiras, mantendo os nós dourados discretos.",
+    "limite": "Sem mochila humana ou armadura naval. Manter duas nadadeiras dianteiras e cauda coerentes; Riovela e Azulongo são identidades separadas.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Marulume",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "marulume",
+        "name": "Marulume",
+        "source": "assets/creatures/colecoes/marulume.png",
+        "readme": "art\\soulgen\\keys\\marulume\\README.md"
+      }
+    ],
+    "brief": "briefs/marulume.md"
+  },
+  {
+    "id": "jarabrasa",
+    "ancoras": "Serpente vermelha e laranja; olho âmbar; vela angular e corpo longo com fitas de chama.",
+    "leitura": "Boitatá e cuidado com a mata. A chama faz parte da criatura; ela não precisa incendiar o cenário para parecer poderosa.",
+    "pre": "Serpente pequena de cabeça larga e cauda em uma fita única que brilha por dentro. Uma dobra dorsal curta antecipa a vela; enrola-se ao redor de um galho para observar.",
+    "evo": "Serpente longa com crista dorsal contínua em poucos segmentos largos. O corpo descreve um arco protetor que contém a chama no interior; cabeça e olhos dominam a silhueta, sem membros acrescentados.",
+    "cor": "Vermelho escuro, coral e âmbar; ventre creme e miolo de chama amarelo; evitar banhar tudo em laranja emissivo.",
+    "limite": "Não transformar em dragão ocidental com braços e asas iguais às de Alvaneve. Fogo não significa maldade nem destruição indiscriminada.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Jarabrasa",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "jarabrasa",
+        "name": "Jarabrasa",
+        "source": "assets/creatures/colecoes/jarabrasa.png",
+        "readme": "art\\soulgen\\keys\\jarabrasa\\README.md"
+      }
+    ],
+    "brief": "briefs/jarabrasa.md"
+  },
+  {
+    "id": "jaguarluar",
+    "ancoras": "Onça ocre com rosetas escuras; mandíbula clara; cauda curva e vela foliar verde.",
+    "leitura": "Guia quem se perde. A relação com o luar pode aparecer no espaço entre as manchas e no modo de caminhar.",
+    "pre": "Filhote de patas largas e rosetas espaçadas, uma folha pequena já presa ao dorso e cauda grossa em gancho. Segue pontos de luz antes de aprender a guiar.",
+    "evo": "Onça de ombros altos e corpo elástico, vela foliar abrindo como arco lateral. Agrupar rosetas em poucos conjuntos que sugiram fases da lua sem desenhar luas por toda parte; caminha olhando para trás para verificar quem segue.",
+    "cor": "Ocre e creme, verde profundo e sombra azul-noite discreta; evitar trocar a pele inteira por prata genérica.",
+    "limite": "Yaguarú é candidata a parentesco, não evolução confirmada. Comparar rosetas, narrativa de memória e velas antes de decidir fundir as famílias.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Jaguarluar",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "jaguarluar",
+        "name": "Jaguarluar",
+        "source": "assets/creatures/colecoes/jaguarluar.png",
+        "readme": "art\\soulgen\\keys\\jaguarluar\\README.md"
+      }
+    ],
+    "brief": "briefs/jaguarluar.md"
+  },
+  {
+    "id": "azulongo",
+    "ancoras": "Dragão-serpente azul de corpo longo; mandíbula e bigodes claros; crista laranja, nós e selo no peito.",
+    "leitura": "Mapa do céu e promessa guardada. A evolução pode reorganizar curvas e orientação sem virar uma águia por ser azul.",
+    "pre": "Serpente de nuvem curta, cabeça grande e dois bigodes ainda pequenos. O selo aparece como única mancha no peito; o corpo só consegue fazer uma volta completa.",
+    "evo": "Dragão serpentino de curvas amplas e crista interrompida em grandes grupos, bigodes em duas linhas de direção. Selo continua sendo o ponto focal; voo de percurso contínuo, sem braços ou asas extras para encher a prancha.",
+    "cor": "Azul profundo, creme, laranja e ouro pontual; turquesa no ventre para separar as curvas sobrepostas.",
+    "limite": "Não converter o mapa em inscrições miúdas. Não é estágio automático de Azulão, Marulume ou Riovela.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Azulongo",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "azulongo",
+        "name": "Azulongo",
+        "source": "assets/creatures/colecoes/azulongo.png",
+        "readme": "art\\soulgen\\keys\\azulongo\\README.md"
+      }
+    ],
+    "brief": "briefs/azulongo.md"
+  },
+  {
+    "id": "auriflama",
+    "ancoras": "Ave vermelha e laranja; asas douradas; rabiolas de chama e postura de ascensão.",
+    "leitura": "Recuperação depois da queda e incentivo a tentar de novo. Mais poder pode significar sustentar outro, não renascer queimando-se literalmente.",
+    "pre": "Ave de asas ainda curtas, peito creme e duas penas de cauda dobradas como fitas recuperadas. Uma asa cai ligeiramente quando descansa; o bater volta a ficar simétrico quando ganha confiança.",
+    "evo": "Ave de cauda longa em três grandes fluxos, asas altas criando uma abertura de luz acima do corpo. Pousa com asas baixas para erguer outro; peito e cabeça definidos sem auréola permanente de fogo.",
+    "cor": "Vermelho quente, ouro e creme; vinho profundo na base das penas e acento coral luminoso nas pontas.",
+    "limite": "Carcará não vira Auriflama por compartilhar laranja e reparos. Evitar fênix genérica feita só de partículas de fogo.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Auriflama",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "auriflama",
+        "name": "Auriflama",
+        "source": "assets/creatures/colecoes/auriflama.png",
+        "readme": "art\\soulgen\\keys\\auriflama\\README.md"
+      }
+    ],
+    "brief": "briefs/auriflama.md"
+  },
+  {
+    "id": "umbrocasco",
+    "ancoras": "Quelônio escuro azul-esverdeado; placas em espiral; pés de garras claras e cauda segmentada com nós.",
+    "leitura": "Carrega memória de famílias. A sensação de idade deve vir de ritmo e organização das marcas, sem cenário inteiro nas costas.",
+    "pre": "Quelônio de casco baixo com uma grande espiral incompleta e cauda curta que termina num único nó. Recolhe a cabeça quando ouve algo novo, depois volta para registrar o som.",
+    "evo": "Quelônio de casco alto em grandes placas curvas, base larga e cauda em poucos segmentos grossos com nós distintos. Cada placa ajuda a conduzir o olhar ao rosto; o caminhar faz uma placa responder depois da outra.",
+    "cor": "Petróleo, verde escuro e creme; bronze envelhecido como acento em nós, sem brilhar como metal polido.",
+    "limite": "Não acrescentar segunda cabeça na ponta da cauda por interpretação do recorte. Diferenciar dos gêiseres e da couraça agressiva de Mormaço.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Umbrocasco",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "umbrocasco",
+        "name": "Umbrocasco",
+        "source": "assets/creatures/colecoes/umbrocasco.png",
+        "readme": "art\\soulgen\\keys\\umbrocasco\\README.md"
+      }
+    ],
+    "brief": "briefs/umbrocasco.md"
+  },
+  {
+    "id": "nevagume",
+    "ancoras": "Felino branco com faixas ameixa; costura prateada no peito; asas pequenas e nó coral no pé.",
+    "leitura": "Reparo como orgulho depois de ajudar alguém. O gesto de resgate deve orientar a evolução mais que o tema gelo por si só.",
+    "pre": "Filhote de listras largas espaçadas, peito pequeno com uma linha prateada e nó coral já reconhecível. Patas grandes para equilibrar; aproxima-se pela lateral com curiosidade.",
+    "evo": "Felino comprido de peito protegido por duas grandes dobras, asas laterais capazes de amparar uma queda e cauda que equilibra saltos. A costura permanece no peito; passada baixa e segura, sem agressividade constante.",
+    "cor": "Branco quente, ameixa e cinza frio; coral restrito ao nó. Um azul pálido pode separar planos de asa e pelagem.",
+    "limite": "Não copiar as presas de Rai nem os fios cortantes de Glacerol. Listras não devem virar uma malha de linhas de um pixel.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Nevagume",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "nevagume",
+        "name": "Nevagume",
+        "source": "assets/creatures/colecoes/nevagume.png",
+        "readme": "art\\soulgen\\keys\\nevagume\\README.md"
+      }
+    ],
+    "brief": "briefs/nevagume.md"
+  },
+  {
+    "id": "rexal",
+    "ancoras": "Tiranossauro vermelho; garganta clara; braços curtos, olho turquesa e vela dorsal angular.",
+    "leitura": "Impulsivo, mas ajuda os jovens a voltar para casa. Sua força precisa conviver com esse papel de guia.",
+    "pre": "Dinossauro de cabeça grande e pernas grossas curtas, braços já reduzidos e uma única dobra dorsal. Rosna antes de decidir o que fazer, depois confere se o grupo o segue.",
+    "evo": "Terópode de pescoço e base de cauda robustos, cabeça ampla e vela baixa que acompanha a coluna. A mandíbula e as pernas sustentam o poder; os braços continuam pequenos. Ameaça com o corpo, não com armas externas.",
+    "cor": "Vermelho tijolo, creme e carvão; olho turquesa como acento. Parte inferior da cauda em ocre para separar o volume.",
+    "limite": "Celofita e Herravento só entram no mesmo chart após decisão autoral. Não resolver a evolução dando braços gigantes ao tiranossauro.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Rexal",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "rexal",
+        "name": "Rexal",
+        "source": "assets/creatures/colecoes/rexal.png",
+        "readme": "art\\soulgen\\keys\\rexal\\README.md"
+      }
+    ],
+    "brief": "briefs/rexal.md"
+  },
+  {
+    "id": "tricerafan",
+    "ancoras": "Quadrúpede azul; três chifres claros; gola radial sustentada por varetas e patas curtas.",
+    "leitura": "Proteção construída a partir de três peças unidas. O escudo cresce com a capacidade de proteger, não com decoração indiscriminada.",
+    "pre": "Corpo compacto, gola pequena com três nervuras dominantes e três chifres curtos em lugares corretos. Abaixa a cabeça para cobrir alguém menor sem perder o equilíbrio.",
+    "evo": "Quadrúpede de ombros fortes e gola larga parcialmente articulada em três setores. Chifres com funções visuais distintas — dois direcionam e o nasal ancora —, rosto continua visível de três quartos.",
+    "cor": "Azul médio e creme com ouro nos vínculos; sombra azul-marinho. Testar borda coral pequena na gola para criar contraste quente.",
+    "limite": "Não adicionar fileiras de chifres. Não transformar a gola em escudo humano carregado pela criatura.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Tricerafan",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "tricerafan",
+        "name": "Tricerafan",
+        "source": "assets/creatures/colecoes/tricerafan.png",
+        "readme": "art\\soulgen\\keys\\tricerafan\\README.md"
+      }
+    ],
+    "brief": "briefs/tricerafan.md"
+  },
+  {
+    "id": "pteralis",
+    "ancoras": "Pterossauro laranja e violeta; bico amarelo longo; asas triangulares estreitas e rabiola listrada.",
+    "leitura": "Explorador que volta com descobertas. A leitura de mapa vem da articulação das asas e dos trajetos.",
+    "pre": "Filhote com asas dobradas grandes em relação ao peito e bico ainda curto; escala antes de planar, usando as garras da asa como apoio.",
+    "evo": "Pterossauro de asa longa em poucos planos, pescoço leve e cabeça com crista inclinada para trás. Pode dobrar a ponta de uma asa para corrigir trajetória; cauda-fita fornece referência de curva.",
+    "cor": "Laranja, violeta e creme; amarelo no bico; petróleo no reverso das asas como contraste de orientação.",
+    "limite": "Não preencher a membrana com mapas ou letras. Distinguir de ave emplumada e preservar mãos/apoios coerentes com a asa.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Pteralis",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "pteralis",
+        "name": "Pteralis",
+        "source": "assets/creatures/colecoes/pteralis.png",
+        "readme": "art\\soulgen\\keys\\pteralis\\README.md"
+      }
+    ],
+    "brief": "briefs/pteralis.md"
+  },
+  {
+    "id": "stegaru",
+    "ancoras": "Estegossauro verde; placas triangulares laranja; quatro patas e pés claros.",
+    "leitura": "Guarda a memória coletiva do festival. As placas devem agir como um conjunto reconhecível, não coleção de adereços.",
+    "pre": "Pequeno quadrúpede de dorso arredondado com três placas baixas, ainda próximas umas das outras. A última placa oscila um pouco depois de parar.",
+    "evo": "Estegossauro largo de cabeça baixa e placas em dois ritmos alternados, algumas erguendo-se para comunicar um sinal de grupo. Cauda forte com poucos elementos terminais, sem virar arma de múltiplos monstros.",
+    "cor": "Verde folha, laranja e creme; verde escuro na base das placas e pequeno coral nas amarrações.",
+    "limite": "Não copiar a gola do Tricerafan ou encher as placas de bandeiras diferentes. Escala de placas tem de deixar pernas e pescoço legíveis.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Stegaru",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "stegaru",
+        "name": "Stegaru",
+        "source": "assets/creatures/colecoes/stegaru.png",
+        "readme": "art\\soulgen\\keys\\stegaru\\README.md"
+      }
+    ],
+    "brief": "briefs/stegaru.md"
+  },
+  {
+    "id": "guaravento",
+    "ancoras": "Lobo-guará de pernas negras longas; juba laranja e creme; orelhas altas e vela ferrugem/escura.",
+    "leitura": "Escuta o vento ao entardecer. Sua identidade está no vazio entre pernas longas e no recorte das orelhas.",
+    "pre": "Filhote de orelhas muito grandes e pernas ainda desproporcionais, juba curta e vela recolhida. Para, inclina as duas orelhas em tempos diferentes e só então se move.",
+    "evo": "Canídeo alto e esguio, peito estreito e juba abrindo em duas grandes massas laterais como conchas de vento. As pernas continuam leves; o poder se revela em mudança de direção e escuta à distância.",
+    "cor": "Ferrugem, carvão e creme; ameixa de crepúsculo na face inferior da vela, sem tornar a criatura possuída.",
+    "limite": "Não engrossar até parecer um lobo genérico ou Dóber. Diferenciar de Retalho pela marcha quadrúpede e proporção de lobo-guará.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Guaravento",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "guaravento",
+        "name": "Guaravento",
+        "source": "art/soulgen/keys/guaravento/color-rig-v2/concept.png",
+        "readme": "art\\soulgen\\keys\\guaravento\\README.md"
+      }
+    ],
+    "brief": "briefs/guaravento.md"
+  },
+  {
+    "id": "micofolha",
+    "ancoras": "Pequeno primata laranja com rosto escuro; moldura clara da cabeça; vela foliar e cauda longa curva segmentada.",
+    "leitura": "Mensageiro brincalhão que se distrai. Mãos, olhar e cauda precisam contar essa função.",
+    "pre": "Primata compacto de bochechas grandes e cauda ainda curta em gancho, mãos abertas e uma folha de dorso. Abraça a mensagem contra o peito enquanto salta com pouca precisão.",
+    "evo": "Primata de braços compridos e cauda preênsil com dois grandes trechos flexíveis. A vela se divide em abas que fecham junto ao corpo para atravessar galhos. Entrega com a cauda enquanto as mãos mantêm apoio.",
+    "cor": "Laranja, creme e carvão; verde vivo em uma grande folha e na ponta da cauda; evitar distribuir verde em toda a pelagem.",
+    "limite": "Não humanizar com roupa de carteiro. Uma mão é mão; não misturar a cauda ao torso ao preparar o rig.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Micofolha",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "micofolha",
+        "name": "Micofolha",
+        "source": "assets/creatures/remakes-soulgen-v2/micofolha.png",
+        "readme": "art\\soulgen\\keys\\micofolha\\README.md"
+      }
+    ],
+    "brief": "briefs/micofolha.md"
+  },
+  {
+    "id": "capimansa",
+    "ancoras": "Capivara caramelo de focinho escuro; corpo baixo; vela verde-azulada com folhas e pernas curtas.",
+    "leitura": "Calma e convivência perto da água. A evolução deve ampliar acolhimento e navegação, sem perder a mansidão.",
+    "pre": "Filhote caramelo de focinho grande, patas curtas e broto de vela dobrado rente às costas. Segue o grupo com pausas, toca outro com o focinho para se orientar.",
+    "evo": "Capivara de corpo largo e vela lateral baixa como abrigo de margem. A linha d'água corta o corpo no meio; uma aba da vela protege um companheiro sem transformá-la em veículo mecânico.",
+    "cor": "Caramelo, creme e verde-petróleo; acento amarelo de folha nova. Separar do menta dominante da Capivara-Boia.",
+    "limite": "Capivara-Boia D pode ser rota aquática ou espécie irmã, ainda sem vínculo confirmado. Evitar produzir uma segunda versão indistinguível antes dessa escolha.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Capimansa",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "capimansa",
+        "name": "Capimansa",
+        "source": "assets/creatures/remakes-soulgen-v2/capimansa.png",
+        "readme": "art\\soulgen\\keys\\capimansa\\README.md"
+      }
+    ],
+    "brief": "briefs/capimansa.md"
+  },
+  {
+    "id": "tatutrama",
+    "ancoras": "Tatu vermelho, creme e carvão; casco de placas geométricas articuladas; focinho cônico e cauda em segmentos.",
+    "leitura": "Escava histórias antigas. A trama do casco é estrutura que se move, não estampa colada.",
+    "pre": "Tatu pequeno de três faixas de casco largas e cauda curta, focinho já cônico. Enrola-se quase por completo deixando um olho espiar por uma abertura.",
+    "evo": "Tatu baixo de ombros fortes, casco que pode deslizar em grandes faixas e garras dianteiras de escavação. Ao se fechar forma uma massa contínua com pontos de junção legíveis; ao abrir o rosto aparece primeiro.",
+    "cor": "Vermelho terroso, creme e carvão; ocre nos vínculos. Não adicionar pedra realista para indicar escavação.",
+    "limite": "Não fundir com Mormaço por ter couraça. O tatu não ganha gêiseres, nem o casco deve esconder todas as articulações das pernas.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Tatutrama",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "tatutrama",
+        "name": "Tatutrama",
+        "source": "assets/creatures/remakes-soulgen-v2/tatutrama.png",
+        "readme": "art\\soulgen\\keys\\tatutrama\\README.md"
+      }
+    ],
+    "brief": "briefs/tatutrama.md"
+  },
+  {
+    "id": "yaguaru-memoria",
+    "ancoras": "Onça ocre de manchas angulares; membros claros; vela ferrugem, verde e creme, nós grandes na rabiola.",
+    "leitura": "Memória transmitida entre gerações e marcas do cuidado. Sua direção é continuidade, diferente de apenas caçar ao luar.",
+    "pre": "Filhote de poucas manchas quadradas grandes, vela de um único painel herdado e nó de cauda desproporcional. Imita o caminhar de quem o acompanha.",
+    "evo": "Felino de ombros largos e vela em dois painéis complementares, cada um com uma grande região de cor. As manchas formam ritmos de família sem virar escrita; postura protetora e observadora.",
+    "cor": "Ocre, creme e ferrugem; verde profundo como segundo bloco. Preservar o contraste dos membros claros.",
+    "limite": "Comparar com Jaguarluar antes de desenhar: recomenda-se decidir parentesco e evitar duas famílias com pré-evoluções iguais. Não considerar o sufixo técnico memória uma forma evoluída por si só.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Yaguarú",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "yaguaru-memoria",
+        "name": "Yaguarú",
+        "source": "assets/creatures/colecoes/yaguaru-memoria.png",
+        "readme": "art\\soulgen\\keys\\yaguaru-memoria\\README.md"
+      }
+    ],
+    "brief": "briefs/yaguaru-memoria.md"
+  },
+  {
+    "id": "araruna-memoria",
+    "ancoras": "Arara escarlate, creme e azul-escuro; bico curvo amarelo; asas com varetas e cauda de fitas.",
+    "leitura": "Lembra os tecidos e cores que já voaram no bairro. A ave precisa continuar reconhecível sem virar catálogo de estampas.",
+    "pre": "Arara de cabeça e bico grandes, asas curtas com um bloco azul e cauda de duas fitas desiguais. Aprende a repetir sons do bairro com inclinação clara da cabeça.",
+    "evo": "Arara de envergadura ampla, crista em duas penas e cauda em leque estreito. Separar três blocos de cor nas asas; cada bater mostra uma cor de baixo, como memória que aparece em movimento.",
+    "cor": "Escarlate e creme com azul profundo; amarelo concentrado no bico e pequenos vínculos. Sem adicionar todas as cores nas penas individuais.",
+    "limite": "Não reutilizar as espirais do Azulão ou a silhueta de águia do Azulfazo. A memória não exige retalhos em cada superfície.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Araruna",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "araruna-memoria",
+        "name": "Araruna",
+        "source": "assets/creatures/colecoes/araruna-memoria.png",
+        "readme": "art\\soulgen\\keys\\araruna-memoria\\README.md"
+      }
+    ],
+    "brief": "briefs/araruna-memoria.md"
+  },
+  {
+    "id": "caimbira-memoria",
+    "ancoras": "Crocodiliano verde e creme; olho ocre; corpo baixo, vela geométrica dorsal e cauda grossa listrada.",
+    "leitura": "Guarda histórias de cheias e caminhos de rio. A cabeça baixa e a propulsão da cauda são essenciais.",
+    "pre": "Filhote comprido de focinho curto, olhos altos e cauda relativamente grande. Um único painel dorsal; move-se pela água com o dorso quase todo oculto.",
+    "evo": "Crocodiliano de focinho longo e cauda profunda lateralmente, placas dorsais organizadas como margens de um rio. Vela recolhe-se ao mergulhar; emboscada é silêncio e peso, não postura humanoide.",
+    "cor": "Verde de margem, creme e ocre; azul-petróleo no ventre da cauda para distinguir superfície e profundidade.",
+    "limite": "Veskoro não é evolução confirmada. Recomendação: manter a memória fluvial e a toxicidade como famílias distintas até decisão do autor.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Caimbira",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "caimbira-memoria",
+        "name": "Caimbira",
+        "source": "assets/creatures/colecoes/caimbira-memoria.png",
+        "readme": "art\\soulgen\\keys\\caimbira-memoria\\README.md"
+      }
+    ],
+    "brief": "briefs/caimbira-memoria.md"
+  },
+  {
+    "id": "tamoata-memoria",
+    "ancoras": "Tamanduá cinza e creme; focinho muito longo de ponta vermelha; enorme cauda em leque verde e ferrugem.",
+    "leitura": "Descobre caminhos esquecidos pelo faro. A cauda e o focinho já oferecem uma silhueta singular.",
+    "pre": "Tamanduá de focinho fino, cauda ainda estreita em duas abas e patas dianteiras grandes. Fareja as próprias pegadas e muda de direção devagar.",
+    "evo": "Tamanduá de ombros altos e cauda-leque grande que mantém equilíbrio em terreno difícil. As abas ficam agrupadas em três massas de cor, com espaços entre elas; o focinho aponta a rota e nunca se perde no leque.",
+    "cor": "Cinza, creme, verde profundo e ferrugem; vermelho apenas na ponta do focinho como ponto de leitura.",
+    "limite": "Evitar cauda com dezenas de tiras finas ou transformar o focinho em tromba de elefante. Não dar garras de combate que apaguem o explorador.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Tamoatá",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "tamoata-memoria",
+        "name": "Tamoatá",
+        "source": "assets/creatures/colecoes/tamoata-memoria.png",
+        "readme": "art\\soulgen\\keys\\tamoata-memoria\\README.md"
+      }
+    ],
+    "brief": "briefs/tamoata-memoria.md"
+  },
+  {
+    "id": "herravento",
+    "ancoras": "Dinossauro bípede esguio vermelho e carvão; pernas longas; cabeça estreita, vela dorsal e cauda comprida.",
+    "leitura": "Aprendeu a correr antes de voar. O vazio entre pernas e o eixo horizontal da corrida valem mais que armadura.",
+    "pre": "Bípede de quadril compacto, pernas elásticas e cauda rígida de contrapeso. Pequenas dobras surgem nas costas; arranca rápido e freia com dois passos extras.",
+    "evo": "Corredor de peito estreito e cauda longa, vela dorsal baixa que se abre em curva nas mudanças de direção. Braços ficam junto ao corpo; não ganhar asas enormes só para cumprir a promessa de voo.",
+    "cor": "Vermelho escuro, creme e carvão; laranja na crista e turquesa pontual no olho ou vínculo.",
+    "limite": "Celofita pode ocupar o estágio anterior, mas falta decisão. Rexal seria hipótese de ramo de força, não destino obrigatório. Não criar três bebês terópodes quase iguais.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Herravento",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "herravento",
+        "name": "Herravento",
+        "source": "assets/creatures/colecoes/herravento.png",
+        "readme": "art\\soulgen\\keys\\herravento\\README.md"
+      }
+    ],
+    "brief": "briefs/herravento.md"
+  },
+  {
+    "id": "platofolha",
+    "ancoras": "Dinossauro quadrúpede de pescoço longo; ocre e creme com verde na cabeça e dorso; vela nas costas.",
+    "leitura": "Enxerga adiante e guia os jovens. É um eixo vertical calmo, contraponto aos corredores bípedes.",
+    "pre": "Quadrúpede de corpo pequeno e pescoço já relativamente longo, cabeça foliar grande e vela curta. Estica o pescoço para ver por cima de algo, recua e chama o grupo.",
+    "evo": "Grande navegador de pescoço em arco, base larga e cabeça pequena bem recortada. A vela fica baixa para não disputar com o pescoço; cauda e pescoço equilibram-se, sem árvores crescendo nas costas.",
+    "cor": "Ocre, creme e verde-folha; sombra oliva e um acento coral pequeno na junção da vela.",
+    "limite": "O desenho atual existe, mas a conversão completa de arte deve preceder uma cadeia final. Não mudar o plano quadrúpede para bípede nem saturar a cabeça com folhagem.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Platofolha",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "platofolha",
+        "name": "Platofolha",
+        "source": "assets/creatures/colecoes/platofolha.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/platofolha.md"
+  },
+  {
+    "id": "celofita",
+    "ancoras": "Terópode corredor fino vermelho e creme; pescoço comprido; pequena vela e cauda-fita geométrica curva.",
+    "leitura": "Nasceu da linha que se desenrola e aprende a fazer curvas. O trajeto elástico diferencia do peso do Rexal.",
+    "pre": "Bípede leve, cauda curta que ainda se enrosca ao parar e um painel dorsal simples. Corre em pequenos arcos; o pescoço acompanha a curva antes do quadril.",
+    "evo": "Corredor de pernas compridas e cauda capaz de abrir um grande S, com vela estreita funcionando como estabilizador. Pescoço e cabeça mantêm finura, sem adicionar mandíbula maciça.",
+    "cor": "Vermelho claro, creme e carvão; um azul-esverdeado discreto nos vínculos pode separar da família visual do Herravento.",
+    "limite": "Celofita → Herravento é hipótese de estudo, não chart decidido. Priorizar comparação lado a lado antes de gerar novos estágios redundantes.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Celofita",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "celofita",
+        "name": "Celofita",
+        "source": "assets/creatures/colecoes/celofita.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/celofita.md"
+  },
+  {
+    "id": "riovela",
+    "ancoras": "Réptil aquático turquesa e creme; pescoço longo; quatro nadadeiras largas, vela dorsal e cauda comprida.",
+    "leitura": "Mapa de rio que também imagina o ar. Deve continuar tendo uma anatomia aquática inequívoca.",
+    "pre": "Réptil de pescoço curto e quatro nadadeiras grandes para o corpo, vela dobrada rente ao dorso e cauda fina. Aprende a manter o rumo em superfície.",
+    "evo": "Nadador de pescoço em arco e quatro nadadeiras em dois pares de funções claras: frente dirige, trás impulsiona. Vela alta só quando emerge; desenhos de corrente ficam em poucas faixas grandes no flanco.",
+    "cor": "Turquesa, creme e azul profundo; ocre nas varetas e coral pequeno como ponto de orientação.",
+    "limite": "Não transformar nadadeiras em pernas por conveniência do rig. Não confundir com Marulume cetáceo nem Azulongo serpentino.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Riovela",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "riovela",
+        "name": "Riovela",
+        "source": "assets/creatures/colecoes/riovela.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/riovela.md"
+  },
+  {
+    "id": "javali-biscoito",
+    "ancoras": "Javali marrom e creme; presas fortes; cerdas dorsais e vela com peças de biscoito pendentes.",
+    "leitura": "Nome e história continuam provisórios. O animal é sólido; o motivo do alimento precisa de validação antes de determinar toda a evolução.",
+    "pre": "Leitão de cabeça grande, focinho escuro e duas presas ainda pequenas. Uma única peça pendente no dorso mantém continuidade provisória; fareja e escava sem roupa ou utensílio humano.",
+    "evo": "Javali de ombros elevados, cerdas em três grandes massas e presas curvas assimétricas leves. A vela acompanha a linha do dorso; escolher se o motivo de biscoito vira reserva, isca ou simplesmente é retirado antes de finalizar.",
+    "cor": "Castanho, creme e caramelo; verde-petróleo ou ameixa em pequeno painel para fugir de massa marrom única.",
+    "limite": "Não fixar origem culinária como cânone. Primeiro definir motivo autoral; não gerar monstros de confeitaria por dedução do nome provisório.",
+    "especial": "decisao",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Javali de Biscoito",
+    "estado": "Proposta condicionada a decisão de identidade",
+    "referencias": [
+      {
+        "id": "javali-biscoito",
+        "name": "Javali de Biscoito",
+        "source": "assets/creatures/colecoes/javali-biscoito-v1.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/javali-biscoito.md"
+  },
+  {
+    "id": "nozinho",
+    "ancoras": "Corpo-nó de corda dourada; rosto turquesa central; orelhas em laço, dedos de corda e pontas desfiadas.",
+    "leitura": "Primeiro nó vivo de Assis e auxiliar no cuidado. Crescer não pode significar perder a simplicidade acolhedora.",
+    "pre": "Hipótese de origem visual, não passado confirmado: nó simples com duas pontas que ainda não andam independentemente. O rosto desperta no centro e a corda procura um apoio.",
+    "evo": "Em vez de gigante de cordas, propor ajudante com núcleo-nó inalterado e dois laços maiores que alcançam e sustentam. Abre uma alça para segurar outro sem apertar; as pontas mantêm franja reconhecível.",
+    "cor": "Ouro de fibra e creme; turquesa no rosto; um vínculo coral opcional sem acrescentar metal.",
+    "limite": "Recomenda-se testar amadurecimento ou habilidade nova antes de evolução biológica. Não torná-lo algema, tentáculo ameaçador ou fusão de várias criaturas.",
+    "especial": "origem",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Nozinho",
+    "estado": "Proposta condicionada à origem narrativa",
+    "referencias": [
+      {
+        "id": "nozinho",
+        "name": "Nozinho",
+        "source": "art/soulgen/keys/nozinho/color-rig-v2/concept-draft.png",
+        "readme": "art\\soulgen\\keys\\nozinho\\README.md"
+      }
+    ],
+    "brief": "briefs/nozinho.md"
+  },
+  {
+    "id": "rabbito",
+    "ancoras": "Coelho creme e turquesa; orelhas muito longas em estrutura de pipa; olhos azuis e rabiola dourada de três laços.",
+    "leitura": "Criado por Kael com a Rabiola Antiga. Sua ligação afetiva e orelhas que expressam intenção são o centro da identidade.",
+    "pre": "Somente hipótese visual: coelho de corpo arredondado, orelhas ainda dobradas em dois grandes painéis e três pequenos laços já presentes. Não escrever que existiu antes da criação por Kael sem revisão da história.",
+    "evo": "Coelho de pernas traseiras elásticas e peito estreito, orelhas longas que se abrem lateralmente para planar e recolhem antes de saltar. As mãos continuam pequenas; três laços da rabiola marcam o acompanhamento do movimento.",
+    "cor": "Creme quente, turquesa e azul nos olhos; dourado nos laços; sombra petróleo, sem converter em coelho todo branco com aura genérica.",
+    "limite": "Não tratar a Rabiola Antiga como requisito numérico inventado. Não perder o coelho sob armadura nem transformar o salto em voo sem peso.",
+    "especial": "origem",
+    "continuidade": "Registro existente no web: Velocista → Rastro dos Ventos → Arauto da Tempestade; Condutor → Mestre dos Fios → Tecelão da Aurora; Rabbitknight é especial e não tem sequência. A proposta abaixo explora mobilidade e pode servir ao primeiro caminho, mas não substitui os outros nem aprova novos sprites para eles. A conciliação de classes, formas e remonta está em CHART-E-PRIORIDADES.md.",
+    "nome": "Rabbito",
+    "estado": "Proposta condicionada à origem narrativa",
+    "referencias": [
+      {
+        "id": "rabbito",
+        "name": "Rabbito",
+        "source": "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/rabbito.md"
+  },
+  {
+    "id": "lacertubo",
+    "ancoras": "Lagarto turquesa e laranja; encaixes de tubo claros; quatro patas de garras, vela triangular e cauda segmentada.",
+    "leitura": "Vive nos canais e sinaliza ameaça com as velas. Tubos são anatomia de encaixe; não acessórios grudados em qualquer direção.",
+    "pre": "Juvenil baixo de cabeça relativamente grande, encaixes curtos e só um painel dorsal. Patas largas e cauda curta; primeira ameaça é abrir o painel e recuar, sem pose de boss.",
+    "evo": "Lagarto de antebraços fortes e eixo corporal baixo, encaixes protegidos pelo próprio corpo e vela em três grandes planos. O movimento de pressão começa no peito e termina na cauda; rosto sempre exposto no ataque.",
+    "cor": "Turquesa profundo, laranja e creme; amarelo pontual nos nós e boca. Não mudar para todo cinza industrial.",
+    "limite": "Não usar Pipa-Dragão como evolução confirmada: o experimento e o acúmulo de almas são outro assunto. Evitar bocais internos projetados como tubos externos sem função.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Lacertubo",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "lacertubo",
+        "name": "Lacertubo",
+        "source": "assets/creatures/lacertubo-v2/lacertubo.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/lacertubo.md"
+  },
+  {
+    "id": "doberman-c",
+    "ancoras": "Canídeo preto e creme; orelhas enormes com planos laranja; cruzamento dourado no peito e duas fitas longas de cauda.",
+    "leitura": "Primeira montaria: apoio corporal, escuta e parceria. O desenho adulto precisa comportar Kael de maneira fisicamente convincente.",
+    "pre": "Filhote de pernas longas, orelhas ainda dobradas em uma ponta e cordão peitoral simples. Duas fitas curtas preservam a assinatura; não é montável automaticamente por compartilhar a espécie.",
+    "evo": "Canídeo de caixa torácica mais sustentada, dorso útil entre omoplatas e quadril, pescoço livre para virar. Alargar discretamente o tronco e pernas, mantendo elegância; orelhas se abrem como sinal de intenção, não como chifres minerais gigantes.",
+    "cor": "Carvão, creme e laranja queimado; ouro nos vínculos; plano cinza frio para separar perna e tronco sem brilho metálico.",
+    "limite": "A capacidade de montaria depende de decisão de jogo. Não sentar Kael sobre a garupa; reservar volume e oclusão para as duas pernas do cavaleiro, sem reutilizar rig humano em camadas rejeitado.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Dóber — design C",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "doberman-c",
+        "name": "doberman-c",
+        "source": "art/soulgen/keys/doberman-c/refined-rig-v3/preview.png",
+        "readme": "art\\soulgen\\keys\\doberman-c\\README.md"
+      }
+    ],
+    "brief": "briefs/doberman-c.md"
+  },
+  {
+    "id": "platyx",
+    "ancoras": "Ornitorrinco azul-esverdeado e creme; bico ocre largo; patas palmadas e cauda-pá ampla com dobras.",
+    "leitura": "Medroso, parceiro de Grampo. O arco pode ser aprender a agir apesar do medo, sem transformar timidez em incompetência ou maldade.",
+    "pre": "Pequeno ornitorrinco de bico proporcionalmente grande e cauda redonda curta; mantém as mãos perto do rosto. Mergulha por susto e espia antes de emergir.",
+    "evo": "Ornitorrinco baixo de braços firmes e cauda-pá que se abre como estabilizador e escudo de retirada. As mãos deixam o rosto para sustentar alguém; sobrancelhas ainda expressivas, sem olhar permanentemente furioso.",
+    "cor": "Petróleo e creme com ocre em bico e pés; turquesa claro na cauda e um ponto coral no vínculo.",
+    "limite": "Não dar equipamento de saqueador porque Grampo saqueia. Não converter o bico em arma, nem apagar o comportamento tímido na evolução.",
+    "continuidade": "A bíblia determina Platyx único e reservado à redenção de Grampo. Uma fase anterior ou posterior, se escolhida, é do mesmo indivíduo; não autoriza captura, outro exemplar, empréstimo ao jogador ou encontro selvagem.",
+    "nome": "Platyx",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "platyx",
+        "name": "platyx",
+        "source": "art/soulgen/keys/platyx/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\platyx\\README.md"
+      }
+    ],
+    "brief": "briefs/platyx.md"
+  },
+  {
+    "id": "rai",
+    "ancoras": "Felino branco de presas de sabre; olhos vermelhos e marcas rosadas; pés escuros, sino e vela com sakura.",
+    "leitura": "Rai e Saber designam o parceiro de Tyler. A associação com cerejeira e corte precisa ficar específica sem torná-lo um Nevagume recolorido.",
+    "pre": "Felino de presas pequenas já visíveis, patas escuras largas e duas marcas de pétala no rosto. A vela é curta e o sino parece grande; aproximação curiosa, ainda sem postura de caçador imponente.",
+    "evo": "Felino de ombros altos e patas dianteiras poderosas, duas presas bem separadas do focinho e vela inclinada que abre um arco de pétalas. Cauda em três folhas e sino permanecem legíveis; perfil de caçador controlado.",
+    "cor": "Marfim, rosa seco e carvão; vermelho no olhar e dourado no sino. Não transformar tudo em magenta para parecer mais forte.",
+    "limite": "Não nomear Saber como espécie nova por engano. A origem de Tyler não implica que Rai seja artificial ou evolua pelo mesmo mecanismo.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Rai / Saber",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "rai",
+        "name": "rai",
+        "source": "art/soulgen/keys/rai/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\rai\\README.md"
+      }
+    ],
+    "brief": "briefs/rai.md"
+  },
+  {
+    "id": "riscaz",
+    "ancoras": "Rato de focinho em cunha; carvão, creme e verde; incisivos de papel, orelhas assimétricas e cauda de fio com ponta foliar.",
+    "leitura": "Potencial parceiro de Rato, ainda sem vínculo confirmado. O corte e a observação são mais promissores que a agressividade genérica.",
+    "pre": "Rato pequeno de incisivos ainda curtos, orelha dobrada assimétrica e uma ponta verde na cauda. Carrega a própria cauda com as mãos ao passar num vão; fareja e se esconde.",
+    "evo": "Roedor baixo de antebraços hábeis e peito estreito, focinho em cunha mais comprido e incisivos como dois recortes limpos. A cauda ganha alcance e contrapeso, sem virar chicote cheio de lâminas.",
+    "cor": "Carvão e creme com verde vivo em dois focos; cinza azulado nos planos de sombra e ocre em pequenos vínculos.",
+    "limite": "Não torná-lo vilão por causa do possível tamer. Confirmar associação com Rato antes de amarrar a evolução ao cerol ou ao bando.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Riscaz",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "riscaz",
+        "name": "riscaz",
+        "source": "art/soulgen/keys/riscaz/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\riscaz\\README.md"
+      }
+    ],
+    "brief": "briefs/riscaz.md"
+  },
+  {
+    "id": "retalho-original",
+    "ancoras": "Raposa bípede alta de corpo fino; ameixa, creme e ocre; orelhas de pipa assimétricas, guardas nos braços e leque de fitas.",
+    "leitura": "A forma original e a mascarada compartilham identidade. A postura e as cicatrizes mudam a leitura emocional, mas não confirmam uma cadeia evolutiva.",
+    "pre": "Adiar uma infância literal até validar a história de Heleana. Como proposta de forma menor: bípede com braços longos e ombros baixos, orelhas assimétricas já claras e leque de cauda curto; não um coelho ou filhote de lobo comum.",
+    "evo": "Estudar amadurecimento natural como raposa de eixo alto e gestos amplos, braços com guardas integradas e leque que equilibra o corpo. Contrapor à mascarada, cujo dorso fica arqueado e cabeça baixa; não usar essa ferocidade como evolução natural automática.",
+    "cor": "Creme, ameixa e ocre com turquesa pontual nas fitas; coral nas cicatrizes é assinatura de estado, não aumento obrigatório de poder.",
+    "limite": "Retalho mascarada deve continuar com máscara física, ombros corcundas e garras já aprovados. Não substituí-la por recolor; confirmar se qualquer nova forma cabe na trajetória narrativa.",
+    "especial": "estado",
+    "continuidade": "A seção 7.4 da bíblia contém uma proposta de Retalho evoluir sozinho, que precisa ser conciliada com a remonta da seção 6. Não apagar essa possibilidade nem tratá-la como decisão final. O reencontro com Heleana tem ramificações decididas conforme a escolha de Kael; uma forma nova não deve redefinir esse vínculo.",
+    "nome": "Retalho — original e mascarada",
+    "estado": "Distinguir evolução natural de mudança de estado",
+    "referencias": [
+      {
+        "id": "retalho-original",
+        "name": "retalho-original",
+        "source": "art/soulgen/keys/retalho-original/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\retalho-original\\README.md"
+      },
+      {
+        "id": "retalho-mascarada",
+        "name": "retalho-mascarada",
+        "source": "art/soulgen/keys/retalho-mascarada/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\retalho-mascarada\\README.md"
+      }
+    ],
+    "brief": "briefs/retalho-original.md"
+  },
+  {
+    "id": "pipa-dragao",
+    "ancoras": "Quadrúpede químico de garras grandes; corpo cinza/ameixa; peito amarelo, tubos verdes e vela clara com varetas.",
+    "leitura": "O acúmulo de almas e a sobrecarga são condições narrativas. A desatada perde a carga, não se torna automaticamente um filhote.",
+    "pre": "Não criar pré-evolução pela redução de tubos da desatada. Primeiro documentar qual seria o organismo original antes do experimento, se a história permitir; manter a proposta como pergunta de origem e não imagem pronta para produção.",
+    "evo": "Se houver evolução natural, propor reorganização anatômica estável: base de pernas e peito equilibrada, circuito de fluido legível e vela que não briga com a cabeça. Separar esse estudo do aumento artificial por sobrecarga.",
+    "cor": "Cinza e ameixa, creme nas velas, verde químico e amarelo de alerta já existentes. Uma fonte de cor química dominante, sem vazamentos neon em toda superfície.",
+    "limite": "Não converter sobrecarregada → desatada em regressão de nível. Investida deve preservar cabeça inteira, e tubos de encaixe interno não devem atravessar braços ou aparecer como apêndices sem função.",
+    "especial": "estado",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Pipa-Dragão — sobrecarregada e desatada",
+    "estado": "Distinguir evolução natural de mudança de estado",
+    "referencias": [
+      {
+        "id": "pipa-dragao",
+        "name": "pipa-dragao",
+        "source": "art/soulgen/keys/pipa-dragao/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\pipa-dragao\\README.md"
+      },
+      {
+        "id": "pipa-dragao-desatada",
+        "name": "pipa-dragao-desatada",
+        "source": "art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\pipa-dragao-desatada\\README.md"
+      }
+    ],
+    "brief": "briefs/pipa-dragao.md"
+  },
+  {
+    "id": "trovareta",
+    "ancoras": "Ave teal, creme e ocre; asas de planos angulares rígidos; nós laranja e rabiolas em raio.",
+    "leitura": "Guardiã ligada ao trovão. A eletricidade precisa existir na anatomia, não só no efeito de partículas.",
+    "pre": "Proposta condicionada ao papel de guardiã: ave de asas compactas com uma ponta em zigue-zague, crista curta e duas fitas-raio de comprimentos diferentes. Pequenas descargas percorrem juntas visíveis, sem nuvem permanente.",
+    "evo": "Ave de peito mais alto e asas que se abrem em segmentos de ângulos distintos, criando um grande desenho de raio no voo. Os nós conduzem a leitura da energia até as pontas; garras e rosto continuam orgânicos.",
+    "cor": "Teal e creme com âmbar elétrico; azul profundo na parte inferior. O raio pode ser amarelo claro, sem fazer a ave inteira amarela.",
+    "limite": "As alternativas B/C reservadas não são suas evoluções por padrão. Não copiar nuvens do Azulão, fogo de Auriflama ou placas robóticas para comunicar trovão.",
+    "especial": "guardiao",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Trovareta",
+    "estado": "Proposta condicionada ao papel de guardião",
+    "referencias": [
+      {
+        "id": "trovareta",
+        "name": "trovareta",
+        "source": "art/soulgen/keys/trovareta/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\trovareta\\README.md"
+      }
+    ],
+    "brief": "briefs/trovareta.md"
+  },
+  {
+    "id": "rabiolava",
+    "ancoras": "Arraia laranja e dourada com azul-escuro; duas asas/nadadeiras curvas; caudas longas em fluxo de lava.",
+    "leitura": "A manta é o animal central. O peso lento dos fluxos distingue de pássaros de fogo e serpentes.",
+    "pre": "Arraia pequena de disco quase arredondado, duas nadadeiras largas e uma cauda quente curta em fita. Nada como se atravessasse um fluido espesso; não ganhar patas para parecer filhote.",
+    "evo": "Manta de disco profundo e pontas das nadadeiras curvadas para cima, com duas rabiolas longas separadas que acompanham a curva depois do corpo. A abertura frontal lembra respiração, não boca de dragão acrescentada.",
+    "cor": "Coral, ouro e azul-marinho; creme no ventre e vinho nas zonas frias. Diferenciar lava incandescente de crosta sem textura realista de pedra.",
+    "limite": "A opção B foi escolhida; A e C estão reservadas para outros Soulmonsters. Não absorvê-las na família nem transformar o animal em labareda sem contorno.",
+    "especial": "guardiao",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Rabiolava",
+    "estado": "Proposta condicionada ao papel de guardião",
+    "referencias": [
+      {
+        "id": "rabiolava",
+        "name": "rabiolava",
+        "source": "art/soulgen/keys/rabiolava/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\rabiolava\\README.md"
+      }
+    ],
+    "brief": "briefs/rabiolava.md"
+  },
+  {
+    "id": "glacerol",
+    "ancoras": "Felino azul-claro e creme; planos frios no pelo; dois fios saindo da região das orelhas com terminais de losango e cauda bifurcada.",
+    "leitura": "O corte por fios e o deslocamento felino são o mecanismo. Orelhas e fios precisam continuar localizáveis em ação.",
+    "pre": "Felino de patas largas e pescoço curto, fios ainda curtos enrolados junto às orelhas e dois pequenos terminais distintos. A cauda já indica bifurcação; move-se com cautela para não prender os fios.",
+    "evo": "Felino de peito baixo e pescoço longo, fios capazes de abrir dois arcos limpos acima do corpo. Cauda bifurcada estabiliza a curva; não adicionar pares de fios em cada membro.",
+    "cor": "Azul-gelo, creme, índigo e lavanda; um acento coral pequeno pode aquecer o vínculo, sem descaracterizar a paleta fria.",
+    "limite": "A arquitetura A está escolhida; demais propostas guardadas para outras espécies. Não usar presas de Rai, reparo prateado de Nevagume ou gelo hiper-realista.",
+    "especial": "guardiao",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Glacerol",
+    "estado": "Proposta condicionada ao papel de guardião",
+    "referencias": [
+      {
+        "id": "glacerol",
+        "name": "glacerol",
+        "source": "art/soulgen/keys/glacerol/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\glacerol\\README.md"
+      }
+    ],
+    "brief": "briefs/glacerol.md"
+  },
+  {
+    "id": "tufanocorte",
+    "ancoras": "Carneiro de quatro cascos; dois chifres grandes em espiral oca; jade, creme e azul-escuro, juba de dobras e duas rabiolas.",
+    "leitura": "Força de apoio e vento canalizado. Os chifres são volumes ocos orgânicos, não rotores que giram sem conexão.",
+    "pre": "Cordeiro de base larga e quatro cascos inequívocos, duas curvas de chifre ainda abertas e juba curta. O vento atravessa a abertura antes de mexer as duas fitas da cauda.",
+    "evo": "Carneiro de peito e nuca fortes, espirais maiores mas com vazio interior preservado e centro de massa sobre quatro apoios. Avança com cabeça baixa e abre o peito ao conter uma rajada; giro vem do pescoço, não do chifre isolado.",
+    "cor": "Jade, creme e azul profundo; ocre e coral nos vínculos, com poucas zonas saturadas para não fragmentar o corpo.",
+    "limite": "A escolhida; B/C reservadas para outros. Sem quinto casco, braços humanos, chifres sólidos ou mecanismo de ventilador.",
+    "especial": "guardiao",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Tufanocorte",
+    "estado": "Proposta condicionada ao papel de guardião",
+    "referencias": [
+      {
+        "id": "tufanocorte",
+        "name": "tufanocorte",
+        "source": "art/soulgen/keys/tufanocorte/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\tufanocorte\\README.md"
+      }
+    ],
+    "brief": "briefs/tufanocorte.md"
+  },
+  {
+    "id": "mormaco",
+    "ancoras": "Couraça roxa e magenta de placas grandes com losangos claros; focinho ocre; dois gêiseres azuis nas costas e vela traseira.",
+    "leitura": "Presença imponente num pântano profundo. A grande parte do corpo pode estar submersa; a silhueta de superfície já comunica escala.",
+    "pre": "Hipótese a validar: criatura de couraça pequena em três grandes placas, dois respiradouros que soltam água baixa e focinho ocre. Mesmo jovem, manter dois pontos de jato; não copiar Veskoro de três jatos.",
+    "evo": "Blindado de peito e carapaça mais largos, placas sobrepostas em poucos degraus e dois respiradouros mais separados. A entrada em cena começa pela água deslocada, depois focinho e topo do casco; revelar as patas somente quando sai da água.",
+    "cor": "Magenta, ameixa e ocre; creme nos losangos e azul-ciano dos dois gêiseres. Possuído tem alteração própria em preto/violeta e amarras, sem ser evolução biológica.",
+    "limite": "O Carretel Negro é estado de possessão. Não chamar a forma livre de pré-evolução nem fazer a forma sombria ser o crescimento normal. Manter o pântano profundo e o corpo parcialmente oculto.",
+    "especial": "estado",
+    "continuidade": "A atualização visual da bíblia determina que a libertação devolve Mormaço à forma livre. Isso difere da consequência trágica decidida para Azulfazo de Gollia; a possessão não tem uma consequência universal para todos os parceiros.",
+    "nome": "Mormaço",
+    "estado": "Distinguir evolução natural de mudança de estado",
+    "referencias": [
+      {
+        "id": "mormaco",
+        "name": "mormaco",
+        "source": "art/soulgen/keys/mormaco/cutout-rig-v1/preview.png",
+        "readme": "art\\soulgen\\keys\\mormaco\\README.md"
+      }
+    ],
+    "brief": "briefs/mormaco.md"
+  },
+  {
+    "id": "eremor",
+    "ancoras": "Criatura maciça semelhante a urso; marfim, teal e terracota; garras enormes, nó vermelho central e leque radial de velas.",
+    "leitura": "Presença lendária ligada ao Elo. A leitura deve continuar monumental, sem virar apenas um urso de batalha maior.",
+    "pre": "Não recomendar filhote capturável nesta fase. Alternativa de estudo: estado recolhido, corpo comprimido e leque fechado, com o mesmo nó central; isso seria apresentação ou dormência, não uma espécie anterior.",
+    "evo": "Priorizar estado desperto: mesmo corpo e nó, leque radial abrindo em poucos planos largos e postura levantando o peso do chão. Uma evolução real exigiria antes decisão narrativa sobre o que Eremor é e o que pode mudar.",
+    "cor": "Marfim e teal com terracota, nó vermelho como foco único. Mais contraste de planos em vez de acrescentar aura dourada em toda a figura.",
+    "limite": "Enamor em referências técnicas antigas não cria outra espécie automaticamente. Não normalizar lenda em cadeia de três fases ou prometer disponibilidade no grupo.",
+    "especial": "lenda",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Eremor",
+    "estado": "Preferir estudo de estados; evolução não estabelecida",
+    "referencias": [
+      {
+        "id": "eremor",
+        "name": "eremor",
+        "source": "art/concepts/eremor-v1/eremor.png",
+        "readme": "art\\soulgen\\keys\\eremor\\README.md"
+      }
+    ],
+    "brief": "briefs/eremor.md"
+  },
+  {
+    "id": "veskoro",
+    "ancoras": "Crocodiliano verde arredondado; ventre creme, casco ameixa; três jatos tóxicos violeta e patas curtas.",
+    "leitura": "Parceiro identificado de Caio, com design existente. Falta de rig não significa ausência de identidade nem autorização para substituí-lo pelo Mata Verde.",
+    "pre": "Filhote crocodiliano de focinho arredondado, casco baixo e três saídas pequenas ainda distintas. Espirra em sequência, do menor jato ao maior; manter ventre creme e olhos altos.",
+    "evo": "Crocodiliano de torso largo e cauda propulsora, com três câmaras dorsais em alturas diferentes. Os jatos criam área de ameaça acima do corpo; focinho e pernas continuam visíveis, sem se tornar um tanque.",
+    "cor": "Verde, creme e ameixa; violeta concentrado nos três jatos e amarelo no olhar. Não copiar ocre/magenta e dois gêiseres azuis do Mormaço.",
+    "limite": "Nem Caimbira nem Mormaço são parentes confirmados. Evitar tratar toxicidade ou casco como prova de mesma família; primeiro consolidar a prancha atual e o rig.",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Veskoro",
+    "estado": "Pré-evolução e evolução propostas; sem chart confirmado",
+    "referencias": [
+      {
+        "id": "veskoro",
+        "name": "veskoro",
+        "source": "godot/assets/campaign/veskoro-v1/veskoro.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/veskoro.md"
+  },
+  {
+    "id": "capivara-boia",
+    "ancoras": "Capivara menta e creme; focinho e pés escuros; boia na região do quadril e vela foliar curva com detalhes de água.",
+    "leitura": "A opção D foi escolhida para Remar. A boia deve pertencer à leitura do corpo sem parecer um veículo colado nas costas.",
+    "pre": "Capivara de corpo pequeno e boia ainda estreita no quadril, vela dobrada e patas traseiras visíveis. Aprende a flutuar com o corpo inclinado, preservando anatomia e apoio em terra.",
+    "evo": "Capivara de dorso amplo e boia em dois volumes laterais que deixam o eixo da coluna livre. Vela curva orienta o deslocamento, patas dianteiras dirigem e traseiras impulsionam; mantém expressão tranquila.",
+    "cor": "Menta, creme e petróleo; amarelo ou coral suave em pequeno detalhe da boia. Não retornar ao caramelo uniforme do Capimansa.",
+    "limite": "Antes de gerar outra capivara bebê, decidir se é rota aquática de Capimansa ou família separada. Opções A/B/C preservadas não são fases evolutivas automaticamente.",
+    "especial": "decisao",
+    "continuidade": "Nenhum vínculo evolutivo adicional é estabelecido por este brief. Ler os limites específicos e o mapa de decisões antes de produzir arte.",
+    "nome": "Capivara-Boia — opção D",
+    "estado": "Proposta condicionada a decisão de identidade",
+    "referencias": [
+      {
+        "id": "capivara-boia",
+        "name": "capivara-boia",
+        "source": "art/creatures/capivara-boia/model-d-v1/prancha-d.png",
+        "readme": null
+      }
+    ],
+    "brief": "briefs/capivara-boia.md"
+  }
+]
