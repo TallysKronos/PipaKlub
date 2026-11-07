@@ -1,0 +1,71 @@
+{
+  "family_id": "rabbito",
+  "scope": "Estudo de alternativa adulta rápida; não substitui o chart aprovado ou integra poderes.",
+  "nodes": [
+    {
+      "id": "rabbito",
+      "name": "Rabbito",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Creme, turquesa e dourado; duas orelhas-pipa, rabiola de fio com três laços.",
+      "story": "Criado e montado por Kael; a Rabiola Antiga dá vida à sua criação singular.",
+      "decision_status": "approved",
+      "approval_note": "Identidade existente preservada de art/soulgen/keys/rabbito/color-rig-v2 e origem na Bíblia. A associação ao grau II é apenas hipótese documental.",
+      "production_status": "concept",
+      "implementation": "existente; não alterada",
+      "art": "../../../art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+      "brief": "../evolucoes-v1/briefs/rabbito.md",
+      "route": "Base",
+      "action": "Pular",
+      "tradeoff": "Não reescrito neste teste.",
+      "maturity": "Grau II sugerido; não é cânone de estágios."
+    },
+    {
+      "id": "rastro-dos-ventos",
+      "name": "Rastro dos Ventos",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Jovem de corrida: corpo em seta diagonal, pés de impulsão longos e orelhas estreitas para trás.",
+      "story": "Aprende a escolher a aterrissagem em vez de apenas saltar.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "implementation": "não integrado",
+      "art": "../../../art/creatures/rabbito-family-v1/rastro-dos-ventos/concept-v2/concept.png",
+      "brief": "../../../art/creatures/rabbito-family-v1/rastro-dos-ventos/concept-v2/brief.md",
+      "route": "Velocista",
+      "action": "Interceptar pelo salto",
+      "mechanism": "Pernas longas impulsionam; velas auriculares estreitas orientam a trajetória.",
+      "tradeoff": "A linha delicada limita confrontos prolongados e aterrissagens sem espaço.",
+      "maturity": "Hipótese de associação III/IV; sem retcon de origem.",
+      "approval_note": "Autor: \"aprovado, todos, esse estilo ficou maravilhoso\". Aprovação visual do conjunto atual, sem certificar integração ou mecânicas."
+    },
+    {
+      "id": "rabbito-velocista-relampago",
+      "name": "Velocista Relâmpago (proposta)",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Adulto leporino de máscara aberta nos olhos, impulsão diagonal, rabiola longa de três laços e raios azuis.",
+      "story": "Aprende a mudar a trajetória sem perder o parceiro que precisa alcançar; história interpretativa, não incorporada à bíblia.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/rabbito-family-v1/velocista-relampago/concept-v1/concept.png",
+      "brief": "../../../art/creatures/rabbito-family-v1/velocista-relampago/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "rabbito",
+      "to": "rastro-dos-ventos",
+      "kind": "reweaving",
+      "reason": "Relação documental existente de mobilidade, requisitos ainda propostos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "rastro-dos-ventos",
+      "to": "rabbito-velocista-relampago",
+      "kind": "reweaving",
+      "reason": "Hipótese: o salto preciso se transforma em interceptação com mudança rápida de direção. Caminho e requisito não definidos pelo autor.",
+      "decision_status": "proposed"
+    }
+  ]
+}
