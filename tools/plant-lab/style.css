@@ -37,7 +37,22 @@ body[data-tool=face] .face-material{display:flex}.wall-picker{display:flex;gap:1
 
 #variantProperties{font-size:11px;margin:10px 0}#variantProperties label,#regionPanel details label{display:flex;flex-direction:column;gap:4px;margin:8px 0}#variantProperties input,#regionPanel details input{width:100%;min-width:0}#variantProperties p{line-height:1.5}#variantProperties button{font-size:11px;margin:3px 0}#waterProperties select{max-width:100%}
 #isoOpen {position:absolute;right:16px;top:16px;z-index:3}
-#isoDialog {width:min(1080px,94vw);max-width:none}
-#isoCanvas {display:block;width:100%;height:min(64vh,620px);background:#17202a;cursor:crosshair;touch-action:none}
-.iso-controls {display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0}
-#isoInfo {min-height:2.6em;margin-bottom:0}
+#isoWorkspace {position:absolute;inset:0;z-index:4;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;background:#302c28}
+#isoWorkspace .dialog-title {gap:8px;margin:0;padding:8px 12px;border-bottom:1px solid #5e5245}
+#isoTitle {font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#isoClose {flex:none}
+#isoCanvas {display:block;width:100%;height:100%;min-height:0;background:#17202a;cursor:crosshair;touch-action:none}
+.iso-controls {display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;padding:6px 12px;max-height:32vh;overflow:auto}
+.iso-controls label {display:flex;align-items:center;gap:6px;font-size:11px;min-width:0}
+.iso-controls select {max-width:min(245px,42vw)}
+#isoSearch {width:130px;max-width:34vw}
+#isoInfo {font-size:11px;min-height:2.4em;margin:0;padding:6px 12px;overflow-wrap:anywhere}
+body.campaign-map-open {grid-template-rows:46px minmax(0,1fr)}
+.campaign-map-open .studio {grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);padding-bottom:5px}
+.campaign-map-open .workspace {grid-column:1}
+.campaign-map-open :is(.toolrail,.inspector,.asset-browser,.optionsbar,.statusbar,.title-meta) {display:none}
+#isoBrushes {display:flex;flex-wrap:wrap;gap:4px}
+#isoBrushes button[aria-pressed=true] {background:#505d31;border-color:#a9b976;color:#f0f4da}
+#isoSave:not(:disabled) {background:#59672f;border-color:#a9b976;color:#f0f4da}
+#isoCanvas[data-mode=pan] {cursor:grab}
+#isoCanvas[data-mode=pan]:active {cursor:grabbing}

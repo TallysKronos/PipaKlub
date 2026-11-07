@@ -15,6 +15,7 @@ import {atlas,texture,MASKS} from './autotile.mjs';
 import {rasterPlan} from './terrain-raster.mjs';
 import {png} from './png.mjs';
 import {zip} from './zip.mjs';
+import {revisionOf,saveCampaignMap} from './campaign-files.mjs';
 const app=fileURLToPath(new URL('./',import.meta.url)),root=fileURLToPath(new URL('../../',import.meta.url));
 const assets=new Map(ASSETS.map(a=>[a.id,path.join(root,a.id==='kael'?'art/characters/kael/overworld-diagonal-v1/frente-sw.png':(a.waterfall?'art/environment/kronasta-waterfalls-v1/sprites/':a.kit?'art/environment/kronasta-nature-v1/sprites/':'art/environment/topdown-plants-pixel-v1/')+a.id+'.png')]));
 assets.set('waterfall-atlas',path.join(root,'art/environment/kronasta-waterfalls-v1/atlas.png'));
@@ -37,16 +38,38 @@ export async function serve(req,res){const headers={'Cache-Control':'no-store','
       let file;try{file=await exportProject(data);}catch(e){return end(400,e.message);}
       res.writeHead(200,{...headers,'Content-Type':'application/zip','Content-Disposition':'attachment; filename="jardim-kronasta-godot.zip"'});res.end(file);return;
     }
-    if(!['GET','HEAD'].includes(req.method))return end(405,'Somente leitura.');
-    const mapsDir=path.join(root,'godot/assets/overworld/maps');
-    if(u.pathname==='/api/campaign-maps'||/^\/api\/campaign-maps\/[a-z0-9-]+$/.test(u.pathname)){
-      const prefix='/api/campaign-maps/';
+    const mapsDir=path.resolve(process.env.PLANT_LAB_MAPS_DIR||path.join(root,'godot/assets/overworld/maps'));
+    const campaignMap=/^\/api\/campaign-maps\/([a-z0-9-]+)$/.exec(u.pathname);
+    if(campaignMap&&req.method==='PUT'){
+      if(!/^(127\.0\.0\.1|localhost):\d+$/.test(req.headers.host??'')||req.headers.origin!==`http://${req.headers.host}`)return end(403,'Origem não permitida.');
+      if(!String(req.headers['content-type']||'').startsWith('application/json'))return end(415,'Envie JSON.');
+      const chunks=[];let size=0;
+      for await(const chunk of req){size+=chunk.length;if(size>1_000_000)return end(413,'Alterações demais.');chunks.push(chunk);}
+      let changes;
+      try{changes=JSON.parse(Buffer.concat(chunks).toString());}catch{return end(400,'JSON inválido.');}
+      if(!changes||typeof changes!=='object'||Array.isArray(changes))return end(400,'Alterações inválidas.');
       let result;
+      try{result=await saveCampaignMap(path.join(mapsDir,campaignMap[1]+'.json'),changes);}
+      catch(error){if(error.code==='ENOENT')return end(404,'Mapa não encontrado.');if(error.status)return end(error.status,error.message);throw error;}
+      res.writeHead(200,{...headers,'Content-Type':'application/json; charset=utf-8'});
+      return res.end(JSON.stringify(result));
+    }
+    if(!['GET','HEAD'].includes(req.method))return end(405,'Método indisponível.');
+    const featured=/^\/api\/featured-maps\/(cais-dos-carreteis(?:-v2)?|centro-praca-da-matriz|condominio-terracos|porto-novo-terminal|palafitas-passarelas)$/.exec(u.pathname);
+    if(featured){
+      const data=await fs.readFile(path.join(root,'art/environment/coletaneas-kronasta-v1/mapas',featured[1]+'.json'));
+      res.writeHead(200,{...headers,'Content-Type':'application/json; charset=utf-8'});
+      return res.end(req.method==='HEAD'?undefined:data);
+    }
+    if(u.pathname==='/api/campaign-maps'||campaignMap){
+      const prefix='/api/campaign-maps/';
+      let result, revision;
       if(u.pathname.startsWith(prefix)){
         const file=u.pathname.slice(prefix.length)+'.json';
         const data=await fs.readFile(path.join(mapsDir,file),'utf8').catch(e=>{if(e.code==='ENOENT')return null;throw e;});
         if(data===null)return end(404,'Mapa não encontrado.');
         result=JSON.parse(data);
+        revision=revisionOf(data);
         if(result.schema!=='overworld-godot-1')return end(404,'Mapa fora do catálogo isométrico.');
       }else{
         const files=(await fs.readdir(mapsDir)).filter(name=>/^[a-z0-9-]+\.json$/.test(name));
@@ -55,7 +78,7 @@ export async function serve(req,res){const headers={'Cache-Control':'no-store','
           return map.schema==='overworld-godot-1'?{id:file.slice(0,-5),name:map.name,w:map.w,h:map.h}:null;
         }))).filter(Boolean).sort((a,b)=>a.id.localeCompare(b.id));
       }
-      res.writeHead(200,{...headers,'Content-Type':'application/json; charset=utf-8'});
+      res.writeHead(200,{...headers,'Content-Type':'application/json; charset=utf-8',...(revision?{'X-Map-Revision':revision}:{})});
       return res.end(req.method==='HEAD'?undefined:JSON.stringify(result));
     }
     const match=/^\/assets\/([a-z0-9-]+)\.png$/.exec(u.pathname),file=match?assets.get(match[1]):pages.get(u.pathname);if(!file)return end(404,'Arquivo não encontrado.');

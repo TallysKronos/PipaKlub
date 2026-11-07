@@ -4,6 +4,7 @@ import {GROUND_COLORS} from './ground-data.mjs';
 import {wallSupport,surfaceSupport} from './terrain-field.mjs';
 import {TILE} from './model.mjs';
 import {rampSpan,rampSurface} from './ramp-surface.mjs';
+import {rampOffset} from './ramp-rules.mjs';
 import {shoreSand} from './water.mjs';
 import {supportHeight,materialMask,shape,tile,variantFor,cliffPixel,pack,wallFaceColor,wallCap} from './autotile.mjs';
 export const RASTER_PAD=200;
@@ -18,9 +19,10 @@ export function reliefRim(heights,width,height,x,y){
  }return 0;
 }
 export function rasterPlan(a,refresh=false){
-const signature=refresh?[a.width,a.height,a.autotiling!==false,a.levels.join(','),a.ramps.join(','),a.variants?.join(','),a.stairs?.join(','),a.waterDepth?.join(','),a.floors.join(','),a.cliffs.join(',')].join('|'):null,old=CACHE.get(a);
+const profiles=JSON.stringify(a.rampProfiles??null);
+const signature=refresh?[a.width,a.height,a.autotiling!==false,a.levels.join(','),a.ramps.join(','),profiles,a.variants?.join(','),a.stairs?.join(','),a.waterDepth?.join(','),a.floors.join(','),a.cliffs.join(',')].join('|'):null,old=CACHE.get(a);
 if(old&&(!refresh||old.signature===signature))return old;
-const geometryKey=[a.width,a.height,a.autotiling!==false,a.levels.join(','),a.ramps.join(',')].join('|');
+const geometryKey=[a.width,a.height,a.autotiling!==false,a.levels.join(','),a.ramps.join(','),profiles].join('|');
 const materialState={variants:[...(a.variants??[])],floors:[...a.floors],cliffs:[...a.cliffs],stairs:[...(a.stairs??[])],waterDepth:[...(a.waterDepth??[])]};
 if(old?.geometryKey===geometryKey){
  const changed=[];for(let i=0;i<a.levels.length;i++)if(Object.keys(materialState).some(k=>materialState[k][i]!==old.materialState[k][i]))changed.push(i);
@@ -33,11 +35,11 @@ if(old?.geometryKey===geometryKey){
 }
 const width=a.width*TILE,worldHeight=a.height*TILE,height=worldHeight+RASTER_PAD,length=width*height;
 let columns=null;
-if(old&&old.width===width&&old.worldHeight===worldHeight&&old.geometryState?.autotiling===(a.autotiling!==false)){
+if(old&&old.width===width&&old.worldHeight===worldHeight&&old.geometryState?.autotiling===(a.autotiling!==false)&&old.geometryState.profiles===profiles){
  columns=new Uint8Array(width);
  for(let i=0;i<a.levels.length;i++)if(a.levels[i]!==old.geometryState.levels[i]||a.ramps[i]!==old.geometryState.ramps[i]||Object.keys(materialState).some(k=>materialState[k][i]!==old.materialState[k][i])){const cx=i%a.width;for(let x=Math.max(0,(cx-2)*32);x<Math.min(width,(cx+3)*32);x++)columns[x]=1;}
 }
-const geometryState={autotiling:a.autotiling!==false,levels:[...a.levels],ramps:[...a.ramps]};
+const geometryState={autotiling:a.autotiling!==false,levels:[...a.levels],ramps:[...a.ramps],profiles};
 const top=columns?old.top.slice():new Uint32Array(length),faces=columns?old.faces.slice():new Uint32Array(length),shadow=columns?old.shadow.slice():new Uint32Array(length),depth=columns?old.depth.slice():new Float32Array(length),zmap=columns?old.zmap.slice():new Float32Array(length),owner=columns?old.owner.slice():new Int32Array(length),kind=columns?old.kind.slice():new Uint8Array(length);
 if(!columns){owner.fill(-1);depth.fill(-1);}else for(let y=0;y<height;y++)for(let x=0;x<width;x++)if(columns[x]){const n=y*width+x;top[n]=0;faces[n]=0;shadow[n]=0;depth[n]=-1;zmap[n]=0;owner[n]=-1;kind[n]=0;}
 const heights=columns?old.heights.slice():new Float32Array(width*worldHeight);
@@ -72,7 +74,7 @@ const spans=a.ramps.map((r,i)=>r?rampSpan(a,i):null);
 const rims={grass:[0,pack('526d38'),pack('b2c777')],dirt:[0,pack('886b42'),pack('d9b57a')],stone:[0,pack('58675b'),pack('c0c7a4')],sand:[0,pack('aa905e'),pack('ead29a')],water:[0,pack('315e58'),pack('67b9b1')]};
 for(const [id,c]of Object.entries(GROUND_COLORS))rims[id]=[0,pack(c.dark),pack(c.light)];
 const sandy=a.floors.map((k,i)=>k==='water'&&shoreSand(a,i));
-const pixel=(i,x,y)=>{const ix=y%32*32+x%32,k=a.floors[i];let color=tiles[i][ix];const back=isGround(k)&&!spans[i]&&a.autotiling!==false&&!shape(masks[i])[ix]?groundBackground(a,i,x%32,y%32):null;if(back)color=tile(back,255,a.variants?.[i]??variantFor(i%a.width,Math.floor(i/a.width)))[ix];if(spans[i]&&isGround(k))color=tile(k,255,a.variants?.[i]??variantFor(i%a.width,Math.floor(i/a.width)))[ix];if(k==='water'&&(a.autotiling===false||shape(masks[i])[ix]))color=waterTint(color,a.waterDepth?.[i]??0);if(sandy[i]&&a.autotiling!==false&&!shape(masks[i])[ix])color=tile('sand',255,a.variants?.[i]??variantFor(i%a.width,Math.floor(i/a.width)))[ix];const s=spans[i];if(s){const d=a.ramps[i],cross=s.horizontal?y-s.left:x-s.left,along=d==='n'?y%32:d==='s'?31-y%32:d==='e'?31-x%32:x%32;let result=rampSurface(color,cross,along,s.width);if(a.stairs?.[i]&&along%6===0)result=pack('665641');return result;}const rim=reliefRim(heights,width,worldHeight,x,y);if(!rim)return color;const surface=isGround(k)?(back??k):k==='dirt'||(a.autotiling!==false&&!shape(masks[i])[ix])?'dirt':k;return rims[surface][rim];};
+const pixel=(i,x,y)=>{const ix=y%32*32+x%32,k=a.floors[i];let color=tiles[i][ix];const back=isGround(k)&&!spans[i]&&a.autotiling!==false&&!shape(masks[i])[ix]?groundBackground(a,i,x%32,y%32):null;if(back)color=tile(back,255,a.variants?.[i]??variantFor(i%a.width,Math.floor(i/a.width)))[ix];if(spans[i]&&isGround(k))color=tile(k,255,a.variants?.[i]??variantFor(i%a.width,Math.floor(i/a.width)))[ix];if(k==='water'&&(a.autotiling===false||shape(masks[i])[ix]))color=waterTint(color,a.waterDepth?.[i]??0);if(sandy[i]&&a.autotiling!==false&&!shape(masks[i])[ix])color=tile('sand',255,a.variants?.[i]??variantFor(i%a.width,Math.floor(i/a.width)))[ix];const s=spans[i];if(s){const d=a.ramps[i],cross=s.horizontal?y-s.left:x-s.left,along=a.rampProfiles?.[i]?Math.max(0,Math.min(31,Math.floor((1-rampOffset(a,i,x+.5,y+.5))*32))):d==='n'?y%32:d==='s'?31-y%32:d==='e'?31-x%32:x%32;let result=rampSurface(color,cross,along,s.width);if(a.stairs?.[i]&&along%6===0)result=pack('665641');return result;}const rim=reliefRim(heights,width,worldHeight,x,y);if(!rim)return color;const surface=isGround(k)?(back??k):k==='dirt'||(a.autotiling!==false&&!shape(masks[i])[ix])?'dirt':k;return rims[surface][rim];};
 const faceColor=(wallCell,x,y,z,sy)=>{const distance=sy-Math.floor(y+1-z*16),i=surfaceSupport(a,x+.5,y+.5,z),wallKind=a.cliffs[wallCell],grass=(a.floors[i]==='grass'||GROUNDS.some(g=>g.id===a.floors[i]&&g.family==='Gramas'))&&(a.autotiling===false||shape(masks[i])[y%32*32+x%32]);let color=wallFaceColor(wallKind,x,y+1-sy,distance);if(distance<2)color=grass?pack(distance?'79974b':'496c35'):wallCap(wallKind,distance);if(distance===2&&grass&&x%4<3)color=pack('9cb85e');return color;};
 return {pixel,faceColor};
 }

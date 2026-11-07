@@ -1,4 +1,4 @@
-import {rampNeighbors,rampRise} from './ramp-rules.mjs';
+import {rampNeighbors,rampOffset} from './ramp-rules.mjs';
 // The paint grid stores occupancy at cell centres. Geometry samples the shared
 // dual-grid field, so neighbouring cells cannot shrink their own independent edge.
 export function dualValue(a,x,y,weight){
@@ -29,12 +29,12 @@ export function repairRampLandings(a){let changed=0;for(let i=0;i<a.ramps.length
 
 export function terrainHeight(a,x,y){
  x=Math.max(0,Math.min(a.width*32-.001,x));y=Math.max(0,Math.min(a.height*32-.001,y));const i=Math.floor(y/32)*a.width+Math.floor(x/32),h=a.levels[i];
- if(a.ramps[i])return h+rampRise(a.ramps[i],x,y);
+ if(a.ramps[i])return h+rampOffset(a,i,x,y);
  if(a.autotiling===false||rampLanding(a,i))return h;
  const gx=Math.floor(x/32-.5),gy=Math.floor(y/32-.5);
  let maximum=h;for(let dy=0;dy<2;dy++)for(let dx=0;dx<2;dx++){const xx=Math.max(0,Math.min(a.width-1,gx+dx)),yy=Math.max(0,Math.min(a.height-1,gy+dy));maximum=Math.max(maximum,a.levels[yy*a.width+xx]);}
  for(let level=maximum;level>0;level--){
- const density=dualValue(a,x,y,(cx,cy)=>{const j=cy*a.width+cx;let value=a.levels[j];if(a.ramps[j])value+=Math.max(0,Math.min(1,rampRise(a.ramps[j],Math.max(0,Math.min(31.999,x-cx*32)),Math.max(0,Math.min(31.999,y-cy*32)))));return Number(value>=level-.0001);});
+ const density=dualValue(a,x,y,(cx,cy)=>{const j=cy*a.width+cx;let value=a.levels[j];if(a.ramps[j])value+=rampOffset(a,j,Math.max(0,Math.min(31.999,x-cx*32)),Math.max(0,Math.min(31.999,y-cy*32)));return Number(value>=level-.0001);});
  if(density>=.5)return level;
  }
  return 0;

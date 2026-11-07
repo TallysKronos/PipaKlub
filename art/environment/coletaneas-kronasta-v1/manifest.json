@@ -1,0 +1,1057 @@
+[
+  {
+    "file": "pranchas/01-natureza.png",
+    "id": "01-natureza",
+    "sprites": [
+      {
+        "id": "ipe-florido",
+        "name": "ipê florido",
+        "height": 83,
+        "sourceBox": [
+          28,
+          44,
+          329,
+          270
+        ],
+        "anchor": [
+          50,
+          80
+        ],
+        "width": 100,
+        "file": "sprites/01-natureza/ipe-florido.png"
+      },
+      {
+        "id": "arvore-costeira",
+        "name": "árvore costeira",
+        "height": 85,
+        "sourceBox": [
+          397,
+          57,
+          315,
+          266
+        ],
+        "anchor": [
+          50,
+          82
+        ],
+        "width": 100,
+        "file": "sprites/01-natureza/arvore-costeira.png"
+      },
+      {
+        "id": "arbusto-coral",
+        "name": "arbusto coral",
+        "height": 43,
+        "sourceBox": [
+          773,
+          113,
+          276,
+          193
+        ],
+        "anchor": [
+          30,
+          40
+        ],
+        "width": 60,
+        "file": "sprites/01-natureza/arbusto-coral.png"
+      },
+      {
+        "id": "samambaia-enrolada",
+        "name": "samambaia enrolada",
+        "height": 41,
+        "sourceBox": [
+          1112,
+          83,
+          308,
+          222
+        ],
+        "anchor": [
+          28,
+          38
+        ],
+        "width": 56,
+        "file": "sprites/01-natureza/samambaia-enrolada.png"
+      },
+      {
+        "id": "rocha-musgosa",
+        "name": "rocha musgosa",
+        "height": 48,
+        "sourceBox": [
+          34,
+          439,
+          310,
+          211
+        ],
+        "anchor": [
+          34,
+          45
+        ],
+        "width": 68,
+        "file": "sprites/01-natureza/rocha-musgosa.png"
+      },
+      {
+        "id": "cogumelos-lilases",
+        "name": "cogumelos lilases",
+        "height": 51,
+        "sourceBox": [
+          424,
+          435,
+          240,
+          216
+        ],
+        "anchor": [
+          28,
+          48
+        ],
+        "width": 56,
+        "file": "sprites/01-natureza/cogumelos-lilases.png"
+      },
+      {
+        "id": "tronco-oco",
+        "name": "tronco oco",
+        "height": 47,
+        "sourceBox": [
+          751,
+          449,
+          304,
+          191
+        ],
+        "anchor": [
+          36,
+          44
+        ],
+        "width": 72,
+        "file": "sprites/01-natureza/tronco-oco.png"
+      },
+      {
+        "id": "capim-rabiola",
+        "name": "capim rabiola",
+        "height": 50,
+        "sourceBox": [
+          1114,
+          395,
+          284,
+          250
+        ],
+        "anchor": [
+          28,
+          47
+        ],
+        "width": 56,
+        "file": "sprites/01-natureza/capim-rabiola.png"
+      },
+      {
+        "id": "arco-de-raizes",
+        "name": "arco de raízes",
+        "height": 61,
+        "sourceBox": [
+          30,
+          812,
+          314,
+          187
+        ],
+        "anchor": [
+          50,
+          58
+        ],
+        "width": 100,
+        "file": "sprites/01-natureza/arco-de-raizes.png"
+      },
+      {
+        "id": "cacto-florido",
+        "name": "cacto florido",
+        "height": 66,
+        "sourceBox": [
+          405,
+          759,
+          269,
+          259
+        ],
+        "anchor": [
+          34,
+          63
+        ],
+        "width": 68,
+        "file": "sprites/01-natureza/cacto-florido.png"
+      },
+      {
+        "id": "taboa",
+        "name": "taboa",
+        "height": 57,
+        "sourceBox": [
+          754,
+          751,
+          279,
+          262
+        ],
+        "anchor": [
+          30,
+          54
+        ],
+        "width": 60,
+        "file": "sprites/01-natureza/taboa.png"
+      },
+      {
+        "id": "vitoria-regia",
+        "name": "vitória-régia",
+        "height": 37,
+        "sourceBox": [
+          1111,
+          812,
+          290,
+          184
+        ],
+        "anchor": [
+          28,
+          34
+        ],
+        "width": 56,
+        "file": "sprites/01-natureza/vitoria-regia.png"
+      }
+    ],
+    "title": "Natureza e trilhas"
+  },
+  {
+    "file": "pranchas/02-vila-e-cais.png",
+    "id": "02-vila-e-cais",
+    "sprites": [
+      {
+        "id": "bromelia-no-banco",
+        "name": "bromélia no banco",
+        "height": 60,
+        "sourceBox": [
+          82,
+          42,
+          208,
+          286
+        ],
+        "anchor": [
+          22,
+          57
+        ],
+        "width": 45,
+        "file": "sprites/02-vila-e-cais/bromelia-no-banco.png"
+      },
+      {
+        "id": "barraca-de-feira",
+        "name": "barraca de feira",
+        "height": 100,
+        "sourceBox": [
+          404,
+          47,
+          274,
+          278
+        ],
+        "anchor": [
+          50,
+          97
+        ],
+        "width": 99,
+        "file": "sprites/02-vila-e-cais/barraca-de-feira.png"
+      },
+      {
+        "id": "porta-azul",
+        "name": "porta azul",
+        "height": 84,
+        "sourceBox": [
+          777,
+          50,
+          258,
+          278
+        ],
+        "anchor": [
+          39,
+          81
+        ],
+        "width": 78,
+        "file": "sprites/02-vila-e-cais/porta-azul.png"
+      },
+      {
+        "id": "bancada-de-pipas",
+        "name": "bancada de pipas",
+        "height": 86,
+        "sourceBox": [
+          1122,
+          63,
+          282,
+          258
+        ],
+        "anchor": [
+          47,
+          83
+        ],
+        "width": 94,
+        "file": "sprites/02-vila-e-cais/bancada-de-pipas.png"
+      },
+      {
+        "id": "expositor-de-carreteis",
+        "name": "expositor de carretéis",
+        "height": 68,
+        "sourceBox": [
+          53,
+          406,
+          261,
+          273
+        ],
+        "anchor": [
+          32,
+          65
+        ],
+        "width": 65,
+        "file": "sprites/02-vila-e-cais/expositor-de-carreteis.png"
+      },
+      {
+        "id": "caixotes-de-laranja",
+        "name": "caixotes de laranja",
+        "height": 61,
+        "sourceBox": [
+          412,
+          425,
+          263,
+          251
+        ],
+        "anchor": [
+          32,
+          58
+        ],
+        "width": 64,
+        "file": "sprites/02-vila-e-cais/caixotes-de-laranja.png"
+      },
+      {
+        "id": "fonte-de-terracota",
+        "name": "fonte de terracota",
+        "height": 83,
+        "sourceBox": [
+          758,
+          400,
+          290,
+          285
+        ],
+        "anchor": [
+          42,
+          80
+        ],
+        "width": 84,
+        "file": "sprites/02-vila-e-cais/fonte-de-terracota.png"
+      },
+      {
+        "id": "poste-de-rua",
+        "name": "poste de rua",
+        "height": 88,
+        "sourceBox": [
+          1192,
+          384,
+          181,
+          309
+        ],
+        "anchor": [
+          26,
+          85
+        ],
+        "width": 53,
+        "file": "sprites/02-vila-e-cais/poste-de-rua.png"
+      },
+      {
+        "id": "barco-a-remo",
+        "name": "barco a remo",
+        "height": 80,
+        "sourceBox": [
+          34,
+          802,
+          296,
+          234
+        ],
+        "anchor": [
+          50,
+          77
+        ],
+        "width": 100,
+        "file": "sprites/02-vila-e-cais/barco-a-remo.png"
+      },
+      {
+        "id": "rede-e-covo",
+        "name": "rede e covo",
+        "height": 70,
+        "sourceBox": [
+          392,
+          768,
+          295,
+          272
+        ],
+        "anchor": [
+          38,
+          67
+        ],
+        "width": 76,
+        "file": "sprites/02-vila-e-cais/rede-e-covo.png"
+      },
+      {
+        "id": "cabeco-com-corda",
+        "name": "cabeço com corda",
+        "height": 48,
+        "sourceBox": [
+          788,
+          810,
+          243,
+          221
+        ],
+        "anchor": [
+          26,
+          45
+        ],
+        "width": 52,
+        "file": "sprites/02-vila-e-cais/cabeco-com-corda.png"
+      },
+      {
+        "id": "modulo-de-pier",
+        "name": "módulo de píer",
+        "height": 87,
+        "sourceBox": [
+          1110,
+          774,
+          309,
+          268
+        ],
+        "anchor": [
+          50,
+          84
+        ],
+        "width": 100,
+        "file": "sprites/02-vila-e-cais/modulo-de-pier.png"
+      }
+    ],
+    "title": "Vila, feira e cais"
+  },
+  {
+    "file": "pranchas/03-industria.png",
+    "id": "03-industria",
+    "sprites": [
+      {
+        "id": "conteiner-ocre",
+        "name": "contêiner ocre",
+        "height": 108,
+        "sourceBox": [
+          57,
+          62,
+          282,
+          262
+        ],
+        "anchor": [
+          58,
+          105
+        ],
+        "width": 116,
+        "file": "sprites/03-industria/conteiner-ocre.png"
+      },
+      {
+        "id": "portico-de-icamento",
+        "name": "pórtico de içamento",
+        "height": 101,
+        "sourceBox": [
+          406,
+          68,
+          285,
+          246
+        ],
+        "anchor": [
+          58,
+          98
+        ],
+        "width": 116,
+        "file": "sprites/03-industria/portico-de-icamento.png"
+      },
+      {
+        "id": "tubos-com-valvula",
+        "name": "tubos com válvula",
+        "height": 86,
+        "sourceBox": [
+          745,
+          57,
+          302,
+          257
+        ],
+        "anchor": [
+          50,
+          83
+        ],
+        "width": 100,
+        "file": "sprites/03-industria/tubos-com-valvula.png"
+      },
+      {
+        "id": "balizadores-com-corrente",
+        "name": "balizadores com corrente",
+        "height": 56,
+        "sourceBox": [
+          1107,
+          128,
+          300,
+          177
+        ],
+        "anchor": [
+          46,
+          53
+        ],
+        "width": 92,
+        "file": "sprites/03-industria/balizadores-com-corrente.png"
+      },
+      {
+        "id": "portao-de-enrolar",
+        "name": "portão de enrolar",
+        "height": 93,
+        "sourceBox": [
+          46,
+          410,
+          295,
+          272
+        ],
+        "anchor": [
+          50,
+          90
+        ],
+        "width": 100,
+        "file": "sprites/03-industria/portao-de-enrolar.png"
+      },
+      {
+        "id": "tambores",
+        "name": "tambores",
+        "height": 68,
+        "sourceBox": [
+          425,
+          422,
+          238,
+          261
+        ],
+        "anchor": [
+          31,
+          65
+        ],
+        "width": 62,
+        "file": "sprites/03-industria/tambores.png"
+      },
+      {
+        "id": "bobina-em-palete",
+        "name": "bobina em palete",
+        "height": 72,
+        "sourceBox": [
+          749,
+          412,
+          291,
+          275
+        ],
+        "anchor": [
+          38,
+          69
+        ],
+        "width": 76,
+        "file": "sprites/03-industria/bobina-em-palete.png"
+      },
+      {
+        "id": "compressor",
+        "name": "compressor",
+        "height": 75,
+        "sourceBox": [
+          1119,
+          415,
+          279,
+          261
+        ],
+        "anchor": [
+          40,
+          72
+        ],
+        "width": 80,
+        "file": "sprites/03-industria/compressor.png"
+      },
+      {
+        "id": "grelha-de-drenagem",
+        "name": "grelha de drenagem",
+        "height": 46,
+        "sourceBox": [
+          64,
+          813,
+          256,
+          209
+        ],
+        "anchor": [
+          28,
+          43
+        ],
+        "width": 56,
+        "file": "sprites/03-industria/grelha-de-drenagem.png"
+      },
+      {
+        "id": "caixas-amarradas",
+        "name": "caixas amarradas",
+        "height": 79,
+        "sourceBox": [
+          398,
+          769,
+          273,
+          268
+        ],
+        "anchor": [
+          40,
+          76
+        ],
+        "width": 80,
+        "file": "sprites/03-industria/caixas-amarradas.png"
+      },
+      {
+        "id": "carrinho-de-minerio",
+        "name": "carrinho de minério",
+        "height": 77,
+        "sourceBox": [
+          749,
+          776,
+          289,
+          251
+        ],
+        "anchor": [
+          44,
+          74
+        ],
+        "width": 88,
+        "file": "sprites/03-industria/carrinho-de-minerio.png"
+      },
+      {
+        "id": "sinal-com-alavanca",
+        "name": "sinal com alavanca",
+        "height": 76,
+        "sourceBox": [
+          1122,
+          759,
+          263,
+          276
+        ],
+        "anchor": [
+          36,
+          73
+        ],
+        "width": 73,
+        "file": "sprites/03-industria/sinal-com-alavanca.png"
+      }
+    ],
+    "title": "Indústria e mina"
+  },
+  {
+    "file": "pranchas/04-ruinas-e-biomas.png",
+    "id": "04-ruinas-e-biomas",
+    "sprites": [
+      {
+        "id": "pilar-de-basalto",
+        "name": "pilar de basalto",
+        "height": 84,
+        "sourceBox": [
+          55,
+          45,
+          261,
+          274
+        ],
+        "anchor": [
+          40,
+          81
+        ],
+        "width": 80,
+        "file": "sprites/04-ruinas-e-biomas/pilar-de-basalto.png"
+      },
+      {
+        "id": "verga-partida",
+        "name": "verga partida",
+        "height": 72,
+        "sourceBox": [
+          401,
+          104,
+          284,
+          209
+        ],
+        "anchor": [
+          48,
+          69
+        ],
+        "width": 96,
+        "file": "sprites/04-ruinas-e-biomas/verga-partida.png"
+      },
+      {
+        "id": "porta-de-ruina",
+        "name": "porta de ruína",
+        "height": 97,
+        "sourceBox": [
+          756,
+          45,
+          299,
+          278
+        ],
+        "anchor": [
+          52,
+          94
+        ],
+        "width": 104,
+        "file": "sprites/04-ruinas-e-biomas/porta-de-ruina.png"
+      },
+      {
+        "id": "altar-musgoso",
+        "name": "altar musgoso",
+        "height": 61,
+        "sourceBox": [
+          1112,
+          116,
+          303,
+          207
+        ],
+        "anchor": [
+          44,
+          58
+        ],
+        "width": 88,
+        "file": "sprites/04-ruinas-e-biomas/altar-musgoso.png"
+      },
+      {
+        "id": "cogumelo-do-pantano",
+        "name": "cogumelo do pântano",
+        "height": 50,
+        "sourceBox": [
+          42,
+          424,
+          284,
+          253
+        ],
+        "anchor": [
+          28,
+          47
+        ],
+        "width": 56,
+        "file": "sprites/04-ruinas-e-biomas/cogumelo-do-pantano.png"
+      },
+      {
+        "id": "raiz-com-cipo",
+        "name": "raiz com cipó",
+        "height": 87,
+        "sourceBox": [
+          387,
+          418,
+          313,
+          259
+        ],
+        "anchor": [
+          52,
+          84
+        ],
+        "width": 104,
+        "file": "sprites/04-ruinas-e-biomas/raiz-com-cipo.png"
+      },
+      {
+        "id": "pinheiro-nevado",
+        "name": "pinheiro nevado",
+        "height": 100,
+        "sourceBox": [
+          771,
+          384,
+          262,
+          290
+        ],
+        "anchor": [
+          46,
+          97
+        ],
+        "width": 91,
+        "file": "sprites/04-ruinas-e-biomas/pinheiro-nevado.png"
+      },
+      {
+        "id": "cristal-de-gelo",
+        "name": "cristal de gelo",
+        "height": 66,
+        "sourceBox": [
+          1111,
+          421,
+          309,
+          251
+        ],
+        "anchor": [
+          40,
+          63
+        ],
+        "width": 80,
+        "file": "sprites/04-ruinas-e-biomas/cristal-de-gelo.png"
+      },
+      {
+        "id": "leque-de-coral",
+        "name": "leque de coral",
+        "height": 59,
+        "sourceBox": [
+          42,
+          773,
+          299,
+          267
+        ],
+        "anchor": [
+          33,
+          56
+        ],
+        "width": 66,
+        "file": "sprites/04-ruinas-e-biomas/leque-de-coral.png"
+      },
+      {
+        "id": "algas-enraizadas",
+        "name": "algas enraizadas",
+        "height": 62,
+        "sourceBox": [
+          412,
+          753,
+          267,
+          294
+        ],
+        "anchor": [
+          28,
+          59
+        ],
+        "width": 57,
+        "file": "sprites/04-ruinas-e-biomas/algas-enraizadas.png"
+      },
+      {
+        "id": "anfora-partida",
+        "name": "ânfora partida",
+        "height": 46,
+        "sourceBox": [
+          748,
+          800,
+          307,
+          236
+        ],
+        "anchor": [
+          29,
+          43
+        ],
+        "width": 58,
+        "file": "sprites/04-ruinas-e-biomas/anfora-partida.png"
+      },
+      {
+        "id": "veio-de-ferro",
+        "name": "veio de ferro",
+        "height": 65,
+        "sourceBox": [
+          1108,
+          777,
+          313,
+          258
+        ],
+        "anchor": [
+          39,
+          62
+        ],
+        "width": 78,
+        "file": "sprites/04-ruinas-e-biomas/veio-de-ferro.png"
+      }
+    ],
+    "title": "Ruínas e biomas"
+  },
+  {
+    "file": "pranchas/05-pecas-de-percurso.png",
+    "id": "05-pecas-de-percurso",
+    "sprites": [
+      {
+        "id": "cerca-de-madeira",
+        "name": "cerca de madeira",
+        "height": 52,
+        "sourceBox": [
+          61,
+          128,
+          266,
+          151
+        ],
+        "anchor": [
+          44,
+          49
+        ],
+        "width": 88,
+        "file": "sprites/05-pecas-de-percurso/cerca-de-madeira.png"
+      },
+      {
+        "id": "ponta-de-cerca",
+        "name": "ponta de cerca",
+        "height": 64,
+        "sourceBox": [
+          467,
+          120,
+          192,
+          168
+        ],
+        "anchor": [
+          36,
+          61
+        ],
+        "width": 72,
+        "file": "sprites/05-pecas-de-percurso/ponta-de-cerca.png"
+      },
+      {
+        "id": "mureta-de-pedra",
+        "name": "mureta de pedra",
+        "height": 43,
+        "sourceBox": [
+          758,
+          140,
+          295,
+          136
+        ],
+        "anchor": [
+          44,
+          40
+        ],
+        "width": 88,
+        "file": "sprites/05-pecas-de-percurso/mureta-de-pedra.png"
+      },
+      {
+        "id": "canto-de-mureta",
+        "name": "canto de mureta",
+        "height": 58,
+        "sourceBox": [
+          1125,
+          104,
+          278,
+          188
+        ],
+        "anchor": [
+          42,
+          55
+        ],
+        "width": 84,
+        "file": "sprites/05-pecas-de-percurso/canto-de-mureta.png"
+      },
+      {
+        "id": "cabeceira-de-ponte",
+        "name": "cabeceira de ponte",
+        "height": 87,
+        "sourceBox": [
+          31,
+          409,
+          311,
+          270
+        ],
+        "anchor": [
+          50,
+          84
+        ],
+        "width": 100,
+        "file": "sprites/05-pecas-de-percurso/cabeceira-de-ponte.png"
+      },
+      {
+        "id": "tabuleiro-de-ponte",
+        "name": "tabuleiro de ponte",
+        "height": 81,
+        "sourceBox": [
+          386,
+          412,
+          321,
+          257
+        ],
+        "anchor": [
+          50,
+          78
+        ],
+        "width": 100,
+        "file": "sprites/05-pecas-de-percurso/tabuleiro-de-ponte.png"
+      },
+      {
+        "id": "escada-de-pedra",
+        "name": "escada de pedra",
+        "height": 75,
+        "sourceBox": [
+          745,
+          418,
+          313,
+          232
+        ],
+        "anchor": [
+          50,
+          72
+        ],
+        "width": 100,
+        "file": "sprites/05-pecas-de-percurso/escada-de-pedra.png"
+      },
+      {
+        "id": "rampa-em-degraus",
+        "name": "rampa em degraus",
+        "height": 77,
+        "sourceBox": [
+          1103,
+          423,
+          319,
+          241
+        ],
+        "anchor": [
+          50,
+          74
+        ],
+        "width": 100,
+        "file": "sprites/05-pecas-de-percurso/rampa-em-degraus.png"
+      },
+      {
+        "id": "placa-de-trilha",
+        "name": "placa de trilha",
+        "height": 76,
+        "sourceBox": [
+          81,
+          753,
+          208,
+          279
+        ],
+        "anchor": [
+          29,
+          73
+        ],
+        "width": 58,
+        "file": "sprites/05-pecas-de-percurso/placa-de-trilha.png"
+      },
+      {
+        "id": "trilho-reto",
+        "name": "trilho reto",
+        "height": 48,
+        "sourceBox": [
+          386,
+          833,
+          314,
+          158
+        ],
+        "anchor": [
+          46,
+          45
+        ],
+        "width": 92,
+        "file": "sprites/05-pecas-de-percurso/trilho-reto.png"
+      },
+      {
+        "id": "entroncamento",
+        "name": "entroncamento",
+        "height": 97,
+        "sourceBox": [
+          757,
+          772,
+          300,
+          249
+        ],
+        "anchor": [
+          58,
+          94
+        ],
+        "width": 116,
+        "file": "sprites/05-pecas-de-percurso/entroncamento.png"
+      },
+      {
+        "id": "pedras-de-travessia",
+        "name": "pedras de travessia",
+        "height": 59,
+        "sourceBox": [
+          1125,
+          801,
+          276,
+          189
+        ],
+        "anchor": [
+          42,
+          56
+        ],
+        "width": 84,
+        "file": "sprites/05-pecas-de-percurso/pedras-de-travessia.png"
+      }
+    ],
+    "title": "Peças de percurso"
+  }
+]

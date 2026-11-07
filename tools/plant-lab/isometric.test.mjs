@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import http from 'node:http';
 import {once} from 'node:events';
-import {projectIso,surfaceLevel,isoTerrain,pickIso,studioIso} from './isometric.mjs';
+import {projectIso,surfaceLevel,isoTerrain,pickIso,studioIso,paintCampaignFloor,moveCampaignDecoration} from './isometric.mjs';
 import {initialLayout} from './model.mjs';
 import {serve} from './server.mjs';
 
@@ -47,4 +47,24 @@ test('campaign catalog serves original native maps, including objects and events
   }finally{
     server.close();
   }
+});
+
+test('native copy changes compatible flooring without changing ramps or campaign records',()=>{
+  const original={cells:[{material:'terra',level:2,corners:['terra','grama','terra','terra']},{material:'terra',level:1,ramp:'v-'},{material:'agua',level:0}],pieces:[{id:1}],events:[{id:2}],spawn:{u:1,v:2}};
+  const copy=structuredClone(original);
+  assert.ok(paintCampaignFloor(copy,0,'piso'));
+  assert.deepEqual(copy.cells[0],{material:'piso',level:2,corners:['piso','grama','piso','piso']});
+  assert.equal(paintCampaignFloor(copy,1,'piso'),false);
+  assert.equal(paintCampaignFloor(copy,2,'piso'),false);
+  assert.deepEqual(copy.cells.slice(1),original.cells.slice(1));
+  for(const key of ['pieces','events','spawn'])assert.deepEqual(copy[key],original[key]);
+  assert.equal(original.cells[0].material,'terra');
+});
+test('native decorations move only to free cells on the same elevation',()=>{
+  const map={w:6,h:1,cells:['grama','grama','grama','terra','agua','piso'].map((material,i)=>({material,level:i===5?1:0})),
+    events:[{u:2,v:0}],pieces:[{id:1,asset:'flores',blocks:false,u:0,v:0},{id:2,asset:'pedra',blocks:true,u:1,v:0}]};
+  for(const u of [1,2,4,5,6])assert.equal(moveCampaignDecoration(map,1,u,0),false);
+  assert.equal(moveCampaignDecoration(map,2,3,0),false);
+  assert.equal(moveCampaignDecoration(map,1,3,0),true);
+  assert.equal(map.pieces[0].u,3);
 });
