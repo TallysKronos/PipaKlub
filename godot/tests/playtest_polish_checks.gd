@@ -29,6 +29,8 @@ func run() -> void:
 	check(Speech.preview(full)=="Então foi você que atravessou o bairro!","approach uses only the greeting")
 	check(full.length()>Speech.preview(full).length(),"full dialogue remains available")
 	load("res://tools/player_audit_fixtures.gd").show(app,"morro-area-5")
+	# O balão de fala ambiente é da tela pintada do Morro, que este teste cobre.
+	app._show_morro()
 	for i in 12:await process_frame
 	var place:Dictionary={}
 	for candidate in app.park.data.places:

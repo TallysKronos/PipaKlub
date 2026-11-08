@@ -290,6 +290,10 @@ func refresh(value: Dictionary) -> void:
 			var story_text: String=load("res://scripts/campaign/kronasta_story.gd").region_objective(saved_player,scene)
 			exploration_hud.objective.text=story_text if not story_text.is_empty() and scene=="mina-ferro-a" else "Explore os caminhos · M para viajar por Kronasta."
 		if scene=="parque-patio-liga":exploration_hud.objective.text=load("res://scripts/campaign/blue_exam.gd").objective(saved_player)
+		if Checkpoint.is_morro(scene):
+			# Morro do Sol: objetivo do título (defesa, requalificação) ou o desafio da área.
+			var title_goal: String=load("res://scripts/campaign/district_rules.gd").objective(saved_player,"morro")
+			exploration_hud.objective.text=title_goal if not title_goal.is_empty() else "Converse com os pipeiros e vença o desafio da área para subir o morro."
 	if is_instance_valid(mormaco):mormaco.refresh()
 
 func toggle_run() -> void:

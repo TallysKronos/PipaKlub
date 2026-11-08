@@ -2421,10 +2421,10 @@ func _execute_evolution(partner_id: String, form_id: String) -> void:
 	if not preferences.reduced_motion:
 		art.pivot_offset = Vector2(160, 160)
 		art.scale = Vector2.ONE * .6
-		art.modulate = Color(3, 3, 3, 0)
+		art.modulate.a = 0
 		var tween := art.create_tween().set_parallel()
 		tween.tween_property(art, "scale", Vector2.ONE, .55).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tween.tween_property(art, "modulate", Color.WHITE, .7)
+		tween.tween_property(art, "modulate:a", 1.0, .7)
 	_label("%s evoluiu para %s!" % [Evo.display_name(result.from, "Seu parceiro"), Evo.display_name(form_id, form_id)], page, 28)
 	var back := _button("Voltar à equipe", page, _show_collection)
 	Hud.focus_later(back)

@@ -36,7 +36,8 @@ func run_checks() -> void:
 	saved.player.equippedPartnerId = "partner"
 	saved.player.journey = {"phase": "complete", "lesson": 5}
 	check(front.session.checkpoint({"kind": "world", "scene": "morro", "position": [528, 752]}, saved.player).status == "ok", "enter Morro checkpoint")
-	front._show_saved()
+	# A tela pintada do Morro saiu do jogo (08/11); este teste continua cobrindo ela.
+	front._show_morro()
 	await process_frame
 	check(front.park != null, "Morro view created")
 	check(front.park.gate_closed, "gate initially closed")
