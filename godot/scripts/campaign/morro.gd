@@ -4,6 +4,7 @@ const Model = preload("res://scripts/campaign/morro_model.gd")
 const State = preload("res://scripts/campaign/state.gd")
 const Progression = preload("res://scripts/campaign/progression.gd")
 const District=preload("res://scripts/campaign/district_rules.gd")
+const CP=preload("res://scripts/campaign/park_checkpoint.gd")
 var session: Node
 static func reward_amount(won: bool, first_clear: bool) -> int:
 	return (120 if first_clear else 80) if won else 20
@@ -16,12 +17,21 @@ static func maps() -> Dictionary:
 	if _maps.is_empty(): _maps = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/morro/maps.json"))
 	return _maps
 
+## O jogador está junto do rival da área? Mapa isométrico (células, espaço do parque) ou
+## o mapa pintado antigo (pixels).
+static func near_rival(checkpoint: Dictionary, point: Vector2) -> bool:
+	if not point.is_finite(): return false
+	if checkpoint.get("space","")==CP.SPACE:
+		var rival:=CP.morro_rival(str(checkpoint.scene))
+		return rival.is_finite() and point.distance_to(rival)<=2.6
+	var place: Dictionary = maps()[checkpoint.scene].places.filter(func(p: Dictionary): return p.has("stage"))[0]
+	return point.distance_to(Vector2(place.point[0], place.point[1])) <= 90
+
 func start(point: Vector2) -> Dictionary:
 	var saved: Dictionary = session.snapshot()
 	if saved.checkpoint.kind != "world" or not maps().has(saved.checkpoint.scene): return {"status": "wrong_step"}
 	var data: Dictionary = maps()[saved.checkpoint.scene]
-	var place: Dictionary = data.places.filter(func(p: Dictionary): return p.has("stage"))[0]
-	if not point.is_finite() or point.distance_to(Vector2(place.point[0], place.point[1])) > 90: return {"status": "wrong_step"}
+	if not near_rival(saved.checkpoint, point): return {"status": "wrong_step"}
 	var player: Dictionary = saved.player
 	var progress: Dictionary = player.get("morro", Rules.defaults())
 	if not Rules.unlocked(progress, data.stage): return {"status": "wrong_step"}
@@ -43,14 +53,14 @@ func _begin(saved:Dictionary,point:Vector2,stage:String,context:Dictionary) -> D
 			model.q.name=source.get("npcName",source.name);model.q.color=source.foes[0].color
 			model.q.style=Rules.content().stories[source.id].styles[0]
 	player.encounter = {"id": State.new_id(), "kind": "morro", "scene": saved.checkpoint.scene, "returnPoint": [point.x, point.y], "state": model.snapshot(),"districtContext":context.duplicate(true)}
+	if saved.checkpoint.get("space","")==CP.SPACE: player.encounter.space=CP.SPACE
 	return session.checkpoint({"kind": "encounter"}, player)
 
 func offer_defense(point:Vector2) -> Dictionary:
 	var saved:Dictionary=session.snapshot()
 	if saved.checkpoint.kind!="world" or not maps().has(saved.checkpoint.scene) or not point.is_finite():return {"status":"wrong_step"}
 	var data:Dictionary=maps()[saved.checkpoint.scene]
-	var place:Dictionary=data.places.filter(func(p):return p.has("stage"))[0]
-	if point.distance_to(Vector2(place.point[0],place.point[1]))>90:return {"status":"wrong_step"}
+	if not near_rival(saved.checkpoint,point):return {"status":"wrong_step"}
 	var source:Dictionary=District.definition("morro").stages.filter(func(s):return s.id==data.stage)[0]
 	var id:=State.new_id()
 	var result:=District.offer(saved.player,"morro",source.npcId,id,saved.checkpoint.scene)
@@ -61,8 +71,7 @@ func start_defense(point:Vector2) -> Dictionary:
 	var saved:Dictionary=session.snapshot()
 	var pending:Dictionary=District.entry(saved.get("player",{}),"morro").pendingDefense
 	if saved.checkpoint.kind!="world" or pending.is_empty() or pending.scene!=saved.checkpoint.scene or not point.is_finite():return {"status":"wrong_step"}
-	var place:Dictionary=maps()[pending.scene].places.filter(func(p):return p.has("stage"))[0]
-	if point.distance_to(Vector2(place.point[0],place.point[1]))>90:return {"status":"wrong_step"}
+	if not near_rival(saved.checkpoint,point):return {"status":"wrong_step"}
 	var planned:=District.prepare(saved.player,"morro","morro-5",pending.id)
 	if planned.status!="ok":return planned
 	return _begin(saved,point,"morro-5",planned.context)
@@ -103,4 +112,6 @@ func settle() -> Dictionary:
 	if model.outcome=="won" and model.stage_id=="morro-5":
 		player.lastMorro.insignia=District.award_emblem(player,"morro")
 	player.erase("encounter")
-	return session.commit_operation("encounter-" + encounter.id, {"kind": "world", "scene": encounter.scene, "position": encounter.returnPoint}, player)
+	var back: Dictionary = {"kind": "world", "scene": encounter.scene, "position": encounter.returnPoint}
+	if encounter.get("space","")==CP.SPACE: back.space=CP.SPACE
+	return session.commit_operation("encounter-" + encounter.id, back, player)

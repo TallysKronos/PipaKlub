@@ -432,16 +432,46 @@
       "name": "Corredor do Elo",
       "scene": "kronasta-coracao-c",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-morro-a",
+      "name": "Morro do Sol · Praça da Chegada",
+      "scene": "morro",
+      "biome": "morro"
+    },
+    {
+      "id": "kronasta-morro-e",
+      "name": "Morro do Sol · Praça da Campeã",
+      "scene": "morro-area-5",
+      "biome": "morro"
+    },
+    {
+      "id": "kronasta-morro-b",
+      "name": "Morro do Sol · Escadaria da Sombra",
+      "scene": "morro-area-2",
+      "biome": "morro"
+    },
+    {
+      "id": "kronasta-morro-c",
+      "name": "Morro do Sol · Laje dos Ventos",
+      "scene": "morro-area-3",
+      "biome": "morro"
+    },
+    {
+      "id": "kronasta-morro-d",
+      "name": "Morro do Sol · Mirante da Caixa-d’água",
+      "scene": "morro-area-4",
+      "biome": "morro"
     }
   ],
   "scenes": {
     "park-clearing": "clareira-do-papel",
     "park-trail": "jardim-das-pipas",
-    "morro-area-2": "morro-escadaria-da-sombra",
-    "morro-area-3": "morro-laje-dos-ventos",
-    "morro-area-4": "morro-mirante-da-caixa-dagua",
-    "morro-area-5": "morro-parque-dos-ventos",
-    "morro": "morro-praca-da-chegada",
+    "morro-area-2": "kronasta-morro-b",
+    "morro-area-3": "kronasta-morro-c",
+    "morro-area-4": "kronasta-morro-d",
+    "morro-area-5": "kronasta-morro-e",
+    "morro": "kronasta-morro-a",
     "quintal": "rua-dos-ventos",
     "park-veredas": "veredas-do-encanamento",
     "kronasta-bosque-b": "kronasta-bosque-b",

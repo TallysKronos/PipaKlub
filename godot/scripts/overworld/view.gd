@@ -1740,7 +1740,7 @@ func _build_events() -> void:
 				if event.props.has("storySpriteRegion"):region=event.props.storySpriteRegion
 				list=[{"name":event.name,"image":path,"bounds":region}]
 			if event.props.has("npcIdentity"):
-				list=[{"name":event.name if event.props.get("acao","")=="ruinasDuel" or event.props.get("district","") in ["alto-da-serra","centro","lajes","porto","mirante"] else str(event.props.npcIdentity),"spriteIdentity":_npc_sprite_identity(str(event.props.npcIdentity)),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
+				list=[{"name":event.name if event.props.get("acao","")=="ruinasDuel" or event.props.get("district","") in ["alto-da-serra","centro","lajes","porto","mirante","morro"] else str(event.props.npcIdentity),"spriteIdentity":_npc_sprite_identity(str(event.props.npcIdentity)),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
 			if event.props.get("district","") in ["bambuzal","beira-canal"]:
 				var atlas_path:String="res://assets/npc-ds/"+str(event.props.district)+"-v1/"
 				var atlas:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(atlas_path+"atlas.json"))

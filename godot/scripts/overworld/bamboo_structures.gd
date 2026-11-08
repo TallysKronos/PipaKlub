@@ -44,6 +44,13 @@ static func build(view) -> void:
     S.quad(node,PackedVector2Array([Vector2(-128,-64-height),Vector2(0,-height),Vector2(128,-64-height),Vector2(0,-128-height)]),Color("5d7281"))
    else:
     var district:=str(model.data.id).trim_prefix("kronasta-").get_slice("-",0)
+    if district=="morro":
+     var feet_morro:=PackedVector2Array()
+     for at in [Vector2(piece.u,piece.v),Vector2(piece.u+4,piece.v),p,Vector2(piece.u,piece.v+4)]:
+      feet_morro.append(S.iso(at,height)-node.position)
+     var tone:int=["rosa","creme","amarela","azul","verde"].find(str(piece.props.get("variante","creme")))
+     preload("res://scripts/overworld/district_architecture.gd").build(node,feet_morro,"morro",132.0,maxi(0,tone))
+     continue
     if district in ["centro","lajes"]:
      var feet:=PackedVector2Array()
      for at in [Vector2(piece.u,piece.v),Vector2(piece.u+4,piece.v),p,Vector2(piece.u,piece.v+4)]:

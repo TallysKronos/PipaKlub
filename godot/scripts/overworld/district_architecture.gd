@@ -7,6 +7,7 @@ static func build(node:Node2D, feet:PackedVector2Array, style:String, height:flo
 		"lajes":["ddd2bb","496b74","72b6bc"],
 		"porto":["78949a","506d77","d5ae58"],
 		"palafitas":["a97751","a34f40","68a8a3"],
+		"morro":["e6d4b0","b5583a","5e8aa0"],
 	}
 	var palette:Array = colors[style]
 	var wall := Color(palette[0])
@@ -15,6 +16,10 @@ static func build(node:Node2D, feet:PackedVector2Array, style:String, height:flo
 	if style == "palafitas":
 		wall=Color(["b78759","7eaaa0","cfaa78"][variant%3])
 		roof=Color(["a34f40","446b72","8d6548"][variant%3])
+	if style == "morro":
+		# Morro do Sol: casas de alvenaria pintadas, telhado de barro em duas águas.
+		wall=Color(["d99a8f","e6d4b0","e3bf6a","8fb3c4","9fbf98"][variant%5])
+		roof=Color(["b5583a","a84f35","bf6340"][variant%3])
 	var top := PackedVector2Array()
 	for foot in feet:
 		top.append(foot - Vector2(0,height))
@@ -76,15 +81,22 @@ static func build(node:Node2D, feet:PackedVector2Array, style:String, height:flo
 	var outline := top.duplicate()
 	outline.append(top[0])
 	S.line(node,outline,2.5,roof.darkened(.34))
-	if style=="palafitas" and variant!=0:
-		var ridge_a:=top[0].lerp(top[3],.5)-Vector2(0,18+variant*9)
-		var ridge_b:=top[1].lerp(top[2],.5)-Vector2(0,18+variant*9)
+	if (style=="palafitas" and variant!=0) or style=="morro":
+		var rise:=26.0 if style=="morro" else 18.0+variant*9
+		var ridge_a:=top[0].lerp(top[3],.5)-Vector2(0,rise)
+		var ridge_b:=top[1].lerp(top[2],.5)-Vector2(0,rise)
 		S.quad(node,PackedVector2Array([top[0],top[1],ridge_b,ridge_a]),roof.lightened(.15))
 		S.quad(node,PackedVector2Array([ridge_a,ridge_b,top[2],top[3]]),roof)
 		S.quad(node,PackedVector2Array([top[1],ridge_b,top[2]]),wall.darkened(.23))
 		for strip in [.2,.4,.6,.8]:
 			S.line(node,PackedVector2Array([top[3].lerp(top[2],strip),ridge_a.lerp(ridge_b,strip),top[0].lerp(top[1],strip)]),1.5,roof.darkened(.26))
 		S.line(node,PackedVector2Array([ridge_a,ridge_b]),3,roof.lightened(.26))
+		if style=="morro" and variant%2==0:
+			# Caixa-d'água azul sobre a cumeeira, marca das casas do morro.
+			var tank:=ridge_a.lerp(ridge_b,.3)
+			S.quad(node,PackedVector2Array([tank+Vector2(-15,0),tank+Vector2(15,0),tank+Vector2(15,-20),tank+Vector2(-15,-20)]),Color("3f7fa8"))
+			S.quad(node,PackedVector2Array([tank+Vector2(-15,-20),tank+Vector2(0,-27),tank+Vector2(15,-20),tank+Vector2(0,-13)]),Color("6aa6c8"))
+			S.line(node,PackedVector2Array([tank+Vector2(-15,-10),tank+Vector2(15,-10)]),1.5,Color("2f5f80"))
 	if style=="porto" and variant==2:
 		porto_crane(node,top)
 	if style=="lajes":

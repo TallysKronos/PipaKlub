@@ -86,7 +86,8 @@ static func build(view) -> void:
 	var dock_texture:Texture2D
 	if district_id in ["porto","palafitas"] and not Structures.geometry():
 		dock_texture=load(KITS+"cais-v1/surfaces/madeira.png")
-	var district_index := ["centro", "lajes", "porto", "palafitas"].find(district_id)
+	# O Morro do Sol usa o calçamento de pedra clara do Centro.
+	var district_index := ["centro", "lajes", "porto", "palafitas"].find("centro" if district_id=="morro" else district_id)
 	if district_index >= 0 and not Structures.geometry():
 		district_paving = ShaderMaterial.new()
 		district_paving.shader = preload("res://shaders/district_paving.gdshader")

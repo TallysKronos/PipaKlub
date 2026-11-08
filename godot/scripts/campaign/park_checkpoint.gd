@@ -1,7 +1,7 @@
 extends RefCounted
 ## Explicit coordinate version: legacy illustrated pixels never become map cells by guesswork.
 const SPACE := "parque-overworld-v1"
-const MAPS := {"kronasta-aracati-a":"kronasta-aracati-a","kronasta-aracati-b":"kronasta-aracati-b","kronasta-aracati-c":"kronasta-aracati-c","kronasta-estadio-a":"kronasta-estadio-a","kronasta-mirante-a":"kronasta-mirante-a","kronasta-mirante-b":"kronasta-mirante-b","kronasta-mirante-c":"kronasta-mirante-c","kronasta-coracao-a":"kronasta-coracao-a","kronasta-coracao-b":"kronasta-coracao-b","kronasta-coracao-c":"kronasta-coracao-c","kronasta-coracao-d":"kronasta-coracao-d","kronasta-porto-a":"kronasta-porto-a","kronasta-porto-b":"kronasta-porto-b","kronasta-porto-c":"kronasta-porto-c","kronasta-lajes-a":"kronasta-lajes-a","kronasta-lajes-b":"kronasta-lajes-b","kronasta-lajes-c":"kronasta-lajes-c","kronasta-centro-a":"kronasta-centro-a","kronasta-centro-b":"kronasta-centro-b","kronasta-centro-c":"kronasta-centro-c","parque-patio-liga":"parque-patio-liga","kronasta-palafitas-a":"kronasta-palafitas-a","kronasta-palafitas-b":"kronasta-palafitas-b","kronasta-palafitas-c":"kronasta-palafitas-c","kronasta-industrial-d":"kronasta-industrial-d","kronasta-bosque-d":"kronasta-bosque-d","kronasta-cais-a":"kronasta-cais-a","kronasta-cais-b":"kronasta-cais-b","kronasta-cais-c":"kronasta-cais-c","caverna-mural-a":"caverna-mural-a","caverna-mural-b":"caverna-mural-b","caverna-mural-c":"caverna-mural-c","kronasta-feira-a":"kronasta-feira-a","kronasta-feira-b":"kronasta-feira-b","kronasta-feira-c":"kronasta-feira-c","kronasta-beira-canal-a":"kronasta-beira-canal-a","kronasta-beira-canal-b":"kronasta-beira-canal-b","kronasta-beira-canal-c":"kronasta-beira-canal-c","kronasta-bambuzal-a":"kronasta-bambuzal-a","kronasta-bambuzal-b":"kronasta-bambuzal-b","kronasta-bambuzal-c":"kronasta-bambuzal-c","park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
+const MAPS := {"morro":"kronasta-morro-a","morro-area-2":"kronasta-morro-b","morro-area-3":"kronasta-morro-c","morro-area-4":"kronasta-morro-d","morro-area-5":"kronasta-morro-e","kronasta-aracati-a":"kronasta-aracati-a","kronasta-aracati-b":"kronasta-aracati-b","kronasta-aracati-c":"kronasta-aracati-c","kronasta-estadio-a":"kronasta-estadio-a","kronasta-mirante-a":"kronasta-mirante-a","kronasta-mirante-b":"kronasta-mirante-b","kronasta-mirante-c":"kronasta-mirante-c","kronasta-coracao-a":"kronasta-coracao-a","kronasta-coracao-b":"kronasta-coracao-b","kronasta-coracao-c":"kronasta-coracao-c","kronasta-coracao-d":"kronasta-coracao-d","kronasta-porto-a":"kronasta-porto-a","kronasta-porto-b":"kronasta-porto-b","kronasta-porto-c":"kronasta-porto-c","kronasta-lajes-a":"kronasta-lajes-a","kronasta-lajes-b":"kronasta-lajes-b","kronasta-lajes-c":"kronasta-lajes-c","kronasta-centro-a":"kronasta-centro-a","kronasta-centro-b":"kronasta-centro-b","kronasta-centro-c":"kronasta-centro-c","parque-patio-liga":"parque-patio-liga","kronasta-palafitas-a":"kronasta-palafitas-a","kronasta-palafitas-b":"kronasta-palafitas-b","kronasta-palafitas-c":"kronasta-palafitas-c","kronasta-industrial-d":"kronasta-industrial-d","kronasta-bosque-d":"kronasta-bosque-d","kronasta-cais-a":"kronasta-cais-a","kronasta-cais-b":"kronasta-cais-b","kronasta-cais-c":"kronasta-cais-c","caverna-mural-a":"caverna-mural-a","caverna-mural-b":"caverna-mural-b","caverna-mural-c":"caverna-mural-c","kronasta-feira-a":"kronasta-feira-a","kronasta-feira-b":"kronasta-feira-b","kronasta-feira-c":"kronasta-feira-c","kronasta-beira-canal-a":"kronasta-beira-canal-a","kronasta-beira-canal-b":"kronasta-beira-canal-b","kronasta-beira-canal-c":"kronasta-beira-canal-c","kronasta-bambuzal-a":"kronasta-bambuzal-a","kronasta-bambuzal-b":"kronasta-bambuzal-b","kronasta-bambuzal-c":"kronasta-bambuzal-c","park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
 ## Kronasta regions reached from the region screen. Each has parts A, B and C
 ## (art/overworld/REGIOES-E-PARTES.md); scenes are kronasta-<region>-<part>.
 const REGIONS := ["aracati","estadio","mirante","coracao","porto","lajes","centro","palafitas","bosque","industrial","pantano","montanha","bambuzal","beira-canal","feira","cais"]
@@ -96,7 +96,25 @@ static func target(scene: String, key: String) -> Vector2:
 			return Vector2(event.u+.5,event.v+.5)
 	return Vector2.INF
 
+const MORRO_SCENES := ["morro","morro-area-2","morro-area-3","morro-area-4","morro-area-5"]
+static func is_morro(scene: String) -> bool:
+	return scene in MORRO_SCENES
+
+## Rival do Morro na área (evento acao morroDuel); Vector2.INF se não houver.
+static func morro_rival(scene: String) -> Vector2:
+	for event in data(scene).get("events",[]):
+		if event.props.get("acao","")=="morroDuel": return Vector2(event.u+.5,event.v+.5)
+	return Vector2.INF
+
 static func migrate(scene: String, point: Vector2) -> Vector2:
+	if is_morro(scene):
+		# Saves do Morro pintado (pixels de 1536×1024): perto do rival volta ao rival,
+		# senão à chegada da área.
+		var old: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/morro/maps.json")).get(scene,{})
+		for place in old.get("places",[]):
+			if place.has("stage") and point.distance_to(Vector2(place.point[0],place.point[1]))<140 and morro_rival(scene).is_finite():
+				return safe(scene,morro_rival(scene)+Vector2(0,2))
+		return safe(scene,spawn(scene))
 	var anchors: Array = [[Vector2(208,816),spawn(scene)]]
 	if scene=="park-veredas":
 		anchors.append([Legacy.NINA,target(scene,"nina")])
@@ -197,6 +215,9 @@ static func exit_target(checkpoint: Dictionary, id: String, player: Dictionary) 
 		if destination in ["park-clearing","park-veredas"] and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,destination):return {"status":"story_gate"}
 		# F22: at night the exit stays visible; the Bando barrier explains what opens it.
 		if load("res://scripts/campaign/endgame_story.gd").exit_blocked(event,player,source):return {"status":"night_barrier"}
+		# Morro do Sol: a subida para a próxima área abre depois do desafio da área.
+		if event.props.has("morroGate") and not player.get("morro",{}).get("stars",{}).has(str(event.props.morroGate)):return {"status":"morro_gate"}
+		if destination=="quintal" and is_morro(source): return {"status":"ok","scene":destination,"point":Vector2(2592,1040),"space":""}
 		if destination=="quintal": return {"status":"ok","scene":destination,"point":Vector2(1792,1808),"space":""}
 		if not MAPS.has(destination): return {"status":"wrong_step"}
 		var entrance: String = event.props.get("entrada_destino","")

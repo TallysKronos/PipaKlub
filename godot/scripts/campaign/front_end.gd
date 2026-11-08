@@ -920,9 +920,6 @@ func _show_world() -> void:
 	if session.snapshot().checkpoint.scene=="quintal":
 		_show_neighborhood()
 		return
-	if Morro.maps().has(session.snapshot().checkpoint.scene):
-		_show_morro()
-		return
 	if ParkCheckpoint.MAPS.has(session.snapshot().checkpoint.scene):
 		_load_park()
 		return
@@ -1058,7 +1055,7 @@ func _neighborhood_action(id: String) -> void:
 		"kael-home":
 			if _result(session.checkpoint({"kind":"world","scene":"kael-home","position":[432,1008]},session.snapshot().player)):_show_saved.call_deferred()
 		"morro":
-			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",Vector2(528,752))):_show_saved.call_deferred()
+			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",ParkCheckpoint.spawn("morro"),ParkCheckpoint.SPACE)):_show_saved.call_deferred()
 		"park":
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("park-trail",Vector2(208,816))):_show_saved.call_deferred()
 
@@ -1132,7 +1129,7 @@ func _world_interact(id: String) -> void:
 		_shop_interact(id);return
 	if point.scene == "quintal":
 		if id == "morro" and session.snapshot().player.get("journey", {}).get("phase") == "complete":
-			if _result(journey.enter_world("morro", Vector2(528, 752))): _show_saved()
+			if _result(journey.enter_world("morro", ParkCheckpoint.spawn("morro"), ParkCheckpoint.SPACE)): _show_saved()
 		elif id == "park" and session.snapshot().player.get("journey", {}).get("phase") == "complete":
 			if _result(journey.enter_world("park-trail", Vector2(208, 816))): _show_saved()
 		elif id == "professor-home":
@@ -1748,6 +1745,7 @@ func _park_exit(event: Dictionary) -> void:
 		_show_kronasta()
 		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
+	if destination.status=="morro_gate":_notice("Converse com os pipeiros deste lugar e vença o desafio para seguir.");return
 	if destination.status=="story_gate":_notice("A passagem para a Clareira abre depois de conquistar o Bambuzal. Vença o Lohan e volte por aqui.");return
 	if destination.status=="night_barrier":_notice("Capanga do Bando: Sem braçadeira, ninguém passa nesta noite.\n\nUma capanga com braçadeira guarda a Praça da Matriz, no Centro A.");return
 	if not _result(destination): return
@@ -1894,6 +1892,9 @@ func _park_event(id: String) -> void:
 			return
 		if action=="districtDuel":
 			_district_action(str(event.props.duel))
+			return
+		if action=="morroDuel":
+			_morro_duel(str(event.props.duel))
 			return
 		if action=="bambuzalClue":
 			var found:Dictionary=load("res://scripts/campaign/district_campaign.gd").new(session).inspect_clue(id,park.player)
@@ -3119,6 +3120,35 @@ func _morro_action(id: String) -> void:
 				if exit_place.get("action", "") == "road_next": point = Vector2(exit_place.point[0], exit_place.point[1])
 		if _result(journey.enter_world(place.target, point)): _show_saved.call_deferred()
 
+## Desafio do Morro do Sol no mapa isométrico (o rival da área, evento acao morroDuel).
+func _morro_duel(stage: String) -> void:
+	var names := " e ".join(Morro.Rules.stage(stage).foes.map(func(f): return f.name))
+	var districts=preload("res://scripts/campaign/district_rules.gd")
+	var player:Dictionary=session.snapshot().player
+	var title:Dictionary=districts.entry(player,"morro")
+	if not title.pendingDefense.is_empty():
+		if title.pendingDefense.scene==session.snapshot().checkpoint.scene:_show_title_defense()
+		else:_notice(districts.objective(player,"morro"))
+		return
+	if title.champion=="player" and stage!="morro-5":
+		if _result(morro.offer_defense(park.player)):_show_title_defense()
+		return
+	var planned:Dictionary=districts.prepare(player,"morro",stage)
+	if planned.status=="already_applied":
+		_notice("Você já venceu %s aqui. Este desafio está concluído; o caminho segue aberto." % names)
+		return
+	if planned.status!="ok":
+		_notice(districts.objective(player,"morro") if title.completed else "Vença os desafios anteriores antes de enfrentar este pipeiro.")
+		return
+	var story: Dictionary = Morro.Rules.content().stories[stage]
+	var text := "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]]))
+	if planned.context.mode in ["requalify","reclaim"]:
+		text="Este duelo faz parte da reconquista do título. A primeira recompensa e a insígnia não serão concedidas novamente."
+		if stage=="morro-5":names=districts.opponent_name(player,"morro")
+	text += "\n\nDica de voo: " + story.tactic
+	_confirm_park(names, text, "Vamos voar!", func():
+		if _result(morro.start(park.player)): _show_saved.call_deferred())
+
 func _show_title_defense() -> void:
 	var player:Dictionary=session.snapshot().player
 	var districts=preload("res://scripts/campaign/district_rules.gd")
@@ -3126,7 +3156,8 @@ func _show_title_defense() -> void:
 	var text:="%s desafia você pelo título do Morro do Sol.\n\nSe perder ou desistir da luta, ele fica com o título e você precisa vencer os quatro desafios novamente para recuperá-lo. Sua insígnia e os caminhos já abertos continuam seus.\n\nVocê pode responder depois: o desafio permanece salvo."%opponent
 	_confirm_park("Defesa de título · "+opponent,text,"Defender meu título",func():
 		if _result(morro.start_defense(park.player)):_show_saved.call_deferred())
-	if is_instance_valid(park.goal):park.goal.text=districts.objective(player,"morro")
+	if park.get("goal")!=null and is_instance_valid(park.goal):park.goal.text=districts.objective(player,"morro")
+	elif is_instance_valid(park.get("exploration_hud")):park.exploration_hud.objective.text=districts.objective(player,"morro")
 
 func _return_morro_result() -> void:
 	if not _result(DistrictBadges.ensure_legacy(session)):return
