@@ -107,15 +107,16 @@ folha de batalha no formato de `combat-basic-azulao.png` (`idle`, `attack`, `vic
 
 | Criatura | Chave no catálogo | Concept | Estado do concept | Região |
 | --- | --- | --- | --- | --- |
-| Brotim do cervo | `cervarco-family-v1:brotim` | `art/creatures/cervarco-family-v1/brotim/concept-v1/concept.png` | Proposto | Bosque dos Ventos |
+| Brotim do cervo | `cervarco-family-v1:brotim` | `art/creatures/cervarco-family-v1/brotim/concept-v1/concept.png` | Aprovado (08/11) | Bosque dos Ventos |
 | Cantim | `canticripta:cantim` | `art/creatures/canticripta/cantim/concept-v1/concept.png` | Aprovado | Vila do Bambuzal |
 | Makim | `makareu:makim` | `art/creatures/makareu/makim/concept-v1/concept.png` | Aprovado | Beira-Canal |
-| Selim | `selacrabio:selim` | `art/creatures/selacrabio/selim/concept-v1/concept.png` | Proposto | Feira do Largo |
+| Selim | `selacrabio:selim` | `art/creatures/selacrabio/selim/concept-v1/concept.png` | Aprovado (08/11) | Feira do Largo |
 | Recim | `reciferreo:recim` | `art/creatures/reciferreo/recim/concept-v1/concept.png` | Aprovado | Cais Velho |
-| Braseco | `trinca-brasas:braseco` | `art/creatures/trinca-brasas-family-v1/braseco/concept-v1/concept.png` | Proposto | Distrito Industrial |
-| Atadim | `crocafago:atadim` | `art/creatures/crocafago/atadim/concept-v1/concept.png` | Proposto | Pântano |
+| Braseco | `trinca-brasas:braseco` | `art/creatures/trinca-brasas-family-v1/braseco/concept-v1/concept.png` | Aprovado (08/11) | Distrito Industrial |
+| Atadim | `crocafago:atadim` | `art/creatures/crocafago/atadim/concept-v1/concept.png` | Aprovado (08/11) | Pântano |
 
-Quatro concepts ainda estão como "Proposto". O dono aprova o concept antes da folha de batalha.
+O dono aprovou em 08/11/2026 os quatro concepts que estavam como "Proposto" (Brotim do cervo,
+Selim, Braseco e Atadim): as sete folhas podem ser feitas.
 Com cada folha entregue, a família entra em "encontros" na tabela da região. O nome exibido vem
 do catálogo.
 

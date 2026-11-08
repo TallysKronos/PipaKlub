@@ -87,5 +87,5 @@ campanha e vence os campeões finais em até quatro tentativas.
   bairros) é a mais incerta.
 - **Selvagens do Parque abaixo do nível no ato 3.** Continuam como estão, porque são a fonte de
   rabiolas.
-- **Moedas sem uso.** Só o Kit de Remendo (12) as consome. Uma loja ou outro uso de moedas é
-  decisão de design.
+- **Moedas.** Decidido em 08/11: vão para a loja que será criada. As recompensas sobem sem
+  quedas desde já; os preços da loja entram no próximo balanceamento.
