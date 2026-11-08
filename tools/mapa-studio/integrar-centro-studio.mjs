@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
 
 const root=new URL('../../godot/assets/overworld/maps/',import.meta.url);
 const layouts={
@@ -30,7 +31,6 @@ const aprons={
   c:[[18,15,20,16,1],[28,15,30,16,1]],
 };
 const key=(map,u,v)=>v*map.w+u;
-const identity=(piece,u,v)=>piece.asset.startsWith('centro-')&&piece.u===u&&piece.v===v;
 function accessible(start,edges){
   const graph=new Map();
   for(const [from,to] of edges){
@@ -70,34 +70,42 @@ function paintAprons(map,rectangles){
   return changed.size>0;
 }
 
-for(const [part,placements] of Object.entries(layouts)){
-  const file=new URL('kronasta-centro-'+part+'.json',root);
+export function integrateDistrict(district,layouts,aprons){
+ for(const [part,placements] of Object.entries(layouts)){
+  const file=new URL('kronasta-'+district+'-'+part+'.json',root);
   const map=JSON.parse(fs.readFileSync(file));
   const start=key(map,map.spawn.u,map.spawn.v);
   const original=accessible(start,map.oracle.edges);
   const occupied=new Set(map.oracle.walkable);
   let nextId=Math.max(...map.pieces.map(piece=>piece.id),...map.events.map(event=>event.id))+1;
   const additions=[];
-  for(const [kind,name,u,v] of placements){
-    const asset='centro-'+kind;
-    if(map.pieces.some(piece=>identity(piece,u,v)&&piece.asset===asset))continue;
-    const cell=key(map,u,v);
-    assert.ok(occupied.has(cell)&&original.has(cell)&&!map.cells[cell].ramp,`${name}: terreno inválido em ${u},${v}`);
-    assert.ok(!map.events.some(event=>event.u===u&&event.v===v),`${name}: evento no mesmo espaço`);
-    const piece={id:nextId++,name,asset,u,v,fu:1,fv:1,blocks:true,interact:null,props:{asset,pegada:'1x1',bloqueia:true}};
+  for(const [kind,name,u,v,fu=1,fv=1] of placements){
+    const asset=district+'-'+kind;
+    if(map.pieces.some(piece=>piece.u===u&&piece.v===v&&piece.asset===asset))continue;
+    const level=map.cells[key(map,u,v)].level;
+    for(let y=v;y<v+fv;y++)for(let x=u;x<u+fu;x++){
+      const cell=key(map,x,y);
+      assert.ok(occupied.has(cell)&&original.has(cell)&&!map.cells[cell].ramp&&map.cells[cell].level===level,
+        `${name}: apoio inválido em ${x},${y}`);
+      assert.ok(!map.events.some(event=>event.u===x&&event.v===y),`${name}: evento no mesmo espaço`);
+      occupied.delete(cell);
+    }
+    const piece={id:nextId++,name,asset,u,v,fu,fv,blocks:true,interact:null,props:{asset,pegada:fu+'x'+fv,bloqueia:true}};
     additions.push(piece);
-    occupied.delete(cell);
   }
   const painted=paintAprons(map,aprons[part]);
   if(!additions.length&&!painted)continue;
   const edges=map.oracle.edges.filter(([from,to])=>occupied.has(from)&&occupied.has(to));
   const reachable=accessible(start,edges);
   for(const cell of original){
-    if(occupied.has(cell))assert.ok(reachable.has(cell),`Centro ${part}: acesso perdido na célula ${cell}`);
+    if(occupied.has(cell))assert.ok(reachable.has(cell),`${district} ${part}: acesso perdido na célula ${cell}`);
   }
   map.pieces.push(...additions);
   map.oracle.edges=edges;
   map.oracle.walkable=map.oracle.walkable.filter(cell=>occupied.has(cell));
   fs.writeFileSync(file,JSON.stringify(map));
-  console.log('Centro',part.toUpperCase(),additions.length+' peças,',reachable.size+' células alcançáveis.');
+  console.log(district,part.toUpperCase(),additions.length+' peças,',reachable.size+' células alcançáveis.');
+ }
 }
+
+if(process.argv[1]===fileURLToPath(import.meta.url))integrateDistrict('centro',layouts,aprons);

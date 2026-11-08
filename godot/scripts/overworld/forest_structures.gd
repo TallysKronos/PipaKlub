@@ -3,6 +3,11 @@ extends RefCounted
 const FALL=preload("res://scripts/overworld/cave_waterfall.gd")
 const BASE="res://assets/overworld/kits/"
 static func geometry() -> bool:return OS.get_environment("KRONASTA_GEOMETRIA")=="1"
+
+static func harbor_deck_at(model,u:int,v:int)->bool:
+ for dock:Dictionary in model.data.get("forest",{}).get("docks",[]):
+  if Rect2i(dock.u,dock.v,dock.w,dock.h).has_point(Vector2i(u,v)):return true
+ return false
 static func iso(p:Vector2,h:float=0) -> Vector2:return Vector2((p.x-p.y)*32,(p.x+p.y)*16-h)
 static func uv_points(values:Array) -> PackedVector2Array:
  var result:=PackedVector2Array()
@@ -272,6 +277,8 @@ static func _stairs(view,s:Dictionary) -> void:
  var u:float=s.u;var v:float=s.v;var width:float=s.width
  var base:float=float(view.model.cell_at(Vector2i(int(u),int(v))).get("level",0))*64
  var chamber: bool = view.model.data.get("forest",{}).get("chamber",false)
+ var district: String = str(view.model.data.id).get_slice("-",1)
+ var closed: bool = view.model.data.get("forest",{}).get("closedStairs",false) or district in ["centro","lajes","porto","palafitas"]
  var tread := Color("#636077") if chamber else Color("d1c69e")
  var riser := Color("#38364c") if chamber else Color("807c67")
  for k in 8:
@@ -281,7 +288,7 @@ static func _stairs(view,s:Dictionary) -> void:
   var node:=Node2D.new();node.position=iso((a+c)*.5)+Vector2(0,4);view.actors.add_child(node)
   quad(node,PackedVector2Array([iso(a,height)-node.position,iso(b,height)-node.position,iso(c,height)-node.position,iso(d,height)-node.position]),tread)
   quad(node,PackedVector2Array([iso(d,height)-node.position,iso(c,height)-node.position,iso(c,height-8)-node.position,iso(d,height-8)-node.position]),riser)
-  if view.model.data.get("forest",{}).get("closedStairs",false):
+  if closed:
    # The sloped collision surface cannot seal the triangular void under each tread.
    # Close the actual stepped prism, inside its measured footprint, per depth slice.
    for edge in [[a,d],[b,c]]:

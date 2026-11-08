@@ -2,16 +2,18 @@ extends RefCounted
 ## Barracas derivadas da pegada 3x2; projeção e ordenação seguem o piso.
 const S=preload("res://scripts/overworld/forest_structures.gd")
 const CENTRO_KIT="res://assets/overworld/kits/centro-studio-v1/"
-const CENTRO_ART={
- "centro-fonte":["fonte-de-terracota",Vector2(42,80)],
- "centro-jardineira":["bromelia-no-banco",Vector2(22,57)],
- "centro-poste":["poste-de-rua",Vector2(26,85)],
- "centro-bancada":["bancada-de-pipas",Vector2(47,83)],
+const STUDIO_ART={
+ "fonte":["fonte-de-terracota",Vector2(42,80)],
+ "jardineira":["bromelia-no-banco",Vector2(22,57)],
+ "poste":["poste-de-rua",Vector2(26,85)],
+ "bancada":["bancada-de-pipas",Vector2(47,83)],
 }
 static func build(view)->void:
  for piece:Dictionary in view.model.data.pieces:
-  if CENTRO_ART.has(piece.asset):
-   centro_piece(view,piece)
+  var asset:=str(piece.asset)
+  if asset.begins_with("centro-") or asset.begins_with("lajes-"):
+   var spec:Array=STUDIO_ART.get(asset.get_slice("-",1),[])
+   if not spec.is_empty():studio_piece(view,piece,spec)
    continue
   if piece.asset!="feira-banca":continue
   var node:=Node2D.new()
@@ -53,7 +55,7 @@ static func build(view)->void:
   S.line(node,edge,2,Color("443b36"))
   S.quad(node,PackedVector2Array([roof[3],roof[2],roof[2]+Vector2(0,12),roof[3]+Vector2(0,12)]),accent.darkened(.15))
 
-static func centro_piece(view,piece:Dictionary)->void:
+static func studio_piece(view,piece:Dictionary,spec:Array)->void:
  var origin:=Vector2(piece.u,piece.v)
  var footprint:=Vector2(piece.fu,piece.fv)
  var point:=origin+footprint*.5
@@ -68,7 +70,6 @@ static func centro_piece(view,piece:Dictionary)->void:
    outline.append(view.model.project(corner)-node.position)
   S.quad(node,outline,Color("658c8b"))
   return
- var spec:Array=CENTRO_ART[piece.asset]
  var texture:Texture2D=load(CENTRO_KIT+spec[0]+".png")
  if texture==null:return
  var shadow:=PackedVector2Array()
