@@ -513,6 +513,8 @@ func _resume_first_insignia() -> void:
 		_present_first_insignia(false)
 
 func _present_first_insignia(from_mikka:bool) -> void:
+	# O Morro carrega pela tela dos bairros: a cerimônia espera a carga (ela apagaria o diálogo).
+	while is_instance_valid(scene_loading): await get_tree().process_frame
 	var generation:=opening_generation
 	if is_instance_valid(park):
 		park.paused=true
@@ -1731,7 +1733,12 @@ func _show_park() -> void:
 func _save_park(quiet:bool=false) -> bool:
 	var space: String = park.get("checkpoint_space") if park.get("checkpoint_space")!=null else ""
 	var at:Vector2=park.checkpoint_point() if park.has_method("checkpoint_point") else park.player
-	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), at,space)
+	var result: Dictionary
+	if park.get("data") is Dictionary and park.data.has("places"):
+		# Tela antiga do Morro (mapa pintado, pixels): grava no espaço dela, sem migrar.
+		result = session.checkpoint({"kind": "world", "scene": park.get_meta("campaign_scene"), "position": [at.x, at.y]}, session.snapshot().player)
+	else:
+		result = journey.enter_world(park.get_meta("campaign_scene"), at,space)
 	if result.status != "ok":
 		_notice(_error(result.status))
 		return false
@@ -3150,6 +3157,15 @@ func _morro_action(id: String) -> void:
 	if id == "bag":
 		_show_bag()
 		return
+	# Morro no mapa isométrico: os ids de lugar do mapa pintado continuam valendo (saves,
+	# atalhos e testes antigos). O rival da área abre o desafio pelo fluxo novo.
+	if not park.get("data") is Dictionary or not park.data.has("places"):
+		var legacy: Dictionary = Morro.maps().get(session.snapshot().checkpoint.scene, {})
+		for entry in legacy.get("places", []):
+			if entry.id == id and entry.has("stage"):
+				_morro_duel(str(legacy.stage))
+				return
+		return
 	var data: Dictionary = park.data
 	var place: Dictionary = {}
 	for entry in data.places:
@@ -3265,6 +3281,9 @@ func _return_morro_result() -> void:
 	if result.get("districtMode","progress")!="progress":
 		title="Disputa pelo título"
 		text=preload("res://scripts/campaign/district_rules.gd").objective(session.snapshot().player,"morro")
+	# O Morro abre pela tela dos bairros, que carrega com cobertura: o epílogo espera a carga
+	# terminar, senão a carga apaga o diálogo (como em _notice).
+	while is_instance_valid(scene_loading): await get_tree().process_frame
 	if is_instance_valid(park):park.paused=true
 	var dialog:=_dialog(title,text,"Continuar explorando")
 	dialog.set_meta("morro_epilogue",true)

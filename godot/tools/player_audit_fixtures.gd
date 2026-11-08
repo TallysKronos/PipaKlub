@@ -52,7 +52,8 @@ static func show(front: Control, id: String) -> void:
 		saved.checkpoint = ParkCheckpoint.make(park_scene, ParkCheckpoint.spawn(park_scene), ParkCheckpoint.SPACE)
 	elif id.begins_with("morro"):
 		var scene: String = id if Morro.maps().has(id) else "morro-area-3"
-		saved.checkpoint = {"kind": "world", "scene": scene, "position": Morro.maps()[scene].spawn}
+		# Morro no mapa isométrico (08/11): posição nativa, perto do rival da área.
+		saved.checkpoint = ParkCheckpoint.make(scene, ParkCheckpoint.morro_rival(scene) + Vector2(0, 2), ParkCheckpoint.SPACE)
 		if id in ["morro-battle", "morro-won", "morro-lost"]:
 			var model := MorroModel.new(saved.player.partners[0], "morro-3")
 			model.intro = 0
