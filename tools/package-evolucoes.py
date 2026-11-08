@@ -112,7 +112,9 @@ def main():
                                                   "animations": {k: [frame] for k in ("idle", "flight", "attack", "hurt", "victory", "defeat")}}
                     entry["source"] = row["Arte no repositório"]
                 else:
+                    # Forma de base (a da oficina): sem bônus, mesmo quando o estágio é jovem (Dóber).
                     entry["provisional"] = False
+                    entry["bonus"] = 0
                 forms[form_id] = entry
                 current.append(form_id)
             previous = current
