@@ -3,6 +3,11 @@ extends RefCounted
 const FALL=preload("res://scripts/overworld/cave_waterfall.gd")
 const BASE="res://assets/overworld/kits/"
 static func geometry() -> bool:return OS.get_environment("KRONASTA_GEOMETRIA")=="1"
+
+static func harbor_deck_at(model,u:int,v:int)->bool:
+ for dock:Dictionary in model.data.get("forest",{}).get("docks",[]):
+  if Rect2i(dock.u,dock.v,dock.w,dock.h).has_point(Vector2i(u,v)):return true
+ return false
 static func iso(p:Vector2,h:float=0) -> Vector2:return Vector2((p.x-p.y)*32,(p.x+p.y)*16-h)
 static func uv_points(values:Array) -> PackedVector2Array:
  var result:=PackedVector2Array()
@@ -225,6 +230,7 @@ static func build(view) -> void:
    line(post,PackedVector2Array([Vector2(0,-4),Vector2(0,-30)]),7,Color("687e83") if f.get("industrial",false) else Color("79542f"))
    line(post,PackedVector2Array([Vector2(-3,-30),Vector2(3,-30)]),3,Color("dbba78"))
  for guard:Dictionary in f.get("guards",[]):_guard(view,guard)
+ if str(model.data.id).begins_with("kronasta-mirante-"):_mirante_guards(view)
  for stairs:Dictionary in f.get("stairs",[]):_stairs(view,stairs)
  if f.get("landmark")!=null and not f.get("bamboo",false):_landmark(view,f.landmark)
  if not geometry():
@@ -241,6 +247,21 @@ static func build(view) -> void:
    var strand:=Node2D.new();var point:=Vector2(23.7,34.5);strand.position=view.model.project(point,false)+Vector2(0,2);view.actors.add_child(strand)
    var base:Vector2=view.model.project(point)-strand.position
    line(strand,PackedVector2Array([base+Vector2(-14,0),base+Vector2(-6,-3),base+Vector2(2,0),base+Vector2(9,-4),base+Vector2(18,-2)]),1.4,Color("514c42"))
+static func _mirante_guards(view) -> void:
+ var model=view.model
+ var part:=str(model.data.id).right(1)
+ var front_row:=21 if part=="c" else 7
+ var segments:Array=[Vector3i(19,front_row,22),Vector3i(27,front_row,30)]
+ if part=="c":segments=[Vector3i(17,front_row,21),Vector3i(28,front_row,33)]
+ for segment:Vector3i in segments:
+  for u in range(segment.x,segment.z+1):
+   var edge:=Vector2i(u,segment.y)
+   var cell:Dictionary=model.cell_at(edge)
+   var lower:Dictionary=model.cell_at(edge+Vector2i(0,1))
+   if cell.is_empty() or lower.is_empty() or not model.walkable(edge):continue
+   if cell.get("ramp")!=null or lower.get("ramp")!=null:continue
+   if int(cell.level)>int(lower.level):_guard(view,{"u":u,"v":segment.y,"side":"v"})
+
 static func _guard(view,g:Dictionary) -> void:
  var model=view.model
  var a:=Vector2(g.u+1,g.v) if g.side=="u" else Vector2(g.u,g.v+1)
@@ -256,6 +277,8 @@ static func _stairs(view,s:Dictionary) -> void:
  var u:float=s.u;var v:float=s.v;var width:float=s.width
  var base:float=float(view.model.cell_at(Vector2i(int(u),int(v))).get("level",0))*64
  var chamber: bool = view.model.data.get("forest",{}).get("chamber",false)
+ var district: String = str(view.model.data.id).get_slice("-",1)
+ var closed: bool = view.model.data.get("forest",{}).get("closedStairs",false) or district in ["centro","lajes","porto","palafitas"]
  var tread := Color("#636077") if chamber else Color("d1c69e")
  var riser := Color("#38364c") if chamber else Color("807c67")
  for k in 8:
@@ -265,7 +288,7 @@ static func _stairs(view,s:Dictionary) -> void:
   var node:=Node2D.new();node.position=iso((a+c)*.5)+Vector2(0,4);view.actors.add_child(node)
   quad(node,PackedVector2Array([iso(a,height)-node.position,iso(b,height)-node.position,iso(c,height)-node.position,iso(d,height)-node.position]),tread)
   quad(node,PackedVector2Array([iso(d,height)-node.position,iso(c,height)-node.position,iso(c,height-8)-node.position,iso(d,height-8)-node.position]),riser)
-  if view.model.data.get("forest",{}).get("closedStairs",false):
+  if closed:
    # The sloped collision surface cannot seal the triangular void under each tread.
    # Close the actual stepped prism, inside its measured footprint, per depth slice.
    for edge in [[a,d],[b,c]]:

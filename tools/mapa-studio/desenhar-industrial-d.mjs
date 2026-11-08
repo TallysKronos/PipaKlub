@@ -34,6 +34,9 @@ export function industrialWarehouse({dressed=true}={}){
  events.push(object('interacao','Confronto no galpão',24,24,{acao:'warehouseStory',texto:'Três rabiolas foram costuradas num só corpo. Observe antes de avançar.'}));
  pieces.push(object('peca','Banco de manutenção',14,29,{asset:'banco',pegada:'2x1'}));
  events.push(object('interacao','Banco de manutenção',14,30,{acao:'warehouseRest',texto:'Recuperar a equipe antes de voltar ao confronto.'}));
+ // Set equipment in service alcoves after the existing IDs and outside the stairs.
+ cargo('Armário da manutenção',5,21,2,3,52,'armario');
+ cargo('Palete de peças',31,7,3,2,27,'carga');
  for(let u=16;u<36;u++)feature.guards.push({u,v:15,side:'v'});
  for(let v=20;v<28;v++)feature.guards.push({u:15,v,side:'u'});
  for(const [name,u,v]of [['salao',24,20],['recebimento',14,30],['plataforma',20,12],['ramal-oeste',8,23]])feature.shots.push({name,u,v,zoom:1,kind:'jogo'});

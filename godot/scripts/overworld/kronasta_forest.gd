@@ -83,11 +83,15 @@ static func build(view) -> void:
 	var mirante := str(model.data.id).begins_with("kronasta-mirante-")
 	var district_paving: ShaderMaterial
 	var district_id := str(model.data.id).trim_prefix("kronasta-").get_slice("-", 0)
+	var dock_texture:Texture2D
+	if district_id in ["porto","palafitas"] and not Structures.geometry():
+		dock_texture=load(KITS+"cais-v1/surfaces/madeira.png")
 	var district_index := ["centro", "lajes", "porto", "palafitas"].find(district_id)
 	if district_index >= 0 and not Structures.geometry():
 		district_paving = ShaderMaterial.new()
 		district_paving.shader = preload("res://shaders/district_paving.gdshader")
 		district_paving.set_shader_parameter("district", district_index)
+		district_paving.set_shader_parameter("rooftop", district_id=="lajes" and str(model.data.id).ends_with("-c"))
 	var paving := {}
 	if mirante and not Structures.geometry():
 		for height_level in range(5):
@@ -178,13 +182,29 @@ static func build(view) -> void:
 				var shade:=Color("#55596f") if u in range(22,26) else Color("#383b50")
 				shade=shade.lightened(.035*_hash(u,v,2))
 				poly.vertex_colors=PackedColorArray([shade,shade,shade,shade])
-			if mirante and inside and not Structures.geometry() and model.cell_at(Vector2i(u,v)).material == "piso":
+			var cell_material: String = model.cell_at(Vector2i(u,v)).get("material","") if inside else ""
+			var at_landing:=false
+			if district_paving and cell_material=="terra":
+				for stair:Dictionary in model.data.forest.get("stairs",[]):
+					var landing_start:=int(stair.v+stair.length)
+					var landing_depth:=1 if district_id=="centro" else 2
+					if v>=landing_start and v<landing_start+landing_depth and u>=int(stair.u) and u<int(stair.u+stair.width):
+						at_landing=true
+						break
+			if mirante and inside and not Structures.geometry() and cell_material=="piso":
 				poly.material = paving[level]
 			Structures.floor_cut(model,node,poly,corners,u,v,coastal_tiles)
-			if district_paving and inside and model.cell_at(Vector2i(u,v)).material == "piso":
+			if district_paving and (cell_material=="piso" or at_landing):
 				poly.texture = white
 				poly.uv = uvs
 				poly.material = district_paving
+			if dock_texture and inside and Structures.harbor_deck_at(model,u,v):
+				poly.texture=dock_texture
+				poly.material=null
+				poly.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+				var wood_uv:=PackedVector2Array()
+				for point in uvs:wood_uv.append(point*96)
+				poly.uv=wood_uv
 
 			if stadium and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 				preload("res://scripts/overworld/stadium_structures.gd").trim_floor(node,points,u)
@@ -220,6 +240,8 @@ static func build(view) -> void:
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset.begins_with("canal-") or piece.asset.begins_with("feira-") or piece.asset.begins_with("cais-"):continue
+			if piece.asset.begins_with("centro-") or piece.asset.begins_with("lajes-"):continue
+			if piece.asset.begins_with("porto-") or piece.asset.begins_with("palafitas-"):continue
 			if piece.asset in ["bambuzal-touceira","bambuzal-casa","bambuzal-bancada"]:continue
 			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
@@ -259,9 +281,12 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 	for side in ["u","v"]:
 		var n:=Vector2i(u+1,v) if side=="u" else Vector2i(u,v+1)
 		var neighbour:Dictionary=model.cell_at(n)
+		if not Structures.geometry() and str(model.data.id).begins_with("kronasta-palafitas-") and neighbour.get("material")=="agua" and Structures.harbor_deck_at(model,u,v):
+			continue # The timber piles in HarborStructures support this span.
 		var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
 		var ice:bool=bool(model.data.get("forest",{}).get("ice",false)) or bool(model.data.get("forest",{}).get("submerged",false))
-		var seal_boundary:bool=bool(model.data.get("forest",{}).get("sealBoundary",false))
+		var mirante_exit:bool=side=="v" and neighbour.is_empty() and str(model.data.id).begins_with("kronasta-mirante-") and model.walkable(Vector2i(u,v))
+		var seal_boundary:bool=bool(model.data.get("forest",{}).get("sealBoundary",false)) or mirante_exit
 		if neighbour.is_empty() and not mountain and not ice and not seal_boundary:continue
 		var a:=Vector2(u+1,v) if side=="u" else Vector2(u,v+1)
 		var b:=Vector2(u+1,v+1)
@@ -532,5 +557,3 @@ static func _masks(model) -> ImageTexture:
 				return lerpf(lerpf(g[v0*w+u0],g[v0*w+u1],tx),lerpf(g[v1*w+u0],g[v1*w+u1],tx),ty)
 			image.set_pixel(x,y,Color(sample.call(grids[0]),sample.call(grids[1]),noise.get_noise_2d(x*.25,y*.25)*.5+.5,sample.call(grids[2])))
 	return ImageTexture.create_from_image(image)
-
-
