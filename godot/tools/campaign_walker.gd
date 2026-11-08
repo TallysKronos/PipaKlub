@@ -6,7 +6,7 @@ extends SceneTree
 ## duel through the battle view's finish signal. Between beats it closes and reopens
 ## the app on the same save. Nothing is written to the save except through the game.
 ##   godot --path godot -s tools/campaign_walker.gd -- --from=serra [--until=final] [--motion] [--shots]
-## Report: tmp/campaign-walk/report.md (+ PNGs with --shots).
+## Report: tmp/campaign-walk/report.md (+ PNGs with --shots); --out=<name> picks the folder.
 const FrontEnd = preload("res://scripts/campaign/front_end.gd")
 const State = preload("res://scripts/campaign/state.gd")
 const Store = preload("res://scripts/campaign/save_store.gd")
@@ -84,7 +84,8 @@ func run() -> void:
 	motion = "--motion" in OS.get_cmdline_user_args()
 	fight_skill = int(arg("fight", "0"))
 	Engine.time_scale = float(arg("speed", "3"))
-	folder = ProjectSettings.globalize_path("res://").get_base_dir().path_join("../tmp/campaign-walk").simplify_path()
+	# --out=<name>: report folder under tmp/, so two stretches can run side by side.
+	folder = ProjectSettings.globalize_path("res://").get_base_dir().path_join("../tmp/" + arg("out", "campaign-walk")).simplify_path()
 	DirAccess.make_dir_recursive_absolute(folder)
 	root.size = Vector2i(1280, 720)
 	store_path = "user://campaign-walk-" + State.new_id()
