@@ -256,7 +256,11 @@ static func valid_encounter(value: Variant) -> bool:
 	if value.kind=="canal-gate" and (value.get("scene")!="park-veredas" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="platyx-draft" or state.get("enemyLevel")!=14):return false
 	if value.kind in ["wild","trainer"]:
 		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or not whole(state.get("enemyLevel")):return false
-		if value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-beira-canal-"):
+		# Kronasta wild encounters follow the region's table and level band (WildTables).
+		# Before this, Cais and every later region (Nv.17+) failed here and never started.
+		if value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-"):
+			if not preload("res://scripts/campaign/wild_tables.gd").allows(str(value.scene),str(state.get("enemyModelId","")),int(state.enemyLevel)):return false
+		elif value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-beira-canal-"):
 			if state.get("enemyModelId")!="lacertubo" or state.enemyLevel<12 or state.enemyLevel>14:return false
 		elif value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-feira-"):
 			if state.get("enemyModelId") not in ["rascunho-bicho-pau","rascunho-joaninha"] or state.enemyLevel<15 or state.enemyLevel>17:return false

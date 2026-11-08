@@ -1,8 +1,11 @@
 # Distribuição de Soulmonsters nos mapas · proposta de 07/11/2026
 
-Estado: **proposta** para o dono decidir. Nenhuma espécie nova entra no jogo por este documento. A
-arte do catálogo é quase toda *concept*; cada família que entrar em campo precisa de rig ou atlas
-de batalha.
+Estado: **aprovada pelo dono em 08/11/2026**. A tabela por região está em
+`godot/assets/campaign/encounters.json` (gerada por `tools/criaturas/gerar-encontros.py`), e a
+planilha preenchida em `documentation/creatures/familias/Plano-de-povoamento-aprovado.csv`
+(`tools/criaturas/preencher-povoamento.py`). Cada família entra em campo quando tiver arte de
+batalha (pedido da primeira leva em `PEDIDOS-VISUAIS-CODEX.md` §5.1). Até lá, a região mostra as
+espécies que já têm arte.
 
 Fontes internas:
 

@@ -93,6 +93,32 @@ Formato de referência: a arte de batalha em `content.json → combat` (folha co
 
 Os briefs das espécies novas seguem o agente de concept (`.agents/skills/soulmonsters-concept-personagens/`), como a bíblia já indica. Proponho começar pelas criaturas da linha A, porque são parceiros de personagens com nome que a história apresenta.
 
+### 5.1 Primeira leva de selvagens · aprovada em 08/11/2026
+
+A linha B acima (espécies inventadas na bíblia §8.1) foi substituída pela distribuição aprovada,
+que usa famílias que já existem no catálogo:
+[DISTRIBUICAO-DE-SOULMONSTERS.md](../../creatures/distribuicao/DISTRIBUICAO-DE-SOULMONSTERS.md).
+A tabela por região está em `godot/assets/campaign/encounters.json` ("planejado") e a planilha
+completa em `documentation/creatures/familias/Plano-de-povoamento-aprovado.csv`.
+
+Primeira leva: uma família por região dos atos 1–3, no estágio **Bebê**. Cada uma precisa de
+folha de batalha no formato de `combat-basic-azulao.png` (`idle`, `attack`, `victory` e
+`defeat`). O `modelId` é a chave sem a família (por exemplo, `recim`).
+
+| Criatura | Chave no catálogo | Concept | Estado do concept | Região |
+| --- | --- | --- | --- | --- |
+| Brotim do cervo | `cervarco-family-v1:brotim` | `art/creatures/cervarco-family-v1/brotim/concept-v1/concept.png` | Proposto | Bosque dos Ventos |
+| Cantim | `canticripta:cantim` | `art/creatures/canticripta/cantim/concept-v1/concept.png` | Aprovado | Vila do Bambuzal |
+| Makim | `makareu:makim` | `art/creatures/makareu/makim/concept-v1/concept.png` | Aprovado | Beira-Canal |
+| Selim | `selacrabio:selim` | `art/creatures/selacrabio/selim/concept-v1/concept.png` | Proposto | Feira do Largo |
+| Recim | `reciferreo:recim` | `art/creatures/reciferreo/recim/concept-v1/concept.png` | Aprovado | Cais Velho |
+| Braseco | `trinca-brasas:braseco` | `art/creatures/trinca-brasas-family-v1/braseco/concept-v1/concept.png` | Proposto | Distrito Industrial |
+| Atadim | `crocafago:atadim` | `art/creatures/crocafago/atadim/concept-v1/concept.png` | Proposto | Pântano |
+
+Quatro concepts ainda estão como "Proposto". O dono aprova o concept antes da folha de batalha.
+Com cada folha entregue, a família entra em "encontros" na tabela da região. O nome exibido vem
+do catálogo.
+
 ## 6. Itens e insígnias
 
 Formato de referência: `godot/assets/ui/key-items/insignia-morro-do-sol.png` (128 × 128).

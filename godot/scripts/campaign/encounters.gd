@@ -6,6 +6,7 @@ const Progression = preload("res://scripts/campaign/progression.gd")
 const Checkpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Training = preload("res://scripts/campaign/park_training.gd")
 const Pacing = preload("res://scripts/campaign/park_pacing.gd")
+const WildTables = preload("res://scripts/campaign/wild_tables.gd")
 var session: Node
 
 static func reward_amount(boss: bool, _scene: String, enemy_id: String, level: int = 1) -> int:
@@ -43,10 +44,10 @@ func start_wild(point: Vector2) -> Dictionary:
 	var first: bool = not player.get("wildDrop", {}).get("intro", false)
 	var species := ("basica" if roll < .5 else "mata") if first else ("basica" if roll < .5 else "mata" if roll < .85 else "raio")
 	var level := 5 + bytes.decode_u32(4) % 5 if scene == "park-veredas" else 1 + bytes.decode_u32(4) % 3 + (1 if scene == "park-clearing" else 0)
-	if saved.checkpoint.get("space","")==Checkpoint.SPACE: level=Pacing.wild_level(scene,bytes.decode_u32(4))
-	if scene.begins_with("kronasta-bambuzal-"):species=preload("res://scripts/campaign/bambuzal_wild_drafts.gd").choose(roll)
-	if scene.begins_with("kronasta-feira-"):species="rascunho-bicho-pau" if roll<.5 else "rascunho-joaninha"
-	if scene.begins_with("kronasta-beira-canal-"):species="lacertubo"
+	if saved.checkpoint.get("space","")==Checkpoint.SPACE:
+		level=Pacing.wild_level(scene,bytes.decode_u32(4))
+		# Kronasta regions read assets/campaign/encounters.json (WildTables).
+		species=WildTables.choose(scene,roll,first)
 	var model := Model.new(partner, {"modelId": species, "level": level})
 	Progression.discover(player, species)
 	player.encounter = {"id": State.new_id(), "kind": "wild", "scene": scene, "dropRoll": bytes.decode_u32(8) / 4294967296.0, "returnPoint": [point.x, point.y], "state": model.snapshot()}

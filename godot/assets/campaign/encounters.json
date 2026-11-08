@@ -1,0 +1,486 @@
+{
+ "version": 1,
+ "fonte": "documentation/creatures/distribuicao/DISTRIBUICAO-DE-SOULMONSTERS.md",
+ "padrao": [
+  {
+   "modelo": "basica",
+   "peso": 50
+  },
+  {
+   "modelo": "mata",
+   "peso": 35
+  },
+  {
+   "modelo": "raio",
+   "peso": 15
+  }
+ ],
+ "nuncaSelvagem": [
+  "rabbito",
+  "rai",
+  "platyx",
+  "mormaco",
+  "tufanocorte",
+  "rabiolava",
+  "trovareta",
+  "eremor",
+  "retalho",
+  "pipa-dragao",
+  "veskoro"
+ ],
+ "regioes": {
+  "kronasta-alto-da-serra": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "urso-polar:urso-polar-child",
+     "nimbalio:nimbala",
+     "lupunhal:lupisco"
+    ],
+    "incomum": "ibex-astrolabio:ibex-astrolabio",
+    "rara": "alvaneve:alvaneve",
+    "guardiao": "urso-polar:borealvo"
+   }
+  },
+  "kronasta-aracati": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "trinca-brasas:trincaguarda",
+     "javali-guerreiro:javali-young",
+     "gevoraz:gevisco"
+    ],
+    "incomum": "jarabrasa:jarabrasa",
+    "rara": "auriflama:auriflama"
+   }
+  },
+  "kronasta-bambuzal": {
+   "encontros": [
+    {
+     "modelo": "rascunho-bicho-pau",
+     "peso": 45
+    },
+    {
+     "modelo": "mata",
+     "peso": 40
+    },
+    {
+     "modelo": "rascunho-joaninha",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "canticripta:cantim",
+     "flautrevo:sussurim",
+     "cacaurama:cacau-baby"
+    ],
+    "incomum": "vesperalito:vespim",
+    "rara": "tamandua-tear:tamandua-tear",
+    "visitante": "selacrabio:selim",
+    "guardiao": "flautrevo:vesperalia"
+   }
+  },
+  "kronasta-beira-canal": {
+   "encontros": [
+    {
+     "modelo": "lacertubo",
+     "peso": 100
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "makareu:makim",
+     "cascoronte:cascoronte-baby",
+     "ibiscrito:penim"
+    ],
+    "incomum": "capivara-boia:gotim",
+    "rara": "ofirante:ofita",
+    "visitante": "trancoura:bobim",
+    "guardiao": "makareu:makareu"
+   }
+  },
+  "kronasta-bosque": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "cervarco-family-v1:brotim",
+     "mata-verde:brotim",
+     "mico-samurai:mico-baby"
+    ],
+    "incomum": "caramund:caramund-baby",
+    "rara": "yaguaru-memoria:yaguim",
+    "visitante": "canticripta:cantim",
+    "guardiao": "yaguaru-memoria:yaguarion",
+    "noite": [
+     "yaguaru-memoria:yaguim"
+    ]
+   }
+  },
+  "kronasta-cais": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "reciferreo:recim",
+     "alvorraia:marulhim",
+     "capivara-boia:gotim"
+    ],
+    "incomum": "coroabissal:bolhim",
+    "rara": "hipolanterna-family-v1:pevidim",
+    "visitante": "trinca-brasas:braseco",
+    "guardiao": "alvorraia:alvorraia",
+    "noite": [
+     "hipolanterna-family-v1:pevidim"
+    ]
+   }
+  },
+  "kronasta-caverna": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "estratonte-family-v1:seixim",
+     "rexestrato-family-v1:calquim",
+     "viuva-anjo:viuva-baby"
+    ],
+    "incomum": "vortentaculo:vortim",
+    "rara": "entrelacos:paleorix"
+   }
+  },
+  "kronasta-centro": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "riscaz:riscaz",
+     "miralis:mirafim",
+     "chaspiral:chaspiral"
+    ],
+    "incomum": "melicodia:melicodia-young",
+    "rara": "coruja-balanca:coruja-young",
+    "visitante": "gata-lunar:gata-lunar-young",
+    "guardiao": "dirubastiao:dirubastiao"
+   }
+  },
+  "kronasta-coracao": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "rexestrato-family-v1:ossirrex",
+     "estratonte-family-v1:brontela",
+     "cervarco-family-v1:cervela"
+    ],
+    "incomum": "ibiscrito:caligibis",
+    "rara": [
+     "araruna-memoria:araruna-memoria",
+     "caimbira-memoria:caimbira-memoria",
+     "tamoata-memoria:tamoata-memoria"
+    ]
+   }
+  },
+  "kronasta-feira": {
+   "encontros": [
+    {
+     "modelo": "rascunho-bicho-pau",
+     "peso": 50
+    },
+    {
+     "modelo": "rascunho-joaninha",
+     "peso": 50
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "selacrabio:selim",
+     "gevoraz:gevim",
+     "gambalhote:gambalhote-baby"
+    ],
+    "incomum": "velaravan:velim",
+    "rara": "javali-biscoito:javali-biscoito",
+    "visitante": "reciferreo:recim",
+    "guardiao": "velaravan:velaravan"
+   }
+  },
+  "kronasta-industrial": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "caracol-pneu:caracol-pneu-child",
+     "trinca-brasas:braseco",
+     "ressonhiena:risaco"
+    ],
+    "incomum": "pangolim-trovao:pangolim-child",
+    "rara": "raptorio:raptorio-young",
+    "visitante": "crocafago:atadim"
+   }
+  },
+  "kronasta-lajes": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "doberman-c:dobrim",
+     "trancoura:tatimbo",
+     "gata-lunar:gata-lunar-young"
+    ],
+    "incomum": "torvargo:torvargo-young",
+    "rara": "chaspiral:chavalsa",
+    "visitante": "vortentaculo:vortelo",
+    "guardiao": "doberman-c:dobracula",
+    "noite": [
+     "gata-lunar:noctiluna"
+    ]
+   }
+  },
+  "kronasta-mirante": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "grifarca:grifalce",
+     "nimbalio:nimbordo",
+     "etruslanca:etrusvara"
+    ],
+    "incomum": "guaravento:guaravento",
+    "rara": "pteralis:pteralis",
+    "guardiao": "etruslanca:etruslanca"
+   }
+  },
+  "kronasta-montanha": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "grifarca:grifote",
+     "gravurso:gravurso-child",
+     "avelince:avelince-child"
+    ],
+    "incomum": "lupunhal:lupisco",
+    "rara": "lince-de-cerco:lince-de-cerco-young",
+    "visitante": "nimbalio:nimbala",
+    "guardiao": "grifarca:grifarca"
+   }
+  },
+  "kronasta-palafitas": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "ibiscrito:ibisco",
+     "reciferreo:recipinca",
+     "capivara-boia:capivara-boia"
+    ],
+    "incomum": "hipolanterna-family-v1:cavalume",
+    "rara": "coroabissal:coromar",
+    "visitante": "grifarca:grifote"
+   }
+  },
+  "kronasta-pantano": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "crocafago:atadim",
+     "capivara-boia:capivara-boia",
+     "ofirante:ofirisco"
+    ],
+    "incomum": "anaconda-retrato:anaconda-child",
+    "rara": "hipolanterna-family-v1:hipomoranga",
+    "visitante": "ibiscrito:ibisco",
+    "guardiao": "crocafago:crocafago"
+   }
+  },
+  "kronasta-porto": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "vortentaculo:vortelo",
+     "coroabissal:coromar",
+     "capivara-boia:remansa"
+    ],
+    "incomum": "makareu:makaronda",
+    "rara": "vortentaculo:vortentaculo",
+    "visitante": "celofita:celofita",
+    "guardiao": "capivara-boia:marevia",
+    "noite": [
+     "vortentaculo:vortentaculo"
+    ]
+   }
+  }
+ }
+}
