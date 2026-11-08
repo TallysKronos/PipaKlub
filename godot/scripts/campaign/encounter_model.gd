@@ -48,17 +48,18 @@ static func xp_for_level(level: int) -> int:
 static func stats(level: int, bonus: float = 0) -> Dictionary:
 	var f := (clampi(level, 1, 50) - 1) / 49.0
 	var result := {"line": roundf(100 + 20 * f), "energy": roundf(100 + 15 * f), "attack": 1 + .12 * f, "defense": 1 + .1 * f, "speed": 165 * (1 + .08 * f), "regen": 18 * (1 + .1 * f)}
-	for key in result: result[key] = snappedf(result[key] * (1 + clampf(bonus, 0, 12) / 100), .000001)
+	# Bônus de criação (até 12%) + bônus do estágio de evolução (jovem 6%, adulto 12%).
+	for key in result: result[key] = snappedf(result[key] * (1 + clampf(bonus, 0, 24) / 100), .000001)
 	return result
 
 func _init(partner: Dictionary = {}, enemy: Dictionary = {}) -> void:
 	super(0)
 	partner_id = partner.get("id", "")
 	model_id = partner.get("modelId", "rabbito")
-	p = _fighter(172, 90, stats(level_for_xp(partner.get("xp", 0)), partner.get("craftBonus", 0)))
+	p = _fighter(172, 90, stats(level_for_xp(partner.get("xp", 0)), partner.get("craftBonus", 0) + preload("res://scripts/campaign/evolution.gd").bonus(model_id)))
 	p.level=level_for_xp(partner.get("xp",0))
 	q = _fighter(828, 910, {"line": 210.0, "energy": 125.0, "attack": 1.12, "defense": 1.05, "speed": 157.0, "regen": 19.0})
-	p.color = {"rabbito": 0, "basica": 0, "mata": 2, "azulao": 3, "raio": 1, "lacertubo": 2}.get(model_id, 0)
+	p.color = {"rabbito": 0, "basica": 0, "mata": 2, "azulao": 3, "raio": 1, "lacertubo": 2}.get(preload("res://scripts/campaign/evolution.gd").root(model_id), 0)
 	q.color = 2
 	q.boss = true
 	if not enemy.is_empty():

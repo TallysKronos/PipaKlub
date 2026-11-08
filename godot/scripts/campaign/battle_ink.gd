@@ -38,6 +38,9 @@ static func ellipsis(text: String, font: Font, font_size: int, width: float) -> 
 static func portrait(texture: Texture2D, art_id: String) -> AtlasTexture:
 	if portraits.is_empty(): portraits = JSON.parse_string(FileAccess.get_file_as_string(ROOT + "portrait-regions.json"))
 	var region: Array = portraits.get(art_id, [0, 0, 256, 256])
+	# Formas evoluídas (arte provisória de um quadro): o retrato é a imagem inteira.
+	if not portraits.has(art_id) and texture != null and preload("res://scripts/campaign/evolution.gd").form(art_id).has("source"):
+		region = [0, 0, texture.get_width(), texture.get_height()]
 	var result := AtlasTexture.new()
 	result.atlas = texture
 	result.region = Rect2(region[0], region[1], region[2], region[3])

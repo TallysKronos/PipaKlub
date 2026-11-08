@@ -329,7 +329,7 @@ func _show_slots(new_journey:bool=false) -> void:
 			var saved_player:Dictionary=inspection.data.get("player",{})
 			for partner in saved_player.get("partners",[]):
 				if partner.id!=saved_player.get("equippedPartnerId",""):continue
-				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,"")
+				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,preload("res://scripts/campaign/evolution.gd").art(partner.modelId,""))
 				if content.combat.has(art_id):
 					card.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
 		page.add_child(card)
@@ -981,7 +981,7 @@ func _equip_room_companion()->void:
 		if partner.modelId=="retalho-original":
 			room.equip_retalho_follower()
 			return
-		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, preload("res://scripts/campaign/evolution.gd").art(partner.modelId))
 		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
 		room.companion_frames = content.combat[id].animations.idle
 
@@ -1516,7 +1516,7 @@ func _pause_game() -> void:
 	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "team"
 	for partner in pause_overlay.player.get("partners",[]):
 		if partner.id!=pause_overlay.player.get("equippedPartnerId",""):continue
-		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,"")
+		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,preload("res://scripts/campaign/evolution.gd").art(partner.modelId,""))
 		if content.combat.has(art_id):pause_overlay.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
 	if is_instance_valid(battle):
 		pause_overlay.battle_paused=true
@@ -1724,6 +1724,8 @@ func _show_park() -> void:
 	park.action_requested.connect(_park_action)
 	park.menu_requested.connect(_pause_game)
 	park.exit_requested.connect(_park_exit)
+	if is_instance_valid(park.get("exploration_hud")) and not preload("res://scripts/campaign/evolution.gd").ready_partners(saved.player).is_empty():
+		park.exploration_hud.push_notice("Evolução disponível · abra a Equipe","item")
 	if preload("res://scripts/campaign/endgame_story.gd").release_pending(session.snapshot()):_present_trovareta_release.call_deferred()
 
 func _save_park(quiet:bool=false) -> bool:
@@ -2193,7 +2195,7 @@ func _show_collection() -> void:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 20)
 		card.add_child(row)
-		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, preload("res://scripts/campaign/evolution.gd").art(partner.modelId))
 		var art: Dictionary = content.combat[art_id]
 		var frame: Dictionary = art.animations.idle[0]
 		var texture := AtlasTexture.new()
@@ -2253,6 +2255,13 @@ func _show_collection() -> void:
 		details.add_child(progress)
 		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16).theme_type_variation="RecorteMutedText"
 		var id: String = partner.id
+		# Evolução: disponível pelo nível; o jogador confirma e escolhe o ramo.
+		var Evo = preload("res://scripts/campaign/evolution.gd")
+		if Evo.can_evolve(partner):
+			var evolve := _button("Evoluir",details,func():_show_evolution(id))
+			evolve.name="Evolve"
+		elif Evo.next_level(partner.modelId) > 0:
+			_label("Evolui no Nv. %d" % Evo.next_level(partner.modelId), details, 15).theme_type_variation="RecorteMutedText"
 		var care := _button("Cuidar",details,func():_show_partner_care(id))
 		Hud.secondary_button(care)
 		care.disabled = session.snapshot().checkpoint.get("kind","") != "world"
@@ -2310,7 +2319,7 @@ func _show_partner_bank() -> void:
 			var heading := HBoxContainer.new(); heading.add_theme_constant_override("separation",14); details.add_child(heading)
 			var art := TextureRect.new(); art.custom_minimum_size=Vector2(64,64)
 			art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			art.texture = _partner_portrait(partner.modelId) if partner.modelId in ["rabbito","basica","mata","azulao","raio","doberman-c","retalho-original","lacertubo"] else Hud.icon("pipa",true)
+			art.texture = _partner_portrait(partner.modelId) if partner.modelId in ["rabbito","basica","mata","azulao","raio","doberman-c","retalho-original","lacertubo"] or not preload("res://scripts/campaign/evolution.gd").form(partner.modelId).is_empty() else Hud.icon("pipa",true)
 			heading.add_child(art)
 			var copy := VBoxContainer.new(); copy.size_flags_horizontal=Control.SIZE_EXPAND_FILL; heading.add_child(copy)
 			_label("%s · Nv. %d" % [partner.get("personalName",partner.modelId),EncounterView.Model.level_for_xp(partner.get("xp",0))],copy,22)
@@ -2331,6 +2340,87 @@ func _show_partner_bank() -> void:
 				if first == null: first = release
 	var back := _button("Voltar aos Pipamons",page,_show_collection)
 	Hud.focus_later(first if first != null else back)
+
+## Escolha da evolução: a forma atual e as formas disponíveis, cada uma com o seu botão.
+func _show_evolution(partner_id: String) -> void:
+	var Evo = preload("res://scripts/campaign/evolution.gd")
+	var player: Dictionary = session.snapshot().player
+	var partner: Dictionary = {}
+	for entry in player.partners:
+		if entry.id == partner_id: partner = entry
+	if partner.is_empty() or not Evo.can_evolve(partner):
+		_show_collection()
+		return
+	sound.play_event("inventory.inspect")
+	var name: String = partner.get("personalName", Evo.display_name(partner.modelId, partner.modelId))
+	_simple_page("EVOLUÇÃO", true)
+	var options: Array = Evo.options(partner)
+	_label("%s está pronto para evoluir." % name if options.size() == 1 else "%s está pronto para evoluir. Escolha o caminho: a escolha é definitiva." % name, page, 20)
+	_label("Nível, experiência e condição continuam os mesmos. A nova forma ganha força nos atributos de batalha.", page, 16).theme_type_variation = "RecorteMutedText"
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 18)
+	row.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	page.add_child(row)
+	var first: Button
+	for form_id in options:
+		var form: Dictionary = Evo.form(form_id)
+		var card = load("res://scripts/campaign/hud_result_plate.gd").new()
+		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(card)
+		var column := VBoxContainer.new()
+		column.add_theme_constant_override("separation", 8)
+		card.add_child(column)
+		var art := TextureRect.new()
+		art.texture = _partner_portrait(form_id)
+		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		art.custom_minimum_size = Vector2(150, 150) if options.size() > 3 else Vector2(220, 220)
+		column.add_child(art)
+		_label(str(form.name), column, 24)
+		_label("%s · +%d%% atributos" % [str(Evo.data().stages[form.stage].name), int(form.bonus)], column, 15).theme_type_variation = "RecorteMutedText"
+		var pick := _button("Evoluir para " + str(form.name) if options.size() <= 3 else "Escolher", Hud.focus_space(column), func(): _confirm_evolution(partner_id, form_id))
+		if first == null: first = pick
+	var later := _button("Agora não", page, _show_collection)
+	Hud.secondary_button(later)
+	Hud.focus_later(first if first != null else later)
+
+func _confirm_evolution(partner_id: String, form_id: String) -> void:
+	var Evo = preload("res://scripts/campaign/evolution.gd")
+	var form_name := Evo.display_name(form_id, form_id)
+	var dialog := _confirmation("Evoluir", "Evoluir para %s? Não é possível voltar à forma anterior.\n\nEsta ação grava o progresso da campanha." % form_name, "Evoluir")
+	dialog.confirmed.connect(func(): _execute_evolution(partner_id, form_id))
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.popup_centered()
+
+func _execute_evolution(partner_id: String, form_id: String) -> void:
+	var Evo = preload("res://scripts/campaign/evolution.gd")
+	var saved: Dictionary = session.snapshot()
+	var result: Dictionary = Evo.evolve(saved.player, partner_id, form_id)
+	if result.status != "ok":
+		_notice("A evolução não está disponível agora.")
+		return
+	var stored: Dictionary = session.commit_operation("evolve-" + partner_id + "-" + form_id, saved.checkpoint, result.player)
+	if not _result(stored): return
+	sound.play_event("inventory.inspect")
+	_simple_page("EVOLUÇÃO", true)
+	var art := TextureRect.new()
+	art.texture = _partner_portrait(form_id)
+	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	art.custom_minimum_size = Vector2(320, 320)
+	art.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	page.add_child(art)
+	if not preferences.reduced_motion:
+		art.pivot_offset = Vector2(160, 160)
+		art.scale = Vector2.ONE * .6
+		art.modulate = Color(3, 3, 3, 0)
+		var tween := art.create_tween().set_parallel()
+		tween.tween_property(art, "scale", Vector2.ONE, .55).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(art, "modulate", Color.WHITE, .7)
+	_label("%s evoluiu para %s!" % [Evo.display_name(result.from, "Seu parceiro"), Evo.display_name(form_id, form_id)], page, 28)
+	var back := _button("Voltar à equipe", page, _show_collection)
+	Hud.focus_later(back)
 
 func _confirm_bank_transfer(id: String, direction: String, name: String) -> void:
 	var copy := "Guardar %s no depósito global deste perfil?" % name if direction == "deposit" else "Trazer %s para esta campanha?" % name
@@ -2374,7 +2464,7 @@ func _show_pending_rewards() -> void:
 		var body:=VBoxContainer.new();card.add_child(body)
 		var heading:=HBoxContainer.new();heading.add_theme_constant_override("separation",16);body.add_child(heading)
 		var art:=TextureRect.new();art.custom_minimum_size=Vector2(80,80);art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		art.texture=_partner_portrait(reward.partner.modelId) if reward.partner.modelId in ["rabbito","basica","mata","azulao","raio","doberman-c","retalho-original","lacertubo"] else Hud.icon("pipa",true)
+		art.texture=_partner_portrait(reward.partner.modelId) if reward.partner.modelId in ["rabbito","basica","mata","azulao","raio","doberman-c","retalho-original","lacertubo"] or not preload("res://scripts/campaign/evolution.gd").form(reward.partner.modelId).is_empty() else Hud.icon("pipa",true)
 		heading.add_child(art)
 		var caption:=VBoxContainer.new();caption.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(caption)
 		_label(name+(" · PARCEIRO DE HISTÓRIA" if reward.mandatory else " · RESERVADO"),caption,24)
@@ -3185,7 +3275,7 @@ func _return_morro_result() -> void:
 	dialog.popup_centered()
 
 func _partner_portrait(model_id: String) -> Texture2D:
-	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(model_id, "rabbito")
+	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(model_id, preload("res://scripts/campaign/evolution.gd").art(model_id))
 	var art: Dictionary = content.combat[id]
 	var frame: Dictionary = art.animations.idle[0]
 	var texture := AtlasTexture.new()
