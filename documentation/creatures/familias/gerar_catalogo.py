@@ -69,7 +69,25 @@ for p in chart_paths:
         z=R/'art/creatures/azulao-family-v1/azulao-zokk/concept-v1/concept.png'
         f['nodes'].append({'id':'azulao-zokk','name':'Fera marítima do Chifre de Zokk (rótulo)','kind':'configuration','stage':'Não definido','grade':None,'status':'Concept apreciado na conversa; manifesto ainda em avaliação','production':'Concept','story':'Transformação por material raro explorada; posição e requisitos não definidos.','art':repo(z),'brief':None,'source':'art/creatures/azulao-family-v1/DECISOES.md','rig':None})
         f['notes'].append('Alísio (pégaso) e Monção (inseto) são formas especiais; possessão de Azulfazo é estado, não novo degrau. Arte final de Azultor preserva corpo aprovado e rosto adulto revisto; metadados de versões antigas continuam divergentes.')
-    families.append(f);charts.append(p)
+    if fid not in names:
+        adult_name=next((n['name'] for n in f['nodes'] if n['id']==fid),None)
+        if adult_name:f['name']=adult_name
+    previous=next((x for x in families if x['id']==fid),None)
+    if previous:
+        previous['sources']=list(dict.fromkeys(previous['sources']+f['sources']))
+        by_id={n['id']:n for n in previous['nodes']}
+        for node in f['nodes']:
+            if node['id'] not in by_id:
+                previous['nodes'].append(node);by_id[node['id']]=node
+            elif node['status'].startswith('Aprovado') and not by_id[node['id']]['status'].startswith('Aprovado'):
+                by_id[node['id']].update(node)
+        relations={(e['from'],e['to'],e.get('kind')) for e in previous['edges']}
+        for edge in f['edges']:
+            key=(edge['from'],edge['to'],edge.get('kind'))
+            if key not in relations:previous['edges'].append(edge);relations.add(key)
+        previous['notes']+=f['notes']
+    else:families.append(f)
+    charts.append(p)
 
 def extra(fid,id,name,art,source,stage_label='Não definido',kind='configuration',note=''):
     f=next(x for x in families if x['id']==fid)
@@ -140,6 +158,16 @@ for prefix,file,opts in [('mormaco-v1','art/creatures/mormaco/concept-v1/explora
     for o in opts:reservations.append(dict(id=prefix+'-'+o.lower(),name='Reserva '+prefix+' opção '+o,option=o,art=file,source='art/creatures/reservas/quatro-guardioes-v1.md'))
 for o in 'AB':reservations.append(dict(id='puma-pipa-dragao-v3-'+o.lower(),name='Puma roxo preservado '+o,option=o,art='art/creatures/pipa-dragao/concept-v3/exploracao.png',source='art/creatures/dragao-quimico/concept-v1/brief.md'))
 
+# Decisões explícitas recentes, qualificadas por família e versão exata.
+decisions_path=D/'decisoes-visuais.json'
+if decisions_path.exists():
+    for decision in read(decisions_path)['decisions']:
+        family=next(f for f in families if f['id']==decision['family_id'])
+        node=next(n for n in family['nodes'] if n['id']==decision['node_id'])
+        assert (R/decision['art']).is_file(),decision['art']
+        node.update(status='Aprovado visualmente',art=decision['art'],approval_note=decision['quote']+' — '+decision['scope'])
+        if repo(decisions_path) not in family['sources']:family['sources'].append(repo(decisions_path))
+
 # Avisos de divergência são editoriais; fontes não são reescritas.
 warnings += ['Brotim aparece no cervo e em Mata Verde; IDs precisam ser qualificados por família.', 'Azulão e Azulongo são registros distintos; não foi inventada ligação entre eles.', 'Micofolha e mico-samurai; Rexal e Rexestrato; Jaguarluar e Yaguarú também não foram fundidos por semelhança.', 'Há aprovações na conversa que não chegaram aos charts antigos. O catálogo conserva o estado registral e aponta a divergência, sem reaprovar automaticamente.', 'Nomes de trabalho aprovados visualmente não se tornam nomes definitivos de espécie.', 'Existência de rig não comprova integração, animação aprovada ou uso atual no jogo.', 'Ghinues e Zokk são criaturas mencionadas como origem de relíquias; sem design próprio identificado neste levantamento.', 'O tema Onze Cavaleiros é uma coleção transversal, não família biológica nem lista fechada de onze membros aprovados.']
 all_records=[(f,n) for f in families for n in f['nodes'] if not n.get('reference_only')]
@@ -148,11 +176,11 @@ for f,n in all_records:
     key=('shared:'+n['id']) if n['id'] in ['entreflor','paleorix'] else f['id']+':'+n['id']
     unique[key]=(f,n)
 counts=dict(families=len([f for f in families if f['category']!='Fusões entre famílias']),families_with_chart=len(charts),unique_records=len(unique),visual_reservations=len(reservations),dex_entries=len(dex),chart_sources=len(chart_paths))
-data=dict(date='2026-11-04',scope='Checkout local pipa-club-integracao-atualizada; arts/creatures, charts, Soulgen e Dex. Sem fetch, integração ou alteração de cânone.',counts=counts,families=families,reservations=reservations,warnings=warnings)
+data=dict(date='2026-11-07',scope='Checkout local pipa-club-integracao-atualizada; art/creatures, charts, Soulgen e Dex. Sem integração ou alteração de cânone. Charts da mesma família consolidados por ID.',counts=counts,families=families,reservations=reservations,warnings=warnings)
 D.mkdir(parents=True,exist_ok=True)
 (D/'catalogo.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
 
-lines=['# Famílias de Soulmonsters — catálogo consolidado','', 'Atualizado em **4 de novembro de 2026**. Documento de organização de criação, não novo cânone ou lista de integração.','',f"**{counts['families']} agrupamentos familiares**, sendo {counts['families_with_chart']} charts principais; **{counts['unique_records']} registros únicos de formas/criaturas**, além de **{counts['visual_reservations']} reservas visuais**. Criaturas isoladas recebem ficha familiar de uma forma, com parentesco ainda indefinido. Contagens incluem briefs sem arte e estados; não são quantidade de espécies prontas para o jogo.",'','## Como ler','', '- Bebê, criança, jovem e adulto descrevem maturidade visual; Cafifa/Pipa/Arraia/Pandorga só são graus confirmados quando a fonte assim decidir.', '- Remonta, forma especial, possessão e Entrelaço têm naturezas diferentes. Nenhum custo, nível ou receita é inventado aqui.', '- A coluna de estado reproduz o registro local. Aprovado visualmente não significa nome, gameplay, rig ou integração aprovados.', '- Versões antigas do mesmo design não viram novas criaturas. Reservas sem parentesco ficam em apêndice.', '- Nesta consolidação, Brotim do cervo e Brotim de Mata Verde permanecem separados. A fusão Entreflor e seu participante externo não duplicam a contagem.','','## Índice de famílias','', '| Família | Formas/referências | Grupo |','|---|---:|---|']
+lines=['# Famílias de Soulmonsters — catálogo consolidado','', 'Atualizado em **7 de novembro de 2026**. Documento de organização de criação, não novo cânone ou lista de integração.','', '**Comece pelos [grupos do universo](GRUPOS.md) ou pela [galeria visual por grupos](grupos.html).** Famílias evolutivas e grupos temáticos são eixos diferentes; um grupo não cria parentesco ou facção.','',f"**{counts['families']} agrupamentos familiares**, com {counts['families_with_chart']} fontes de charts consolidadas; **{counts['unique_records']} registros únicos de formas/criaturas**, além de **{counts['visual_reservations']} reservas visuais**. Criaturas isoladas recebem ficha familiar de uma forma, com parentesco ainda indefinido. Contagens incluem briefs sem arte e estados; não são quantidade de espécies prontas para o jogo.",'','## Como ler','', '- Bebê, criança, jovem e adulto descrevem maturidade visual; Cafifa/Pipa/Arraia/Pandorga só são graus confirmados quando a fonte assim decidir.', '- Remonta, forma especial, possessão e Entrelaço têm naturezas diferentes. Nenhum custo, nível ou receita é inventado aqui.', '- A coluna de estado reproduz o registro local. Aprovado visualmente não significa nome, gameplay, rig ou integração aprovados.', '- Versões antigas do mesmo design não viram novas criaturas. Reservas sem parentesco ficam em apêndice.', '- Nesta consolidação, Brotim do cervo e Brotim de Mata Verde permanecem separados. A fusão Entreflor e seu participante externo não duplicam a contagem.','','## Índice de famílias','', '| Família | Formas/referências | Tipo de registro |','|---|---:|---|']
 for i,f in enumerate(families,1):lines.append(f"| [{f['name']}](#familia-{i:02d}) | {len(f['nodes'])} | {f['category']} |")
 for i,f in enumerate(families,1):
     lines += ['',f'<a id="familia-{i:02d}"></a>',f"## {i:02d}. {f['name']}",'',f"Identificador de organização: `{f['id']}`. Grupo: {f['category']}.",'']
@@ -195,6 +223,7 @@ for i,f in enumerate(families,1):
 categories=sorted(set(f['category'] for f in families))
 page='''<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Famílias de Soulmonsters</title><style>*{box-sizing:border-box}body{margin:0;background:#f1eee5;color:#182d36;font:16px/1.55 system-ui}header,main{max-width:1500px;margin:auto;padding:32px}header h1{font-size:clamp(30px,4vw,54px);line-height:1.1;margin:10px 0}header p{max-width:900px}.tools{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}input,select{font:inherit;padding:12px;border:1px solid #82959a;border-radius:6px;background:white}input{flex:1;min-width:210px}section{background:#fff;padding:28px;margin-bottom:28px;border-top:5px solid #254956;border-radius:6px}h2{margin:0 0 8px;font-size:27px}h3{font-size:18px;margin-bottom:6px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:22px 0}article{min-width:0;border:1px solid #d9e0df;padding:16px;border-radius:6px}img,.noart{width:100%;height:260px;object-fit:contain;background:white}.noart{display:grid;place-content:center;text-align:center;background:#edf1ef;color:#52666c}.tag{font-size:13px;font-weight:700;color:#496b74}.note{padding:12px 16px;background:#fff3d1;border-left:4px solid #a77924}a{color:#126478;text-underline-offset:3px}a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ad452c;outline-offset:4px}details{margin:15px 0}li{overflow-wrap:anywhere}[hidden]{display:none!important}.footer{max-width:1500px;margin:auto;padding:0 32px 48px}.reserve{columns:2;column-gap:30px}@media(max-width:650px){header,main{padding:20px}section{padding:20px}.reserve{columns:1}}</style><header><p>CATÁLOGO DE CRIAÇÃO · 04 NOV 2026</p><h1>Famílias de Soulmonsters</h1><p>Estágios, ramificações, estados e Entrelaços reunidos. Aprovação visual e integração são decisões diferentes; nomes de trabalho continuam identificados nas fontes.</p><p>COUNTS</p><p><a href="FAMILIAS.md">Documento completo</a> · <a href="catalogo.json">Dados estruturados</a> · <a href="auditoria.json">Auditoria de referências</a></p><div class="tools"><input id="search" type="search" aria-label="Buscar família ou Soulmonster" placeholder="Buscar nome, família ou ID"><select id="category" aria-label="Filtrar grupo"><option value="">Todos os grupos</option>OPTIONS</select></div><p id="result" aria-live="polite"></p></header><main>CARDS</main><div class="footer"><h2>Reservas visuais</h2><p>Alternativas preservadas; nenhum parentesco novo inferido.</p><ul class="reserve">RESERVES</ul><h2>Cuidados do catálogo</h2><ul>WARNINGS</ul><p>O levantamento verifica fontes locais e links. Não é nova auditoria visual de todos os PNGs nem teste de integração no jogo.</p></div><script>const q=document.querySelector('#search'),c=document.querySelector('#category'),ss=[...document.querySelectorAll('main section')];function filter(){const term=q.value.trim().toLocaleLowerCase('pt-BR');let visible=0;for(const s of ss){const ok=(!term||s.dataset.search.includes(term))&&(!c.value||s.dataset.category===c.value);s.hidden=!ok;if(ok)visible++}document.querySelector('#result').textContent=visible+' agrupamentos exibidos'}q.addEventListener('input',filter);c.addEventListener('change',filter);filter();</script></html>'''
 page=page.replace('COUNTS',esc(f"{counts['families']} agrupamentos familiares · {counts['unique_records']} registros únicos · {counts['visual_reservations']} reservas" )).replace('OPTIONS',''.join('<option>'+esc(x)+'</option>' for x in categories)).replace('CARDS',''.join(cards)).replace('RESERVES',''.join('<li>'+esc(x['name'])+(' · <a href="'+esc(rel(R/x['art']))+'">Prancha</a>' if x['art'] else '')+'</li>' for x in reservations)).replace('WARNINGS',''.join('<li>'+esc(x)+'</li>' for x in warnings))
+page=page.replace('04 NOV 2026','07 NOV 2026').replace('<h1>Famílias de Soulmonsters</h1>','<h1>Famílias de Soulmonsters</h1><p><a href="grupos.html">Explorar por grupos do universo →</a> · <a href="GRUPOS.md">Documento de grupos</a></p>')
 (D/'index.html').write_text(page,encoding='utf-8')
 inventory=[repo(p) for p in (R/'art/creatures').rglob('*') if p.is_file() and p.suffix in ['.png','.json','.md']]
 (D/'inventario-fontes.json').write_text(json.dumps(inventory,ensure_ascii=False,indent=2),encoding='utf-8')

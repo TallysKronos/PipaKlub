@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-07",
+  "counts": {
+    "groups": 27,
+    "unique_records": 328,
+    "families": 110,
+    "group_memberships": 413,
+    "reservations": 17
+  },
+  "duplicate_family_ids": [],
+  "uncovered_records": [],
+  "missing_references": [],
+  "invalid_selectors": [],
+  "distinct_keys": 328,
+  "group_membership_count": 413,
+  "approval_checks": {
+    "rabbito-conde-da-ultima-hora": "art/creatures/rabbito-family-v1/conde-da-ultima-hora/concept-v2/concept.png",
+    "rabbito-velocista-relampago": "art/creatures/rabbito-family-v1/velocista-relampago/concept-v1/concept.png"
+  },
+  "scope": "Validação de dados e caminhos, não teste de gameplay ou nova auditoria visual dos 328 designs."
+}
