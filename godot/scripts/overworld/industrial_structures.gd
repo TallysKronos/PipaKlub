@@ -110,16 +110,6 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
     S.line(root,PackedVector2Array([p-Vector2(0,z-64),q-Vector2(0,z-64)]),3,Color("536b76"))
   return
  if style in ["galpao","usina"]:
-    if k%3==1:
-     # The closed service panels hang on the wall and never imply another exit.
-     var low:=p.lerp(q,.18)
-     var high:=p.lerp(q,.70)
-     var face_top:=Vector2(0,z-74)
-     var face_bottom:=Vector2(0,z-90)
-     S.quad(root,PackedVector2Array([low-face_top,high-face_top,high-face_bottom,low-face_bottom]),Color("293d45"))
-     for stripe in [.15,.35,.55,.75,.95]:
-      var notch:=low.lerp(high,stripe)
-      S.line(root,PackedVector2Array([notch-face_top+Vector2(0,4),notch-face_bottom-Vector2(0,3)]),2,Color("819b99"))
   # Brick courses follow measured wall edges; no baked perspective in the art.
   for y in range(16,int(z),16):
    S.line(root,PackedVector2Array([d-Vector2(0,y),c-Vector2(0,y),b-Vector2(0,y)]),1,Color("815f4d",.5))
@@ -137,6 +127,16 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
    var p:=d.lerp(c,float(k)/(w*2))
    var q:=d.lerp(c,float(k+1)/(w*2))
    S.quad(root,PackedVector2Array([p,q,q-Vector2(0,7),p-Vector2(0,7)]),Color("e4bc51") if k%2==0 else Color("39474e"))
+   if k%3==1:
+    # The closed service panels hang on the wall and never imply another exit.
+    var low:=p.lerp(q,.18)
+    var high:=p.lerp(q,.70)
+    var face_top:=Vector2(0,z-74)
+    var face_bottom:=Vector2(0,z-90)
+    S.quad(root,PackedVector2Array([low-face_top,high-face_top,high-face_bottom,low-face_bottom]),Color("293d45"))
+    for stripe in [.15,.35,.55,.75,.95]:
+     var notch:=low.lerp(high,stripe)
+     S.line(root,PackedVector2Array([notch-face_top+Vector2(0,4),notch-face_bottom-Vector2(0,3)]),2,Color("819b99"))
  if style=="container":
   for k in range(1,int(w*4)):
    var p:=d.lerp(c,float(k)/(w*4));S.line(root,PackedVector2Array([p-Vector2(0,z-4),p-Vector2(0,4)]),2,Color("203f4a",.65))
