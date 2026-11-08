@@ -4,12 +4,13 @@ import {validRamp,cleanRamps} from './terrain.mjs';
 export function geometryEdit(a,{tool,cell,size=1,mode='set',level=1,remove=false,visited=new Set(),focus=null,cellsOverride=null,direction='n',stairs=false,rampWidth=1}){
  const invalid=message=>({valid:false,changed:false,message,cells:[]});
  if(cell<0||cell>=a.levels.length)return invalid('Aponte para o mapa.');
+ if(tool==='ramp'&&a.rampProfiles?.[cell])return invalid('Esta rampa veio da campanha e usa vários segmentos.');
  if(!focusAllows(a,cell,focus))return invalid('Andar protegido. Escolha o andar '+a.levels[cell]+' ou destrave o foco.');
  if(tool==='ramp'&&rampWidth>1){const step=['e','w'].includes(direction)?a.width:1;let next=a,changed=false;const cells=[];for(let k=0;k<rampWidth;k++){const i=cell+k*step;if(i>=a.levels.length||step===1&&Math.floor(i/a.width)!==Math.floor(cell/a.width)||a.levels[i]!==a.levels[cell])return invalid('A largura precisa de uma base plana e espaço no mapa.');const result=geometryEdit(next,{tool,cell:i,direction,stairs,remove,focus,rampWidth:1});if(!result.valid)return result;next=result.next;changed=changed||result.changed;cells.push(i);}return {valid:true,next,changed,cells,message:(stairs?'Escada':'Rampa')+' · largura '+rampWidth+' tiles · ligação válida'};}
  const next={...a,...(a.stairs?{stairs:[...a.stairs]}:{}),levels:[...a.levels],ramps:[...a.ramps],floors:[...a.floors]},cells=[];
  if(tool==='height'){
   const candidates=cellsOverride??Array.from({length:size*size},(_,k)=>{const x=cell%a.width+k%size,y=Math.floor(cell/a.width)+Math.floor(k/size);return x<a.width&&y<a.height?y*a.width+x:-1;});
-  for(const i of candidates){if(i<0||i>=a.levels.length||!focusAllows(a,i,focus))continue;cells.push(i);if(visited.has(i))continue;
+  for(const i of candidates){if(i<0||i>=a.levels.length||!focusAllows(a,i,focus)||a.rampProfiles?.[i])continue;cells.push(i);if(visited.has(i))continue;
    next.levels[i]=mode==='raise'?Math.min(12,a.levels[i]+1):mode==='lower'?Math.max(0,a.levels[i]-1):level;next.ramps[i]=null;
   }
   cleanRamps(next);

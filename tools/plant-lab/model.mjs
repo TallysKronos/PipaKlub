@@ -24,18 +24,101 @@ PLANTS.push(...NATURE_ASSETS,...WATERFALLS);
 export const ASSETS = [...PLANTS,{id:'kael',name:'Kael',anchor:[40,65]}];
 export const FLOORS = ['grass','dirt','stone','sand','water',...GROUNDS.map(g=>g.id)];
 export const clone = value => JSON.parse(JSON.stringify(value));
+const campaignFloors={
+  bosque:'chao-bosque-sombrio',grama:'grass',terra:'dirt',mato:'chao-grama-seca',
+  piso:'stone',construcao:'chao-tijolos',calcada:'chao-calcamento',canteiro:'chao-musgo',
+  asfalto:'chao-ardosia',agua:'water',ponte:'chao-trilha',rocha:'chao-basalto',
+};
+const campaignPassable=new Set(['grama','terra','mato','piso','calcada','asfalto','ponte']);
+const campaignDirections={'v-':'n','v+':'s','u-':'w','u+':'e'};
+const campaignEvents={entrada:'spawn',saida:'exit',npc:'npc',item:'item',encontro:'encounter',gatilho:'trigger'};
+
+export function projectFromCampaign(map,{legacyRamps=false}={}){
+  if(map.schema!=='overworld-godot-1')throw Error('Formato de campanha inválido.');
+  const {w:width,h:height,cells}=map;
+  const minLevel=Math.min(...cells.filter(cell=>campaignPassable.has(cell.material)).map(cell=>cell.level),0);
+  const raw={version:1,width,height,autotiling:false,objects:[],events:[],
+    floors:cells.map(cell=>campaignFloors[cell.material]??'stone'),
+    levels:cells.map(cell=>Math.max(0,Math.min(MAX_LEVEL,cell.level-minLevel))),
+    ramps:cells.map(()=>null),
+    campaignBlocked:cells.map(cell=>!campaignPassable.has(cell.material)),
+  };
+  if(!legacyRamps)raw.rampProfiles=cells.map(()=>null);
+  for(let index=0;index<cells.length;index++){
+    const cell=cells[index],direction=campaignDirections[cell.ramp];
+    if(!direction)continue;
+    if(legacyRamps&&(cell.rampFrom??0)>=.5)raw.levels[index]=Math.min(MAX_LEVEL,raw.levels[index]+1);
+    else{
+      raw.ramps[index]=direction;
+      if(!legacyRamps)raw.rampProfiles[index]=[cell.rampFrom??0,cell.rampTo??1];
+    }
+  }
+  for(let index=0;index<cells.length;index++){
+    if(legacyRamps&&raw.ramps[index]&&!rampValid(raw,index))raw.ramps[index]=null;
+  }
+  for(const piece of map.pieces??[]){
+    const u=Math.floor(piece.u),v=Math.floor(piece.v),w=piece.fu??1,h=piece.fv??1;
+    if(piece.blocks){
+      for(let y=Math.max(0,v);y<Math.min(height,v+h);y++){
+        for(let x=Math.max(0,u);x<Math.min(width,u+w);x++)raw.campaignBlocked[y*width+x]=true;
+      }
+    }
+    const asset=PLANTS.some(candidate=>candidate.id===piece.asset)?piece.asset:
+      ({arvore:'arvore-kronasta',arbusto:'arbusto-folha-pipa-a',flores:'flores-amarelas',pedra:'pedra-da-margem'})[piece.asset];
+    if(!asset||u<0||v<0||u>=width||v>=height)continue;
+    raw.objects.push({id:raw.objects.length+1,asset,x:(u+.5)*TILE,y:(v+.5)*TILE});
+  }
+  for(const event of map.events??[]){
+    const type=campaignEvents[event.type];
+    if(!type||event.u<0||event.v<0||event.u>=width||event.v>=height)continue;
+    raw.events.push({id:'native-'+raw.events.length,type,x:Math.min(width*TILE-1,(event.u+.5)*TILE),
+      y:Math.min(height*TILE-1,(event.v+.5)*TILE),label:event.name,text:event.props?.texto,
+      targetMap:event.props?.destino?'campaign-'+event.props.destino:''});
+  }
+  const spawn=Math.floor(map.spawn.v)*width+Math.floor(map.spawn.u);
+  const index=!raw.campaignBlocked[spawn]&&spawn>=0&&spawn<cells.length?spawn:raw.campaignBlocked.indexOf(false);
+  if(index<0)throw Error('O mapa não tem uma célula livre para Kael.');
+  raw.player={x:(index%width+.5)*TILE,y:(Math.floor(index/width)+.5)*TILE};
+  return validateLayout(raw);
+}
+export function repairImportedRamps(layout,map){
+  if(!layout.campaignBlocked||layout.rampProfiles)return layout;
+  if(layout.width!==map.w||layout.height!==map.h)throw Error('A cópia foi redimensionada. Abra uma cópia nova para importar as rampas.');
+  const legacy=projectFromCampaign(map,{legacyRamps:true});
+  const native=projectFromCampaign(map);
+  const fixed=clone(layout);
+  fixed.rampProfiles=native.rampProfiles;
+  for(let index=0;index<map.cells.length;index++){
+    if(!native.ramps[index])continue;
+    if(layout.levels[index]!==legacy.levels[index]||layout.ramps[index]!==legacy.ramps[index]){
+      throw Error('Há edições no relevo sobre uma rampa original. Abra uma cópia nova para preservar esta versão.');
+    }
+    fixed.levels[index]=native.levels[index];
+    fixed.ramps[index]=native.ramps[index];
+  }
+  for(let index=0;index<map.cells.length;index++){
+    if(native.ramps[index]&&rampValid(native,index)&&!rampValid(fixed,index)){
+      throw Error('Um patamar foi editado junto à rampa original. Abra uma cópia nova para preservar esta versão.');
+    }
+  }
+  return validateLayout(fixed);
+}
 export function validateLayout(raw) {
   if(!raw || raw.version!==1 || !Number.isInteger(raw.width) || !Number.isInteger(raw.height) || raw.width<8 || raw.width>64 || raw.height<8 || raw.height>64) throw Error('Projeto inválido: dimensões entre 8×8 e 64×64.');
   const {width,height}=raw;
   if(!Array.isArray(raw.floors)||raw.floors.length!==width*height||raw.floors.some(t=>!FLOORS.includes(t)))throw Error('O piso contém células inválidas.');
   const count=width*height;
+  const campaignBlocked=raw.campaignBlocked;
+  if(campaignBlocked!==undefined&&(!Array.isArray(campaignBlocked)||campaignBlocked.length!==count||campaignBlocked.some(value=>typeof value!=='boolean')))throw Error('Colisões da campanha inválidas.');
   const levels=raw.levels===undefined?Array(count).fill(0):raw.levels;
   const ramps=raw.ramps===undefined?Array(count).fill(null):raw.ramps;
   const cliffs=raw.cliffs===undefined?Array(count).fill('earth'):raw.cliffs;
   if(!Array.isArray(levels)||levels.length!==count||levels.some(h=>!Number.isInteger(h)||h<0||h>MAX_LEVEL))throw Error('Cotas inválidas: use níveis de 0 a 12.');
   if(!Array.isArray(ramps)||ramps.length!==count||ramps.some(r=>r!==null&&!['n','s','e','w'].includes(r)))throw Error('Rampas inválidas.');
+  if(raw.rampProfiles!==undefined&&(!Array.isArray(raw.rampProfiles)||raw.rampProfiles.length!==count||raw.rampProfiles.some(p=>p!==null&&(!Array.isArray(p)||p.length!==2||!p.every(Number.isFinite)||p[0]<0||p[1]>1||p[0]>=p[1]))))throw Error('Perfis de rampa inválidos.');
+  const rampProfiles=raw.rampProfiles?.map((profile,i)=>ramps[i]&&profile?[...profile]:null);
   if(!Array.isArray(cliffs)||cliffs.length!==count||cliffs.some(m=>!WALL_IDS.includes(m)))throw Error('Material de barranco inválido.');
-  for(let i=0;i<count;i++)if(ramps[i]&&!rampValid({width,height,levels,ramps},i))throw Error('Uma rampa precisa ligar dois patamares planos com uma cota de diferença.');
+  for(let i=0;i<count;i++)if(ramps[i]&&!rampProfiles?.[i]&&!rampValid({width,height,levels,ramps,rampProfiles},i))throw Error('Uma rampa precisa ligar dois patamares planos com uma cota de diferença.');
   if(raw.waterDepth&&(!Array.isArray(raw.waterDepth)||raw.waterDepth.length!==count||raw.waterDepth.some(v=>!Number.isInteger(v)||v<0||v>3)))throw Error('Profundidade da água inválida.');
   if(raw.flow&&(!Array.isArray(raw.flow)||raw.flow.length!==count||raw.flow.some(v=>v!==null&&!['n','s','e','w'].includes(v))))throw Error('Correnteza inválida.');
   if(raw.variants&&(!Array.isArray(raw.variants)||raw.variants.length!==count||raw.variants.some(v=>v!==null&&![0,1,2].includes(v))))throw Error('Variantes de piso inválidas.');
@@ -49,7 +132,7 @@ export function validateLayout(raw) {
     seen.add(o.id);return {id:o.id,asset:o.asset,x:Math.round(o.x),y:Math.round(o.y),flip:!!o.flip,layer:o.layer==='objects'?'objects':'vegetation',collidable:!!o.collidable,...(o.decorative?{decorative:true}:{}),...(o.collision?{collision:validateCollision(o.collision)}:{})};
   });
   if(!point(raw.player))throw Error('Posição de Kael inválida.');
-  return {...(raw.variants?{variants:[...raw.variants]}:{}),...(raw.customAssets?{customAssets}:{}),...(raw.waterDepth?{waterDepth:[...raw.waterDepth]}:{}),...(raw.flow?{flow:[...raw.flow]}:{}),...(raw.stairs?{stairs:raw.stairs.map((v,i)=>!!v&&!!ramps[i])}:{}),...(raw.events?{events:validateEvents(raw.events,width,height)}:{}),version:1,width,height,tileSize:TILE,autotiling:raw.autotiling!==false,floors:[...raw.floors],levels:[...levels],ramps:[...ramps],cliffs:[...cliffs],objects,player:{x:Math.round(raw.player.x),y:Math.round(raw.player.y)},nextId:Math.max(0,...objects.map(o=>o.id))+1};
+  return {...(rampProfiles?{rampProfiles}:{}),...(campaignBlocked?{campaignBlocked:[...campaignBlocked]}:{}),...(raw.variants?{variants:[...raw.variants]}:{}),...(raw.customAssets?{customAssets}:{}),...(raw.waterDepth?{waterDepth:[...raw.waterDepth]}:{}),...(raw.flow?{flow:[...raw.flow]}:{}),...(raw.stairs?{stairs:raw.stairs.map((v,i)=>!!v&&!!ramps[i])}:{}),...(raw.events?{events:validateEvents(raw.events,width,height)}:{}),version:1,width,height,tileSize:TILE,autotiling:raw.autotiling!==false,floors:[...raw.floors],levels:[...levels],ramps:[...ramps],cliffs:[...cliffs],objects,player:{x:Math.round(raw.player.x),y:Math.round(raw.player.y)},nextId:Math.max(0,...objects.map(o=>o.id))+1};
 }
 export function initialLayout() {
   const width=24,height=16,floors=Array(width*height).fill('grass');
