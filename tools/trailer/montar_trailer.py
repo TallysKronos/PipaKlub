@@ -293,7 +293,7 @@ class Clip:
         n = self.size[0] * self.size[1] * 3
         buf = self.proc.stdout.read(n)
         if len(buf) < n:
-            return self.last
+            return None  # end of the clip: frame() keeps showing the last frame
         self.read_index += 1
         self.last = Image.frombuffer("RGB", self.size, buf, "raw", "RGB", 0, 1)
         return self.last
@@ -625,7 +625,7 @@ def build(args):
         name_card(canvas, "JAMILE", "A CAMPEÃ DA TV", t, s.t0 + 1.7, side="right")
         return canvas
 
-    @shot(41.2, 45.0, {"m": gp("duelo-mirante", 5.0, 1.5), "c": gp("duelo-centro", 5.0, 1.5), "s": gp("duelo-serra", 6.0, 1.5), "e": gp("duelo-estadio", 4.0, 1.5)})
+    @shot(41.2, 45.0, {"m": gp("duelo-mirante", 3.0, 1.5), "c": gp("duelo-centro", 2.5, 1.5), "s": gp("duelo-serra", 2.0, 1.5), "e": gp("duelo-estadio", 3.0, 1.5)})
     def grid(s, t, c):
         lt = t - s.t0
         k = c - s.start_frame
