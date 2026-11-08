@@ -51,7 +51,7 @@ const STEPS:={
 	"gollia-bando":{"act":5,"scene":"kronasta-industrial-d","anchor":Vector2i(20,16),"name":"Gollia","sprite":{"path":"res://assets/campaign/warehouse-v1/gollia.png"},"flag":"golliaFugiu","requires":"galpaoInvadido",
 		"intro":"No fundo do galpão, o Gollia espera com o Carretel Negro preso ao parceiro.\n\nGollia: O Rato me deu força. Eu fico do lado de quem tem força.",
 		"duels":[["Gollia","azulao",36,"Gollia: Vem."],["Parceiro descontrolado","pipa-dragao-desatada",37,"O Carretel Negro sobrecarrega o parceiro do Gollia. Ele perde o controle e ataca tudo.\n\nGollia: Para! Eu não mandei isso!"]],
-		"outro":"O Retalho se põe na frente do Gollia e segura o golpe. O parceiro dele cai, sem forças.\n\nGollia: ...Eu não queria isso.\n\nEle foge com o Bando, abalado."},
+		"outro":"A Retalho se põe na frente do Gollia e segura o golpe. O parceiro dele cai, sem forças.\n\nGollia: ...Eu não queria isso.\n\nEle foge com o Bando, abalado."},
 	"gerador":{"act":5,"scene":"kronasta-montanha-c","anchor":Vector2i(28,13),"name":"Torre do vento","sprite":{"path":"res://assets/campaign/tufanocorte.png","region":{"x":0,"y":0,"w":384,"h":354}},"flag":"geradorLigado","requires":"golliaFugiu",
 		"intro":"No Cume, a torre do vento está apagada. Um a um, os Ventos que Kael soltou chegam ao alto da Serra: Mormaço, Tufanocorte, Rabiolava e Trovareta.\n\nKael: O Bando prendeu as almas da cidade nesta noite. Juntos, vocês conseguem devolver todas.",
 		"outro":"A torre acende. O vento desce a Serra e atravessa Kronasta, e as luzes voltam bairro por bairro. As almas presas pelo Bando encontram o caminho de casa.\n\nKael: Acabou a noite do cerol.\n\nPipa TV: Kronasta voltou ao ar! E estão abertas as inscrições para a Copa Relâmpago, na Praça da Matriz!"},
@@ -60,7 +60,7 @@ const STEPS:={
 		"duels":[["Copa · 1ª rodada","raio",34,"Locutor: Primeira rodada da Copa Relâmpago!"],["Copa · 2ª rodada","mata",35,"Locutor: Segunda rodada, sem descanso!"],["Copa · final","azulao",36,"Locutor: A final da Copa Relâmpago!"]],
 		"outro":"Dona Cida: Categoria Rabiola Dourada. O Porto Novo espera por você."},
 	"gollia-arrependimento":{"act":6,"scene":"kronasta-coracao-d","anchor":Vector2i(22,30),"name":"Gollia","sprite":{"path":"res://assets/campaign/warehouse-v1/gollia.png"},"flag":"golliaArrependido","requires":"ruinasJamileLivre",
-		"intro":"Gollia: No galpão, o Retalho me protegeu. Eu não esqueci.\n\nGollia: Vai, Kael. Eu seguro a porta.",
+		"intro":"Gollia: No galpão, a Retalho me protegeu. Eu não esqueci.\n\nGollia: Vai, Kael. Eu seguro a porta.",
 		"outro":"O Gollia larga o Bando e segura os capangas na entrada. O caminho até o Rato está livre."},
 }
 ## Story order of the steps (the beat list in kronasta_story.gd uses the same ids).
@@ -140,7 +140,7 @@ static func prompt(p:Dictionary,id:String)->String:
 static func intro(p:Dictionary,id:String)->String:
 	var text:String=STEPS[id].intro
 	if id=="gollia-arrependimento" and not flags(p).get("retalhoAcolhido",false):
-		text=text.replace("No galpão, o Retalho me protegeu.","No galpão, o seu parceiro me protegeu.")
+		text=text.replace("No galpão, a Retalho me protegeu.","No galpão, o seu parceiro me protegeu.")
 	return text
 
 static func _near(saved:Dictionary,id:String,point_value:Vector2)->bool:
@@ -229,7 +229,7 @@ static func after(p:Dictionary,id:String)->String:
 	if done(p,id):
 		# Retalho is optional (F02): only a welcomed Retalho steps in for Gollia.
 		if id=="gollia-bando" and not flags(p).get("retalhoAcolhido",false):
-			return str(STEPS[id].outro).replace("O Retalho se põe na frente do Gollia","Rabbito se põe na frente do Gollia")
+			return str(STEPS[id].outro).replace("A Retalho se põe na frente do Gollia","Rabbito se põe na frente do Gollia")
 		return STEPS[id].outro
 	var index:=duel_index(p,id)
 	if index<=0:return ""

@@ -193,7 +193,7 @@ static func optional_quests(player: Dictionary) -> Array:
 		var trust=load("res://scripts/campaign/retalho_trust.gd")
 		var reunion=preload("res://scripts/campaign/heleana_confession.gd")
 		var welcomed:bool=f.get("retalhoAcolhido",false) or f.get("retalhoParceiraHeleana",false)
-		var text:="Volte ao ateliê e aproxime-se de Retalho sem puxar a rabiola dele." if not f.get("assisReconheceuNoRetalho",false) else str(trust.objective(player))
+		var text:="Volte ao ateliê e aproxime-se de Retalho sem puxar a rabiola dela." if not f.get("assisReconheceuNoRetalho",false) else str(trust.objective(player))
 		if f.get("retalhoAcolhido",false):text="Retalho escolheu acompanhar você."
 		result.append({"title":"Retalho","text":text,"done":welcomed or reunion.refused(player)})
 		if reunion.available(player) or f.get("heleanaReconheceuRetalho",false):

@@ -2004,7 +2004,7 @@ func _park_action(id: String) -> void:
 			_confirm_park("Nina", "[emo=suor]Cortaram a linha do meu Carcará com cerol… Ele se recolheu na rabiola e o vento levou ela. Achei pegadas palmadas seguindo para os canos. Você pode procurar por ele?", "Vou recuperar a rabiola", func():
 				if _result(exploration.accept_nina(point)): park.refresh(session.snapshot().player))
 		elif player.flags.get("ninaBambuzalOrder",false) and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,"park-clearing"):_notice("Nina: A passagem para a Clareira abre depois do campeonato do Bambuzal. Vá pelo Bosque e fale com o Lohan. Eu espero você aqui.")
-		else: _notice("Nina: Siga pelo Jardim até a Clareira e procure os canos nas Veredas. Os pipeiros pelo caminho podem treinar com você. Ele arma a vela antes de puxar… Depois fica parado por um instante.")
+		else: _notice("Nina: Siga pelo Jardim até a Clareira e procure os canos nas Veredas. Os pipeiros pelo caminho podem treinar com você. E repara no Lacertubo: ele arma a vela antes de puxar… depois fica parado por um instante.")
 	elif id == "tail":
 		if _result(exploration.collect_tail(point)):
 			park.refresh(session.snapshot().player)
@@ -3433,7 +3433,7 @@ func _return_warehouse()->void:
 	if result.opponent=="gollia":_notice("Gollia recua. A porta do galpão está adiante, na frente do depósito.")
 	else:
 		if is_instance_valid(park):park.celebrate_item("Recebido · Agulha de desatar")
-		_notice("As almas estão livres. Kael se aproxima de Retalho, ainda ferido.\n\nTyler: Vamos levá-lo ao ateliê.\n\nAgulha de desatar guardada. Sua função de remontagem será integrada depois. Bruno Solda já pode ser desafiado.")
+		_notice("As almas estão livres. Kael se aproxima de Retalho, ainda ferida.\n\nTyler: Vamos levá-la ao ateliê.\n\nAgulha de desatar guardada. Bruno Solda já pode ser desafiado.")
 
 func _show_expedition_photo()->void:
 	if not is_instance_valid(room) or room.actor.distance_to(preload("res://scripts/campaign/expedition_photo.gd").AT)>110:return
@@ -3553,7 +3553,7 @@ func _show_retalho_trust()->void:
 	if not service.available(p):return
 	var n:int=service.stage(p)
 	if n==8:
-		_notice("Retalho escolheu acompanhar você. Ele está no banco de parceiros deste save.");return
+		_notice("Retalho escolheu acompanhar você. Ela está no banco de parceiros deste save.");return
 	var at:Vector2=room.actor if is_instance_valid(room) else park.player if is_instance_valid(park) else Vector2.INF
 	var scene:String=session.snapshot().checkpoint.get("scene","")
 	if not service.near(scene,at):return
@@ -3724,9 +3724,9 @@ func _request_mormaco(action:String)->void:
 			if _result(story.rest(point)):park.refresh(session.snapshot().player))
 	elif session.snapshot().player.flags.get("mormacoEmboscada",false) and not session.snapshot().player.flags.get("mormacoTylerChegou",false):
 		_confirm_park("Kael","Mormaço recua para o poço. — Espera… tem alguém na margem!\n\nVoz entre as árvores: Agora! Lancem o Carretel Negro!","Olhar para o poço",func():_play_mormaco_ambush.call_deferred(point))
-	elif story.freed(session.snapshot().player):_notice("Mormaço: O frio sabe onde estão os outros. Não confunda pressa com vento, pequeno pipeiro.")
+	elif story.freed(session.snapshot().player):_notice("Mormaço: Os outros Ventos ainda estão presos. Não confunda pressa com vento, pequeno pipeiro.")
 	elif story.won(session.snapshot().player):
-		_confirm_park("O primeiro Vento livre","Os cordões perdem a tensão. O brilho violeta desaparece dos olhos de Mormaço; a água volta a subir clara. Ele respira fundo e observa Kael.\n\nMormaço: Enfim… Achou que eu estava dormindo?\n\nKael: Os outros Ventos também estão presos?\n\nMormaço: O frio sabe onde estão os outros.","Escutar o Vento",func():
+		_confirm_park("O primeiro Vento livre","Os cordões perdem a tensão. O brilho violeta desaparece dos olhos de Mormaço; a água volta a subir clara. Ele respira fundo e observa Kael.\n\nMormaço: Enfim… Achou que eu estava dormindo?\n\nKael: Os outros Ventos também estão presos?\n\nMormaço: Estão. Quando o vento voltar a chamar, siga. O próximo chama do alto da Serra.","Escutar o Vento",func():
 			if _result(story.release(point)):park.refresh(session.snapshot().player))
 	elif not session.snapshot().player.flags.get("mormacoVentosPararam",false):_notice("O ar parado chamou sua atenção na entrada. Examine o sinal junto ao caminho da parte A antes de enfrentar o guardião.")
 	elif session.snapshot().player.flags.get("mormacoTylerChegou",false):

@@ -600,7 +600,7 @@ func _draw_status() -> void:
 				if partner.id==reward_player.get("equippedPartnerId",""):
 					title=partner.get("personalName",title)
 					level=Model.level_for_xp(partner.get("xp",0))
-		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta [rascunho]" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião [rascunho]"
+		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião"
 		if index>0 and art_ids[index]=="mormaco-possuido":title="Mormaço · Possuído"
 		if index>0 and model.enemy_model_id=="veskoro":title="Veskoro"
 		if index>0 and model.enemy_model_id=="pipa-dragao-desatada":title="Pipa-Dragão desatada"
