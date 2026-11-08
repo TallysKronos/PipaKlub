@@ -73,9 +73,15 @@ func setup() -> void:
 	player.name = "Kael"
 	if WALKS.has(shot):
 		var spec: Array = WALKS[shot]
-		var at: Vector2 = (spec[2] + Vector2(.5, .5)) if spec[2].x >= 0 else CP.spawn(spec[1])
+		# Start inside the map (the spawn sits on the edge, which shows the void around
+		# the map) and walk "up" the map, toward the next part.
+		var map = CP.model_for(spec[1])
+		var at := nearest_walkable(map, Vector2(24.5, 24.5))
+		waypoints = []
+		for offset in [Vector2(-5, -5), Vector2(4, -10), Vector2(-2, -15)]:
+			var p := nearest_walkable(map, at + offset)
+			if not map.path_to(at, p).is_empty(): waypoints.append(p)
 		result = front.session.checkpoint(CP.make(spec[1], at, CP.SPACE), player)
-		waypoints = spec[3].map(func(p): return p + Vector2(.5, .5))
 	else:
 		var spec: Array = DUELS[shot]
 		var model := Model.new(player.partners[0], {"modelId": spec[1], "level": spec[2]})
@@ -90,6 +96,16 @@ func setup() -> void:
 	front._choose("slot-1", false)
 	for i in 20: await process_frame
 	print("READY frame=", frames)
+
+func nearest_walkable(map, target: Vector2) -> Vector2:
+	var best := target
+	var gap := INF
+	for v in range(0, 40):
+		for u in range(0, 48):
+			var p := Vector2(u + .5, v + .5)
+			if map.point_walkable(p) and p.distance_to(target) < gap:
+				gap = p.distance_to(target); best = p
+	return best
 
 func button(action: String, pressed: bool) -> void:
 	var event := InputEventJoypadButton.new()

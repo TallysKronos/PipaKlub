@@ -182,6 +182,9 @@ def ink_mask(progress, seed=3, origin=(W / 2, H / 2)):
 
 # ---------------------------------------------------------------- typography
 
+import functools
+
+@functools.lru_cache(maxsize=512)
 def text_layer(txt, size, fill=(255, 255, 255), stroke=INK, stroke_w=10, path=BANGERS, shadow=True, tracking=0):
     f = font(path, size)
     bbox = f.getbbox(txt, stroke_width=stroke_w)
@@ -673,7 +676,8 @@ def build(args):
     def reveal(s, t, c):
         lt = t - s.t0
         fr = s.clip("title").frame(c - s.start_frame)
-        title = grade(cover(fr, W, H, zoom=1.06 - min(lt, 6) * 0.008, cx=0.38, cy=0.42), sat=1.08)
+        # framed high: the logo leads and the "PRESSIONE START" prompt stays out of frame
+        title = grade(cover(fr, W, H, zoom=1.24 - min(lt, 6) * 0.01, cx=0.40, cy=0.30), sat=1.08)
         # hide the "PRESSIONE START" prompt of the title screen
         d = ImageDraw.Draw(title)
         if lt < 0.12:
@@ -681,8 +685,8 @@ def build(args):
         else:
             canvas = BLACK_IMG.copy()
             canvas.paste(title, (0, 0), ink_mask(min(1, (lt - 0.12) / 0.55), seed=91, origin=(W * 0.38, H * 0.4)))
-        if lt > 1.2:
-            band = Image.new("RGBA", (W, 150), INK + (int(200 * min(1, (lt - 1.2) / 0.4)),))
+        if lt > 1.0:
+            band = Image.new("RGBA", (W, 150), INK + (int(200 * min(1, (lt - 1.0) / 0.4)),))
             canvas.paste(band, (0, H - 220), band)
             type_text(canvas, "Antes das ruínas, já existia um elo.", t, s.t0 + 1.4, 30, W / 2, H - 145, 64, fill=PAPER, path=BARLOW)
         if lt > DUR - s.t0 - 0.6:
@@ -698,6 +702,9 @@ def render(args):
     shots = build(args)
     total = int(DUR * FPS)
     frames = range(total)
+    if args.range:
+        a, b = (float(x) for x in args.range.split(","))
+        frames = range(int(a * FPS), int(b * FPS))
     if args.preview:
         frames = [int(x * FPS) for x in np.arange(0.2, DUR, args.preview)]
     out = args.out
@@ -740,4 +747,5 @@ if __name__ == "__main__":
     ap.add_argument("--out", default="trailer-video.mp4")
     ap.add_argument("--preview", type=float, default=0.0, help="segundos entre quadros de prévia (gera JPGs)")
     ap.add_argument("--stills", default="")
+    ap.add_argument("--range", default="", help="t0,t1 em segundos (renderiza só esse trecho)")
     render(ap.parse_args())
