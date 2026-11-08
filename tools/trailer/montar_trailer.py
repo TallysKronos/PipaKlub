@@ -166,11 +166,13 @@ def speed_lines(cx=W / 2, cy=H / 2, count=170, inner=260, seed=1, color=INK, alp
 
 def ink_mask(progress, seed=3, origin=(W / 2, H / 2)):
     """Organic ink-splash reveal mask (L), growing from origin with progress 0..1."""
+    if progress >= 1:
+        return Image.new("L", (W, H), 255)
     r = random.Random(seed)
     m = Image.new("L", (W // 4, H // 4), 0)
     d = ImageDraw.Draw(m)
     ox, oy = origin[0] / 4, origin[1] / 4
-    reach = ease_out(progress) * 700 / 4 * 1.25
+    reach = ease_out(progress) * 1500 / 4
     for i in range(60):
         a = r.uniform(0, math.tau)
         dist = r.uniform(0, 1) ** 0.7 * reach
@@ -677,14 +679,14 @@ def build(args):
         lt = t - s.t0
         fr = s.clip("title").frame(c - s.start_frame)
         # framed high: the logo leads and the "PRESSIONE START" prompt stays out of frame
-        title = grade(cover(fr, W, H, zoom=1.24 - min(lt, 6) * 0.01, cx=0.40, cy=0.30), sat=1.08)
+        title = grade(cover(fr, W, H, zoom=1.45 - min(lt, 6) * 0.01, cx=0.50, cy=0.35), sat=1.08)
         # hide the "PRESSIONE START" prompt of the title screen
         d = ImageDraw.Draw(title)
         if lt < 0.12:
             canvas = Image.new("RGB", (W, H), PAPER)
         else:
             canvas = BLACK_IMG.copy()
-            canvas.paste(title, (0, 0), ink_mask(min(1, (lt - 0.12) / 0.55), seed=91, origin=(W * 0.38, H * 0.4)))
+            canvas.paste(title, (0, 0), ink_mask(min(1, (lt - 0.12) / 0.55), seed=91, origin=(W * 0.5, H * 0.32)))
         if lt > 1.0:
             band = Image.new("RGBA", (W, 150), INK + (int(200 * min(1, (lt - 1.0) / 0.4)),))
             canvas.paste(band, (0, H - 220), band)
