@@ -49,3 +49,24 @@ Teste: `godot/tests/morro_iso_checks.gd` percorre as 5 áreas. Para cada uma con
 - luta e volta ao mapa;
 - migração de saves antigos;
 - saída final para a Rua dos Ventos.
+
+## Versão 2 · mapas maiores e com mais andares (10/11/2026)
+
+A pedido do dono, as cinco áreas foram refeitas em **64×56** (antes 48×40) e com **5 a 7
+níveis** de terraços (antes 3). O gerador é o mesmo (`tools/gerar-mapas-morro.py`), agora com
+um tileset de alturas próprio (níveis 0–7).
+
+| Área | Níveis | Estrutura | Para explorar |
+| --- | --- | --- | --- |
+| A · Praça da Chegada | 5 | Praça, patamar das casas, dois terraços laterais que se reencontram na laje do meio, largo da caixa-d'água | Quintal escondido no meio, mirantes oeste e leste, beco da entrada |
+| B · Escadaria da Sombra | 6 | Escadaria central longa com um patamar por nível | Subida leste alternativa, mirante oeste com o altar das pipas perdidas, viela das lavadeiras |
+| C · Laje dos Ventos | 6 | Ziguezague: cada laje sobe pela ponta oposta da anterior | Atalho pelo meio, duas lajes altas do leste até a Laje do Vento |
+| D · Mirante da Caixa-d'água | 7 | Zigurate: as subidas alternam entre o centro e as pontas | Plataforma da caixa-d'água no topo, mirantes oeste (luneta) e leste |
+| E · Praça da Campeã | 5 | Escadaria larga em três lances até a arena de vinte fileiras | Dois jardins laterais, arquibancada com o mural dos campeões |
+
+Cada área tem moradores com falas (Dora, Cauê, Celina, Nilo, Iara), placas de história, um
+banco de descanso (recupera a equipe) e de 4 a 5 achados, a maioria em pontos sem saída.
+
+Limite técnico: as escadas sobem só para o fundo da tela (v−), porque é a única direção que o
+desenho de degraus cobre hoje. As rotas laterais são feitas deslocando as escadas de um nível
+para o outro. Escadas laterais (u−) pedem mudança em três pontos do renderizador.
