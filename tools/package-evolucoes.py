@@ -108,8 +108,10 @@ def main():
                     art = ROOT / row["Arte no repositório"]
                     size = cutout(art, OUT / f"{form_id}.png")
                     frame = {"x": 0, "y": 0, "w": size[0], "h": size[1]}
-                    content["combat"][form_id] = {"image": f"evolucoes-v1/{form_id}.png", "provisional": True,
-                                                  "animations": {k: [frame] for k in ("idle", "flight", "attack", "hurt", "victory", "defeat")}}
+                    fallback_image = f"evolucoes-v1/{form_id}.png"
+                    if content["combat"].get(form_id, {}).get("image", fallback_image) == fallback_image:
+                        content["combat"][form_id] = {"image": fallback_image, "provisional": True,
+                                                      "animations": {k: [frame] for k in ("idle", "flight", "attack", "hurt", "victory", "defeat")}}
                     entry["source"] = row["Arte no repositório"]
                 else:
                     # Forma de base (a da oficina): sem bônus, mesmo quando o estágio é jovem (Dóber).
@@ -126,6 +128,12 @@ def main():
         "stages": STAGES,
         "forms": forms,
     }
+    if TABLE.exists():
+        previous_forms = json.loads(TABLE.read_text(encoding="utf-8"))["forms"]
+        for form_id, form in forms.items():
+            for key in ("items", "flags", "flagLabels", "signature"):
+                if key in previous_forms.get(form_id, {}):
+                    form[key] = previous_forms[form_id][key]
     TABLE.write_text(json.dumps(table, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     # Insere só as entradas novas no bloco "combat", sem reformatar o resto do content.json.
     text = CONTENT.read_text(encoding="utf-8")

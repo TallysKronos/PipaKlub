@@ -86,6 +86,11 @@ func _ready() -> void:
 	var atlas: Dictionary = content.combat.get(atlas_id,content.combat.rabbito)
 	companion.texture = load("res://assets/campaign/"+atlas.image)
 	companion_frames = atlas.animations.idle
+	if atlas.get("provisional", false) and not companion_frames.is_empty():
+		var frame: Dictionary = companion_frames[0]
+		var factor := 48.0 / maxf(frame.w, frame.h)
+		companion.scale = Vector2.ONE * factor
+		companion.offset = Vector2(0, -float(frame.h) * .5)
 	var ui := CanvasLayer.new()
 	add_child(ui)
 	exploration_hud = load("res://scripts/campaign/hud_exploration.gd").new()

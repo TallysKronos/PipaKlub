@@ -1,5 +1,38 @@
 extends "res://scripts/campaign/first_flight_model.gd"
 const Pacing = preload("res://scripts/campaign/park_pacing.gd")
+const Rope = preload("res://scripts/campaign/soulflight_rope.gd")
+var soulflight := OS.get_environment("PIPAKLUB_SOULFLIGHT") == "1"
+var player_rope := Rope.new()
+var enemy_rope := Rope.new()
+
+func line_points(actor: Dictionary) -> PackedVector2Array:
+	var rope := player_rope if is_same(actor, p) else enemy_rope
+	if soulflight and not rope.points.is_empty(): return rope.points
+	return PackedVector2Array([Vector2(actor.anchor, 585), Vector2(actor.x, actor.y)])
+
+func line_tension(actor: Dictionary) -> float:
+	if not soulflight: return 0.0
+	return player_rope.tension if is_same(actor, p) else enemy_rope.tension
+
+func _fly(actor: Dictionary, direction: Vector2, raw: Dictionary, dt: float, wind: float) -> void:
+	var player := is_same(actor, p)
+	var rope := player_rope if player else enemy_rope
+	var position := Vector2(actor.x, actor.y)
+	var anchor := Vector2(actor.anchor, 585)
+	var reel := float(raw.get("reel", 0.0))
+	if not player:
+		reel = .65 if rope.tension > .36 or contact(p, actor).get("valid", false) else -.35 if contact(actor, p).get("valid", false) else 0.0
+	var gust := wind + sin(time * 2.1) * 14.0
+	var pull := rope.advance(anchor, position, reel, gust, dt)
+	var target := direction.limit_length() * float(actor.stats.speed)
+	if actor.evade > 0:
+		target = actor.dodgeDir * 528.0
+	var response := 9.5 if (model_id if player else enemy_model_id) == "rabbito" else 6.8
+	var velocity := Vector2(actor.vx, actor.vy).lerp(target + Vector2(gust, -4), 1 - exp(-response * dt))
+	velocity += pull * dt
+	actor.x = clampf(position.x + velocity.x * dt, 55, 945)
+	actor.y = clampf(position.y + velocity.y * dt, 70, 480)
+
 const Levels = preload("res://scripts/campaign/partner_levels.gd")
 ## Single-round local Lacertubo encounter. Contact/costs/armor follow src/engine.js.
 ## Does not implement online rooms, specialization classes or the six line loadouts.
@@ -80,8 +113,11 @@ func _fighter(x: float, anchor: float, attributes: Dictionary) -> Dictionary:
 		"signatureCooldown": 6.0, "strike": false, "maneuver": false, "lineHeld": false, "signatureHeld": false}, true)
 	return actor
 
+func contact_hint(a: Dictionary, b: Dictionary) -> Dictionary:
+	return contact(a, b) if soulflight else super.contact_hint(a, b)
+
 func contact(a: Dictionary, b: Dictionary) -> Dictionary:
-	var crossing := super.contact(a, b)
+	var crossing := Rope.crossing(line_points(a), line_points(b)) if soulflight else super.contact(a, b)
 	if not crossing.is_empty() and a.color == 3 and a.skillTime > 0:
 		crossing.valid = crossing.own >= .35 and crossing.own <= .95 and crossing.enemy >= .15 and crossing.enemy <= .92
 	return crossing
@@ -130,9 +166,12 @@ func tick(delta: float, input: Dictionary) -> void:
 	var wind := wind_strength()
 	_move_fighter(p, input, dt, wind)
 	_move_fighter(q, _boss_input(dt) if q.boss else _trainer_input(dt) if q.has("trainingRank") else _wild_input(dt), dt, wind)
+	if soulflight:
+		player_rope.solve(Vector2(p.anchor, 585), Vector2(p.x, p.y), wind, dt)
+		enemy_rope.solve(Vector2(q.anchor, 585), Vector2(q.x, q.y), wind, dt)
 	var hits: Array = []
 	if q.boss: _signature_hit(q, p, dt, q.get("mormacoForm","")!="normal", hits)
-	_signature_hit(p, q, dt, input.get("signature", false) and model_id in ["rabbito","rai"], hits)
+	_signature_hit(p, q, dt, input.get("signature", false) and not preload("res://scripts/campaign/evolution.gd").signature(model_id).is_empty(), hits)
 	_strike(p, q, hits)
 	_strike(q, p, hits)
 	_tyler_assist(dt,hits)
@@ -210,7 +249,9 @@ func _move_fighter(actor: Dictionary, raw: Dictionary, dt: float, wind: float) -
 		direction *= .4
 		cut = false
 	var before := Vector2(actor.x, actor.y)
-	if actor.evade > 0:
+	if soulflight and actor.lineMove.is_empty():
+		_fly(actor, direction, raw, dt, wind)
+	elif actor.evade > 0:
 		actor.x = clampf(actor.x + (actor.dodgeDir.x * 165 * 3.2 + wind) * dt, 55, 945)
 		actor.y = clampf(actor.y + actor.dodgeDir.y * 165 * 3.2 * dt, 70, 480)
 	elif actor.lineMove.is_empty():
@@ -397,6 +438,8 @@ func snapshot() -> Dictionary:
 	return _encode({"p": p, "q": q, "time": time, "intro": intro, "duration": duration, "outcome": outcome, "partnerId": partner_id, "modelId": model_id, "enemyModelId": enemy_model_id, "enemyLevel": enemy_level, "assist": assist})
 
 func restore(saved: Dictionary) -> void:
+	player_rope = Rope.new()
+	enemy_rope = Rope.new()
 	var decoded: Dictionary = _decode(saved)
 	p = decoded.p
 	q = decoded.q

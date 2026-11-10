@@ -31,6 +31,9 @@ static func root(model_id: String) -> String:
 static func bonus(model_id: String) -> float:
 	return float(form(model_id).get("bonus", 0))
 
+static func signature(model_id: String) -> String:
+	return str(form(model_id).get("signature", {"rabbito": "Pulo do Elo", "rai": "Especial"}.get(root(model_id), "")))
+
 ## Id da arte de batalha (content.combat) de uma forma evoluída; `fallback` para as outras.
 static func art(model_id: String, fallback: String = "rabbito") -> String:
 	var entry := form(model_id)
@@ -60,8 +63,32 @@ static func next_level(model_id: String) -> int:
 	return best
 
 ## Parceiros da equipe com evolução disponível (ids).
+static func requirements(player: Dictionary, partner: Dictionary, form_id: String) -> Array[Dictionary]:
+	var entry := form(form_id)
+	var level := Levels.level_for_xp(partner.get("xp", 0))
+	var minimum := int(entry.get("level", 1))
+	var rows: Array[Dictionary] = [{"text": "Nível %d / %d" % [level, minimum], "met": level >= minimum}]
+	var totals: Dictionary = {}
+	var labels: Dictionary = {}
+	for item: Dictionary in entry.get("items", []):
+		var id := str(item.id)
+		totals[id] = int(totals.get(id, 0)) + maxi(1, int(item.get("quantity", 1)))
+		labels[id] = str(item.get("label", id.replace("-", " ").capitalize()))
+	for id: String in totals:
+		var stock := int(player.get("inventory", {}).get(id, 0))
+		rows.append({"text": "%s (%d/%d)" % [labels[id], stock, totals[id]], "met": stock >= totals[id]})
+	for flag: String in entry.get("flags", []):
+		rows.append({"text": str(entry.get("flagLabels", {}).get(flag, flag)), "met": player.get("flags", {}).get(flag, false) == true})
+	return rows
+
 static func ready_partners(player: Dictionary) -> Array:
-	return player.get("partners", []).filter(func(p): return can_evolve(p)).map(func(p): return p.id)
+	var ready: Array = []
+	for partner: Dictionary in player.get("partners", []):
+		for id: String in options(partner):
+			if requirements(player, partner, id).all(func(row): return row.met):
+				ready.append(partner.id)
+				break
+	return ready
 
 ## Evolui o parceiro `partner_id` para `form_id`. Devolve {"status", "player", "from", "to"}.
 ## Só altera a cópia de `player`; quem chama grava a operação.
@@ -71,6 +98,13 @@ static func evolve(player: Dictionary, partner_id: String, form_id: String) -> D
 		if partner.get("id", "") == partner_id: target = partner
 	if target.is_empty(): return {"status": "wrong_step"}
 	if form_id not in options(target): return {"status": "not_ready"}
+	if not requirements(player, target, form_id).all(func(row): return row.met):
+		return {"status": "missing_requirements"}
+	for item: Dictionary in form(form_id).get("items", []):
+		if not item.get("consume", false): continue
+		var remaining := int(player.inventory[item.id]) - maxi(1, int(item.get("quantity", 1)))
+		if remaining == 0: player.inventory.erase(item.id)
+		else: player.inventory[item.id] = remaining
 	var before := str(target.modelId)
 	var old_name := display_name(before, str(target.get("personalName", "")))
 	target.modelId = form_id
@@ -78,7 +112,7 @@ static func evolve(player: Dictionary, partner_id: String, form_id: String) -> D
 	history.append(before)
 	target.evolvedFrom = history
 	# Nome dado pelo jogador fica; o nome da espécie acompanha a forma.
-	if str(target.get("personalName", "")) in ["", old_name] or str(target.get("personalName", "")).contains(old_name):
+	if str(target.get("personalName", "")) in ["", old_name]:
 		target.personalName = display_name(form_id)
 	Progression.discover(player, form_id)
 	Progression.acquire(player, form_id)

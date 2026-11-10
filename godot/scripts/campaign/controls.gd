@@ -66,6 +66,8 @@ static func install(value: Dictionary = {}) -> void:
 	_sync_pad_bindings()
 	events.changed.emit()
 
+	_install_reel_actions()
+
 static func configure_device(device: int, name: String, vendor_id: int = 0) -> void:
 	_device_families[device] = classify_pad(name,vendor_id)
 	_sync_pad_bindings()
@@ -181,3 +183,20 @@ static func glyph(action: String, keyboard: bool = false) -> Texture2D:
 
 static func cancel(event: InputEvent) -> bool:
 	return (event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_ESCAPE) or (event is InputEventJoypadButton and event.pressed and event.button_index == JOY_BUTTON_START)
+
+static func _install_reel_actions() -> void:
+	for binding in [["campaign_reel_in", KEY_Z, JOY_AXIS_TRIGGER_RIGHT], ["campaign_reel_out", KEY_C, JOY_AXIS_TRIGGER_LEFT]]:
+		var action: String = binding[0]
+		if not InputMap.has_action(action): InputMap.add_action(action, .18)
+		InputMap.action_erase_events(action)
+		if binding[1] not in bindings.values():
+			var key := InputEventKey.new()
+			key.physical_keycode = binding[1]
+			InputMap.action_add_event(action, key)
+		var trigger := InputEventJoypadMotion.new()
+		trigger.axis = binding[2]
+		trigger.axis_value = 1.0
+		InputMap.action_add_event(action, trigger)
+
+static func reel_axis() -> float:
+	return Input.get_action_strength("campaign_reel_out") - Input.get_action_strength("campaign_reel_in")
