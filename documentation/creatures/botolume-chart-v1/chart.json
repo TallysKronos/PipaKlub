@@ -1,0 +1,92 @@
+{
+  "family_id": "botolume",
+  "family_name": "Boto-cor-de-rosa / Botolume",
+  "scope": "Demons do Folclore. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "boialuz",
+      "name": "Boialuz",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/botolume.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "botolume",
+      "name": "Botolume",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/botolume.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "dobramare",
+      "name": "Dobramaré",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/botolume.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "festarrio",
+      "name": "Festarrio",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/botolume.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Duas velas ao redor da crista acompanham o nado. Posição 4 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "vazanterio",
+      "name": "Vazantério",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/adultos-alternativos-v1/botolume.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Cauda em pipa de caixa que funciona como leme."
+    }
+  ],
+  "edges": [
+    {
+      "from": "boialuz",
+      "to": "botolume",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "botolume",
+      "to": "dobramare",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "dobramare",
+      "to": "festarrio",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "dobramare",
+      "to": "vazanterio",
+      "kind": "reweaving",
+      "reason": "Rota adulta alternativa, no mesmo estágio da primeira forma adulta.",
+      "decision_status": "proposed"
+    }
+  ]
+}

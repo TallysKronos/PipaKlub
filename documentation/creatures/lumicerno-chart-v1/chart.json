@@ -1,0 +1,74 @@
+{
+  "family_id": "lumicerno",
+  "family_name": "Lumicerno",
+  "scope": "Cavalos do Bosque. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "pirilume",
+      "name": "Pirilume",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "luziquino",
+      "name": "Luziquino",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "lumevigia",
+      "name": "Lumevigia",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "lumicerno",
+      "name": "Lumicerno",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/concept-v2/lumicerno.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Tórax em forma de lanterna com janelas de vagalume."
+    }
+  ],
+  "edges": [
+    {
+      "from": "pirilume",
+      "to": "luziquino",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "luziquino",
+      "to": "lumevigia",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "lumevigia",
+      "to": "lumicerno",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

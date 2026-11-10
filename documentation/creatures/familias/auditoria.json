@@ -1,11 +1,11 @@
 {
   "counts": {
-    "families": 110,
-    "families_with_chart": 73,
-    "unique_records": 328,
+    "families": 134,
+    "families_with_chart": 97,
+    "unique_records": 420,
     "visual_reservations": 17,
     "dex_entries": 36,
-    "chart_sources": 76
+    "chart_sources": 100
   },
   "missing_references": [],
   "dex_not_covered": [],
@@ -42,27 +42,9 @@
       "cacaurama:preguicau-adult",
       "gambalhote:gambalhote-adult"
     ],
-    "Bebê": [
-      "anaconda-retrato:anaconda-baby",
-      "caracol-pneu:caracol-pneu-baby",
-      "coruja-balanca:coruja-baby",
-      "gata-lunar:gata-lunar-baby",
-      "javali-guerreiro:javali-baby",
-      "lince-de-cerco:lince-de-cerco-baby",
-      "mico-samurai:mico-baby",
-      "pangolim-trovao:pangolim-baby",
-      "urso-polar:urso-polar-baby",
-      "viuva-anjo:viuva-baby"
-    ],
-    "Jovem (nome pendente)": [
-      "cacaurama:cacaulento",
-      "cacaurama:preguicau-young",
-      "caramund:caramund-young",
-      "gambalhote:gambalhote-young"
-    ],
-    "Brotim": [
-      "cervarco-family-v1:brotim",
-      "mata-verde:brotim"
+    "Caramastro": [
+      "caramastro:caramastro",
+      "carcara:caramastro"
     ],
     "Bebê (nome pendente)": [
       "cacaurama:cacau-baby",
@@ -85,7 +67,29 @@
       "cacaurama:cacau-child",
       "cacaurama:preguicau-child",
       "caramund:caramund-child"
+    ],
+    "Jovem (nome pendente)": [
+      "cacaurama:cacaulento",
+      "cacaurama:preguicau-young",
+      "caramund:caramund-young",
+      "gambalhote:gambalhote-young"
+    ],
+    "Bebê": [
+      "anaconda-retrato:anaconda-baby",
+      "caracol-pneu:caracol-pneu-baby",
+      "coruja-balanca:coruja-baby",
+      "gata-lunar:gata-lunar-baby",
+      "javali-guerreiro:javali-baby",
+      "lince-de-cerco:lince-de-cerco-baby",
+      "mico-samurai:mico-baby",
+      "pangolim-trovao:pangolim-baby",
+      "urso-polar:urso-polar-baby",
+      "viuva-anjo:viuva-baby"
+    ],
+    "Brotim": [
+      "cervarco-family-v1:brotim",
+      "mata-verde:brotim"
     ]
   },
-  "inventory_files": 1934
+  "inventory_files": 2025
 }

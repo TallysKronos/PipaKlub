@@ -13,10 +13,10 @@ function runtime(){
   vm.runInContext(app,context);
   return {context,element,run:code=>vm.runInContext(code,context)};
 }
-test('charts repetidos não duplicam Rabbito ou as 328 identidades',()=>{
+test('charts repetidos não duplicam Rabbito ou as identidades do catálogo',()=>{
   assert.equal(payload.family_context.filter(f=>f.id==='rabbito').length,1);
-  assert.equal(payload.records.length,328);
-  assert.equal(new Set(payload.records.map(n=>n.key)).size,328);
+  assert.equal(payload.records.length,payload.counts.unique_records);
+  assert.equal(new Set(payload.records.map(n=>n.key)).size,payload.records.length);
   assert.equal(payload.records.filter(n=>n.id==='rabbito').length,1);
 });
 test('sobreposição Yaguarion preserva uma ficha em cavaleiros e mumificados',()=>{
@@ -62,6 +62,23 @@ test('entrelaços têm apenas dois resultados e reservas não entram nos Lords',
 });
 test('planilha de povoamento reserva decisões de área para o autor',()=>{
   const csv=readFileSync(new URL('./Plano-de-povoamento.csv',import.meta.url),'utf8').trim().split(/\r?\n/);
-  assert.equal(csv.length,329);assert.ok(csv[0].includes('Área a planejar'));
+  assert.equal(csv.length,payload.records.length+1);assert.ok(csv[0].includes('Área a planejar'));
   for(const row of csv.slice(1))assert.ok(row.endsWith(';;;;'));
+});
+test('os quatro Demons mantêm as duas formas adultas com origem no mesmo jovem',()=>{
+  const group=payload.groups.find(g=>g.id==='demons-do-folclore');
+  assert.equal(group.member_keys.length,20);
+  const rt=runtime();
+  for(const [family,young,original,alternate] of [
+    ['saciventim','Ventapulo','Rodamastro','Redemastro'],
+    ['contrapira','Rastroavesso','Matavolta','Virarraiz'],
+    ['lunarrufo','Umbrauivo','Lobumbrário','Eclipsarro'],
+    ['botolume','Dobramaré','Festarrio','Vazantério'],
+  ]){
+    rt.run(`activeFamily=${JSON.stringify(family)};render()`);
+    assert.equal(rt.run('filtered().length'),5);
+    const html=rt.element('content').innerHTML;
+    assert.ok(html.includes(young+' → '+original));
+    assert.ok(html.includes(young+' → '+alternate));
+  }
 });
