@@ -91,6 +91,9 @@ func _ready() -> void:
 func _equip_partner() -> void:
 	for equipped: Dictionary in saved_player.get("partners",[]):
 		if equipped.id!=saved_player.get("equippedPartnerId",""):continue
+		if CompanionFollow.setup_overworld_art(partner,equipped.modelId,.85):
+			partner_frames.clear()
+			return
 		var catalog: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 		var model: String={"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol"}.get(equipped.modelId,equipped.modelId)
 		var art: Dictionary=catalog.combat.get(model,{})
@@ -104,11 +107,18 @@ func _equip_partner() -> void:
 			partner.offset=Vector2(float(frame.w)*.5-bounds.get_center().x,float(frame.h)*.5-bounds.end.y)
 		return
 
+func _refresh_visuals() -> void:
+	var before := partner_root.position
+	super()
+	CompanionFollow.update_overworld_art(partner,partner_root.position-before,clock)
+
 func project(point: Vector2) -> Vector2:
 	return world.iso(point,world.support(point))
 
 func _process(delta: float) -> void:
-	if paused or not conversation.is_empty():return
+	if paused or overview or not conversation.is_empty():
+		_update_person_outline(null)
+		return
 	autosave_age+=delta
 	if autosave_age>=5 and last_saved_cell.distance_to(cell)>.15:
 		autosave_age=0
@@ -122,6 +132,16 @@ func _goal() -> Dictionary:
 		return {"p":target,"h":world.support(target)}
 	var p: Vector2=Checkpoint.PARK if saved_player.get("journey",{}).get("phase")=="complete" else Checkpoint.PROFESSOR
 	return {"p":p,"h":world.support(p)} if is_instance_valid(world) else {"p":p,"h":8}
+
+const InteractionOutline = preload("res://scripts/overworld/interaction_outline.gd")
+var outlined_person: MeshInstance2D
+
+func _update_person_outline(target: MeshInstance2D) -> void:
+	if outlined_person == target:
+		return
+	InteractionOutline.set_active(outlined_person, false)
+	outlined_person = target
+	InteractionOutline.set_active(outlined_person, true)
 
 func _update_hint() -> void:
 	super._update_hint()
@@ -140,6 +160,7 @@ func _update_hint() -> void:
 	if quest.available(saved_player) and quest.stage(saved_player)<3:
 		if near_person.get("id")=="zeca":hint+=" · Missão de montaria"
 		elif near_person.get("id")=="lia" and quest.stage(saved_player)==1:hint+=" · Fecho da guia"
+	_update_person_outline(near_person.get("art") if exit_id.is_empty() and not paused and not overview and conversation.is_empty() else null)
 	exploration_hud.prompt.text=hint
 	exploration_hud.objective.text=preload("res://scripts/campaign/kronasta_story.gd").objective(saved_player) if saved_player.get("journey",{}).get("phase")=="complete" else "Suba a ladeira e entre no ateliê do professor."
 	if quest.available(saved_player) and quest.stage(saved_player) in [1,2]:exploration_hud.objective.text=quest.objective(saved_player)
@@ -174,6 +195,7 @@ func interact() -> void:
 
 func _say(speaker: String,lines: Array) -> void:
 	if is_instance_valid(active_dialogue):return
+	_update_person_outline(null)
 	conversation.assign(lines)
 	dialogue_panel.hide()
 	avatar.moving=false;avatar.running=false

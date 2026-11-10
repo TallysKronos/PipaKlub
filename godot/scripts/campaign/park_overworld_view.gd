@@ -84,8 +84,11 @@ func _ready() -> void:
 		if partner.id==saved_player.get("equippedPartnerId",""): partner_id=partner.modelId
 	var atlas_id: String = {"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol"}.get(partner_id,partner_id)
 	var atlas: Dictionary = content.combat.get(atlas_id,content.combat.rabbito)
-	companion.texture = load("res://assets/campaign/"+atlas.image)
-	companion_frames = atlas.animations.idle
+	if CompanionFollow.setup_overworld_art(companion, partner_id):
+		follower_gap = 1.25
+	else:
+		companion.texture = load("res://assets/campaign/"+atlas.image)
+		companion_frames = atlas.animations.idle
 	var ui := CanvasLayer.new()
 	add_child(ui)
 	exploration_hud = load("res://scripts/campaign/hud_exploration.gd").new()
@@ -176,7 +179,7 @@ func _build_events() -> void:
 		for event:Dictionary in interaction_events:
 			if event.props.get("duel","")=="palafitas-5":
 				var actor_id:String="caio" if event.name=="Caio Garça" else event.name.to_lower()
-				event.props.storySpritePath="res://assets/npc-ds/palafitas-v1/"+actor_id+".png"
+				event.props.storySpritePath="res://assets/npc-ds/palafitas-iso-v2/"+actor_id+".png"
 	if district_region=="industrial":
 		for event:Dictionary in model.data.events+interaction_events:
 			if event.props.get("duel","")=="industrial-5":
@@ -191,11 +194,20 @@ func _build_events() -> void:
 		for event in Checkpoint.data(saved_checkpoint.scene).events:
 			if model.data.events.any(func(existing: Dictionary): return int(existing.id)==int(event.id)): continue
 			model.data.events.append(event.duplicate(true))
-			interaction_events.append(event.duplicate(true))
-	# Dito has no approved overworld sprite in the delivery. Do not duplicate another
-	# character or leave an invisible person as an interaction target.
+			if not interaction_events.any(func(existing: Dictionary): return str(existing.id)==str(event.id)):
+				interaction_events.append(event.duplicate(true))
+	# Keep unconfigured NPC events out of the Bosque interaction list.
 	if Checkpoint.is_bosque(area_id):
 		interaction_events=interaction_events.filter(func(event: Dictionary): return event.type!="npc" or event.props.has("npcIdentity") or event.props.has("storySpritePath"))
+	if saved_checkpoint.scene == "kronasta-industrial-d":
+		var story := preload("res://scripts/campaign/endgame_story.gd")
+		for event: Dictionary in interaction_events:
+			if event.props.get("step", "") != "galpao": continue
+			var index: int = story.duel_index(saved_player, "galpao")
+			if index >= story.GALPAO_SPRITES.size(): continue
+			var sprite: Dictionary = story.GALPAO_SPRITES[index]
+			event.props.storySpritePath = sprite.path
+			event.props.storySpriteRegion = sprite.region
 	if saved_checkpoint.scene=="park-clearing":
 		for e:Dictionary in preload("res://scripts/campaign/tyler_clareira.gd").events():
 			if not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):interaction_events.append(e)
@@ -300,15 +312,20 @@ func toggle_run() -> void:
 	if not paused and item_receipt.is_empty():super.toggle_run()
 
 func _physics_process(delta: float) -> void:
-	if paused: avatar.moving=false; avatar.running=false; return
+	if paused:
+		_update_npc_outline({})
+		avatar.moving=false; avatar.running=false
+		return
 	if not item_receipt.is_empty():
+		_update_npc_outline({})
 		item_receipt.time+=delta
 		avatar.item_pose(minf(1.0,item_receipt.time/item_receipt.duration),item_receipt.facing)
 		if item_receipt.time>=item_receipt.duration: avatar.stop_item(); item_receipt.clear()
 		return
 	var before := player
+	var follower_before := follower
 	super(delta)
-	if not companion_frames.is_empty():
+	if not CompanionFollow.update_overworld_art(companion, project(follower)-project(follower_before), clock) and not companion_frames.is_empty():
 		var frame: Dictionary = companion_frames[int(clock*12)%companion_frames.size()]
 		companion.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
 	nearby = {}
@@ -325,6 +342,7 @@ func _physics_process(delta: float) -> void:
 		if event.props.get("acao","")=="learnDig" and saved_player.get("flags",{}).get("canCavar",false): rank+=.6
 		if gap<1.8 and rank<nearest and absf(model.height_at(player)-model.height_at(at))<.25:
 			nearby=event; nearest=rank
+	_update_npc_outline(nearby)
 	hint.text = "" if nearby.is_empty() else nearby.name
 	if nearby.get("type")=="item" and nearby.props.get("visibilidade","")=="escondido":
 		hint.text = "Investigar o chão"
@@ -335,6 +353,7 @@ func _physics_process(delta: float) -> void:
 			exploration_hud.objective.text="Lacertubo guarda a rabiola. Aproxime-se para enfrentá-lo ou recue para se preparar."
 			if not saved_player.flags.get("lacertuboIntroduced",false):
 				paused=true
+				_update_npc_outline({})
 				action_requested.emit("guardian-approach")
 				return
 		else: exploration_hud.objective.text=Training.objective(saved_player,saved_checkpoint.scene)
@@ -366,6 +385,8 @@ func interact() -> void:
 			if str(piece.id)==str(nearby.piece_id):
 				action_requested.emit("chest:"+str(piece.props.bau) if piece.props.has("bau") else "park-loot:piece-"+str(int(piece.id)))
 		return
+	_update_npc_outline({})
+	_face_interaction_npcs(nearby)
 	var action: String = nearby.props.get("acao","")
 	if action=="parkTraining":
 		action_requested.emit("training:"+str(nearby.props.trainer))
@@ -475,16 +496,15 @@ func stage_endgame(id: String) -> void:
 		staging.add_child(sprite)
 
 ## F20: the champions' meeting in the Praça da Matriz, in three small groups with room
-## for Kael. Mikka is the event itself; the others come from each district's cast
-## (Dona Neve has no art yet).
+## for Kael. Mikka is the event itself; the others come from each district's cast.
 const CHAMPIONS := [
-	{"name":"Lohan","atlas":"res://assets/npc-ds/bambuzal-v1/"},
-	{"name":"Kleie","atlas":"res://assets/npc-ds/beira-canal-v1/"},
+	{"name":"Lohan","atlas":"res://assets/npc-ds/bambuzal-iso-v2/"},
+	{"name":"Kleie","atlas":"res://assets/npc-ds/beira-canal-iso-v2/"},
 	{"name":"Dona Zulmira","path":"res://assets/npc-ds/feira-v1/zulmira.png"},
 	{"name":"Marisol","path":"res://assets/npc-ds/cais-v1/marisol.png"},
 	{"name":"Bruno Solda","path":"res://assets/npc-ds/vila-operaria-v1/bruno-solda.png"},
-	{"name":"Caio Garça","path":"res://assets/npc-ds/palafitas-v1/caio.png"},
-	{"name":"Dona Neve","mock":"professor"},
+	{"name":"Caio Garça","path":"res://assets/npc-ds/palafitas-iso-v2/caio.png"},
+	{"name":"Dona Neve","path":"res://assets/npc-ds/serra-v1/dona-neve.png"},
 ]
 const CHAMPION_SPOTS := [Vector2i(-3,-2),Vector2i(-4,0),Vector2i(-3,2),Vector2i(0,-3),Vector2i(2,-3),Vector2i(4,-1),Vector2i(4,1)]
 
@@ -543,17 +563,26 @@ func animate_gollia_entrance() -> void:
 	var story=preload("res://scripts/campaign/endgame_story.gd")
 	var target: Vector2=story.point(area_id,story.STEPS["gollia-arrependimento"].anchor)
 	for npc in npc_nodes:
-		if npc.point!=target:continue
+		if npc.root.get_meta("event",{}).get("props",{}).get("step","") != "gollia-arrependimento":continue
 		var visual: Node2D=npc.visual
+		var sprite := visual.get_child(0) as Sprite2D
 		var origin := target + Vector2(0,-2)
 		if not model.clear_segment(origin,target):
 			origin=target+Vector2(2,0)
 		if not model.clear_segment(origin,target):return
 		var rest := visual.position
-		visual.position=rest+model.project(origin)-model.project(target)
+		var destination: Vector2 = model.project(target)
+		var from: Vector2 = model.project(origin)
+		visual.position=rest+from-destination
+		sprite.flip_h=from.x>destination.x
 		var tween := visual.create_tween()
-		tween.tween_property(visual,"position",rest,.65).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_method(func(progress: float):
+			visual.position=rest+model.project(origin.lerp(target,progress))-destination
+			sprite.region_rect.position.x=(1+floori(progress*4.0)%2)*64.0,
+			0.0,1.0,.65).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		await tween.finished
+		sprite.region_rect.position.x=0.0
+		sprite.flip_h=model.project(player).x<destination.x
 		return
 
 func clear_endgame_staging() -> void:
@@ -643,6 +672,7 @@ func _stage_storm_cast() -> void:
 		var rato := Sprite2D.new()
 		rato.name="RatoWatching"
 		rato.texture=load("res://assets/overworld/kits/camara-do-elo-v1/rato-idle-eight.png")
+		rato.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 		rato.region_enabled=true
 		rato.region_rect=Rect2(448,0,64,96)
 		rato.offset.y=-48
@@ -668,12 +698,16 @@ func _stage_stadium_lobby() -> void:
 	var used := {}
 	for group in groups:
 		for i in group[0].size():
-			var point: Vector2=endgame.point(saved_checkpoint.scene,group[1]+Vector2i(i,0))
-			if not point.is_finite() or used.has(point) or point.distance_to(player)<1.0:continue
-			used[point]=true
-			lobby.add_child(_cast_sprite(str(group[0][i][0]),group[0][i][1],point))
+			var anchor: Vector2i = group[1] + Vector2i(i,0)
+			# Prefer the arena side of the carpet to the trophy display.
+			for offset: Vector2i in [Vector2i.ZERO, Vector2i(0,-1), Vector2i(1,0), Vector2i(1,-1), Vector2i(0,1), Vector2i(-1,1), Vector2i(2,0), Vector2i(-2,0)]:
+				var point: Vector2 = endgame.point(saved_checkpoint.scene,anchor+offset)
+				if not point.is_finite() or used.has(point) or point.distance_to(player)<1.0:continue
+				used[point]=true
+				lobby.add_child(_cast_sprite(str(group[0][i][0]),group[0][i][1],point))
+				break
 
-## A story cast member: [texture, eight-way sheet?, height in pixels] at a ground point.
+## A story cast member: [texture, eight-way sheet?, height in pixels, optional foot offset].
 func _cast_sprite(cast_name: String, entry: Array, point: Vector2) -> Sprite2D:
 	var sprite := Sprite2D.new()
 	sprite.name=cast_name
@@ -684,7 +718,8 @@ func _cast_sprite(cast_name: String, entry: Array, point: Vector2) -> Sprite2D:
 		sprite.region_rect=Rect2(sprite.texture.get_width()*.75,sprite.texture.get_height()*.5,sprite.texture.get_width()*.25,sprite.texture.get_height()*.5)
 		height=sprite.region_rect.size.y
 	sprite.scale=Vector2.ONE*float(entry[2])/height
-	sprite.offset.y=-height*.5+(4.0 if entry[1] else 0.0)
+	var foot_offset: float = entry[3] if entry.size() > 3 else (4.0 if entry[1] else 0.0)
+	sprite.offset.y = -height * .5 + foot_offset
 	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.position=model.project(point)
 	sprite.set_meta("ground_point",point)
@@ -708,6 +743,7 @@ func _stage_night_marks() -> void:
 		var guard := Sprite2D.new()
 		guard.name="BandoBarrier"
 		guard.texture=load("res://assets/overworld/kits/camara-do-elo-v1/capanga-feminina-idle-eight.png")
+		guard.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 		guard.region_enabled=true
 		guard.region_rect=Rect2(448,0,64,96)
 		guard.offset.y=-48
@@ -716,7 +752,8 @@ func _stage_night_marks() -> void:
 	if saved_checkpoint.scene=="kronasta-industrial-d" and endgame.ready(saved_player,"galpao"):
 		var lock: Vector2=endgame.point(saved_checkpoint.scene,endgame.STEPS.galpao.anchor)
 		if not lock.is_finite():return
-		var base: Vector2=model.project(lock)+Vector2(0,-118)
+		var lock_marker: Vector2=model.project(lock)+Vector2(54,-60)
+		var base: Vector2=lock_marker+Vector2(0,-58)
 		for i in 3:
 			if saved_player.get("flags",{}).get("endgame-galpao-%d"%i,false):continue
 			var knot := Polygon2D.new()
@@ -728,7 +765,7 @@ func _stage_night_marks() -> void:
 			marks.add_child(knot)
 			var rope := Line2D.new()
 			rope.width=2.0;rope.default_color=Tokens.NANQUIM;rope.z_index=2
-			rope.points=PackedVector2Array([c+Vector2(0,9),model.project(lock)+Vector2(0,-60)])
+			rope.points=PackedVector2Array([c+Vector2(0,9),lock_marker])
 			marks.add_child(rope)
 
 func present_championship_victory() -> void:
@@ -809,9 +846,20 @@ func _pass_title(gathering: Node2D, finals) -> void:
 	if not reduced_motion:
 		var route: PackedVector2Array=model.path_to(start,beside)
 		var walk := create_tween()
-		for step: Vector2 in route:walk.tween_property(jamile,"position",model.project(step),.16)
+		var stride := 0
+		var poses := [
+			preload("res://assets/overworld/kits/camara-do-elo-v1/jamile-1.png"),
+			preload("res://assets/overworld/kits/camara-do-elo-v1/jamile-2.png"),
+		]
+		for step: Vector2 in route:
+			var target: Vector2 = model.project(step)
+			var pose: Texture2D = poses[stride % poses.size()]
+			walk.tween_callback(func(): jamile.texture = pose)
+			walk.tween_property(jamile,"position",target,.16)
+			stride += 1
 		if route.is_empty():walk.tween_property(jamile,"position",model.project(beside),.6)
 		await walk.finished
+		jamile.texture=load(finals.JAMILE[0])
 	jamile.set_meta("ground_point",beside)
 	jamile.flip_h=beside.x>player.x
 	avatar.face_motion(model.project(beside,false)-model.project(player,false))

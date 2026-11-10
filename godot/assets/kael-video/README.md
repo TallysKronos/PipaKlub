@@ -1,5 +1,7 @@
 # Kael · família derivada de vídeo
 
+As folhas ativas de repouso, caminhada, corrida, salto e item ficam em `iso-v2/`. A [revisão das ações especiais](../../../art/characters/kael-especiais-iso-v2/README.md) documenta as poses atuais. Os arquivos na raiz desta pasta registram a versão anterior.
+
 Origem e quadros selecionados: `art/characters/kael-video-eight-directions-v1/` e `art/characters/kael-video-jump-v1/`. Referências do Kael fornecidas/aprovadas pelo usuário; vídeos gerados com MiniMax H3 local. Ver os manifestos e workflows dessas pastas para rastreabilidade, sem atribuir licença a conteúdo legado.
 
 Filtro nearest, transparência binária, paleta comum de 32 cores. Caminhada: 64×96, pivô 32,94. Salto: 96×112, pivô 48,110, mesma escala do corpo. O espaço transparente adicional evita cortar os braços.

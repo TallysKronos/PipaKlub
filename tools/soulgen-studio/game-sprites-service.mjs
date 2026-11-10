@@ -8,10 +8,21 @@ const ROOT='godot/assets/mounts/doberman-c-v1/';
 export const gameSprites=[{id:'doberman-c',name:'Montaria C',file:ROOT+'idle-eight.png',role:'mount'},{id:'kael-mounted',name:'Kael montado',file:ROOT+'kael-rider-refined.png',role:'rider'}];
 export function createGameSpritesService(root){
  const locks=new Map();
- async function read(id){const asset=gameSprites.find(a=>a.id===id);if(!asset)throw fail(404,'Sprite não encontrado.');const bytes=await fs.readFile(path.join(root,asset.file));return {asset,bytes,revision:hash(bytes)};}
+ async function read(id,rig){
+  const registered=gameSprites.find(a=>a.id===id);
+  if(!registered)throw fail(404,'Sprite não encontrado.');
+  rig ??= await definition();
+  const texture=rig[registered.role==='mount'?'texture':'riderTexture'];
+  const file=typeof texture==='string'&&/^res:\/\/assets\/mounts\/[a-z0-9-]+\/[a-z0-9-]+\.png$/i.test(texture)
+   ? 'godot/'+texture.slice('res://'.length)
+   : registered.file;
+  const asset={...registered,file};
+  const bytes=await fs.readFile(path.join(root,file));
+  return {asset,bytes,revision:hash(bytes)};
+ }
  async function definition(){return JSON.parse(await fs.readFile(path.join(root,ROOT+'mount.json'),'utf8'));}
  return {
-  async list(){const bytes=await fs.readFile(path.join(root,ROOT+'mount.json')),rig=JSON.parse(bytes);return {assets:await Promise.all(gameSprites.map(async a=>{const d=await read(a.id);return {...a,revision:d.revision};})),rig,rigRevision:hash(bytes)};},
+  async list(){const bytes=await fs.readFile(path.join(root,ROOT+'mount.json')),rig=JSON.parse(bytes);return {assets:await Promise.all(gameSprites.map(async a=>{const d=await read(a.id,rig);return {...d.asset,revision:d.revision};})),rig,rigRevision:hash(bytes)};},
   async saveRig(value){
    const previous=locks.get('rig')||Promise.resolve(),task=previous.catch(()=>{}).then(async()=>{
     const file=path.join(root,ROOT+'mount.json'),bytes=await fs.readFile(file);
@@ -30,8 +41,8 @@ export function createGameSpritesService(root){
   async image(id){return (await read(id)).bytes;},
   async save(id,value){
    const previous=locks.get(id)||Promise.resolve();const task=previous.catch(()=>{}).then(async()=>{
-    const d=await read(id);if(value?.revision!==d.revision)throw fail(409,'O arquivo mudou. Exporte sua edição e recarregue antes de salvar.');
-    const rig=await definition(),frame=rig.directions[value.direction];if(!frame)throw fail(422,'Direção inválida.');
+    const rig=await definition(),d=await read(id,rig);if(value?.revision!==d.revision)throw fail(409,'O arquivo mudou. Exporte sua edição e recarregue antes de salvar.');
+    const frame=rig.directions[value.direction];if(!frame)throw fail(422,'Direção inválida.');
     const rect=d.asset.role==='mount'?frame.rect:frame.riderRect;
     if(typeof value.png!=='string'||!/^data:image\/png;base64,[A-Za-z0-9+/=]+$/.test(value.png)||value.png.length>4e6)throw fail(422,'Envie um recorte PNG válido.');
     const bytes=Buffer.from(value.png.split(',')[1],'base64');

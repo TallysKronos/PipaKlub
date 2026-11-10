@@ -11,6 +11,8 @@ func run() -> void:
 	var sprite:=Sprite2D.new();root.add_child(sprite)
 	Pixels.setup(sprite,"mae",88)
 	var base:Texture2D=sprite.texture
+	var rest_offset := sprite.offset
+	var rest_foot := 92.0 - 48.0 + rest_offset.y
 	for row in 8:
 		Pixels.face(sprite,Pixels.DIRECTIONS[row])
 		var frames:Array[Rect2]=[]
@@ -18,11 +20,14 @@ func run() -> void:
 			Pixels.animate_walk(sprite,true,seconds)
 			frames.append(sprite.region_rect)
 			check(sprite.region_rect.position.y==row*96,"walk retains direction")
+			var bounds := sprite.texture.get_image().get_region(Rect2i(sprite.region_rect)).get_used_rect()
+			check(is_equal_approx(bounds.end.y - 48.0 + sprite.offset.y, rest_foot), "walking feet keep the resting ground anchor")
 		check(frames[0]!=frames[1] and frames[1]!=frames[2] and frames[2]!=frames[3],"four distinct frames per direction")
 		Pixels.reveal(sprite,.5)
 		check(sprite.material.get_shader_parameter("rows")==8.0,"stairs mask uses walk atlas height")
 		Pixels.animate_walk(sprite,false,0);Pixels.reveal(sprite,1)
 		check(sprite.texture==base and sprite.material.get_shader_parameter("rows")==2.0,"rest restores base atlas and mask")
+		check(sprite.offset == rest_offset, "rest restores the original foot offset")
 	check(Pixels.mother_walk.get_size()==Vector2(256,768),"authored atlas dimensions")
 	sprite.free()
 	root.size=Vector2i(1280,720);root.gui_disable_input=true

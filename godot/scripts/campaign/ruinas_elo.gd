@@ -32,12 +32,14 @@ static func bracket_text(flags: Dictionary) -> String:
 	return "\n\n".join(rows)
 
 ## F27: the lobby between rounds. "lobby" is who waits by the attendant before each
-## round; earlier opponents watch from the side. Faye has no overworld art yet.
+## round; earlier opponents watch from the side.
 const GRAMPO := ["res://assets/campaign/beira-canal-v1/grampo-idle-eight.png", true, 80.0]
 const PLATYX := ["res://assets/campaign/beira-canal-v1/platyx-overworld-eight.png", true, 52.0]
 const TYLER := ["res://assets/campaign/tyler-clareira-v1/tyler-overworld-idle-eight.png", true, 80.0]
 const JAMILE := ["res://assets/overworld/kits/camara-do-elo-v1/jamile-0.png", false, 76.0]
-const LOBBY := [[["Grampo",GRAMPO],["Platyx",PLATYX]], [["Tyler",TYLER]], [], [["Jamile",JAMILE]]]
+const FAYE := ["res://assets/npc-ds/estadio-v1/direcoes/faye.png", true, 80.0, 0.0]
+const RAPOSA_ARTICA := ["res://assets/npc-ds/estadio-v1/raposa-artica.png", false, 50.0]
+const LOBBY := [[["Grampo",GRAMPO],["Platyx",PLATYX]], [["Tyler",TYLER]], [["Faye",FAYE],["RaposaArtica",RAPOSA_ARTICA]], [["Jamile",JAMILE]]]
 const LOBBY_SPOT := Vector2i(27, 7)
 const STANDS_SPOT := Vector2i(20, 9)
 ## Reactions after each round, and what the attendant says about the next one.

@@ -1,6 +1,7 @@
 extends RefCounted
 
 const PLATYX := preload("res://assets/campaign/beira-canal-v1/platyx-overworld-eight.png")
+const AVATAR := preload("res://scripts/kael_video_avatar.gd")
 
 static func place(view) -> Sprite2D:
 	var grampo := Vector2(24.5, 16.5)
@@ -76,19 +77,35 @@ static func leave_for_chamber(view) -> void:
 		var route: PackedVector2Array = view.model.path_to(actor.point, Vector2(25.5, 6.5))
 		if route.is_empty(): return
 		var grampo: Node2D = actor.root
+		var grampo_sprite := actor.visual.get_child(0) as Sprite2D
 		var walk: Tween = view.create_tween()
 		var previous: Vector2 = actor.point
+		var platyx_from := platyx.position
 		for step in route:
 			var duration := previous.distance_to(step) * .16
 			if duration <= 0.0: continue
 			var target: Vector2 = view.model.project(step)
 			var trail: Vector2 = view.model.project(previous)
-			walk.tween_property(grampo, "global_position", view.actors.to_global(target), duration)
+			var grampo_frame := facing_index(target - trail)
+			var platyx_frame := facing_index(trail - platyx_from, platyx.frame)
+			walk.tween_callback(func():
+				if grampo_sprite != null:
+					grampo_sprite.region_rect.position = Vector2((grampo_frame % 4) * 64, floori(grampo_frame / 4.0) * 96)
+				platyx.frame = platyx_frame)
+			walk.tween_method(func(point: Vector2):
+				view._place_actor(grampo, actor.visual, point, 84.0), previous, step, duration)
 			walk.parallel().tween_property(platyx, "position", trail, duration)
+			platyx_from = trail
 			previous = step
+		var exit_point: Vector2 = view.model.project(route[-1])
+		walk.tween_callback(func(): platyx.frame = facing_index(exit_point - platyx.position, platyx.frame))
 		walk.tween_property(grampo, "modulate:a", 0.0, .22)
+		walk.parallel().tween_property(platyx, "position", exit_point, .22)
 		walk.parallel().tween_property(platyx, "modulate:a", 0.0, .22)
 		await walk.finished
 		grampo.hide()
 		platyx.hide()
 		return
+
+static func facing_index(direction: Vector2, fallback: int = 7) -> int:
+	return AVATAR.DIRECTIONS.find(AVATAR.facing_for(direction, AVATAR.DIRECTIONS[fallback]))

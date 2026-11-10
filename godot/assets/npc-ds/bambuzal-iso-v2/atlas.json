@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "sprites": [
+    {
+      "bounds": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "facing": "se",
+      "name": "Nara",
+      "directional": "direcoes/nara.png"
+    },
+    {
+      "bounds": [
+        64,
+        0,
+        64,
+        64
+      ],
+      "facing": "se",
+      "name": "Dito",
+      "directional": "direcoes/dito.png"
+    },
+    {
+      "bounds": [
+        128,
+        0,
+        64,
+        64
+      ],
+      "facing": "se",
+      "name": "Célia",
+      "directional": "direcoes/celia.png"
+    },
+    {
+      "bounds": [
+        192,
+        0,
+        64,
+        64
+      ],
+      "facing": "se",
+      "name": "Bento",
+      "directional": "direcoes/bento.png"
+    },
+    {
+      "bounds": [
+        256,
+        0,
+        64,
+        64
+      ],
+      "facing": "se",
+      "name": "Lohan",
+      "directional": "direcoes/lohan.png"
+    }
+  ],
+  "image": "atlas.png"
+}

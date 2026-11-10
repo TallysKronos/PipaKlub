@@ -1537,7 +1537,7 @@
           "authored": true,
           "npcName": "Seyran",
           "scene": "kronasta-palafitas-a",
-          "storySpritePath": "res://assets/npc-ds/palafitas-v1/seyran.png",
+          "storySpritePath": "res://assets/npc-ds/palafitas-iso-v2/seyran.png",
           "point": [
             22,
             28
@@ -1587,7 +1587,7 @@
           "authored": true,
           "npcName": "Oruvo",
           "scene": "kronasta-palafitas-a",
-          "storySpritePath": "res://assets/npc-ds/palafitas-v1/oruvo.png",
+          "storySpritePath": "res://assets/npc-ds/palafitas-iso-v2/oruvo.png",
           "point": [
             30,
             16
@@ -1637,7 +1637,7 @@
           "authored": true,
           "npcName": "Kessai",
           "scene": "kronasta-palafitas-b",
-          "storySpritePath": "res://assets/npc-ds/palafitas-v1/kessai.png",
+          "storySpritePath": "res://assets/npc-ds/palafitas-iso-v2/kessai.png",
           "point": [
             18,
             28
@@ -1687,7 +1687,7 @@
           "authored": true,
           "npcName": "Veldren",
           "scene": "kronasta-palafitas-b",
-          "storySpritePath": "res://assets/npc-ds/palafitas-v1/veldren.png",
+          "storySpritePath": "res://assets/npc-ds/palafitas-iso-v2/veldren.png",
           "point": [
             30,
             12
@@ -1737,10 +1737,10 @@
           "authored": true,
           "npcName": "Caio Garça",
           "scene": "kronasta-palafitas-c",
-          "storySpritePath": "res://assets/npc-ds/palafitas-v1/caio.png",
+          "storySpritePath": "res://assets/npc-ds/palafitas-iso-v2/caio.png",
           "point": [
-            26,
-            12
+            29,
+            14
           ],
           "rounds": 3,
           "styles": [
@@ -1784,6 +1784,7 @@
           "role": "lieutenant",
           "npcId": "veyl",
           "name": "Veyl",
+          "storySpritePath": "res://assets/npc-ds/serra-v1/veyl.png",
           "level": 27,
           "before": [
             [
@@ -1812,7 +1813,7 @@
           "npcName": "Veyl",
           "scene": "kronasta-montanha-a",
           "point": [
-            20,
+            22,
             17
           ],
           "rounds": 2,
@@ -1833,6 +1834,7 @@
           "role": "lieutenant",
           "npcId": "sora",
           "name": "Sora",
+          "storySpritePath": "res://assets/npc-ds/serra-v1/sora.png",
           "level": 27,
           "before": [
             [
@@ -1882,6 +1884,7 @@
           "role": "lieutenant",
           "npcId": "oren",
           "name": "Oren",
+          "storySpritePath": "res://assets/npc-ds/serra-v1/oren.png",
           "level": 28,
           "before": [
             [
@@ -1910,7 +1913,7 @@
           "npcName": "Oren",
           "scene": "kronasta-montanha-b",
           "point": [
-            29,
+            26,
             14
           ],
           "rounds": 2,
@@ -1931,6 +1934,7 @@
           "role": "lieutenant",
           "npcId": "kaiva",
           "name": "Kaiva",
+          "storySpritePath": "res://assets/npc-ds/serra-v1/kaiva.png",
           "level": 29,
           "before": [
             [
@@ -1980,6 +1984,7 @@
           "role": "champion",
           "npcId": "dona-neve",
           "name": "Dona Neve",
+          "storySpritePath": "res://assets/npc-ds/serra-v1/dona-neve.png",
           "level": 30,
           "before": [
             [
@@ -3096,8 +3101,8 @@
           "npcName": "Ícaro",
           "scene": "kronasta-mirante-c",
           "point": [
-            24,
-            6
+            23,
+            8
           ],
           "rounds": 3,
           "styles": [
