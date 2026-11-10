@@ -59,7 +59,7 @@ func capture() -> void:
 		var route: PackedVector2Array = view.model.path_to(view.player, point)
 		if route.is_empty(): push_error("Unreachable review NPC"); view.free(); quit(1); return
 		var texture: Texture2D = load(event.props.storySpritePath)
-		if texture == null or texture.get_height() != 112: view.free(); quit(1); return
+		if texture == null or texture.get_size() != Vector2(64, 64): view.free(); quit(1); return
 		report.append({"name":event.name,"point":[point.x,point.y],"route_points":route.size(),"source_height":texture.get_height(),"render_height":84,"static":true})
 	center /= 5.0
 	view.camera.zoom = Vector2.ONE*1.3
@@ -74,7 +74,7 @@ func capture() -> void:
 	var file := FileAccess.open(output.path_join("report.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify(report,"\t")+"\n")
 	view.free()
-	print("PASS: 5 real-renderer NPCs; 112px textures, 84px native render, connected review cells; 6 captures; no saves/rewards/map edits")
+	print("PASS: 5 real-renderer NPCs; 64x64 cells, 84px world frame, connected review cells; 6 captures; no saves/rewards/map edits")
 	quit()
 
 func shot(path: String) -> void:

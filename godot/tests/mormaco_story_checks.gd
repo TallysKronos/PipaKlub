@@ -30,10 +30,10 @@ func approve()->void:
    while d.page_index<d.pages.size()-1:d.next_page()
    d.get_ok_button().pressed.emit();await frames();return
  check(false,"dialogue exists")
-func shot(name:String)->void:
+func shot(name:String,folder:="documentation/qa/mormaco-story-v1")->void:
  if DisplayServer.get_name()=="headless":return
  await frames();await RenderingServer.frame_post_draw
- var out:=ProjectSettings.globalize_path("res://../documentation/qa/mormaco-story-v1");DirAccess.make_dir_recursive_absolute(out)
+ var out:=ProjectSettings.globalize_path("res://../"+folder);DirAccess.make_dir_recursive_absolute(out)
  check(root.get_texture().get_image().save_png(out.path_join(name+".png"))==OK,"capture "+name)
 func _initialize()->void:call_deferred("run")
 func run()->void:
@@ -91,6 +91,13 @@ func run()->void:
   if is_instance_valid(app.park.mormaco.tyler) and not app.flow_busy:break
   await physics_frame
  check(is_instance_valid(app.park.mormaco.tyler) and app.session.snapshot().player.flags.get("mormacoTylerChegou",false),"overworld animation ends with Tyler's arrival")
+ check(app.park.mormaco.sprite.texture.resource_path.ends_with("submerged-possession.png"),"possession uses the dedicated overworld atlas")
+ var rai_overworld := false
+ for actor in app.park.actors.get_children():
+  if actor is Sprite2D and actor.is_visible_in_tree() and actor.texture != null and actor.texture.resource_path.ends_with("/rai-overworld-idle-eight.png"):
+   rai_overworld = actor.region_rect.size == Vector2(64, 96)
+ check(rai_overworld,"Rai joins Tyler in the overworld with his directional sprite")
+ await shot("pantano-mormaco-tyler-rai","documentation/campaign/overworld-sprites/capturas")
  await approve()
  for i in 300:
   if is_instance_valid(app.battle):break

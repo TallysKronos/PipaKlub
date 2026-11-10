@@ -61,7 +61,9 @@ func run() -> void:
 		await process_frame
 		for child in view.get_children():
 			if child.get("dialog_text") != null and child.has_method("_finish") and child.visible and not child.get("_closed") and not child.is_queued_for_deletion():
-				seen.append(str(child.title) + "|" + str(child.dialog_text))
+				# The forced I/O error can leave its warning visible during the retry.
+				if not str(child.dialog_text).contains("Não foi possível acessar ou gravar a jornada"):
+					seen.append(str(child.title) + "|" + str(child.dialog_text))
 				child._finish(true)
 	var told := "\n".join(seen)
 	check(view.session.snapshot().player.flags.get("kronastaEpilogueSeen", false), "epilogue recorded after the credits")

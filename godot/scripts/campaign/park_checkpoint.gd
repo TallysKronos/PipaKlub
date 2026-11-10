@@ -43,7 +43,12 @@ static func data(scene: String) -> Dictionary:
 		for index in stages.size():
 			var stage:Dictionary=stages[index]
 			if stage.scene!=scene:continue
-			_maps[scene].events.append({"id":19901+index,"type":"npc","name":stage.name,"u":stage.point[0],"v":stage.point[1],"props":{"acao":"districtDuel","district":"alto-da-serra","duel":stage.id,"npcIdentity":"professor","bloqueia":false}})
+			var props := {"acao":"districtDuel","district":"alto-da-serra","duel":stage.id,"bloqueia":false}
+			if stage.has("storySpritePath"):
+				props.storySpritePath = stage.storySpritePath
+			else:
+				props.npcIdentity = "professor"
+			_maps[scene].events.append({"id":19901+index,"type":"npc","name":stage.name,"u":stage.point[0],"v":stage.point[1],"props":props})
 	var trust_event:Dictionary=load("res://scripts/campaign/retalho_trust.gd").event(scene)
 	if region_of(scene)=="palafitas" and not _maps[scene].events.any(func(e):return int(e.id)>=19801 and int(e.id)<=19805):
 		_maps[scene].events.append_array(preload("res://scripts/campaign/palafitas_championship.gd").events(scene))

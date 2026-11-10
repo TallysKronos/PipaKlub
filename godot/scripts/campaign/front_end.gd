@@ -983,6 +983,9 @@ func _equip_room_companion()->void:
 		if partner.modelId=="retalho-original":
 			room.equip_retalho_follower()
 			return
+		if preload("res://scripts/campaign/companion_follow.gd").setup_overworld_art(room.companion,partner.modelId,.85*float(room.camera.scale)):
+			room.companion_frames.clear()
+			return
 		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, preload("res://scripts/campaign/evolution.gd").art(partner.modelId))
 		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
 		room.companion_frames = content.combat[id].animations.idle
