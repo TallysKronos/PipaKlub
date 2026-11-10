@@ -97,7 +97,13 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	stairs_drawn.clear()
 	occluders.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
-	RenderingServer.set_default_clear_color(Color.BLACK if model.data.get("forest",{}).get("interior",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
+	# Fora do mapa: mata fechada (verde-noite) nos bairros com moldura de árvores e mar
+	# fundo no porto, em vez de preto puro. Interiores continuam pretos.
+	var outside:=Color.BLACK
+	if not model.data.get("forest",{}).get("interior",false):
+		if model.data.get("forest",{}).get("harbor",false) and not model.data.get("forest",{}).get("market",false):outside=Color("0b2233")
+		elif model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false):outside=Color("0e2218")
+	RenderingServer.set_default_clear_color(outside if model.data.get("forest",{}).get("interior",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
 	kits.assign([kit_library.comum])
 	if bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false):
 		kits.append(kit_library.parque.duplicate(true))

@@ -1726,8 +1726,14 @@ func _show_park() -> void:
 	park.action_requested.connect(_park_action)
 	park.menu_requested.connect(_pause_game)
 	park.exit_requested.connect(_park_exit)
-	if is_instance_valid(park.get("exploration_hud")) and not preload("res://scripts/campaign/evolution.gd").ready_partners(saved.player).is_empty():
-		park.exploration_hud.push_notice("Evolução disponível · abra a Equipe","item")
+	if is_instance_valid(park.get("exploration_hud")):
+		# Avisa uma vez por parceiro e forma; não repete a cada mapa aberto.
+		var fresh:=false
+		for partner in saved.player.partners:
+			var key:=str(partner.id)+":"+str(partner.modelId)
+			if preload("res://scripts/campaign/evolution.gd").can_evolve(partner) and not evolution_noticed.has(key):
+				evolution_noticed[key]=true;fresh=true
+		if fresh:park.exploration_hud.push_notice("Evolução disponível · abra a Equipe","item")
 	if preload("res://scripts/campaign/endgame_story.gd").release_pending(session.snapshot()):_present_trovareta_release.call_deferred()
 
 func _save_park(quiet:bool=false) -> bool:
@@ -2176,7 +2182,8 @@ func _show_collection() -> void:
 	list.add_theme_constant_override("separation",16)
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(list)
-	var team_capacity:=maxi(1,floori((size.y-300)/(260*preferences.text_scale)))
+	# A lista rola e segue o foco: pelo menos três parceiros por página (a 720p cabia um só).
+	var team_capacity:=maxi(3,floori((size.y-300)/(260*preferences.text_scale)))
 	var team_pages:=maxi(1,ceili(float(player.partners.size())/team_capacity))
 	team_page=clampi(team_page,0,team_pages-1)
 	if team_pages > 1:
@@ -2349,6 +2356,7 @@ func _show_partner_bank() -> void:
 	Hud.focus_later(first if first != null else back)
 
 ## Escolha da evolução: a forma atual e as formas disponíveis, cada uma com o seu botão.
+var evolution_noticed := {}
 func _show_evolution(partner_id: String) -> void:
 	var Evo = preload("res://scripts/campaign/evolution.gd")
 	var player: Dictionary = session.snapshot().player
@@ -2409,7 +2417,7 @@ func _execute_evolution(partner_id: String, form_id: String) -> void:
 		return
 	var stored: Dictionary = session.commit_operation("evolve-" + partner_id + "-" + form_id, saved.checkpoint, result.player)
 	if not _result(stored): return
-	sound.play_event("inventory.inspect")
+	sound.play_event("workshop.birth")
 	_simple_page("EVOLUÇÃO", true)
 	var art := TextureRect.new()
 	art.texture = _partner_portrait(form_id)
