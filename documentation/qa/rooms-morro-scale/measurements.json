@@ -1,0 +1,122 @@
+{
+  "actors": [
+    {
+      "actor": "home",
+      "expectedRatio": 1.08,
+      "footRange": [
+        0.0,
+        0.0
+      ],
+      "kaelHeight": 62.7200019359589,
+      "maxHeight": 67.7376012802124,
+      "minHeight": 67.7376012802124,
+      "moving": false,
+      "samples": 8
+    },
+    {
+      "actor": "mother-walk",
+      "expectedRatio": 1.08,
+      "footRange": [
+        0.0,
+        0.0
+      ],
+      "kaelHeight": 62.7200019359589,
+      "maxHeight": 68.5073467493057,
+      "minHeight": 64.6586194038391,
+      "moving": true,
+      "samples": 32
+    },
+    {
+      "actor": "professor",
+      "expectedRatio": 1.12,
+      "footRange": [
+        0.768507659435272,
+        0.768507659435272
+      ],
+      "kaelHeight": 61.7550808191299,
+      "maxHeight": 69.1656893491745,
+      "minHeight": 68.3971816897392,
+      "moving": false,
+      "samples": 8
+    },
+    {
+      "actor": "morro-1-zeca",
+      "expectedRatio": 1.0,
+      "footRange": [
+        0.854358971118927,
+        0.854358971118927
+      ],
+      "kaelHeight": 66.6400015354156,
+      "maxHeight": 66.6399997472763,
+      "minHeight": 65.7856407761574,
+      "moving": false,
+      "samples": 8
+    },
+    {
+      "actor": "morro-2-bia",
+      "expectedRatio": 1.0,
+      "footRange": [
+        0.854358971118927,
+        0.854358971118927
+      ],
+      "kaelHeight": 66.6400015354156,
+      "maxHeight": 66.6399997472763,
+      "minHeight": 64.9312818050385,
+      "moving": false,
+      "samples": 8
+    },
+    {
+      "actor": "morro-3-juninho",
+      "expectedRatio": 1.0,
+      "footRange": [
+        0.854358971118927,
+        0.854358971118927
+      ],
+      "kaelHeight": 66.6400015354156,
+      "maxHeight": 66.6399997472763,
+      "minHeight": 64.0769228339195,
+      "moving": false,
+      "samples": 8
+    },
+    {
+      "actor": "morro-3-lia",
+      "expectedRatio": 1.0,
+      "footRange": [
+        0.854358971118927,
+        0.854358971118927
+      ],
+      "kaelHeight": 66.6400015354156,
+      "maxHeight": 66.6399997472763,
+      "minHeight": 65.7856407761574,
+      "moving": false,
+      "samples": 8
+    },
+    {
+      "actor": "morro-4-tiao",
+      "expectedRatio": 1.12,
+      "footRange": [
+        0.829297780990601,
+        0.829297780990601
+      ],
+      "kaelHeight": 66.6400015354156,
+      "maxHeight": 74.6368002891541,
+      "minHeight": 72.9782047271729,
+      "moving": false,
+      "samples": 8
+    },
+    {
+      "actor": "morro-5-mikka",
+      "expectedRatio": 1.0,
+      "footRange": [
+        0.8654545545578,
+        0.8654545545578
+      ],
+      "kaelHeight": 66.6400015354156,
+      "maxHeight": 66.6400007009506,
+      "minHeight": 66.6400007009506,
+      "moving": false,
+      "samples": 8
+    }
+  ],
+  "failures": 0
+}
