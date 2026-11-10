@@ -1,0 +1,74 @@
+{
+  "family_id": "nebrisco",
+  "family_name": "Nebrisco",
+  "scope": "Cavalos do Bosque. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "brumim",
+      "name": "Brumim",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "nebripasso",
+      "name": "Nebripasso",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "velumbrio",
+      "name": "Velumbrio",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "nebrisco",
+      "name": "Nebrisco",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/concept-v2/nebrisco.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Máscara óssea e arcos dorsais de névoa."
+    }
+  ],
+  "edges": [
+    {
+      "from": "brumim",
+      "to": "nebripasso",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "nebripasso",
+      "to": "velumbrio",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "velumbrio",
+      "to": "nebrisco",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

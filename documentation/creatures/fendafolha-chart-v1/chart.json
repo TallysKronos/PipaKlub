@@ -1,0 +1,74 @@
+{
+  "family_id": "fendafolha",
+  "family_name": "Fendafolha",
+  "scope": "Cavalos do Bosque. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "girobroto",
+      "name": "Girobroto",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "ventalume",
+      "name": "Ventalume",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "rasacopa",
+      "name": "Rasacopa",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "fendafolha",
+      "name": "Fendafolha",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/concept-v2/fendafolha.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Velas foliares conectadas às patas dianteiras."
+    }
+  ],
+  "edges": [
+    {
+      "from": "girobroto",
+      "to": "ventalume",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ventalume",
+      "to": "rasacopa",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "rasacopa",
+      "to": "fendafolha",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

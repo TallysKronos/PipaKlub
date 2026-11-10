@@ -1,8 +1,8 @@
 # Grupos do universo Soulmonsters
 
-**Atualizado em 7 de novembro de 2026.**
+**Atualizado em 10 de novembro de 2026.**
 
-**27 grupos de navegação · 110 famílias · 328 registros únicos.** As 413 participações somam sobreposições; não são espécies adicionais.
+**33 grupos de navegação · 134 famílias · 420 registros únicos.** As 507 participações somam sobreposições; não são espécies adicionais.
 
 [Abrir atlas visual](grupos.html) · [Famílias completas](FAMILIAS.md) · [Dados estruturados](grupos.json).
 
@@ -19,7 +19,13 @@ Pré-formas aparecem no grupo como contexto de linhagem. Um bebê de uma famíli
 
 | Grupo | Natureza | Famílias representadas | Formas/contextos |
 |---|---|---:|---:|
-| [Cavaleiros e cavaleiras](#cavaleiros) | Coleção transversal de designs | 23 | 24 |
+| [Soldados da Meia-Noite](#soldados-da-meia-noite) | Conjunto já criado | 4 | 16 |
+| [Bisões de Açúcar](#bisoes-de-acucar) | Conjunto já criado | 4 | 16 |
+| [Cavalos do Bosque](#cavalos-do-bosque) | Conjunto já criado | 4 | 16 |
+| [Onis do Vento Bravio](#onis-do-vento-bravio) | Conjunto já criado | 4 | 16 |
+| [Glaciais das Duas Marés](#glaciais-das-duas-marees) | Conjunto já criado | 4 | 8 |
+| [Demons do Folclore](#demons-do-folclore) | Conjunto já criado | 4 | 20 |
+| [Cavaleiros e cavaleiras](#cavaleiros) | Coleção transversal de designs | 25 | 26 |
 | [Cavaleiros draconianos](#draconianos) | Conjunto já criado | 8 | 8 |
 | [Mumificados e Enfaixados do Fio Quieto](#mumificados) | Conjunto já criado | 5 | 20 |
 | [Portadores dos Crystais Pipas](#crystais-pipas) | Conjunto já criado | 8 | 32 |
@@ -47,6 +53,194 @@ Pré-formas aparecem no grupo como contexto de linhagem. Um bebê de uma famíli
 | [Dex legado · Ecos Antigos](#dex-ecos-antigos) | Coleção do Dex legado | 4 | 4 |
 | [Dex legado · Parceiro da história](#dex-parceiro-da-historia) | Coleção do Dex legado | 1 | 1 |
 
+<a id="soldados-da-meia-noite"></a>
+## Soldados da Meia-Noite
+
+**Conjunto já criado.** Patrulha de quatro espécies vampíricas identificadas pelo fecho de eclipse.
+
+Família selecionada traz suas pré-formas como contexto de linhagem; isso não dá ao bebê título, patente, afiliação ou habitat do adulto.
+
+**Uso para povoamento — proposta:** Consulte a linhagem e o estado visual de cada forma ao planejar encontros.
+
+A classificação descreve o grupo de criação.
+
+| Forma | Família | Maturidade | Estado visual | Arte / fonte |
+|---|---|---|---|
+| Goticra · `cravofenda:goticra` | Cravofenda | Bebê | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png) · [Fonte](../cravofenda-chart-v1/chart.json) |
+| Ventucravo · `cravofenda:ventucravo` | Cravofenda | Criança | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png) · [Fonte](../cravofenda-chart-v1/chart.json) |
+| Bocobasto · `cravofenda:bocobasto` | Cravofenda | Jovem | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png) · [Fonte](../cravofenda-chart-v1/chart.json) |
+| Cravofenda · `cravofenda:cravofenda` | Cravofenda | Adulto | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/concept-v2/cravofenda.png) · [Fonte](../cravofenda-chart-v1/chart.json) |
+| Gotamar · `lunafauce:gotamar` | Lunafauce | Bebê | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png) · [Fonte](../lunafauce-chart-v1/chart.json) |
+| Guelfita · `lunafauce:guelfita` | Lunafauce | Criança | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png) · [Fonte](../lunafauce-chart-v1/chart.json) |
+| Serpelume · `lunafauce:serpelume` | Lunafauce | Jovem | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png) · [Fonte](../lunafauce-chart-v1/chart.json) |
+| Lunafauce · `lunafauce:lunafauce` | Lunafauce | Adulto | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/concept-v2/lunafauce.png) · [Fonte](../lunafauce-chart-v1/chart.json) |
+| Plumico · `suturanoite:plumico` | Suturanoite | Bebê | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png) · [Fonte](../suturanoite-chart-v1/chart.json) |
+| Rasapena · `suturanoite:rasapena` | Suturanoite | Criança | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png) · [Fonte](../suturanoite-chart-v1/chart.json) |
+| Velaespreita · `suturanoite:velaespreita` | Suturanoite | Jovem | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png) · [Fonte](../suturanoite-chart-v1/chart.json) |
+| Suturanoite · `suturanoite:suturanoite` | Suturanoite | Adulto | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/concept-v2/suturanoite.png) · [Fonte](../suturanoite-chart-v1/chart.json) |
+| Pavioz · `vespergume:pavioz` | Vespergume | Bebê | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png) · [Fonte](../vespergume-chart-v1/chart.json) |
+| Orelavela · `vespergume:orelavela` | Vespergume | Criança | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png) · [Fonte](../vespergume-chart-v1/chart.json) |
+| Ossavento · `vespergume:ossavento` | Vespergume | Jovem | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png) · [Fonte](../vespergume-chart-v1/chart.json) |
+| Vespergume · `vespergume:vespergume` | Vespergume | Adulto | Proposto | [Arte](../../../art/creatures/soldados-da-meia-noite/concept-v2/vespergume.png) · [Fonte](../vespergume-chart-v1/chart.json) |
+
+**Fontes do conjunto/classificação:** [LINHAGENS.md](../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md).
+
+<a id="bisoes-de-acucar"></a>
+## Bisões de Açúcar
+
+**Conjunto já criado.** Manada de bisões de doces, com quatro modos de usar a armação de pipa.
+
+Família selecionada traz suas pré-formas como contexto de linhagem; isso não dá ao bebê título, patente, afiliação ou habitat do adulto.
+
+**Uso para povoamento — proposta:** Consulte a linhagem e o estado visual de cada forma ao planejar encontros.
+
+A classificação descreve o grupo de criação.
+
+| Forma | Família | Maturidade | Estado visual | Arte / fonte |
+|---|---|---|---|
+| Fiapim · `algodauro:fiapim` | Algodauro | Bebê | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png) · [Fonte](../algodauro-chart-v1/chart.json) |
+| Algodauro · `algodauro:algodauro` | Algodauro | Criança | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/concept-v1/algodauro.png) · [Fonte](../algodauro-chart-v1/chart.json) |
+| Nuviforte · `algodauro:nuviforte` | Algodauro | Jovem | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png) · [Fonte](../algodauro-chart-v1/chart.json) |
+| Algodauro Estrato · `algodauro:algodauro-estrato` | Algodauro | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png) · [Fonte](../algodauro-chart-v1/chart.json) |
+| Caldaço · `caramastro:caldaco` | Caramastro | Bebê | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png) · [Fonte](../caramastro-chart-v1/chart.json) |
+| Caramastro · `caramastro:caramastro` | Caramastro | Criança | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/concept-v1/caramastro.png) · [Fonte](../caramastro-chart-v1/chart.json) |
+| Saltavela · `caramastro:saltavela` | Caramastro | Jovem | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png) · [Fonte](../caramastro-chart-v1/chart.json) |
+| Caramastro Regente · `caramastro:caramastro-regente` | Caramastro | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png) · [Fonte](../caramastro-chart-v1/chart.json) |
+| Mentisco · `mentarranco:mentisco` | Mentarranco | Bebê | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/mentarranco.png) · [Fonte](../mentarranco-chart-v1/chart.json) |
+| Mentarranco · `mentarranco:mentarranco` | Mentarranco | Criança | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/concept-v1/mentarranco.png) · [Fonte](../mentarranco-chart-v1/chart.json) |
+| Riscamenta · `mentarranco:riscamenta` | Mentarranco | Jovem | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/mentarranco.png) · [Fonte](../mentarranco-chart-v1/chart.json) |
+| Mentarranco Vendaval · `mentarranco:mentarranco-vendaval` | Mentarranco | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/bisoes-de-acucar/adultos-v2/mentarranco.png) · [Fonte](../mentarranco-chart-v1/chart.json) |
+| Torri · `torronco:torri` | Torronco | Bebê | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/torronco.png) · [Fonte](../torronco-chart-v1/chart.json) |
+| Torronco · `torronco:torronco` | Torronco | Criança | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/concept-v1/torronco.png) · [Fonte](../torronco-chart-v1/chart.json) |
+| Trancatorte · `torronco:trancatorte` | Torronco | Jovem | Proposto | [Arte](../../../art/creatures/bisoes-de-acucar/linhagens-v1/torronco.png) · [Fonte](../torronco-chart-v1/chart.json) |
+| Torronco Bastão · `torronco:torronco-bastao` | Torronco | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/bisoes-de-acucar/adultos-v2/torronco.png) · [Fonte](../torronco-chart-v1/chart.json) |
+
+**Fontes do conjunto/classificação:** [LINHAGENS.md](../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md).
+
+<a id="cavalos-do-bosque"></a>
+## Cavalos do Bosque
+
+**Conjunto já criado.** Quatro espíritos equinos associados ao carvalho, à névoa, ao vento e aos vagalumes.
+
+Família selecionada traz suas pré-formas como contexto de linhagem; isso não dá ao bebê título, patente, afiliação ou habitat do adulto.
+
+**Uso para povoamento — proposta:** Consulte a linhagem e o estado visual de cada forma ao planejar encontros.
+
+A classificação descreve o grupo de criação.
+
+| Forma | Família | Maturidade | Estado visual | Arte / fonte |
+|---|---|---|---|
+| Bolotim · `cernebravio:bolotim` | Cernebravio | Bebê | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png) · [Fonte](../cernebravio-chart-v1/chart.json) |
+| Brotozaino · `cernebravio:brotozaino` | Cernebravio | Criança | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png) · [Fonte](../cernebravio-chart-v1/chart.json) |
+| Raiztrope · `cernebravio:raiztrope` | Cernebravio | Jovem | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png) · [Fonte](../cernebravio-chart-v1/chart.json) |
+| Cernebravio · `cernebravio:cernebravio` | Cernebravio | Adulto | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/concept-v2/cernebravio.png) · [Fonte](../cernebravio-chart-v1/chart.json) |
+| Girobroto · `fendafolha:girobroto` | Fendafolha | Bebê | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png) · [Fonte](../fendafolha-chart-v1/chart.json) |
+| Ventalume · `fendafolha:ventalume` | Fendafolha | Criança | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png) · [Fonte](../fendafolha-chart-v1/chart.json) |
+| Rasacopa · `fendafolha:rasacopa` | Fendafolha | Jovem | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png) · [Fonte](../fendafolha-chart-v1/chart.json) |
+| Fendafolha · `fendafolha:fendafolha` | Fendafolha | Adulto | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/concept-v2/fendafolha.png) · [Fonte](../fendafolha-chart-v1/chart.json) |
+| Pirilume · `lumicerno:pirilume` | Lumicerno | Bebê | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png) · [Fonte](../lumicerno-chart-v1/chart.json) |
+| Luziquino · `lumicerno:luziquino` | Lumicerno | Criança | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png) · [Fonte](../lumicerno-chart-v1/chart.json) |
+| Lumevigia · `lumicerno:lumevigia` | Lumicerno | Jovem | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png) · [Fonte](../lumicerno-chart-v1/chart.json) |
+| Lumicerno · `lumicerno:lumicerno` | Lumicerno | Adulto | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/concept-v2/lumicerno.png) · [Fonte](../lumicerno-chart-v1/chart.json) |
+| Brumim · `nebrisco:brumim` | Nebrisco | Bebê | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png) · [Fonte](../nebrisco-chart-v1/chart.json) |
+| Nebripasso · `nebrisco:nebripasso` | Nebrisco | Criança | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png) · [Fonte](../nebrisco-chart-v1/chart.json) |
+| Velumbrio · `nebrisco:velumbrio` | Nebrisco | Jovem | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png) · [Fonte](../nebrisco-chart-v1/chart.json) |
+| Nebrisco · `nebrisco:nebrisco` | Nebrisco | Adulto | Proposto | [Arte](../../../art/creatures/cavalos-do-bosque/concept-v2/nebrisco.png) · [Fonte](../nebrisco-chart-v1/chart.json) |
+
+**Fontes do conjunto/classificação:** [LINHAGENS.md](../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md).
+
+<a id="onis-do-vento-bravio"></a>
+## Onis do Vento Bravio
+
+**Conjunto já criado.** Onça, besouro, urubu e sapo em silhuetas animalescas de oni.
+
+Família selecionada traz suas pré-formas como contexto de linhagem; isso não dá ao bebê título, patente, afiliação ou habitat do adulto.
+
+**Uso para povoamento — proposta:** Consulte a linhagem e o estado visual de cada forma ao planejar encontros.
+
+A classificação descreve o grupo de criação.
+
+| Forma | Família | Maturidade | Estado visual | Arte / fonte |
+|---|---|---|---|
+| Penabroto · `corvotengu:penabroto` | Corvotengu | Bebê | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png) · [Fonte](../corvotengu-chart-v1/chart.json) |
+| Bicapena · `corvotengu:bicapena` | Corvotengu | Criança | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png) · [Fonte](../corvotengu-chart-v1/chart.json) |
+| Lequeiro · `corvotengu:lequeiro` | Corvotengu | Jovem | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png) · [Fonte](../corvotengu-chart-v1/chart.json) |
+| Corvotengu · `corvotengu:corvotengu` | Corvotengu | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/onis-do-vento-bravio/concept-v3/corvotengu.png) · [Fonte](../corvotengu-chart-v1/chart.json) |
+| Casulim · `ganchofenda:casulim` | Ganchofenda | Bebê | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png) · [Fonte](../ganchofenda-chart-v1/chart.json) |
+| Trincasco · `ganchofenda:trincasco` | Ganchofenda | Criança | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png) · [Fonte](../ganchofenda-chart-v1/chart.json) |
+| Pernalume · `ganchofenda:pernalume` | Ganchofenda | Jovem | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png) · [Fonte](../ganchofenda-chart-v1/chart.json) |
+| Ganchofenda · `ganchofenda:ganchofenda` | Ganchofenda | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/onis-do-vento-bravio/concept-v3/ganchofenda.png) · [Fonte](../ganchofenda-chart-v1/chart.json) |
+| Giripipa · `lamacorno:giripipa` | Lamacorno | Bebê | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png) · [Fonte](../lamacorno-chart-v1/chart.json) |
+| Brejoto · `lamacorno:brejoto` | Lamacorno | Criança | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png) · [Fonte](../lamacorno-chart-v1/chart.json) |
+| Saltalodo · `lamacorno:saltalodo` | Lamacorno | Jovem | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png) · [Fonte](../lamacorno-chart-v1/chart.json) |
+| Lamacorno · `lamacorno:lamacorno` | Lamacorno | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/onis-do-vento-bravio/concept-v3/lamacorno.png) · [Fonte](../lamacorno-chart-v1/chart.json) |
+| Brasim · `rugikor:brasim` | Rugikor | Bebê | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png) · [Fonte](../rugikor-chart-v1/chart.json) |
+| Roscapata · `rugikor:roscapata` | Rugikor | Criança | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png) · [Fonte](../rugikor-chart-v1/chart.json) |
+| Jubarco · `rugikor:jubarco` | Rugikor | Jovem | Proposto | [Arte](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png) · [Fonte](../rugikor-chart-v1/chart.json) |
+| Rugikor · `rugikor:rugikor` | Rugikor | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/onis-do-vento-bravio/concept-v3/rugikor.png) · [Fonte](../rugikor-chart-v1/chart.json) |
+
+**Fontes do conjunto/classificação:** [LINHAGENS.md](../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md).
+
+<a id="glaciais-das-duas-marees"></a>
+## Glaciais das Duas Marés
+
+**Conjunto já criado.** Criaturas de lendas originais dos mares do norte e das águas austrais.
+
+Família selecionada traz suas pré-formas como contexto de linhagem; isso não dá ao bebê título, patente, afiliação ou habitat do adulto.
+
+**Uso para povoamento — proposta:** Consulte a linhagem e o estado visual de cada forma ao planejar encontros.
+
+A classificação descreve o grupo de criação.
+
+| Forma | Família | Maturidade | Estado visual | Arte / fonte |
+|---|---|---|---|
+| Aurorastro (jovem) · `aurorastro:aurorastro-jovem` | Aurorastro | Jovem | Proposto | [Arte](../../../art/creatures/glaciais-das-duas-marees/concept-v1/aurorastro.png) · [Fonte](../aurorastro-chart-v1/chart.json) |
+| Aurorastro (Guardiã das Rotas da Aurora) · `aurorastro:aurorastro-guardia-das-rotas-da-aurora` | Aurorastro | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/glaciais-das-duas-marees/cavaleiros-v1/aurorastro.png) · [Fonte](../aurorastro-chart-v1/chart.json) |
+| Brancofaro (jovem) · `brancofaro:brancofaro-jovem` | Brancofaro | Jovem | Proposto | [Arte](../../../art/creatures/glaciais-das-duas-marees/concept-v1/brancofaro.png) · [Fonte](../brancofaro-chart-v1/chart.json) |
+| Brancofaro · `brancofaro:brancofaro` | Brancofaro | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/glaciais-das-duas-marees/adultos-v2/brancofaro.png) · [Fonte](../brancofaro-chart-v1/chart.json) |
+| Marfenda (jovem) · `marfenda:marfenda-jovem` | Marfenda | Jovem | Proposto | [Arte](../../../art/creatures/glaciais-das-duas-marees/concept-v1/marfenda.png) · [Fonte](../marfenda-chart-v1/chart.json) |
+| Marfenda · `marfenda:marfenda` | Marfenda | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/glaciais-das-duas-marees/adultos-v2/marfenda.png) · [Fonte](../marfenda-chart-v1/chart.json) |
+| Singravel (jovem) · `singravel:singravel-jovem` | Singravel | Jovem | Proposto | [Arte](../../../art/creatures/glaciais-das-duas-marees/concept-v1/singravel.png) · [Fonte](../singravel-chart-v1/chart.json) |
+| Singravel (Cavaleiro da Alvorada Austral) · `singravel:singravel-cavaleiro-da-alvorada-austral` | Singravel | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/glaciais-das-duas-marees/cavaleiros-v1/singravel.png) · [Fonte](../singravel-chart-v1/chart.json) |
+
+**Fontes do conjunto/classificação:** [EVOLUCOES.md](../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md).
+
+<a id="demons-do-folclore"></a>
+## Demons do Folclore
+
+**Conjunto já criado.** Quatro famílias inspiradas no Saci, no Curupira, no Lobisomem e no Boto-cor-de-rosa. Cada uma tem duas saídas adultas.
+
+Família selecionada traz suas pré-formas como contexto de linhagem; isso não dá ao bebê título, patente, afiliação ou habitat do adulto.
+
+**Uso para povoamento — proposta:** Consulte a linhagem e o estado visual de cada forma ao planejar encontros.
+
+A classificação descreve o grupo de criação.
+
+| Forma | Família | Maturidade | Estado visual | Arte / fonte |
+|---|---|---|---|
+| Boialuz · `botolume:boialuz` | Boto-cor-de-rosa / Botolume | Bebê | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/botolume.png) · [Fonte](../botolume-chart-v1/chart.json) |
+| Botolume · `botolume:botolume` | Boto-cor-de-rosa / Botolume | Criança | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/botolume.png) · [Fonte](../botolume-chart-v1/chart.json) |
+| Dobramaré · `botolume:dobramare` | Boto-cor-de-rosa / Botolume | Jovem | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/botolume.png) · [Fonte](../botolume-chart-v1/chart.json) |
+| Festarrio · `botolume:festarrio` | Boto-cor-de-rosa / Botolume | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/botolume.png) · [Fonte](../botolume-chart-v1/chart.json) |
+| Vazantério · `botolume:vazanterio` | Boto-cor-de-rosa / Botolume | Adulto | Proposto | [Arte](../../../art/creatures/demons-do-folclore/adultos-alternativos-v1/botolume.png) · [Fonte](../botolume-chart-v1/chart.json) |
+| Brasca · `contrapira:brasca` | Curupira / Contrapira | Bebê | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/contrapira.png) · [Fonte](../contrapira-chart-v1/chart.json) |
+| Contrapira · `contrapira:contrapira` | Curupira / Contrapira | Criança | Aprovado visualmente | [Arte](../../../art/creatures/demons-do-folclore/child-v1/contrapira.png) · [Fonte](../contrapira-chart-v1/chart.json) |
+| Rastroavesso · `contrapira:rastroavesso` | Curupira / Contrapira | Jovem | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/contrapira.png) · [Fonte](../contrapira-chart-v1/chart.json) |
+| Matavolta · `contrapira:matavolta` | Curupira / Contrapira | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/contrapira.png) · [Fonte](../contrapira-chart-v1/chart.json) |
+| Virarraiz · `contrapira:virarraiz` | Curupira / Contrapira | Adulto | Proposto | [Arte](../../../art/creatures/demons-do-folclore/adultos-alternativos-v1/contrapira.png) · [Fonte](../contrapira-chart-v1/chart.json) |
+| Uivim · `lunarrufo:uivim` | Lobisomem / Lunarrufo | Bebê | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png) · [Fonte](../lunarrufo-chart-v1/chart.json) |
+| Lunarrufo · `lunarrufo:lunarrufo` | Lobisomem / Lunarrufo | Criança | Aprovado visualmente | [Arte](../../../art/creatures/demons-do-folclore/child-v1/lunarrufo.png) · [Fonte](../lunarrufo-chart-v1/chart.json) |
+| Umbrauivo · `lunarrufo:umbrauivo` | Lobisomem / Lunarrufo | Jovem | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png) · [Fonte](../lunarrufo-chart-v1/chart.json) |
+| Eclipsarro · `lunarrufo:eclipsarro` | Lobisomem / Lunarrufo | Adulto | Proposto | [Arte](../../../art/creatures/demons-do-folclore/adultos-alternativos-v1/lunarrufo.png) · [Fonte](../lunarrufo-chart-v1/chart.json) |
+| Lobumbrário · `lunarrufo:lobumbrario` | Lobisomem / Lunarrufo | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png) · [Fonte](../lunarrufo-chart-v1/chart.json) |
+| Piriló · `saciventim:pirilo` | Saci / Saciventim | Bebê | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/saciventim.png) · [Fonte](../saciventim-chart-v1/chart.json) |
+| Saciventim · `saciventim:saciventim` | Saci / Saciventim | Criança | Aprovado visualmente | [Arte](../../../art/creatures/demons-do-folclore/child-v1/saciventim.png) · [Fonte](../saciventim-chart-v1/chart.json) |
+| Ventapulo · `saciventim:ventapulo` | Saci / Saciventim | Jovem | Proposto | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/saciventim.png) · [Fonte](../saciventim-chart-v1/chart.json) |
+| Redemastro · `saciventim:redemastro` | Saci / Saciventim | Adulto | Proposto | [Arte](../../../art/creatures/demons-do-folclore/adultos-alternativos-v1/saciventim.png) · [Fonte](../saciventim-chart-v1/chart.json) |
+| Rodamastro · `saciventim:rodamastro` | Saci / Saciventim | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/demons-do-folclore/linhagens-v1/saciventim.png) · [Fonte](../saciventim-chart-v1/chart.json) |
+
+**Fontes do conjunto/classificação:** [LINHAGENS.md](../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md).
+
 <a id="cavaleiros"></a>
 ## Cavaleiros e cavaleiras
 
@@ -61,6 +255,7 @@ A classificação reúne designs para criação de mundo; não define facção, 
 | Forma | Família | Maturidade | Estado visual | Arte / fonte |
 |---|---|---|---|
 | Adulto — cavaleiro do retrato · `anaconda-retrato:anaconda-cavaleiro` | Anaconda do retrato | Adulto — cavaleiro do retrato | Aprovado visualmente | [Arte](../../../art/creatures/anaconda-retrato-family-v1/anaconda-cavaleiro/concept-v1/concept.png) · [Fonte](../anaconda-retrato-chart-v1/chart.json) |
+| Aurorastro (Guardiã das Rotas da Aurora) · `aurorastro:aurorastro-guardia-das-rotas-da-aurora` | Aurorastro | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/glaciais-das-duas-marees/cavaleiros-v1/aurorastro.png) · [Fonte](../aurorastro-chart-v1/chart.json) |
 | Bradamara · `bradamara:bradamara` | Bradamara | Adulto | Proposto | [Arte](../../../art/creatures/bradamara/concept-v1/concept.png) · [Fonte](../bradamara-chart-v1/chart.json) |
 | Capibaluarte · `capivara-boia:capibaluarte` | Capivara aquática / Capiboia | Adulto / candidato de rota | Consultar decisão na fonte | [Arte](../../../art/creatures/onze-cavaleiros-v1/capibaluarte/concept-v1/concept.png) · [Fonte](../../../art/creatures/onze-cavaleiros-v1/capibaluarte/DECISOES.md) |
 | Caramund (nome proposto) · `caramund:caramund` | Caramelo / Caramund | Adulto | Proposto | [Arte](../../../art/creatures/caramund/concept-v1/concept.png) · [Fonte](../caramund-chart-v1/chart.json) |
@@ -79,6 +274,7 @@ A classificação reúne designs para criação de mundo; não define facção, 
 | Rabbitknight · `rabbito:rabbitknight` | Rabbito | Hipótese de associação III/IV; sem retcon de origem. | Aprovado visualmente | [Arte](../../../art/creatures/rabbito-family-v1/rabbitknight/concept-v3/concept.png) · [Fonte](../rabbito-chart-v2/chart.json) |
 | Riscárion · `riscaz:riscarion` | Riscaz | Adulto cavaleiro | Aprovado visualmente | [Arte](../../../art/creatures/onze-cavaleiros-v1/riscarion/concept-v1/concept.png) · [Fonte](../riscaz-chart-v1/chart.json) |
 | Rolandor · `rolandor:rolandor` | Rolandor | Adulto | Proposto | [Arte](../../../art/creatures/rolandor/concept-v1/concept.png) · [Fonte](../rolandor-chart-v1/chart.json) |
+| Singravel (Cavaleiro da Alvorada Austral) · `singravel:singravel-cavaleiro-da-alvorada-austral` | Singravel | Adulto | Aprovado visualmente | [Arte](../../../art/creatures/glaciais-das-duas-marees/cavaleiros-v1/singravel.png) · [Fonte](../singravel-chart-v1/chart.json) |
 | Tomoeryu · `tomoeryu:tomoeryu` | Tomoeryu | Adulto | Proposto | [Arte](../../../art/creatures/tomoeryu/concept-v1/concept.png) · [Fonte](../tomoeryu-chart-v1/chart.json) |
 | Tricórdio · `trinca-brasas:tricordio` | Trinca-brasas / cérbero | Adulto cavaleiro | Aprovado visualmente | [Arte](../../../art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png) · [Fonte](../trinca-brasas-chart-v1/chart.json) |
 | Valdrisa · `valdrisa:valdrisa` | Valdrisa | Adulto | Proposto | [Arte](../../../art/creatures/valdrisa/concept-v2/concept.png) · [Fonte](../valdrisa-chart-v1/chart.json) |

@@ -1,15 +1,120 @@
 {
-  "date": "2026-11-07",
+  "date": "2026-11-10",
   "scope": "Checkout local pipa-club-integracao-atualizada; art/creatures, charts, Soulgen e Dex. Sem integração ou alteração de cânone. Charts da mesma família consolidados por ID.",
   "counts": {
-    "families": 110,
-    "families_with_chart": 73,
-    "unique_records": 328,
+    "families": 134,
+    "families_with_chart": 97,
+    "unique_records": 420,
     "visual_reservations": 17,
     "dex_entries": 36,
-    "chart_sources": 76
+    "chart_sources": 100
   },
   "families": [
+    {
+      "id": "algodauro",
+      "name": "Algodauro",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/algodauro-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "fiapim",
+          "name": "Fiapim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/algodauro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "algodauro",
+          "name": "Algodauro",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/bisoes-de-acucar/concept-v1/algodauro.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/algodauro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "nuviforte",
+          "name": "Nuviforte",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/algodauro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "algodauro-estrato",
+          "name": "Algodauro Estrato",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Duas velas sustentam a juba de algodão-doce. Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/algodauro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "fiapim",
+          "to": "algodauro",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "algodauro",
+          "to": "nuviforte",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "nuviforte",
+          "to": "algodauro-estrato",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "bisoes-de-acucar"
+      ]
+    },
     {
       "id": "alvorraia",
       "name": "Alvorraia",
@@ -220,6 +325,65 @@
       "population_group_ids": [
         "cavaleiros",
         "contos-oficios"
+      ]
+    },
+    {
+      "id": "aurorastro",
+      "name": "Aurorastro",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/aurorastro-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "aurorastro-jovem",
+          "name": "Aurorastro (jovem)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/glaciais-das-duas-marees/concept-v1/aurorastro.png",
+          "brief": "art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+          "source": "documentation/creatures/aurorastro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "glaciais-das-duas-marees"
+          ]
+        },
+        {
+          "id": "aurorastro-guardia-das-rotas-da-aurora",
+          "name": "Aurorastro (Guardiã das Rotas da Aurora)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Cavaleira raposa cuja cauda marca as rotas da aurora.",
+          "art": "art/creatures/glaciais-das-duas-marees/cavaleiros-v1/aurorastro.png",
+          "brief": "art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+          "source": "documentation/creatures/aurorastro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "glaciais-das-duas-marees",
+            "cavaleiros"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "aurorastro-jovem",
+          "to": "aurorastro-guardia-das-rotas-da-aurora",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "cavaleiros",
+        "glaciais-das-duas-marees"
       ]
     },
     {
@@ -612,6 +776,135 @@
       ]
     },
     {
+      "id": "botolume",
+      "name": "Boto-cor-de-rosa / Botolume",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/botolume-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "boialuz",
+          "name": "Boialuz",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/botolume.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/botolume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "botolume",
+          "name": "Botolume",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/botolume.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/botolume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "dobramare",
+          "name": "Dobramaré",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/botolume.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/botolume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "festarrio",
+          "name": "Festarrio",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Duas velas ao redor da crista acompanham o nado. Posição 4 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/botolume.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/botolume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "vazanterio",
+          "name": "Vazantério",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Cauda em pipa de caixa que funciona como leme.",
+          "art": "art/creatures/demons-do-folclore/adultos-alternativos-v1/botolume.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/botolume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "boialuz",
+          "to": "botolume",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "botolume",
+          "to": "dobramare",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "dobramare",
+          "to": "festarrio",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "dobramare",
+          "to": "vazanterio",
+          "kind": "reweaving",
+          "reason": "Rota adulta alternativa, no mesmo estágio da primeira forma adulta.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "demons-do-folclore"
+      ]
+    },
+    {
       "id": "bradamara",
       "name": "Bradamara",
       "category": "Famílias com chart",
@@ -643,6 +936,63 @@
       "population_group_ids": [
         "cavaleiros",
         "draconianos"
+      ]
+    },
+    {
+      "id": "brancofaro",
+      "name": "Brancofaro",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/brancofaro-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "brancofaro-jovem",
+          "name": "Brancofaro (jovem)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/glaciais-das-duas-marees/concept-v1/brancofaro.png",
+          "brief": "art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+          "source": "documentation/creatures/brancofaro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "glaciais-das-duas-marees"
+          ]
+        },
+        {
+          "id": "brancofaro",
+          "name": "Brancofaro",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Urso semiereto que sonda o gelo com duas velas nos ombros.",
+          "art": "art/creatures/glaciais-das-duas-marees/adultos-v2/brancofaro.png",
+          "brief": "art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+          "source": "documentation/creatures/brancofaro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "glaciais-das-duas-marees"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "brancofaro-jovem",
+          "to": "brancofaro",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "glaciais-das-duas-marees"
       ]
     },
     {
@@ -1281,6 +1631,111 @@
       ]
     },
     {
+      "id": "caramastro",
+      "name": "Caramastro",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/caramastro-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "caldaco",
+          "name": "Caldaço",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/caramastro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "caramastro",
+          "name": "Caramastro",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/bisoes-de-acucar/concept-v1/caramastro.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/caramastro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "saltavela",
+          "name": "Saltavela",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/caramastro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "caramastro-regente",
+          "name": "Caramastro Regente",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Duas velas de caramelo apoiadas no peito. Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/caramastro-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "caldaco",
+          "to": "caramastro",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "caramastro",
+          "to": "saltavela",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "saltavela",
+          "to": "caramastro-regente",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "bisoes-de-acucar"
+      ]
+    },
+    {
       "id": "caramund",
       "name": "Caramelo / Caramund",
       "category": "Famílias com chart",
@@ -1597,6 +2052,111 @@
       "population_group_ids": [
         "cascos-estruturas",
         "lords"
+      ]
+    },
+    {
+      "id": "cernebravio",
+      "name": "Cernebravio",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/cernebravio-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "bolotim",
+          "name": "Bolotim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/cernebravio-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "brotozaino",
+          "name": "Brotozaino",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/cernebravio-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "raiztrope",
+          "name": "Raiztrope",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/cernebravio-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "cernebravio",
+          "name": "Cernebravio",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Carapaça de carvalho e coroa ramificada.",
+          "art": "art/creatures/cavalos-do-bosque/concept-v2/cernebravio.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/cernebravio-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "bolotim",
+          "to": "brotozaino",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "brotozaino",
+          "to": "raiztrope",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "raiztrope",
+          "to": "cernebravio",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "cavalos-do-bosque"
       ]
     },
     {
@@ -1951,6 +2511,135 @@
       ]
     },
     {
+      "id": "contrapira",
+      "name": "Curupira / Contrapira",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/contrapira-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "brasca",
+          "name": "Brasca",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/contrapira.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/contrapira-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "contrapira",
+          "name": "Contrapira",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/demons-do-folclore/child-v1/contrapira.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/contrapira-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "rastroavesso",
+          "name": "Rastroavesso",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/contrapira.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/contrapira-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "matavolta",
+          "name": "Matavolta",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Copa de papel vermelho e pés invertidos. Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/contrapira.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/contrapira-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "virarraiz",
+          "name": "Virarraiz",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Portal vivo de raízes com uma pipa vermelha sobre o arco.",
+          "art": "art/creatures/demons-do-folclore/adultos-alternativos-v1/contrapira.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/contrapira-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "brasca",
+          "to": "contrapira",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "contrapira",
+          "to": "rastroavesso",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "rastroavesso",
+          "to": "matavolta",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "rastroavesso",
+          "to": "virarraiz",
+          "kind": "reweaving",
+          "reason": "Rota adulta alternativa, no mesmo estágio da primeira forma adulta.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "demons-do-folclore"
+      ]
+    },
+    {
       "id": "coroabissal",
       "name": "Coroabissal",
       "category": "Famílias com chart",
@@ -2158,6 +2847,216 @@
       "notes": [],
       "population_group_ids": [
         "contos-oficios"
+      ]
+    },
+    {
+      "id": "corvotengu",
+      "name": "Corvotengu",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/corvotengu-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "penabroto",
+          "name": "Penabroto",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/corvotengu-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "bicapena",
+          "name": "Bicapena",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/corvotengu-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "lequeiro",
+          "name": "Lequeiro",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/corvotengu-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "corvotengu",
+          "name": "Corvotengu",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Urubu de pescoço curvo e cauda em leque.",
+          "art": "art/creatures/onis-do-vento-bravio/concept-v3/corvotengu.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/corvotengu-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "penabroto",
+          "to": "bicapena",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "bicapena",
+          "to": "lequeiro",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "lequeiro",
+          "to": "corvotengu",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "onis-do-vento-bravio"
+      ]
+    },
+    {
+      "id": "cravofenda",
+      "name": "Cravofenda",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/cravofenda-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "goticra",
+          "name": "Goticra",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/cravofenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "ventucravo",
+          "name": "Ventucravo",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/cravofenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "bocobasto",
+          "name": "Bocobasto",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/cravofenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "cravofenda",
+          "name": "Cravofenda",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Pipa hexagonal que protege os ombros da vanguarda.",
+          "art": "art/creatures/soldados-da-meia-noite/concept-v2/cravofenda.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/cravofenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "goticra",
+          "to": "ventucravo",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ventucravo",
+          "to": "bocobasto",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "bocobasto",
+          "to": "cravofenda",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "soldados-da-meia-noite"
       ]
     },
     {
@@ -2688,6 +3587,111 @@
       ]
     },
     {
+      "id": "fendafolha",
+      "name": "Fendafolha",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/fendafolha-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "girobroto",
+          "name": "Girobroto",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/fendafolha-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "ventalume",
+          "name": "Ventalume",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/fendafolha-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "rasacopa",
+          "name": "Rasacopa",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/fendafolha.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/fendafolha-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "fendafolha",
+          "name": "Fendafolha",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Velas foliares conectadas às patas dianteiras.",
+          "art": "art/creatures/cavalos-do-bosque/concept-v2/fendafolha.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/fendafolha-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "girobroto",
+          "to": "ventalume",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ventalume",
+          "to": "rasacopa",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "rasacopa",
+          "to": "fendafolha",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "cavalos-do-bosque"
+      ]
+    },
+    {
       "id": "flautrevo",
       "name": "Flautrevo / morcego flautista",
       "category": "Famílias com chart",
@@ -3004,6 +4008,111 @@
       "population_group_ids": [
         "cavaleiros",
         "contos-oficios"
+      ]
+    },
+    {
+      "id": "ganchofenda",
+      "name": "Ganchofenda",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/ganchofenda-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "casulim",
+          "name": "Casulim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/ganchofenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "trincasco",
+          "name": "Trincasco",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/ganchofenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "pernalume",
+          "name": "Pernalume",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/ganchofenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "ganchofenda",
+          "name": "Ganchofenda",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Besouro de pernas altas com abdômen em pipa de caixa.",
+          "art": "art/creatures/onis-do-vento-bravio/concept-v3/ganchofenda.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/ganchofenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "casulim",
+          "to": "trincasco",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "trincasco",
+          "to": "pernalume",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "pernalume",
+          "to": "ganchofenda",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "onis-do-vento-bravio"
       ]
     },
     {
@@ -3851,6 +4960,111 @@
       ]
     },
     {
+      "id": "lamacorno",
+      "name": "Lamacorno",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/lamacorno-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "giripipa",
+          "name": "Giripipa",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lamacorno-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "brejoto",
+          "name": "Brejoto",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lamacorno-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "saltalodo",
+          "name": "Saltalodo",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lamacorno-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "lamacorno",
+          "name": "Lamacorno",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Sapo saltador que abre a vela entre as patas traseiras.",
+          "art": "art/creatures/onis-do-vento-bravio/concept-v3/lamacorno.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lamacorno-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "giripipa",
+          "to": "brejoto",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "brejoto",
+          "to": "saltalodo",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "saltalodo",
+          "to": "lamacorno",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "onis-do-vento-bravio"
+      ]
+    },
+    {
       "id": "lince-de-cerco",
       "name": "Adulto — Lince de Cerco",
       "category": "Famílias com chart",
@@ -4093,6 +5307,345 @@
       ]
     },
     {
+      "id": "lumicerno",
+      "name": "Lumicerno",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/lumicerno-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "pirilume",
+          "name": "Pirilume",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lumicerno-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "luziquino",
+          "name": "Luziquino",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lumicerno-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "lumevigia",
+          "name": "Lumevigia",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/lumicerno.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lumicerno-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "lumicerno",
+          "name": "Lumicerno",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Tórax em forma de lanterna com janelas de vagalume.",
+          "art": "art/creatures/cavalos-do-bosque/concept-v2/lumicerno.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lumicerno-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "pirilume",
+          "to": "luziquino",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "luziquino",
+          "to": "lumevigia",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "lumevigia",
+          "to": "lumicerno",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "cavalos-do-bosque"
+      ]
+    },
+    {
+      "id": "lunafauce",
+      "name": "Lunafauce",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/lunafauce-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "gotamar",
+          "name": "Gotamar",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunafauce-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "guelfita",
+          "name": "Guelfita",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunafauce-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "serpelume",
+          "name": "Serpelume",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunafauce-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "lunafauce",
+          "name": "Lunafauce",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Moreia bípede com duas velas nas guelras.",
+          "art": "art/creatures/soldados-da-meia-noite/concept-v2/lunafauce.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunafauce-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "gotamar",
+          "to": "guelfita",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "guelfita",
+          "to": "serpelume",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "serpelume",
+          "to": "lunafauce",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "soldados-da-meia-noite"
+      ]
+    },
+    {
+      "id": "lunarrufo",
+      "name": "Lobisomem / Lunarrufo",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/lunarrufo-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "uivim",
+          "name": "Uivim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunarrufo-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "lunarrufo",
+          "name": "Lunarrufo",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/demons-do-folclore/child-v1/lunarrufo.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunarrufo-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "umbrauivo",
+          "name": "Umbrauivo",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunarrufo-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "lobumbrario",
+          "name": "Lobumbrário",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Dianteira pesada e dois crescentes nos ombros. Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunarrufo-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "eclipsarro",
+          "name": "Eclipsarro",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Lobo de postura baixa com disco de eclipse.",
+          "art": "art/creatures/demons-do-folclore/adultos-alternativos-v1/lunarrufo.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/lunarrufo-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "uivim",
+          "to": "lunarrufo",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "lunarrufo",
+          "to": "umbrauivo",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "umbrauivo",
+          "to": "lobumbrario",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "umbrauivo",
+          "to": "eclipsarro",
+          "kind": "reweaving",
+          "reason": "Rota adulta alternativa, no mesmo estágio da primeira forma adulta.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "demons-do-folclore"
+      ]
+    },
+    {
       "id": "lupunhal",
       "name": "Lupunhal",
       "category": "Famílias com chart",
@@ -4302,6 +5855,63 @@
       "population_group_ids": [
         "aguas-margens",
         "crystais-pipas"
+      ]
+    },
+    {
+      "id": "marfenda",
+      "name": "Marfenda",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/marfenda-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "marfenda-jovem",
+          "name": "Marfenda (jovem)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/glaciais-das-duas-marees/concept-v1/marfenda.png",
+          "brief": "art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+          "source": "documentation/creatures/marfenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "glaciais-das-duas-marees"
+          ]
+        },
+        {
+          "id": "marfenda",
+          "name": "Marfenda",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Morsa que nada na vertical e usa as presas para abrir uma comporta de papel.",
+          "art": "art/creatures/glaciais-das-duas-marees/adultos-v2/marfenda.png",
+          "brief": "art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+          "source": "documentation/creatures/marfenda-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "glaciais-das-duas-marees"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "marfenda-jovem",
+          "to": "marfenda",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "glaciais-das-duas-marees"
       ]
     },
     {
@@ -4521,6 +6131,111 @@
       "population_group_ids": [
         "insetos",
         "lords"
+      ]
+    },
+    {
+      "id": "mentarranco",
+      "name": "Mentarranco",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/mentarranco-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "mentisco",
+          "name": "Mentisco",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/mentarranco.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/mentarranco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "mentarranco",
+          "name": "Mentarranco",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/bisoes-de-acucar/concept-v1/mentarranco.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/mentarranco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "riscamenta",
+          "name": "Riscamenta",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/mentarranco.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/mentarranco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "mentarranco-vendaval",
+          "name": "Mentarranco Vendaval",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Elmo de bala de menta e vela de frenagem em flecha.",
+          "art": "art/creatures/bisoes-de-acucar/adultos-v2/mentarranco.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/mentarranco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "mentisco",
+          "to": "mentarranco",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "mentarranco",
+          "to": "riscamenta",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "riscamenta",
+          "to": "mentarranco-vendaval",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "bisoes-de-acucar"
       ]
     },
     {
@@ -4836,6 +6551,111 @@
       "notes": [],
       "population_group_ids": [
         "lords"
+      ]
+    },
+    {
+      "id": "nebrisco",
+      "name": "Nebrisco",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/nebrisco-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "brumim",
+          "name": "Brumim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/nebrisco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "nebripasso",
+          "name": "Nebripasso",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/nebrisco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "velumbrio",
+          "name": "Velumbrio",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/nebrisco.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/nebrisco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        },
+        {
+          "id": "nebrisco",
+          "name": "Nebrisco",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Máscara óssea e arcos dorsais de névoa.",
+          "art": "art/creatures/cavalos-do-bosque/concept-v2/nebrisco.png",
+          "brief": "art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/nebrisco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "cavalos-do-bosque"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "brumim",
+          "to": "nebripasso",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "nebripasso",
+          "to": "velumbrio",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "velumbrio",
+          "to": "nebrisco",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "cavalos-do-bosque"
       ]
     },
     {
@@ -6356,6 +8176,240 @@
       ]
     },
     {
+      "id": "rugikor",
+      "name": "Rugikor",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/rugikor-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "brasim",
+          "name": "Brasim",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/rugikor-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "roscapata",
+          "name": "Roscapata",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/rugikor-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "jubarco",
+          "name": "Jubarco",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/rugikor-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        },
+        {
+          "id": "rugikor",
+          "name": "Rugikor",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Onça quadrúpede com juba de papel em meia-lua.",
+          "art": "art/creatures/onis-do-vento-bravio/concept-v3/rugikor.png",
+          "brief": "art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/rugikor-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "onis-do-vento-bravio"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "brasim",
+          "to": "roscapata",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "roscapata",
+          "to": "jubarco",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "jubarco",
+          "to": "rugikor",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "onis-do-vento-bravio"
+      ]
+    },
+    {
+      "id": "saciventim",
+      "name": "Saci / Saciventim",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/saciventim-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "pirilo",
+          "name": "Piriló",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/saciventim.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/saciventim-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "saciventim",
+          "name": "Saciventim",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/demons-do-folclore/child-v1/saciventim.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/saciventim-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "ventapulo",
+          "name": "Ventapulo",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/saciventim.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/saciventim-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "rodamastro",
+          "name": "Rodamastro",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Vela dupla em espiral. Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/demons-do-folclore/linhagens-v1/saciventim.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/saciventim-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        },
+        {
+          "id": "redemastro",
+          "name": "Redemastro",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Pata em mola e rotor circular que dá forma ao redemoinho.",
+          "art": "art/creatures/demons-do-folclore/adultos-alternativos-v1/saciventim.png",
+          "brief": "art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/saciventim-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "demons-do-folclore"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "pirilo",
+          "to": "saciventim",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "saciventim",
+          "to": "ventapulo",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ventapulo",
+          "to": "rodamastro",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ventapulo",
+          "to": "redemastro",
+          "kind": "reweaving",
+          "reason": "Rota adulta alternativa, no mesmo estágio da primeira forma adulta.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "demons-do-folclore"
+      ]
+    },
+    {
       "id": "selacrabio",
       "name": "Selacrábio",
       "category": "Famílias com chart",
@@ -6461,6 +8515,170 @@
       ]
     },
     {
+      "id": "singravel",
+      "name": "Singravel",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/singravel-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "singravel-jovem",
+          "name": "Singravel (jovem)",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/glaciais-das-duas-marees/concept-v1/singravel.png",
+          "brief": "art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+          "source": "documentation/creatures/singravel-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "glaciais-das-duas-marees"
+          ]
+        },
+        {
+          "id": "singravel-cavaleiro-da-alvorada-austral",
+          "name": "Singravel (Cavaleiro da Alvorada Austral)",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Cavaleiro pinguim que carrega o amanhecer no escudo de pipa.",
+          "art": "art/creatures/glaciais-das-duas-marees/cavaleiros-v1/singravel.png",
+          "brief": "art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+          "source": "documentation/creatures/singravel-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "glaciais-das-duas-marees",
+            "cavaleiros"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "singravel-jovem",
+          "to": "singravel-cavaleiro-da-alvorada-austral",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "cavaleiros",
+        "glaciais-das-duas-marees"
+      ]
+    },
+    {
+      "id": "suturanoite",
+      "name": "Suturanoite",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/suturanoite-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "plumico",
+          "name": "Plumico",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/suturanoite-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "rasapena",
+          "name": "Rasapena",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/suturanoite-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "velaespreita",
+          "name": "Velaespreita",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/suturanoite-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "suturanoite",
+          "name": "Suturanoite",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Coruja com velas de pulso e rabiola de equilíbrio.",
+          "art": "art/creatures/soldados-da-meia-noite/concept-v2/suturanoite.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/suturanoite-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "plumico",
+          "to": "rasapena",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "rasapena",
+          "to": "velaespreita",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "velaespreita",
+          "to": "suturanoite",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "soldados-da-meia-noite"
+      ]
+    },
+    {
       "id": "tomoeryu",
       "name": "Tomoeryu",
       "category": "Famílias com chart",
@@ -6492,6 +8710,111 @@
       "population_group_ids": [
         "cavaleiros",
         "draconianos"
+      ]
+    },
+    {
+      "id": "torronco",
+      "name": "Torronco",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/torronco-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "torri",
+          "name": "Torri",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/torronco.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/torronco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "torronco",
+          "name": "Torronco",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "",
+          "art": "art/creatures/bisoes-de-acucar/concept-v1/torronco.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/torronco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "trancatorte",
+          "name": "Trancatorte",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/bisoes-de-acucar/linhagens-v1/torronco.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/torronco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        },
+        {
+          "id": "torronco-bastao",
+          "name": "Torronco Bastão",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Aprovado visualmente",
+          "production": "concept",
+          "story": "Elmo de bombom e escudo dorsal de chocolate.",
+          "art": "art/creatures/bisoes-de-acucar/adultos-v2/torronco.png",
+          "brief": "art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+          "source": "documentation/creatures/torronco-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "bisoes-de-acucar"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "torri",
+          "to": "torronco",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "torronco",
+          "to": "trancatorte",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "trancatorte",
+          "to": "torronco-bastao",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "bisoes-de-acucar"
       ]
     },
     {
@@ -7268,6 +9591,111 @@
       "notes": [],
       "population_group_ids": [
         "crystais-pipas"
+      ]
+    },
+    {
+      "id": "vespergume",
+      "name": "Vespergume",
+      "category": "Famílias com chart",
+      "sources": [
+        "documentation/creatures/vespergume-chart-v1/chart.json"
+      ],
+      "nodes": [
+        {
+          "id": "pavioz",
+          "name": "Pavioz",
+          "kind": "stage",
+          "stage": "Bebê",
+          "grade": 1,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 1 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/vespergume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "orelavela",
+          "name": "Orelavela",
+          "kind": "stage",
+          "stage": "Criança",
+          "grade": 2,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 2 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/vespergume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "ossavento",
+          "name": "Ossavento",
+          "kind": "stage",
+          "stage": "Jovem",
+          "grade": 3,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Posição 3 da esquerda para a direita na prancha compartilhada.",
+          "art": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/vespergume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        },
+        {
+          "id": "vespergume",
+          "name": "Vespergume",
+          "kind": "stage",
+          "stage": "Adulto",
+          "grade": 4,
+          "status": "Proposto",
+          "production": "concept",
+          "story": "Vela óssea de morcego entre escápula e cotovelo.",
+          "art": "art/creatures/soldados-da-meia-noite/concept-v2/vespergume.png",
+          "brief": "art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+          "source": "documentation/creatures/vespergume-chart-v1/chart.json",
+          "rig": null,
+          "population_group_ids": [
+            "soldados-da-meia-noite"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "pavioz",
+          "to": "orelavela",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "orelavela",
+          "to": "ossavento",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        },
+        {
+          "from": "ossavento",
+          "to": "vespergume",
+          "kind": "reweaving",
+          "reason": "Progressão visual documentada na ficha da linhagem.",
+          "decision_status": "proposed"
+        }
+      ],
+      "notes": [],
+      "population_group_ids": [
+        "soldados-da-meia-noite"
       ]
     },
     {
@@ -9282,16 +11710,181 @@
   "groups_index": "grupos.json",
   "population_groups": [
     {
+      "id": "soldados-da-meia-noite",
+      "name": "Soldados da Meia-Noite",
+      "kind": "conjunto_criado",
+      "counts": {
+        "records": 16,
+        "families": 4,
+        "art": 16
+      },
+      "member_keys": [
+        "cravofenda:bocobasto",
+        "cravofenda:cravofenda",
+        "cravofenda:goticra",
+        "cravofenda:ventucravo",
+        "lunafauce:gotamar",
+        "lunafauce:guelfita",
+        "lunafauce:lunafauce",
+        "lunafauce:serpelume",
+        "suturanoite:plumico",
+        "suturanoite:rasapena",
+        "suturanoite:suturanoite",
+        "suturanoite:velaespreita",
+        "vespergume:orelavela",
+        "vespergume:ossavento",
+        "vespergume:pavioz",
+        "vespergume:vespergume"
+      ]
+    },
+    {
+      "id": "bisoes-de-acucar",
+      "name": "Bisões de Açúcar",
+      "kind": "conjunto_criado",
+      "counts": {
+        "records": 16,
+        "families": 4,
+        "art": 16
+      },
+      "member_keys": [
+        "algodauro:algodauro",
+        "algodauro:algodauro-estrato",
+        "algodauro:fiapim",
+        "algodauro:nuviforte",
+        "caramastro:caldaco",
+        "caramastro:caramastro",
+        "caramastro:caramastro-regente",
+        "caramastro:saltavela",
+        "mentarranco:mentarranco",
+        "mentarranco:mentarranco-vendaval",
+        "mentarranco:mentisco",
+        "mentarranco:riscamenta",
+        "torronco:torri",
+        "torronco:torronco",
+        "torronco:torronco-bastao",
+        "torronco:trancatorte"
+      ]
+    },
+    {
+      "id": "cavalos-do-bosque",
+      "name": "Cavalos do Bosque",
+      "kind": "conjunto_criado",
+      "counts": {
+        "records": 16,
+        "families": 4,
+        "art": 16
+      },
+      "member_keys": [
+        "cernebravio:bolotim",
+        "cernebravio:brotozaino",
+        "cernebravio:cernebravio",
+        "cernebravio:raiztrope",
+        "fendafolha:fendafolha",
+        "fendafolha:girobroto",
+        "fendafolha:rasacopa",
+        "fendafolha:ventalume",
+        "lumicerno:lumevigia",
+        "lumicerno:lumicerno",
+        "lumicerno:luziquino",
+        "lumicerno:pirilume",
+        "nebrisco:brumim",
+        "nebrisco:nebripasso",
+        "nebrisco:nebrisco",
+        "nebrisco:velumbrio"
+      ]
+    },
+    {
+      "id": "onis-do-vento-bravio",
+      "name": "Onis do Vento Bravio",
+      "kind": "conjunto_criado",
+      "counts": {
+        "records": 16,
+        "families": 4,
+        "art": 16
+      },
+      "member_keys": [
+        "corvotengu:bicapena",
+        "corvotengu:corvotengu",
+        "corvotengu:lequeiro",
+        "corvotengu:penabroto",
+        "ganchofenda:casulim",
+        "ganchofenda:ganchofenda",
+        "ganchofenda:pernalume",
+        "ganchofenda:trincasco",
+        "lamacorno:brejoto",
+        "lamacorno:giripipa",
+        "lamacorno:lamacorno",
+        "lamacorno:saltalodo",
+        "rugikor:brasim",
+        "rugikor:jubarco",
+        "rugikor:roscapata",
+        "rugikor:rugikor"
+      ]
+    },
+    {
+      "id": "glaciais-das-duas-marees",
+      "name": "Glaciais das Duas Marés",
+      "kind": "conjunto_criado",
+      "counts": {
+        "records": 8,
+        "families": 4,
+        "art": 8
+      },
+      "member_keys": [
+        "aurorastro:aurorastro-guardia-das-rotas-da-aurora",
+        "aurorastro:aurorastro-jovem",
+        "brancofaro:brancofaro",
+        "brancofaro:brancofaro-jovem",
+        "marfenda:marfenda",
+        "marfenda:marfenda-jovem",
+        "singravel:singravel-cavaleiro-da-alvorada-austral",
+        "singravel:singravel-jovem"
+      ]
+    },
+    {
+      "id": "demons-do-folclore",
+      "name": "Demons do Folclore",
+      "kind": "conjunto_criado",
+      "counts": {
+        "records": 20,
+        "families": 4,
+        "art": 20
+      },
+      "member_keys": [
+        "botolume:boialuz",
+        "botolume:botolume",
+        "botolume:dobramare",
+        "botolume:festarrio",
+        "botolume:vazanterio",
+        "contrapira:brasca",
+        "contrapira:contrapira",
+        "contrapira:matavolta",
+        "contrapira:rastroavesso",
+        "contrapira:virarraiz",
+        "lunarrufo:eclipsarro",
+        "lunarrufo:lobumbrario",
+        "lunarrufo:lunarrufo",
+        "lunarrufo:uivim",
+        "lunarrufo:umbrauivo",
+        "saciventim:pirilo",
+        "saciventim:redemastro",
+        "saciventim:rodamastro",
+        "saciventim:saciventim",
+        "saciventim:ventapulo"
+      ]
+    },
+    {
       "id": "cavaleiros",
       "name": "Cavaleiros e cavaleiras",
       "kind": "colecao_transversal",
       "counts": {
-        "records": 24,
-        "families": 23,
-        "art": 24
+        "records": 26,
+        "families": 25,
+        "art": 26
       },
       "member_keys": [
         "anaconda-retrato:anaconda-cavaleiro",
+        "aurorastro:aurorastro-guardia-das-rotas-da-aurora",
         "bradamara:bradamara",
         "capivara-boia:capibaluarte",
         "caramund:caramund",
@@ -9309,6 +11902,7 @@
         "rabbito:rabbito-conde-da-ultima-hora",
         "riscaz:riscarion",
         "rolandor:rolandor",
+        "singravel:singravel-cavaleiro-da-alvorada-austral",
         "tomoeryu:tomoeryu",
         "tramino:tramadraco",
         "trinca-brasas:tricordio",

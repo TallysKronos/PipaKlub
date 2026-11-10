@@ -1,6 +1,12 @@
 {
-  "date": "2026-11-07",
+  "date": "2026-11-10",
   "groups": [
+{"id":"soldados-da-meia-noite","name":"Soldados da Meia-Noite","kind":"conjunto_criado","description":"Patrulha de quatro espécies vampíricas identificadas pelo fecho de eclipse.","families":["vespergume","cravofenda","suturanoite","lunafauce"],"nodes":[],"sources":["art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md"],"population_proposal":"Consulte a linhagem e o estado visual de cada forma ao planejar encontros.","affiliation":"A classificação descreve o grupo de criação."},
+{"id":"bisoes-de-acucar","name":"Bisões de Açúcar","kind":"conjunto_criado","description":"Manada de bisões de doces, com quatro modos de usar a armação de pipa.","families":["torronco","caramastro","algodauro","mentarranco"],"nodes":[],"sources":["art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md"],"population_proposal":"Consulte a linhagem e o estado visual de cada forma ao planejar encontros.","affiliation":"A classificação descreve o grupo de criação."},
+{"id":"cavalos-do-bosque","name":"Cavalos do Bosque","kind":"conjunto_criado","description":"Quatro espíritos equinos associados ao carvalho, à névoa, ao vento e aos vagalumes.","families":["cernebravio","nebrisco","fendafolha","lumicerno"],"nodes":[],"sources":["art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md"],"population_proposal":"Consulte a linhagem e o estado visual de cada forma ao planejar encontros.","affiliation":"A classificação descreve o grupo de criação."},
+{"id":"onis-do-vento-bravio","name":"Onis do Vento Bravio","kind":"conjunto_criado","description":"Onça, besouro, urubu e sapo em silhuetas animalescas de oni.","families":["rugikor","ganchofenda","corvotengu","lamacorno"],"nodes":[],"sources":["art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md"],"population_proposal":"Consulte a linhagem e o estado visual de cada forma ao planejar encontros.","affiliation":"A classificação descreve o grupo de criação."},
+{"id":"glaciais-das-duas-marees","name":"Glaciais das Duas Marés","kind":"conjunto_criado","description":"Criaturas de lendas originais dos mares do norte e das águas austrais.","families":["aurorastro","brancofaro","singravel","marfenda"],"nodes":[],"sources":["art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md"],"population_proposal":"Consulte a linhagem e o estado visual de cada forma ao planejar encontros.","affiliation":"A classificação descreve o grupo de criação."},
+{"id":"demons-do-folclore","name":"Demons do Folclore","kind":"conjunto_criado","description":"Quatro famílias inspiradas no Saci, no Curupira, no Lobisomem e no Boto-cor-de-rosa. Cada uma tem duas saídas adultas.","families":["saciventim","contrapira","lunarrufo","botolume"],"nodes":[],"sources":["art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md"],"population_proposal":"Consulte a linhagem e o estado visual de cada forma ao planejar encontros.","affiliation":"A classificação descreve o grupo de criação."},
     {
       "id": "cavaleiros",
       "name": "Cavaleiros e cavaleiras",
@@ -18,6 +24,8 @@
       ],
       "nodes": [
         "voto-do-elo",
+        "aurorastro-guardia-das-rotas-da-aurora",
+        "singravel-cavaleiro-da-alvorada-austral",
         "tricordio",
         "vesperalia",
         "riscarion",

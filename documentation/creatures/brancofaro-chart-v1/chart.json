@@ -1,0 +1,38 @@
+{
+  "family_id": "brancofaro",
+  "family_name": "Brancofaro",
+  "scope": "Glaciais das Duas Marés. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "brancofaro-jovem",
+      "name": "Brancofaro (jovem)",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/glaciais-das-duas-marees/concept-v1/brancofaro.png",
+      "brief": "../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+      "story": ""
+    },
+    {
+      "id": "brancofaro",
+      "name": "Brancofaro",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/glaciais-das-duas-marees/adultos-v2/brancofaro.png",
+      "brief": "../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+      "story": "Urso semiereto que sonda o gelo com duas velas nos ombros."
+    }
+  ],
+  "edges": [
+    {
+      "from": "brancofaro-jovem",
+      "to": "brancofaro",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}
