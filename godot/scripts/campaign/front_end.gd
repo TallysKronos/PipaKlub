@@ -1759,7 +1759,7 @@ func _save_park(quiet:bool=false) -> bool:
 func _park_exit(event: Dictionary) -> void:
 	if not _save_park(): return
 	var saved: Dictionary = session.snapshot()
-	if ParkCheckpoint.is_kronasta(saved.checkpoint.scene) and event.props.get("destino","")=="kronasta":
+	if (ParkCheckpoint.is_kronasta(saved.checkpoint.scene) or ParkCheckpoint.is_regional_preview(saved.checkpoint.scene)) and event.props.get("destino","")=="kronasta":
 		_show_kronasta()
 		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
@@ -1910,6 +1910,12 @@ func _park_event(id: String) -> void:
 			return
 		if action=="districtDuel":
 			_district_action(str(event.props.duel))
+			return
+		if action=="geleiraBoss":
+			_confirm_park("Borealvo","O guardião da Coroa Glacial ergue o martelo de gelo. Ele não deixa ninguém chegar ao santuário sem provar a força.\n\nNv. %d · chefe da Serra Gelada." % encounters.GELEIRA_BOSS_LEVEL,"Enfrentar",func():
+				var started:Dictionary=encounters.start_geleira_boss(park.player)
+				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use o abrigo do pico ou um Kit de Remendo antes de enfrentar o Borealvo.")
+				elif _result(started):_show_saved.call_deferred())
 			return
 		if action=="morroDuel":
 			_morro_duel(str(event.props.duel))

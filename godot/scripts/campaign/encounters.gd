@@ -3,6 +3,7 @@ const State = preload("res://scripts/campaign/state.gd")
 const Model = preload("res://scripts/campaign/encounter_model.gd")
 const Park = preload("res://scripts/campaign/park_data.gd")
 const Progression = preload("res://scripts/campaign/progression.gd")
+const Levels = preload("res://scripts/campaign/partner_levels.gd")
 const Checkpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Training = preload("res://scripts/campaign/park_training.gd")
 const Pacing = preload("res://scripts/campaign/park_pacing.gd")
@@ -24,6 +25,29 @@ static func reward_for(battle: Dictionary, _state: Dictionary) -> int:
 static func owner_bonus(battle:Dictionary,state:Dictionary) -> Dictionary:
 	if battle.get("kind","")!="trainer" or state.get("outcome","")!="won":return {"coins":0,"tamerXp":0}
 	return preload("res://scripts/campaign/opponent_rewards.gd").trainer_bonus(int(state.get("enemyLevel",1)))
+
+## Serra Gelada · Coroa Glacial: duelo com o Borealvo, guardião do topo (boss).
+const GELEIRA_BOSS_LEVEL := 38
+func start_geleira_boss(point: Vector2) -> Dictionary:
+	var saved: Dictionary = session.snapshot()
+	if saved.checkpoint.get("scene","")!="serra-gelada-c" or saved.checkpoint.get("space","")!=Checkpoint.SPACE: return {"status":"wrong_step"}
+	var boss_at := Vector2.INF
+	for event in Checkpoint.data("serra-gelada-c").events:
+		if event.props.get("acao","")=="geleiraBoss": boss_at=Vector2(event.u+.5,event.v+.5)
+	if not point.is_finite() or point.distance_to(boss_at)>3.0: return {"status":"wrong_step"}
+	var player: Dictionary = saved.player
+	if player.get("flags",{}).get("geleiraBorealvoVencido",false): return {"status":"already_applied"}
+	var partner: Dictionary = {}
+	for entry in player.partners:
+		if entry.id == player.get("equippedPartnerId", ""): partner = entry
+	if partner.is_empty() or partner.get("condition", {}).get("line", 100) <= 0 or partner.get("condition", {}).get("structure", 100) <= 0: return {"status": "repair_needed"}
+	var model := Model.new(partner, {"modelId": "borealvo", "level": GELEIRA_BOSS_LEVEL})
+	model.q.boss = true
+	model.q.name = "Borealvo"
+	Progression.discover(player, "borealvo")
+	player.encounter = {"id": State.new_id(), "kind": "geleira-boss", "scene": "serra-gelada-c", "space": Checkpoint.SPACE, "dropRoll": .5, "returnPoint": [point.x, point.y], "state": model.snapshot()}
+	player.encounter.rewardXp = Levels.win_xp(GELEIRA_BOSS_LEVEL, Levels.level_for_xp(partner.get("xp",0)), "champion")
+	return session.checkpoint({"kind": "encounter"}, player)
 
 func _init(local_session: Node) -> void:
 	session = local_session
@@ -128,7 +152,10 @@ func settle() -> Dictionary:
 	var tamer_before:int=player.get("tamerXp",0)
 	player.coins+=bonus.coins
 	player.tamerXp=mini(31383,tamer_before+int(bonus.tamerXp))
-	if state.outcome == "won" and boss:
+	if state.outcome == "won" and battle.kind == "geleira-boss":
+		player.flags.geleiraBorealvoVencido = true
+		player.inventory["rabiola-borealvo"] = player.inventory.get("rabiola-borealvo", 0) + 1
+	elif state.outcome == "won" and boss:
 		player.flags.guardianDefeated = true
 		player.inventory["rabiola-lacertubo"] = player.inventory.get("rabiola-lacertubo", 0) + 1
 	elif state.outcome == "won" and not training:

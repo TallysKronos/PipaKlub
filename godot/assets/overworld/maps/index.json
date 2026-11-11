@@ -468,6 +468,24 @@
       "name": "Vulcão de Kronasta · Caldeira",
       "scene": "vulcao-a",
       "biome": "floresta"
+    },
+    {
+      "id": "serra-gelada-a",
+      "name": "Serra Gelada · Vale Congelado",
+      "scene": "serra-gelada-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "serra-gelada-b",
+      "name": "Serra Gelada · Desfiladeiro de Gelo",
+      "scene": "serra-gelada-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "serra-gelada-c",
+      "name": "Serra Gelada · Coroa Glacial",
+      "scene": "serra-gelada-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -542,7 +560,10 @@
     "kronasta-coracao-a": "kronasta-coracao-a",
     "kronasta-coracao-b": "kronasta-coracao-b",
     "kronasta-coracao-c": "kronasta-coracao-c",
-    "vulcao-a": "vulcao-a"
+    "vulcao-a": "vulcao-a",
+    "serra-gelada-a": "serra-gelada-a",
+    "serra-gelada-b": "serra-gelada-b",
+    "serra-gelada-c": "serra-gelada-c"
   },
   "campaignReplacement": false
 }

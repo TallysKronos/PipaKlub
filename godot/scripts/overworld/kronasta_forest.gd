@@ -138,6 +138,8 @@ static func build(view) -> void:
 			# (subindo para +u/+v ela vira de costas para a câmera e escurece).
 			var tone:=.88+.18*level
 			if ice:tone=.86+.14*(level-int(model.data.forest.baseLevel))
+			# Mapas de gelo altos (Serra Gelada, 7 andares): curva suave, sem fundo cinza.
+			if ice and model.data.forest.get("softTone",false):tone=clampf(.97+.025*(level-int(model.data.forest.baseLevel)),.9,1.06)
 			if mountain:tone=.96+.05*(level-int(model.data.forest.baseLevel))
 			if inside and model.cell_at(Vector2i(u,v)).get("ramp")!=null:
 				tone*=.80 if str(model.cell_at(Vector2i(u,v)).ramp) in ["u+","v+"] else 1.12

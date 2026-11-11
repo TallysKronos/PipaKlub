@@ -22,14 +22,17 @@ static func shapes(model) -> Array:
 static func _lava_falls(view) -> void:
  _falls(view,"lavaFalls",BASE+"lava-v1/surfaces/lava.png",Color("ffd27a"),Color(1.0,.86,.45,.55),Color.WHITE)
  _falls(view,"waterFalls",BASE+"aguas-v1/surfaces/cortina-forte.png",Color("f2fbff"),Color(.95,.99,1.0,.7),Color("9fd3e6"))
+ # Cachoeira congelada: mesma cortina, parada e clara.
+ _falls(view,"iceFalls",BASE+"aguas-v1/surfaces/cortina-suave.png",Color("ffffff"),Color(.92,.97,1.0,.75),Color("dff3ff"),0.0)
 
-static func _falls(view,key:String,texture_path:String,lip:Color,splash_color:Color,tint:Color) -> void:
+static func _falls(view,key:String,texture_path:String,lip:Color,splash_color:Color,tint:Color,flow:float=1.0) -> void:
  var model=view.model
  if geometry():return
  for fall:Dictionary in model.data.get("forest",{}).get(key,[]):
   var material:=ShaderMaterial.new()
   material.shader=load("res://shaders/overworld/lava_region_fall.gdshader")
   material.set_shader_parameter("lava_texture",load(texture_path))
+  material.set_shader_parameter("flow",flow)
   for i in int(fall.width):
    var u:int=int(fall.u)+i;var v:int=int(fall.v)
    var top:float=float(model.cell_at(Vector2i(u,v)).get("level",0))*64
@@ -356,6 +359,7 @@ static func _stairs(view,s:Dictionary) -> void:
  var tread := Color("#636077") if chamber else Color("d1c69e")
  var riser := Color("#38364c") if chamber else Color("807c67")
  if view.model.data.get("forest",{}).get("lava",false):tread=Color("6d6672");riser=Color("3a3540")
+ if view.model.data.get("forest",{}).get("ice",false):tread=Color("dbe9f2");riser=Color("8aa7bf")
  for k in 8:
   var low:float=float(k)/8;var high:float=float(k+1)/8;var height:float=base+high*64
   var a:=Vector2(u,v+2-high*2);var b:=Vector2(u+width,v+2-high*2)
