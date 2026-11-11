@@ -510,6 +510,42 @@
       "name": "Abismo de Kronasta · Cidade Afundada",
       "scene": "abismo-c",
       "biome": "floresta"
+    },
+    {
+      "id": "planicie-a",
+      "name": "Planícies de Kronasta · Campos do Vento",
+      "scene": "planicie-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "planicie-b",
+      "name": "Planícies de Kronasta · Colinas do Moinho",
+      "scene": "planicie-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "caverna-a",
+      "name": "Gruta do Moinho · Galeria do Rio",
+      "scene": "caverna-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "planicie-c",
+      "name": "Planícies de Kronasta · Vale das Pedras",
+      "scene": "planicie-c",
+      "biome": "floresta"
+    },
+    {
+      "id": "caverna-b",
+      "name": "Gruta do Moinho · Galerias de Cristal",
+      "scene": "caverna-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "caverna-c",
+      "name": "Gruta do Moinho · Lago Subterrâneo",
+      "scene": "caverna-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -591,7 +627,13 @@
     "abismo-a": "abismo-a",
     "abismo-d": "abismo-d",
     "abismo-b": "abismo-b",
-    "abismo-c": "abismo-c"
+    "abismo-c": "abismo-c",
+    "planicie-a": "planicie-a",
+    "planicie-b": "planicie-b",
+    "caverna-a": "caverna-a",
+    "planicie-c": "planicie-c",
+    "caverna-b": "caverna-b",
+    "caverna-c": "caverna-c"
   },
   "campaignReplacement": false
 }

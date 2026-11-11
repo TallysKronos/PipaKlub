@@ -231,6 +231,10 @@ static func quad(parent:Node2D,points:PackedVector2Array,color:Color,texture:Tex
  var node:=Polygon2D.new();node.polygon=points;node.color=color;node.texture=texture;parent.add_child(node);return node
 static func build(view) -> void:
  _lava_falls(view)
+ # Peças de gruta fora das minas (a boca da Gruta do Moinho nas Planícies).
+ if not view.model.data.get("forest",{}).get("mine",false) and not geometry():
+  for piece:Dictionary in view.model.data.pieces:
+   if piece.asset=="mina-cave":preload("res://scripts/overworld/mine_structures.gd").cave_prop(view,piece)
  var model=view.model
  var f:Dictionary=model.data.get("forest",{})
  if f.is_empty():return
