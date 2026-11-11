@@ -29,6 +29,35 @@
   "veskoro"
  ],
  "regioes": {
+  "abismo": {
+   "encontros": [
+    {
+     "modelo": "vortespira",
+     "peso": 35
+    },
+    {
+     "modelo": "hipomoranga",
+     "peso": 30
+    },
+    {
+     "modelo": "reciforte",
+     "peso": 20
+    },
+    {
+     "modelo": "alvorvela",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "vortentaculo:vortespira",
+     "hipolanterna-family-v1:hipomoranga",
+     "reciferreo:reciforte"
+    ],
+    "incomum": "alvorraia:alvorvela",
+    "guardiao": "coroabissal:coromar"
+   }
+  },
   "caverna": {
    "encontros": [
     {
@@ -549,6 +578,59 @@
      "javali-guerreiro:javali-child"
     ],
     "incomum": "cervarco-family-v1:galhim"
+   }
+  },
+  "serra-gelada": {
+   "encontros": [
+    {
+     "modelo": "urso-polar-young",
+     "peso": 40
+    },
+    {
+     "modelo": "nimbordo",
+     "peso": 35
+    },
+    {
+     "modelo": "lupunhal",
+     "peso": 20
+    },
+    {
+     "modelo": "lupregente",
+     "peso": 5
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "urso-polar:urso-polar-young",
+     "nimbalio:nimbordo",
+     "lupunhal:lupunhal"
+    ],
+    "rara": "lupunhal:lupregente",
+    "guardiao": "urso-polar:borealvo"
+   }
+  },
+  "vulcao": {
+   "encontros": [
+    {
+     "modelo": "trincaguarda",
+     "peso": 45
+    },
+    {
+     "modelo": "gevardente",
+     "peso": 40
+    },
+    {
+     "modelo": "trinca-brasas",
+     "peso": 15
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "trinca-brasas:trincaguarda",
+     "gevoraz:gevardente",
+     "trinca-brasas:trinca-brasas"
+    ],
+    "guardiao": "trinca-brasas:tricordio"
    }
   }
  }

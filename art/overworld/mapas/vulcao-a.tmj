@@ -954,7 +954,7 @@
     7,
     7,
     7,
-    4,
+    7,
     7,
     7,
     7,
@@ -3362,9 +3362,9 @@
     7,
     7,
     7,
-    4,
     7,
-    4,
+    7,
+    7,
     4,
     4,
     4,
@@ -4550,7 +4550,7 @@
     308,
     308,
     308,
-    301,
+    308,
     308,
     308,
     308,
@@ -6958,9 +6958,9 @@
     303,
     303,
     303,
-    301,
     303,
-    301,
+    303,
+    303,
     301,
     301,
     301,
@@ -8672,6 +8672,261 @@
        "name": "acao",
        "type": "string",
        "value": "wildRest"
+      }
+     ]
+    },
+    {
+     "id": 22011,
+     "name": "Mestre Brasa",
+     "type": "npc",
+     "x": 368,
+     "y": 1616,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "tiao"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "vulcaoBrasa"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 22012,
+     "name": "Dona Cinza",
+     "type": "npc",
+     "x": 656,
+     "y": 1584,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "mae"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "vulcaoCinza"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 22013,
+     "name": "Caco",
+     "type": "npc",
+     "x": 688,
+     "y": 1648,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "zeca"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "vulcaoCacoAchado"
+      },
+      {
+       "name": "texto",
+       "type": "string",
+       "value": "Caco: Do alto dá para ver a lava pulsando, como se o vulcão respirasse. Ainda vou medir isso direito."
+      }
+     ]
+    },
+    {
+     "id": 22014,
+     "name": "Caco",
+     "type": "npc",
+     "x": 1456,
+     "y": 240,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "zeca"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "vulcaoCaco"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "vulcaoCacoPedido"
+      },
+      {
+       "name": "ocultar_apos",
+       "type": "string",
+       "value": "vulcaoCacoAchado"
+      }
+     ]
+    },
+    {
+     "id": 99001,
+     "name": "Pedra de brasa",
+     "type": "item",
+     "x": 1456,
+     "y": 1616,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "pedra-de-brasa"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "vulcaoBrasaPedido"
+      }
+     ]
+    },
+    {
+     "id": 99002,
+     "name": "Pedra de brasa",
+     "type": "item",
+     "x": 1296,
+     "y": 1104,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "pedra-de-brasa"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "vulcaoBrasaPedido"
+      }
+     ]
+    },
+    {
+     "id": 99003,
+     "name": "Pedra de brasa",
+     "type": "item",
+     "x": 336,
+     "y": 240,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "pedra-de-brasa"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "vulcaoBrasaPedido"
+      }
+     ]
+    },
+    {
+     "id": 22015,
+     "name": "Tricórdio",
+     "type": "npc",
+     "x": 1392,
+     "y": 48,
+     "point": true,
+     "properties": [
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "vulcaoBoss"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/campaign/regioes-v1/tricordio.png"
+      },
+      {
+       "name": "ocultar_apos",
+       "type": "string",
+       "value": "vulcaoTricordioVencido"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": true
       }
      ]
     },

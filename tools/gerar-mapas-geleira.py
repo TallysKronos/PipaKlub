@@ -162,6 +162,13 @@ def area_a():
     p.placa("Nascente", 50, 12, "A água brota quente da pedra e fumega no ar gelado. Por isso a nascente nunca congela.")
     p.prop("abrigo", 30, 44, 3, 3, "Abrigo da expedição")
     p.event("interacao", "Fogueira do abrigo", 33, 47, {"acao": "wildRest"})
+    # Missões (godot/scripts/campaign/side_regions.gd, região "serra-gelada")
+    p.quest_npc("Seu Tomé", "nilo", *p.spot(35, 48), "geleiraFlores")
+    p.quest_npc("Bia", "bia", *p.spot(42, 47), "geleiraBia")
+    u, v = p.spot(41, 48)
+    p.event("npc", "Caio", u, v, {"district": "morro", "npcIdentity": "caue", "bloqueia": False, "requer": "geleiraCaioAchado",
+                                  "texto": "Caio: Da fenda dava para ver a Coroa Glacial. Lá em cima tem alguma coisa enorme andando em círculo."})
+    p.quest_item(*p.spot(57, 46), "flor-de-gelo", "Flor de gelo", "geleiraFloresPedido")
     p.prop("formacao", 16, 48, 3, 3, "Formação de gelo")
     p.prop("cristal", 44, 33, 2, 2, "Cristal de gelo")
     p.prop("rocha", 30, 25, 3, 2, "Rocha nevada")
@@ -240,6 +247,8 @@ def area_b():
     p.kites([(57, 26), (16, 14)])
     p.trail([(49, 52), (52, 44), (47, 33), (55, 23), (46, 17), (36, 17), (27, 19), (13, 12), (18, 1)])
     p.tesouro(33, 32, "cola-reparo")                  # gruta da cascata
+    p.quest_npc("Caio", "caue", *p.spot(31, 33), "geleiraCaio", requer="geleiraCaioPedido", ocultar_apos="geleiraCaioAchado")
+    p.quest_item(*p.spot(6, 9), "flor-de-gelo", "Flor de gelo", "geleiraFloresPedido")
     p.tesouro(16, 40, "papel-seda")                   # beira do poço
     p.tesouro(5, 9, "linha-encerada")                 # canto do alto
     p.tesouro(33, 27, "papel-seda")                   # beira da cascata
@@ -309,6 +318,7 @@ def area_c():
     p.trail([(32, 52), (23, 44), (9, 36), (31, 28), (40, 22), (53, 27), (53, 20), (43, 17), (37, 12)])
     p.tesouro(57, 45, "cola-reparo")                  # beira do riacho
     p.tesouro(5, 19, "linha-encerada")                # mirante oeste
+    p.quest_item(*p.spot(7, 18), "flor-de-gelo", "Flor de gelo", "geleiraFloresPedido")
     p.tesouro(25, 28, "papel-seda")                   # ilha do lago
     p.tesouro(60, 15, "papel-seda")                   # degelo do pico
     p.item(p._item_id + 10, 36, 1, "linha-encerada", "brilho", "Linha do santuário")

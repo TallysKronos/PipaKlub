@@ -15889,6 +15889,36 @@
        "value": "wildRest"
       }
      ]
+    },
+    {
+     "id": 99001,
+     "name": "Pérola das marés",
+     "type": "item",
+     "x": 336,
+     "y": 720,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "perola-das-mares"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "abismoPerolasPedido"
+      }
+     ]
     }
    ]
   }

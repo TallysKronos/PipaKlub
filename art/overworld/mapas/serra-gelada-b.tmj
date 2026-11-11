@@ -13551,6 +13551,76 @@
      ]
     },
     {
+     "id": 23109,
+     "name": "Caio",
+     "type": "npc",
+     "x": 1008,
+     "y": 1072,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "caue"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "geleiraCaio"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "geleiraCaioPedido"
+      },
+      {
+       "name": "ocultar_apos",
+       "type": "string",
+       "value": "geleiraCaioAchado"
+      }
+     ]
+    },
+    {
+     "id": 99001,
+     "name": "Flor de gelo",
+     "type": "item",
+     "x": 208,
+     "y": 304,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "flor-de-gelo"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "geleiraFloresPedido"
+      }
+     ]
+    },
+    {
      "id": 23132,
      "name": "Achado do morro",
      "type": "item",

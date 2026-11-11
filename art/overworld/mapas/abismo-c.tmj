@@ -14469,6 +14469,76 @@
        "value": "wildRest"
       }
      ]
+    },
+    {
+     "id": 24207,
+     "name": "Lia",
+     "type": "npc",
+     "x": 144,
+     "y": 1072,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "lia"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "abismoLia"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "abismoLiaPedido"
+      },
+      {
+       "name": "ocultar_apos",
+       "type": "string",
+       "value": "abismoLiaAchada"
+      }
+     ]
+    },
+    {
+     "id": 99001,
+     "name": "Pérola das marés",
+     "type": "item",
+     "x": 1104,
+     "y": 720,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "perola-das-mares"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "abismoPerolasPedido"
+      }
+     ]
     }
    ]
   }

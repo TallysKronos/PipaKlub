@@ -212,6 +212,12 @@ def area_a():
         if cell in p.open:
             p.baliza(cell)
     p.decorate()
+    # Missões (godot/scripts/campaign/side_regions.gd, região "abismo")
+    p.quest_npc("Seu Jacinto", "tiao", *p.spot(u_in + 1, H - 7, avoid=0), "abismoPerolas")
+    p.quest_npc("Celina", "celina", *p.spot(u_in - 1, H - 7, avoid=0), "abismoCelina")
+    u, v = p.spot(u_in - 1, H - 8, avoid=0)
+    p.event("npc", "Lia", u, v, {"district": "morro", "npcIdentity": "lia", "bloqueia": False, "requer": "abismoLiaAchada",
+                                 "texto": "Lia: Os mosaicos da Cidade Afundada mostram pipas iguais às nossas. Alguém de Kronasta morou lá embaixo."})
     for name, u, v in [("entrada", u_in, H - 6), ("jardim", cu(2) + 3, cv(7) + 3), ("arraia", cu(8) + 3, cv(4) + 3), ("saida", cu(5) + 1, 3)]:
         p.shot(name, u, v)
     return p
@@ -241,6 +247,7 @@ def area_b():
         if cell in p.open:
             p.baliza(cell)
     p.decorate(.22)
+    p.quest_item(*p.spot(cu(1) + 3, cv(4) + 1), "perola-das-mares", "Pérola das marés", "abismoPerolasPedido")
     for name, u, v in [("entrada", u_in, H - 6), ("algas", cu(1) + 3, cv(3) + 1), ("eco", cu(9) + 3, cv(7) + 3), ("saida", cu(7) + 1, 3)]:
         p.shot(name, u, v)
     return p
@@ -271,6 +278,8 @@ def area_c():
         if cell in p.open:
             p.baliza(cell)
     p.decorate(.18)
+    p.quest_npc("Lia", "lia", *p.spot(cu(0) + 2, cv(6) + 2), "abismoLia", requer="abismoLiaPedido", ocultar_apos="abismoLiaAchada")
+    p.quest_item(*p.spot(cu(6) + 2, cv(4) + 2), "perola-das-mares", "Pérola das marés", "abismoPerolasPedido")
     for name, u, v in [("entrada", u_in, H - 6), ("praca", cu(5) + 3, cv(3) + 3), ("casa", cu(0) + 3, cv(6) + 3), ("saida", cu(3) + 1, 3)]:
         p.shot(name, u, v)
     return p
@@ -306,6 +315,7 @@ def area_d():
         if cell in p.open:
             p.baliza(cell)
     p.decorate(.2)
+    p.quest_item(*p.spot(cu(6) + 2, cv(5) + 2), "perola-das-mares", "Pérola das marés", "abismoPerolasPedido")
     for name, u, v in [("entrada", u_in, H - 6), ("meio", cu(5) + 1, cv(5) + 1), ("arena", boss_u, boss_v + 2), ("santuario", cu(6), 2)]:
         p.shot(name, u, v)
     return p

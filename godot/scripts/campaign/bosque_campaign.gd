@@ -3,7 +3,7 @@ extends RefCounted
 ## and authored map rewards, using the campaign's atomic receipts.
 const Checkpoint=preload("res://scripts/campaign/park_checkpoint.gd")
 const Story=preload("res://scripts/campaign/kronasta_story.gd")
-const NAMES={"kit-remendo":"Kit de Remendo","moedas":"moedas","papel-seda":"papel de seda","vareta-bambu":"vareta de bambu","cola-reparo":"cola de reparo","linha-encerada":"linha encerada","pista-caderno-heleana-1":"página do caderno","pa-do-moinho":"pá do moinho"}
+const NAMES={"kit-remendo":"Kit de Remendo","moedas":"moedas","papel-seda":"papel de seda","vareta-bambu":"vareta de bambu","cola-reparo":"cola de reparo","linha-encerada":"linha encerada","pista-caderno-heleana-1":"página do caderno","pa-do-moinho":"pá do moinho","pedra-de-brasa":"pedra de brasa","flor-de-gelo":"flor de gelo","perola-das-mares":"pérola das marés"}
 var session: Node
 func _init(local_session: Node) -> void: session=local_session
 

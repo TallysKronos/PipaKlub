@@ -13769,6 +13769,101 @@
        "value": "wildRest"
       }
      ]
+    },
+    {
+     "id": 24007,
+     "name": "Seu Jacinto",
+     "type": "npc",
+     "x": 1104,
+     "y": 1584,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "tiao"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "abismoPerolas"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 24008,
+     "name": "Celina",
+     "type": "npc",
+     "x": 1040,
+     "y": 1584,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "celina"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "abismoCelina"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 24009,
+     "name": "Lia",
+     "type": "npc",
+     "x": 1040,
+     "y": 1552,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "lia"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "abismoLiaAchada"
+      },
+      {
+       "name": "texto",
+       "type": "string",
+       "value": "Lia: Os mosaicos da Cidade Afundada mostram pipas iguais às nossas. Alguém de Kronasta morou lá embaixo."
+      }
+     ]
     }
    ]
   }

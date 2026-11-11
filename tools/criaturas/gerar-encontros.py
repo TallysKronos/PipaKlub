@@ -35,6 +35,10 @@ LIVE = {
     "caverna": [["vertim", 40], ["ossito", 35], ["viuva-child", 25]],
     # A Caverna do Mural também começa com "caverna-": a chave mais longa vence (wild_tables.gd).
     "caverna-mural": GENERIC,
+    # Vulcão, Serra Gelada e Abismo (side_regions.gd).
+    "vulcao": [["trincaguarda", 45], ["gevardente", 40], ["trinca-brasas", 15]],
+    "serra-gelada": [["urso-polar-young", 40], ["nimbordo", 35], ["lupunhal", 20], ["lupregente", 5]],
+    "abismo": [["vortespira", 35], ["hipomoranga", 30], ["reciforte", 20], ["alvorvela", 15]],
 }
 B, C, J, A = 0, 1, 2, 3  # Bebê, Criança, Jovem, Adulto (ordem dos nós nas famílias de chart)
 PLAN = {
@@ -56,6 +60,9 @@ PLAN = {
     "kronasta-coracao": dict(comuns=[stage("rexestrato-family-v1", J), stage("estratonte-family-v1", J), stage("cervarco-family-v1", J)], incomum=stage("ibiscrito", J), rara=[key("araruna-memoria"), key("caimbira-memoria"), key("tamoata-memoria")]),
     "planicie": dict(comuns=[stage("galofuso-family-v1", C), stage("alvacordo-family-v1", C), stage("javali-guerreiro", C)], incomum=stage("cervarco-family-v1", C)),
     "caverna": dict(comuns=[stage("estratonte-family-v1", C), stage("rexestrato-family-v1", C), stage("viuva-anjo", C)], guardiao=stage("estratonte-family-v1", A)),
+    "vulcao": dict(comuns=[stage("trinca-brasas", J), stage("gevoraz", J), stage("trinca-brasas", C)], guardiao=stage("trinca-brasas", A)),
+    "serra-gelada": dict(comuns=[stage("urso-polar", J), stage("nimbalio", J), stage("lupunhal", J)], rara=key("lupunhal", "lupregente"), guardiao=stage("urso-polar", A)),
+    "abismo": dict(comuns=[stage("vortentaculo", J), stage("hipolanterna-family-v1", J), stage("reciferreo", J)], incomum=stage("alvorraia", J), guardiao=key("coroabissal", "coromar")),
     "kronasta-mirante": dict(comuns=[stage("grifarca", J), stage("nimbalio", J), stage("etruslanca", J)], incomum=key("guaravento"), rara=key("pteralis"), guardiao=stage("etruslanca", A)),
 }
 NEVER = ["rabbito", "rai", "platyx", "mormaco", "tufanocorte", "rabiolava", "trovareta", "eremor", "retalho", "pipa-dragao", "veskoro"]  # o Lacertubo jovem é selvagem no Beira-Canal; o adulto é o chefe

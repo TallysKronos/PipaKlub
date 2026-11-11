@@ -19,7 +19,9 @@ static func weight(model, point: Vector2) -> float:
 	if not model.point_walkable(point): return 0.0
 	var cell: Dictionary=model.cell_at(Vector2i(point.floor()))
 	if (str(model.data.get("id",""))=="kronasta-bosque-d" or str(model.data.get("id","")).begins_with("kronasta-bambuzal-") or str(model.data.get("id","")).begins_with("kronasta-beira-canal-") or str(model.data.get("id","")).begins_with("kronasta-feira-")) and cell.material!="mato":return 0.0
-	if cell.material not in ["grama","terra","mato"] or cell.get("ramp")!=null: return 0.0
+	# Vulcão, Serra Gelada e Abismo andam sobre "piso" (basalto, passarela de gelo, leito do mar).
+	var floors: Array=["grama","terra","mato","piso"] if str(model.data.get("id","")).begins_with("vulcao-") or str(model.data.get("id","")).begins_with("serra-gelada-") or str(model.data.get("id","")).begins_with("abismo-") else ["grama","terra","mato"]
+	if cell.material not in floors or cell.get("ramp")!=null: return 0.0
 	for event in model.data.events:
 		var action: String=event.props.get("acao","")
 		if event.type not in ["npc","saida","entrada","item"] and action not in ["parkBoss","wildRest","parkMap","wildGuide"]: continue
@@ -39,6 +41,10 @@ static func wild_level(scene: String, roll: int) -> int:
 	# Planícies (Nv.10–14) e Gruta do Moinho (Nv.12–16): região lateral depois do Lacertubo.
 	if scene in ["planicie-a","planicie-b","planicie-c"]:return 10+"abc".find(scene.right(1))+roll%3
 	if scene in ["caverna-a","caverna-b","caverna-c"]:return 12+"abc".find(scene.right(1))+roll%3
+	# Vulcão (Nv.34–36), Serra Gelada (Nv.32–36) e Abismo (Nv.37–42): side_regions.gd.
+	if scene=="vulcao-a":return 34+roll%3
+	if scene.begins_with("serra-gelada-"):return 32+"abc".find(scene.right(1))+roll%3
+	if scene.begins_with("abismo-"):return 37+"abcd".find(scene.right(1))+roll%3
 	if scene.begins_with("kronasta-bosque-"):
 		return {"kronasta-bosque-a":1,"kronasta-bosque-b":2,"kronasta-bosque-c":3}[scene]+roll%3
 	# Every campaign region follows its story band (BIBLIA §3 and §8); wild ones

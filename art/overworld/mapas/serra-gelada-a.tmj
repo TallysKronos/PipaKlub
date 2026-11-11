@@ -12151,6 +12151,131 @@
      ]
     },
     {
+     "id": 23010,
+     "name": "Seu Tomé",
+     "type": "npc",
+     "x": 1136,
+     "y": 1552,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "nilo"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "geleiraFlores"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 23011,
+     "name": "Bia",
+     "type": "npc",
+     "x": 1360,
+     "y": 1520,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "bia"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "geleiraBia"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 23012,
+     "name": "Caio",
+     "type": "npc",
+     "x": 1328,
+     "y": 1552,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "caue"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "geleiraCaioAchado"
+      },
+      {
+       "name": "texto",
+       "type": "string",
+       "value": "Caio: Da fenda dava para ver a Coroa Glacial. Lá em cima tem alguma coisa enorme andando em círculo."
+      }
+     ]
+    },
+    {
+     "id": 99001,
+     "name": "Flor de gelo",
+     "type": "item",
+     "x": 1872,
+     "y": 1488,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "flor-de-gelo"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "geleiraFloresPedido"
+      }
+     ]
+    },
+    {
      "id": 23031,
      "name": "Achado do morro",
      "type": "item",

@@ -165,6 +165,17 @@ def caldeira():
     p.placa("Pico oeste", 7, 6, "O ponto mais alto do maciço. Do outro lado da caldeira, a boca do vulcão solta uma coluna de calor.")
     p.placa("Boca do vulcão", 41, 1, "Daqui dá para ver Kronasta inteira: a Serra, o Porto, o Morro do Sol. No fundo da boca, a lava pulsa como um coração.")
     p.event("interacao", "Abrigo da crista", 58, 14, {"acao": "wildRest"})
+    # Missões e guardião (godot/scripts/campaign/side_regions.gd, região "vulcao")
+    p.quest_npc("Mestre Brasa", "tiao", *p.spot(11, 50), "vulcaoBrasa")
+    p.quest_npc("Dona Cinza", "mae", *p.spot(20, 49), "vulcaoCinza")
+    u, v = p.spot(21, 51)
+    p.event("npc", "Caco", u, v, {"district": "morro", "npcIdentity": "zeca", "bloqueia": False, "requer": "vulcaoCacoAchado",
+                                  "texto": "Caco: Do alto dá para ver a lava pulsando, como se o vulcão respirasse. Ainda vou medir isso direito."})
+    p.quest_npc("Caco", "zeca", *p.spot(45, 7), "vulcaoCaco", requer="vulcaoCacoPedido", ocultar_apos="vulcaoCacoAchado")
+    for u, v in [(45, 50), (40, 34), (10, 7)]:
+        p.quest_item(*p.spot(u, v), "pedra-de-brasa", "Pedra de brasa", "vulcaoBrasaPedido")
+    p.event("npc", "Tricórdio", *p.spot(43, 1), {"acao": "vulcaoBoss", "storySpritePath": "res://assets/campaign/regioes-v1/tricordio.png",
+                                                  "ocultar_apos": "vulcaoTricordioVencido", "bloqueia": True})
     p.bench(58, 13, "concreto")
     p.rochas([(9, 48), (21, 53), (29, 52), (41, 47), (49, 52), (59, 50), (6, 40), (19, 43),
               (41, 39), (51, 42), (10, 31), (23, 35), (33, 31), (45, 35), (5, 22), (17, 22),

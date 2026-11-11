@@ -99,19 +99,6 @@ class Campo(morro.Morro):
     def arrival(self, u, v, name="Chegada"):
         self.event("entrada", name, u, v, {})
 
-    # ---- missões (scripts/campaign/planicie_story.gd) ----
-    def quest_npc(self, name, identity, u, v, acao, **extra):
-        props = {"district": "morro", "npcIdentity": identity, "acao": acao, "bloqueia": False}
-        props.update(extra)
-        self.event("npc", name, u, v, props)
-
-    def quest_item(self, u, v, item, name, requer):
-        """Item de missão: só aparece depois do pedido (props requer = flag)."""
-        self._item_id += 1
-        self.events.append({"id": self._item_id, "name": name, "type": "item", "x": u * 32 + 16, "y": v * 32 + 16, "point": True,
-                            "properties": [{"name": "item", "type": "string", "value": item}, {"name": "quantidade", "type": "int", "value": 1},
-                                           {"name": "visibilidade", "type": "string", "value": "brilho"}, {"name": "requer", "type": "string", "value": requer}]})
-
     def tesouros(self, items):
         for u, v, item, hidden in items:
             self.tesouro(u, v, item, hidden)

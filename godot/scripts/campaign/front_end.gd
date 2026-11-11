@@ -1911,8 +1911,8 @@ func _park_event(id: String) -> void:
 		if action=="districtDuel":
 			_district_action(str(event.props.duel))
 			return
-		if action in preload("res://scripts/campaign/planicie_story.gd").ACTIONS:
-			var told:Dictionary=preload("res://scripts/campaign/planicie_story.gd").new(session).talk(action,park.player)
+		if action in preload("res://scripts/campaign/side_regions.gd").actions():
+			var told:Dictionary=preload("res://scripts/campaign/side_regions.gd").new(session).talk(action,park.player)
 			if told.has("text"):
 				if told.status=="ok":park.refresh(session.snapshot().player)
 				_notice(told.text)
@@ -1922,6 +1922,12 @@ func _park_event(id: String) -> void:
 			_confirm_park("Estratonte","No meio do lago, os ossos de papel do Estratonte se erguem da ilha. O guardião da Gruta do Moinho baixa o pescoço comprido e espera.\n\nNv. %d · guardião opcional. A primeira vitória garante a rabiola dele." % encounters.GRUTA_GUARDIAN_LEVEL,"Enfrentar",func():
 				var started:Dictionary=encounters.start_gruta_boss(park.player)
 				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use a fonte de água fresca ou um Kit de Remendo antes de enfrentar o Estratonte.")
+				elif _result(started):_show_saved.call_deferred())
+			return
+		if action=="vulcaoBoss":
+			_confirm_park("Tricórdio","Na borda da cratera, as três cabeças do Tricórdio se viram ao mesmo tempo. A armadura de brasa estala com o calor da lava.\n\nNv. %d · guardião do Vulcão. A primeira vitória garante a rabiola dele." % encounters.VULCAO_GUARDIAN_LEVEL,"Enfrentar",func():
+				var started:Dictionary=encounters.start_vulcao_boss(park.player)
+				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use o descanso da Caldeira ou um Kit de Remendo antes de enfrentar o Tricórdio.")
 				elif _result(started):_show_saved.call_deferred())
 			return
 		if action=="abismoBoss":

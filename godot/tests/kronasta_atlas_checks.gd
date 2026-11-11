@@ -103,8 +103,8 @@ func exercise() -> bool:
 	story.qa_override=0
 	for region in Atlas.REGIONS:
 		if not region.get("preview",false):continue
-		# As Planícies abrem fora do QA depois do Lacertubo (planicie_story.gd, 11/11).
-		if region.id=="planicies" and preload("res://scripts/campaign/planicie_story.gd").open(app.session.snapshot().player):continue
+		# As regiões laterais abrem fora do QA num ponto da campanha (side_regions.gd, 11/11).
+		if preload("res://scripts/campaign/side_regions.gd").open(app.session.snapshot().player,region.id):continue
 		for scene in region.scenes:
 			var unchanged:Dictionary=app.session.snapshot()
 			check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==unchanged,"player cannot enter QA preview "+scene)

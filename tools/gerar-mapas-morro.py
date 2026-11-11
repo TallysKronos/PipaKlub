@@ -102,6 +102,47 @@ class Morro(Plan):
         """Morador que conversa: dica do bairro ou do caminho."""
         self.event("npc", name, u, v, {"district": "morro", "npcIdentity": identity, "texto": name + ": " + fala, "bloqueia": False})
 
+    # ---- missões das regiões laterais (godot/scripts/campaign/side_regions.gd) ----
+    def quest_npc(self, name, identity, u, v, acao, **extra):
+        props = {"district": "morro", "npcIdentity": identity, "acao": acao, "bloqueia": False}
+        props.update(extra)
+        self.event("npc", name, u, v, props)
+
+    def quest_item(self, u, v, item, name, requer):
+        """Item de missão: só aparece depois do pedido (props requer = flag)."""
+        # Faixa própria (99001+): não muda os ids dos achados que já existiam no mapa.
+        self._quest_item = getattr(self, "_quest_item", 99000) + 1
+        self.events.append({"id": self._quest_item, "name": name, "type": "item", "x": u * 32 + 16, "y": v * 32 + 16, "point": True,
+                            "properties": [{"name": "item", "type": "string", "value": item}, {"name": "quantidade", "type": "int", "value": 1},
+                                           {"name": "visibilidade", "type": "string", "value": "brilho"}, {"name": "requer", "type": "string", "value": requer}]})
+
+    def spot(self, u, v, mats=("piso", "terra", "grama"), avoid=1):
+        """Célula livre mais perto de (u, v), no mesmo nível e no mesmo chão contínuo: para pôr
+        morador, item ou guardião sem cair em escada, peça ou outro evento."""
+        from collections import deque
+        taken = {(e["x"] // 32, e["y"] // 32) for e in self.events}
+        blocks = {(pc["x"] // 32, pc["y"] // 32) for pc in self.pieces}
+        if self.mat[v][u] not in mats or self.ramp[v][u]:
+            near = [(abs(x - u) + abs(y - v), x, y) for y in range(max(0, v - 6), min(len(self.lvl), v + 7))
+                    for x in range(max(0, u - 6), min(len(self.lvl[0]), u + 7)) if self.mat[y][x] in mats and not self.ramp[y][x]]
+            if not near:
+                raise SystemExit(f"{self.scene}: sem chão perto de {u},{v}")
+            _, u, v = min(near)
+        level = self.lvl[v][u]
+        seen, queue = {(u, v)}, deque([(u, v)])
+        while queue:
+            x, y = queue.popleft()
+            near_block = any((x + dx, y + dy) in blocks for dx in range(-avoid, avoid + 1) for dy in range(-avoid, avoid + 1))
+            if (x, y) not in taken and not near_block:
+                return x, y
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < len(self.lvl[0]) and 0 <= ny < len(self.lvl) and (nx, ny) not in seen \
+                        and self.lvl[ny][nx] == level and self.mat[ny][nx] in mats and not self.ramp[ny][nx]:
+                    seen.add((nx, ny))
+                    queue.append((nx, ny))
+        raise SystemExit(f"{self.scene}: sem lugar livre perto de {u},{v}")
+
     def placa(self, name, u, v, texto):
         self.event("interacao", name, u, v, {"texto": texto})
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Criaturas das Planícies de Kronasta e da Gruta do Moinho: arte provisória de batalha.
+"""Criaturas das regiões laterais (Planícies e Gruta, Vulcão, Serra Gelada, Abismo): arte provisória de batalha.
 
 Recorta os concepts do plano de povoamento (mesmo recorte de tools/package-evolucoes.py) para
 godot/assets/campaign/planicies-v1/ e insere uma entrada "combat" por forma no content.json.
@@ -32,6 +32,15 @@ FORMS = {
     # Guardião do Lago Subterrâneo (Nv.18)
     "estratonte": "estratonte-family-v1:estratonte",
 }
+# Vulcão, Serra Gelada e Abismo (side_regions.gd): mesma arte provisória, pasta regioes-v1.
+REGION_FORMS = {
+    "trincaguarda": "trinca-brasas:trincaguarda", "gevardente": "gevoraz:gevardente", "trinca-brasas": "trinca-brasas:trinca-brasas", "tricordio": "trinca-brasas:tricordio",
+    "urso-polar-young": "urso-polar:urso-polar-young", "nimbordo": "nimbalio:nimbordo", "lupunhal": "lupunhal:lupunhal",
+    "lupregente": "lupunhal:lupregente",
+    "vortespira": "vortentaculo:vortespira", "hipomoranga": "hipolanterna-family-v1:hipomoranga", "reciforte": "reciferreo:reciforte",
+    "alvorvela": "alvorraia:alvorvela",
+}
+GUARDIANS = {"estratonte", "tricordio"}
 
 
 def main():
@@ -39,10 +48,10 @@ def main():
     text = evo.CONTENT.read_text(encoding="utf-8")
     existing = json.loads(text)["combat"]
     added = {}
-    for form_id, key in FORMS.items():
-        size = evo.cutout(ROOT / rows[key]["Arte no repositório"], OUT / f"{form_id}.png", 420 if form_id == "estratonte" else 360)
+    for form_id, key, folder in [(f, k, "planicies-v1") for f, k in FORMS.items()] + [(f, k, "regioes-v1") for f, k in REGION_FORMS.items()]:
+        size = evo.cutout(ROOT / rows[key]["Arte no repositório"], OUT.parent / folder / f"{form_id}.png", 420 if form_id in GUARDIANS else 360)
         frame = {"x": 0, "y": 0, "w": size[0], "h": size[1]}
-        entry = {"image": f"planicies-v1/{form_id}.png", "provisional": True,
+        entry = {"image": f"{folder}/{form_id}.png", "provisional": True,
                  "animations": {k: [frame] for k in ("idle", "flight", "attack", "hurt", "victory", "defeat")}}
         if form_id not in existing:
             added[form_id] = entry
@@ -54,7 +63,7 @@ def main():
         text = text[:at] + block + text[at:]
         evo.CONTENT.write_text(text, encoding="utf-8")
         json.loads(text)
-    print(len(FORMS), "formas;", len(added), "novas no content.json")
+    print(len(FORMS) + len(REGION_FORMS), "formas;", len(added), "novas no content.json")
 
 
 if __name__ == "__main__":

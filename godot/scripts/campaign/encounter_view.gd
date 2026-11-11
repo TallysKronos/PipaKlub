@@ -107,7 +107,7 @@ static func arena_path(encounter: Dictionary) -> String:
 	if not district_arena.is_empty(): return district_arena
 	if scene == "kronasta-estadio-a": return "res://assets/campaign/estadio-arena-wide-v1.png"
 
-	if scene.begins_with("kronasta-montanha-") or encounter.get("kind") == "tufanocorte-story": return "res://assets/campaign/serra-arena-wide-v1.png"
+	if scene.begins_with("kronasta-montanha-") or scene.begins_with("serra-gelada-") or encounter.get("kind") == "tufanocorte-story": return "res://assets/campaign/serra-arena-wide-v1.png"
 	return "res://assets/campaign/veredas-arena-wide-v2.png"
 
 func _ready() -> void:
@@ -688,7 +688,7 @@ func _sprite_frame(index:int,actor:Dictionary,legacy_action:String) -> Dictionar
 
 ## Nome de espécie para as formas sem nome fixo acima: criaturas das regiões novas e formas
 ## de evolução (assets/campaign/evolutions.json).
-const SPECIES_NAMES := {"cristim":"Cristim","papisco":"Papisco","javali-child":"Javali","galhim":"Galhim","vertim":"Vertim","ossito":"Ossito","viuva-child":"Viúva","estratonte":"Estratonte","borealvo":"Borealvo","coromar":"Coromar","capivara-boia":"Capiboia","rascunho-bicho-pau":"Bicho-pau","rascunho-joaninha":"Joaninha-pião"}
+const SPECIES_NAMES := {"cristim":"Cristim","papisco":"Papisco","javali-child":"Javali","galhim":"Galhim","vertim":"Vertim","ossito":"Ossito","viuva-child":"Viúva","estratonte":"Estratonte","trincaguarda":"Trincaguarda","gevardente":"Gevardente","trinca-brasas":"Trinca-brasas","tricordio":"Tricórdio","urso-polar-young":"Urso-polar","nimbordo":"Nimbordo","lupunhal":"Lupunhal","lupregente":"Lupregente","vortespira":"Vortespira","hipomoranga":"Hipomoranga","reciforte":"Reciforte","alvorvela":"Alvorvela","borealvo":"Borealvo","coromar":"Coromar","capivara-boia":"Capiboia","rascunho-bicho-pau":"Bicho-pau","rascunho-joaninha":"Joaninha-pião"}
 static func species_name(id: String) -> String:
 	if SPECIES_NAMES.has(id):return SPECIES_NAMES[id]
 	if ResourceLoader.exists("res://assets/campaign/evolutions.json") or FileAccess.file_exists("res://assets/campaign/evolutions.json"):

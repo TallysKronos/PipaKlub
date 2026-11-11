@@ -13571,6 +13571,36 @@
      ]
     },
     {
+     "id": 99001,
+     "name": "Flor de gelo",
+     "type": "item",
+     "x": 240,
+     "y": 592,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "flor-de-gelo"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "geleiraFloresPedido"
+      }
+     ]
+    },
+    {
      "id": 23233,
      "name": "Achado do morro",
      "type": "item",
