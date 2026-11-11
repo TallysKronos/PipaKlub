@@ -1,0 +1,107 @@
+{
+  "schema": "planicies-v1",
+  "grid": [
+    64,
+    32
+  ],
+  "campaignIntegrated": false,
+  "collision": "not-authored",
+  "surfaces": [
+    {
+      "id": "capim-alto",
+      "file": "surfaces/capim-alto.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "596E43",
+        "667F4A",
+        "738D50",
+        "819A57",
+        "96A966"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "campo-flor",
+      "file": "surfaces/campo-flor.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 6,
+      "palette": [
+        "657E48",
+        "738A4D",
+        "7D9555",
+        "8FA35D",
+        "B5A779",
+        "D1BC83"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "trilha-terra",
+      "file": "surfaces/trilha-terra.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 4,
+      "palette": [
+        "AC936E",
+        "B59C75",
+        "BDA47E",
+        "C7AF88"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "pedregulho",
+      "file": "surfaces/pedregulho.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "77756D",
+        "89867B",
+        "969286",
+        "A5A092",
+        "B4AC9B"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "barranco-campo",
+      "file": "surfaces/barranco-campo.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 6,
+      "palette": [
+        "5F5140",
+        "756148",
+        "889053",
+        "8B7351",
+        "9C805A",
+        "A58E66"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schema": "cavernas-cristal-v1",
+  "grid": [
+    64,
+    32
+  ],
+  "campaignIntegrated": false,
+  "collision": "not-authored",
+  "surfaces": [
+    {
+      "id": "rocha-gruta",
+      "file": "surfaces/rocha-gruta.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "38374B",
+        "444357",
+        "504E64",
+        "5B586D",
+        "68647A"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "cascalho",
+      "file": "surfaces/cascalho.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "424053",
+        "4F4D61",
+        "59576B",
+        "686479",
+        "746E84"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "cristal-chao",
+      "file": "surfaces/cristal-chao.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "45445C",
+        "535270",
+        "69618A",
+        "767DA1",
+        "85A5B3"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "agua-gruta",
+      "file": "surfaces/agua-gruta.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "244752",
+        "2B5360",
+        "315D6B",
+        "396977",
+        "477887"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "parede-cristal",
+      "file": "surfaces/parede-cristal.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 6,
+      "palette": [
+        "302D42",
+        "413A55",
+        "554A69",
+        "695981",
+        "776D9C",
+        "87A1B4"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "parede-gruta-umida",
+      "file": "surfaces/parede-gruta-umida.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "29363D",
+        "38444C",
+        "4A515A",
+        "5C5D68",
+        "6C6C77"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    }
+  ]
+}

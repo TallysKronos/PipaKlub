@@ -1,0 +1,206 @@
+{
+  "id": "planicies-v1",
+  "source": "Original pixel art; hand-authored shapes, seeded material patterns",
+  "state": "art ready for map integration",
+  "projection": "isometric64x32",
+  "assets": {
+    "moinho": {
+      "file": "pecas/moinho.png",
+      "size": [
+        158,
+        194
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        68,
+        156
+      ],
+      "basePolygon": [
+        [
+          68,
+          124
+        ],
+        [
+          132,
+          156
+        ],
+        [
+          68,
+          188
+        ],
+        [
+          4,
+          156
+        ]
+      ]
+    },
+    "cerca": {
+      "file": "pecas/cerca.png",
+      "size": [
+        74,
+        70
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        48
+      ],
+      "basePolygon": [
+        [
+          36,
+          32
+        ],
+        [
+          68,
+          48
+        ],
+        [
+          36,
+          64
+        ],
+        [
+          4,
+          48
+        ]
+      ]
+    },
+    "feno": {
+      "file": "pecas/feno.png",
+      "size": [
+        74,
+        68
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        44
+      ],
+      "basePolygon": [
+        [
+          36,
+          28
+        ],
+        [
+          68,
+          44
+        ],
+        [
+          36,
+          60
+        ],
+        [
+          4,
+          44
+        ]
+      ]
+    },
+    "arvore-solitaria": {
+      "file": "pecas/arvore-solitaria.png",
+      "size": [
+        148,
+        234
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        76,
+        196
+      ],
+      "basePolygon": [
+        [
+          76,
+          164
+        ],
+        [
+          140,
+          196
+        ],
+        [
+          76,
+          228
+        ],
+        [
+          12,
+          196
+        ]
+      ]
+    },
+    "pedra-marco": {
+      "file": "pecas/pedra-marco.png",
+      "size": [
+        74,
+        88
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        66
+      ],
+      "basePolygon": [
+        [
+          36,
+          50
+        ],
+        [
+          68,
+          66
+        ],
+        [
+          36,
+          82
+        ],
+        [
+          4,
+          66
+        ]
+      ]
+    },
+    "biruta": {
+      "file": "pecas/biruta.png",
+      "size": [
+        98,
+        136
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        114
+      ],
+      "basePolygon": [
+        [
+          36,
+          98
+        ],
+        [
+          68,
+          114
+        ],
+        [
+          36,
+          130
+        ],
+        [
+          4,
+          114
+        ]
+      ]
+    }
+  }
+}

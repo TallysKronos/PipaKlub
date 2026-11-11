@@ -1,0 +1,237 @@
+{
+  "schema": "morro-v2",
+  "grid": [
+    64,
+    32
+  ],
+  "campaignIntegrated": false,
+  "collision": "not-authored",
+  "surfaces": [
+    {
+      "id": "pedra-clara",
+      "file": "surfaces/pedra-clara.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 4,
+      "palette": [
+        "B5A68D",
+        "BFB097",
+        "C8B99E",
+        "D1C2A7"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "cimento-laje",
+      "file": "surfaces/cimento-laje.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 4,
+      "palette": [
+        "A3A59D",
+        "ABAEA5",
+        "B3B5AC",
+        "BFC0B6"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "terra-batida",
+      "file": "surfaces/terra-batida.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 4,
+      "palette": [
+        "AB7558",
+        "B47C5E",
+        "BD8565",
+        "C69171"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "grama-quintal",
+      "file": "surfaces/grama-quintal.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "577644",
+        "66824C",
+        "728D52",
+        "7C9657",
+        "8DA460"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "telha-barro",
+      "file": "surfaces/telha-barro.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "914F3D",
+        "A65E47",
+        "B4694E",
+        "BE7354",
+        "CA805D"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "muro-arrimo",
+      "file": "surfaces/muro-arrimo.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "555146",
+        "69634F",
+        "777C54",
+        "80735E",
+        "95846A"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "tijolo-aparente",
+      "file": "surfaces/tijolo-aparente.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 6,
+      "palette": [
+        "705148",
+        "925D4B",
+        "A96B55",
+        "BB7C62",
+        "C8987D",
+        "D0B299"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "reboco-pintado-rosa",
+      "file": "surfaces/reboco-pintado-rosa.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "926864",
+        "AA7773",
+        "BD8982",
+        "CA978F",
+        "D5A9A0"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "reboco-pintado-creme",
+      "file": "surfaces/reboco-pintado-creme.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "9D866B",
+        "B29A7A",
+        "C3AC8C",
+        "D1BA9B",
+        "DCC8AB"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "reboco-pintado-amarela",
+      "file": "surfaces/reboco-pintado-amarela.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "9E7E54",
+        "B4955E",
+        "C4A46B",
+        "D3B479",
+        "DCC38C"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "reboco-pintado-azul",
+      "file": "surfaces/reboco-pintado-azul.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "637A83",
+        "748F98",
+        "86A1A9",
+        "96AFB4",
+        "A8BEC0"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    },
+    {
+      "id": "reboco-pintado-verde",
+      "file": "surfaces/reboco-pintado-verde.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "667F66",
+        "7A9474",
+        "8CA781",
+        "9EB58D",
+        "AFC39F"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0
+    }
+  ]
+}

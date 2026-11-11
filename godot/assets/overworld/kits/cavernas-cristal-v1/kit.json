@@ -1,0 +1,175 @@
+{
+  "id": "cavernas-cristal-v1",
+  "source": "Original pixel art; hand-authored shapes, seeded material patterns",
+  "state": "art ready for map integration",
+  "projection": "isometric64x32",
+  "assets": {
+    "cristal-grande": {
+      "file": "pecas/cristal-grande.png",
+      "size": [
+        138,
+        188
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        68,
+        142
+      ],
+      "basePolygon": [
+        [
+          68,
+          110
+        ],
+        [
+          132,
+          142
+        ],
+        [
+          68,
+          174
+        ],
+        [
+          4,
+          142
+        ]
+      ]
+    },
+    "cristal-pequeno": {
+      "file": "pecas/cristal-pequeno.png",
+      "size": [
+        74,
+        90
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        60
+      ],
+      "basePolygon": [
+        [
+          36,
+          44
+        ],
+        [
+          68,
+          60
+        ],
+        [
+          36,
+          76
+        ],
+        [
+          4,
+          60
+        ]
+      ]
+    },
+    "estalagmite": {
+      "file": "pecas/estalagmite.png",
+      "size": [
+        74,
+        102
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        74
+      ],
+      "basePolygon": [
+        [
+          36,
+          58
+        ],
+        [
+          68,
+          74
+        ],
+        [
+          36,
+          90
+        ],
+        [
+          4,
+          74
+        ]
+      ]
+    },
+    "cogumelo-luz": {
+      "file": "pecas/cogumelo-luz.png",
+      "size": [
+        74,
+        62
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        40
+      ],
+      "basePolygon": [
+        [
+          36,
+          24
+        ],
+        [
+          68,
+          40
+        ],
+        [
+          36,
+          56
+        ],
+        [
+          4,
+          40
+        ]
+      ]
+    },
+    "ponte-corda": {
+      "file": "pecas/ponte-corda.png",
+      "size": [
+        78,
+        68
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        38,
+        46
+      ],
+      "basePolygon": [
+        [
+          38,
+          30
+        ],
+        [
+          70,
+          46
+        ],
+        [
+          38,
+          62
+        ],
+        [
+          6,
+          46
+        ]
+      ],
+      "direction": "u",
+      "deckHeightPx": 4
+    }
+  }
+}
