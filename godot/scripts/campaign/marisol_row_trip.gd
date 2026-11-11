@@ -49,7 +49,6 @@ func finish(token:String,motion:RefCounted)->Dictionary:
  var entry:=link(pending.link)
  if not valid_link(entry):return {"status":"invalid"}
  saved.player.erase("marisolRowTrip");saved.player.flags.marisolRemarPratica=true;saved.player.flags.canRemar=true
- preload("res://scripts/campaign/mount_passives.gd").grant_boia(saved.player)
  return session.commit_operation("marisol-row-"+token,CP.make(data().scene,point(entry.to),CP.SPACE),saved.player)
 func recover()->Dictionary:
  var saved:Dictionary=session.snapshot();var pending:Dictionary=saved.player.get("marisolRowTrip",{})

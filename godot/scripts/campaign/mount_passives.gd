@@ -28,8 +28,9 @@ static func has_aquatic(player: Dictionary) -> bool:
 static func can_dive(player: Dictionary) -> bool:
 	return not aquatic_partner(player).is_empty()
 
-## A Marisol entrega a Boia ao fim da aula de remo (marisol_row_trip.gd). Saves que já
-## tinham a aula recebem a Boia na primeira tentativa de mergulho. Devolve true se entregou.
+## Quem já fez a aula de remo com a Marisol (flag canRemar) recebe a Boia na primeira tentativa
+## de mergulho (front_end.gd, _travel_kronasta). A entrega passa pelo fluxo de recompensas
+## de parceiro da sessão, por isso fica fora da viagem de remo. Devolve true se entregou.
 static func grant_boia(player: Dictionary) -> bool:
 	if has_aquatic(player) or not player.get("flags", {}).get("canRemar", false): return false
 	if player.get("partners", []).size() >= 30: return false
