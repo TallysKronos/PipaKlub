@@ -16,6 +16,15 @@ static func uv_points(values:Array) -> PackedVector2Array:
 static func shapes(model) -> Array:
  var w:Dictionary=model.data.get("forest",{}).get("water",{}) if model.data.get("forest",{}).get("water")!=null else {}
  return [uv_points(w.contour),uv_points(w.channel)] if not w.is_empty() else []
+## Material único da lava (o shader anima sozinho).
+static var _lava_material: ShaderMaterial
+static func lava_material() -> ShaderMaterial:
+ if _lava_material==null:
+  _lava_material=ShaderMaterial.new()
+  _lava_material.shader=load("res://shaders/overworld/lava_region_flow.gdshader")
+  _lava_material.set_shader_parameter("lava_texture",load(BASE+"lava-v1/surfaces/lava.png"))
+ return _lava_material
+
 static func is_water(model,p:Vector2) -> bool:
  if model.data.get("forest",{}).get("harbor",false):return model.cell_at(Vector2i(p.floor())).get("material","")=="agua"
  for shape:PackedVector2Array in shapes(model):
@@ -97,6 +106,33 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
    var water_uv:=PackedVector2Array()
    for p in points:water_uv.append((p+node.position)*.7)
    target.uv=water_uv
+  if model.data.get("forest",{}).get("lava",false) and not geometry():
+   # Vulcão: as células de "água" são lava animada; o resto é basalto, com brilho de
+   # brasa nas células vizinhas da lava.
+   if c.get("material","")=="agua":
+    target.material=lava_material()
+    target.texture=load(BASE+"lava-v1/surfaces/lava.png")
+    target.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+    target.vertex_colors=PackedColorArray();target.color=Color.WHITE
+    # UV de Polygon2D é em pixels da textura (512): seis células por repetição.
+    var lava_uv:=PackedVector2Array()
+    for p in fragment:lava_uv.append(p*(512.0/6.0))
+    target.uv=lava_uv
+   elif c.get("material","")!="ponte":
+    target.material=null
+    target.texture=load(BASE+"lava-v1/surfaces/basalto.png")
+    target.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+    var heat:=0.0
+    for d:Vector2i in [Vector2i(1,0),Vector2i(-1,0),Vector2i(0,1),Vector2i(0,-1)]:
+     var n:Dictionary=model.cell_at(Vector2i(u,v)+d)
+     if n.get("material","")=="agua" and int(n.get("level",0))>=int(c.get("level",0))-1:heat+=.25
+    target.vertex_colors=PackedColorArray()
+    target.color=Color.WHITE.lerp(Color("ff8a3d"),minf(.6,heat*.9)).darkened(.04*float((u*7+v*13)%4))
+    var basalt_uv:=PackedVector2Array()
+    for p in fragment:basalt_uv.append(p*64.0)
+    target.uv=basalt_uv
+   else:
+    target.color=Color("5f5866")
   if not coastal_tiles.is_empty():
    var tile:Texture2D=coastal_tiles.get(c.material,coastal_tiles.piso)
    var tile_uv:=PackedVector2Array()
@@ -281,6 +317,7 @@ static func _stairs(view,s:Dictionary) -> void:
  var closed: bool = view.model.data.get("forest",{}).get("closedStairs",false) or district in ["centro","lajes","porto","palafitas"]
  var tread := Color("#636077") if chamber else Color("d1c69e")
  var riser := Color("#38364c") if chamber else Color("807c67")
+ if view.model.data.get("forest",{}).get("lava",false):tread=Color("6d6672");riser=Color("3a3540")
  for k in 8:
   var low:float=float(k)/8;var high:float=float(k+1)/8;var height:float=base+high*64
   var a:=Vector2(u,v+2-high*2);var b:=Vector2(u+width,v+2-high*2)

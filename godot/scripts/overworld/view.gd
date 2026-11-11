@@ -104,7 +104,8 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	# fundo no porto, em vez de preto puro. Interiores continuam pretos.
 	var outside:=Color.BLACK
 	if not model.data.get("forest",{}).get("interior",false):
-		if model.data.get("forest",{}).get("harbor",false) and not model.data.get("forest",{}).get("market",false):outside=Color("0b2233")
+		if model.data.get("forest",{}).get("lava",false):outside=Color("1c0d0a")
+		elif model.data.get("forest",{}).get("harbor",false) and not model.data.get("forest",{}).get("market",false):outside=Color("0b2233")
 		elif model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false):outside=Color("0e2218")
 	RenderingServer.set_default_clear_color(outside if model.data.get("forest",{}).get("interior",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
 	kits.assign([kit_library.comum])

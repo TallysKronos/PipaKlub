@@ -462,6 +462,12 @@
       "name": "Morro do Sol · Mirante da Caixa-d’água",
       "scene": "morro-area-4",
       "biome": "morro"
+    },
+    {
+      "id": "vulcao-a",
+      "name": "Vulcão de Kronasta · Caldeira",
+      "scene": "vulcao-a",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -535,7 +541,8 @@
     "kronasta-porto-c": "kronasta-porto-c",
     "kronasta-coracao-a": "kronasta-coracao-a",
     "kronasta-coracao-b": "kronasta-coracao-b",
-    "kronasta-coracao-c": "kronasta-coracao-c"
+    "kronasta-coracao-c": "kronasta-coracao-c",
+    "vulcao-a": "vulcao-a"
   },
   "campaignReplacement": false
 }

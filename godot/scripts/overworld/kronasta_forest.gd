@@ -78,6 +78,7 @@ static func build(view) -> void:
 	if model.data.get("forest",{}).get("harbor",false):wall_texture=load(KITS+"industrial-v1/superficies/concreto.png")
 	var chamber: bool = model.data.get("forest",{}).get("chamber",false)
 	if chamber:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	if model.data.get("forest",{}).get("lava",false):wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
 	var stadium: bool = model.data.get("id")=="kronasta-estadio-a"
 	var aracati: bool = str(model.data.get("id","")).begins_with("kronasta-aracati-")
 	var mirante := str(model.data.id).begins_with("kronasta-mirante-")
@@ -323,6 +324,9 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 			lit=Color("b57c48") if side=="u" else Color("95603b")
 			lit=lit.lightened(_hash(u,v,12)*.10)
 		wall.vertex_colors=PackedColorArray([lit,lit,lit*Color(.62,.60,.62),lit*Color(.62,.60,.62)])
+		# Vulcão: o pé da parede que encosta na lava recebe o brilho dela.
+		if model.data.get("forest",{}).get("lava",false) and neighbour.get("material","")=="agua" and not Structures.geometry():
+			wall.vertex_colors=PackedColorArray([lit,lit,Color(1.0,.52,.24),Color(1.0,.52,.24)])
 		node.add_child(wall)
 		if coastal:
 			for band in [.30,.66]:
@@ -358,6 +362,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		if bool(model.data.get("forest",{}).get("mine",false)):rim.default_color=Color("77766b")
 		if ice:rim.default_color=Color("ecfaff")
 		if bool(model.data.get("forest",{}).get("submerged",false)):rim.default_color=Color("5c9f9e")
+		if bool(model.data.get("forest",{}).get("lava",false)):rim.default_color=Color("8f8799")
 		node.add_child(rim)
 		# Sombra de contato no chão de baixo, desenhada logo depois desse chão.
 		var shade:=Node2D.new()
