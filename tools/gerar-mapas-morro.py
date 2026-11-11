@@ -29,9 +29,9 @@ spec.loader.exec_module(cidade)
 W, H = 64, 56
 cidade.W, cidade.H = W, H                # o Plan da cidade usa as dimensões do módulo
 Plan = cidade.Plan
-cidade.LEVEL_GID = {L: 0 for L in range(8)}   # o write() daqui regrava a camada de altura
+cidade.LEVEL_GID = {L: 0 for L in range(10)}   # o write() daqui regrava a camada de altura
 CX = 32                                  # eixo central (chegada e saída)
-MAX_LEVEL = 7
+MAX_LEVEL = 9
 ALTURAS_GID = 301                        # tileset embutido: id L = nível L; id 10+L = nível L com rampa v−
 
 SCENES = ["morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5"]

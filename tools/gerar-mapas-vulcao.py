@@ -32,9 +32,19 @@ class Vulcao(morro.Morro):
         self._event_id = 22000
         self._item_id = 22040
 
-    def lava(self, u0, v0, u1, v1, level):
-        """Poça ou lago de lava no nível do terraço."""
-        self.rect(u0, v0, u1, v1, "agua", level)
+    def lava(self, u0, v0, u1, v1, terrace):
+        """Poça ou lago de lava rebaixado um nível em relação ao terraço: as bordas viram
+        paredes internas com o brilho da lava no pé (antes ficava rente ao chão, chapada)."""
+        morro.Plan.rect(self, u0, v0, u1, v1, "agua", terrace + self.BASE - 1)
+
+    def lavafall(self, u, v, width):
+        """Queda de lava na face da frente (+v) das células (u…u+width−1, v); a altura sai do
+        terreno (célula da borda menos a da frente)."""
+        drop = self.lvl[v][u] - self.lvl[v + 1][u]
+        for du in range(width):
+            assert self.mat[v][u + du] == "agua" and self.mat[v + 1][u + du] == "agua", f"queda fora da lava em {u + du},{v}"
+            assert self.lvl[v][u + du] - self.lvl[v + 1][u + du] == drop >= 1, f"queda irregular em {u + du},{v}"
+        self.forest.setdefault("lavaFalls", []).append({"u": u, "v": v, "width": width, "drop": drop})
 
     def ponte(self, u0, v0, u1, v1, level):
         self.rect(u0, v0, u1, v1, "ponte", level)
@@ -140,12 +150,10 @@ def caldeira():
     p.rect(38, 0, 52, 2, "piso", 7)                   # boca do vulcão
     p.stairs(44, 3, 3, 6)
     p.lava(48, 0, 51, 1, 7)
-    p.forest["lavaFalls"] = [
-        {"u": 47, "v": 27, "width": 3, "drop": 4},    # o lago sangra para o mar
-        {"u": 14, "v": 27, "width": 3, "drop": 4},    # nascente do maciço
-        {"u": 10, "v": 18, "width": 3, "drop": 5},    # nascente alta, na fenda
-        {"u": 52, "v": 9, "width": 3, "drop": 6},     # crista leste
-    ]
+    p.lavafall(47, 27, 3)                             # o lago sangra para o mar
+    p.lavafall(14, 27, 3)                             # nascente do maciço
+    p.lavafall(10, 18, 3)                             # nascente alta, na fenda
+    p.lavafall(52, 9, 3)                              # crista leste
     p.event("entrada", "Chegada à caldeira", 14, 52, {})
     # Histórias e pausa
     p.morador("Celina", "celina", 17, 50, "Eu estudo o vulcão faz anos. A lava daqui não esfria: alguma coisa lá embaixo mantém ela acesa. O maciço a oeste é o caminho mais alto; a cratera fica do outro lado.")
