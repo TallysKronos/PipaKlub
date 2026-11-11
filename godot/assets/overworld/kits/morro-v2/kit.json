@@ -1,14 +1,14 @@
 {
   "id": "morro-v2",
-  "source": "Original pixel art; hand-authored shapes, seeded material patterns",
-  "state": "art ready for map integration",
+  "source": "Original art generated with image_gen and normalized for the game",
+  "state": "2D manga art; static kit QA passed",
   "projection": "isometric64x32",
   "assets": {
     "caixa-dagua": {
       "file": "pecas/caixa-dagua.png",
       "size": [
-        138,
-        126
+        137,
+        138
       ],
       "footprint": [
         2,
@@ -16,32 +16,33 @@
       ],
       "anchor": [
         68,
-        88
+        101
       ],
       "basePolygon": [
         [
           68,
-          56
+          69
         ],
         [
           132,
-          88
+          101
         ],
         [
           68,
-          120
+          133
         ],
         [
           4,
-          88
+          101
         ]
-      ]
+      ],
+      "source": "image_gen; manga style revision"
     },
     "varal": {
       "file": "pecas/varal.png",
       "size": [
         106,
-        104
+        110
       ],
       "footprint": [
         2,
@@ -49,98 +50,113 @@
       ],
       "anchor": [
         52,
-        74
+        81
       ],
       "basePolygon": [
         [
           36,
-          50
+          57
         ],
         [
           100,
-          82
+          89
         ],
         [
           68,
-          98
+          105
         ],
         [
           4,
-          66
+          73
         ]
-      ]
+      ],
+      "fitReferenceSize": [
+        106,
+        104
+      ],
+      "source": "image_gen; manga style revision"
     },
     "antena": {
       "file": "pecas/antena.png",
       "size": [
-        86,
-        130
+        92,
+        142
       ],
       "footprint": [
         1,
         1
       ],
       "anchor": [
-        44,
-        108
+        48,
+        121
       ],
       "basePolygon": [
         [
-          44,
-          92
+          48,
+          105
         ],
         [
-          76,
-          108
+          80,
+          121
         ],
         [
-          44,
-          124
+          48,
+          137
         ],
         [
-          12,
-          108
+          16,
+          121
         ]
-      ]
+      ],
+      "fitReferenceSize": [
+        86,
+        130
+      ],
+      "source": "image_gen; manga style revision"
     },
     "vaso-planta": {
       "file": "pecas/vaso-planta.png",
       "size": [
-        86,
-        104
+        98,
+        125
       ],
       "footprint": [
         1,
         1
       ],
       "anchor": [
-        38,
-        82
+        46,
+        104
       ],
       "basePolygon": [
         [
-          38,
-          66
+          46,
+          88
         ],
         [
-          70,
-          82
+          78,
+          104
         ],
         [
-          38,
-          98
+          46,
+          120
         ],
         [
-          6,
-          82
+          14,
+          104
         ]
-      ]
+      ],
+      "fitReferenceSize": [
+        86,
+        104
+      ],
+      "source": "image_gen; manga style revision"
     },
     "gato-de-luz": {
       "file": "pecas/gato-de-luz.png",
       "size": [
-        76,
-        112
+        73,
+        133
       ],
       "footprint": [
         1,
@@ -148,32 +164,37 @@
       ],
       "anchor": [
         36,
-        90
+        112
       ],
       "basePolygon": [
         [
           36,
-          74
+          96
         ],
         [
           68,
-          90
+          112
         ],
         [
           36,
-          106
+          128
         ],
         [
           4,
-          90
+          112
         ]
-      ]
+      ],
+      "fitReferenceSize": [
+        76,
+        112
+      ],
+      "source": "image_gen; manga style revision"
     },
     "escadaria-cimento": {
       "file": "pecas/escadaria-cimento.png",
       "size": [
-        106,
-        122
+        105,
+        121
       ],
       "footprint": [
         1,
@@ -202,7 +223,12 @@
         ]
       ],
       "risePx": 64,
-      "direction": "v-"
+      "direction": "v-",
+      "fitReferenceSize": [
+        106,
+        122
+      ],
+      "source": "image_gen; manga style revision"
     }
   }
 }

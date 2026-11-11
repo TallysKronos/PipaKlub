@@ -1,14 +1,14 @@
 {
   "id": "cavernas-cristal-v1",
-  "source": "Original pixel art; hand-authored shapes, seeded material patterns",
-  "state": "art ready for map integration",
+  "source": "Original art generated with image_gen and normalized for the game",
+  "state": "2D manga art; static kit QA passed",
   "projection": "isometric64x32",
   "assets": {
     "cristal-grande": {
       "file": "pecas/cristal-grande.png",
       "size": [
-        138,
-        188
+        137,
+        204
       ],
       "footprint": [
         2,
@@ -16,64 +16,36 @@
       ],
       "anchor": [
         68,
-        142
+        167
       ],
       "basePolygon": [
         [
           68,
-          110
+          135
         ],
         [
           132,
-          142
+          167
         ],
         [
           68,
-          174
+          199
         ],
         [
           4,
-          142
+          167
         ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        138,
+        188
       ]
     },
     "cristal-pequeno": {
       "file": "pecas/cristal-pequeno.png",
       "size": [
-        74,
-        90
-      ],
-      "footprint": [
-        1,
-        1
-      ],
-      "anchor": [
-        36,
-        60
-      ],
-      "basePolygon": [
-        [
-          36,
-          44
-        ],
-        [
-          68,
-          60
-        ],
-        [
-          36,
-          76
-        ],
-        [
-          4,
-          60
-        ]
-      ]
-    },
-    "estalagmite": {
-      "file": "pecas/estalagmite.png",
-      "size": [
-        74,
+        85,
         102
       ],
       "footprint": [
@@ -81,33 +53,114 @@
         1
       ],
       "anchor": [
+        48,
+        81
+      ],
+      "basePolygon": [
+        [
+          48,
+          65
+        ],
+        [
+          80,
+          81
+        ],
+        [
+          48,
+          97
+        ],
+        [
+          16,
+          81
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        90
+      ]
+    },
+    "estalagmite": {
+      "file": "pecas/estalagmite.png",
+      "size": [
+        87,
+        117
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
         36,
-        74
+        96
       ],
       "basePolygon": [
         [
           36,
-          58
+          80
         ],
         [
           68,
-          74
+          96
         ],
         [
           36,
-          90
+          112
         ],
         [
           4,
-          74
+          96
         ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        102
       ]
     },
     "cogumelo-luz": {
       "file": "pecas/cogumelo-luz.png",
       "size": [
+        80,
+        78
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        39,
+        57
+      ],
+      "basePolygon": [
+        [
+          39,
+          41
+        ],
+        [
+          71,
+          57
+        ],
+        [
+          39,
+          73
+        ],
+        [
+          7,
+          57
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
         74,
         62
+      ]
+    },
+    "ponte-corda": {
+      "file": "pecas/ponte-corda.png",
+      "size": [
+        73,
+        58
       ],
       "footprint": [
         1,
@@ -115,61 +168,33 @@
       ],
       "anchor": [
         36,
-        40
+        37
       ],
       "basePolygon": [
         [
           36,
-          24
+          21
         ],
         [
           68,
-          40
+          37
         ],
         [
           36,
-          56
+          53
         ],
         [
           4,
-          40
-        ]
-      ]
-    },
-    "ponte-corda": {
-      "file": "pecas/ponte-corda.png",
-      "size": [
-        78,
-        68
-      ],
-      "footprint": [
-        1,
-        1
-      ],
-      "anchor": [
-        38,
-        46
-      ],
-      "basePolygon": [
-        [
-          38,
-          30
-        ],
-        [
-          70,
-          46
-        ],
-        [
-          38,
-          62
-        ],
-        [
-          6,
-          46
+          37
         ]
       ],
       "direction": "u",
-      "deckHeightPx": 4
+      "deckHeightPx": 4,
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        78,
+        68
+      ]
     }
   }
 }

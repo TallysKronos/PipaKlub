@@ -1,47 +1,52 @@
 {
   "id": "planicies-v1",
-  "source": "Original pixel art; hand-authored shapes, seeded material patterns",
-  "state": "art ready for map integration",
+  "source": "Original art generated with image_gen and normalized for the game",
+  "state": "2D manga art; static kit QA passed",
   "projection": "isometric64x32",
   "assets": {
     "moinho": {
       "file": "pecas/moinho.png",
       "size": [
-        158,
-        194
+        155,
+        215
       ],
       "footprint": [
         2,
         2
       ],
       "anchor": [
-        68,
-        156
+        69,
+        178
       ],
       "basePolygon": [
         [
-          68,
-          124
+          69,
+          146
         ],
         [
-          132,
-          156
+          133,
+          178
         ],
         [
-          68,
-          188
+          69,
+          210
         ],
         [
-          4,
-          156
+          5,
+          178
         ]
-      ]
+      ],
+      "fitReferenceSize": [
+        158,
+        194
+      ],
+      "source": "image_gen; manga style revision"
     },
     "cerca": {
       "file": "pecas/cerca.png",
       "size": [
-        74,
-        70
+        73,
+        76
       ],
       "footprint": [
         1,
@@ -49,32 +54,37 @@
       ],
       "anchor": [
         36,
-        48
+        55
       ],
       "basePolygon": [
         [
           36,
-          32
+          39
         ],
         [
           68,
-          48
+          55
         ],
         [
           36,
-          64
+          71
         ],
         [
           4,
-          48
+          55
         ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        70
       ]
     },
     "feno": {
       "file": "pecas/feno.png",
       "size": [
-        74,
-        68
+        73,
+        66
       ],
       "footprint": [
         1,
@@ -82,65 +92,75 @@
       ],
       "anchor": [
         36,
-        44
+        45
       ],
       "basePolygon": [
         [
           36,
-          28
+          29
         ],
         [
           68,
-          44
+          45
         ],
         [
           36,
-          60
+          61
         ],
         [
           4,
-          44
+          45
         ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        68
       ]
     },
     "arvore-solitaria": {
       "file": "pecas/arvore-solitaria.png",
       "size": [
-        148,
-        234
+        156,
+        246
       ],
       "footprint": [
         2,
         2
       ],
       "anchor": [
-        76,
-        196
+        78,
+        209
       ],
       "basePolygon": [
         [
-          76,
-          164
+          78,
+          177
         ],
         [
-          140,
-          196
+          142,
+          209
         ],
         [
-          76,
-          228
+          78,
+          241
         ],
         [
-          12,
-          196
+          14,
+          209
         ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        148,
+        234
       ]
     },
     "pedra-marco": {
       "file": "pecas/pedra-marco.png",
       "size": [
-        74,
-        88
+        73,
+        103
       ],
       "footprint": [
         1,
@@ -148,58 +168,68 @@
       ],
       "anchor": [
         36,
-        66
+        82
       ],
       "basePolygon": [
         [
           36,
-          50
+          66
         ],
         [
           68,
-          66
-        ],
-        [
-          36,
           82
         ],
-        [
-          4,
-          66
-        ]
-      ]
-    },
-    "biruta": {
-      "file": "pecas/biruta.png",
-      "size": [
-        98,
-        136
-      ],
-      "footprint": [
-        1,
-        1
-      ],
-      "anchor": [
-        36,
-        114
-      ],
-      "basePolygon": [
         [
           36,
           98
         ],
         [
+          4,
+          82
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        88
+      ]
+    },
+    "biruta": {
+      "file": "pecas/biruta.png",
+      "size": [
+        101,
+        157
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        136
+      ],
+      "basePolygon": [
+        [
+          36,
+          120
+        ],
+        [
           68,
-          114
+          136
         ],
         [
           36,
-          130
+          152
         ],
         [
           4,
-          114
+          136
         ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        98,
+        136
       ]
     }
   }
