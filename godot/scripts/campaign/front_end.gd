@@ -1911,6 +1911,12 @@ func _park_event(id: String) -> void:
 		if action=="districtDuel":
 			_district_action(str(event.props.duel))
 			return
+		if action=="abismoBoss":
+			_confirm_park("Coromar","A água em volta do trono gira em quatro correntes. O Coromar, guardião das Quatro Marés, abre as nadadeiras e espera.\n\nNv. %d · chefe do Abismo de Kronasta." % encounters.ABISMO_BOSS_LEVEL,"Enfrentar",func():
+				var started:Dictionary=encounters.start_abismo_boss(park.player)
+				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use uma bolha de ar ou um Kit de Remendo antes de enfrentar o Coromar.")
+				elif _result(started):_show_saved.call_deferred())
+			return
 		if action=="geleiraBoss":
 			_confirm_park("Borealvo","O guardião da Coroa Glacial ergue o martelo de gelo. Ele não deixa ninguém chegar ao santuário sem provar a força.\n\nNv. %d · chefe da Serra Gelada." % encounters.GELEIRA_BOSS_LEVEL,"Enfrentar",func():
 				var started:Dictionary=encounters.start_geleira_boss(park.player)
@@ -2741,6 +2747,17 @@ func _show_kronasta() -> void:
 		_show_saved())
 
 func _travel_kronasta(destination: String) -> void:
+	# Abismo de Kronasta: só se mergulha montado numa montaria aquática (mount_passives.gd).
+	if destination.begins_with("abismo-"):
+		var Mounts=preload("res://scripts/campaign/mount_passives.gd")
+		var saved:Dictionary=session.snapshot()
+		if not Mounts.has_aquatic(saved.player) and Mounts.grant_boia(saved.player):
+			if not _result(session.commit_operation("marisol-boia-v1",saved.checkpoint,saved.player)):return
+			_notice("Marisol deixou a Boia com você depois da aula de remo. A Capiboia nada fundo: com ela o Kael pode mergulhar no Abismo.")
+			return
+		if not Mounts.can_dive(session.snapshot().player):
+			_notice("O Abismo fica no fundo do mar. Para mergulhar, leve na equipe uma montaria aquática em condição de nadar, como a Capiboia."+("" if session.snapshot().player.get("flags",{}).get("canRemar",false) else "\n\nA Marisol, no Cais Velho, ensina a remar e conhece quem nada fundo."))
+			return
 	if not _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel(destination)): return
 	menu_origin=""
 	sound.set_game_paused(false)

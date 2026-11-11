@@ -367,6 +367,115 @@
    "status": "Aprovado visualmente",
    "provisional": true,
    "source": "art/creatures/onze-cavaleiros-v1/dobracula/concept-v1/concept.png"
+  },
+  "capivara-boia": {
+   "name": "Capiboia",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "crianca",
+   "level": 1,
+   "bonus": 0,
+   "from": [],
+   "identity": "capivara-boia:capivara-boia",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia/child-manga-v3/concept.png"
+  },
+  "remansa": {
+   "name": "Remansa",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "capivara-boia"
+   ],
+   "identity": "capivara-boia:remansa",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/remansa/concept-v1/concept.png"
+  },
+  "capiboia-contensor": {
+   "name": "B — Contensor de correnteza",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "capivara-boia"
+   ],
+   "identity": "capivara-boia:capiboia-contensor",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/b-quebra-corrente/concept.png"
+  },
+  "capiboia-condutor": {
+   "name": "C — Condutor de canais",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "capivara-boia"
+   ],
+   "identity": "capivara-boia:capiboia-condutor",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/c-condutor/concept.png"
+  },
+  "marevia": {
+   "name": "Marévia",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "remansa",
+    "capiboia-contensor",
+    "capiboia-condutor"
+   ],
+   "identity": "capivara-boia:marevia",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/marevia/concept-v1/concept.png"
+  },
+  "capiboia-porto": {
+   "name": "Adulto de B — Porto vivo",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "remansa",
+    "capiboia-contensor",
+    "capiboia-condutor"
+   ],
+   "identity": "capivara-boia:capiboia-porto",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/capiboia-porto/concept-v1/concept.png"
+  },
+  "capiboia-tececorrente": {
+   "name": "Adulto de C — Mestre da vazante",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "remansa",
+    "capiboia-contensor",
+    "capiboia-condutor"
+   ],
+   "identity": "capivara-boia:capiboia-tececorrente",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/capiboia-tececorrente/concept-v3/concept.png"
   }
  }
 }

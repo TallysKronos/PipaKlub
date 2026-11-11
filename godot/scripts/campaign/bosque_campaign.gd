@@ -3,7 +3,7 @@ extends RefCounted
 ## and authored map rewards, using the campaign's atomic receipts.
 const Checkpoint=preload("res://scripts/campaign/park_checkpoint.gd")
 const Story=preload("res://scripts/campaign/kronasta_story.gd")
-const NAMES={"moedas":"moedas","papel-seda":"papel de seda","vareta-bambu":"vareta de bambu","cola-reparo":"cola de reparo","linha-encerada":"linha encerada","pista-caderno-heleana-1":"página do caderno"}
+const NAMES={"kit-remendo":"Kit de Remendo","moedas":"moedas","papel-seda":"papel de seda","vareta-bambu":"vareta de bambu","cola-reparo":"cola de reparo","linha-encerada":"linha encerada","pista-caderno-heleana-1":"página do caderno"}
 var session: Node
 func _init(local_session: Node) -> void: session=local_session
 
@@ -57,6 +57,26 @@ func collect(id: String, point: Vector2) -> Dictionary:
 	if not authored_materials(scene) or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
 	var model=Checkpoint.model_for(scene)
 	if not point.is_finite() or not model.point_walkable(point): return {"status":"wrong_step"}
+	# Baús dos mapas novos (peça "bau" com item e quantidade): abrem uma vez e ficam abertos.
+	if id.begins_with("piece-"):
+		for piece in model.data.pieces:
+			if str(int(piece.id))!=id.trim_prefix("piece-") or piece.asset!="bau" or not piece.props.has("item"): continue
+			var chest_id: String="parque:"+Checkpoint.MAPS[scene]+":"+str(int(piece.id))
+			if chest_id in saved.player.get("openedChests",[]): return {"status":"already_applied"}
+			var spot:=Vector2(piece.u+.5,piece.v+.5)
+			if point.distance_to(spot)>1.9 or absf(model.height_at(point)-model.height_at(spot))>=.25: return {"status":"wrong_step"}
+			var item: String=str(piece.props.item)
+			var count: int=int(str(piece.props.get("quantidade","1")))
+			if not NAMES.has(item) or count<1 or count>100: return {"status":"wrong_step"}
+			if item=="moedas": saved.player.coins+=count
+			else: saved.player.inventory[item]=saved.player.inventory.get(item,0)+count
+			var opened: Array=saved.player.get("openedChests",[])
+			opened.append(chest_id)
+			saved.player.openedChests=opened
+			var stored: Dictionary=session.commit_operation("park-chest-"+Checkpoint.MAPS[scene]+"-"+id,saved.checkpoint,saved.player)
+			if stored.status=="ok": stored.reward="%d %s"%[count,NAMES[item]]
+			return stored
+		return {"status":"wrong_step"}
 	for event in model.data.events:
 		if str(int(event.id))!=id or event.type!="item": continue
 		var receipt: String="park-item-"+Checkpoint.MAPS[scene]+"-"+id

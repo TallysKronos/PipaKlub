@@ -35,6 +35,12 @@ var guardian_frames: Array = []
 var presentation_age := 0.0
 var ending_presented := false
 
+var dive: Node
+func _refresh_positions() -> void:
+	super()
+	# Abismo: Kael nada montado na Boia (abismo_dive.gd); sobe acima do dorso dela.
+	if is_instance_valid(dive) and is_instance_valid(avatar):avatar.position.y-=dive.LIFT
+
 func _process(delta: float) -> void:
 	presentation_age+=delta
 	var staging := actors.get_node_or_null("EndgameStaging") if is_instance_valid(actors) else null
@@ -127,6 +133,8 @@ func _ready() -> void:
 			break
 	_roll_encounter_distance()
 	encounter_grace=Pacing.walking_grace(saved_player)
+	if load("res://scripts/campaign/abismo_dive.gd").applies(str(saved_checkpoint.get("scene",""))):
+		dive=load("res://scripts/campaign/abismo_dive.gd").new();dive.view=self;add_child(dive)
 	if saved_checkpoint.scene=="kronasta-pantano-c" and load("res://scripts/campaign/mormaco_story.gd").available(saved_player):
 		mormaco=load("res://scripts/campaign/mormaco_overworld.gd").new();add_child(mormaco)
 	if saved_checkpoint.scene=="park-trail" and load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved_player):

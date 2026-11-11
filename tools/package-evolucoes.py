@@ -48,6 +48,10 @@ CHAINS = {
                 "adulto": ["rabbito:mestre-dos-fios", "rabbito:tecelao-da-aurora", "rabbito:arauto-da-tempestade",
                            "rabbito:rabbito-conde-da-ultima-hora", "rabbito:rabbito-velocista-relampago"]},
     "doberman-c": {"family": "doberman-c", "crianca": [], "jovem": ["doberman-c:doberman-c"], "adulto": ["doberman-c:dobracula"]},
+    # Montaria aquática (mount_passives.gd): a Capiboia vem da Marisol, ao fim da aula de remo.
+    "capivara-boia": {"family": "capivara-boia", "crianca": ["capivara-boia:capivara-boia"],
+                      "jovem": ["capivara-boia:remansa", "capivara-boia:capiboia-contensor", "capivara-boia:capiboia-condutor"],
+                      "adulto": ["capivara-boia:marevia", "capivara-boia:capiboia-porto", "capivara-boia:capiboia-tececorrente"]},
 }
 # A forma de base de cada família é o modelId que o jogo já usa (arte e regras atuais).
 BASE_ID = {"carcara:carcara": "basica", "mata-verde:mata-verde": "mata", "raio-de-sol:raio-de-sol-crianca": "raio",

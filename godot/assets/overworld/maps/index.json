@@ -486,6 +486,30 @@
       "name": "Serra Gelada · Coroa Glacial",
       "scene": "serra-gelada-c",
       "biome": "floresta"
+    },
+    {
+      "id": "abismo-a",
+      "name": "Abismo de Kronasta · Recife da Entrada",
+      "scene": "abismo-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "abismo-d",
+      "name": "Abismo de Kronasta · Trono das Marés",
+      "scene": "abismo-d",
+      "biome": "floresta"
+    },
+    {
+      "id": "abismo-b",
+      "name": "Abismo de Kronasta · Labirinto de Algas",
+      "scene": "abismo-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "abismo-c",
+      "name": "Abismo de Kronasta · Cidade Afundada",
+      "scene": "abismo-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -563,7 +587,11 @@
     "vulcao-a": "vulcao-a",
     "serra-gelada-a": "serra-gelada-a",
     "serra-gelada-b": "serra-gelada-b",
-    "serra-gelada-c": "serra-gelada-c"
+    "serra-gelada-c": "serra-gelada-c",
+    "abismo-a": "abismo-a",
+    "abismo-d": "abismo-d",
+    "abismo-b": "abismo-b",
+    "abismo-c": "abismo-c"
   },
   "campaignReplacement": false
 }

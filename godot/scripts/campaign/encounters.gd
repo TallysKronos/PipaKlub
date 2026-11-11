@@ -26,6 +26,29 @@ static func owner_bonus(battle:Dictionary,state:Dictionary) -> Dictionary:
 	if battle.get("kind","")!="trainer" or state.get("outcome","")!="won":return {"coins":0,"tamerXp":0}
 	return preload("res://scripts/campaign/opponent_rewards.gd").trainer_bonus(int(state.get("enemyLevel",1)))
 
+## Abismo de Kronasta · Trono das Marés: duelo com o Coromar, guardião do fundo (boss).
+const ABISMO_BOSS_LEVEL := 42
+func start_abismo_boss(point: Vector2) -> Dictionary:
+	var saved: Dictionary = session.snapshot()
+	if saved.checkpoint.get("scene","")!="abismo-d" or saved.checkpoint.get("space","")!=Checkpoint.SPACE: return {"status":"wrong_step"}
+	var boss_at := Vector2.INF
+	for event in Checkpoint.data("abismo-d").events:
+		if event.props.get("acao","")=="abismoBoss": boss_at=Vector2(event.u+.5,event.v+.5)
+	if not point.is_finite() or point.distance_to(boss_at)>3.0: return {"status":"wrong_step"}
+	var player: Dictionary = saved.player
+	if player.get("flags",{}).get("abismoCoromarVencido",false): return {"status":"already_applied"}
+	var partner: Dictionary = {}
+	for entry in player.partners:
+		if entry.id == player.get("equippedPartnerId", ""): partner = entry
+	if partner.is_empty() or partner.get("condition", {}).get("line", 100) <= 0 or partner.get("condition", {}).get("structure", 100) <= 0: return {"status": "repair_needed"}
+	var model := Model.new(partner, {"modelId": "coromar", "level": ABISMO_BOSS_LEVEL})
+	model.q.boss = true
+	model.q.name = "Coromar"
+	Progression.discover(player, "coromar")
+	player.encounter = {"id": State.new_id(), "kind": "abismo-boss", "scene": "abismo-d", "space": Checkpoint.SPACE, "dropRoll": .5, "returnPoint": [point.x, point.y], "state": model.snapshot()}
+	player.encounter.rewardXp = Levels.win_xp(ABISMO_BOSS_LEVEL, Levels.level_for_xp(partner.get("xp",0)), "champion")
+	return session.checkpoint({"kind": "encounter"}, player)
+
 ## Serra Gelada · Coroa Glacial: duelo com o Borealvo, guardião do topo (boss).
 const GELEIRA_BOSS_LEVEL := 38
 func start_geleira_boss(point: Vector2) -> Dictionary:
@@ -152,7 +175,10 @@ func settle() -> Dictionary:
 	var tamer_before:int=player.get("tamerXp",0)
 	player.coins+=bonus.coins
 	player.tamerXp=mini(31383,tamer_before+int(bonus.tamerXp))
-	if state.outcome == "won" and battle.kind == "geleira-boss":
+	if state.outcome == "won" and battle.kind == "abismo-boss":
+		player.flags.abismoCoromarVencido = true
+		player.inventory["rabiola-coromar"] = player.inventory.get("rabiola-coromar", 0) + 1
+	elif state.outcome == "won" and battle.kind == "geleira-boss":
 		player.flags.geleiraBorealvoVencido = true
 		player.inventory["rabiola-borealvo"] = player.inventory.get("rabiola-borealvo", 0) + 1
 	elif state.outcome == "won" and boss:

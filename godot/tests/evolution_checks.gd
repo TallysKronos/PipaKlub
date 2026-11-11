@@ -29,10 +29,10 @@ func run() -> void:
 		if form.has("source"):
 			check(content.combat.has(id), id + ": entrada combat")
 			check(load("res://assets/campaign/" + content.combat[id].image) is Texture2D, id + ": arte carrega")
-			check(not form.from.is_empty(), id + ": tem forma anterior")
+			check(not form.from.is_empty() or form.stage == "crianca", id + ": tem forma anterior")
 		for previous in form.from:
 			check(not Evo.form(previous).is_empty(), id + ": anterior " + previous + " existe")
-	for model in ["rabbito", "basica", "mata", "raio", "azulao", "doberman-c"]:
+	for model in ["rabbito", "basica", "mata", "raio", "azulao", "doberman-c", "capivara-boia"]:
 		check(Evo.next_level(model) > 0, model + ": tem evolução")
 	check(Evo.next_level("lacertubo") == 0 and Evo.next_level("retalho-original") == 0, "Lacertubo e Retalho não evoluem")
 
