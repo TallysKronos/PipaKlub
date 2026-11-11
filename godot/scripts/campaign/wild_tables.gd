@@ -14,9 +14,11 @@ static func data() -> Dictionary:
 	return _data
 
 static func region_id(scene: String) -> String:
+	# The longest prefix wins: "caverna-mural-a" is the Mural, "caverna-a" the Gruta do Moinho.
+	var best := ""
 	for prefix: String in data().regioes:
-		if scene.begins_with(prefix + "-"): return prefix
-	return ""
+		if scene.begins_with(prefix + "-") and prefix.length() > best.length(): best = prefix
+	return best
 
 static func table(scene: String) -> Array:
 	var id := region_id(scene)

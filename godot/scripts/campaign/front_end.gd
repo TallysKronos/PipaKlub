@@ -1911,6 +1911,19 @@ func _park_event(id: String) -> void:
 		if action=="districtDuel":
 			_district_action(str(event.props.duel))
 			return
+		if action in preload("res://scripts/campaign/planicie_story.gd").ACTIONS:
+			var told:Dictionary=preload("res://scripts/campaign/planicie_story.gd").new(session).talk(action,park.player)
+			if told.has("text"):
+				if told.status=="ok":park.refresh(session.snapshot().player)
+				_notice(told.text)
+			else:_result(told)
+			return
+		if action=="grutaBoss":
+			_confirm_park("Estratonte","No meio do lago, os ossos de papel do Estratonte se erguem da ilha. O guardião da Gruta do Moinho baixa o pescoço comprido e espera.\n\nNv. %d · guardião opcional. A primeira vitória garante a rabiola dele." % encounters.GRUTA_GUARDIAN_LEVEL,"Enfrentar",func():
+				var started:Dictionary=encounters.start_gruta_boss(park.player)
+				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use a fonte de água fresca ou um Kit de Remendo antes de enfrentar o Estratonte.")
+				elif _result(started):_show_saved.call_deferred())
+			return
 		if action=="abismoBoss":
 			_confirm_park("Coromar","A água em volta do trono gira em quatro correntes. O Coromar, guardião das Quatro Marés, abre as nadadeiras e espera.\n\nNv. %d · chefe do Abismo de Kronasta." % encounters.ABISMO_BOSS_LEVEL,"Enfrentar",func():
 				var started:Dictionary=encounters.start_abismo_boss(park.player)

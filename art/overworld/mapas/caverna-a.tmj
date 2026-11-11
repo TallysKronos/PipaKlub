@@ -7946,6 +7946,36 @@
      ]
     },
     {
+     "id": 25351,
+     "name": "Pá do moinho",
+     "type": "item",
+     "x": 1424,
+     "y": 432,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "pa-do-moinho"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "planicieMoinhoPedido"
+      }
+     ]
+    },
+    {
      "id": 25304,
      "name": "Rio da gruta",
      "type": "interacao",

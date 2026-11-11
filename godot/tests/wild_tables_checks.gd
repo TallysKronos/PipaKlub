@@ -15,18 +15,20 @@ func check(value: bool, message: String) -> void:
 func _initialize() -> void:
 	var data := Tables.data()
 	var never: Array = data.nuncaSelvagem
+	# Battle art: the original species (LEGACY) or a content.json "combat" entry (Planícies, 11/11).
+	var combat: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json")).combat
 	for id: String in data.regioes:
 		var region: Dictionary = data.regioes[id]
 		var total := 0
 		for row in region.encontros:
 			total += int(row.peso)
-			check(row.modelo in Tables.LEGACY, id + " uses a species with battle art: " + str(row.modelo))
+			check(row.modelo in Tables.LEGACY or combat.has(str(row.modelo)), id + " uses a species with battle art: " + str(row.modelo))
 		check(total == 100, id + " weights add up to 100")
 		var plan: Dictionary = region.planejado
 		var keys: Array = []
 		for role in plan: keys.append_array(plan[role] if plan[role] is Array else [plan[role]])
 		for k in keys: check(str(k).split(":")[0] not in never, id + " plans no story-only creature: " + str(k))
-		if id != "kronasta-caverna": check(plan.get("comuns", []).size() == 3, id + " plans three common families")
+		if id not in ["kronasta-caverna", "caverna-mural"]: check(plan.get("comuns", []).size() == 3, id + " plans three common families")
 	# Same draws as before the tables.
 	check(Tables.choose("kronasta-bambuzal-a", 0, false) == "rascunho-bicho-pau" and Tables.choose("kronasta-bambuzal-a", .5, false) == "mata" and Tables.choose("kronasta-bambuzal-a", .9, false) == "rascunho-joaninha", "Bambuzal keeps its pool")
 	check(Tables.choose("kronasta-beira-canal-b", .7, true) == "lacertubo", "Beira-Canal keeps the young Lacertubo, first encounter included")

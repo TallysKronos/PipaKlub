@@ -24072,6 +24072,36 @@
     },
     {
      "id": 25007,
+     "name": "Seu Bento",
+     "type": "npc",
+     "x": 464,
+     "y": 272,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "tiao"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "planicieMoinho"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 25008,
      "name": "Nilo",
      "type": "npc",
      "x": 976,
@@ -24101,7 +24131,7 @@
      ]
     },
     {
-     "id": 25008,
+     "id": 25009,
      "name": "Sombra da paineira",
      "type": "interacao",
      "x": 848,

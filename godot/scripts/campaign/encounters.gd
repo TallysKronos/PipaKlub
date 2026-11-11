@@ -72,6 +72,29 @@ func start_geleira_boss(point: Vector2) -> Dictionary:
 	player.encounter.rewardXp = Levels.win_xp(GELEIRA_BOSS_LEVEL, Levels.level_for_xp(partner.get("xp",0)), "champion")
 	return session.checkpoint({"kind": "encounter"}, player)
 
+## Gruta do Moinho · Lago Subterrâneo: o Estratonte guarda a ilha (guardião opcional).
+const GRUTA_GUARDIAN_LEVEL := 18
+func start_gruta_boss(point: Vector2) -> Dictionary:
+	var saved: Dictionary = session.snapshot()
+	if saved.checkpoint.get("scene","")!="caverna-c" or saved.checkpoint.get("space","")!=Checkpoint.SPACE: return {"status":"wrong_step"}
+	var boss_at := Vector2.INF
+	for event in Checkpoint.data("caverna-c").events:
+		if event.props.get("acao","")=="grutaBoss": boss_at=Vector2(event.u+.5,event.v+.5)
+	if not point.is_finite() or point.distance_to(boss_at)>3.0: return {"status":"wrong_step"}
+	var player: Dictionary = saved.player
+	if player.get("flags",{}).get("grutaEstratonteVencido",false): return {"status":"already_applied"}
+	var partner: Dictionary = {}
+	for entry in player.partners:
+		if entry.id == player.get("equippedPartnerId", ""): partner = entry
+	if partner.is_empty() or partner.get("condition", {}).get("line", 100) <= 0 or partner.get("condition", {}).get("structure", 100) <= 0: return {"status": "repair_needed"}
+	var model := Model.new(partner, {"modelId": "estratonte", "level": GRUTA_GUARDIAN_LEVEL})
+	model.q.boss = true
+	model.q.name = "Estratonte"
+	Progression.discover(player, "estratonte")
+	player.encounter = {"id": State.new_id(), "kind": "gruta-boss", "scene": "caverna-c", "space": Checkpoint.SPACE, "dropRoll": .5, "returnPoint": [point.x, point.y], "state": model.snapshot()}
+	player.encounter.rewardXp = Levels.win_xp(GRUTA_GUARDIAN_LEVEL, Levels.level_for_xp(partner.get("xp",0)), "champion")
+	return session.checkpoint({"kind": "encounter"}, player)
+
 func _init(local_session: Node) -> void:
 	session = local_session
 
@@ -178,6 +201,9 @@ func settle() -> Dictionary:
 	if state.outcome == "won" and battle.kind == "abismo-boss":
 		player.flags.abismoCoromarVencido = true
 		player.inventory["rabiola-coromar"] = player.inventory.get("rabiola-coromar", 0) + 1
+	elif state.outcome == "won" and battle.kind == "gruta-boss":
+		player.flags.grutaEstratonteVencido = true
+		player.inventory["rabiola-estratonte"] = player.inventory.get("rabiola-estratonte", 0) + 1
 	elif state.outcome == "won" and battle.kind == "geleira-boss":
 		player.flags.geleiraBorealvoVencido = true
 		player.inventory["rabiola-borealvo"] = player.inventory.get("rabiola-borealvo", 0) + 1

@@ -591,7 +591,9 @@ func _draw_status() -> void:
 	var names:Array=[]
 	for index in actors.size():
 		faces.append(Ink.portrait(textures[index],art_ids[index]))
-		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","doberman-c":"Dóber de papel","lacertubo":"Lacertubo","retalho-original":"Retalho","rai":"Rai","eremor":"Eremor","tufanocorte":"Tufanocorte","mormaco-normal":"Mormaço","mormaco-possuido":"Mormaço · Possuído"}.get(art_ids[index],"Parceiro")
+		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","doberman-c":"Dóber de papel","lacertubo":"Lacertubo","retalho-original":"Retalho","rai":"Rai","eremor":"Eremor","tufanocorte":"Tufanocorte","mormaco-normal":"Mormaço","mormaco-possuido":"Mormaço · Possuído"}.get(art_ids[index],"")
+		if title.is_empty() and index>0:title=str(actors[index].get("name",""))
+		if title.is_empty():title=species_name(art_ids[index])
 		var level:int=model.enemy_level if index>0 else 1
 		if index==0 and model.model_id=="rai":
 			level=int(actors[index].level)
@@ -683,3 +685,14 @@ func _sprite_frame(index:int,actor:Dictionary,legacy_action:String) -> Dictionar
 	var frame_index:=maxi(0,floori((sprite_clock-float(sprite_states[index].start))*float(playback.fps)))
 	frame_index=frame_index%frames.size() if playback.loop else mini(frame_index,frames.size()-1)
 	return frames[frame_index]
+
+## Nome de espécie para as formas sem nome fixo acima: criaturas das regiões novas e formas
+## de evolução (assets/campaign/evolutions.json).
+const SPECIES_NAMES := {"cristim":"Cristim","papisco":"Papisco","javali-child":"Javali","galhim":"Galhim","vertim":"Vertim","ossito":"Ossito","viuva-child":"Viúva","estratonte":"Estratonte","borealvo":"Borealvo","coromar":"Coromar","capivara-boia":"Capiboia","rascunho-bicho-pau":"Bicho-pau","rascunho-joaninha":"Joaninha-pião"}
+static func species_name(id: String) -> String:
+	if SPECIES_NAMES.has(id):return SPECIES_NAMES[id]
+	if ResourceLoader.exists("res://assets/campaign/evolutions.json") or FileAccess.file_exists("res://assets/campaign/evolutions.json"):
+		var table:Variant=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/evolutions.json"))
+		if table is Dictionary and table.get("forms",{}).has(id):return str(table.forms[id].get("name","Parceiro"))
+	return "Parceiro"
+

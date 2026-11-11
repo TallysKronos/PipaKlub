@@ -7987,6 +7987,46 @@
     },
     {
      "id": 25404,
+     "name": "Tito",
+     "type": "npc",
+     "x": 304,
+     "y": 368,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "juninho"
+      },
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "grutaTito"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "grutaTitoPedido"
+      },
+      {
+       "name": "ocultar_apos",
+       "type": "string",
+       "value": "grutaTitoAchado"
+      }
+     ]
+    },
+    {
+     "id": 25405,
      "name": "Galerias de Cristal",
      "type": "interacao",
      "x": 880,
@@ -8001,7 +8041,7 @@
      ]
     },
     {
-     "id": 25405,
+     "id": 25406,
      "name": "Fonte de água fresca",
      "type": "interacao",
      "x": 1040,

@@ -309,6 +309,7 @@ func refresh(value: Dictionary) -> void:
 			# A story step inside a preview area (the Serra gallery) keeps its own text.
 			var story_text: String=load("res://scripts/campaign/kronasta_story.gd").region_objective(saved_player,scene)
 			exploration_hud.objective.text=story_text if not story_text.is_empty() and scene=="mina-ferro-a" else "Explore os caminhos · M para viajar por Kronasta."
+			if load("res://scripts/campaign/planicie_story.gd").is_region(scene):exploration_hud.objective.text=load("res://scripts/campaign/planicie_story.gd").objective(saved_player,scene)
 		if scene=="parque-patio-liga":exploration_hud.objective.text=load("res://scripts/campaign/blue_exam.gd").objective(saved_player)
 		if Checkpoint.is_morro(scene):
 			# Morro do Sol: objetivo do título (defesa, requalificação) ou o desafio da área.
@@ -368,7 +369,7 @@ func _physics_process(delta: float) -> void:
 	save_distance+=moved
 	save_age+=delta
 	if moved>0:
-		var weight: float=0.0 if saved_checkpoint.scene.begins_with("caverna-mural-") or Training.needs_rest(saved_player) or Checkpoint.is_regional_preview(saved_checkpoint.scene) else Pacing.weight(model,player)
+		var weight: float=0.0 if saved_checkpoint.scene.begins_with("caverna-mural-") or Training.needs_rest(saved_player) or (Checkpoint.is_regional_preview(saved_checkpoint.scene) and not load("res://scripts/campaign/planicie_story.gd").is_region(saved_checkpoint.scene)) else Pacing.weight(model,player)
 		if encounter_grace>0:
 			encounter_grace=maxf(0,encounter_grace-delta)
 		elif weight>0:

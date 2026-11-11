@@ -36,6 +36,9 @@ static func wild_level(scene: String, roll: int) -> int:
 	if scene.begins_with("kronasta-feira-"):return 15+roll%3
 	if scene.begins_with("kronasta-beira-canal-"):return 12+roll%3
 	if scene.begins_with("kronasta-bambuzal-"):return 7+roll%3
+	# Planícies (Nv.10–14) e Gruta do Moinho (Nv.12–16): região lateral depois do Lacertubo.
+	if scene in ["planicie-a","planicie-b","planicie-c"]:return 10+"abc".find(scene.right(1))+roll%3
+	if scene in ["caverna-a","caverna-b","caverna-c"]:return 12+"abc".find(scene.right(1))+roll%3
 	if scene.begins_with("kronasta-bosque-"):
 		return {"kronasta-bosque-a":1,"kronasta-bosque-b":2,"kronasta-bosque-c":3}[scene]+roll%3
 	# Every campaign region follows its story band (BIBLIA §3 and §8); wild ones

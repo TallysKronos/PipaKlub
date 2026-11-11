@@ -25299,9 +25299,9 @@
        "value": "iara"
       },
       {
-       "name": "texto",
+       "name": "acao",
        "type": "string",
-       "value": "Iara: A gruta da serra dá voltas por baixo do morro. Quem já saiu do outro lado conta que encontrou um vale que ninguém vê daqui de fora."
+       "value": "grutaIara"
       },
       {
        "name": "bloqueia",
@@ -25312,6 +25312,71 @@
     },
     {
      "id": 25108,
+     "name": "Tito",
+     "type": "npc",
+     "x": 1232,
+     "y": 1232,
+     "point": true,
+     "properties": [
+      {
+       "name": "district",
+       "type": "string",
+       "value": "morro"
+      },
+      {
+       "name": "npcIdentity",
+       "type": "string",
+       "value": "juninho"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "grutaTitoAchado"
+      },
+      {
+       "name": "texto",
+       "type": "string",
+       "value": "Tito: Lá no fundo da gruta tem um lago, e no meio do lago dorme um bicho de pedra enorme. Eu vi!"
+      }
+     ]
+    },
+    {
+     "id": 25151,
+     "name": "Pá do moinho",
+     "type": "item",
+     "x": 1680,
+     "y": 560,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "pa-do-moinho"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "planicieMoinhoPedido"
+      }
+     ]
+    },
+    {
+     "id": 25109,
      "name": "Sombra do moinho",
      "type": "interacao",
      "x": 1616,
@@ -25326,7 +25391,7 @@
      ]
     },
     {
-     "id": 25151,
+     "id": 25152,
      "name": "Achado do morro",
      "type": "item",
      "x": 1008,
@@ -25351,7 +25416,7 @@
      ]
     },
     {
-     "id": 25152,
+     "id": 25153,
      "name": "Achado do morro",
      "type": "item",
      "x": 1904,
@@ -25376,7 +25441,7 @@
      ]
     },
     {
-     "id": 25153,
+     "id": 25154,
      "name": "Achado do morro",
      "type": "item",
      "x": 336,
@@ -25401,7 +25466,7 @@
      ]
     },
     {
-     "id": 25154,
+     "id": 25155,
      "name": "Achado do morro",
      "type": "item",
      "x": 1584,

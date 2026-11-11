@@ -30195,6 +30195,36 @@
      ]
     },
     {
+     "id": 25251,
+     "name": "Pá do moinho",
+     "type": "item",
+     "x": 624,
+     "y": 1136,
+     "point": true,
+     "properties": [
+      {
+       "name": "item",
+       "type": "string",
+       "value": "pa-do-moinho"
+      },
+      {
+       "name": "quantidade",
+       "type": "int",
+       "value": 1
+      },
+      {
+       "name": "visibilidade",
+       "type": "string",
+       "value": "brilho"
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "planicieMoinhoPedido"
+      }
+     ]
+    },
+    {
      "id": 25207,
      "name": "Círculo de pedras",
      "type": "interacao",
@@ -30255,7 +30285,7 @@
      ]
     },
     {
-     "id": 25251,
+     "id": 25252,
      "name": "Achado do morro",
      "type": "item",
      "x": 80,
@@ -30280,7 +30310,7 @@
      ]
     },
     {
-     "id": 25252,
+     "id": 25253,
      "name": "Achado do morro",
      "type": "item",
      "x": 240,
@@ -30305,7 +30335,7 @@
      ]
     },
     {
-     "id": 25253,
+     "id": 25254,
      "name": "Achado do morro",
      "type": "item",
      "x": 496,
@@ -30330,7 +30360,7 @@
      ]
     },
     {
-     "id": 25254,
+     "id": 25255,
      "name": "Achado do morro",
      "type": "item",
      "x": 1616,

@@ -7917,6 +7917,36 @@
     },
     {
      "id": 25504,
+     "name": "Estratonte",
+     "type": "npc",
+     "x": 1040,
+     "y": 784,
+     "point": true,
+     "properties": [
+      {
+       "name": "acao",
+       "type": "string",
+       "value": "grutaBoss"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/campaign/planicies-v1/estratonte.png"
+      },
+      {
+       "name": "ocultar_apos",
+       "type": "string",
+       "value": "grutaEstratonteVencido"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": true
+      }
+     ]
+    },
+    {
+     "id": 25505,
      "name": "Lago Subterrâneo",
      "type": "interacao",
      "x": 1424,
@@ -7931,7 +7961,7 @@
      ]
     },
     {
-     "id": 25505,
+     "id": 25506,
      "name": "Varanda norte",
      "type": "interacao",
      "x": 1168,
@@ -7946,7 +7976,7 @@
      ]
     },
     {
-     "id": 25506,
+     "id": 25507,
      "name": "Fonte de água fresca",
      "type": "interacao",
      "x": 1680,

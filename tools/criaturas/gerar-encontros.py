@@ -30,6 +30,11 @@ LIVE = {
     "kronasta-bambuzal": [["rascunho-bicho-pau", 45], ["mata", 40], ["rascunho-joaninha", 15]],
     "kronasta-feira": [["rascunho-bicho-pau", 50], ["rascunho-joaninha", 50]],
     "kronasta-beira-canal": [["lacertubo", 100]],
+    # Planícies de Kronasta e Gruta do Moinho (tools/package-planicies.py, arte provisória).
+    "planicie": [["cristim", 40], ["papisco", 35], ["javali-child", 15], ["galhim", 10]],
+    "caverna": [["vertim", 40], ["ossito", 35], ["viuva-child", 25]],
+    # A Caverna do Mural também começa com "caverna-": a chave mais longa vence (wild_tables.gd).
+    "caverna-mural": GENERIC,
 }
 B, C, J, A = 0, 1, 2, 3  # Bebê, Criança, Jovem, Adulto (ordem dos nós nas famílias de chart)
 PLAN = {
@@ -49,6 +54,8 @@ PLAN = {
     "kronasta-lajes": dict(comuns=[stage("doberman-c", C), stage("trancoura", C), stage("gata-lunar", J)], incomum=stage("torvargo", J), rara=stage("chaspiral", J), visitante=stage("vortentaculo", C), guardiao=stage("doberman-c", A), noite=[stage("gata-lunar", A)]),
     "kronasta-porto": dict(comuns=[stage("vortentaculo", C), stage("coroabissal", J), stage("capivara-boia", J)], incomum=stage("makareu", J), rara=stage("vortentaculo", A), visitante=key("celofita"), guardiao=stage("capivara-boia", A), noite=[stage("vortentaculo", A)]),
     "kronasta-coracao": dict(comuns=[stage("rexestrato-family-v1", J), stage("estratonte-family-v1", J), stage("cervarco-family-v1", J)], incomum=stage("ibiscrito", J), rara=[key("araruna-memoria"), key("caimbira-memoria"), key("tamoata-memoria")]),
+    "planicie": dict(comuns=[stage("galofuso-family-v1", C), stage("alvacordo-family-v1", C), stage("javali-guerreiro", C)], incomum=stage("cervarco-family-v1", C)),
+    "caverna": dict(comuns=[stage("estratonte-family-v1", C), stage("rexestrato-family-v1", C), stage("viuva-anjo", C)], guardiao=stage("estratonte-family-v1", A)),
     "kronasta-mirante": dict(comuns=[stage("grifarca", J), stage("nimbalio", J), stage("etruslanca", J)], incomum=key("guaravento"), rara=key("pteralis"), guardiao=stage("etruslanca", A)),
 }
 NEVER = ["rabbito", "rai", "platyx", "mormaco", "tufanocorte", "rabiolava", "trovareta", "eremor", "retalho", "pipa-dragao", "veskoro"]  # o Lacertubo jovem é selvagem no Beira-Canal; o adulto é o chefe

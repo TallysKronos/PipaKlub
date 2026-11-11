@@ -29,6 +29,47 @@
   "veskoro"
  ],
  "regioes": {
+  "caverna": {
+   "encontros": [
+    {
+     "modelo": "vertim",
+     "peso": 40
+    },
+    {
+     "modelo": "ossito",
+     "peso": 35
+    },
+    {
+     "modelo": "viuva-child",
+     "peso": 25
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "estratonte-family-v1:vertim",
+     "rexestrato-family-v1:ossito",
+     "viuva-anjo:viuva-child"
+    ],
+    "guardiao": "estratonte-family-v1:estratonte"
+   }
+  },
+  "caverna-mural": {
+   "encontros": [
+    {
+     "modelo": "basica",
+     "peso": 50
+    },
+    {
+     "modelo": "mata",
+     "peso": 35
+    },
+    {
+     "modelo": "raio",
+     "peso": 15
+    }
+   ],
+   "planejado": {}
+  },
   "kronasta-alto-da-serra": {
    "encontros": [
     {
@@ -480,6 +521,34 @@
     "noite": [
      "vortentaculo:vortentaculo"
     ]
+   }
+  },
+  "planicie": {
+   "encontros": [
+    {
+     "modelo": "cristim",
+     "peso": 40
+    },
+    {
+     "modelo": "papisco",
+     "peso": 35
+    },
+    {
+     "modelo": "javali-child",
+     "peso": 15
+    },
+    {
+     "modelo": "galhim",
+     "peso": 10
+    }
+   ],
+   "planejado": {
+    "comuns": [
+     "galofuso-family-v1:cristim",
+     "alvacordo-family-v1:papisco",
+     "javali-guerreiro:javali-child"
+    ],
+    "incomum": "cervarco-family-v1:galhim"
    }
   }
  }

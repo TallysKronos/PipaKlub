@@ -228,7 +228,7 @@ static func valid_workshop(state: Dictionary) -> bool:
 
 static func valid_encounter(value: Variant) -> bool:
 	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["endgame-step", "lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story","tufanocorte-story","tyler-lab","ruinas-elo","geleira-boss","abismo-boss"] or not value.get("state") is Dictionary: return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["endgame-step", "lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story","tufanocorte-story","tyler-lab","ruinas-elo","geleira-boss","abismo-boss","gruta-boss"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
@@ -255,13 +255,14 @@ static func valid_encounter(value: Variant) -> bool:
 		if value.get("scene")!=("kronasta-feira-a" if who=="lalau" else "kronasta-feira-b") or state.get("enemyModelId")!=("mata" if who=="lalau" else "platyx-draft") or state.get("enemyLevel")!=(16 if who=="lalau" else 17):return false
 	# Serra Gelada: o Borealvo guarda a Coroa Glacial (encounters.gd, start_geleira_boss).
 	if value.kind=="abismo-boss" and (value.get("scene")!="abismo-d" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="coromar" or state.get("enemyLevel")!=42):return false
+	if value.kind=="gruta-boss" and (value.get("scene")!="caverna-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="estratonte" or state.get("enemyLevel")!=18):return false
 	if value.kind=="geleira-boss" and (value.get("scene")!="serra-gelada-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="borealvo" or state.get("enemyLevel")!=38):return false
 	if value.kind=="canal-gate" and (value.get("scene")!="park-veredas" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="platyx-draft" or state.get("enemyLevel")!=14):return false
 	if value.kind in ["wild","trainer"]:
 		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or not whole(state.get("enemyLevel")):return false
 		# Kronasta wild encounters follow the region's table and level band (WildTables).
 		# Before this, Cais and every later region (Nv.17+) failed here and never started.
-		if value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-"):
+		if value.kind=="wild" and (str(value.get("scene","")).begins_with("kronasta-") or preload("res://scripts/campaign/planicie_story.gd").is_region(str(value.get("scene","")))):
 			if not preload("res://scripts/campaign/wild_tables.gd").allows(str(value.scene),str(state.get("enemyModelId","")),int(state.enemyLevel)):return false
 		elif value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-beira-canal-"):
 			if state.get("enemyModelId")!="lacertubo" or state.enemyLevel<12 or state.enemyLevel>14:return false

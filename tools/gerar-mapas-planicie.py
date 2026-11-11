@@ -99,6 +99,19 @@ class Campo(morro.Morro):
     def arrival(self, u, v, name="Chegada"):
         self.event("entrada", name, u, v, {})
 
+    # ---- missões (scripts/campaign/planicie_story.gd) ----
+    def quest_npc(self, name, identity, u, v, acao, **extra):
+        props = {"district": "morro", "npcIdentity": identity, "acao": acao, "bloqueia": False}
+        props.update(extra)
+        self.event("npc", name, u, v, props)
+
+    def quest_item(self, u, v, item, name, requer):
+        """Item de missão: só aparece depois do pedido (props requer = flag)."""
+        self._item_id += 1
+        self.events.append({"id": self._item_id, "name": name, "type": "item", "x": u * 32 + 16, "y": v * 32 + 16, "point": True,
+                            "properties": [{"name": "item", "type": "string", "value": item}, {"name": "quantidade", "type": "int", "value": 1},
+                                           {"name": "visibilidade", "type": "string", "value": "brilho"}, {"name": "requer", "type": "string", "value": requer}]})
+
     def tesouros(self, items):
         for u, v, item, hidden in items:
             self.tesouro(u, v, item, hidden)
@@ -152,6 +165,7 @@ def planicie_a():
     p.fall(49, 35, 3)
     p.placa("Moinho antigo", 12, 7, "Do moinho sobrou o eixo e uma hélice de bambu. Quando o vento vira, ela ainda dá meia-volta, como se lembrasse.")
     p.placa("Lago da Nascente", 42, 45, "A água desce da colina e cai no lago com barulho de chuva. Peixes prateados fogem da sombra das pipas.")
+    p.quest_npc("Seu Bento", "tiao", 14, 8, "planicieMoinho")
     p.morador("Nilo", "nilo", 30, 30, "Nas planícies o vento corre solto. Dizem que tem uma gruta nas Colinas do Moinho, a leste, que atravessa o morro por baixo.")
     p.event("interacao", "Sombra da paineira", 26, 24, {"acao": "wildRest"})
     p.bench(26, 23, "madeira")
@@ -199,7 +213,10 @@ def planicie_b():
     p.ponte(25, 17, 27, 18, 1)                        # pinguela da encosta
     p.placa("Boca da gruta", 41, 7, "Um vento frio sai da pedra. Lá dentro se ouve água correndo e, mais longe, um eco que parece um sino.")
     p.placa("Moinho de pedra", 48, 12, "Um moinho de pedra virado para o vale. As pás foram trocadas por pipas velhas, presas no eixo.")
-    p.morador("Iara", "iara", 36, 38, "A gruta da serra dá voltas por baixo do morro. Quem já saiu do outro lado conta que encontrou um vale que ninguém vê daqui de fora.")
+    p.quest_npc("Iara", "iara", 36, 38, "grutaIara")
+    p.event("npc", "Tito", 38, 38, {"district": "morro", "npcIdentity": "juninho", "bloqueia": False, "requer": "grutaTitoAchado",
+                                     "texto": "Tito: Lá no fundo da gruta tem um lago, e no meio do lago dorme um bicho de pedra enorme. Eu vi!"})
+    p.quest_item(52, 17, "pa-do-moinho", "Pá do moinho", "planicieMoinhoPedido")
     p.event("interacao", "Sombra do moinho", 50, 15, {"acao": "wildRest"})
     p.bench(50, 14, "madeira")
     decorate_field(p, trees=[(6, 26), (14, 50), (34, 46), (58, 30), (8, 38), (54, 20)],
@@ -247,6 +264,7 @@ def planicie_c():
     p.arrival(3, 29, "Saída da gruta")
     p.edge_exit(0, 29, "caverna-c", (60, 30), "Voltar para a gruta")
     p.placa("Vale escondido", 6, 34, "Um vale pequeno, fechado pela crista de rocha. Alguém deixou pipas de pedra-pomes enfileiradas no chão, como num varal.")
+    p.quest_item(19, 35, "pa-do-moinho", "Pá do moinho", "planicieMoinhoPedido")
     p.placa("Círculo de pedras", 18, 34, "Oito pedras em roda. No centro, o capim não cresce: o vento ali gira sozinho.")
     p.morador("Dora", "dora", 42, 30, "O rio divide o vale. Do outro lado da crista dizem que tem um canto escondido, mas ninguém acha a passagem por fora.")
     p.event("interacao", "Sombra da figueira", 50, 20, {"acao": "wildRest"})
@@ -315,6 +333,7 @@ def caverna_a():
         p.cave(kind, u, v, "Formação da gruta")
     p.bau(57, 38, "moedas", 40)
     p.bau(49, 15, "kit-remendo", 1)
+    p.quest_item(44, 13, "pa-do-moinho", "Pá do moinho", "planicieMoinhoPedido")
     p.bau(6, 34, "linha-encerada", 2)
     p.placa("Rio da gruta", 25, 31, "A água cai de uma fenda no teto e enche o poço. A Gruta do Moinho respira junto com o rio.")
     p.placa("Salão dos cogumelos", 52, 37, "Cogumelos que brilham azul. Quando o Rabbito passa, eles acendem um pouco mais.")
@@ -358,6 +377,7 @@ def caverna_b():
     p.bau(7, 13, "cola-reparo", 2)
     p.bau(5, 46, "papel-seda", 3)
     p.bau(36, 9, "linha-encerada", 2)
+    p.quest_npc("Tito", "juninho", 9, 11, "grutaTito", requer="grutaTitoPedido", ocultar_apos="grutaTitoAchado")
     p.placa("Galerias de Cristal", 27, 24, "Cristais crescem do teto ao chão. A luz das pipas se parte neles em mil pontos coloridos.")
     p.event("interacao", "Fonte de água fresca", 32, 22, {"acao": "wildRest"})
     for name, u, v in [("entrada", 58, 22), ("salao", 28, 22), ("cristais", 9, 12), ("alto", 42, 7)]:
@@ -391,6 +411,8 @@ def caverna_c():
                        ("cristal-ambar", 42, 9), ("estalagmite-baixa", 56, 26), ("rocha-solta", 46, 44)]:
         p.cave(kind, u, v, "Formação da gruta")
     p.bau(30, 25, "moedas", 80)
+    p.event("npc", "Estratonte", 32, 24, {"acao": "grutaBoss", "storySpritePath": "res://assets/campaign/planicies-v1/estratonte.png",
+                                          "ocultar_apos": "grutaEstratonteVencido", "bloqueia": True})
     p.bau(9, 40, "kit-remendo", 1)
     p.bau(40, 8, "linha-encerada", 3)
     p.placa("Lago Subterrâneo", 44, 36, "Um lago parado no escuro. A cachoeira do norte é o único som; no meio, uma ilha com um baú que ninguém abriu.")
