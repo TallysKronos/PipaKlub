@@ -16,6 +16,38 @@ static func uv_points(values:Array) -> PackedVector2Array:
 static func shapes(model) -> Array:
  var w:Dictionary=model.data.get("forest",{}).get("water",{}) if model.data.get("forest",{}).get("water")!=null else {}
  return [uv_points(w.contour),uv_points(w.channel)] if not w.is_empty() else []
+## Quedas de lava (forest.lavaFalls: u, v, width, drop). A cortina cobre a face da frente
+## (+v) das células de lava na borda do terraço e desce `drop` níveis; um nó por célula,
+## ordenado logo depois da parede dela.
+static func _lava_falls(view) -> void:
+ var model=view.model
+ if geometry():return
+ for fall:Dictionary in model.data.get("forest",{}).get("lavaFalls",[]):
+  var material:=ShaderMaterial.new()
+  material.shader=load("res://shaders/overworld/lava_region_fall.gdshader")
+  material.set_shader_parameter("lava_texture",load(BASE+"lava-v1/surfaces/lava.png"))
+  for i in int(fall.width):
+   var u:int=int(fall.u)+i;var v:int=int(fall.v)
+   var top:float=float(model.cell_at(Vector2i(u,v)).get("level",0))*64
+   var drop:float=float(fall.drop)*64
+   var node:=Node2D.new();node.position=Vector2((u-v)*32,(u+v)*16+2.5);view.actors.add_child(node)
+   var a:Vector2=iso(Vector2(u,v+1),top)-node.position;var b:Vector2=iso(Vector2(u+1,v+1),top)-node.position
+   var curtain:=Polygon2D.new()
+   curtain.polygon=PackedVector2Array([a,b,b+Vector2(0,drop),a+Vector2(0,drop)])
+   var x0:float=float(i)*85.0;var x1:float=float(i+1)*85.0
+   curtain.uv=PackedVector2Array([Vector2(x0,0),Vector2(x1,0),Vector2(x1,drop*2.2),Vector2(x0,drop*2.2)])
+   curtain.texture=load(BASE+"lava-v1/surfaces/lava.png")
+   curtain.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+   curtain.material=material
+   node.add_child(curtain)
+   # Lábio claro no alto e respingo incandescente na base.
+   line(node,PackedVector2Array([a,b]),3,Color("ffd27a"))
+   var splash:=Polygon2D.new()
+   var base:Vector2=(a+b)*.5+Vector2(0,drop)
+   splash.polygon=PackedVector2Array([base+Vector2(-40,-6),base+Vector2(0,-22),base+Vector2(40,6),base+Vector2(6,26),base+Vector2(-34,14)])
+   splash.color=Color(1.0,.86,.45,.55)
+   node.add_child(splash)
+
 ## Material único da lava (o shader anima sozinho).
 static var _lava_material: ShaderMaterial
 static func lava_material() -> ShaderMaterial:
@@ -190,6 +222,7 @@ static func line(parent:Node2D,points:PackedVector2Array,width:float,color:Color
 static func quad(parent:Node2D,points:PackedVector2Array,color:Color,texture:Texture2D=null) -> Polygon2D:
  var node:=Polygon2D.new();node.polygon=points;node.color=color;node.texture=texture;parent.add_child(node);return node
 static func build(view) -> void:
+ _lava_falls(view)
  var model=view.model
  var f:Dictionary=model.data.get("forest",{})
  if f.is_empty():return

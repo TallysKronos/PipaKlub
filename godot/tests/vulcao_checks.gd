@@ -42,6 +42,14 @@ func _initialize() -> void:
 		var at := Vector2(event.u + .5, event.v + .5)
 		check(not model.path_to(start, at).is_empty(), "alcança " + str(event.name) + " em " + str(at))
 	check(items >= 6, "achados para explorar (%d)" % items)
+	# Quedas de lava: cada uma sai de células de lava na borda de um terraço e cai de verdade.
+	var falls: Array = map.forest.get("lavaFalls", [])
+	check(falls.size() >= 3, "quedas de lava (%d)" % falls.size())
+	for fall in falls:
+		for i in int(fall.width):
+			var lip: Dictionary = model.cell_at(Vector2i(int(fall.u) + i, int(fall.v)))
+			var below: Dictionary = model.cell_at(Vector2i(int(fall.u) + i, int(fall.v) + 1))
+			check(lip.material == "agua" and int(lip.level) - int(below.get("level", 0)) == int(fall.drop), "queda em %d,%d cai %d níveis" % [int(fall.u) + i, int(fall.v), int(fall.drop)])
 	var region: Dictionary = {}
 	for entry in Atlas.REGIONS:
 		if entry.id == "vulcao": region = entry
