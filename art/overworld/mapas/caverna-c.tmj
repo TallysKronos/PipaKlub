@@ -51,7 +51,7 @@
   {
    "name": "forest",
    "type": "string",
-   "value": "{\"mine\":true,\"mural\":true,\"baseLevel\":0,\"stream\":true,\"nativeProps\":true,\"closedStairs\":true,\"rails\":[],\"frames\":[],\"shots\":[{\"name\":\"entrada\",\"u\":40,\"v\":48,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"lago\",\"u\":34,\"v\":30,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"ilha\",\"u\":30,\"v\":26,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"cachoeira\",\"u\":28,\"v\":14,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"saida\",\"u\":58,\"v\":30,\"zoom\":1,\"kind\":\"jogo\"}],\"trails\":[],\"waterFalls\":[{\"u\":27,\"v\":12,\"width\":3,\"drop\":1}],\"stairs\":[{\"u\":35,\"v\":14,\"width\":3,\"length\":2}],\"guards\":[]}"
+   "value": "{\"mine\":true,\"mural\":true,\"cutFill\":true,\"baseLevel\":0,\"stream\":true,\"nativeProps\":true,\"closedStairs\":true,\"rails\":[],\"frames\":[],\"shots\":[{\"name\":\"entrada\",\"u\":40,\"v\":48,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"lago\",\"u\":34,\"v\":30,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"ilha\",\"u\":30,\"v\":26,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"cachoeira\",\"u\":28,\"v\":14,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"saida\",\"u\":58,\"v\":30,\"zoom\":1,\"kind\":\"jogo\"}],\"trails\":[],\"waterFalls\":[{\"u\":27,\"v\":12,\"width\":3,\"drop\":1}],\"stairs\":[{\"u\":35,\"v\":14,\"width\":3,\"length\":2}],\"guards\":[]}"
   }
  ],
  "tilesets": [

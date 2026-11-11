@@ -270,7 +270,7 @@ def planicie_c():
 class Gruta(Campo):
     def __init__(self, part, title, event_base):
         super().__init__("caverna-" + part, "Gruta do Moinho", "caverna", part.upper(), "Gruta do Moinho · " + title, event_base,
-                         {"mine": True, "mural": True, "baseLevel": 0, "stream": True, "nativeProps": True, "closedStairs": True, "rails": [], "frames": []})
+                         {"mine": True, "mural": True, "cutFill": True, "baseLevel": 0, "stream": True, "nativeProps": True, "closedStairs": True, "rails": [], "frames": []})
         self.mat = [["rocha"] * W for _ in range(H)]
         self.lvl = [[4] * W for _ in range(H)]           # rocha acima do chão mais alto
 

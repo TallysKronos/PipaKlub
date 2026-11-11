@@ -51,7 +51,7 @@
   {
    "name": "forest",
    "type": "string",
-   "value": "{\"mine\":true,\"mural\":true,\"baseLevel\":0,\"stream\":true,\"nativeProps\":true,\"closedStairs\":true,\"rails\":[],\"frames\":[],\"shots\":[{\"name\":\"entrada\",\"u\":32,\"v\":50,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"rio\",\"u\":30,\"v\":27,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"cogumelos\",\"u\":54,\"v\":38,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"cristais\",\"u\":46,\"v\":14,\"zoom\":1,\"kind\":\"jogo\"}],\"trails\":[],\"waterFalls\":[{\"u\":29,\"v\":23,\"width\":3,\"drop\":1}],\"stairs\":[{\"u\":10,\"v\":29,\"width\":3,\"length\":2},{\"u\":25,\"v\":39,\"width\":3,\"length\":2}],\"guards\":[]}"
+   "value": "{\"mine\":true,\"mural\":true,\"cutFill\":true,\"baseLevel\":0,\"stream\":true,\"nativeProps\":true,\"closedStairs\":true,\"rails\":[],\"frames\":[],\"shots\":[{\"name\":\"entrada\",\"u\":32,\"v\":50,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"rio\",\"u\":30,\"v\":27,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"cogumelos\",\"u\":54,\"v\":38,\"zoom\":1,\"kind\":\"jogo\"},{\"name\":\"cristais\",\"u\":46,\"v\":14,\"zoom\":1,\"kind\":\"jogo\"}],\"trails\":[],\"waterFalls\":[{\"u\":29,\"v\":23,\"width\":3,\"drop\":1}],\"stairs\":[{\"u\":10,\"v\":29,\"width\":3,\"length\":2},{\"u\":25,\"v\":39,\"width\":3,\"length\":2}],\"guards\":[]}"
   }
  ],
  "tilesets": [
