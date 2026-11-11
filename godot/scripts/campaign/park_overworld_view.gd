@@ -64,17 +64,22 @@ func _ready() -> void:
 	interface.hide()
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
+	for offset in [Vector2(-.56,.56), Vector2(.56,-.56), Vector2(-.8,0), Vector2(.8,0), Vector2(0,-.8), Vector2(0,.8), Vector2(-.56,-.56), Vector2(.56,.56)]:
+		var candidate: Vector2 = player + offset
+		if model.clear_segment(candidate, player):
+			follower = candidate
+			break
 	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_kronasta(saved_checkpoint.scene) else 1.15)
 	if area_id.begins_with("gelo-") or area_id.begins_with("mina-ferro-") or area_id.begins_with("submerso-"):camera.zoom=Vector2.ONE
 	_refresh_positions()
 	camera.reset_smoothing()
-	var partner_id := "rabbito"
-	for partner in saved_player.get("partners",[]):
-		if partner.id==saved_player.get("equippedPartnerId",""): partner_id=partner.modelId
-	var atlas_id: String = {"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol"}.get(partner_id,partner_id)
-	var atlas: Dictionary = content.combat.get(atlas_id,content.combat.rabbito)
-	companion.texture = load("res://assets/campaign/"+atlas.image)
-	companion_frames = atlas.animations.idle
+	var partner_id := CompanionFollow.equipped_model(saved_player)
+	companion.visible = not partner_id.is_empty()
+	if companion.visible and not CompanionFollow.setup_overworld_art(companion, partner_id, avatar.scale.y):
+		var atlas: Dictionary = content.combat.get(CompanionFollow.combat_art_id(partner_id), content.combat.rabbito)
+		companion.texture = load("res://assets/campaign/" + atlas.image)
+		companion_frames = atlas.animations.idle
+	CompanionFollow.orient(companion, avatar.facing)
 	var ui := CanvasLayer.new()
 	add_child(ui)
 	exploration_hud = load("res://scripts/campaign/hud_exploration.gd").new()

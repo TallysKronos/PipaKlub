@@ -234,7 +234,7 @@ func _process(delta: float) -> void:
 	if is_instance_valid(mother_sprite):opening_pose()
 	_step_retalho_resident(delta)
 	if is_instance_valid(companion) and companion_follow:
-		if not retalho_follower:
+		if not retalho_follower and not companion_frames.is_empty():
 			var frame:Dictionary=companion_frames[int(clock*12)%companion_frames.size()]
 			companion.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
 		if trail.is_empty() or trail.back().distance_to(actor) > 8:

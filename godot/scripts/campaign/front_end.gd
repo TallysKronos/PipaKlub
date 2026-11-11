@@ -13,6 +13,7 @@ const MorroBattleView = preload("res://scripts/campaign/morro_battle_view.gd")
 const ParkOverworldView = preload("res://scripts/campaign/park_overworld_view.gd")
 const ParkCheckpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Exploration = preload("res://scripts/campaign/exploration.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 const Encounters = preload("res://scripts/campaign/encounters.gd")
 const EncounterView = preload("res://scripts/campaign/encounter_view.gd")
 const Preferences = preload("res://scripts/campaign/preferences.gd")
@@ -860,14 +861,18 @@ func _show_world() -> void:
 		TutorialStaging.enter_atelier.call_deferred(self)
 
 func _equip_room_companion()->void:
-	for partner in session.snapshot().player.partners:
-		if partner.id != session.snapshot().player.get("equippedPartnerId", ""): continue
-		if partner.modelId=="retalho-original":
-			room.equip_retalho_follower()
-			return
-		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
-		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
-		room.companion_frames = content.combat[id].animations.idle
+	var model_id := CompanionFollow.equipped_model(session.snapshot().player)
+	room.companion.visible = not model_id.is_empty()
+	if not room.companion.visible: return
+	if model_id == "retalho-original":
+		room.equip_retalho_follower()
+	elif CompanionFollow.setup_overworld_art(room.companion, model_id, room.avatar.scale.y):
+		room.companion_frames.clear()
+		CompanionFollow.orient(room.companion, room.avatar.facing)
+	else:
+		var art: Dictionary = content.combat.get(CompanionFollow.combat_art_id(model_id), content.combat.rabbito)
+		room.companion.texture = load("res://assets/campaign/" + art.image)
+		room.companion_frames = art.animations.idle
 
 func _show_neighborhood() -> void:
 	if is_instance_valid(scene_loading):return
@@ -1945,14 +1950,14 @@ func _show_collection() -> void:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 20)
 		card.add_child(row)
-		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
-		var art: Dictionary = content.combat[art_id]
-		var frame: Dictionary = art.animations.idle[0]
-		var texture := AtlasTexture.new()
-		texture.atlas = load("res://assets/campaign/" + art.image)
-		texture.region = Rect2(frame.x, frame.y, frame.w, frame.h)
+		var art_id := CompanionFollow.combat_art_id(partner.modelId)
 		var portrait := TextureRect.new()
-		portrait.texture = load("res://scripts/campaign/battle_ink.gd").portrait(texture.atlas,art_id)
+		if not content.combat.has(art_id):
+			portrait.texture = CompanionFollow.overworld_portrait(partner.modelId)
+			art_id = "rabbito"
+		if portrait.texture == null:
+			var art: Dictionary = content.combat[art_id]
+			portrait.texture = load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/" + art.image), art_id)
 		portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		portrait.custom_minimum_size = Vector2(144, 118)

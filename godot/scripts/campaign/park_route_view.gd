@@ -108,16 +108,7 @@ func _ready() -> void:
 	add_child(avatar)
 	avatar.scale = Vector2.ONE * .8 * Avatar.BODY_SCALE
 	companion = Sprite2D.new()
-	var partner_id: String = "rabbito"
-	for partner in saved_player.partners:
-		if partner.id == saved_player.get("equippedPartnerId", ""): partner_id = partner.modelId
-	var atlas_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(partner_id, "rabbito")
-	var atlas: Dictionary = content.combat[atlas_id]
-	companion.texture = load("res://assets/campaign/" + atlas.image)
-	companion.region_enabled = true
-	frames = atlas.animations.idle
-	companion.scale = Vector2.ONE * .3
-	companion.offset = Vector2(0, -100)
+	_equip_companion(.3)
 	add_child(companion)
 	camera = Camera2D.new()
 	camera.zoom = Vector2.ONE * 1.05
@@ -138,14 +129,29 @@ func _ready() -> void:
 	threshold = randf_range(240, 480)
 	_refresh()
 
+func _equip_companion(legacy_scale: float) -> void:
+	var model_id := CompanionFollow.equipped_model(saved_player)
+	companion.visible = not model_id.is_empty()
+	if not companion.visible or CompanionFollow.setup_overworld_art(companion, model_id, avatar.scale.y): return
+	var atlas: Dictionary = content.combat.get(CompanionFollow.combat_art_id(model_id), content.combat.rabbito)
+	companion.texture = load("res://assets/campaign/" + atlas.image)
+	companion.region_enabled = true
+	frames = atlas.animations.idle
+	companion.scale = Vector2.ONE * legacy_scale
+	companion.offset = Vector2(0, -100)
+
+func _refresh_companion_art() -> void:
+	if not frames.is_empty():
+		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
+		companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
+	CompanionFollow.orient(companion, avatar.facing)
+
 func _refresh() -> void:
 	avatar.position = project(player)
 	avatar.z_index = landscape.depth(player) if is_instance_valid(landscape) else int(avatar.position.y)
 	companion.position = project(follower)
-	CompanionFollow.orient(companion,avatar.facing)
 	companion.z_index = landscape.depth(follower) if is_instance_valid(landscape) else int(companion.position.y)
-	var frame: Dictionary = frames[int(clock * 12) % frames.size()]
-	companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
+	_refresh_companion_art()
 	camera.position = project(player)
 
 func toggle_mount() -> void:

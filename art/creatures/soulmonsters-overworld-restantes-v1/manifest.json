@@ -1,0 +1,1218 @@
+{
+  "version": 1,
+  "purpose": "sprites estáticos de exploração",
+  "count": 52,
+  "cell": {
+    "width": 80,
+    "height": 80,
+    "anchor": {
+      "x": 40,
+      "y": 72
+    }
+  },
+  "sheet": {
+    "width": 160,
+    "height": 80
+  },
+  "sampling": "nearest",
+  "rendering": "2D isométrico top-down",
+  "tool": "ImageGen + Aseprite 1.3",
+  "assets": [
+    {
+      "id": "azulao",
+      "name": "Azulão",
+      "family": "Azulão",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/azulao.png",
+      "concept_sha256": "4fd0b55ece16e0dc7ea1d97d2e2a8ef2933de5914e5fb80b24894034237aeb98",
+      "sheet": "azulao/duas-vistas.png",
+      "atlas": "azulao/duas-vistas.json",
+      "editable": "azulao/azulao-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "azulao/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "azulao/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "carcara",
+      "name": "Carcará",
+      "family": "Carcará",
+      "stage": "Base · criança neste estudo",
+      "concept": "../soulsmonsters concept art/carcara.png",
+      "concept_sha256": "804226ac30ef423888389f97c5fd359a8940f05488e96acef207e6a7f117aeef",
+      "sheet": "carcara/duas-vistas.png",
+      "atlas": "carcara/duas-vistas.json",
+      "editable": "carcara/carcara-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "carcara/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "carcara/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "mata-verde",
+      "name": "Mata Verde",
+      "family": "Mata Verde",
+      "stage": "Base · criança no estudo",
+      "concept": "../soulsmonsters concept art/mata-verde.png",
+      "concept_sha256": "0e9b5cc054356eca8dd69670193d3677a8361e9a1d776dbe6060ffb281c6a637",
+      "sheet": "mata-verde/duas-vistas.png",
+      "atlas": "mata-verde/duas-vistas.json",
+      "editable": "mata-verde/mata-verde-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "mata-verde/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "mata-verde/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "lacertubo",
+      "name": "Lacertubo",
+      "family": "Lacertubo",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/lacertubo.png",
+      "concept_sha256": "9497dc02d3f16d88139663848c87c9412fa938ecc3972fb36f68580face47e91",
+      "sheet": "lacertubo/duas-vistas.png",
+      "atlas": "lacertubo/duas-vistas.json",
+      "editable": "lacertubo/lacertubo-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "lacertubo/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "lacertubo/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "mormaco",
+      "name": "Mormaço livre",
+      "family": "Mormaço — livre e possuído",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/mormaco.png",
+      "concept_sha256": "be13053f94af1b12b1e01cbc85f599caee20bd123a94810126239a00006568fa",
+      "sheet": "mormaco/duas-vistas.png",
+      "atlas": "mormaco/duas-vistas.json",
+      "editable": "mormaco/mormaco-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "mormaco/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "mormaco/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "mormaco-possuido",
+      "name": "Mormaço possuído",
+      "family": "Mormaço — livre e possuído",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/mormaco-possuido.png",
+      "concept_sha256": "f996f4f9a505f8a8e33b9676175207befd7ae37fefb1fbd298ba151448ecbb30",
+      "sheet": "mormaco-possuido/duas-vistas.png",
+      "atlas": "mormaco-possuido/duas-vistas.json",
+      "editable": "mormaco-possuido/mormaco-possuido-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "mormaco-possuido/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "mormaco-possuido/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "platyx",
+      "name": "Platyx",
+      "family": "Platyx",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/platyx.png",
+      "concept_sha256": "5889683e14de8ecf1a678f8e2ef5d2d350eb75f67a20cfb244231d0d5e214cf2",
+      "sheet": "platyx/duas-vistas.png",
+      "atlas": "platyx/duas-vistas.json",
+      "editable": "platyx/platyx-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "platyx/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "platyx/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "pipa-dragao",
+      "name": "Pipa-Dragão sobrecarregada / químico B",
+      "family": "Pipa-Dragão — sobrecarregada e desatada",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/pipa-dragao.png",
+      "concept_sha256": "9c6ae6da120a5300fc95c5a23c226e9fe0e37fc8058784f627fb3cdb18842a64",
+      "sheet": "pipa-dragao/duas-vistas.png",
+      "atlas": "pipa-dragao/duas-vistas.json",
+      "editable": "pipa-dragao/pipa-dragao-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "pipa-dragao/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "pipa-dragao/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "pipa-dragao-desatada",
+      "name": "Pipa-Dragão desatada",
+      "family": "Pipa-Dragão — sobrecarregada e desatada",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/pipa-dragao-desatada.png",
+      "concept_sha256": "3006b31e0df27f491aa09f770a86bec52f1baaca3063410ad4c977e9a17bfd96",
+      "sheet": "pipa-dragao-desatada/duas-vistas.png",
+      "atlas": "pipa-dragao-desatada/duas-vistas.json",
+      "editable": "pipa-dragao-desatada/pipa-dragao-desatada-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "pipa-dragao-desatada/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "pipa-dragao-desatada/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "azulfazo",
+      "name": "Azulfazo",
+      "family": "Azulão",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/azulfazo.png",
+      "concept_sha256": "6c57ca3b98b082bd24e080567c82e43990929ce50abf72badc23e7c3f6764b9a",
+      "sheet": "azulfazo/duas-vistas.png",
+      "atlas": "azulfazo/duas-vistas.json",
+      "editable": "azulfazo/azulfazo-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "azulfazo/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "azulfazo/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "azulfazo-possuido",
+      "name": "Azulfazo possuído",
+      "family": "Azulão",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/azulfazo-possuido.png",
+      "concept_sha256": "6c2c57d61a92fab3526f10c3753b16fb9e710709e43302ae9f1e635b41c2c106",
+      "sheet": "azulfazo-possuido/duas-vistas.png",
+      "atlas": "azulfazo-possuido/duas-vistas.json",
+      "editable": "azulfazo-possuido/azulfazo-possuido-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "azulfazo-possuido/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "azulfazo-possuido/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "rasacopa",
+      "name": "Rasacopa",
+      "family": "Fendafolha",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/rasacopa.png",
+      "concept_sha256": "a481fc976c666e2cfd8596a3ee017c37827f863efbedaf79f659689b7b4802b4",
+      "sheet": "rasacopa/duas-vistas.png",
+      "atlas": "rasacopa/duas-vistas.json",
+      "editable": "rasacopa/rasacopa-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "rasacopa/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "rasacopa/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "araruna-memoria",
+      "name": "Araruna",
+      "family": "Araruna",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/araruna-memoria.png",
+      "concept_sha256": "fae61827f5007c1fe36b6096f907ad086115824b0137ca1c5c8807b3061e1659",
+      "sheet": "araruna-memoria/duas-vistas.png",
+      "atlas": "araruna-memoria/duas-vistas.json",
+      "editable": "araruna-memoria/araruna-memoria-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "araruna-memoria/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "araruna-memoria/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "auriflama",
+      "name": "Auriflama",
+      "family": "Auriflama",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/auriflama.png",
+      "concept_sha256": "d5abfd32aaeea03120fe33bfe56e651bf00b640cfd606b9b44d417aa436dd999",
+      "sheet": "auriflama/duas-vistas.png",
+      "atlas": "auriflama/duas-vistas.json",
+      "editable": "auriflama/auriflama-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "auriflama/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "auriflama/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "aurorastro-guardia-das-rotas-da-aurora",
+      "name": "Aurorastro (Guardiã das Rotas da Aurora)",
+      "family": "Aurorastro",
+      "stage": "Adulto",
+      "concept": "../soulsmonsters concept art/aurorastro-guardia-das-rotas-da-aurora.png",
+      "concept_sha256": "89ea0c952e879b210938b794fa84c610ce48a989638678c10d3da48b2e2e8a5f",
+      "sheet": "aurorastro-guardia-das-rotas-da-aurora/duas-vistas.png",
+      "atlas": "aurorastro-guardia-das-rotas-da-aurora/duas-vistas.json",
+      "editable": "aurorastro-guardia-das-rotas-da-aurora/aurorastro-guardia-das-rotas-da-aurora-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "aurorastro-guardia-das-rotas-da-aurora/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "aurorastro-guardia-das-rotas-da-aurora/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "aurorastro-jovem",
+      "name": "Aurorastro (jovem)",
+      "family": "Aurorastro",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/aurorastro-jovem.png",
+      "concept_sha256": "1a4f695a68be093c9fab14113fcd7d4ab35c0325bc2769c8c3dcf6107a1a11e9",
+      "sheet": "aurorastro-jovem/duas-vistas.png",
+      "atlas": "aurorastro-jovem/duas-vistas.json",
+      "editable": "aurorastro-jovem/aurorastro-jovem-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "aurorastro-jovem/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "aurorastro-jovem/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "azulim",
+      "name": "Azulim",
+      "family": "Azulão",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/azulim.png",
+      "concept_sha256": "08c2c13c49b3f0a1d6a36a4b4269fa34767e6b7bbae1e2d1adf7b7d85eb81204",
+      "sheet": "azulim/duas-vistas.png",
+      "atlas": "azulim/duas-vistas.json",
+      "editable": "azulim/azulim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "azulim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "azulim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "azultor",
+      "name": "Azultor",
+      "family": "Azulão",
+      "stage": "Adulto",
+      "concept": "../soulsmonsters concept art/azultor.png",
+      "concept_sha256": "3048231308fbe45670fab0ca46067c97a15cc7ae8747ee6c0a8a71d160264bc8",
+      "sheet": "azultor/duas-vistas.png",
+      "atlas": "azultor/duas-vistas.json",
+      "editable": "azultor/azultor-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "azultor/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "azultor/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "azulongo",
+      "name": "Azulongo",
+      "family": "Azulongo",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/azulongo-v2.png",
+      "concept_sha256": "b749f3235ab486849eca69f62c337a3a364dbd096b9acf39c20d23c67867df29",
+      "sheet": "azulongo/duas-vistas.png",
+      "atlas": "azulongo/duas-vistas.json",
+      "editable": "azulongo/azulongo-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "azulongo/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "azulongo/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "caimbira-memoria",
+      "name": "Caimbira",
+      "family": "Caimbira",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/caimbira-memoria.png",
+      "concept_sha256": "1802f3137f3d0c72868c443c16297de76fb31c7209e77866325ca22f3749ad64",
+      "sheet": "caimbira-memoria/duas-vistas.png",
+      "atlas": "caimbira-memoria/duas-vistas.json",
+      "editable": "caimbira-memoria/caimbira-memoria-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "caimbira-memoria/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "caimbira-memoria/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "capimansa",
+      "name": "Capimansa",
+      "family": "Capimansa",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/capimansa.png",
+      "concept_sha256": "1ec60210235ee4672d09614e73b764f46344bcc8f8103f4101d709645089aca1",
+      "sheet": "capimansa/duas-vistas.png",
+      "atlas": "capimansa/duas-vistas.json",
+      "editable": "capimansa/capimansa-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "capimansa/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "capimansa/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "caramastro",
+      "name": "Caramastro",
+      "family": "Carcará",
+      "stage": "Adulto",
+      "concept": "../soulsmonsters concept art/caramastro.png",
+      "concept_sha256": "590cd3a6b7e70250b9dbfb5a1c8a004191619de3065e13b79c6255da2be35afb",
+      "sheet": "caramastro/duas-vistas.png",
+      "atlas": "caramastro/duas-vistas.json",
+      "editable": "caramastro/caramastro-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "caramastro/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "caramastro/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "caravento",
+      "name": "Caravento",
+      "family": "Carcará",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/caravento.png",
+      "concept_sha256": "0af45ca7913b1001ead74b992f393e77cb124320b2eb5cca3c042a23c4ce953b",
+      "sheet": "caravento/duas-vistas.png",
+      "atlas": "caravento/duas-vistas.json",
+      "editable": "caravento/caravento-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "caravento/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "caravento/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "carquim",
+      "name": "Carquim",
+      "family": "Carcará",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/carquim.png",
+      "concept_sha256": "41801dcacb7464c508be2c4abfcf40d2a21ca0b6522d8290e69417e8300c3648",
+      "sheet": "carquim/duas-vistas.png",
+      "atlas": "carquim/duas-vistas.json",
+      "editable": "carquim/carquim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "carquim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "carquim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "glacerol",
+      "name": "Glacerol",
+      "family": "Glacerol",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/glacerol.png",
+      "concept_sha256": "b8cb8e3a07f3e37b5aa86f06f1202524a3e668f7b661426024399df54c30ccab",
+      "sheet": "glacerol/duas-vistas.png",
+      "atlas": "glacerol/duas-vistas.json",
+      "editable": "glacerol/glacerol-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "glacerol/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "glacerol/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "guaravento",
+      "name": "Guaravento",
+      "family": "Guaravento",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/guaravento.png",
+      "concept_sha256": "e550d78949ac74b2b869103723b0b9332e43bff0fd25023fdd44b81527abfadf",
+      "sheet": "guaravento/duas-vistas.png",
+      "atlas": "guaravento/duas-vistas.json",
+      "editable": "guaravento/guaravento-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "guaravento/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "guaravento/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "herravento",
+      "name": "Herravento",
+      "family": "Herravento",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/herravento.png",
+      "concept_sha256": "564bbce971e88fba534c16507822b00c8ff77e85e1e38be08199e1722436b344",
+      "sheet": "herravento/duas-vistas.png",
+      "atlas": "herravento/duas-vistas.json",
+      "editable": "herravento/herravento-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "herravento/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "herravento/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "hiponilo",
+      "name": "Hiponilo",
+      "family": "Hiponilo",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/hiponilo.png",
+      "concept_sha256": "a6521daa6de5dcae030b727d6463f7cc809019dc95edfcf3b68255ab8aef1cda",
+      "sheet": "hiponilo/duas-vistas.png",
+      "atlas": "hiponilo/duas-vistas.json",
+      "editable": "hiponilo/hiponilo-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "hiponilo/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "hiponilo/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "jaguarluar",
+      "name": "Jaguarluar",
+      "family": "Jaguarluar",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/jaguarluar.png",
+      "concept_sha256": "20850f30978ae0a93c20b7c0988476ec9aff0a3292732ffcc6b6928118d92b3f",
+      "sheet": "jaguarluar/duas-vistas.png",
+      "atlas": "jaguarluar/duas-vistas.json",
+      "editable": "jaguarluar/jaguarluar-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "jaguarluar/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "jaguarluar/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "jarabrasa",
+      "name": "Jarabrasa",
+      "family": "Jarabrasa",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/jarabrasa.png",
+      "concept_sha256": "c2e03323bffbfc3c619e06a060a8d130bc2fbaebb7eb638091e79f7717b51fdd",
+      "sheet": "jarabrasa/duas-vistas.png",
+      "atlas": "jarabrasa/duas-vistas.json",
+      "editable": "jarabrasa/jarabrasa-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "jarabrasa/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "jarabrasa/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "marulume",
+      "name": "Marulume",
+      "family": "Marulume",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/marulume.png",
+      "concept_sha256": "2b02e4fdda4154d7736caf40db84652c6994cfed5900852cbfc545ae5ea8f9cd",
+      "sheet": "marulume/duas-vistas.png",
+      "atlas": "marulume/duas-vistas.json",
+      "editable": "marulume/marulume-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "marulume/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "marulume/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "brotim",
+      "name": "Brotim",
+      "family": "Mata Verde",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/brotim.png",
+      "concept_sha256": "e7ea60cc3705c353f624b451e7edb2f8e13a3c574ceb33bd196632376dc55d52",
+      "sheet": "brotim/duas-vistas.png",
+      "atlas": "brotim/duas-vistas.json",
+      "editable": "brotim/brotim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "brotim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "brotim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "folhante",
+      "name": "Folhante",
+      "family": "Mata Verde",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/folhante.png",
+      "concept_sha256": "e5f907c0755e9ab98c3ba42ff537abf6c50c3929350b1d97094c45d47bc980a9",
+      "sheet": "folhante/duas-vistas.png",
+      "atlas": "folhante/duas-vistas.json",
+      "editable": "folhante/folhante-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "folhante/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "folhante/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "verdestrama",
+      "name": "Verdestrama",
+      "family": "Mata Verde",
+      "stage": "Adulto",
+      "concept": "../soulsmonsters concept art/verdestrama.png",
+      "concept_sha256": "d7e5e85d519dfbee7cfbf17cb781019efa932ac4353e1f3539635738de998b96",
+      "sheet": "verdestrama/duas-vistas.png",
+      "atlas": "verdestrama/duas-vistas.json",
+      "editable": "verdestrama/verdestrama-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "verdestrama/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "verdestrama/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "micofolha",
+      "name": "Micofolha",
+      "family": "Micofolha",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/micofolha.png",
+      "concept_sha256": "b29a9507572e5dcb6b7ddc227ced4a5460bdbfe2a7f121a9213523df23677572",
+      "sheet": "micofolha/duas-vistas.png",
+      "atlas": "micofolha/duas-vistas.json",
+      "editable": "micofolha/micofolha-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "micofolha/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "micofolha/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "nevagume",
+      "name": "Nevagume",
+      "family": "Nevagume",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/nevagume.png",
+      "concept_sha256": "a4339b23f045d7197fc005b71e0048576a14e2a2d0e39c495d840a3ce749f9d7",
+      "sheet": "nevagume/duas-vistas.png",
+      "atlas": "nevagume/duas-vistas.json",
+      "editable": "nevagume/nevagume-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "nevagume/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "nevagume/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "nozinho",
+      "name": "Nozinho",
+      "family": "Nozinho",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/nozinho.png",
+      "concept_sha256": "4762f1ac40a02bd37e864cd370fa8a7d8a8163333a8eda31ea3e494106a165d0",
+      "sheet": "nozinho/duas-vistas.png",
+      "atlas": "nozinho/duas-vistas.json",
+      "editable": "nozinho/nozinho-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "nozinho/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "nozinho/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "pteralis",
+      "name": "Pteralis",
+      "family": "Pteralis",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/pteralis.png",
+      "concept_sha256": "49df21ed87323b3b8887f14475d7822082893064bd96fc2fd70c2e6461cc1937",
+      "sheet": "pteralis/duas-vistas.png",
+      "atlas": "pteralis/duas-vistas.json",
+      "editable": "pteralis/pteralis-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "pteralis/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "pteralis/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "rabiolava",
+      "name": "Rabiolava",
+      "family": "Rabiolava",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/rabiolava.png",
+      "concept_sha256": "d2fff69d699084d92c169b031d5d88a74cee3286e2d14115fa2a604b1cb227bc",
+      "sheet": "rabiolava/duas-vistas.png",
+      "atlas": "rabiolava/duas-vistas.json",
+      "editable": "rabiolava/rabiolava-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "rabiolava/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "rabiolava/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "raiatar",
+      "name": "Raiatar",
+      "family": "Rai / Saber",
+      "stage": "Adulto",
+      "concept": "../soulsmonsters concept art/raiatar.png",
+      "concept_sha256": "6fdf2353f15f441e644e1fa0c331718bfa9b10ae6449061f9671a047a4015a97",
+      "sheet": "raiatar/duas-vistas.png",
+      "atlas": "raiatar/duas-vistas.json",
+      "editable": "raiatar/raiatar-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "raiatar/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "raiatar/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "raibroto",
+      "name": "Raibroto",
+      "family": "Rai / Saber",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/raibroto.png",
+      "concept_sha256": "05ffdcb78c2ffab75ff58e4666cad9c10671b7dbaf35b7557ec3c16a36ca0ebe",
+      "sheet": "raibroto/duas-vistas.png",
+      "atlas": "raibroto/duas-vistas.json",
+      "editable": "raibroto/raibroto-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "raibroto/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "raibroto/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "raigume",
+      "name": "Raigume",
+      "family": "Rai / Saber",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/raigume.png",
+      "concept_sha256": "c600c264fe64f70037c82d7e791b5f43ac3a1cc374757b75a1df67fac5fcf1c7",
+      "sheet": "raigume/duas-vistas.png",
+      "atlas": "raigume/duas-vistas.json",
+      "editable": "raigume/raigume-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "raigume/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "raigume/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "raisoberano",
+      "name": "Raisoberano",
+      "family": "Rai / Saber",
+      "stage": "Adulto",
+      "concept": "../soulsmonsters concept art/raisoberano.png",
+      "concept_sha256": "ad586c3df82612669477e61c5bd27f03e287521820ea9adcad3a9b21e2daa924",
+      "sheet": "raisoberano/duas-vistas.png",
+      "atlas": "raisoberano/duas-vistas.json",
+      "editable": "raisoberano/raisoberano-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "raisoberano/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "raisoberano/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "raivela",
+      "name": "Raivela",
+      "family": "Rai / Saber",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/raivela.png",
+      "concept_sha256": "4c5b347c5c13d2f884e52980fb086aec184ca69612011991e2b76b400af5c54a",
+      "sheet": "raivela/duas-vistas.png",
+      "atlas": "raivela/duas-vistas.json",
+      "editable": "raivela/raivela-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "raivela/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "raivela/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "rexal",
+      "name": "Rexal",
+      "family": "Rexal",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/rexal.png",
+      "concept_sha256": "b114ac608fb3d45d888a4e45373f07ede725ffef183fd097f250d39cb968cfe4",
+      "sheet": "rexal/duas-vistas.png",
+      "atlas": "rexal/duas-vistas.json",
+      "editable": "rexal/rexal-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "rexal/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "rexal/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "singravel-cavaleiro-da-alvorada-austral",
+      "name": "Singravel (Cavaleiro da Alvorada Austral)",
+      "family": "Singravel",
+      "stage": "Adulto",
+      "concept": "../soulsmonsters concept art/singravel-cavaleiro-da-alvorada-austral.png",
+      "concept_sha256": "bd50cd2bb5e748dccba1df46eab0c1b0aa91733d26ef4166034b01b232132fd8",
+      "sheet": "singravel-cavaleiro-da-alvorada-austral/duas-vistas.png",
+      "atlas": "singravel-cavaleiro-da-alvorada-austral/duas-vistas.json",
+      "editable": "singravel-cavaleiro-da-alvorada-austral/singravel-cavaleiro-da-alvorada-austral-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "singravel-cavaleiro-da-alvorada-austral/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "singravel-cavaleiro-da-alvorada-austral/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "singravel-jovem",
+      "name": "Singravel (jovem)",
+      "family": "Singravel",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/singravel-jovem.png",
+      "concept_sha256": "8f605edfc65eb049fbce9027fb81b28bc082b758993b8032dbda7b63c9a189df",
+      "sheet": "singravel-jovem/duas-vistas.png",
+      "atlas": "singravel-jovem/duas-vistas.json",
+      "editable": "singravel-jovem/singravel-jovem-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "singravel-jovem/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "singravel-jovem/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "stegaru",
+      "name": "Stegaru",
+      "family": "Stegaru",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/stegaru.png",
+      "concept_sha256": "c56d7f5b867afdc7a9fd4d9ca723bab522346e7aea2439a1b98a304b827da4ae",
+      "sheet": "stegaru/duas-vistas.png",
+      "atlas": "stegaru/duas-vistas.json",
+      "editable": "stegaru/stegaru-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "stegaru/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "stegaru/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "tricerafan",
+      "name": "Tricerafan",
+      "family": "Tricerafan",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/tricerafan.png",
+      "concept_sha256": "95c5ebd2a4b11423f43df37781631bd02af345da1b8604d2655acd0fac4fe68c",
+      "sheet": "tricerafan/duas-vistas.png",
+      "atlas": "tricerafan/duas-vistas.json",
+      "editable": "tricerafan/tricerafan-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "tricerafan/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "tricerafan/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "trovareta",
+      "name": "Trovareta",
+      "family": "Trovareta",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/trovareta.png",
+      "concept_sha256": "5f69d4a53052e6391ae4bb97afce3f778ae7cf46400d77acd5aa80a07ead89a1",
+      "sheet": "trovareta/duas-vistas.png",
+      "atlas": "trovareta/duas-vistas.json",
+      "editable": "trovareta/trovareta-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "trovareta/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "trovareta/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "tufanocorte",
+      "name": "Tufanocorte",
+      "family": "Tufanocorte",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/tufanocorte.png",
+      "concept_sha256": "6c3b751786a912f6c5995345dcd6e4c019cc6467e8681e6dcf898bfaae8b9649",
+      "sheet": "tufanocorte/duas-vistas.png",
+      "atlas": "tufanocorte/duas-vistas.json",
+      "editable": "tufanocorte/tufanocorte-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "tufanocorte/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "tufanocorte/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "vespergume",
+      "name": "Vespergume",
+      "family": "Vespergume",
+      "stage": "Adulto",
+      "concept": "../soulsmonsters concept art/vespergume-folha-concept-v2.png",
+      "concept_sha256": "963f78d799901c0e7266b0f061f0ee506f5043d3dd6c4fd77081dc183dfe555b",
+      "sheet": "vespergume/duas-vistas.png",
+      "atlas": "vespergume/duas-vistas.json",
+      "editable": "vespergume/vespergume-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "vespergume/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "vespergume/costas-nw.png"
+        }
+      ]
+    }
+  ]
+}

@@ -68,6 +68,16 @@ func _ready() -> void:
 	elevation=world.surface_height(world.find_surface(surface),cell,true)
 	follower=cell;follower_height=elevation;follower_surface=surface
 	trail=[{"p":cell,"h":elevation,"surface":surface,"distance":0.0}]
+	for offset in [Vector2(-.49,.49),Vector2(.49,-.49)]:
+		var behind := state()
+		for step in range(1, 9):
+			behind = resolve_step(behind, cell + offset * (float(step) / 8.0))
+		if behind.p.distance_to(cell + offset) < .01 and absf(behind.h - elevation) < 1:
+			follower = behind.p
+			follower_height = behind.h
+			follower_surface = behind.surface
+			trail.push_front({"p":follower,"h":follower_height,"surface":follower_surface,"distance":-.7})
+			break
 	distance_walked=0
 	last_saved_cell=cell
 	for child in hud_root.get_children():
@@ -85,20 +95,22 @@ func _ready() -> void:
 	camera.reset_smoothing()
 
 func _equip_partner() -> void:
-	for equipped: Dictionary in saved_player.get("partners",[]):
-		if equipped.id!=saved_player.get("equippedPartnerId",""):continue
-		var catalog: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
-		var model: String={"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol"}.get(equipped.modelId,equipped.modelId)
-		var art: Dictionary=catalog.combat.get(model,{})
-		if art.is_empty():return
-		partner.texture=load("res://assets/campaign/"+str(art.image))
-		partner_frames=art.animations.idle.duplicate(true)
-		var frame: Dictionary=partner_frames[0]
-		var bounds: Rect2i=partner.texture.get_image().get_region(Rect2i(frame.x,frame.y,frame.w,frame.h)).get_used_rect()
-		if bounds.size.y>0:
-			partner.scale=Vector2.ONE*30.0/float(bounds.size.y)
-			partner.offset=Vector2(float(frame.w)*.5-bounds.get_center().x,float(frame.h)*.5-bounds.end.y)
+	var model_id := CompanionFollow.equipped_model(saved_player)
+	partner_root.visible = not model_id.is_empty()
+	if not partner_root.visible: return
+	if CompanionFollow.setup_overworld_art(partner, model_id, avatar.scale.y):
+		partner_frames.clear()
 		return
+	var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
+	var art: Dictionary = catalog.combat.get(CompanionFollow.combat_art_id(model_id), {})
+	if art.is_empty(): return
+	partner.texture = load("res://assets/campaign/" + str(art.image))
+	partner_frames = art.animations.idle.duplicate(true)
+	var frame: Dictionary = partner_frames[0]
+	var bounds: Rect2i = partner.texture.get_image().get_region(Rect2i(frame.x,frame.y,frame.w,frame.h)).get_used_rect()
+	if bounds.size.y > 0:
+		partner.scale = Vector2.ONE * 30.0 / float(bounds.size.y)
+		partner.offset = Vector2(float(frame.w)*.5-bounds.get_center().x,float(frame.h)*.5-bounds.end.y)
 
 func project(point: Vector2) -> Vector2:
 	return world.iso(point,world.support(point))

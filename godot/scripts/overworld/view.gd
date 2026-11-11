@@ -1845,7 +1845,10 @@ func _refresh_positions() -> void:
 func _fade_occluders() -> void:
 	var pair:Array[Dictionary]=[]
 	# Project each actor once, rather than repeat height queries for every tree.
-	for member in [{"point":player,"height":155.0 if avatar.mounted else 84.0},{"point":follower,"height":42.0}]:
+	var members := [{"point":player,"height":155.0 if avatar.mounted else 84.0}]
+	if follower_root.visible and companion.visible:
+		members.append({"point":follower,"height":42.0})
+	for member in members:
 		var at:Vector2=member.point
 		pair.append({"point":at,"body":Rect2(model.project(at)-Vector2(20,member.height),Vector2(40,member.height)),"ground":model.project(at,false).y})
 	for node in occluders:
