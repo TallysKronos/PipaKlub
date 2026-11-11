@@ -70,3 +70,24 @@ banco de descanso (recupera a equipe) e de 4 a 5 achados, a maioria em pontos se
 Limite técnico: as escadas sobem só para o fundo da tela (v−), porque é a única direção que o
 desenho de degraus cobre hoje. As rotas laterais são feitas deslocando as escadas de um nível
 para o outro. Escadas laterais (u−) pedem mudança em três pontos do renderizador.
+
+## Versão 3 · água, profundidade e assimetria (11/11/2026)
+
+Crítica do dono à versão 2: faltava profundidade em alguns lugares, faltava cachoeira, havia
+poucas áreas sem saída e os mapas estavam simétricos demais. O que mudou:
+
+- **Córrego do Sol.** Cada área tem água: nascentes e tanques nos terraços altos, poços
+  rebaixados com margem (a água fica um nível abaixo do chão, como pede
+  `documentation/continuidade-terreno-isometrico.md`) e cachoeiras nas bordas.
+- **Grotas.** Cortes até a cota 0 ao lado dos terraços, por onde a água desce. As quedas têm
+  2 (A), 3 (B), 4 (C), 6 (D) e 1 (E) níveis.
+- **Assimetria.** Nenhuma área é espelhada: em A o caminho sobe pelo leste e o oeste é um
+  ramo sem saída de dois níveis; em B a grota fica a oeste e a rota alternativa a leste; em C
+  a grota corta a laje grande e uma pinguela alta liga as metades; em D o leste virou um
+  paredão; em E a arquibancada só sobe pelo oeste.
+- **Sem saída.** De 3 a 5 por área (mirantes, quintais, lajes, poços), cada um com um achado
+  ou uma placa.
+
+No renderizador: `forest.stream` desenha água nas células de água sem os efeitos do porto;
+`forest.waterFalls` e `forest.lavaFalls` desenham as quedas (`forest_structures.gd`,
+`_falls`). O morro inteiro subiu um nível para a água caber na cota 0.

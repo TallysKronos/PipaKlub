@@ -8,5 +8,5 @@ void fragment() {
 	vec2 uv = vec2(UV.x, UV.y * 0.55 - TIME * 0.42 * flow);
 	vec3 color = texture(lava_texture, uv).rgb;
 	float streak = 0.82 + 0.18 * sin(UV.x * 37.0 + sin(UV.y * 9.0 - TIME * 3.0 * flow));
-	COLOR = vec4(color * streak * 1.18, 1.0);
+	COLOR = vec4(color * streak * 1.18 * COLOR.rgb, 1.0);
 }

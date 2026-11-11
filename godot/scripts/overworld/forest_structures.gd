@@ -16,16 +16,20 @@ static func uv_points(values:Array) -> PackedVector2Array:
 static func shapes(model) -> Array:
  var w:Dictionary=model.data.get("forest",{}).get("water",{}) if model.data.get("forest",{}).get("water")!=null else {}
  return [uv_points(w.contour),uv_points(w.channel)] if not w.is_empty() else []
-## Quedas de lava (forest.lavaFalls: u, v, width, drop). A cortina cobre a face da frente
-## (+v) das células de lava na borda do terraço e desce `drop` níveis; um nó por célula,
-## ordenado logo depois da parede dela.
+## Quedas (forest.lavaFalls e forest.waterFalls: u, v, width, drop). A cortina cobre a face
+## da frente (+v) das células de lava ou de água na borda do terraço e desce `drop` níveis;
+## um nó por célula, ordenado logo depois da parede dela.
 static func _lava_falls(view) -> void:
+ _falls(view,"lavaFalls",BASE+"lava-v1/surfaces/lava.png",Color("ffd27a"),Color(1.0,.86,.45,.55),Color.WHITE)
+ _falls(view,"waterFalls",BASE+"aguas-v1/surfaces/cortina-forte.png",Color("f2fbff"),Color(.95,.99,1.0,.7),Color("9fd3e6"))
+
+static func _falls(view,key:String,texture_path:String,lip:Color,splash_color:Color,tint:Color) -> void:
  var model=view.model
  if geometry():return
- for fall:Dictionary in model.data.get("forest",{}).get("lavaFalls",[]):
+ for fall:Dictionary in model.data.get("forest",{}).get(key,[]):
   var material:=ShaderMaterial.new()
   material.shader=load("res://shaders/overworld/lava_region_fall.gdshader")
-  material.set_shader_parameter("lava_texture",load(BASE+"lava-v1/surfaces/lava.png"))
+  material.set_shader_parameter("lava_texture",load(texture_path))
   for i in int(fall.width):
    var u:int=int(fall.u)+i;var v:int=int(fall.v)
    var top:float=float(model.cell_at(Vector2i(u,v)).get("level",0))*64
@@ -36,16 +40,17 @@ static func _lava_falls(view) -> void:
    curtain.polygon=PackedVector2Array([a,b,b+Vector2(0,drop),a+Vector2(0,drop)])
    var x0:float=float(i)*85.0;var x1:float=float(i+1)*85.0
    curtain.uv=PackedVector2Array([Vector2(x0,0),Vector2(x1,0),Vector2(x1,drop*2.2),Vector2(x0,drop*2.2)])
-   curtain.texture=load(BASE+"lava-v1/surfaces/lava.png")
+   curtain.texture=load(texture_path)
    curtain.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
    curtain.material=material
+   curtain.color=tint
    node.add_child(curtain)
    # Lábio claro no alto e respingo incandescente na base.
-   line(node,PackedVector2Array([a,b]),3,Color("ffd27a"))
+   line(node,PackedVector2Array([a,b]),3,lip)
    var splash:=Polygon2D.new()
    var base:Vector2=(a+b)*.5+Vector2(0,drop)
    splash.polygon=PackedVector2Array([base+Vector2(-40,-6),base+Vector2(0,-22),base+Vector2(40,6),base+Vector2(6,26),base+Vector2(-34,14)])
-   splash.color=Color(1.0,.86,.45,.55)
+   splash.color=splash_color
    node.add_child(splash)
 
 ## Material único da lava (o shader anima sozinho).
@@ -58,7 +63,7 @@ static func lava_material() -> ShaderMaterial:
  return _lava_material
 
 static func is_water(model,p:Vector2) -> bool:
- if model.data.get("forest",{}).get("harbor",false):return model.cell_at(Vector2i(p.floor())).get("material","")=="agua"
+ if model.data.get("forest",{}).get("harbor",false) or model.data.get("forest",{}).get("stream",false):return model.cell_at(Vector2i(p.floor())).get("material","")=="agua"
  for shape:PackedVector2Array in shapes(model):
   if shape.is_empty():continue
   if Geometry2D.is_point_in_polygon(p,shape):return true
@@ -131,7 +136,7 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
    target.material=null
    target.texture=null
    target.color=Color("a8b9b9") if model.data.get("forest",{}).get("industrial",false) else Color("b08a52")
-  if model.data.get("forest",{}).get("harbor",false) and c.get("material","")=="agua":
+  if (model.data.get("forest",{}).get("harbor",false) or model.data.get("forest",{}).get("stream",false)) and c.get("material","")=="agua":
    target.material=null;target.texture=null if geometry() else load(BASE+"aguas-v1/surfaces/rio-claro.png")
    target.vertex_colors=PackedColorArray();target.color=Color("2a7490") if geometry() else Color("5f9bac")
    target.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
