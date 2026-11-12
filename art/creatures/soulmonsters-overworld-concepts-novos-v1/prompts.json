@@ -1,0 +1,55 @@
+{
+  "method": "ImageGen integrado e edição no Aseprite",
+  "prompts": [
+    {
+      "ids": [
+        "lince-de-cerco-child",
+        "lince-de-cerco-young",
+        "lince-de-cerco",
+        "avelince-baby",
+        "avelince-young",
+        "avelince"
+      ],
+      "prompt": "Create exactly two overworld RPG pixel art sprites of the ORIGINAL fantasy creature in the first reference sheet. Reproduce the colored design and its technical rear view faithfully, its actual species, anatomical proportions, count and shape of limbs, unique facial features, markings, palette, bamboo spars, ribbon or membranes only where the reference shows them. The second reference is ONLY for camera, staging and pixel rendering. Horizontal sheet with a wide transparent gutter at center. Left cell: overhead isometric three-quarter front facing diagonally bottom-left, see top of head and back, closest side and face. Right cell: overhead isometric three-quarter back facing diagonally top-left, back and rump nearest, head looking away to upper left, no visible face. Consistent pose scale, true grounded feet or the creature's natural hover, no ground shadows. Hard near-black stepped contour around silhouette, selectively dark internal lineart, limited clean pixel clusters, sharply separated cel shadow planes, upper-left light. Game sprite visual density of a native 60 pixel character. Full bodies, big transparent margins, 2 side-by-side sprites only, no captions, no floor, no extra subjects, no effects.",
+      "style_reference": "../soulmonsters-overworld-restantes-v1/hiponilo/duas-vistas.png"
+    },
+    {
+      "ids": [
+        "avelince-child"
+      ],
+      "prompt": "This is an original ivory-and-plum feline fantasy animal, four paws, two large kite-like ears, collar of pointed fur and a cord tail with two ivory pennants. It has no separate wings at this age. Preserve the paws, violet eyes and silhouette from the concept. Render a wide transparent spritesheet with exactly two small, isolated top-down isometric RPG pixel-art sprites of the same design. One on left faces bottom-left in front three-quarter view, the other on right faces top-left in genuine rear three-quarter view, with the back visible, face hidden. Strict 35 degree downward viewing angle. Both at equal scale, fully visible, with wide transparent center gutter. Crisp ink-black stepped contours, readable discrete pixel clusters and cel shading, overhead light, no ground, text, effects or framing. The concept defines the character, the second reference defines the low-res pixel finish only.",
+      "style_reference": "../soulmonsters-overworld-restantes-v1/hiponilo/duas-vistas.png"
+    },
+    {
+      "ids": [
+        "najarcal-child"
+      ],
+      "prompt": "Use the attached character sheet as the sole design reference. Ivory juvenile cobra coiled on ground with a long arched body, two wide ivory kite-sail panels as its pointed hood, teal trailing borders, thin gold spars, and the cord ending in a cream drop. No arms and no legs. In rear view the hood is a broad opaque triangular kite surface so the eyes cannot be seen. Draw the SAME creature twice on one clean horizontal transparent sprite sheet, both viewed from above at a 35-degree angle. LEFT: front three-quarter facing lower left. RIGHT: strictly rear three-quarter facing upper left, back of head and hood face toward the viewer, absolutely no eye or mouth visible on right. Equal size, center gutter, leave generous margins. Clean early handheld RPG sprite with dark one-pixel outlines, no AA, limited ramps and compact stepped shading. No text, labels, floor, effects or other creature."
+    },
+    {
+      "ids": [
+        "najarcal-young"
+      ],
+      "prompt": "Use the attached model sheet as the only reference. Coiled upright young ivory cobra, two thin humanoid arms with teal rings and a golden cream folding-fan hood with bamboo ribs. Preserve the smooth cream rear body, teal cord tail and fan exactly as shown. Create two transparent-background isometric handheld RPG pixel sprites of the exact same character side by side, separated by large clear gap. Left: three-quarter front facing southwest. Right: rear three-quarter facing northwest, show back of fan, never show face or eyes. Camera angled down by 35 degrees, visible top of body and coils. Clear dark discrete pixel contours, limited palette, bold small clusters, crisp cel shading. Fully inside transparent margins. Just the creature with no extra objects, no scene, no shadows on ground, no text."
+    },
+    {
+      "ids": [
+        "najarcal"
+      ],
+      "prompt": "Use the attached model sheet as the only reference. Adult ivory cobra on a muscular broad spiral coil, two clawed humanoid arms with large teal crescent bracelets, teal armor panels on base, enormous golden cream fan hood with bamboo ribs, dark charcoal stripe down its throat. Preserve the colors and design of the concept and all true rear details. Create two transparent-background isometric handheld RPG pixel sprites of the exact same character side by side, separated by large clear gap. Left: three-quarter front facing southwest. Right: rear three-quarter facing northwest, show back of fan, never show face or eyes. Camera angled down by 35 degrees, visible top of body and coils. Clear dark discrete pixel contours, limited palette, bold small clusters, crisp cel shading. Fully inside transparent margins. Just the creature with no extra objects, no scene, no shadows on ground, no text."
+    },
+    {
+      "ids": [
+        "mico-baby",
+        "mico-child",
+        "mico-young",
+        "micoshiro"
+      ],
+      "prompt": "Pixel art conversion of the original model sheet, not a redesign. Reproduce the colored reference's exact monkey/kite creature, geometry of face and ears, colors, limbs and tail, garments and weapons only if they exist in the model at this specific age. Make exactly two equally sized full-body sprites in a wide transparent sheet. Left: camera 35 degrees overhead, three-quarter front with the face and body pointing toward bottom-left. Right: same downward camera but genuine back three-quarter facing toward top-left. On the right the rear of the head, back and tail attachments must be visible; no eyes or front chest. Preserve unique silhouette in both. Native old handheld RPG aesthetic: angular dark ink contours in small square clusters, restrained cel shading, distinct hands and grounded feet, legible at small size. Clear margins, wide gap, no text, no scenery, no shadows cast outside the sprite, no decorative effects, no extra characters."
+    }
+  ],
+  "manual": [
+    "lince-de-cerco-baby",
+    "najarcal-baby"
+  ]
+}
