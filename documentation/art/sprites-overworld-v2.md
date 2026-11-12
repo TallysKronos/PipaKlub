@@ -44,3 +44,19 @@ volta a partir dela. Duas saídas, nesta ordem:
 
 Correções que valem para os dois casos: as costas da Capibaluarte precisam ter a mesma altura da
 frente; o Rastro dos Ventos tem só quadros de corrida de perfil e precisa das duas vistas.
+
+## Editar no Aseprite
+
+Cada folha v2 tem um arquivo editável em `art/creatures/overworld-v2/<id>/<id>-overworld-v2.aseprite`
+(gerado por `tools/sprites/aseprite-v2.mjs`, também chamado pelo conversor):
+
+- quadro 1 = frente (sudoeste), quadro 2 = costas (noroeste), 112×112 cada;
+- camada **Criatura** e a paleta das cores da criatura;
+- recorte **chao** com o ponto de apoio em (56, 100): os pés ficam nessa linha.
+
+Para levar a edição ao jogo: `File > Export Sprite Sheet`, **Sheet type: By Rows**, sem bordas nem
+espaçamento, salvando por cima de `godot/assets/campaign/overworld-companions-v2/<id>.png`
+(224×112). Pela linha de comando: `aseprite -b <id>-overworld-v2.aseprite --sheet <id>.png --sheet-type rows`.
+
+Se rodar `converter-overworld.mjs` de novo para a mesma criatura, a folha e o .aseprite voltam a
+ser gerados a partir da geração original: tire a criatura da lista `SOURCES` depois de retocá-la.

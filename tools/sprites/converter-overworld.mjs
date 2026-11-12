@@ -12,7 +12,8 @@
 // Kael: altura_v2 = altura_v1 × 1,25 / 0,952. Frente e costas usam o mesmo fator.
 //
 //   cd tools/sprites && npm install && node converter-overworld.mjs [id ...]
-// Saída: godot/assets/campaign/overworld-companions-v2/<id>.png e overworld-companions-v2.json
+// Saída: godot/assets/campaign/overworld-companions-v2/<id>.png e overworld-companions-v2.json,
+//        art/creatures/overworld-v2/<id>/<id>-overworld-v2.aseprite (editável)
 //        tools/sprites/relatorio-v2.md (o que converteu e o que não)
 import fs from "node:fs";
 import path from "node:path";
@@ -133,4 +134,7 @@ for (const id of wanted) {
   }
 }
 fs.writeFileSync(registryPath, JSON.stringify(registry, null, 1) + "\n");
+// Arquivo editável no Aseprite para cada folha nova (art/creatures/overworld-v2/<id>/).
+const { sheetToAseprite } = await import("./aseprite-v2.mjs");
+for (const id of wanted) if (registry[id] && fs.existsSync(path.join(OUT, id + ".png"))) sheetToAseprite(id);
 fs.writeFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "relatorio-v2.md"), report.join("\n") + "\n");
