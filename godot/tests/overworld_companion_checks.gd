@@ -65,17 +65,23 @@ func run() -> void:
 
 	front._show_collection()
 	await settle()
-	for button in front.page.find_children("*", "Button", true, false):
-		if button.text == "Próxima":
-			button.pressed.emit()
-			break
-	await settle()
+	# A Equipe mostra três parceiros por página: procura o card do Farpim e passa de página se preciso.
 	var equipped := false
-	for button in front.page.find_children("*", "Button", true, false):
-		if button.text == "Escolher parceiro":
-			button.pressed.emit()
-			equipped = true
-			break
+	for page_turn in 4:
+		for button in front.page.find_children("*", "Button", true, false):
+			if button.text != "Escolher parceiro": continue
+			var card: Node = button
+			while card != null and not card.get_script() == load("res://scripts/campaign/hud_result_plate.gd"): card = card.get_parent()
+			if card != null and card.find_children("*", "Label", true, false).any(func(label): return label.text.contains("farpim")):
+				button.pressed.emit()
+				equipped = true
+				break
+		if equipped: break
+		for button in front.page.find_children("*", "Button", true, false):
+			if button.text == "Próxima":
+				button.pressed.emit()
+				break
+		await settle()
 	check(equipped and front.session.snapshot().player.equippedPartnerId == "farpim", "team button saves equipped partner")
 	front._return_to_game()
 	await settle()
