@@ -16,6 +16,22 @@ Nas áreas delas, o objetivo do HUD vem de `side_regions.gd`.
 
 O Abismo continua exigindo um parceiro com montaria aquática (a Capiboia) para mergulhar.
 
+## Vila Campina (planicie-d)
+
+Mapa grande, 112×96 (três vezes a área dos outros), gerado por `tools/gerar-mapa-campina.py`.
+Quarta área das Planícies: desce do Vale das Pedras pelo sul ou chega pela estrada oeste, na
+viagem por Kronasta.
+
+- **Cidade no meio:** praça de pedra com o chafariz de terracota, quatro bancas de mercado,
+  ruas de terra em anel e em cruz, 20 casas em quarteirões e o Alto da Vila (terraço com a casa
+  do prefeito e a do relógio, por escada).
+- **Planície em volta:** cinco campos de capim alto (criaturas selvagens, Nv.13–15), quatro
+  hortas, o rio rebaixado com a ponte da estrada oeste, a colina do moinho grande (dois
+  patamares), o lago com a cachoeira que cai do paredão e sete sítios espalhados.
+- Seis moradores, quatro placas, três pontos de descanso e seis achados.
+- O gerador muda o tamanho dos módulos-base (`W`, `H`) antes de usar o desenho das Planícies;
+  `forest.market` liga o desenho das casas e do calçamento, como no Morro do Sol.
+
 ## Missões
 
 | Região | Buscar itens | Achar alguém |

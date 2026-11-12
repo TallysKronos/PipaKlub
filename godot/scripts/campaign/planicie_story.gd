@@ -2,7 +2,7 @@ extends RefCounted
 ## Planícies de Kronasta e Gruta do Moinho (11/11/2026). Os dados e as regras ficam em
 ## side_regions.gd (região "planicies"); este arquivo mantém os nomes usados pelos testes.
 const Regions = preload("res://scripts/campaign/side_regions.gd")
-const SCENES := ["planicie-a", "planicie-b", "planicie-c", "caverna-a", "caverna-b", "caverna-c"]
+const SCENES := ["planicie-a", "planicie-b", "planicie-c", "planicie-d", "caverna-a", "caverna-b", "caverna-c"]
 const GUARDIAN_LEVEL := 18
 const PAS := 3
 const ITEM := "pa-do-moinho"

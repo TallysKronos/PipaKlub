@@ -13,7 +13,7 @@ const Checkpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 
 const REGIONS := {
 	"planicies": {
-		"scenes": ["planicie-a", "planicie-b", "planicie-c", "caverna-a", "caverna-b", "caverna-c"],
+		"scenes": ["planicie-a", "planicie-b", "planicie-c", "planicie-d", "caverna-a", "caverna-b", "caverna-c"],
 		"opens": "lacertubo",
 		"guardian": {"flag": "grutaEstratonteVencido", "text": "No fundo da gruta, o Estratonte guarda a ilha do Lago Subterrâneo. Nv.18."},
 		"peace": "As planícies estão em paz. Explore à vontade · M para viajar por Kronasta.",

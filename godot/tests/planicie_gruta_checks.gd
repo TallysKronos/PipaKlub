@@ -1,9 +1,9 @@
 extends SceneTree
 ## Planícies de Kronasta (A–C) e Gruta do Moinho (A–C), 11/11/2026: saídas em lados
 ## diferentes, a gruta ligando as Colinas do Moinho ao vale escondido do Vale das Pedras,
-## tudo alcançável e baús que abrem.
+## tudo alcançável e baús que abrem. A Vila Campina (planicie-d, 112×96) desce do Vale das Pedras.
 const CP = preload("res://scripts/campaign/park_checkpoint.gd")
-const SCENES := ["planicie-a", "planicie-b", "planicie-c", "caverna-a", "caverna-b", "caverna-c"]
+const SCENES := ["planicie-a", "planicie-b", "planicie-c", "planicie-d", "caverna-a", "caverna-b", "caverna-c"]
 
 var failures := 0
 
@@ -52,7 +52,7 @@ func _initialize() -> void:
 	for key in links:
 		var pair: PackedStringArray = str(key).split(">")
 		check(links.has(pair[1] + ">" + pair[0]), "volta de " + pair[1] + " para " + pair[0])
-	for key in ["planicie-b>caverna-a", "caverna-a>caverna-b", "caverna-b>caverna-c", "caverna-c>planicie-c", "planicie-a>planicie-c", "planicie-b>planicie-c"]:
+	for key in ["planicie-b>caverna-a", "caverna-a>caverna-b", "caverna-b>caverna-c", "caverna-c>planicie-c", "planicie-a>planicie-c", "planicie-b>planicie-c", "planicie-c>planicie-d"]:
 		check(links.has(key), "ligação " + key)
 	print("planicie_gruta_checks: ", "OK" if failures == 0 else str(failures) + " falhas")
 	quit(1 if failures else 0)

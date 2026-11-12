@@ -39,7 +39,7 @@ static func wild_level(scene: String, roll: int) -> int:
 	if scene.begins_with("kronasta-beira-canal-"):return 12+roll%3
 	if scene.begins_with("kronasta-bambuzal-"):return 7+roll%3
 	# Planícies (Nv.10–14) e Gruta do Moinho (Nv.12–16): região lateral depois do Lacertubo.
-	if scene in ["planicie-a","planicie-b","planicie-c"]:return 10+"abc".find(scene.right(1))+roll%3
+	if scene in ["planicie-a","planicie-b","planicie-c","planicie-d"]:return 10+"abcd".find(scene.right(1))+roll%3
 	if scene in ["caverna-a","caverna-b","caverna-c"]:return 12+"abc".find(scene.right(1))+roll%3
 	# Vulcão (Nv.34–36), Serra Gelada (Nv.32–36) e Abismo (Nv.37–42): side_regions.gd.
 	if scene=="vulcao-a":return 34+roll%3

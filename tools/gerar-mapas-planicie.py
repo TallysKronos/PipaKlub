@@ -229,6 +229,9 @@ def planicie_c():
     p.arrival(38, 3)
     p.edge_exit(38, 0, "planicie-a", (38, 52), "Subir para os Campos do Vento")
     p.edge_exit(63, 40, "planicie-b", (61, 42), "Voltar às Colinas do Moinho")
+    # Sul: a estrada desce até a Vila Campina (planicie-d, tools/gerar-mapa-campina.py)
+    p.path([(46, 34), (44, 44), (44, 55)], 3, "terra", 0)
+    p.edge_exit(44, 55, "planicie-d", (65, 3), "Descer para a Vila Campina")
     # Rio rebaixado que corta o vale de norte a sul, com ponte
     p.path([(26, 2), (28, 14), (30, 26), (32, 40), (30, 54)], 3, "agua", -1)
     p.path([(33, 26), (40, 24)], 3, "terra", 0)

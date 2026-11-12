@@ -546,6 +546,12 @@
       "name": "Gruta do Moinho · Lago Subterrâneo",
       "scene": "caverna-c",
       "biome": "floresta"
+    },
+    {
+      "id": "planicie-d",
+      "name": "Planícies de Kronasta · Vila Campina",
+      "scene": "planicie-d",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -633,7 +639,8 @@
     "caverna-a": "caverna-a",
     "planicie-c": "planicie-c",
     "caverna-b": "caverna-b",
-    "caverna-c": "caverna-c"
+    "caverna-c": "caverna-c",
+    "planicie-d": "planicie-d"
   },
   "campaignReplacement": false
 }
