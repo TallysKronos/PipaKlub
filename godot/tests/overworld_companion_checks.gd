@@ -27,19 +27,27 @@ func expect_model(sprite: Sprite2D, model_id: String) -> void:
 	check(sprite.visible and sprite.texture != null and sprite.texture.resource_path.ends_with("/" + model_id + ".png"), "equipped texture " + model_id)
 	check(sprite.texture_filter == CanvasItem.TEXTURE_FILTER_NEAREST, "nearest sampling " + model_id)
 
-func expect_scale(sprite: Sprite2D, avatar: Node2D, park_ratio: float, area: String) -> void:
-	check(is_equal_approx(sprite.scale.y / avatar.scale.y, park_ratio), "same relative scale in " + area)
+## A mesma proporção em relação ao Kael em todas as telas (a v1 e a v2 têm escalas próprias).
+func expect_scale(sprite: Sprite2D, avatar: Node2D, model_id: String, area: String) -> void:
+	check(is_equal_approx(sprite.scale.y / avatar.scale.y, Follow.sprite_scale(model_id, avatar.scale.y) / avatar.scale.y), "same relative scale in " + area)
 
 func run() -> void:
 	root.size = Vector2i(1280, 720)
 	check(Follow.ground_pivots.size() >= 178, "all overworld batches in the registry")
 	for id: String in Follow.ground_pivots:
-		var sheet := Follow.overworld_texture(id)
+		var sheet := load(Follow.SHEETS_PATH.path_join(id + ".png")) as Texture2D
 		check(sheet != null and sheet.get_size() == Vector2(160, 80), "two 80x80 cells " + id)
 		var pivot: Variant = Follow.ground_pivots[id]
 		var rows: Array = pivot if pivot is Array else [pivot]
 		check(rows.size() in [1, 2] and rows.all(func(y): return int(y) in range(1, 80)), "pivot inside cell " + id)
 
+	# Folhas v2 (tools/sprites/converter-overworld.mjs): duas células quadradas, apoio dentro da célula.
+	for id: String in Follow.sheets_v2:
+		var entry: Dictionary = Follow.sheets_v2[id]
+		var sheet := load(Follow.SHEETS_V2_PATH.path_join(id + ".png")) as Texture2D
+		check(sheet != null and sheet.get_size() == Vector2(entry.cell * 2, entry.cell), "v2 two cells " + id)
+		check(entry.pivots.all(func(y): return int(y) in range(1, int(entry.cell))), "v2 pivot inside cell " + id)
+		check(Follow.overworld_texture(id) == sheet and Follow.ground_pivots.has(id), "v2 replaces an existing v1 sheet " + id)
 	var folder := ProjectSettings.globalize_path("res://../tmp/companion-qa-" + State.new_id())
 	var front := Front.new()
 	front.session._store = Store.new(folder)
@@ -55,13 +63,12 @@ func run() -> void:
 	front._show_park()
 	await settle()
 	expect_model(front.park.companion, "alvacordo")
-	check(is_equal_approx(front.park.companion.scale.y, Follow.SIZE), "park uses the reviewed companion size")
-	var park_ratio: float = front.park.companion.scale.y / front.park.avatar.scale.y
+	check(is_equal_approx(front.park.companion.scale.y, Follow.sprite_scale("alvacordo", front.park.avatar.scale.y)), "park uses the reviewed companion size")
 	for facing in ["sw", "nw", "ne", "se"]:
 		front.park.avatar.facing = facing
 		front.park._refresh_positions()
-		var pivot_y := 63.0 if facing in ["nw", "ne"] else 65.0
-		check(is_equal_approx(front.park.companion.offset.y + pivot_y, 40.0), "Alvacordo planted foot " + facing)
+		var pivot_y: float = Follow.pivots("alvacordo").y if facing in ["nw", "ne"] else Follow.pivots("alvacordo").x
+		check(is_equal_approx(front.park.companion.offset.y + pivot_y, Follow.cell_size("alvacordo").y * .5), "Alvacordo planted foot " + facing)
 
 	front._show_collection()
 	await settle()
@@ -91,7 +98,7 @@ func run() -> void:
 	for facing in ["sw", "nw", "ne", "se", "w", "e", "n", "s"]:
 		park.avatar.facing = facing
 		park._refresh_positions()
-		check(park.companion.region_rect.position.x == (80 if facing in ["nw", "ne", "n"] else 0), "pose " + facing)
+		check(park.companion.region_rect.position.x == (Follow.cell_size("farpim").x if facing in ["nw", "ne", "n"] else 0.0), "pose " + facing)
 		if facing.length() == 2:
 			check(park.companion.flip_h == facing.ends_with("e"), "mirroring " + facing)
 	Controls.install(Controls.DEFAULTS)
@@ -131,22 +138,22 @@ func run() -> void:
 		front._show_park()
 		await settle()
 		expect_model(front.park.companion, model_id)
-		expect_scale(front.park.companion, front.park.avatar, park_ratio, "Park")
+		expect_scale(front.park.companion, front.park.avatar, model_id, "Park")
 
 		check(front.session.checkpoint({"kind":"world","scene":"morro","position":[528,752]}, saved.player).status == "ok", "Morro checkpoint")
 		front._show_morro()
 		await settle()
 		expect_model(front.park.companion, model_id)
-		expect_scale(front.park.companion, front.park.avatar, park_ratio, "Morro")
+		expect_scale(front.park.companion, front.park.avatar, model_id, "Morro")
 		front.park.avatar.facing = "nw"
 		front.park._refresh()
-		check(front.park.companion.region_rect.position.x == 80, "Morro selects the rear pose")
+		check(front.park.companion.region_rect.position.x == Follow.cell_size(model_id).x, "Morro selects the rear pose")
 
 		check(front.session.checkpoint({"kind":"world","scene":"kael-home","position":[900,800]}, saved.player).status == "ok", "home checkpoint")
 		front._show_world()
 		await settle()
 		expect_model(front.room.companion, model_id)
-		expect_scale(front.room.companion, front.room.avatar, park_ratio, "home")
+		expect_scale(front.room.companion, front.room.avatar, model_id, "home")
 
 		check(front.session.checkpoint({"kind":"world","scene":"quintal","space":"bairro-inicial-v2","position":[10.5,20.5]}, saved.player).status == "ok", "city checkpoint")
 		front._show_world()
@@ -154,7 +161,7 @@ func run() -> void:
 			await process_frame
 			if not is_instance_valid(front.scene_loading): break
 		expect_model(front.park.partner, model_id)
-		expect_scale(front.park.partner, front.park.avatar, park_ratio, "city")
+		expect_scale(front.park.partner, front.park.avatar, model_id, "city")
 
 	var starter_sheets := {"basica":"carcara", "mata":"mata-verde", "azulao":"azulao"}
 	for model_id in starter_sheets:
@@ -163,7 +170,7 @@ func run() -> void:
 		front._show_park()
 		await settle()
 		expect_model(front.park.companion, starter_sheets[model_id])
-		expect_scale(front.park.companion, front.park.avatar, park_ratio, "starter " + model_id)
+		expect_scale(front.park.companion, front.park.avatar, starter_sheets[model_id], "starter " + model_id)
 	if DisplayServer.get_name() != "headless":
 		await RenderingServer.frame_post_draw
 		var shot := ProjectSettings.globalize_path("res://../tmp/overworld-azulao-in-game.png")

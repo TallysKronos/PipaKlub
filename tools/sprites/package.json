@@ -1,0 +1,8 @@
+{
+  "name": "pipaklub-sprites",
+  "private": true,
+  "type": "module",
+  "description": "Conversão das folhas de overworld dos Soulmonsters (xprite-pixelate).",
+  "scripts": { "converter": "node converter-overworld.mjs" },
+  "dependencies": { "@xprite/pixelate": "0.1.2", "pngjs": "7.0.0" }
+}

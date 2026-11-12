@@ -25,6 +25,28 @@ const COMBAT_ALIASES := {
 	"raio": "basic-raio-de-sol",
 }
 static var ground_pivots: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHEETS_PATH + ".json"))
+## Folhas v2 (tools/sprites/converter-overworld.mjs): convertidas da geração original com o
+## xprite-pixelate, já no tamanho final e na densidade de pixel do Kael (célula 112, sem o SIZE).
+## Quando uma criatura tem v2, ela vence a v1.
+const SHEETS_V2_PATH := "res://assets/campaign/overworld-companions-v2"
+static var sheets_v2: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHEETS_V2_PATH + ".json")) if FileAccess.file_exists(SHEETS_V2_PATH + ".json") else {}
+
+static func sheet_id(model_id: String) -> String:
+	return OVERWORLD_ALIASES.get(model_id, model_id)
+
+static func is_v2(model_id: String) -> bool:
+	return sheets_v2.has(sheet_id(model_id)) and OS.get_environment("KRONASTA_SPRITES_V1") != "1"
+
+static func cell_size(model_id: String) -> Vector2:
+	return Vector2.ONE * float(sheets_v2[sheet_id(model_id)].cell) if is_v2(model_id) else CELL_SIZE
+
+static func pivots(model_id: String) -> Vector2:
+	var pivot: Variant = sheets_v2[sheet_id(model_id)].pivots if is_v2(model_id) else ground_pivots[sheet_id(model_id)]
+	return Vector2(float(pivot[0]), float(pivot[1])) if pivot is Array else Vector2.ONE * float(pivot)
+
+## Escala do sprite: a v1 cresce SIZE em relação ao Kael; a v2 já vem no tamanho e usa a escala dele.
+static func sprite_scale(model_id: String, kael_scale: float) -> float:
+	return kael_scale if is_v2(model_id) else kael_scale / Avatar.OVERWORLD_SCALE * SIZE
 
 static func equipped_model(player: Dictionary) -> String:
 	var equipped_id: String = player.get("equippedPartnerId", "")
@@ -37,16 +59,16 @@ static func combat_art_id(model_id: String) -> String:
 	return COMBAT_ALIASES.get(model_id, model_id)
 
 static func overworld_texture(model_id: String) -> Texture2D:
-	var sheet_id: String = OVERWORLD_ALIASES.get(model_id, model_id)
-	if not ground_pivots.has(sheet_id): return null
-	return load(SHEETS_PATH.path_join(sheet_id + ".png")) as Texture2D
+	if is_v2(model_id): return load(SHEETS_V2_PATH.path_join(sheet_id(model_id) + ".png")) as Texture2D
+	if not ground_pivots.has(sheet_id(model_id)): return null
+	return load(SHEETS_PATH.path_join(sheet_id(model_id) + ".png")) as Texture2D
 
 static func overworld_portrait(model_id: String) -> Texture2D:
 	var sheet := overworld_texture(model_id)
 	if sheet == null: return null
 	var portrait := AtlasTexture.new()
 	portrait.atlas = sheet
-	portrait.region = Rect2(Vector2.ZERO, CELL_SIZE)
+	portrait.region = Rect2(Vector2.ZERO, cell_size(model_id))
 	portrait.filter_clip = true
 	return portrait
 
@@ -58,9 +80,9 @@ static func setup_overworld_art(sprite: Sprite2D, model_id: String, kael_scale: 
 	sprite.region_enabled = true
 	sprite.region_filter_clip_enabled = true
 	sprite.centered = true
-	var pivot: Variant = ground_pivots[OVERWORLD_ALIASES.get(model_id, model_id)]
-	var pose_pivots := Vector2(float(pivot[0]), float(pivot[1])) if pivot is Array else Vector2.ONE * float(pivot)
-	sprite.scale = Vector2.ONE * (kael_scale / Avatar.OVERWORLD_SCALE) * SIZE
+	var pose_pivots := pivots(model_id)
+	sprite.set_meta("overworld_cell", cell_size(model_id))
+	sprite.scale = Vector2.ONE * sprite_scale(model_id, kael_scale)
 	# Legibilidade: contorno de 1 texel em volta da silhueta (KRONASTA_CONTORNO=0 desliga, para comparar).
 	if OS.get_environment("KRONASTA_CONTORNO") != "0":
 		var outline := ShaderMaterial.new()
@@ -94,10 +116,11 @@ static func orient(sprite:Sprite2D,facing:String) -> void:
 	if sprite.has_meta("overworld_pivots"):
 		var rear := facing in ["nw", "n", "ne"]
 		var pivots: Vector2 = sprite.get_meta("overworld_pivots")
+		var cell: Vector2 = sprite.get_meta("overworld_cell", CELL_SIZE)
 		if facing in ["sw", "w", "nw"]: sprite.flip_h = false
 		elif facing in ["se", "e", "ne"]: sprite.flip_h = true
-		sprite.region_rect = Rect2(Vector2(CELL_SIZE.x if rear else 0.0, 0), CELL_SIZE)
-		sprite.offset = Vector2(0, CELL_SIZE.y * .5 - (pivots.y if rear else pivots.x))
+		sprite.region_rect = Rect2(Vector2(cell.x if rear else 0.0, 0), cell)
+		sprite.offset = Vector2(0, cell.y * .5 - (pivots.y if rear else pivots.x))
 		sprite.set_meta("facing", facing)
 		return
 	# Current creature sheets have a right-facing view. Keep vertical movement's
