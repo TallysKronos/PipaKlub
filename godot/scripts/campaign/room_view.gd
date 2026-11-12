@@ -251,8 +251,7 @@ func _process(delta: float) -> void:
 		companion_point=CompanionFollow.advance(companion_point,trail,minf(delta,.05),720.0,70.0,_companion_segment)
 		companion.position = project(companion_point)
 		if retalho_follower:_step_retalho_pose(companion,before,companion_point)
-		elif not CompanionFollow.update_overworld_art(companion,project(companion_point)-project(before),clock):
-			CompanionFollow.orient(companion,avatar.facing)
+		else:CompanionFollow.orient(companion,avatar.facing)
 		_update_order()
 	near = ""
 	var nearest := INF

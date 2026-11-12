@@ -119,16 +119,21 @@ func refresh(value:Dictionary) -> void:
 	for entry in player_data.get("partners",[]):
 		if entry.id==player_data.get("equippedPartnerId",""):partner=entry
 	var id:String=partner.get("modelId","")
-	if id!=_portrait_id and not id.is_empty():
+	if id!=_portrait_id:
 		_portrait_id=id
-		var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
-		var art:Dictionary=data.combat.get({"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol"}.get(id,id),{})
-		if not art.is_empty():
-			var texture:=AtlasTexture.new()
-			texture.atlas=load("res://assets/campaign/"+art.image)
-			var frame:Dictionary=art.animations.idle[0]
-			texture.region=Rect2(frame.x,frame.y,frame.w,frame.h)
-			portrait=texture
+		portrait=null
+		if not id.is_empty():
+			var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
+			var follow=preload("res://scripts/campaign/companion_follow.gd")
+			var art:Dictionary=data.combat.get(follow.combat_art_id(id),{})
+			if art.is_empty():
+				portrait=follow.overworld_portrait(id)
+			else:
+				var texture:=AtlasTexture.new()
+				texture.atlas=load("res://assets/campaign/"+art.image)
+				var frame:Dictionary=art.animations.idle[0]
+				texture.region=Rect2(frame.x,frame.y,frame.w,frame.h)
+				portrait=texture
 	partner_panel.queue_redraw()
 func reveal_objective() -> void:
 	objective_age=0

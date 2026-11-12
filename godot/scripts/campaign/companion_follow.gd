@@ -1,28 +1,64 @@
 extends RefCounted
-const RASTRO := "res://assets/campaign/rastro-dos-ventos-v1/overworld.png"
-const Avatar = preload("res://scripts/kael_video_avatar.gd")
 
-static func setup_overworld_art(sprite: Sprite2D, model_id: String, scale_factor := 1.0) -> bool:
-	if model_id != "rastro-dos-ventos" or sprite == null: return false
-	var texture := load(RASTRO) as Texture2D
-	if texture == null: return false
-	sprite.texture = texture
+const Avatar = preload("res://scripts/avatar.gd")
+
+const SHEETS_PATH := "res://assets/campaign/overworld-companions"
+const CELL_SIZE := Vector2(80, 80)
+const OVERWORLD_ALIASES := {
+	"basica": "carcara",
+	"basic-carcara": "carcara",
+	"mata": "mata-verde",
+	"basic-mata-verde": "mata-verde",
+	"basic-azulao": "azulao",
+	"mormaco-normal": "mormaco",
+	"platyx-draft": "platyx",
+}
+const COMBAT_ALIASES := {
+	"basica": "basic-carcara",
+	"mata": "basic-mata-verde",
+	"azulao": "basic-azulao",
+	"raio": "basic-raio-de-sol",
+}
+static var ground_pivots: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHEETS_PATH + ".json"))
+
+static func equipped_model(player: Dictionary) -> String:
+	var equipped_id: String = player.get("equippedPartnerId", "")
+	if equipped_id.is_empty(): return ""
+	for partner: Dictionary in player.get("partners", []):
+		if partner.get("id") == equipped_id: return partner.get("modelId", "")
+	return ""
+
+static func combat_art_id(model_id: String) -> String:
+	return COMBAT_ALIASES.get(model_id, model_id)
+
+static func overworld_texture(model_id: String) -> Texture2D:
+	var sheet_id: String = OVERWORLD_ALIASES.get(model_id, model_id)
+	if not ground_pivots.has(sheet_id): return null
+	return load(SHEETS_PATH.path_join(sheet_id + ".png")) as Texture2D
+
+static func overworld_portrait(model_id: String) -> Texture2D:
+	var sheet := overworld_texture(model_id)
+	if sheet == null: return null
+	var portrait := AtlasTexture.new()
+	portrait.atlas = sheet
+	portrait.region = Rect2(Vector2.ZERO, CELL_SIZE)
+	portrait.filter_clip = true
+	return portrait
+
+static func setup_overworld_art(sprite: Sprite2D, model_id: String, kael_scale: float) -> bool:
+	var sheet := overworld_texture(model_id)
+	if sheet == null: return false
+	sprite.texture = sheet
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.region_enabled = true
-	sprite.region_rect = Rect2(0, 0, 64, 64)
-	sprite.offset = Vector2(0, -28)
-	sprite.scale = Vector2.ONE * scale_factor
-	return true
-
-static func update_overworld_art(sprite: Sprite2D, movement: Vector2, clock: float) -> bool:
-	if sprite.texture == null or sprite.texture.resource_path != RASTRO: return false
-	var frame := floori(clock * 2.0) % 2
-	if movement.length_squared() > .01:
-		var travel := fposmod(float(sprite.get_meta("stride", 0.0)) + movement.length(), 24.0)
-		sprite.set_meta("stride", travel)
-		frame = 2 + floori(travel / 12.0)
-		orient(sprite, Avatar.facing_for(movement, str(sprite.get_meta("facing", "se"))))
-	sprite.region_rect.position.x = frame * 64
+	sprite.region_filter_clip_enabled = true
+	sprite.centered = true
+	var pivot: Variant = ground_pivots[OVERWORLD_ALIASES.get(model_id, model_id)]
+	var pose_pivots := Vector2(float(pivot[0]), float(pivot[1])) if pivot is Array else Vector2.ONE * float(pivot)
+	sprite.scale = Vector2.ONE * (kael_scale / Avatar.OVERWORLD_SCALE)
+	sprite.set_meta("overworld_pivots", pose_pivots)
+	sprite.flip_h = true
+	orient(sprite, "se")
 	return true
 
 ## Consume accepted footsteps, including multiple short steps in one tick.
@@ -43,6 +79,15 @@ static func advance(point:Vector2,trail:Array[Vector2],delta:float,speed:float,g
 	return point
 
 static func orient(sprite:Sprite2D,facing:String) -> void:
+	if sprite.has_meta("overworld_pivots"):
+		var rear := facing in ["nw", "n", "ne"]
+		var pivots: Vector2 = sprite.get_meta("overworld_pivots")
+		if facing in ["sw", "w", "nw"]: sprite.flip_h = false
+		elif facing in ["se", "e", "ne"]: sprite.flip_h = true
+		sprite.region_rect = Rect2(Vector2(CELL_SIZE.x if rear else 0.0, 0), CELL_SIZE)
+		sprite.offset = Vector2(0, CELL_SIZE.y * .5 - (pivots.y if rear else pivots.x))
+		sprite.set_meta("facing", facing)
+		return
 	# Current creature sheets have a right-facing view. Keep vertical movement's
 	# last horizontal heading rather than rotate the entire creature or its pivot.
 	if facing in ["sw","w","nw"]:sprite.flip_h=true
