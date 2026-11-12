@@ -55,7 +55,7 @@ func run() -> void:
 	front._show_park()
 	await settle()
 	expect_model(front.park.companion, "alvacordo")
-	check(is_equal_approx(front.park.companion.scale.y, 1.0), "park keeps the reviewed sprite size")
+	check(is_equal_approx(front.park.companion.scale.y, Follow.SIZE), "park uses the reviewed companion size")
 	var park_ratio: float = front.park.companion.scale.y / front.park.avatar.scale.y
 	for facing in ["sw", "nw", "ne", "se"]:
 		front.park.avatar.facing = facing
@@ -112,7 +112,7 @@ func run() -> void:
 		max_gap = maxf(max_gap, park.player.distance_to(park.follower))
 		if park.path.is_empty(): break
 	check(park.player.distance_to(start) > 2 and park.follower.distance_to(follower_start) > 1, "equipped creature follows player across map")
-	check(max_gap < 1.1, "equipped creature keeps up in sprint")
+	check(max_gap < 1.35, "equipped creature keeps up in sprint")
 	expect_model(park.companion, "farpim")
 
 	check(front.exploration.equip("miralis").status == "ok", "second equip persisted")

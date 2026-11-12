@@ -20,7 +20,7 @@ var campaign_mode := false
 var player := Vector2.ZERO
 var follower := Vector2.ZERO
 var follower_trail: Array[Vector2] = []
-var follower_gap := .8
+var follower_gap := 1.0 # companheiros 25% maiores desde 12/11/2026
 var path := PackedVector2Array()
 var clock := 0.0
 var actors: Node2D

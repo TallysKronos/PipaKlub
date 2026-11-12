@@ -81,7 +81,8 @@ func _ready() -> void:
 	interface.hide()
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
-	for offset in [Vector2(-.56,.56), Vector2(.56,-.56), Vector2(-.8,0), Vector2(.8,0), Vector2(0,-.8), Vector2(0,.8), Vector2(-.56,-.56), Vector2(.56,.56)]:
+	# Companheiros 25% maiores (companion_follow.gd, SIZE): começam um pouco mais longe do Kael.
+	for offset in [Vector2(-.78,.78), Vector2(.78,-.78), Vector2(-1.1,0), Vector2(1.1,0), Vector2(0,-1.1), Vector2(0,1.1), Vector2(-.78,-.78), Vector2(.78,.78)]:
 		var candidate: Vector2 = player + offset
 		if model.clear_segment(candidate, player):
 			follower = candidate

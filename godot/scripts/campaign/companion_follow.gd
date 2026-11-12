@@ -4,6 +4,11 @@ const Avatar = preload("res://scripts/avatar.gd")
 
 const SHEETS_PATH := "res://assets/campaign/overworld-companions"
 const CELL_SIZE := Vector2(80, 80)
+## Tamanho dos companheiros em relação ao Kael (12/11/2026): as folhas foram desenhadas com
+## bebê 31 px, criança 42, jovem 54 e adulto 63 (Kael: 67 px na tela). Com 1,25 o jovem fica
+## do tamanho do Kael, o adulto um pouco maior, a criança menor e o bebê não tão pequeno.
+const SIZE := 1.25
+const OUTLINE = preload("res://shaders/overworld/companion_outline.gdshader")
 const OVERWORLD_ALIASES := {
 	"basica": "carcara",
 	"basic-carcara": "carcara",
@@ -55,7 +60,14 @@ static func setup_overworld_art(sprite: Sprite2D, model_id: String, kael_scale: 
 	sprite.centered = true
 	var pivot: Variant = ground_pivots[OVERWORLD_ALIASES.get(model_id, model_id)]
 	var pose_pivots := Vector2(float(pivot[0]), float(pivot[1])) if pivot is Array else Vector2.ONE * float(pivot)
-	sprite.scale = Vector2.ONE * (kael_scale / Avatar.OVERWORLD_SCALE)
+	sprite.scale = Vector2.ONE * (kael_scale / Avatar.OVERWORLD_SCALE) * SIZE
+	# Legibilidade: contorno de 1 texel em volta da silhueta (KRONASTA_CONTORNO=0 desliga, para comparar).
+	if OS.get_environment("KRONASTA_CONTORNO") != "0":
+		var outline := ShaderMaterial.new()
+		outline.shader = OUTLINE
+		sprite.material = outline
+	else:
+		sprite.material = null
 	sprite.set_meta("overworld_pivots", pose_pivots)
 	sprite.flip_h = true
 	orient(sprite, "se")
