@@ -26,6 +26,11 @@ const WALKS := {
 	"bosque": ["serra", "kronasta-bosque-a", Vector2(-1, -1), []],
 	"serra-cume": ["serra", "kronasta-montanha-c", Vector2(-1, -1), []],
 }
+## Motivo recorrente (trailer v2): o Kael anda para a direita da tela, sempre no mesmo
+## enquadramento, com um companheiro diferente em cada bioma.
+##   -- --shot=motivo --scene=planicie-d --partner=farpim [--at=40,53] [--secs=6]
+## Sem --at, procura o trecho reto mais longo do mapa no sentido da direita da tela (+u, -v).
+const MOTIF_DIRECTION := Vector2(1, -1)
 ## Duel shots: scene (sets the arena), rival model, level, boss, name, encounter kind (the
 ## save validation accepts it: wild species and level band of the region, or the Estádio
 ## bracket). "titulo" records the title screen with its logo.
@@ -67,11 +72,31 @@ func setup() -> void:
 	front.session._store = Store.new("user://trailer-" + State.new_id())
 	front.session.start("slot-1")
 	var jump: String = WALKS[shot][0] if WALKS.has(shot) else "final"
+	if shot == "motivo": jump = arg("jump", "final")
 	var result: Dictionary = QA.install(front.session, jump)
 	if result.status != "ok": printerr("salto QA recusado: ", result); quit(1); return
 	var player: Dictionary = front.session.snapshot().player
 	player.name = "Kael"
-	if WALKS.has(shot):
+	if shot == "motivo":
+		var scene := arg("scene", "planicie-d")
+		var map = CP.model_for(scene)
+		var at := Vector2.INF
+		if arg("at", "") != "":
+			var parts := arg("at", "").split(",")
+			at = nearest_walkable(map, Vector2(float(parts[0]) + .5, float(parts[1]) + .5))
+		var route := longest_run(map, at)
+		at = route[0]
+		waypoints = [route[1]]
+		var model_id := arg("partner", "rabbito")
+		var partner: Dictionary = player.partners[0].duplicate(true)
+		partner.id = "trailer-" + model_id
+		partner.modelId = model_id
+		partner.personalName = model_id
+		player.partners.append(partner)
+		player.equippedPartnerId = partner.id
+		result = front.session.checkpoint(CP.make(scene, at, CP.SPACE), player)
+		print("MOTIVO ", scene, " ", model_id, " de ", at, " até ", route[1])
+	elif WALKS.has(shot):
 		var spec: Array = WALKS[shot]
 		# Start inside the map (the spawn sits on the edge, which shows the void around
 		# the map) and walk "up" the map, toward the next part.
@@ -97,11 +122,35 @@ func setup() -> void:
 	for i in 20: await process_frame
 	print("READY frame=", frames)
 
+## Trecho reto e andável para a direita da tela: [início, fim]. Com start finito, parte dele.
+func longest_run(map, start: Vector2) -> Array:
+	var best := [start, start]
+	var best_len := -1
+	var starts: Array = [start] if start.is_finite() else []
+	if starts.is_empty():
+		for v in range(4, int(map.data.h) - 4, 2):
+			for u in range(4, int(map.data.w) - 4, 2):
+				var p := Vector2(u + .5, v + .5)
+				if map.point_walkable(p): starts.append(p)
+	for p: Vector2 in starts:
+		var k := 0
+		while k < 12 and map.point_walkable(p + MOTIF_DIRECTION * (k + 1)) and absf(map.height_at(p + MOTIF_DIRECTION * (k + 1)) - map.height_at(p)) < .25:
+			k += 1
+		# Prefere trechos longe da borda (a borda mostra o vazio em volta do mapa).
+		var end := p + MOTIF_DIRECTION * k
+		var margin := mini(mini(mini(int(p.x), int(p.y)), mini(int(map.data.w - p.x), int(map.data.h - p.y))), mini(mini(int(end.x), int(end.y)), mini(int(map.data.w - end.x), int(map.data.h - end.y))))
+		if margin < 6 and start.is_finite() == false: continue
+		var score := k * 10 + mini(margin, 10)
+		if score > best_len:
+			best_len = score
+			best = [p, p + MOTIF_DIRECTION * k]
+	return best
+
 func nearest_walkable(map, target: Vector2) -> Vector2:
 	var best := target
 	var gap := INF
-	for v in range(0, 40):
-		for u in range(0, 48):
+	for v in range(0, int(map.data.h)):
+		for u in range(0, int(map.data.w)):
 			var p := Vector2(u + .5, v + .5)
 			if map.point_walkable(p) and p.distance_to(target) < gap:
 				gap = p.distance_to(target); best = p
@@ -130,6 +179,10 @@ func _process(_delta: float) -> bool:
 	# Clean frames for the trailer: exploration without the HUD panels.
 	if front.get("park") != null and is_instance_valid(front.park) and is_instance_valid(front.park.get("exploration_hud")):
 		front.park.exploration_hud.hide()
+	# Motivo: quadro limpo (sem minimapa nem camadas de interface) e câmera perto, como um painel.
+	if shot == "motivo" and front.get("park") != null and is_instance_valid(front.park):
+		for layer in front.park.find_children("*", "CanvasLayer", true, false): layer.visible = false
+		if front.park.get("camera") != null: front.park.camera.zoom = Vector2.ONE * float(arg("zoom", "1.8"))
 	if duel:
 		var t := tick / 30.0
 		axis(JOY_AXIS_LEFT_X, sin(t * .9) * .85)
