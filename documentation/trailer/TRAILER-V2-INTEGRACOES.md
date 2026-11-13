@@ -30,6 +30,11 @@ verificadas. Os commits são de assets: não prometem aplicar materiais aos mapa
 validar navegação/colisão no Godot. A montagem dos materiais nos planos da gravação precisa
 ser conferida depois de integrar a branch.
 
+Os três validadores foram executados novamente nesta preparação, na worktree
+`pipa-club-kits-tiles-v1` em `98ac9b6f`, sem alterações locais rastreadas: todos
+passaram (23 texturas e 17 peças). Não foi gerada uma nova gravação ou validação
+de navegação no mapa; essa conferência continua pertencendo à integração.
+
 ## Responsabilidade de integração
 
 As duas pontas continuam fora de `claude/unificacao` na data desta conferência.

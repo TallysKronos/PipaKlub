@@ -5,9 +5,8 @@ existente `opening-theme-v1/vento-aventura.ogg`**, não uma composição inédit
 Os cortes e acentos estão em `marcos.json`. A introdução é a mixagem existente
 atenuada, sem alegação de isolamento de um único instrumento.
 
-A música fica em silêncio entre 2:02 e 2:12 para deixar o rugido sozinho. O rugido
-é um arquivo separado: `../../sfx-v1/creature/eremor_rugido_01.wav` (relativo à
-pasta `music` não; usar o caminho de recurso abaixo).
+A música fica em silêncio entre 2:02 e 2:12 para deixar o rugido sozinho.
+O rugido é separado para o editor controlar sua entrada e volume.
 
 Recurso do efeito: `res://assets/audio/sfx-v1/creature/eremor_rugido_01.wav`.
 É síntese procedural determinística de harmônicos vocais, respiração filtrada e

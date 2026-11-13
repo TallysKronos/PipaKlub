@@ -83,3 +83,7 @@ eu faço uma edição de 2:20 de `vento-aventura.ogg`.
 Um commit por item, com título "Trailer v2: <item>", e uma linha no fim deste arquivo dizendo o
 que entrou. Assim que os itens **A** estiverem no repositório, eu gravo os planos e monto a
 primeira versão; os itens **B** e **C** entram na segunda passada.
+
+## Entrega do Codex · 13/11/2026
+
+Itens 1–8 preparados na branch `codex/trailer-v2`, com um commit por item e fechamento de QA. Guia: [ENTREGA-CODEX.md](ENTREGA-CODEX.md); prévia: `art/trailer-v2/index.html`; manifesto: [PACOTE-V2.json](PACOTE-V2.json). As duas branches-fonte continuam para o merge pelo Claude, conforme combinado. Nenhum vídeo foi gravado. Lendário público somente em silhueta e rugido, sem nome.

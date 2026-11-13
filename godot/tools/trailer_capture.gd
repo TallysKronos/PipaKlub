@@ -2,7 +2,8 @@ extends SceneTree
 ## Trailer footage: one shot per run, recorded by Godot's Movie Maker at a fixed frame rate.
 ##   godot --path godot --resolution 1920x1080 --fixed-fps 30 --write-movie out.avi \
 ##     -s tools/trailer_capture.gd -- --shot=porto-quebra-mar --secs=8
-## Isolated in-memory save (never written to a slot). Walking shots follow waypoints on
+## Isolated temporary save, separate from player slots; --storage overrides its directory.
+## Walking shots follow waypoints on
 ## the map's own path; duel shots inject simulated controller input, like
 ## tools/battle_round_capture.gd. Visual material only, not a gameplay test.
 const Front = preload("res://scripts/campaign/front_end.gd")
@@ -69,8 +70,13 @@ func setup() -> void:
 		return
 	# The title screen opens a few frames after start; loading before it cancels the load.
 	for i in 30: await process_frame
-	front.session._store = Store.new("user://trailer-" + State.new_id())
-	front.session.start("slot-1")
+	# Optional writable QA directory keeps smoke tests out of the player's saves.
+	front.session._store = Store.new(arg("storage", "user://trailer") + "-" + State.new_id())
+	var started: Dictionary = front.session.start("slot-1")
+	if started.status != "ok":
+		printerr("armazenamento do trailer recusado: ", started)
+		quit(1)
+		return
 	var jump: String = WALKS[shot][0] if WALKS.has(shot) else "final"
 	if shot == "motivo": jump = arg("jump", "final")
 	var result: Dictionary = QA.install(front.session, jump)

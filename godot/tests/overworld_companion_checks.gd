@@ -47,7 +47,10 @@ func run() -> void:
 		var sheet := load(Follow.SHEETS_V2_PATH.path_join(id + ".png")) as Texture2D
 		check(sheet != null and sheet.get_size() == Vector2(entry.cell * 2, entry.cell), "v2 two cells " + id)
 		check(entry.pivots.all(func(y): return int(y) in range(1, int(entry.cell))), "v2 pivot inside cell " + id)
-		check(Follow.overworld_texture(id) == sheet and Follow.ground_pivots.has(id), "v2 replaces an existing v1 sheet " + id)
+		check(Follow.overworld_texture(id) == sheet, "v2 texture selected " + id)
+		# Regional creatures can debut directly in v2, without a legacy 80px sheet.
+		var content: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
+		check(Follow.ground_pivots.has(id) or content.combat.has(id), "v2 creature registered " + id)
 	var folder := ProjectSettings.globalize_path("res://../tmp/companion-qa-" + State.new_id())
 	var front := Front.new()
 	front.session._store = Store.new(folder)
