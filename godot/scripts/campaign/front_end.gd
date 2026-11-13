@@ -1478,6 +1478,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu:slots":
 		_menu();get_viewport().set_input_as_handled();return
 	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
+		if _evolution_running:
+			get_viewport().set_input_as_handled()
+			return
 		if last_scene_key=="page:RECOMPENSAS RESERVADAS":_defer_pending_rewards()
 		elif last_scene_key=="page:ABRIR ESPAÇO":_show_pending_rewards()
 		elif last_scene_key=="page:CARTEIRA DE PIPEIRO": _close_identity()
@@ -2307,11 +2310,9 @@ func _show_collection() -> void:
 		var id: String = partner.id
 		# Evolução: disponível pelo nível; o jogador confirma e escolhe o ramo.
 		var Evo = preload("res://scripts/campaign/evolution.gd")
-		if Evo.can_evolve(partner):
+		if not Evo.next_forms(partner.modelId).is_empty():
 			var evolve := _button("Evoluir",details,func():_show_evolution(id))
 			evolve.name="Evolve"
-		elif Evo.next_level(partner.modelId) > 0:
-			_label("Evolui no Nv. %d" % Evo.next_level(partner.modelId), details, 15).theme_type_variation="RecorteMutedText"
 		var care := _button("Cuidar",details,func():_show_partner_care(id))
 		Hud.secondary_button(care)
 		care.disabled = session.snapshot().checkpoint.get("kind","") != "world"
@@ -2399,14 +2400,14 @@ func _show_evolution(partner_id: String) -> void:
 	var partner: Dictionary = {}
 	for entry in player.partners:
 		if entry.id == partner_id: partner = entry
-	if partner.is_empty() or not Evo.can_evolve(partner):
+	if partner.is_empty() or Evo.next_forms(partner.modelId).is_empty():
 		_show_collection()
 		return
 	sound.play_event("inventory.inspect")
 	var name: String = partner.get("personalName", Evo.display_name(partner.modelId, partner.modelId))
 	_simple_page("EVOLUÇÃO", true)
-	var options: Array = Evo.options(partner)
-	_label("%s está pronto para evoluir." % name if options.size() == 1 else "%s está pronto para evoluir. Escolha o caminho: a escolha é definitiva." % name, page, 20)
+	var options: Array = Evo.next_forms(partner.modelId)
+	_label("Confira os caminhos de evolução de %s." % name, page, 20)
 	_label("Nível, experiência e condição continuam os mesmos. A nova forma ganha força nos atributos de batalha.", page, 16).theme_type_variation = "RecorteMutedText"
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 18)
@@ -2437,41 +2438,92 @@ func _show_evolution(partner_id: String) -> void:
 
 func _confirm_evolution(partner_id: String, form_id: String) -> void:
 	var Evo = preload("res://scripts/campaign/evolution.gd")
-	var form_name := Evo.display_name(form_id, form_id)
-	var dialog := _confirmation("Evoluir", "Evoluir para %s? Não é possível voltar à forma anterior.\n\nEsta ação grava o progresso da campanha." % form_name, "Evoluir")
-	dialog.confirmed.connect(func(): _execute_evolution(partner_id, form_id))
-	dialog.confirmed.connect(dialog.queue_free)
-	dialog.canceled.connect(dialog.queue_free)
-	dialog.popup_centered()
+	var player: Dictionary = session.snapshot().player
+	var partner: Dictionary = {}
+	for entry in player.partners:
+		if entry.id == partner_id: partner = entry
+	if partner.is_empty() or form_id not in Evo.next_forms(partner.modelId): return
+	_simple_page("EVOLUIR?", true)
+	_label("%s  →  %s" % [partner.personalName, Evo.display_name(form_id)], page, 26)
+	_evolution_pair(_partner_portrait(partner.modelId), _partner_portrait(form_id), true)
+	var eligible := true
+	for row: Dictionary in Evo.requirements(player, partner, form_id):
+		_label(("✓  " if row.met else "○  ") + row.text, page, 17)
+		eligible = eligible and row.met
+	var actions := HBoxContainer.new()
+	actions.add_theme_constant_override("separation", 24)
+	page.add_child(actions)
+	var confirm := _button("Evoluir", actions, func(): _execute_evolution(partner_id, form_id))
+	confirm.disabled = not eligible
+	var cancel := _button("Cancelar", actions, func(): _show_evolution(partner_id))
+	Hud.secondary_button(cancel)
+	Hud.focus_later(confirm if eligible else cancel)
+
+func _evolution_pair(before: Texture2D, after: Texture2D, silhouette: bool = false) -> void:
+	var row := HBoxContainer.new()
+	row.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	page.add_child(row)
+	for index in 2:
+		var art := TextureRect.new()
+		art.texture = before if index == 0 else after
+		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		art.custom_minimum_size = Vector2(140, 150)
+		art.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		art.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		if silhouette and index == 1:
+			var material := ShaderMaterial.new()
+			material.shader = preload("res://shaders/evolution_silhouette.gdshader")
+			art.material = material
+		row.add_child(art)
+
+var _evolution_running := false
 
 func _execute_evolution(partner_id: String, form_id: String) -> void:
+	if _evolution_running: return
+	_evolution_running = true
 	var Evo = preload("res://scripts/campaign/evolution.gd")
 	var saved: Dictionary = session.snapshot()
-	var result: Dictionary = Evo.evolve(saved.player, partner_id, form_id)
+	var result: Dictionary = Evo.evolve(saved.player.duplicate(true), partner_id, form_id)
 	if result.status != "ok":
-		_notice("A evolução não está disponível agora.")
+		_evolution_running = false
+		_notice("Confira os requisitos da evolução.")
 		return
 	var stored: Dictionary = session.commit_operation("evolve-" + partner_id + "-" + form_id, saved.checkpoint, result.player)
-	if not _result(stored): return
-	sound.play_event("workshop.birth")
-	_simple_page("EVOLUÇÃO", true)
-	var art := TextureRect.new()
-	art.texture = _partner_portrait(form_id)
-	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	art.custom_minimum_size = Vector2(320, 320)
-	art.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	page.add_child(art)
-	if not preferences.reduced_motion:
-		art.pivot_offset = Vector2(160, 160)
-		art.scale = Vector2.ONE * .6
-		art.modulate.a = 0
-		var tween := art.create_tween().set_parallel()
-		tween.tween_property(art, "scale", Vector2.ONE, .55).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tween.tween_property(art, "modulate:a", 1.0, .7)
-	_label("%s evoluiu para %s!" % [Evo.display_name(result.from, "Seu parceiro"), Evo.display_name(form_id, form_id)], page, 28)
-	var back := _button("Voltar à equipe", page, _show_collection)
+	if not _result(stored):
+		_evolution_running = false
+		return
+	if preferences.reduced_motion:
+		_show_evolution_result(result)
+		return
+	_simple_page("SANTUÁRIO DA LINHA DA ALMA", true)
+	var ritual := preload("res://scripts/campaign/evolution_ritual.gd").new()
+	ritual.before = _partner_portrait(result.from)
+	ritual.after = _partner_portrait(result.to)
+	ritual.target_form = result.to
+	ritual.sound = sound
+	ritual.finished.connect(func(): _show_evolution_result(result), CONNECT_ONE_SHOT)
+	page.add_child(ritual)
+	var skip := _button("Pular animação", page, ritual.skip)
+	Hud.focus_later(skip)
+
+func _show_evolution_result(result: Dictionary) -> void:
+	_evolution_running = false
+	var Evo = preload("res://scripts/campaign/evolution.gd")
+	_simple_page("EVOLUÇÃO CONCLUÍDA!", true)
+	_evolution_pair(_partner_portrait(result.from), _partner_portrait(result.to))
+	_label("%s  →  %s" % [Evo.display_name(result.from), Evo.display_name(result.to)], page, 25)
+	var model = preload("res://scripts/campaign/encounter_model.gd")
+	var level := int(model.level_for_xp(result.partner.xp))
+	var craft := float(result.partner.get("craftBonus", 0))
+	var previous: Dictionary = model.stats(level, craft + Evo.bonus(result.from))
+	var current: Dictionary = model.stats(level, craft + Evo.bonus(result.to))
+	_label("Linha %+.1f  ·  Defesa %+.2f  ·  Energia %+.1f" % [current.line-previous.line, current.defense-previous.defense, current.energy-previous.energy], page, 17)
+	if Evo.signature(result.to) != Evo.signature(result.from):
+		_label("Especial desbloqueado · " + Evo.signature(result.to), page, 17)
+	var back := _button("Continuar", page, _show_collection)
 	Hud.focus_later(back)
+
 
 func _confirm_bank_transfer(id: String, direction: String, name: String) -> void:
 	var copy := "Guardar %s no depósito global deste perfil?" % name if direction == "deposit" else "Trazer %s para esta campanha?" % name

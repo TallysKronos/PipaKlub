@@ -44,10 +44,15 @@ func run() -> void:
 	check(Evo.options(partner("doberman-c", 32)) == ["dobracula"], "Dóber → Dobrácula")
 
 	# Evoluir: troca a forma, mantém id/XP/condição, renomeia o nome da espécie.
-	var player := {"partners": [partner("rabbito", 33), partner("basica", 17, "Faísca")], "equippedPartnerId": "p-rabbito", "tamerXp": 0}
+	var player := {"partners": [partner("rabbito", 33), partner("basica", 17, "Faísca")], "equippedPartnerId": "p-rabbito", "tamerXp": 0, "inventory": { "papel-seda": 2 }}
 	var refused := Evo.evolve(player.duplicate(true), "p-rabbito", "mestre-dos-fios")
 	check(refused.status == "not_ready", "não pula estágio (Rabbito → adulto direto)")
+	var empty := player.duplicate(true)
+	empty.inventory.clear()
+	check(Evo.evolve(empty, "p-rabbito", "rastro-dos-ventos").status == "missing_requirements", "falta de papel bloqueia")
 	var step := Evo.evolve(player, "p-rabbito", "rastro-dos-ventos")
+	check(player.inventory.get("papel-seda") == 1, "consumo único")
+	check(Evo.evolve(player, "p-rabbito", "rastro-dos-ventos").status == "not_ready" and player.inventory.get("papel-seda") == 1, "repetição não consome")
 	check(step.status == "ok", "Rabbito evolui")
 	var rabbito: Dictionary = player.partners[0]
 	check(rabbito.modelId == "rastro-dos-ventos" and rabbito.id == "p-rabbito" and rabbito.xp == Levels.xp_for_level(33), "forma nova, mesmo id e XP")
@@ -83,5 +88,49 @@ func run() -> void:
 	var stored: Dictionary = session.commit_operation("evolve-test", saved.checkpoint, done.player)
 	check(stored.status == "ok", "save aceita a evolução: " + str(stored.get("status")))
 	check(session.snapshot().player.partners[0].modelId == "folhante", "forma gravada")
+	var app: Control = load("res://tests/fixtures/park_frontend_fixture.gd").new()
+	app.session._store = Store.new("user://evolution-ui-" + State.new_id())
+	root.add_child(app)
+	check(app.session.start("slot-1").status == "ok", "sessão isolada da interface")
+	var ui_save: Dictionary = app.session.snapshot()
+	ui_save.player.partners = [partner("rabbito", 16)]
+	ui_save.player.equippedPartnerId = "p-rabbito"
+	ui_save.player.inventory["papel-seda"] = 2
+	check(app.session.checkpoint(ui_save.checkpoint, ui_save.player).status == "ok", "preparação da interface")
+	app._confirm_evolution("p-rabbito", "rastro-dos-ventos")
+	await capture("01-confirmacao")
+	check(app.session.snapshot().player.inventory["papel-seda"] == 2, "abrir confirmação não consome")
+	app._show_evolution("p-rabbito")
+	check(app.session.snapshot().player.partners[0].modelId == "rabbito", "voltar antes de confirmar não evolui")
+	app.preferences.reduced_motion = false
+	app._execute_evolution("p-rabbito", "rastro-dos-ventos")
+	var ritual: Control
+	for child in app.page.get_children():
+		if child.has_method("skip"): ritual = child
+	check(is_instance_valid(ritual), "ritual abriu após gravar")
+	if is_instance_valid(ritual):
+		for viewport_size in [Vector2i(960, 540), Vector2i(1920, 1080)]:
+			root.size = viewport_size
+			await process_frame
+			check(ritual.size.x > 0 and ritual.size.y > 0, "ritual cabe em " + str(viewport_size))
+		ritual.elapsed = 6.8
+		await capture("02-ritual")
+		ritual.elapsed = 8.5
+		await process_frame
+		check(ritual.creature.texture is AtlasTexture, "revelação usa o spritesheet")
+		await capture("04-revelacao")
+		ritual.skip()
+	check(app.last_scene_key == "page:EVOLUÇÃO CONCLUÍDA!", "pular mostra o resultado")
+	check(app.session.snapshot().player.partners[0].modelId == "rastro-dos-ventos" and app.session.snapshot().player.inventory["papel-seda"] == 1, "resultado após pular preserva evolução e custo")
+	await capture("03-resultado")
+	app.queue_free()
+	await process_frame
 	print("evolution_checks: ", "OK" if failures == 0 else str(failures) + " falhas")
 	quit(1 if failures else 0)
+
+func capture(name: String) -> void:
+	var folder := OS.get_environment("EVOLUTION_CAPTURES")
+	if folder.is_empty() or DisplayServer.get_name() == "headless": return
+	await process_frame
+	await RenderingServer.frame_post_draw
+	check(root.get_texture().get_image().save_png(folder.path_join(name + ".png")) == OK, "captura " + name)

@@ -155,7 +155,7 @@ func _ready() -> void:
 	resized.connect(_layout_actions)
 	bottom.add_child(command_row)
 	var entries := [["Espaço", "Cortar", "attack", "attackCooldown", 12], ["Q", "Habilidade", "energy", "skillCooldown", 25], ["Shift", "Esquiva", "dodge", "dodgeCooldown", 18], ["R", "Puxão", "puxao", "lineCooldown", 28], ["G", "Guarda", "line", "guardCooldown", 0]]
-	if model.model_id in ["rabbito","rai"]: entries.append(["F", "Especial", "team", "signatureCooldown", 40])
+	if not preload("res://scripts/campaign/evolution.gd").signature(model.model_id).is_empty(): entries.append(["F", "Especial", "team", "signatureCooldown", 40])
 	for entry in entries:
 		var command := VBoxContainer.new()
 		command.add_theme_constant_override("separation", 2)
@@ -352,7 +352,7 @@ func _physics_process(delta: float) -> void:
 	if not paused and not blocked and model.outcome.is_empty():
 		var previous_form:String=model.q.get("mormacoForm","")
 		var direction := Controls.direction()
-		model.tick(delta, {"x": direction.x, "y": direction.y, "cut": _action_held("cut"), "skill": _action_held("skill"), "dodge": _action_held("dodge"), "line": _action_held("line"), "guard": _action_held("guard"), "signature": _action_held("signature")})
+		model.tick(delta, {"x": direction.x, "y": direction.y, "cut": _action_held("cut"), "skill": _action_held("skill"), "dodge": _action_held("dodge"), "line": _action_held("line"), "guard": _action_held("guard"), "signature": _action_held("signature"), "reel": Controls.reel_axis()})
 		pointer_tapped.clear()
 		save_clock += delta
 		if previous_form!=model.q.get("mormacoForm","") or save_clock>=5 or not model.outcome.is_empty():
@@ -384,7 +384,8 @@ func _physics_process(delta: float) -> void:
 	resume_button.visible = model.outcome.is_empty() or blocked
 	resume_button.text = "Tentar salvar novamente" if blocked else "Retomar" if paused else "Pausar"
 	actions.visible = model.outcome.is_empty() and paused
-	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: Pulo do Elo" % Controls.prompt("signature") if model.model_id == "rabbito" else " · %s: Especial" % Controls.prompt("signature") if model.model_id=="rai" else "")
+	var signature := preload("res://scripts/campaign/evolution.gd").signature(model.model_id)
+	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: %s" % [Controls.prompt("signature"), signature] if not signature.is_empty() else "")
 	if paused: controls.text = "Jogo pausado. " + ACTION_COPY[selected_action] if not blocked else "Não foi possível salvar. Tente novamente antes de continuar."
 	elif model.intro > 0: controls.text = str(model.q.get("name","Lacertubo")) + " — Leia o vento. Espere a abertura." if model.q.boss else ("%s · duelo de preparação" % reward_encounter.get("trainerName","Pipeiro") if reward_encounter.get("kind","")=="trainer" else "Um Soulmon selvagem cruzou seu caminho!")
 	if model.intro>0 and model.enemy_model_id=="mormaco-possuido":controls.text="Mormaço · os gêiseres estão represados. Espere o sinal e procure a abertura."
@@ -539,8 +540,19 @@ func _draw() -> void:
 	for index in 2:
 		if model.q.get("boss",false) and model.intro>0:continue
 		var actor: Dictionary = model.p if index == 0 else model.q
-		draw_line(Vector2(actor.anchor, 585), Vector2(actor.x, actor.y), Hud.BLACK, 6)
-		draw_line(Vector2(actor.anchor, 585), Vector2(actor.x, actor.y), Hud.CYAN if index == 0 else Hud.CORAL, 3)
+		var points: PackedVector2Array = model.line_points(actor)
+		draw_polyline(points, Hud.BLACK, 6, true)
+		var tension: float = model.line_tension(actor)
+		var line_color: Color = Hud.CYAN if index == 0 else Hud.CORAL
+		var stress := smoothstep(.18, .82, tension)
+		draw_polyline(points, line_color, 3, true)
+		if stress > 0.0 and points.size() > 2:
+			var travel := fposmod(clock * 1.65, 1.0) * (points.size() - 1)
+			var segment := mini(int(travel), points.size() - 2)
+			var pulse := points[segment].lerp(points[segment + 1], fposmod(travel, 1.0))
+			var tangent := points[segment].direction_to(points[segment + 1])
+			var opacity := stress * sin(travel / (points.size() - 1) * PI) * .75
+			draw_line(pulse - tangent * 4, pulse + tangent * 4, Color(Tokens.PAPEL, opacity), 2, true)
 		_draw_anchor(actor.anchor, Hud.CYAN if index == 0 else Hud.CORAL)
 		var action := "idle"
 		if not model.outcome.is_empty(): action = "victory" if (model.outcome == "won") == (index == 0) else "defeat"
@@ -560,6 +572,8 @@ func _draw() -> void:
 		Ink.live_sprite(self,rai_ally,"rai",ally_frame,ally_position,115,Tokens.UNTINTED,_field_scale(),ally_position.x>model.q.x)
 		draw_string(Hud.font(),ally_position+Vector2(-45,-55),"Tyler · Rai",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Tokens.PAPEL)
 
+	if model.soulflight and model.intro <= 0 and model.outcome.is_empty():
+		_draw_soulflight_crossing()
 	_draw_feedback()
 
 	if not model.outcome.is_empty() and model.q.get("mormacoForm","")!="ambush":
@@ -696,3 +710,15 @@ static func species_name(id: String) -> String:
 		if table is Dictionary and table.get("forms",{}).has(id):return str(table.forms[id].get("name","Parceiro"))
 	return "Parceiro"
 
+func _draw_soulflight_crossing() -> void:
+	var contact: Dictionary = model.contact_hint(model.p, model.q)
+	if contact.is_empty(): return
+	var point: Vector2 = contact.point
+	var ready: bool = contact.valid and model.p.attackCooldown <= 0 and model.p.energy >= 12 and model.p.evade <= 0 and model.p.guardTime <= 0 and model.p.lineMove.is_empty() and model.p.signatureWindup <= 0
+	var radius := 8.0 if ready else 5.0
+	var diamond := PackedVector2Array([point + Vector2.UP * radius, point + Vector2.RIGHT * radius, point + Vector2.DOWN * radius, point + Vector2.LEFT * radius])
+	draw_circle(point, radius + 3.0, Hud.BLACK)
+	draw_colored_polygon(diamond, Hud.GOLD if ready else Tokens.PAPEL)
+	if ready:
+		draw_line(point - Vector2(12, 0), point + Vector2(12, 0), Hud.GOLD, 2, true)
+		draw_line(point - Vector2(0, 12), point + Vector2(0, 12), Hud.GOLD, 2, true)

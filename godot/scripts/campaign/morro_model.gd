@@ -17,6 +17,7 @@ func set_enemy_model(id:String)->void:
 
 func _init(partner: Dictionary = {}, id: String = "morro-1", progress: Dictionary = {}) -> void:
 	super(partner, {"modelId": "basica", "level": 1})
+	soulflight = false
 	stage_id = id
 	var entry := stage_definition(id)
 	if entry.is_empty(): return
@@ -72,7 +73,7 @@ func tick(delta: float, input: Dictionary) -> void:
 				if d < distance:
 					distance = d
 					closest = rival
-		if not closest.is_empty(): _signature_hit(p, closest, dt, input.get("signature", false) and model_id == "rabbito", hits)
+		if not closest.is_empty(): _signature_hit(p, closest, dt, input.get("signature", false) and not preload("res://scripts/campaign/evolution.gd").signature(model_id).is_empty(), hits)
 	for actor in actors:
 		if not alive(actor): continue
 		for target in actors:

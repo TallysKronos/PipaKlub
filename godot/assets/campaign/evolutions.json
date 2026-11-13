@@ -258,6 +258,8 @@
    "stage": "jovem",
    "level": 16,
    "bonus": 6,
+   "items": [{"id":"papel-seda","label":"Papel de seda","quantity":1,"consume":true}],
+   "signature": "Espiral dos Ventos",
    "from": [
     "rabbito"
    ],
