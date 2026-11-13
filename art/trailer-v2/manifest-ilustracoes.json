@@ -119,15 +119,21 @@
     {
       "id": "kronasta-ceu",
       "type": "illustration",
-      "source": "fontes/kronasta-ceu-raw.png",
-      "prompt": "fontes/kronasta-ceu.prompt.txt",
+      "source": "fontes/kronasta-ceu-r4-raw.png",
+      "prompt": "fontes/kronasta-ceu-r4.prompt.txt",
       "final": "kronasta-ceu.png",
       "references": [
-        "godot/assets/campaign/maps/kronasta-atlas-manga-v3.png"
+        "art/trailer-v2/fontes/kronasta-ceu-referencias/bairro-concept.png",
+        "art/creatures/rai-family-v1/raivela/concept-v1/concept.png",
+        "godot/assets/campaign/tufanocorte.png",
+        "art/creatures/mata-verde-family-v1/folhante/concept-v1/concept.png",
+        "godot/assets/campaign/title-v1/reference-rigs/azulao.png"
       ],
       "alpha": false,
       "normalization": "ffmpeg scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080; aspect retained",
-      "approval": "Authoring visual review complete; independent/owner review pending"
+      "approval": "R1/R2/R3 superseded after owner feedback. R4 is a new dynamic composition, owner evaluation pending.",
+      "revision": 4,
+      "history": "fontes/kronasta-ceu-historico"
     },
     {
       "id": "fecho-estadio",

@@ -178,3 +178,7 @@ As duas texturas têm 1920×1080, alpha real e centro aberto. A horizontal deixa
 ### Estado final desta revisão independente
 
 Todos os assets anunciados, incluindo o vento opcional, passaram no gate de nota mínima 7/10 sem BLOCKING pendente de arte, **considerando a seleção B-normal/A-silhouette na correção de apoio**. A normal colorida continua restrita ao uso interno; a silhueta é a variante pública, sem nome. O relatório não declara gravação pronta, aprovação humana, integração dos candidatos cegos ou sincronização audiovisual verificada. Fontes/Aseprite não foram modificados; composições diagnósticas temporárias foram removidas.
+
+## Kronasta céu · revisão4,13/11/2026
+
+A avaliação anterior da imagem inicial foi superada pela rejeição do dono. R4 traz composição totalmente nova em movimento: Raivela,Tufanocorte,Folhante eAzulão em uma rajada sobre o canal, usando os concepts do mundo. Comparação de autoria realizada; avaliação do usuário pendente. R1/R2/R3 ficam no histórico, não usar como imagem atual.

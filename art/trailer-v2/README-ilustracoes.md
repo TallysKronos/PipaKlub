@@ -25,3 +25,7 @@ Mikka e Dona Neve tiveram revisão independente inicial 8/10 sem bloqueios, rela
 Pranchas em `fontes/portrait-preview.png`, `fontes/scenes-preview.png`, `fontes/lettering-preview.png` e `fontes/speed-preview.png`. As pranchas de transparência compõem sobre xadrez real; o halo que a interface nativa de imagegen exibe não faz parte do PNG composto.
 
 `qa-ilustracoes.json` registra dimensões, modo, alpha, SHA-256 e reconstrução pixel a pixel dos três pedaços. Reexecutar com o Python instalado: `python art/trailer-v2/fontes/verificar-ilustracoes.py`. A QA verifica os 19 assets-base e a reconstrução exata dos três pedaços; não equivale a playback no trailer ou aprovação artística.
+
+## Kronasta céu · revisão4,13/11/2026
+
+A avaliação anterior da imagem inicial foi superada pela rejeição do dono. R4 traz composição totalmente nova em movimento: Raivela,Tufanocorte,Folhante eAzulão em uma rajada sobre o canal, usando os concepts do mundo. Comparação de autoria realizada; avaliação do usuário pendente. R1/R2/R3 ficam no histórico, não usar como imagem atual.
