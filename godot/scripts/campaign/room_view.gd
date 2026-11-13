@@ -247,10 +247,11 @@ func _process(delta: float) -> void:
 			companion.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
 		if trail.is_empty() or trail.back().distance_to(actor) > 8:
 			trail.append(actor)
-		var before := companion_point
+		var companion_before := companion_point
 		companion_point=CompanionFollow.advance(companion_point,trail,minf(delta,.05),720.0,70.0,_companion_segment)
+		if not retalho_follower: CompanionFollow.animate(companion,delta,companion_before.distance_to(companion_point),128.0)
 		companion.position = project(companion_point)
-		if retalho_follower:_step_retalho_pose(companion,before,companion_point)
+		if retalho_follower:_step_retalho_pose(companion,companion_before,companion_point)
 		else:CompanionFollow.orient(companion,avatar.facing)
 		_update_order()
 	near = ""

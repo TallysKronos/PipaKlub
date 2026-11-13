@@ -1864,9 +1864,9 @@ func _build_hud() -> void:
 	Hud.fit_footer(footer,hint,83)
 
 func _refresh_positions() -> void:
+	CompanionFollow.orient(companion,avatar.facing)
 	_place_actor(player_root,avatar,player,155 if avatar.mounted else 84)
 	_place_actor(follower_root,companion,follower,42)
-	CompanionFollow.orient(companion,avatar.facing)
 	for actor in npc_nodes:_place_actor(actor.root,actor.visual,actor.point,84)
 	camera.position = model.project(player)
 	_fade_occluders()
@@ -1874,12 +1874,12 @@ func _refresh_positions() -> void:
 func _fade_occluders() -> void:
 	var pair:Array[Dictionary]=[]
 	# Project each actor once, rather than repeat height queries for every tree.
-	var members := [{"point":player,"height":155.0 if avatar.mounted else 84.0}]
+	var members := [{"point":player,"height":155.0 if avatar.mounted else 84.0,"visual":avatar}]
 	if follower_root.visible and companion.visible:
-		members.append({"point":follower,"height":42.0})
+		members.append({"point":follower,"height":42.0,"visual":companion})
 	for member in members:
 		var at:Vector2=member.point
-		pair.append({"point":at,"body":Rect2(model.project(at)-Vector2(20,member.height),Vector2(40,member.height)),"ground":model.project(at,false).y})
+		pair.append({"point":at,"body":_actor_body(at,member.visual,member.height),"ground":model.project(at,false).y})
 	for node in occluders:
 		if not is_instance_valid(node):continue
 		var art:=node.get_node_or_null("Art") as Sprite2D
@@ -1894,12 +1894,18 @@ func _fade_occluders() -> void:
 			if node.position.y>member.ground and Rect2(node.position+bounds.position,bounds.size).intersects(member.body):covers=true;break
 		art.modulate.a=.45 if covers else 1.0
 
+func _actor_body(point: Vector2, visual: Node2D, height: float) -> Rect2:
+	var raised := model.project(point)
+	if visual is Sprite2D and visual.has_meta("overworld_bounds"):
+		var bounds := CompanionFollow.visible_bounds(visual)
+		return Rect2(raised + bounds.position, bounds.size)
+	return Rect2(raised-Vector2(20,height),Vector2(40,height))
+
 func _place_actor(root: Node2D, visual: Node2D, point: Vector2, height: float) -> void:
 	var ground := model.project(point,false)
-	var raised := model.project(point)
 	var lower := -INF
 	var upper := INF
-	var body := Rect2(raised-Vector2(20,height),Vector2(40,height))
+	var body := _actor_body(point,visual,height)
 	# Large isometric props sort at their front footprint corner. A person can
 	# stand in front of either visible wall before reaching that corner's Y.
 	# Shift only the sort root; compensate its art so the feet never move.
@@ -2023,6 +2029,7 @@ func _follow_recorded_path(delta: float) -> void:
 		if not recovery.is_empty():
 			follower_trail.assign(recovery)
 			follower=CompanionFollow.advance(follower,follower_trail,delta,8.5,follower_gap,model.clear_segment)
+	CompanionFollow.animate(companion,delta,previous.distance_to(follower))
 
 ## Face the speaking actor toward Kael in screen space, including isometric diagonals.
 func _face_interaction_npcs(event: Dictionary) -> void:

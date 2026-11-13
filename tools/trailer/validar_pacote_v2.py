@@ -19,8 +19,13 @@ def validate():
                 assert list(image.size) == asset['size'], asset['path'] + ': size'
                 if asset.get('alpha_required'):
                     assert 'A' in image.getbands() and image.getchannel('A').getextrema()[0] == 0, asset['path'] + ': alpha'
-        sha = hashlib.sha256(path.read_bytes()).hexdigest()
-        assert sha == asset['sha256'], asset['path'] + ': source changed since delivery'
+        data = path.read_bytes()
+        hashes = {hashlib.sha256(data).hexdigest()}
+        if path.suffix in ('.json', '.md', '.txt', '.csv'):
+            # O pacote foi medido no Windows (CRLF); o git guarda os textos com LF.
+            lf = data.replace(b'\r\n', b'\n')
+            hashes |= {hashlib.sha256(lf).hexdigest(), hashlib.sha256(lf.replace(b'\n', b'\r\n')).hexdigest()}
+        assert asset['sha256'] in hashes, asset['path'] + ': source changed since delivery'
         results.append(dict(path=asset['path'], ok=True))
     for atlas in package['atlases']:
         data = json.loads((ROOT / atlas['json']).read_text(encoding='utf-8'))

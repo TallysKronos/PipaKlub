@@ -6,6 +6,10 @@
 
 [Abrir atlas visual](grupos.html) · [Famílias completas](FAMILIAS.md) · [Dados estruturados](grupos.json).
 
+As fichas da galeria incluem **Lore para concept** e **Na prancha**. O primeiro texto descreve um comportamento ou traço da forma; o segundo indica como representá-lo em desenho. Os dois são propostas de criação. A nota do catálogo de origem e o link da fonte dão acesso ao contexto anterior.
+
+Para revisar uma proposta, edite [a fonte de lore](lore-por-criatura.txt) no bloco da família correspondente. Cada linha guarda ID, lore e indicação de prancha, separados por `|`. Os entrelaços compartilhados ficam no bloco `shared`. Rode o gerador de grupos após salvar.
+
 ## Como usar para povoar o universo
 
 1. Escolha um grupo já criado ou uma afinidade editorial.

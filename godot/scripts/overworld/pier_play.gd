@@ -209,6 +209,7 @@ func _physics_process(delta: float) -> void:
 	Locomotion.update()
 	clock += delta
 	var old := cell
+	var companion_before := follower
 	if not ladder.is_empty():_advance_ladder(delta)
 	else:
 		var input := Controls.direction()
@@ -220,6 +221,7 @@ func _physics_process(delta: float) -> void:
 	if avatar.moving and ladder.is_empty():
 		var screen: Vector2 = world.iso(cell)-world.iso(old)
 		avatar.face_motion(screen)
+	CompanionFollow.animate(partner,delta,companion_before.distance_to(follower))
 	_refresh_visuals()
 	_update_hint()
 	var look: Vector2 = (world.iso(cell)-world.iso(old))*8

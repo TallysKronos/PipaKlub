@@ -12,6 +12,10 @@ Esta diretriz vale para todas as ilustrações de Soulmonsters. A complexidade v
 | Detalhe | Concentrar linhas e contraste no rosto e nas estruturas que identificam a espécie. Agrupar pelo, penas e placas. Evitar rasgos repetidos, texturas e marcas decorativas sem função. |
 | Construção | Combinar geometria, formas orgânicas e grandes massas de cor. Reservar as quinas para estruturas em que a forma angular ajude na leitura. |
 
+Soulmonsters são organismos vivos. Modele o volume do tronco e dos membros, o apoio das patas e o movimento das articulações com curvas, sobreposição de formas e sombras chapadas. Use dobras angulares onde elas descrevem o material ou o funcionamento da peça.
+
+Varie a construção de pipa conforme a criatura. Varetas podem sustentar uma membrana, articular uma peça ou formar a armação de uma pipa menor que integra o corpo. A pipa também pode ser um escudo que se abre, uma lâmina tensionada, um cristal encaixado no peitoral ou uma asa que controla o voo. Escolha a estrutura pela silhueta e pela ação que ela permite. O traço autoral de mangá 2D costura essas soluções entre espécies.
+
 Na revisão, reduza a prancha ao tamanho de uma miniatura. Confira se cabeça, postura e estrutura de pipa continuam distinguíveis. Em seguida, compare o desenho em tamanho normal e procure linhas internas que possam ser removidas sem perder anatomia, expressão ou material.
 
 ## Referência para o desenho de criaturas

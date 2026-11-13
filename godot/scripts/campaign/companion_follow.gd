@@ -4,11 +4,18 @@ const Avatar = preload("res://scripts/avatar.gd")
 
 const SHEETS_PATH := "res://assets/campaign/overworld-companions"
 const CELL_SIZE := Vector2(80, 80)
-## Tamanho dos companheiros em relação ao Kael (12/11/2026): as folhas foram desenhadas com
-## bebê 31 px, criança 42, jovem 54 e adulto 63 (Kael: 67 px na tela). Com 1,25 o jovem fica
-## do tamanho do Kael, o adulto um pouco maior, a criança menor e o bebê não tão pequeno.
+## Folhas v1 (80×80): desenhadas pequenas; crescem SIZE para o tamanho aprovado (12/11/2026).
+## As folhas revisadas v2 (112×112, overworld-v2/manifest.json) já vêm no tamanho final, na
+## densidade de pixel do Kael: bebê 41 px, criança 55, jovem 70, adulto 84 (Kael: 70).
 const SIZE := 1.25
 const OUTLINE = preload("res://shaders/overworld/companion_outline.gdshader")
+const PILOT_SHEET := "res://assets/campaign/overworld-v2/azulfazo/duas-vistas.png"
+const PILOT_CELL := Vector2(112, 112)
+const REVIEWED_PATH := "res://assets/campaign/overworld-v2/manifest.json"
+const ANIMATIONS_PATH := "res://assets/campaign/overworld-animations-v1/manifest.json"
+static var animation_manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(ANIMATIONS_PATH))
+static var animation_cache: Dictionary = {}
+static var reviewed_sheets: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(REVIEWED_PATH))
 const OVERWORLD_ALIASES := {
 	"basica": "carcara",
 	"basic-carcara": "carcara",
@@ -25,28 +32,6 @@ const COMBAT_ALIASES := {
 	"raio": "basic-raio-de-sol",
 }
 static var ground_pivots: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHEETS_PATH + ".json"))
-## Folhas v2 (tools/sprites/converter-overworld.mjs): convertidas da geração original com o
-## xprite-pixelate, já no tamanho final e na densidade de pixel do Kael (célula 112, sem o SIZE).
-## Quando uma criatura tem v2, ela vence a v1.
-const SHEETS_V2_PATH := "res://assets/campaign/overworld-companions-v2"
-static var sheets_v2: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHEETS_V2_PATH + ".json")) if FileAccess.file_exists(SHEETS_V2_PATH + ".json") else {}
-
-static func sheet_id(model_id: String) -> String:
-	return OVERWORLD_ALIASES.get(model_id, model_id)
-
-static func is_v2(model_id: String) -> bool:
-	return sheets_v2.has(sheet_id(model_id)) and OS.get_environment("KRONASTA_SPRITES_V1") != "1"
-
-static func cell_size(model_id: String) -> Vector2:
-	return Vector2.ONE * float(sheets_v2[sheet_id(model_id)].cell) if is_v2(model_id) else CELL_SIZE
-
-static func pivots(model_id: String) -> Vector2:
-	var pivot: Variant = sheets_v2[sheet_id(model_id)].pivots if is_v2(model_id) else ground_pivots[sheet_id(model_id)]
-	return Vector2(float(pivot[0]), float(pivot[1])) if pivot is Array else Vector2.ONE * float(pivot)
-
-## Escala do sprite: a v1 cresce SIZE em relação ao Kael; a v2 já vem no tamanho e usa a escala dele.
-static func sprite_scale(model_id: String, kael_scale: float) -> float:
-	return kael_scale if is_v2(model_id) else kael_scale / Avatar.OVERWORLD_SCALE * SIZE
 
 static func equipped_model(player: Dictionary) -> String:
 	var equipped_id: String = player.get("equippedPartnerId", "")
@@ -59,9 +44,10 @@ static func combat_art_id(model_id: String) -> String:
 	return COMBAT_ALIASES.get(model_id, model_id)
 
 static func overworld_texture(model_id: String) -> Texture2D:
-	if is_v2(model_id): return load(SHEETS_V2_PATH.path_join(sheet_id(model_id) + ".png")) as Texture2D
-	if not ground_pivots.has(sheet_id(model_id)): return null
-	return load(SHEETS_PATH.path_join(sheet_id(model_id) + ".png")) as Texture2D
+	var sheet_id: String = OVERWORLD_ALIASES.get(model_id, model_id)
+	if reviewed_sheets.has(sheet_id): return load(reviewed_sheets[sheet_id].image) as Texture2D
+	if not ground_pivots.has(sheet_id): return null
+	return load(SHEETS_PATH.path_join(sheet_id + ".png")) as Texture2D
 
 static func overworld_portrait(model_id: String) -> Texture2D:
 	var sheet := overworld_texture(model_id)
@@ -72,6 +58,15 @@ static func overworld_portrait(model_id: String) -> Texture2D:
 	portrait.filter_clip = true
 	return portrait
 
+static func cell_size(model_id: String) -> Vector2:
+	var sheet_id: String = OVERWORLD_ALIASES.get(model_id, model_id)
+	return PILOT_CELL if reviewed_sheets.has(sheet_id) else CELL_SIZE
+
+## A v2 usa a escala do próprio Kael (mesmo tamanho de pixel); a v1 cresce SIZE.
+static func sprite_scale(model_id: String, kael_scale: float) -> float:
+	var sheet_id: String = OVERWORLD_ALIASES.get(model_id, model_id)
+	return kael_scale if reviewed_sheets.has(sheet_id) else kael_scale / Avatar.OVERWORLD_SCALE * SIZE
+
 static func setup_overworld_art(sprite: Sprite2D, model_id: String, kael_scale: float) -> bool:
 	var sheet := overworld_texture(model_id)
 	if sheet == null: return false
@@ -80,8 +75,11 @@ static func setup_overworld_art(sprite: Sprite2D, model_id: String, kael_scale: 
 	sprite.region_enabled = true
 	sprite.region_filter_clip_enabled = true
 	sprite.centered = true
-	var pose_pivots := pivots(model_id)
-	sprite.set_meta("overworld_cell", cell_size(model_id))
+	var sheet_id: String = OVERWORLD_ALIASES.get(model_id, model_id)
+	var pose_pivots := Vector2(100, 100)
+	if not reviewed_sheets.has(sheet_id):
+		var pivot: Variant = ground_pivots[sheet_id]
+		pose_pivots = Vector2(float(pivot[0]), float(pivot[1])) if pivot is Array else Vector2.ONE * float(pivot)
 	sprite.scale = Vector2.ONE * sprite_scale(model_id, kael_scale)
 	# Legibilidade: contorno de 1 texel em volta da silhueta (KRONASTA_CONTORNO=0 desliga, para comparar).
 	if OS.get_environment("KRONASTA_CONTORNO") != "0":
@@ -91,9 +89,55 @@ static func setup_overworld_art(sprite: Sprite2D, model_id: String, kael_scale: 
 	else:
 		sprite.material = null
 	sprite.set_meta("overworld_pivots", pose_pivots)
+	var cell := cell_size(model_id)
+	sprite.set_meta("overworld_cell", cell)
+	var image := sheet.get_image()
+	var bounds: Array[Rect2] = []
+	for index in 2:
+		bounds.append(Rect2(image.get_region(Rect2i(index * int(cell.x), 0, int(cell.x), int(cell.y))).get_used_rect()))
+	sprite.set_meta("overworld_bounds", bounds)
+	# Keep portraits and setup's rest pose static; playback starts on a physics tick.
+	sprite.set_meta("animation_model", sheet_id)
+	sprite.set_meta("animation_clock", 0.0)
+	sprite.set_meta("animation_phase", 0.0)
+	sprite.set_meta("animation_state", "")
+	if sprite.has_meta("animated_bounds"): sprite.remove_meta("animated_bounds")
 	sprite.flip_h = true
 	orient(sprite, "se")
 	return true
+
+static func visible_bounds(sprite: Sprite2D) -> Rect2:
+	var cell: Vector2 = sprite.get_meta("overworld_cell")
+	var views: Array[Rect2] = sprite.get_meta("overworld_bounds")
+	var index := 1 if sprite.region_rect.position.x >= cell.x else 0
+	var bounds: Rect2 = sprite.get_meta("animated_bounds", views[index])
+	if sprite.flip_h: bounds.position.x = cell.x - bounds.end.x
+	bounds.position += sprite.offset - cell * .5
+	return Rect2(bounds.position * sprite.scale, bounds.size * sprite.scale)
+
+## Distance drives the walk; elapsed time drives breathing only while stationary.
+static func animate(sprite: Sprite2D, delta: float, distance: float, cycle_distance: float = 2.0) -> void:
+	var id: String = sprite.get_meta("animation_model", "")
+	if not animation_manifest.has(id): return
+	if not animation_cache.has(id):
+		var loaded := {}
+		for state: String in ["idle", "walk"]:
+			var texture: Texture2D = load(animation_manifest[id][state])
+			var image := texture.get_image()
+			var bounds: Array[Rect2] = []
+			for row in 2:
+				for col in 8:
+					bounds.append(Rect2(image.get_region(Rect2i(col*112,row*112,112,112)).get_used_rect()))
+			loaded[state] = {"texture":texture,"bounds":bounds}
+		animation_cache[id] = loaded
+	var state := "walk" if distance > .00001 else "idle"
+	if sprite.get_meta("animation_state") != state:
+		sprite.set_meta("animation_clock", 0.0)
+		sprite.set_meta("animation_phase", 0.0)
+	sprite.set_meta("animation_state", state)
+	sprite.set_meta("animation_clock", float(sprite.get_meta("animation_clock")) + maxf(delta,0))
+	sprite.set_meta("animation_phase", fmod(float(sprite.get_meta("animation_phase")) + maxf(distance,0)/maxf(cycle_distance,.001), 1.0))
+	orient(sprite, sprite.get_meta("facing", "se"))
 
 ## Consume accepted footsteps, including multiple short steps in one tick.
 static func advance(point:Vector2,trail:Array[Vector2],delta:float,speed:float,gap:float,safe:Callable) -> Vector2:
@@ -120,6 +164,23 @@ static func orient(sprite:Sprite2D,facing:String) -> void:
 		if facing in ["sw", "w", "nw"]: sprite.flip_h = false
 		elif facing in ["se", "e", "ne"]: sprite.flip_h = true
 		sprite.region_rect = Rect2(Vector2(cell.x if rear else 0.0, 0), cell)
+		var state: String = sprite.get_meta("animation_state", "")
+		if not state.is_empty():
+			var id: String = sprite.get_meta("animation_model")
+			var data: Dictionary = animation_cache[id][state]
+			var frame := 0
+			if state == "walk":
+				frame = mini(7, int(float(sprite.get_meta("animation_phase"))*8))
+			else:
+				var remaining := fmod(float(sprite.get_meta("animation_clock")),1.8)
+				for duration: float in [.32,.14,.22,.32,.14,.22,.20,.24]:
+					if remaining < duration: break
+					remaining -= duration
+					frame += 1
+				frame = mini(frame,7)
+			sprite.texture = data.texture
+			sprite.region_rect = Rect2(frame*cell.x,cell.y if rear else 0.0,cell.x,cell.y)
+			sprite.set_meta("animated_bounds", data.bounds[(8 if rear else 0)+frame])
 		sprite.offset = Vector2(0, cell.y * .5 - (pivots.y if rear else pivots.x))
 		sprite.set_meta("facing", facing)
 		return

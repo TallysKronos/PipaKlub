@@ -178,6 +178,7 @@ func _physics_process(delta: float) -> void:
 		avatar.face_motion(direction)
 	var remaining := 0.0
 	var previous := follower
+	var companion_before := follower
 	for point in trail:
 		remaining += previous.distance_to(point)
 		previous = point
@@ -190,6 +191,7 @@ func _physics_process(delta: float) -> void:
 		follower = candidate
 		budget -= amount
 		if length <= amount + .001: trail.pop_front()
+	CompanionFollow.animate(companion,delta,companion_before.distance_to(follower),128.0)
 	_refresh()
 	near = ""
 	for place in data.places:
