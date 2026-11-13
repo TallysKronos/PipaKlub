@@ -82,3 +82,26 @@ test('os quatro Demons mantêm as duas formas adultas com origem no mesmo jovem'
     assert.ok(html.includes(young+' → '+alternate));
   }
 });
+
+test('cada ficha tem uma lore individual e uma cena para a prancha',()=>{
+  const stories=new Set(), sketches=new Set();
+  for(const {key,concept_lore} of payload.records){
+    assert.ok(concept_lore?.story.trim(),key);
+    assert.ok(concept_lore?.sketch.trim(),key);
+    stories.add(concept_lore.story);
+    sketches.add(concept_lore.sketch);
+  }
+  assert.equal(stories.size,payload.records.length);
+  assert.equal(sketches.size,payload.records.length);
+});
+
+test('a ficha distingue proposta de concept e nota do catálogo',()=>{
+  const rt=runtime();
+  rt.run("q.value='Rabbito';render()");
+  const html=rt.element('content').innerHTML;
+  assert.match(html,/Lore para concept · proposta/);
+  assert.match(html,/Na prancha<\/strong> · Mostrar orelhas/);
+  assert.match(html,/Nota do catálogo de origem/);
+  rt.run("q.value='Fiapim';render()");
+  assert.doesNotMatch(rt.element('content').innerHTML,/Posição 1 da esquerda/);
+});

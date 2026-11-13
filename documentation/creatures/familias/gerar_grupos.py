@@ -21,6 +21,26 @@ for f in catalog['families']:
         if key not in records or f['id']=='entrelacos':records[key]=record
         family_keys[f['id']].add(key);node_keys[n['id']].add(key)
 
+# Cada registro recebe uma vinheta autoral e uma indicação para a prancha.
+lore={};family=None
+for number,line in enumerate((D/'lore-por-criatura.txt').read_text(encoding='utf-8-sig').splitlines(),1):
+    if not line.strip():continue
+    if line.startswith('# '):
+        family=line[2:].strip()
+        continue
+    fields=[field.strip() for field in line.split('|')]
+    if family is None or len(fields)!=3 or not all(fields):
+        raise ValueError(f'lore-por-criatura.txt:{number} — esperado ID | lore | prancha dentro de uma família')
+    nid,story,sketch=fields
+    key=f'{family}:{nid}'
+    if key in lore:raise ValueError(f'lore-por-criatura.txt:{number} — ficha duplicada {key}')
+    lore[key]=dict(story=story,sketch=sketch)
+missing_lore=sorted(records.keys()-lore.keys())
+unknown_lore=sorted(lore.keys()-records.keys())
+if missing_lore or unknown_lore:
+    raise ValueError(f'Lore sem cobertura exata. Faltam {missing_lore}. Sobram {unknown_lore}.')
+for key,record in records.items():record['concept_lore']=lore[key]
+
 groups=config['groups'];problems=[]
 for g in groups:
     for fid in g['families']:
@@ -87,6 +107,12 @@ for g in groups:
         lines.append(f"| {n['name']} · `{key}` | {n['family_name']} | {n['stage']} | {n['status']} | {art} · [Fonte]({rel(R/n['source'])}) |")
     lines += ['','**Fontes do conjunto/classificação:** '+', '.join(f'[{Path(s).name}]({rel(R/s)})' for s in dict.fromkeys(g['sources']))+'.']
 lines += ['','## Reservas e rejeitados','', 'As 17 reservas visuais continuam no apêndice do catálogo familiar. Não foram inseridas como espécies acabadas. Mantigardo rejeitado e versões superadas permanecem no histórico, sem entrar nos Lords atuais.','','## Identidade e autoria das decisões','', 'Família e IDs originais preservados. Azulão/Azulongo, Brotim do cervo/Brotim de Mata Verde e nomes parecidos não foram fundidos. O catálogo consolidou os três documentos recentes do Rabbito na mesma família, adicionando duas formas sem duplicar a base. A aprovação visual do Conde refere-se exclusivamente ao concept-v2 com juba.','','## Regenerar','', '`python documentation/creatures/familias/gerar_catalogo.py` e depois `python documentation/creatures/familias/gerar_grupos.py`. A classificação editável está em `grupos-config.json`; as decisões explícitas recentes em `decisoes-visuais.json`.','']
+lines[8:8]=[
+    'As fichas da galeria incluem **Lore para concept** e **Na prancha**. O primeiro texto descreve um comportamento ou traço da forma; o segundo indica como representá-lo em desenho. Os dois são propostas de criação. A nota do catálogo de origem e o link da fonte dão acesso ao contexto anterior.',
+    '',
+    'Para revisar uma proposta, edite [a fonte de lore](lore-por-criatura.txt) no bloco da família correspondente. Cada linha guarda ID, lore e indicação de prancha, separados por `|`. Os entrelaços compartilhados ficam no bloco `shared`. Rode o gerador de grupos após salvar.',
+    '',
+]
 (D/'GRUPOS.md').write_text('\n'.join(lines),encoding='utf-8')
 
 template=Path(__file__).with_name('grupos-template.html').read_text(encoding='utf-8')

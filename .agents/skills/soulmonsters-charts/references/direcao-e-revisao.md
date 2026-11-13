@@ -14,6 +14,10 @@ O usuário definiu este equilíbrio após rejeitar hipogrifos biológicos com as
 
 O Grifarca `art/creatures/grifarca/concept-v2/` foi aprovado como calibração de pipa viva: rosto e corpo construídos em planos próprios, em vez de animal naturalista com armadura. Aplicar sem copiar sua espécie ou paleta. O autor rejeitou explicitamente aparência de pele/músculo retorcido sob o casco/armadura de Trancoura, Gevoraz e Makaréu. Nessas regiões usar membranas tensionadas largas e poucas dobras de compressão nas juntas, sem estrias, fibras, tendões ou malha de triângulos por todo o corpo. Preservar proteção e autoridade adulta; não esconder o problema com mais placas ou remover grevas sem intenção. Raízes, articulação e volume continuam necessários.
 
+### Orientação do autor em 2026-11-11
+
+Nos próximos conceitos, estabeleça primeiro o volume orgânico do corpo, o peso e as articulações. Use o lineart de mangá 2D e as sombras chapadas para dar leitura a esse volume. Na etapa de brief, compare onde a pipa contribui melhor para a silhueta ou para a ação da criatura. Considere varetas, armações com pipas menores, escudos, espadas, cristais acoplados à armadura e asas. Use a solução que nasce da anatomia e do comportamento de cada forma. Veja a [diretriz de ilustração](../../../../documentation/creatures/DIRETRIZ-DE-ILUSTRACAO.md).
+
 ## Mudança de espécie é mudança de rosto
 
 Direção explícita do autor em 2026-11-06: parar de repetir olhos laranjas. Para novas criaturas, escolher cores de olhos não alaranjadas de acordo com sua identidade, variando deliberadamente. Não alterar por isso as artes já aprovadas; a família Ressonhiena foi aprovada com a cor existente.
@@ -38,7 +42,7 @@ Para gerar/editar raster, seguir a skill `imagegen` disponível; usar a ferramen
 
 Rotular os inputs: base autoral = identidade; design próprio aprovado = acabamento/construção; desenho de destino escolhido = anatomia. Nunca anexar o benchmark externo como alvo de estilo. Inspecionar localmente as imagens antes de geração. Não encher o prompt com tantas referências próprias que o alvo vire uma média sem identidade.
 
-Pedir uma pose completa em três quartos com margens e alpha quando a entrega for isolada; fundo branco pode servir para prancha se solicitado. Nome, tamanho, layout e vistas seguem o uso real, não uma grade inventada. Não pedir transparência se a cena exige ambiente.
+Pedir uma pose completa em três quartos com margens e alpha quando a entrega for isolada. Para folha de concept, aplicar o padrão de [direção de arte](../../../../DIRECAO-DE-ARTE.md#folha-de-concept-dos-soulmonsters): branco puro, vistas comparáveis, estudos soltos e notas curtas junto ao desenho. Consultar a indicação **Na prancha** da Dex para escolher um gesto, hábito ou detalhe de anatomia daquela forma. Não pedir transparência se a cena exige ambiente.
 
 Se só a cabeça falhou e corpo/asas foram aprovados, usar edição dirigida preservando o resto; guardar original. A edição generativa pode alterar pixels fora do alvo: verificar visualmente, sem prometer preservação exata. Aceitação de um corpo não aprova a nova face automaticamente.
 
