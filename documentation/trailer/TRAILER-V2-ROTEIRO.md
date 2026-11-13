@@ -69,8 +69,8 @@ seção de pulso; funciona, mas os marcos ficam menos precisos.
 
 ## Decisões para o dono
 
-- **Spoiler do lendário:** a bíblia guarda o Eremor como revelação do Ato 6. Proposta: mostrar só a
-  silhueta e o rugido, sem nome. A alternativa é usar um dos lendários do pós-jogo.
+- **Spoiler do lendário — decidido em 13/11/2026:** o dono confirmou somente silhueta e rugido,
+  sem nome nem revelação da aparência. A bíblia guarda o Eremor como revelação do Ato 6.
 - **O Rato:** a aparência dele ainda está pendente na bíblia; no trailer ele aparece em silhueta.
 - **Número de criaturas:** o letreiro usa o número real de folhas de overworld no jogo na hora da
   montagem (hoje, 178 integradas).

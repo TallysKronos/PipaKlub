@@ -27,7 +27,8 @@ recortes das duas vistas. Eu converto com `tools/sprites/converter-overworld.mjs
 
 ## 3. O lendário rugindo (A)
 
-Proposta para evitar spoiler: o Eremor aparece só em silhueta no trailer (decisão do dono pendente).
+Decisão do dono em 13/11/2026: o Eremor aparece somente em silhueta e com rugido, sem nome
+nem revelação da aparência no trailer. A versão normal abaixo é fonte de produção, não plano público.
 
 - **Animação de rugido** do Eremor para a arena: 8 quadros (inspira, abre a boca, rugido em 3
   quadros, recua), mesma escala e ancoragem da arte de combate atual (`combat-eremor.png`).
