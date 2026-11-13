@@ -1,0 +1,44 @@
+{
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "runtime_replaced": true,
+  "method": "source core retained; video-guided reconstructed leg poses",
+  "animations": {
+    "idle": {
+      "image": "idle.png",
+      "frames": 4,
+      "durations_ms": [
+        400,
+        150,
+        400,
+        150
+      ],
+      "loop": true
+    },
+    "walk": {
+      "image": "walk.png",
+      "frames": 6,
+      "durations_ms": [
+        140,
+        100,
+        120,
+        140,
+        100,
+        120
+      ],
+      "loop": true
+    }
+  },
+  "approval_date": "2026-11-13",
+  "status": "approved-integrated-local"
+}

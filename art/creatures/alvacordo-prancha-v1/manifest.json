@@ -1,0 +1,52 @@
+{
+  "id": "alvacordo",
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "source": "art/creatures/soulmonsters-overworld-v2/alvacordo/duas-vistas.png",
+  "runtime_replaced": true,
+  "method": "ImageGen poses; Aseprite grid/palette/alpha finalization",
+  "status": "integrado localmente; idle corrigido e conferido no jogo",
+  "animations": {
+    "idle": {
+      "image": "idle.png",
+      "frames": 4,
+      "durations_ms": [
+        750,
+        200,
+        750,
+        200
+      ],
+      "loop": true
+    },
+    "walk": {
+      "image": "walk.png",
+      "frames": 6,
+      "durations_ms": [
+        140,
+        100,
+        120,
+        140,
+        100,
+        120
+      ],
+      "loop": true
+    }
+  },
+  "review_score": 8,
+  "blocking_findings": [],
+  "idle_fix_date": "2026-11-13",
+  "idle_method": "rest pose fixed; only small thorax pixels change; no global translation",
+  "idle_fix_status": "integrado; 3994 checks anima\u00e7\u00e3o e 670 checks gr\u00e1ficos sem falha",
+  "idle_fix_review_score": 7,
+  "idle_fix_blocking_findings": []
+}

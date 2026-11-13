@@ -1,0 +1,275 @@
+{
+  "id": "mormaco",
+  "folder": "art/creatures/mormaco-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/mormaco/duas-vistas.png",
+  "height": 84,
+  "motion": "Large bulky burgundy purple orange reptilian kite beast, rounded armored body, short stout paws, orange flattened head and TWO blue water-jet chimneys on back. Keep exact source diamond armor, kite flag and burgundy tassels. Slow heavy four-paw gait, source body stays broad and low with little vertical bounce; connected water jets can ripple slightly without switching anatomy. No gorilla humanoid or extra head, no scenery/water pool under it.",
+  "sheets": [
+    {
+      "path": "art/creatures/mormaco-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "cafe83419b349bae552b8cea2069054dd0966dfb24c3aafc83d5521769a4e0da",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.22641509433962265,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          123,
+          54,
+          467,
+          417
+        ],
+        [
+          97,
+          56,
+          440,
+          408
+        ],
+        [
+          59,
+          55,
+          413,
+          417
+        ],
+        [
+          132,
+          61,
+          480,
+          414
+        ],
+        [
+          97,
+          60,
+          451,
+          414
+        ],
+        [
+          70,
+          53,
+          417,
+          424
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/mormaco-prancha-v1/gerado-walk-nw-r1.png",
+      "source_sha256": "3f474f9175096746b0aa0e6c2a096bce66ab0407316fbdb778c8f7a5013b41d7",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.2079207920792079,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          82,
+          40,
+          381,
+          444
+        ],
+        [
+          102,
+          45,
+          387,
+          444
+        ],
+        [
+          118,
+          48,
+          390,
+          436
+        ],
+        [
+          97,
+          48,
+          395,
+          445
+        ],
+        [
+          102,
+          56,
+          402,
+          445
+        ],
+        [
+          106,
+          56,
+          407,
+          445
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 4,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 4,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 4,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 4,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 4,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 4,
+          "offset_y": 7,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "c56fe03c5bf2d34bc04025296f023b10229f0ae0155e5d86f72bdd90363cf70c",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          56,
+          75,
+          60,
+          78
+        ],
+        "edits": [
+          {
+            "x": 57,
+            "y": 76,
+            "color": "e79425"
+          },
+          {
+            "x": 58,
+            "y": 76,
+            "color": "e79425"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          54,
+          68,
+          58,
+          71
+        ],
+        "edits": [
+          {
+            "x": 55,
+            "y": 69,
+            "color": "7e1b31"
+          },
+          {
+            "x": 56,
+            "y": 69,
+            "color": "7e1b31"
+          }
+        ]
+      }
+    }
+  }
+}

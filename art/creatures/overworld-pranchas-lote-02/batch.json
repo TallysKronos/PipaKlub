@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "video_generation": false,
+  "models": [
+    {
+      "id": "alvacordo",
+      "source": "art/creatures/soulmonsters-overworld-v2/alvacordo/duas-vistas.png",
+      "folder": "art/creatures/alvacordo-prancha-v1",
+      "height": 84,
+      "manual_color_merges": {
+        "000000": "020101",
+        "060505": "020101",
+        "101112": "020101"
+      },
+      "motion": "BIPED WOLF ARMORED KNIGHT. Two digitigrade legs, large orange-clawed armored gauntlets, cream paper-fur collar, small wolf helmet/head. Walk with firm two-legged contacts and restrained gauntlet counterswing. Preserve all armor and paper panels."
+    },
+    {
+      "id": "papisco",
+      "source": "art/creatures/soulmonsters-overworld-v2/papisco/duas-vistas.png",
+      "folder": "art/creatures/papisco-prancha-v1",
+      "height": 55,
+      "manual_color_merges": {
+        "000000": "020101",
+        "070606": "020101"
+      },
+      "motion": "SMALL CHILD WOLF KITE CREATURE. Two hind feet carrying a small cream/dark fluffy puppy, little forepaws tucked forward. Gentle two-legged walk with alternating contacts; keep the cheerful small muzzle, ears and short tail."
+    },
+    {
+      "id": "velcao",
+      "source": "art/creatures/soulmonsters-overworld-v2/velcao/duas-vistas.png",
+      "folder": "art/creatures/velcao-prancha-v1",
+      "height": 70,
+      "manual_color_merges": {
+        "000000": "05070c",
+        "020204": "05070c"
+      },
+      "motion": "FOUR-LEGGED ADOLESCENT CANINE. Cream and charcoal paper-fur, teal tufts and a long attached folded cream/teal kite tail. Four distinct connected legs in alternating diagonal support, grounded paw placement, no extra limbs or upright human walk."
+    },
+    {
+      "id": "gambalhote",
+      "source": "art/creatures/soulmonsters-overworld-v2/gambalhote/duas-vistas.png",
+      "folder": "art/creatures/gambalhote-prancha-v1",
+      "height": 55,
+      "manual_color_merges": {
+        "040508": "010102"
+      },
+      "motion": "BIPED OPOSSUM/MARIONETTE KITE CREATURE: two arms attached to puppet strings and two walking legs, as canonical approved concept. Preserve snout, chest kite and continuous tail holding crossbar.",
+      "anatomy_reference": "art/creatures/soulsmonsters concept art/gambalhote.png",
+      "anatomy_note": "The first batch prompt misread the small overworld pose as four-legged. The approved front/profile/back concept is bipedal. Generated pixels and original prompt records were preserved."
+    },
+    {
+      "id": "alvaneve",
+      "source": "art/creatures/soulmonsters-overworld-v2/alvaneve/duas-vistas.png",
+      "folder": "art/creatures/alvaneve-prancha-v1",
+      "height": 84,
+      "manual_color_merges": {
+        "0b0707": "020104"
+      },
+      "motion": "FLOATING WHITE GOLD AND BLUE WINGED KITE SPIRIT. Preserve the exact unusual anatomy and ornamental wings of source; do not invent a generic bird, humanoid, arms, legs, beak or fur. Locomotion is a complete controlled wing/fan stroke and coordinated attached curled tail/ribbon follow-through, hovering in place, not a terrestrial foot walk."
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+{
+  "id": "alvaneve",
+  "folder": "art/creatures/alvaneve-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/alvaneve/duas-vistas.png",
+  "height": 84,
+  "motion": "FLOATING WHITE GOLD AND BLUE WINGED KITE SPIRIT. Preserve the exact unusual anatomy and ornamental wings of source; do not invent a generic bird, humanoid, arms, legs, beak or fur. Locomotion is a complete controlled wing/fan stroke and coordinated attached curled tail/ribbon follow-through, hovering in place, not a terrestrial foot walk.",
+  "sheets": [
+    {
+      "path": "art/creatures/alvaneve-prancha-v1/gerado-idle-sw.png",
+      "source_sha256": "10353cac5899a5e5fca882bf263b4b7a66ecca7c69153d56bad3ec40a9736592",
+      "action": "idle",
+      "view": "sw",
+      "scale": 0.17248459958932238,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          192,
+          59,
+          497,
+          545
+        ],
+        [
+          146,
+          51,
+          452,
+          532
+        ],
+        [
+          192,
+          59,
+          497,
+          546
+        ],
+        [
+          145,
+          64,
+          452,
+          546
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 1,
+          "offset_y": 6,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 1,
+          "offset_y": 6,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": 1,
+          "offset_y": 6,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": 1,
+          "offset_y": 6,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/alvaneve-prancha-v1/gerado-idle-nw.png",
+      "source_sha256": "121e713ad7da117f11538eb23c5f8fc5bbe5d1a5aa0c2adb52ea3c76c2e74c77",
+      "action": "idle",
+      "view": "nw",
+      "scale": 0.1721311475409836,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          175,
+          52,
+          490,
+          540
+        ],
+        [
+          169,
+          45,
+          485,
+          514
+        ],
+        [
+          175,
+          52,
+          490,
+          540
+        ],
+        [
+          169,
+          64,
+          485,
+          547
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": -1,
+          "offset_y": 6,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": -1,
+          "offset_y": 6,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": -1,
+          "offset_y": 6,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": -1,
+          "offset_y": 6,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/alvaneve-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "c374fe97479d919d7936cfcb1a174732220d60dad8e098d66a9f61c1057e4c55",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.23076923076923078,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          172,
+          72,
+          384,
+          436
+        ],
+        [
+          130,
+          80,
+          389,
+          444
+        ],
+        [
+          96,
+          101,
+          399,
+          451
+        ],
+        [
+          86,
+          114,
+          430,
+          461
+        ],
+        [
+          114,
+          84,
+          391,
+          439
+        ],
+        [
+          127,
+          68,
+          356,
+          432
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -6,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -6,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -6,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -6,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -6,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -6,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/alvaneve-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "332971faac397f666a850d7bc7c35294817f1ca044f9507d4e9e9972974a9ed2",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.22459893048128343,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          167,
+          60,
+          392,
+          411
+        ],
+        [
+          128,
+          59,
+          395,
+          423
+        ],
+        [
+          94,
+          71,
+          411,
+          427
+        ],
+        [
+          112,
+          71,
+          439,
+          445
+        ],
+        [
+          128,
+          62,
+          403,
+          415
+        ],
+        [
+          151,
+          61,
+          375,
+          406
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 0,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "4843a177e0c5b6717f82530b8d752b33e5922c3c41fb463110b1c6bb719ca470",
+  "idle_durations": [
+    400,
+    150,
+    400,
+    150
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {
+    "0b0707": "020104"
+  }
+}

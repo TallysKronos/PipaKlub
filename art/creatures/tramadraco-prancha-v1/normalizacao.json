@@ -1,0 +1,381 @@
+{
+  "id": "tramadraco",
+  "folder": "art/creatures/tramadraco-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/tramadraco/duas-vistas.png",
+  "height": 84,
+  "motion": "Adult imperial dragon knight, TWO legs, TWO armored arms, original ivory dragon helmet with narrow visor, indigo/gold/ivory armor and coral thighs, ragged indigo cape behind, single attached sword held DOWN toward source-left in SW. Alternating grounded armored biped steps and restrained arm counterbalance; preserve helmet/visor/crest, chest diamond, sword side, cape attachment and source proportions exactly.",
+  "sheets": [
+    {
+      "path": "art/creatures/tramadraco-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "3fdb2e792bc213a5bf7dd01e6d3394b31ee367377a123c17527c110c6014fc2a",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.2079207920792079,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          65,
+          41,
+          457,
+          440
+        ],
+        [
+          59,
+          41,
+          458,
+          441
+        ],
+        [
+          41,
+          43,
+          465,
+          446
+        ],
+        [
+          64,
+          43,
+          485,
+          442
+        ],
+        [
+          56,
+          44,
+          451,
+          448
+        ],
+        [
+          47,
+          44,
+          445,
+          448
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 3,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 3,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 3,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 3,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 3,
+          "offset_y": 7,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 3,
+          "offset_y": 7,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/tramadraco-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "19d0970aac290ec7564db7a63476842564cccfd18aca9e08e96c64c6f9221f0c",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.20437956204379562,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          33,
+          28,
+          447,
+          439
+        ],
+        [
+          37,
+          28,
+          464,
+          438
+        ],
+        [
+          32,
+          29,
+          481,
+          439
+        ],
+        [
+          30,
+          29,
+          478,
+          439
+        ],
+        [
+          37,
+          29,
+          455,
+          440
+        ],
+        [
+          32,
+          29,
+          454,
+          440
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 5,
+          "offset_y": 10,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 5,
+          "offset_y": 10,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 5,
+          "offset_y": 10,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 5,
+          "offset_y": 10,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 5,
+          "offset_y": 10,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 5,
+          "offset_y": 10,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "c3f1c2d521808cc52ab396c7e5544b6a827aa95c4497bd8410166ddaba5cc525",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          58,
+          90,
+          62,
+          93
+        ],
+        "edits": [
+          {
+            "x": 59,
+            "y": 91,
+            "color": "f4d0ac"
+          },
+          {
+            "x": 60,
+            "y": 91,
+            "color": "f4d0ac"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          50,
+          90,
+          54,
+          93
+        ],
+        "edits": [
+          {
+            "x": 51,
+            "y": 91,
+            "color": "f4d0ac"
+          },
+          {
+            "x": 52,
+            "y": 91,
+            "color": "f4d0ac"
+          }
+        ]
+      }
+    }
+  },
+  "source_core_lock": {
+    "views": {
+      "sw": {
+        "moving_regions": [
+          [
+            32,
+            69,
+            85,
+            104
+          ]
+        ],
+        "protected_polygons": [
+          [
+            [
+              36,
+              47
+            ],
+            [
+              66,
+              45
+            ],
+            [
+              74,
+              60
+            ],
+            [
+              66,
+              73
+            ],
+            [
+              54,
+              79
+            ],
+            [
+              40,
+              66
+            ]
+          ],
+          [
+            [
+              19,
+              72
+            ],
+            [
+              25,
+              71
+            ],
+            [
+              58,
+              101
+            ],
+            [
+              53,
+              103
+            ],
+            [
+              19,
+              78
+            ]
+          ]
+        ]
+      },
+      "nw": {
+        "moving_regions": [
+          [
+            31,
+            72,
+            77,
+            104
+          ]
+        ],
+        "protected_polygons": [
+          [
+            [
+              45,
+              50
+            ],
+            [
+              73,
+              50
+            ],
+            [
+              93,
+              74
+            ],
+            [
+              88,
+              91
+            ],
+            [
+              73,
+              96
+            ],
+            [
+              58,
+              86
+            ],
+            [
+              50,
+              78
+            ]
+          ]
+        ]
+      }
+    }
+  }
+}

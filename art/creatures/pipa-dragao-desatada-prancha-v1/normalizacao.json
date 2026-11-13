@@ -1,0 +1,277 @@
+{
+  "id": "pipa-dragao-desatada",
+  "folder": "art/creatures/pipa-dragao-desatada-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/pipa-dragao-desatada/duas-vistas.png",
+  "height": 84,
+  "motion": "Unbound kite-dragon: exact low broad cream/charcoal beast with burgundy facial/claw details, attached elaborate gold/green bamboo kite scaffold over back, knotted cords and long tail. Preserve the exact source headshape, visible face, limb count and attached framework/ornaments. Heavy grounded quadruped alternating four-paw gait with bent joints and same squat broad body mass. NO extra heads/limbs or toy sockets, no generic reptile replacing source.",
+  "sheets": [
+    {
+      "path": "art/creatures/pipa-dragao-desatada-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "42e529f06aad1151afaabdab4b799b47953c62f31c282346f50e015848a03bef",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.22792022792022792,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          26,
+          99,
+          505,
+          427
+        ],
+        [
+          23,
+          87,
+          496,
+          423
+        ],
+        [
+          26,
+          89,
+          489,
+          440
+        ],
+        [
+          26,
+          91,
+          494,
+          439
+        ],
+        [
+          23,
+          92,
+          495,
+          435
+        ],
+        [
+          26,
+          98,
+          492,
+          419
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -4,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -4,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -4,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -4,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -4,
+          "offset_y": 0,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -4,
+          "offset_y": 0,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/pipa-dragao-desatada-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "73692acdea5182d4c47dec59ee5d927356198a8a4756c7d58973af5ef7f8aca3",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.2441860465116279,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          64,
+          81,
+          512,
+          472
+        ],
+        [
+          0,
+          69,
+          510,
+          464
+        ],
+        [
+          39,
+          69,
+          504,
+          443
+        ],
+        [
+          63,
+          66,
+          512,
+          456
+        ],
+        [
+          0,
+          60,
+          512,
+          460
+        ],
+        [
+          0,
+          65,
+          499,
+          462
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -11,
+          "offset_y": -9,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -11,
+          "offset_y": -9,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -11,
+          "offset_y": -9,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -11,
+          "offset_y": -9,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -11,
+          "offset_y": -9,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -11,
+          "offset_y": -9,
+          "edits": []
+        }
+      ],
+      "clear_light_exterior": true,
+      "clean_bounds_file": "nw-clean-bounds.json"
+    }
+  ],
+  "source_sha256": "73fbcce70c3539663716b5a3e41a0f2efaedfd49e3038213d178bc729d69ee98",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          51,
+          71,
+          55,
+          74
+        ],
+        "edits": [
+          {
+            "x": 52,
+            "y": 72,
+            "color": "fac9b0"
+          },
+          {
+            "x": 53,
+            "y": 72,
+            "color": "fac9b0"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          57,
+          71,
+          61,
+          74
+        ],
+        "edits": [
+          {
+            "x": 58,
+            "y": 72,
+            "color": "fac9b0"
+          },
+          {
+            "x": 59,
+            "y": 72,
+            "color": "fac9b0"
+          }
+        ]
+      }
+    }
+  }
+}

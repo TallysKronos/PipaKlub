@@ -1,0 +1,52 @@
+{
+  "id": "mata-verde",
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "source": "art/creatures/soulmonsters-overworld-v2/mata-verde/duas-vistas.png",
+  "runtime_replaced": true,
+  "method": "ImageGen walk poses; Aseprite grid/palette/alpha finalization; source-authored stationary idle",
+  "status": "integrado localmente; playtest gr\u00e1fico conclu\u00eddo",
+  "animations": {
+    "idle": {
+      "image": "idle.png",
+      "frames": 4,
+      "durations_ms": [
+        750,
+        200,
+        750,
+        200
+      ],
+      "loop": true
+    },
+    "walk": {
+      "image": "walk.png",
+      "frames": 6,
+      "durations_ms": [
+        140,
+        100,
+        120,
+        140,
+        100,
+        120
+      ],
+      "loop": true
+    }
+  },
+  "review_score": 7,
+  "blocking_findings": [],
+  "generation_count": 2,
+  "reviewer": "/root/animation_pixel_critic",
+  "batch_generation_count": 12,
+  "batch_generated_walk_poses": 72,
+  "batch_authored_idle_frames": 40
+}

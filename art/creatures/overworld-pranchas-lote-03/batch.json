@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "video_generation": false,
+  "models": [
+    {
+      "id": "rabbito",
+      "source": "art/creatures/soulmonsters-overworld-v2/rabbito/duas-vistas.png",
+      "folder": "art/creatures/rabbito-prancha-v1",
+      "height": 55,
+      "motion": "Small cream rabbit kite creature, TWO hind feet and TWO short forepaws, very long turquoise/cream paper-kite ears and attached golden ribbon tail. Gentle biped gait on hind feet, forepaws counterbalance; keep rabbit face and both tall ears whole.",
+      "idle_method": "Stable approved rest pose, local 1px breathing/secondary details in Aseprite; no head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              44,
+              80,
+              55,
+              94
+            ],
+            "edits": [
+              {
+                "x": 47,
+                "y": 84,
+                "color": "fce9c7"
+              },
+              {
+                "x": 48,
+                "y": 84,
+                "color": "fce9c7"
+              },
+              {
+                "x": 47,
+                "y": 85,
+                "color": "f0c592"
+              },
+              {
+                "x": 48,
+                "y": 85,
+                "color": "fce9c7"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              50,
+              79,
+              60,
+              92
+            ],
+            "edits": [
+              {
+                "x": 53,
+                "y": 82,
+                "color": "1e9ba0"
+              },
+              {
+                "x": 54,
+                "y": 82,
+                "color": "1e9ba0"
+              },
+              {
+                "x": 53,
+                "y": 83,
+                "color": "036d7c"
+              },
+              {
+                "x": 54,
+                "y": 83,
+                "color": "1e9ba0"
+              }
+            ]
+          }
+        }
+      },
+      "sheet_overrides": {
+        "walk-sw": "art/creatures/rabbito-prancha-v1/gerado-walk-sw-r1.png",
+        "walk-nw": "art/creatures/rabbito-prancha-v1/gerado-walk-nw-r1.png"
+      }
+    },
+    {
+      "id": "carcara",
+      "source": "art/creatures/soulmonsters-overworld-v2/carcara/duas-vistas.png",
+      "folder": "art/creatures/carcara-prancha-v1",
+      "height": 55,
+      "motion": "Orange cream paper-kite bird with diamond body, hooked golden beak, two feather-shaped kite wings and attached orange ribbon tail. Locomotion is hovering wingbeat with six real wing articulation phases, torso/face maintain diamond shape. Do not invent legs, hands, feathered mammal or humanoid body.",
+      "idle_method": "Stable approved rest pose, local 1px breathing/secondary details in Aseprite; no head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              48,
+              65,
+              57,
+              75
+            ],
+            "edits": [
+              {
+                "x": 50,
+                "y": 71,
+                "color": "fce2b6"
+              },
+              {
+                "x": 51,
+                "y": 71,
+                "color": "fcd59a"
+              },
+              {
+                "x": 50,
+                "y": 72,
+                "color": "fcd59a"
+              },
+              {
+                "x": 51,
+                "y": 72,
+                "color": "fcd59a"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              48,
+              64,
+              57,
+              75
+            ],
+            "edits": [
+              {
+                "x": 50,
+                "y": 69,
+                "color": "f6a450"
+              },
+              {
+                "x": 51,
+                "y": 69,
+                "color": "faba6e"
+              },
+              {
+                "x": 50,
+                "y": 70,
+                "color": "faba6e"
+              },
+              {
+                "x": 51,
+                "y": 70,
+                "color": "fcd59a"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "mata-verde",
+      "source": "art/creatures/soulmonsters-overworld-v2/mata-verde/duas-vistas.png",
+      "folder": "art/creatures/mata-verde-prancha-v1",
+      "height": 55,
+      "motion": "Green cream insect-like fairy kite creature. Preserve exact source count and arrangement of visible limbs, antennae, green leaf-shaped body/wing panels and attached ribbons. Movement is light hovering with coordinated insect-wing/leaf-panel stroke; no extra legs, human walk or generic butterfly redesign.",
+      "idle_method": "Stable approved rest pose, local 1px breathing/secondary details in Aseprite; no head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              49,
+              74,
+              58,
+              85
+            ],
+            "edits": [
+              {
+                "x": 52,
+                "y": 77,
+                "color": "fbe7c1"
+              },
+              {
+                "x": 53,
+                "y": 77,
+                "color": "fbe7c1"
+              },
+              {
+                "x": 53,
+                "y": 78,
+                "color": "f1c883"
+              },
+              {
+                "x": 54,
+                "y": 78,
+                "color": "f1c883"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              54,
+              69,
+              63,
+              78
+            ],
+            "edits": [
+              {
+                "x": 57,
+                "y": 72,
+                "color": "8aaf31"
+              },
+              {
+                "x": 58,
+                "y": 72,
+                "color": "7ca42e"
+              },
+              {
+                "x": 57,
+                "y": 73,
+                "color": "7ca42e"
+              },
+              {
+                "x": 58,
+                "y": 73,
+                "color": "7ca42e"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "azulao",
+      "source": "art/creatures/soulmonsters-overworld-v2/azulao/duas-vistas.png",
+      "folder": "art/creatures/azulao-prancha-v1",
+      "height": 55,
+      "motion": "Blue cream diamond-body bird kite, yellow hooked beak, TWO feather-shaped kite wings with blue curls and attached blue ribbon tail. Locomotion is hovering wingbeat with actual raised/open/downstroke/recovery phases; keep diamond body and face, no invented humanoid limbs or legs.",
+      "idle_method": "Stable approved rest pose, local 1px breathing/secondary details in Aseprite; no head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              48,
+              65,
+              57,
+              74
+            ],
+            "edits": [
+              {
+                "x": 51,
+                "y": 70,
+                "color": "fce7c0"
+              },
+              {
+                "x": 52,
+                "y": 70,
+                "color": "fce7c0"
+              },
+              {
+                "x": 51,
+                "y": 71,
+                "color": "e9c496"
+              },
+              {
+                "x": 52,
+                "y": 71,
+                "color": "fce7c0"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              54,
+              65,
+              63,
+              73
+            ],
+            "edits": [
+              {
+                "x": 57,
+                "y": 69,
+                "color": "043295"
+              },
+              {
+                "x": 58,
+                "y": 69,
+                "color": "043295"
+              },
+              {
+                "x": 57,
+                "y": 70,
+                "color": "073caa"
+              },
+              {
+                "x": 58,
+                "y": 70,
+                "color": "043295"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "doberman-c",
+      "source": "art/creatures/soulmonsters-overworld-v2/doberman-c/duas-vistas.png",
+      "folder": "art/creatures/doberman-c-prancha-v1",
+      "height": 70,
+      "motion": "Four-legged doberman kite beast, black cream orange markings, long upright kite-shaped ears, chest golden cord harness, attached cord-and-two-ribbon tail. Walk on FOUR paws with alternating diagonal support, bent knees/hocks and paw passing, same lean canine body and head. Do not add rider, saddle or human form.",
+      "idle_method": "Stable approved rest pose, local 1px breathing/secondary details in Aseprite; no head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              51,
+              65,
+              60,
+              75
+            ],
+            "edits": [
+              {
+                "x": 54,
+                "y": 69,
+                "color": "151214"
+              },
+              {
+                "x": 55,
+                "y": 69,
+                "color": "151214"
+              },
+              {
+                "x": 54,
+                "y": 70,
+                "color": "2d2a33"
+              },
+              {
+                "x": 55,
+                "y": 70,
+                "color": "151214"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              52,
+              67,
+              62,
+              77
+            ],
+            "edits": [
+              {
+                "x": 57,
+                "y": 71,
+                "color": "151214"
+              },
+              {
+                "x": 58,
+                "y": 71,
+                "color": "151214"
+              },
+              {
+                "x": 57,
+                "y": 72,
+                "color": "2d2a33"
+              },
+              {
+                "x": 58,
+                "y": 72,
+                "color": "151214"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

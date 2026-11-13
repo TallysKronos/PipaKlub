@@ -1,0 +1,381 @@
+{
+  "id": "alvacordo",
+  "folder": "art/creatures/alvacordo-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/alvacordo/duas-vistas.png",
+  "height": 84,
+  "motion": "BIPED WOLF ARMORED KNIGHT. Two digitigrade legs, large orange-clawed armored gauntlets, cream paper-fur collar, small wolf helmet/head. Walk with firm two-legged contacts and restrained gauntlet counterswing. Preserve all armor and paper panels.",
+  "sheets": [
+    {
+      "path": "art/creatures/alvacordo-prancha-v1/gerado-idle-sw.png",
+      "source_sha256": "7557474d953e44b8b3cc23a29e68d943a5c92bc00359c5ddcc295c0848004ced",
+      "action": "idle",
+      "view": "sw",
+      "scale": 0.1826086956521739,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          121,
+          74,
+          547,
+          531
+        ],
+        [
+          89,
+          71,
+          518,
+          531
+        ],
+        [
+          121,
+          75,
+          547,
+          531
+        ],
+        [
+          91,
+          75,
+          517,
+          531
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": -2,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": -2,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": -2,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": -2,
+          "offset_y": 3,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/alvacordo-prancha-v1/gerado-idle-nw.png",
+      "source_sha256": "442e3ca14f95727055f795cea228cf7cecfd5bfafd87c15a66f7c8c7b843fc87",
+      "action": "idle",
+      "view": "nw",
+      "scale": 0.16568047337278108,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          132,
+          50,
+          525,
+          551
+        ],
+        [
+          133,
+          50,
+          524,
+          551
+        ],
+        [
+          132,
+          51,
+          525,
+          551
+        ],
+        [
+          132,
+          51,
+          525,
+          558
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 2,
+          "offset_y": 8,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 2,
+          "offset_y": 8,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": 2,
+          "offset_y": 8,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": 2,
+          "offset_y": 8,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/alvacordo-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "4c8338485f4f25dd53bc0de8fbe4518e13ba0bf79d140c49dd4dc0b93aefa243",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.23863636363636365,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          111,
+          72,
+          446,
+          424
+        ],
+        [
+          102,
+          72,
+          436,
+          424
+        ],
+        [
+          92,
+          72,
+          415,
+          424
+        ],
+        [
+          121,
+          74,
+          446,
+          421
+        ],
+        [
+          119,
+          73,
+          436,
+          411
+        ],
+        [
+          117,
+          70,
+          418,
+          411
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -9,
+          "offset_y": -1,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -9,
+          "offset_y": -1,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -9,
+          "offset_y": -1,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -9,
+          "offset_y": -1,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -9,
+          "offset_y": -1,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -9,
+          "offset_y": -1,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/alvacordo-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "2e8fc69bb7104551db7001e56ef7739458e617365b85ac357222f2c2c3e9c900",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.23595505617977527,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          110,
+          78,
+          405,
+          434
+        ],
+        [
+          104,
+          77,
+          400,
+          424
+        ],
+        [
+          108,
+          78,
+          399,
+          431
+        ],
+        [
+          110,
+          79,
+          406,
+          428
+        ],
+        [
+          103,
+          80,
+          395,
+          428
+        ],
+        [
+          108,
+          78,
+          393,
+          432
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -2,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -2,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -2,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -2,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -2,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": -2,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "12593fb0194c8f47d6424b6bfc34be56863c75e761eb102c4ca5cfe1185257db",
+  "idle_durations": [
+    400,
+    150,
+    400,
+    150
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {
+    "000000": "020101",
+    "060505": "020101",
+    "101112": "020101"
+  }
+}

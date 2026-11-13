@@ -79,7 +79,10 @@ if args.publish:
     assert not summary['pending'], 'Resolve technical failures before publishing'
     path=ROOT/'godot/assets/campaign/overworld-animations-v1';manifest=json.loads((path/'manifest.json').read_text())
     for r in report:
-        id=r['id'];dest=path/id;dest.mkdir(exist_ok=True)
+        id=r['id']
+        # New approved redraws take precedence over this older regional batch.
+        if manifest.get(id,{}).get('art_version','').startswith(('hybrid-','sheet-')): continue
+        dest=path/id;dest.mkdir(exist_ok=True)
         manifest[id]={}
         for state in ['idle','walk']:
             source=ART/id/'animacoes-v1'/f'{state}.png';target=dest/f'{state}.png'

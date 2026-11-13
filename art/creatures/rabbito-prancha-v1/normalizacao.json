@@ -1,0 +1,295 @@
+{
+  "id": "rabbito",
+  "folder": "art/creatures/rabbito-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/rabbito/duas-vistas.png",
+  "height": 55,
+  "motion": "Small cream rabbit kite creature, TWO hind feet and TWO short forepaws, very long turquoise/cream paper-kite ears and attached golden ribbon tail. Gentle biped gait on hind feet, forepaws counterbalance; keep rabbit face and both tall ears whole.",
+  "sheets": [
+    {
+      "path": "art/creatures/rabbito-prancha-v1/gerado-walk-sw-r1.png",
+      "source_sha256": "c0aa7623f24d7d81a845aad0acf61df3fde86a94287ab6ce35a80c9da56821a6",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.15895953757225434,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          139,
+          81,
+          419,
+          425
+        ],
+        [
+          127,
+          81,
+          403,
+          427
+        ],
+        [
+          127,
+          69,
+          399,
+          409
+        ],
+        [
+          139,
+          87,
+          422,
+          421
+        ],
+        [
+          127,
+          78,
+          401,
+          420
+        ],
+        [
+          126,
+          69,
+          400,
+          403
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 14,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 14,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 14,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 14,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 14,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 14,
+          "offset_y": 32,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/rabbito-prancha-v1/gerado-walk-nw-r1.png",
+      "source_sha256": "bc0bc34a66dfee512d933854d51f9a39a091698424108d5d7366a59a5763a744",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.16666666666666666,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          148,
+          98,
+          415,
+          413
+        ],
+        [
+          127,
+          98,
+          384,
+          411
+        ],
+        [
+          126,
+          80,
+          400,
+          410
+        ],
+        [
+          144,
+          98,
+          412,
+          412
+        ],
+        [
+          127,
+          93,
+          393,
+          410
+        ],
+        [
+          118,
+          80,
+          388,
+          410
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 31,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 31,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 31,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 31,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 31,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 31,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "79082037e800a565e7980d2b50d7b53e482a7dd09aec74b6ac20a5d37b6da445",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          44,
+          80,
+          55,
+          94
+        ],
+        "edits": [
+          {
+            "x": 47,
+            "y": 84,
+            "color": "fce9c7"
+          },
+          {
+            "x": 48,
+            "y": 84,
+            "color": "fce9c7"
+          },
+          {
+            "x": 47,
+            "y": 85,
+            "color": "f0c592"
+          },
+          {
+            "x": 48,
+            "y": 85,
+            "color": "fce9c7"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          50,
+          79,
+          60,
+          92
+        ],
+        "edits": [
+          {
+            "x": 53,
+            "y": 82,
+            "color": "1e9ba0"
+          },
+          {
+            "x": 54,
+            "y": 82,
+            "color": "1e9ba0"
+          },
+          {
+            "x": 53,
+            "y": 83,
+            "color": "036d7c"
+          },
+          {
+            "x": 54,
+            "y": 83,
+            "color": "1e9ba0"
+          }
+        ]
+      }
+    }
+  }
+}

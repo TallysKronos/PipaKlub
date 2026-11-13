@@ -1,0 +1,47 @@
+{
+  "id": "velcao",
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "source": "art/creatures/soulmonsters-overworld-v2/velcao/duas-vistas.png",
+  "runtime_replaced": true,
+  "method": "ImageGen poses; Aseprite grid/palette/alpha finalization",
+  "status": "integrado localmente; playtest gr\u00e1fico conclu\u00eddo",
+  "animations": {
+    "idle": {
+      "image": "idle.png",
+      "frames": 4,
+      "durations_ms": [
+        400,
+        150,
+        400,
+        150
+      ],
+      "loop": true
+    },
+    "walk": {
+      "image": "walk.png",
+      "frames": 6,
+      "durations_ms": [
+        140,
+        100,
+        120,
+        140,
+        100,
+        120
+      ],
+      "loop": true
+    }
+  },
+  "review_score": 7.5,
+  "blocking_findings": []
+}

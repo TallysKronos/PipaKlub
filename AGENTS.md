@@ -1,5 +1,17 @@
 # Desenvolvimento do PipaKlub
 
+## Pasta principal consolidada
+
+A partir de 13/11/2026, o projeto ativo fica em `C:/Users/user/produto/pipa-club`,
+na branch `codex/unificacao-final`. Leia `COMECE-AQUI.md` antes de abrir o jogo.
+Os antigos worktrees `pipa-club-*` foram substituídos pela consolidação; não
+recrie uma pasta antiga para continuar tarefas. O Godot local fica em
+`.local/godot/`, e o projeto é `godot/project.godot`. Valide sempre o `--path`
+da instância do jogo: a localização do executável Godot não determina o projeto.
+O arquivo `_unificacao-pipaklub/2026-11-13`, fora do repositório, preserva os
+arquivos locais exclusivos e estudos em espera. Preserve a HUD da unificação;
+não reative a HUD experimental ou a fila de vídeos ao recuperar arquivos.
+
 Este projeto usa engine própria em JavaScript/Canvas 2D, interface DOM/CSS e servidor Node/WebSocket. Não introduza Godot, Unity, Phaser ou outro motor apenas porque um exemplo de skill o utiliza.
 
 Para produção/revisão de assets, HUD/menus ou diagnóstico de desempenho, leia `.agents/skills/pipaklub-production/SKILL.md` e somente a referência da área solicitada. Ela conecta as três skills externas instaladas às regras e consumidores locais. Para mudanças fora dessas áreas, trabalhe normalmente.

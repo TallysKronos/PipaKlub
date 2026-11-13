@@ -15,3 +15,8 @@ godot-proof*.log
 # Reproducible native preview archives and machine-specific run logs stay local.
 documentation/overworld/**/*.zip
 documentation/overworld/**/*.log
+
+art/creatures/overworld-video-v2/review/**/*.rgba
+art/creatures/overworld-video-v2/overnight.lock*
+art/creatures/overworld-video-v2/overnight.json*
+art/creatures/overworld-video-v2/power-request.json

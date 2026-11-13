@@ -1,0 +1,380 @@
+{
+  "id": "velcao",
+  "folder": "art/creatures/velcao-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/velcao/duas-vistas.png",
+  "height": 70,
+  "motion": "FOUR-LEGGED ADOLESCENT CANINE. Cream and charcoal paper-fur, teal tufts and a long attached folded cream/teal kite tail. Four distinct connected legs in alternating diagonal support, grounded paw placement, no extra limbs or upright human walk.",
+  "sheets": [
+    {
+      "path": "art/creatures/velcao-prancha-v1/gerado-idle-sw.png",
+      "source_sha256": "f248375c80dc33cb31b6e28bea8ae84319d35c46529bc75904b87f8981e0933e",
+      "action": "idle",
+      "view": "sw",
+      "scale": 0.15384615384615385,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          86,
+          68,
+          580,
+          516
+        ],
+        [
+          84,
+          61,
+          579,
+          516
+        ],
+        [
+          86,
+          64,
+          580,
+          516
+        ],
+        [
+          84,
+          69,
+          583,
+          516
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 5,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 5,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": 5,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": 5,
+          "offset_y": 21,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/velcao-prancha-v1/gerado-idle-nw.png",
+      "source_sha256": "4b6ce5e4def3246cdd941fc1d5c35f36a1bc7fef0193bfe8cf13eebd07d19f4c",
+      "action": "idle",
+      "view": "nw",
+      "scale": 0.15625,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          107,
+          74,
+          569,
+          516
+        ],
+        [
+          107,
+          68,
+          573,
+          516
+        ],
+        [
+          107,
+          74,
+          569,
+          516
+        ],
+        [
+          106,
+          76,
+          571,
+          516
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 3,
+          "offset_y": 19,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 3,
+          "offset_y": 19,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": 3,
+          "offset_y": 19,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627,
+          "offset_x": 3,
+          "offset_y": 19,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/velcao-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "cc7f028d06b3e4512ab1913247285e6515f2d96110afc1c9d0b6862595bc7b57",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.19021739130434784,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          92,
+          94,
+          461,
+          445
+        ],
+        [
+          68,
+          91,
+          447,
+          445
+        ],
+        [
+          52,
+          79,
+          434,
+          433
+        ],
+        [
+          96,
+          72,
+          474,
+          437
+        ],
+        [
+          77,
+          68,
+          462,
+          432
+        ],
+        [
+          64,
+          63,
+          439,
+          431
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 15,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 15,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 15,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 15,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 15,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 15,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/velcao-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "622403d7a3e0f7716ccdc45f2979f690cd3d83f36a43eb15fc2c49ba9ee7e65b",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.21671826625386997,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          109,
+          95,
+          460,
+          418
+        ],
+        [
+          105,
+          95,
+          446,
+          415
+        ],
+        [
+          106,
+          88,
+          453,
+          411
+        ],
+        [
+          109,
+          98,
+          450,
+          410
+        ],
+        [
+          110,
+          94,
+          458,
+          407
+        ],
+        [
+          106,
+          87,
+          463,
+          410
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 9,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 9,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 9,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 9,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 9,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -5,
+          "offset_y": 9,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "7fd5178c7ac6981dfc967dbe343b4168bd86ad79cd23bff74effa38a352abdc8",
+  "idle_durations": [
+    400,
+    150,
+    400,
+    150
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {
+    "000000": "05070c",
+    "020204": "05070c"
+  }
+}

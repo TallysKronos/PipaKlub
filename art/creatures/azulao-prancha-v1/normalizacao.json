@@ -1,0 +1,295 @@
+{
+  "id": "azulao",
+  "folder": "art/creatures/azulao-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/azulao/duas-vistas.png",
+  "height": 55,
+  "motion": "Blue cream diamond-body bird kite, yellow hooked beak, TWO feather-shaped kite wings with blue curls and attached blue ribbon tail. Locomotion is hovering wingbeat with actual raised/open/downstroke/recovery phases; keep diamond body and face, no invented humanoid limbs or legs.",
+  "sheets": [
+    {
+      "path": "art/creatures/azulao-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "e8d62d62b3ca404aa1a6f3a84fb05b6ad3cffd9b60e84f32c01546a7a114dbf6",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.13447432762836187,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          119,
+          40,
+          432,
+          449
+        ],
+        [
+          80,
+          44,
+          421,
+          445
+        ],
+        [
+          29,
+          48,
+          395,
+          442
+        ],
+        [
+          114,
+          53,
+          416,
+          441
+        ],
+        [
+          73,
+          42,
+          416,
+          441
+        ],
+        [
+          54,
+          46,
+          370,
+          445
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 23,
+          "offset_y": 40,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 23,
+          "offset_y": 40,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 23,
+          "offset_y": 40,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 23,
+          "offset_y": 40,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 23,
+          "offset_y": 40,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 23,
+          "offset_y": 40,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/azulao-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "559de3f81f2f6371a2714f92400346e4d6317747dc9c60f1284cdafd9e5205ae",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.1751592356687898,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          137,
+          90,
+          388,
+          404
+        ],
+        [
+          112,
+          93,
+          400,
+          407
+        ],
+        [
+          107,
+          94,
+          414,
+          407
+        ],
+        [
+          133,
+          96,
+          395,
+          409
+        ],
+        [
+          118,
+          93,
+          389,
+          403
+        ],
+        [
+          122,
+          89,
+          396,
+          403
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 11,
+          "offset_y": 28,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 11,
+          "offset_y": 28,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 11,
+          "offset_y": 28,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 11,
+          "offset_y": 28,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 11,
+          "offset_y": 28,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 11,
+          "offset_y": 28,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "dcb815452d58956f9a96fe0d9cdd96a8854df764f04fc04939cb4ce9d01eca68",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          48,
+          65,
+          57,
+          74
+        ],
+        "edits": [
+          {
+            "x": 51,
+            "y": 70,
+            "color": "fce7c0"
+          },
+          {
+            "x": 52,
+            "y": 70,
+            "color": "fce7c0"
+          },
+          {
+            "x": 51,
+            "y": 71,
+            "color": "e9c496"
+          },
+          {
+            "x": 52,
+            "y": 71,
+            "color": "fce7c0"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          54,
+          65,
+          63,
+          73
+        ],
+        "edits": [
+          {
+            "x": 57,
+            "y": 69,
+            "color": "043295"
+          },
+          {
+            "x": 58,
+            "y": 69,
+            "color": "043295"
+          },
+          {
+            "x": 57,
+            "y": 70,
+            "color": "073caa"
+          },
+          {
+            "x": 58,
+            "y": 70,
+            "color": "043295"
+          }
+        ]
+      }
+    }
+  }
+}

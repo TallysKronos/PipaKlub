@@ -1,0 +1,272 @@
+{
+  "version": 1,
+  "video_generation": false,
+  "models": [
+    {
+      "id": "nozinho",
+      "source": "art/creatures/soulmonsters-overworld-v2/nozinho/duas-vistas.png",
+      "folder": "art/creatures/nozinho-prancha-v1",
+      "height": 55,
+      "motion": "Small golden yellow knot/rope mouse-like kite creature. Preserve round blue face disk, round loop ears, golden knotted body and attached short tail. Small child biped with two hind feet and two short forepaws: gentle alternating foot contacts, restrained arm counterbalance. Do not change circular face or invent humanoid proportions.",
+      "idle_method": "Authored stable approved rest pose, zero head/feet/global translation; tiny local breathing/secondary details",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              52,
+              82,
+              56,
+              85
+            ],
+            "edits": [
+              {
+                "x": 53,
+                "y": 83,
+                "color": "ee9429"
+              },
+              {
+                "x": 54,
+                "y": 83,
+                "color": "ee9429"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              54,
+              74,
+              58,
+              77
+            ],
+            "edits": [
+              {
+                "x": 55,
+                "y": 75,
+                "color": "fcd483"
+              },
+              {
+                "x": 56,
+                "y": 75,
+                "color": "fcd483"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "lacertubo",
+      "source": "art/creatures/soulmonsters-overworld-v2/lacertubo/duas-vistas.png",
+      "folder": "art/creatures/lacertubo-prancha-v1",
+      "height": 84,
+      "motion": "Large quadruped orange/teal paper-kite lizard/dragon with FOUR legs and paws, broad elongated low torso, angular reptile head and attached long segmented kite tail. Preserve source multi-panel dorsal kite sail, spars, knots and recognizable muzzle. Strong grounded four-paw diagonal gait, bend joints and alternating planted support; torso/head/sail keep same mass, no generic winged dragon redesign or new horns.",
+      "idle_method": "Authored stable approved rest pose, zero head/feet/global translation; tiny local breathing/secondary details",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              50,
+              76,
+              54,
+              79
+            ],
+            "edits": [
+              {
+                "x": 51,
+                "y": 77,
+                "color": "fa6302"
+              },
+              {
+                "x": 52,
+                "y": 77,
+                "color": "fa6302"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              54,
+              65,
+              57,
+              69
+            ],
+            "edits": [
+              {
+                "x": 55,
+                "y": 66,
+                "color": "fa6302"
+              },
+              {
+                "x": 55,
+                "y": 67,
+                "color": "fa6302"
+              }
+            ]
+          }
+        }
+      },
+      "sheet_overrides": {
+        "walk-nw": "art/creatures/lacertubo-prancha-v1/gerado-walk-nw-r1.png"
+      }
+    },
+    {
+      "id": "platyx",
+      "source": "art/creatures/soulmonsters-overworld-v2/platyx/duas-vistas.png",
+      "folder": "art/creatures/platyx-prancha-v1",
+      "height": 55,
+      "motion": "Small teal purple cream platypus kite creature. Broad cream bill, flat teal paper-kite head canopy/hat, purple torso and teal paper tail/panels exactly as source. Retain source limb count and short crouched two-hind-foot gait with short forepaws; no human hands or adult long legs. Bill/head/hat do not change orientation or become generic duck.",
+      "idle_method": "Authored stable approved rest pose, zero head/feet/global translation; tiny local breathing/secondary details",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              51,
+              79,
+              55,
+              82
+            ],
+            "edits": [
+              {
+                "x": 52,
+                "y": 80,
+                "color": "359199"
+              },
+              {
+                "x": 53,
+                "y": 80,
+                "color": "359199"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              52,
+              77,
+              56,
+              80
+            ],
+            "edits": [
+              {
+                "x": 53,
+                "y": 78,
+                "color": "39315b"
+              },
+              {
+                "x": 54,
+                "y": 78,
+                "color": "39315b"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "riscaz",
+      "source": "art/creatures/soulmonsters-overworld-v2/riscaz/duas-vistas.png",
+      "folder": "art/creatures/riscaz-prancha-v1",
+      "height": 55,
+      "motion": "Small charcoal cream rat-like kite creature with pointed muzzle, long ears, angular green leaf/paper panels, short legs and attached long thin hooked tail. Four-legged low scamper with four connected paws, alternating support/passing, same distinctive source head and chest. Never wolf/cat redesign, no humanoid body.",
+      "idle_method": "Authored stable approved rest pose, zero head/feet/global translation; tiny local breathing/secondary details",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              54,
+              79,
+              58,
+              82
+            ],
+            "edits": [
+              {
+                "x": 55,
+                "y": 80,
+                "color": "3a373c"
+              },
+              {
+                "x": 56,
+                "y": 80,
+                "color": "3a373c"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              54,
+              78,
+              57,
+              82
+            ],
+            "edits": [
+              {
+                "x": 55,
+                "y": 79,
+                "color": "e3c4ad"
+              },
+              {
+                "x": 55,
+                "y": 80,
+                "color": "e3c4ad"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "mormaco",
+      "source": "art/creatures/soulmonsters-overworld-v2/mormaco/duas-vistas.png",
+      "folder": "art/creatures/mormaco-prancha-v1",
+      "height": 84,
+      "motion": "Large bulky burgundy purple orange reptilian kite beast, rounded armored body, short stout paws, orange flattened head and TWO blue water-jet chimneys on back. Keep exact source diamond armor, kite flag and burgundy tassels. Slow heavy four-paw gait, source body stays broad and low with little vertical bounce; connected water jets can ripple slightly without switching anatomy. No gorilla humanoid or extra head, no scenery/water pool under it.",
+      "idle_method": "Authored stable approved rest pose, zero head/feet/global translation; tiny local breathing/secondary details",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              56,
+              75,
+              60,
+              78
+            ],
+            "edits": [
+              {
+                "x": 57,
+                "y": 76,
+                "color": "e79425"
+              },
+              {
+                "x": 58,
+                "y": 76,
+                "color": "e79425"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              54,
+              68,
+              58,
+              71
+            ],
+            "edits": [
+              {
+                "x": 55,
+                "y": 69,
+                "color": "7e1b31"
+              },
+              {
+                "x": 56,
+                "y": 69,
+                "color": "7e1b31"
+              }
+            ]
+          }
+        }
+      },
+      "sheet_overrides": {
+        "walk-nw": "art/creatures/mormaco-prancha-v1/gerado-walk-nw-r1.png"
+      }
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "id": "azulim",
+  "folder": "art/creatures/azulim-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/azulim/duas-vistas.png",
+  "height": 41,
+  "motion": "Tiny blue cream BABY BIRD KITE: diamond-like paper body/face, small yellow beak, small blue kite wings and connected blue curled ribbon tail. Gentle in-place six-phase wingbeat, same baby proportions and small face. No new legs, grown bird torso or adult feather anatomy.",
+  "sheets": [
+    {
+      "path": "art/creatures/azulim-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "eec448082f925836baffe53946031d5e7e56f3c5a3200c001f5d5e64132a45f5",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.1673469387755102,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          170,
+          145,
+          353,
+          387
+        ],
+        [
+          160,
+          143,
+          334,
+          387
+        ],
+        [
+          143,
+          143,
+          337,
+          387
+        ],
+        [
+          156,
+          144,
+          353,
+          387
+        ],
+        [
+          160,
+          142,
+          334,
+          387
+        ],
+        [
+          152,
+          144,
+          326,
+          387
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 35,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 35,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 35,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 35,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 35,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 35,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/azulim-prancha-v1/gerado-walk-sw-r1.png",
+      "source_sha256": "95fdf372f7ba84165025ed43bb891305af7260408c6fb4fcc9679db3bdb71943",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.16532258064516128,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          186,
+          165,
+          342,
+          399
+        ],
+        [
+          168,
+          165,
+          367,
+          399
+        ],
+        [
+          157,
+          151,
+          368,
+          399
+        ],
+        [
+          159,
+          157,
+          368,
+          399
+        ],
+        [
+          170,
+          164,
+          344,
+          399
+        ],
+        [
+          178,
+          164,
+          338,
+          399
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 13,
+          "offset_y": 34,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "f147300ad5f0514bab698f9fb806c9cd8f0b07cc4fb9432e9134bf48172a681e",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          49,
+          95,
+          53,
+          98
+        ],
+        "edits": [
+          {
+            "x": 50,
+            "y": 96,
+            "color": "f4cea4"
+          },
+          {
+            "x": 51,
+            "y": 96,
+            "color": "f4cea4"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          61,
+          95,
+          65,
+          98
+        ],
+        "edits": [
+          {
+            "x": 62,
+            "y": 96,
+            "color": "f4cea4"
+          },
+          {
+            "x": 63,
+            "y": 96,
+            "color": "f4cea4"
+          }
+        ]
+      }
+    }
+  }
+}

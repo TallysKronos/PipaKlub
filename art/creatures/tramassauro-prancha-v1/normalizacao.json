@@ -1,0 +1,463 @@
+{
+  "id": "tramassauro",
+  "folder": "art/creatures/tramassauro-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/tramassauro/duas-vistas.png",
+  "height": 70,
+  "motion": "Young slim reptilian biped, TWO legs and TWO arms, ivory angular forehead/helmet and narrow eyes, coral muzzle/shoulders/thighs, indigo body, ivory torso band and attached angular tail with two paper tabs. Mature above child but not armored knight. Six alternating biped walk contacts/passing; preserve original face and body volume.",
+  "sheets": [
+    {
+      "path": "art/creatures/tramassauro-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "af55dc0560925715868cf7c401fe44433af9d55d90d927c3e92f679a64787fb8",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.170316301703163,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          57,
+          51,
+          435,
+          460
+        ],
+        [
+          63,
+          51,
+          437,
+          436
+        ],
+        [
+          65,
+          51,
+          421,
+          444
+        ],
+        [
+          53,
+          51,
+          417,
+          452
+        ],
+        [
+          58,
+          51,
+          427,
+          462
+        ],
+        [
+          58,
+          51,
+          443,
+          445
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 15,
+          "offset_y": 21,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/tramassauro-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "8d7471cd8cb99a598ccb56a7940442a19417a6cf27687138a3275e4cb1a7fcb2",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.1745635910224439,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          119,
+          42,
+          447,
+          437
+        ],
+        [
+          98,
+          42,
+          438,
+          439
+        ],
+        [
+          93,
+          42,
+          418,
+          439
+        ],
+        [
+          101,
+          41,
+          436,
+          440
+        ],
+        [
+          94,
+          42,
+          438,
+          443
+        ],
+        [
+          86,
+          42,
+          425,
+          443
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 10,
+          "offset_y": 23,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 10,
+          "offset_y": 23,
+          "edits": [
+            {
+              "x": 76,
+              "y": 92,
+              "color": "clear"
+            },
+            {
+              "x": 76,
+              "y": 93,
+              "color": "clear"
+            },
+            {
+              "x": 76,
+              "y": 94,
+              "color": "clear"
+            },
+            {
+              "x": 77,
+              "y": 95,
+              "color": "clear"
+            }
+          ]
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 10,
+          "offset_y": 23,
+          "edits": [
+            {
+              "x": 47,
+              "y": 97,
+              "color": "fad8b5"
+            },
+            {
+              "x": 47,
+              "y": 98,
+              "color": "fad8b5"
+            },
+            {
+              "x": 49,
+              "y": 97,
+              "color": "fad8b5"
+            },
+            {
+              "x": 49,
+              "y": 98,
+              "color": "fad8b5"
+            },
+            {
+              "x": 51,
+              "y": 97,
+              "color": "fad8b5"
+            },
+            {
+              "x": 51,
+              "y": 98,
+              "color": "fad8b5"
+            }
+          ]
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 10,
+          "offset_y": 23,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 10,
+          "offset_y": 23,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 10,
+          "offset_y": 23,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "b078715047f127ecfd0f3193ed58fe6fd4ce49b5686fb0135a2a9b788c4b9634",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          75,
+          81,
+          79,
+          84
+        ],
+        "edits": [
+          {
+            "x": 76,
+            "y": 82,
+            "color": "d44d3f"
+          },
+          {
+            "x": 77,
+            "y": 82,
+            "color": "d44d3f"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          43,
+          80,
+          47,
+          83
+        ],
+        "edits": [
+          {
+            "x": 44,
+            "y": 81,
+            "color": "d2b497"
+          },
+          {
+            "x": 45,
+            "y": 81,
+            "color": "d2b497"
+          }
+        ]
+      }
+    }
+  },
+  "source_core_lock": {
+    "views": {
+      "sw": {
+        "moving_regions": [
+          [
+            36,
+            73,
+            83,
+            104
+          ]
+        ],
+        "protected_polygons": [
+          [
+            [
+              47,
+              62
+            ],
+            [
+              64,
+              64
+            ],
+            [
+              65,
+              75
+            ],
+            [
+              59,
+              79
+            ],
+            [
+              49,
+              77
+            ]
+          ],
+          [
+            [
+              22,
+              70
+            ],
+            [
+              42,
+              69
+            ],
+            [
+              51,
+              76
+            ],
+            [
+              50,
+              83
+            ],
+            [
+              35,
+              83
+            ],
+            [
+              31,
+              95
+            ],
+            [
+              21,
+              95
+            ]
+          ]
+        ]
+      },
+      "nw": {
+        "moving_regions": [
+          [
+            34,
+            72,
+            78,
+            104
+          ]
+        ],
+        "protected_polygons": [
+          [
+            [
+              46,
+              61
+            ],
+            [
+              62,
+              61
+            ],
+            [
+              66,
+              73
+            ],
+            [
+              60,
+              78
+            ],
+            [
+              48,
+              73
+            ]
+          ],
+          [
+            [
+              54,
+              76
+            ],
+            [
+              68,
+              76
+            ],
+            [
+              90,
+              82
+            ],
+            [
+              93,
+              96
+            ],
+            [
+              78,
+              97
+            ],
+            [
+              76,
+              87
+            ],
+            [
+              61,
+              85
+            ],
+            [
+              53,
+              81
+            ]
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "id": "tramino",
+  "folder": "art/creatures/tramino-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/tramino/duas-vistas.png",
+  "height": 55,
+  "motion": "Child reptile biped with ivory folded forehead, narrow amber eye, coral muzzle/shoulders, indigo/ivory body, TWO legs with short clawed feet and TWO short arms with paper membranes. Attached single tail ends two small chevrons. Six real alternating biped leg contacts/passing/opposite support. Keep short child torso and exact original face/camera.",
+  "sheets": [
+    {
+      "path": "art/creatures/tramino-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "97378db59b95f9cf8d41d8b7815667107cc7efa0601318f945dbc6181c691f2c",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.1553672316384181,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          117,
+          84,
+          471,
+          425
+        ],
+        [
+          117,
+          84,
+          452,
+          438
+        ],
+        [
+          117,
+          84,
+          455,
+          436
+        ],
+        [
+          117,
+          84,
+          452,
+          438
+        ],
+        [
+          117,
+          84,
+          471,
+          425
+        ],
+        [
+          117,
+          84,
+          453,
+          438
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 32,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 32,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/tramino-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "bfd5d3033f0fb319d8394134c35cc2104aa3b79f73b0bb7fbb52bfe3dce7aa3e",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.1585014409221902,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          100,
+          71,
+          456,
+          414
+        ],
+        [
+          121,
+          71,
+          449,
+          416
+        ],
+        [
+          107,
+          71,
+          445,
+          416
+        ],
+        [
+          110,
+          71,
+          445,
+          418
+        ],
+        [
+          123,
+          71,
+          455,
+          418
+        ],
+        [
+          107,
+          71,
+          459,
+          413
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 34,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 12,
+          "offset_y": 34,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "6df21072e4312938512ee6f4d74a7c823ae44653b873600d86e27776fc81c3f2",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          55,
+          94,
+          59,
+          97
+        ],
+        "edits": [
+          {
+            "x": 56,
+            "y": 95,
+            "color": "e0bb9d"
+          },
+          {
+            "x": 57,
+            "y": 95,
+            "color": "e0bb9d"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          60,
+          88,
+          64,
+          91
+        ],
+        "edits": [
+          {
+            "x": 61,
+            "y": 89,
+            "color": "e0bb9d"
+          },
+          {
+            "x": 62,
+            "y": 89,
+            "color": "e0bb9d"
+          }
+        ]
+      }
+    }
+  },
+  "source_core_lock": {
+    "views": {
+      "sw": {
+        "moving_regions": [
+          [
+            29,
+            77,
+            68,
+            104
+          ]
+        ],
+        "protected_polygons": [
+          [
+            [
+              39,
+              68
+            ],
+            [
+              51,
+              68
+            ],
+            [
+              52,
+              80
+            ],
+            [
+              45,
+              86
+            ],
+            [
+              40,
+              83
+            ]
+          ],
+          [
+            [
+              54,
+              76
+            ],
+            [
+              72,
+              75
+            ],
+            [
+              87,
+              86
+            ],
+            [
+              91,
+              100
+            ],
+            [
+              78,
+              100
+            ],
+            [
+              73,
+              88
+            ],
+            [
+              55,
+              86
+            ]
+          ]
+        ]
+      },
+      "nw": {
+        "moving_regions": [
+          [
+            30,
+            77,
+            68,
+            104
+          ]
+        ],
+        "protected_polygons": [
+          [
+            [
+              44,
+              66
+            ],
+            [
+              59,
+              66
+            ],
+            [
+              59,
+              79
+            ],
+            [
+              51,
+              84
+            ],
+            [
+              44,
+              81
+            ]
+          ],
+          [
+            [
+              52,
+              80
+            ],
+            [
+              65,
+              80
+            ],
+            [
+              83,
+              83
+            ],
+            [
+              89,
+              97
+            ],
+            [
+              76,
+              99
+            ],
+            [
+              72,
+              90
+            ],
+            [
+              53,
+              86
+            ]
+          ]
+        ]
+      }
+    }
+  }
+}
