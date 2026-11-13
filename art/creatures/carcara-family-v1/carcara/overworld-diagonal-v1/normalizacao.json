@@ -1,0 +1,34 @@
+{
+  "source_preserved": true,
+  "source_sha256": "59c3abdb86b481c7b2c7fab79266906419a06ce968b69e75bea85c913cffcf64",
+  "source": "geracao.png",
+  "id": "carcara",
+  "provenance": {
+    "source_path": "C:\\Users\\user\\produto\\pipa-club-integracao-atualizada\\art\\creatures\\soulmonsters-overworld-v2\\carcara\\geracao.png",
+    "status": "awaiting independent visual review",
+    "tool": "existing original generation, copied unchanged"
+  },
+  "regions": [
+    {
+      "view": "front-sw",
+      "y": 0,
+      "width": 1086,
+      "x": 0,
+      "height": 724,
+      "flip_x": true,
+      "orientation_note": "RAW original SE preservado; espelhar somente esta vista para SW na normalização. Costas NW sem alteração."
+    },
+    {
+      "view": "back-nw",
+      "y": 0,
+      "width": 1086,
+      "x": 1086,
+      "height": 724
+    }
+  ],
+  "dimensions": [
+    2172,
+    724
+  ],
+  "alpha": true
+}

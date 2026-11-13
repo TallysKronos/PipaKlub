@@ -2,11 +2,9 @@
 
 | Criatura | Grade real (frente) | Altura v1 → v2 | Tamanho v2 (frente, costas) |
 | --- | --- | --- | --- |
-| farpim | 90×89 | 32 → 42 px | 43×42, 38×42 |
-| papisco | sem grade | 41 → 52 px | 37×52, 36×53 |
-| velcao | sem grade | 55 → 70 px | 74×70, 72×68 |
-| alvacordo | 322×321 | 60 → 78 px | 78×78, 76×87 |
-| gambalhote-baby | 91×117 | 32 → 42 px | 32×42, 27×42 |
-| gambalhote | sem grade | 42 → 53 px | 50×53, 50×53 |
-| gambalhote-young | 163×165 | 54 → 71 px | 71×71, 63×71 |
-| gambalhote-adult | sem grade | 63 → 83 px | 56×83, 54×82 |
+| vertim | 240×320 | regional nova → 55 px | 54×55, 43×57 |
+| trincaguarda | sem grade | 54 → 69 px | 60×69, 65×63 |
+| urso-polar-young | 101×150 | regional nova → 70 px | 74×70, 80×72 |
+| carcara | 220×134 | 42 → 55 px | 41×55, 34×55 |
+| mata-verde | 202×125 | 42 → 55 px | 50×55, 40×55 |
+| rabbito | sem grade | 41 → 52 px | 45×52, 47×54 |

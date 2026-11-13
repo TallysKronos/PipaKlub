@@ -38,7 +38,15 @@ const SOURCES = {
   "gambalhote": "gambalhote/overworld-diagonal-v1/geracao.png",
   "gambalhote-young": "gambalhote/gambalhote-young/overworld-diagonal-v1/geracao.png",
   "gambalhote-adult": "gambalhote/gambalhote-adult/overworld-diagonal-v1/geracao-alpha-v2.png",
+  "vertim": "estratonte-family-v1/vertim/overworld-diagonal-v1/geracao.png",
+  "trincaguarda": "trinca-brasas-family-v1/trincaguarda/overworld-diagonal-v1/geracao.png",
+  "urso-polar-young": "urso-polar-family-v1/urso-polar-young/overworld-diagonal-v1/geracao.png",
+  "carcara": "carcara-family-v1/carcara/overworld-diagonal-v1/geracao.png",
+  "mata-verde": "mata-verde-family-v1/mata-verde/overworld-diagonal-v1/geracao.png",
+  "rabbito": "rabbito-family-v1/rabbito/overworld-diagonal-v1/geracao.png",
 };
+// Newly added regional creatures do not have an old 80px companion sheet.
+const FINAL_HEIGHTS = { "vertim": 55, "urso-polar-young": 70 };
 
 const read = p => { const png = PNG.sync.read(fs.readFileSync(p)); return { width: png.width, height: png.height, data: new Uint8ClampedArray(png.data) }; };
 const write = (p, im) => { const o = new PNG({ width: im.width, height: im.height }); o.data = Buffer.from(im.data); fs.writeFileSync(p, PNG.sync.write(o)); };
@@ -48,6 +56,14 @@ const crop = (im, x, y, w, h) => {
   return { width: w, height: h, data: d };
 };
 const opaque = (im, x, y) => im.data[(y * im.width + x) * 4 + 3] > 128;
+function flipX(im) {
+  const data = new Uint8ClampedArray(im.data.length);
+  for (let y = 0; y < im.height; y++) for (let x = 0; x < im.width; x++) {
+    const from = (y * im.width + x) * 4, to = (y * im.width + im.width - 1 - x) * 4;
+    data.set(im.data.subarray(from, from + 4), to);
+  }
+  return { width: im.width, height: im.height, data };
+}
 function bbox(im) {
   let x0 = Infinity, y0 = Infinity, x1 = -1, y1 = -1;
   for (let y = 0; y < im.height; y++) for (let x = 0; x < im.width; x++) if (opaque(im, x, y)) { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
@@ -60,7 +76,10 @@ function views(file, image) {
   const norm = path.join(path.dirname(file), "normalizacao.json");
   if (fs.existsSync(norm)) {
     const regions = JSON.parse(fs.readFileSync(norm, "utf8")).regions;
-    if (regions?.length === 2) return regions.map(r => crop(image, r.x, r.y, r.width, r.height));
+    if (regions?.length === 2) return regions.map(r => {
+      const view = crop(image, r.x, r.y, r.width, r.height);
+      return r.flip_x ? flipX(view) : view;
+    });
   }
   const used = Array.from({ length: image.width }, (_, x) => { for (let y = 0; y < image.height; y++) if (opaque(image, x, y)) return true; return false; });
   let best = null;
@@ -109,26 +128,35 @@ function compose(front, back) {
   return sheet;
 }
 
-await X.preloadWasm();
 process.env.XPRITE_AC_RL_WORKER ??= "0";
+// v0.1.2 resolves file-URL pathnames incorrectly on Windows (C:\C:\...).
+// Initialize the same cached glue module with URL-aware paths before preload.
+if (process.platform === "win32") {
+  const entry = import.meta.resolve("@xprite/pixelate");
+  const glue = await import(new URL("../wasm/pixelfixer_detect.js", entry).href);
+  glue.initSync({ module: fs.readFileSync(fileURLToPath(new URL("../wasm/pixelfixer_detect_bg.wasm", entry))) });
+}
+await X.preloadWasm();
 fs.mkdirSync(OUT, { recursive: true });
 const registryPath = OUT + ".json";
 const registry = fs.existsSync(registryPath) ? JSON.parse(fs.readFileSync(registryPath, "utf8")) : {};
 const wanted = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(SOURCES);
 const report = ["# Folhas de overworld v2", "", "| Criatura | Grade real (frente) | Altura v1 → v2 | Tamanho v2 (frente, costas) |", "| --- | --- | --- | --- |"];
+let failures = 0;
 for (const id of wanted) {
   const file = path.join(ART, SOURCES[id] ?? "");
-  if (!SOURCES[id] || !fs.existsSync(file)) { report.push(`| ${id} | sem geração | — | — |`); continue; }
+  if (!SOURCES[id] || !fs.existsSync(file)) { report.push(`| ${id} | sem geração | — | — |`); failures++; continue; }
   try {
     const [frontView, backView] = views(file, read(file)).map(recover);
-    const target = Math.round(v1Height(id) * V1_SIZE / KAEL_SCALE);
+    const target = FINAL_HEIGHTS[id] ?? Math.round(v1Height(id) * V1_SIZE / KAEL_SCALE);
     const front = shrink(frontView.art, target);
     const back = shrink(backView.art, Math.max(1, Math.round(target * backView.sourceHeight / frontView.sourceHeight)));
     write(path.join(OUT, id + ".png"), compose(front, back));
     registry[id] = { cell: CELL, pivots: [PIVOT, PIVOT], source: path.relative(ROOT, file) };
-    report.push(`| ${id} | ${frontView.grid ? frontView.grid.join("×") : "sem grade"} | ${v1Height(id)} → ${front.height} px | ${front.width}×${front.height}, ${back.width}×${back.height} |`);
+    report.push(`| ${id} | ${frontView.grid ? frontView.grid.join("×") : "sem grade"} | ${FINAL_HEIGHTS[id] ? "regional nova" : v1Height(id)} → ${front.height} px | ${front.width}×${front.height}, ${back.width}×${back.height} |`);
     console.log("ok", id, front.width + "×" + front.height, back.width + "×" + back.height);
   } catch (error) {
+    failures++;
     report.push(`| ${id} | erro: ${error.message} | — | — |`);
     console.log("falhou", id, error.message);
   }
@@ -138,3 +166,4 @@ fs.writeFileSync(registryPath, JSON.stringify(registry, null, 1) + "\n");
 const { sheetToAseprite } = await import("./aseprite-v2.mjs");
 for (const id of wanted) if (registry[id] && fs.existsSync(path.join(OUT, id + ".png"))) sheetToAseprite(id);
 fs.writeFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "relatorio-v2.md"), report.join("\n") + "\n");
+if (failures) process.exitCode = 1;
