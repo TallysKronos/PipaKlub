@@ -1,0 +1,200 @@
+{
+  "id": "cavernas-cristal-v1",
+  "source": "Original art generated with image_gen and normalized for the game",
+  "state": "2D manga art; static kit QA passed",
+  "projection": "isometric64x32",
+  "assets": {
+    "cristal-grande": {
+      "file": "pecas/cristal-grande.png",
+      "size": [
+        137,
+        204
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        68,
+        167
+      ],
+      "basePolygon": [
+        [
+          68,
+          135
+        ],
+        [
+          132,
+          167
+        ],
+        [
+          68,
+          199
+        ],
+        [
+          4,
+          167
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        138,
+        188
+      ]
+    },
+    "cristal-pequeno": {
+      "file": "pecas/cristal-pequeno.png",
+      "size": [
+        85,
+        102
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        48,
+        81
+      ],
+      "basePolygon": [
+        [
+          48,
+          65
+        ],
+        [
+          80,
+          81
+        ],
+        [
+          48,
+          97
+        ],
+        [
+          16,
+          81
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        90
+      ]
+    },
+    "estalagmite": {
+      "file": "pecas/estalagmite.png",
+      "size": [
+        87,
+        117
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        96
+      ],
+      "basePolygon": [
+        [
+          36,
+          80
+        ],
+        [
+          68,
+          96
+        ],
+        [
+          36,
+          112
+        ],
+        [
+          4,
+          96
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        102
+      ]
+    },
+    "cogumelo-luz": {
+      "file": "pecas/cogumelo-luz.png",
+      "size": [
+        80,
+        78
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        39,
+        57
+      ],
+      "basePolygon": [
+        [
+          39,
+          41
+        ],
+        [
+          71,
+          57
+        ],
+        [
+          39,
+          73
+        ],
+        [
+          7,
+          57
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        62
+      ]
+    },
+    "ponte-corda": {
+      "file": "pecas/ponte-corda.png",
+      "size": [
+        73,
+        58
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        37
+      ],
+      "basePolygon": [
+        [
+          36,
+          21
+        ],
+        [
+          68,
+          37
+        ],
+        [
+          36,
+          53
+        ],
+        [
+          4,
+          37
+        ]
+      ],
+      "direction": "u",
+      "deckHeightPx": 4,
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        78,
+        68
+      ]
+    }
+  }
+}
