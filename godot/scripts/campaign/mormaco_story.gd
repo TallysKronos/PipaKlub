@@ -44,7 +44,7 @@ func begin(point:Vector2)->Dictionary:
  var ambush:bool=saved.player.flags.get("mormacoEmboscada",false)
  if ambush and not saved.player.flags.get("mormacoTylerChegou",false):return {"status":"wrong_step"}
  var model:=Model.new(partner,{"modelId":"mormaco-possuido","level":27})
- model.q.boss=true
+ model.q.boss=true;preload("res://scripts/campaign/progression.gd").story_assist(saved.player,model)
  model.q.color=3 if ambush else 1
  model.q.name="Mormaço · Sombrio" if ambush else "Mormaço"
  model.q.bossTitle=model.q.name
@@ -66,6 +66,8 @@ func settle()->Dictionary:
  if not State.valid_encounter(e) or not available(saved.player) or state.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
  for partner:Dictionary in saved.player.partners:
   if partner.id==state.partnerId:partner.condition={"line":clampf(state.p.hp/state.p.stats.line*100,0,100),"structure":clampf(state.p.hull/state.p.stats.line*100,0,100)}
+ preload("res://scripts/campaign/progression.gd").story_result(saved.player,state)
+ if state.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,state)
  if state.q.get("mormacoForm","")=="ambush" and state.outcome=="won":
   saved.player.flags.mormacoEmboscada=true
   saved.player.erase("encounter")

@@ -34,7 +34,6 @@ for (const [part, plan] of Object.entries(plans)) {
   map.spawn.name=map.name;
   map.events.find(e=>e.type==='entrada').name=map.name;
   delete map.audit;
-  delete map.oracle;
   const solid=new Set(map.pieces.map(piece=>piece.v*map.w+piece.u));
   const reached=new Set();
   const queue=[[map.spawn.u,map.spawn.v]];
@@ -47,6 +46,19 @@ for (const [part, plan] of Object.entries(plans)) {
   }
   for(const event of map.events)if(!reached.has(event.v*map.w+event.u))throw Error(part+': evento inalcançável '+event.id);
   if(reached.size!==map.cells.filter(c=>c.material==='piso').length-solid.size)throw Error(part+': bolsão isolado');
+  const walkable=[...reached].sort((a,b)=>a-b);
+  const edges=[];
+  for(const from of walkable){
+    const u=from%map.w,v=Math.floor(from/map.w);
+    for(const [du,dv] of [[1,0],[-1,0],[0,1],[0,-1]]){
+      const x=u+du,y=v+dv;
+      if(x<0||y<0||x>=map.w||y>=map.h)continue;
+      const to=y*map.w+x;
+      if(reached.has(to))edges.push([from,to]);
+    }
+  }
+  // These three galleries are flat; the Chamber of the Elo has its own generator.
+  map.oracle={walkable,edges,heightProbes:[]};
   fs.writeFileSync(file,JSON.stringify(map));
   console.log(part.toUpperCase()+': '+reached.size+' células ligadas; entrada, duelo, avanço e retorno alcançáveis');
 }

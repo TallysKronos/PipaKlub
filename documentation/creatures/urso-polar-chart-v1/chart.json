@@ -1,0 +1,82 @@
+{
+  "family_id": "urso-polar",
+  "scope": "Quatro concepts propostos; pesquisa de referências; sem integração.",
+  "nodes": [
+    {
+      "id": "urso-polar-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Uma pequena pipa de gelo descobre como estabilizar o próprio voo com abas laterais.",
+      "story": "Uma pequena pipa de gelo descobre como estabilizar o próprio voo com abas laterais.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/urso-polar-family-v1/urso-polar-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/urso-polar-family-v1/urso-polar-baby/concept-v1/brief.md"
+    },
+    {
+      "id": "urso-polar-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Desenvolve patas largas para firmar apoio; aprende a sustentar o peito tensionado antes de avançar.",
+      "story": "Desenvolve patas largas para firmar apoio; aprende a sustentar o peito tensionado antes de avançar.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/urso-polar-family-v1/urso-polar-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/urso-polar-family-v1/urso-polar-child/concept-v1/brief.md"
+    },
+    {
+      "id": "urso-polar-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Quadrúpede de ombros pesados, usa as membranas dos antebraços como apoio ao atravessar passagens instáveis.",
+      "story": "Quadrúpede de ombros pesados, usa as membranas dos antebraços como apoio ao atravessar passagens instáveis.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/urso-polar-family-v1/urso-polar-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/urso-polar-family-v1/urso-polar-young/concept-v1/brief.md"
+    },
+    {
+      "id": "borealvo",
+      "name": "Adulto — Borealvo (nome proposto)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Torna-se um chefe quebra-gelo: abre passagens com o malho enquanto abriga companheiros atrás do manto tensionado.",
+      "story": "Torna-se um chefe quebra-gelo: abre passagens com o malho enquanto abriga companheiros atrás do manto tensionado.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/urso-polar-family-v1/borealvo/concept-v2/concept.png",
+      "brief": "../../../art/creatures/urso-polar-family-v1/borealvo/concept-v2/brief.md",
+      "approval_note": "Autor: \"Aprovadissimo\", em 2026-11-04, após a revisão da cabeça. Aprovação visual do adulto Borealvo concept-v2; não estendida às outras formas, nomes ou mecânicas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "urso-polar-baby",
+      "to": "urso-polar-child",
+      "kind": "reweaving",
+      "reason": "Desenvolve patas largas para firmar apoio; aprende a sustentar o peito tensionado antes de avançar.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "urso-polar-child",
+      "to": "urso-polar-young",
+      "kind": "reweaving",
+      "reason": "Quadrúpede de ombros pesados, usa as membranas dos antebraços como apoio ao atravessar passagens instáveis.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "urso-polar-young",
+      "to": "borealvo",
+      "kind": "reweaving",
+      "reason": "Torna-se um chefe quebra-gelo: abre passagens com o malho enquanto abriga companheiros atrás do manto tensionado.",
+      "decision_status": "proposed"
+    }
+  ]
+}

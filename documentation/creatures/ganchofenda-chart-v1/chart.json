@@ -1,0 +1,74 @@
+{
+  "family_id": "ganchofenda",
+  "family_name": "Ganchofenda",
+  "scope": "Onis do Vento Bravio. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "casulim",
+      "name": "Casulim",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "trincasco",
+      "name": "Trincasco",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "pernalume",
+      "name": "Pernalume",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/ganchofenda.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "ganchofenda",
+      "name": "Ganchofenda",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/concept-v3/ganchofenda.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Besouro de pernas altas com abdômen em pipa de caixa."
+    }
+  ],
+  "edges": [
+    {
+      "from": "casulim",
+      "to": "trincasco",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "trincasco",
+      "to": "pernalume",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "pernalume",
+      "to": "ganchofenda",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

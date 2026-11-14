@@ -64,10 +64,15 @@ func bind(node: Node) -> void:
 	else: record.old = _workshop_state(model.run)
 
 func _damage(event: Dictionary) -> void:
-	audio.play_event("battle.hull_hit" if event.get("body", false) else "battle.line_hit")
-	if event.get("critical", false): audio.play_event("battle.critical")
-	if event.get("cut_line", false): audio.play_event("battle.line_snap")
-	if event.get("broke_hull", false): audio.play_event("battle.hull_break")
+	# A decisive impact takes the voice slot instead of layering several cues.
+	if event.get("broke_hull", false):
+		audio.play_event("battle.hull_break")
+	elif event.get("cut_line", false):
+		audio.play_event("battle.line_snap")
+	elif event.get("critical", false):
+		audio.play_event("battle.critical")
+	else:
+		audio.play_event("battle.hull_hit" if event.get("body", false) else "battle.line_hit")
 
 func step(_delta: float) -> void:
 	for id: int in watched.keys():

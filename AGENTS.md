@@ -16,6 +16,10 @@ Os mapas do overworld são construídos no Godot (`godot/`), por decisão do don
 
 Para criar ou redesenhar personagens humanos (pranchas de concept), leia `.agents/skills/soulmonsters-concept-personagens/SKILL.md`, que se apoia em `.agents/skills/soulmonsters-character-art/`. O agente do Codex para essa tarefa está em `.codex/agents/criador-de-personagens.toml`.
 
+## Charts evolutivos de Soulmonsters
+
+Para pesquisar, criar ou revisar famílias evolutivas de criaturas, leia `.agents/skills/soulmonsters-charts/SKILL.md`. O agente de projeto está em `.codex/agents/criador-de-charts.toml`. A direção é 45% criatura, 45% pipa e 10% acabamento pixel/2D mangá; a anatomia de destino inclui o rosto. Chart e concepts não implicam integração ou substituição de rigs aprovados.
+
 ## Continuidade de terrenos e desníveis
 
 Para criar ou corrigir pisos elevados, barrancos, rampas, pontes e conexões entre áreas, siga `documentation/continuidade-terreno-isometrico.md`. Derive sustentação e bordas da geometria e da altura, independentemente do material. Valide as conexões com cores simples antes das texturas e confira o resultado no jogo; não esconda defeitos de encaixe com vegetação.

@@ -1,0 +1,57 @@
+{
+  "character": "lemna",
+  "version": "concept-v1",
+  "date": "2026-11-05",
+  "status": "proposta em revisão",
+  "assets": [
+    {
+      "file": "silhuetas.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a1abf2-2304-7713-b5b0-fde39b526915\\exec-38e33c4b-5f64-41f5-9a5f-bfebb498802c.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "tool": "image_gen.imagegen",
+      "status": "proposta em revisão"
+    },
+    {
+      "file": "paletas.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a1abf2-2304-7713-b5b0-fde39b526915\\exec-ff6c5db6-6389-4c57-9e71-d9ab10d3c888.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "tool": "image_gen.imagegen",
+      "status": "proposta em revisão"
+    },
+    {
+      "file": "prancha.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a1abf2-2304-7713-b5b0-fde39b526915\\exec-36d76dba-884a-49f6-8e08-2497f47b9260.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "tool": "image_gen.imagegen",
+      "status": "proposta em revisão"
+    }
+  ],
+  "references": {
+    "style": [
+      "kael-prancha-2026-10-30.png",
+      "locutor-aprovado.png",
+      "kael-autoral.png"
+    ],
+    "structure_only": "Yoshino — fonte externa não anexada à geração"
+  },
+  "pipeline": [
+    "4 silhuetas; escolha B pelo agente",
+    "3 paletas; escolha C pelo agente",
+    "prancha",
+    "inspeção visual e diagnóstico de 64 px"
+  ],
+  "runtime_integration": false,
+  "partner": null
+}

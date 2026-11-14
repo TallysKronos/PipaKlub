@@ -33,9 +33,25 @@ var guardian_focus := false
 var guardian_art: Sprite2D
 var guardian_frames: Array = []
 var presentation_age := 0.0
+var ending_presented := false
+
+var dive: Node
+func _refresh_positions() -> void:
+	super()
+	# Abismo: Kael nada montado na Boia (abismo_dive.gd); sobe acima do dorso dela.
+	if is_instance_valid(dive) and is_instance_valid(avatar):avatar.position.y-=dive.LIFT
 
 func _process(delta: float) -> void:
 	presentation_age+=delta
+	var staging := actors.get_node_or_null("EndgameStaging") if is_instance_valid(actors) else null
+	if staging != null:
+		for sprite in staging.get_children():
+			if sprite.has_meta("idle_frames"):
+				var frames: Array=sprite.get_meta("idle_frames")
+				var frame: Dictionary=frames[int(presentation_age*8)%frames.size()]
+				sprite.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
+			if sprite.has_meta("rest_y") and not reduced_motion:
+				sprite.position.y=float(sprite.get_meta("rest_y"))+sin(presentation_age*2.2+sprite.get_index())*2.0
 	if is_instance_valid(guardian_art) and not guardian_frames.is_empty() and (not paused or guardian_focus):
 		var frame: Dictionary=guardian_frames[int(presentation_age*8)%guardian_frames.size()]
 		guardian_art.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
@@ -65,17 +81,23 @@ func _ready() -> void:
 	interface.hide()
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
+	# Companheiros 25% maiores (companion_follow.gd, SIZE): começam um pouco mais longe do Kael.
+	for offset in [Vector2(-.78,.78), Vector2(.78,-.78), Vector2(-1.1,0), Vector2(1.1,0), Vector2(0,-1.1), Vector2(0,1.1), Vector2(-.78,-.78), Vector2(.78,.78)]:
+		var candidate: Vector2 = player + offset
+		if model.clear_segment(candidate, player):
+			follower = candidate
+			break
 	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_kronasta(saved_checkpoint.scene) else 1.15)
 	if area_id.begins_with("gelo-") or area_id.begins_with("mina-ferro-") or area_id.begins_with("submerso-"):camera.zoom=Vector2.ONE
 	_refresh_positions()
 	camera.reset_smoothing()
-	var partner_id := "rabbito"
-	for partner in saved_player.get("partners",[]):
-		if partner.id==saved_player.get("equippedPartnerId",""): partner_id=partner.modelId
-	var atlas_id: String = {"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol"}.get(partner_id,partner_id)
-	var atlas: Dictionary = content.combat.get(atlas_id,content.combat.rabbito)
-	companion.texture = load("res://assets/campaign/"+atlas.image)
-	companion_frames = atlas.animations.idle
+	var partner_id := CompanionFollow.equipped_model(saved_player)
+	companion.visible = not partner_id.is_empty()
+	if companion.visible and not CompanionFollow.setup_overworld_art(companion, partner_id, avatar.scale.y):
+		var atlas: Dictionary = content.combat.get(CompanionFollow.combat_art_id(partner_id), content.combat.rabbito)
+		companion.texture = load("res://assets/campaign/" + atlas.image)
+		companion_frames = atlas.animations.idle
+	CompanionFollow.orient(companion, avatar.facing)
 	var ui := CanvasLayer.new()
 	add_child(ui)
 	exploration_hud = load("res://scripts/campaign/hud_exploration.gd").new()
@@ -87,6 +109,8 @@ func _ready() -> void:
 	ui.add_child(exploration_hud)
 	hint = exploration_hud.prompt
 	_apply_story_light()
+	var tower:=actors.get_node_or_null("WindTower")
+	if tower!=null:tower.set_active(saved_player.flags.get("geradorLigado",false),reduced_motion)
 	exploration_hud.map = Hud.map_for(self,ui)
 	exploration_hud.chosen.connect(func(id: String):
 		if id=="menu": menu_requested.emit()
@@ -112,6 +136,8 @@ func _ready() -> void:
 			break
 	_roll_encounter_distance()
 	encounter_grace=Pacing.walking_grace(saved_player)
+	if load("res://scripts/campaign/abismo_dive.gd").applies(str(saved_checkpoint.get("scene",""))):
+		dive=load("res://scripts/campaign/abismo_dive.gd").new();dive.view=self;add_child(dive)
 	if saved_checkpoint.scene=="kronasta-pantano-c" and load("res://scripts/campaign/mormaco_story.gd").available(saved_player):
 		mormaco=load("res://scripts/campaign/mormaco_overworld.gd").new();add_child(mormaco)
 	if saved_checkpoint.scene=="park-trail" and load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved_player):
@@ -164,7 +190,7 @@ func _build_events() -> void:
 		for event:Dictionary in interaction_events:
 			if event.props.get("duel","")=="palafitas-5":
 				var actor_id:String="caio" if event.name=="Caio Garça" else event.name.to_lower()
-				event.props.storySpritePath="res://assets/npc-ds/palafitas-v1/"+actor_id+".png"
+				event.props.storySpritePath="res://assets/npc-ds/palafitas-iso-v2/"+actor_id+".png"
 	if district_region=="industrial":
 		for event:Dictionary in model.data.events+interaction_events:
 			if event.props.get("duel","")=="industrial-5":
@@ -179,11 +205,20 @@ func _build_events() -> void:
 		for event in Checkpoint.data(saved_checkpoint.scene).events:
 			if model.data.events.any(func(existing: Dictionary): return int(existing.id)==int(event.id)): continue
 			model.data.events.append(event.duplicate(true))
-			interaction_events.append(event.duplicate(true))
-	# Dito has no approved overworld sprite in the delivery. Do not duplicate another
-	# character or leave an invisible person as an interaction target.
+			if not interaction_events.any(func(existing: Dictionary): return str(existing.id)==str(event.id)):
+				interaction_events.append(event.duplicate(true))
+	# Keep unconfigured NPC events out of the Bosque interaction list.
 	if Checkpoint.is_bosque(area_id):
 		interaction_events=interaction_events.filter(func(event: Dictionary): return event.type!="npc" or event.props.has("npcIdentity") or event.props.has("storySpritePath"))
+	if saved_checkpoint.scene == "kronasta-industrial-d":
+		var story := preload("res://scripts/campaign/endgame_story.gd")
+		for event: Dictionary in interaction_events:
+			if event.props.get("step", "") != "galpao": continue
+			var index: int = story.duel_index(saved_player, "galpao")
+			if index >= story.GALPAO_SPRITES.size(): continue
+			var sprite: Dictionary = story.GALPAO_SPRITES[index]
+			event.props.storySpritePath = sprite.path
+			event.props.storySpriteRegion = sprite.region
 	if saved_checkpoint.scene=="park-clearing":
 		for e:Dictionary in preload("res://scripts/campaign/tyler_clareira.gd").events():
 			if not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):interaction_events.append(e)
@@ -243,6 +278,8 @@ func _build_markers() -> void:
 
 func refresh(value: Dictionary) -> void:
 	saved_player = value.duplicate(true)
+	var tower:=actors.get_node_or_null("WindTower")
+	if tower!=null:tower.set_active(saved_player.flags.get("geradorLigado",false),reduced_motion)
 	if saved_checkpoint.get("scene")=="parque-patio-liga":
 		var at:Vector2=load("res://scripts/campaign/blue_exam.gd").escort_start(saved_player)
 		for event:Dictionary in interaction_events:
@@ -251,7 +288,11 @@ func refresh(value: Dictionary) -> void:
 	for actor in npc_nodes:
 		for event in model.data.events:
 			if event.type=="npc" and actor.point==Vector2(event.u+.5,event.v+.5): actor.root.visible=Checkpoint.allowed(event,saved_player,area_id)
+		var own_event: Dictionary=actor.root.get_meta("event",{})
+		if own_event.get("props",{}).get("acao","")=="endgameStep":actor.root.visible=Checkpoint.allowed(own_event,saved_player,area_id)
 	for marker in markers: marker.node.visible=Checkpoint.allowed(marker.event,saved_player,area_id)
+	preload("res://scripts/campaign/city_soul.gd").refresh(self)
+	_apply_story_light()
 	for piece in model.data.pieces:
 		if piece.asset!="bau": continue
 		var id: String = piece.props.get("bau","parque:"+area_id+":"+str(int(piece.id)))
@@ -267,16 +308,28 @@ func refresh(value: Dictionary) -> void:
 		exploration_hud.refresh(saved_player)
 		var scene: String=saved_checkpoint.get("scene","park-trail")
 		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_kronasta(scene) else Training.objective(saved_player,scene)
-		if Checkpoint.is_regional_preview(scene) and not Checkpoint.is_kronasta(scene):exploration_hud.objective.text="Explore os caminhos · M para viajar por Kronasta."
+		if Checkpoint.is_regional_preview(scene) and not Checkpoint.is_kronasta(scene):
+			# A story step inside a preview area (the Serra gallery) keeps its own text.
+			var story_text: String=load("res://scripts/campaign/kronasta_story.gd").region_objective(saved_player,scene)
+			exploration_hud.objective.text=story_text if not story_text.is_empty() and scene=="mina-ferro-a" else "Explore os caminhos · M para viajar por Kronasta."
+			if load("res://scripts/campaign/side_regions.gd").is_region(scene):exploration_hud.objective.text=load("res://scripts/campaign/side_regions.gd").objective(saved_player,scene)
 		if scene=="parque-patio-liga":exploration_hud.objective.text=load("res://scripts/campaign/blue_exam.gd").objective(saved_player)
+		if Checkpoint.is_morro(scene):
+			# Morro do Sol: objetivo do título (defesa, requalificação) ou o desafio da área.
+			var title_goal: String=load("res://scripts/campaign/district_rules.gd").objective(saved_player,"morro")
+			exploration_hud.objective.text=title_goal if not title_goal.is_empty() else "Converse com os pipeiros e vença o desafio da área para subir o morro."
 	if is_instance_valid(mormaco):mormaco.refresh()
 
 func toggle_run() -> void:
 	if not paused and item_receipt.is_empty():super.toggle_run()
 
 func _physics_process(delta: float) -> void:
-	if paused: avatar.moving=false; avatar.running=false; return
+	if paused:
+		_update_npc_outline({})
+		avatar.moving=false; avatar.running=false
+		return
 	if not item_receipt.is_empty():
+		_update_npc_outline({})
 		item_receipt.time+=delta
 		avatar.item_pose(minf(1.0,item_receipt.time/item_receipt.duration),item_receipt.facing)
 		if item_receipt.time>=item_receipt.duration: avatar.stop_item(); item_receipt.clear()
@@ -293,8 +346,14 @@ func _physics_process(delta: float) -> void:
 		if event.type=="piece" and collected_pieces.has(str(int(str(event.get("piece_id","0")).to_float()))): continue
 		var at := Vector2(event.u+.5,event.v+.5)
 		var gap := player.distance_to(at)
-		if gap<nearest and absf(model.height_at(player)-model.height_at(at))<.25:
-			nearby=event; nearest=gap
+		# Objects win ties with people: between the Tatutrama and the soft earth the
+		# button pointed to the tatu, and the dig could not be reached (campaign walker).
+		var rank := gap-(.35 if event.type=="interacao" else 0.0)
+		# After the lesson the tatu only repeats a hint; the soft earth is the step.
+		if event.props.get("acao","")=="learnDig" and saved_player.get("flags",{}).get("canCavar",false): rank+=.6
+		if gap<1.8 and rank<nearest and absf(model.height_at(player)-model.height_at(at))<.25:
+			nearby=event; nearest=rank
+	_update_npc_outline(nearby)
 	hint.text = "" if nearby.is_empty() else nearby.name
 	if nearby.get("type")=="item" and nearby.props.get("visibilidade","")=="escondido":
 		hint.text = "Investigar o chão"
@@ -305,13 +364,14 @@ func _physics_process(delta: float) -> void:
 			exploration_hud.objective.text="Lacertubo guarda a rabiola. Aproxime-se para enfrentá-lo ou recue para se preparar."
 			if not saved_player.flags.get("lacertuboIntroduced",false):
 				paused=true
+				_update_npc_outline({})
 				action_requested.emit("guardian-approach")
 				return
 		else: exploration_hud.objective.text=Training.objective(saved_player,saved_checkpoint.scene)
 	save_distance+=moved
 	save_age+=delta
 	if moved>0:
-		var weight: float=0.0 if saved_checkpoint.scene.begins_with("caverna-mural-") or Training.needs_rest(saved_player) or Checkpoint.is_regional_preview(saved_checkpoint.scene) else Pacing.weight(model,player)
+		var weight: float=0.0 if saved_checkpoint.scene.begins_with("caverna-mural-") or Training.needs_rest(saved_player) or (Checkpoint.is_regional_preview(saved_checkpoint.scene) and not load("res://scripts/campaign/side_regions.gd").is_region(saved_checkpoint.scene)) else Pacing.weight(model,player)
 		if encounter_grace>0:
 			encounter_grace=maxf(0,encounter_grace-delta)
 		elif weight>0:
@@ -336,6 +396,8 @@ func interact() -> void:
 			if str(piece.id)==str(nearby.piece_id):
 				action_requested.emit("chest:"+str(piece.props.bau) if piece.props.has("bau") else "park-loot:piece-"+str(int(piece.id)))
 		return
+	_update_npc_outline({})
+	_face_interaction_npcs(nearby)
 	var action: String = nearby.props.get("acao","")
 	if action=="parkTraining":
 		action_requested.emit("training:"+str(nearby.props.trainer))
@@ -354,7 +416,7 @@ func celebrate_item(message: String) -> bool:
 	return true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if guardian_focus: return
+	if guardian_focus or paused: return
 	if Controls.cancel(event):
 		get_viewport().set_input_as_handled()
 		menu_requested.emit()
@@ -364,10 +426,545 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Night of the cerol (Centro and Condomínio) and the Trovareta storm (Bosque):
 ## a veil over the world, under the HUD.
+func stage_endgame(id: String) -> void:
+	if id not in ["gerador","gollia-arrependimento","reuniao"]:return
+	var previous := actors.get_node_or_null("EndgameStaging")
+	if previous != null:return
+	var staging := Node2D.new()
+	staging.name="EndgameStaging"
+	staging.y_sort_enabled=true
+	staging.z_index=1
+	actors.add_child(staging)
+	var center := Vector2i(player.floor())
+	if id=="reuniao":
+		center=Vector2i(preload("res://scripts/campaign/endgame_story.gd").point(area_id,preload("res://scripts/campaign/endgame_story.gd").STEPS.reuniao.anchor).floor())
+		_stage_champions(staging,center)
+		return
+	if id=="gerador":
+		var story=preload("res://scripts/campaign/endgame_story.gd")
+		var anchor: Vector2=story.point(area_id,story.STEPS[id].anchor)
+		var hidden_points := [anchor]
+		for event in interaction_events:
+			if event.props.get("acao") in ["tufanocorteStory","learnDig"]:
+				hidden_points.append(Vector2(event.u+.5,event.v+.5))
+		for npc in npc_nodes:
+			if npc.point in hidden_points:
+				npc.root.hide()
+				staging.tree_exiting.connect(npc.root.show)
+	var occupied := {center:true,Vector2i(follower.floor()):true}
+	var occupied_screen := [model.project(player),model.project(follower)]
+	var offsets := [Vector2i(-4,-1),Vector2i(4,-1),Vector2i(-3,3),Vector2i(3,3)] if id=="gerador" else [Vector2i(-3,-1),Vector2i(3,1)]
+	var cast := ["tufanocorte","rabiolava","trovareta","mormaco-normal"] if id=="gerador" else ["capanga-feminina","capanga-masculino"]
+	for i in cast.size():
+		var desired: Vector2i=center+offsets[i]
+		var cell := Vector2i(-1,-1)
+		for delta in [Vector2i.ZERO,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN,Vector2i(-2,0),Vector2i(2,0),Vector2i(0,-2),Vector2i(0,2)]:
+			var candidate: Vector2i = desired+delta
+			var point := Vector2(candidate)+Vector2(.5,.5)
+			var screen: Vector2=model.project(point)
+			var separate := true
+			for used: Vector2 in occupied_screen:
+				if screen.distance_to(used)<80.0:separate=false
+			if separate and not occupied.has(candidate) and model.point_walkable(point) and (id=="gerador" or absf(model.height_at(point)-model.height_at(player))<.25):
+				cell=candidate
+				break
+		if cell.x<0:continue
+		occupied[cell]=true
+		occupied_screen.append(model.project(Vector2(cell)+Vector2(.5,.5)))
+		var sprite: Sprite2D
+		if cast[i]=="trovareta":
+			sprite=preload("res://scripts/campaign/trovareta_overworld.gd").new()
+			sprite.configure(content,96.0)
+			sprite.reduced_motion=reduced_motion
+		else:sprite=Sprite2D.new()
+		if cast[i]=="trovareta":pass
+		elif cast[i]=="rabiolava":
+			sprite.texture=load("res://assets/overworld/kits/aracati-v1/rabiolava.png")
+		elif id=="gerador":
+			var atlas: Dictionary=content.combat[cast[i]]
+			var frame: Dictionary=atlas.animations.idle[0]
+			sprite.texture=load("res://assets/campaign/"+atlas.image)
+			sprite.region_enabled=true
+			var frames: Array=[]
+			var source_image: Image=sprite.texture.get_image()
+			for raw_frame: Dictionary in atlas.animations.idle:
+				var raw_rect:=Rect2i(raw_frame.x,raw_frame.y,raw_frame.w,raw_frame.h)
+				var used: Rect2i=source_image.get_region(raw_rect).get_used_rect()
+				if not used.has_area():used=Rect2i(Vector2i.ZERO,raw_rect.size)
+				frames.append({"x":raw_rect.position.x+used.position.x,"y":raw_rect.position.y+used.position.y,"w":used.size.x,"h":used.size.y})
+			frame=frames[0]
+			sprite.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
+			sprite.set_meta("idle_frames",frames)
+		else:
+			sprite.texture=load("res://assets/overworld/kits/camara-do-elo-v1/"+cast[i]+"-0.png")
+		var size: Vector2=sprite.region_rect.size if sprite.region_enabled else sprite.texture.get_size()
+		if cast[i]!="trovareta":
+			sprite.scale=Vector2.ONE*(96.0/size.y)
+			sprite.offset.y=-size.y*.5
+		sprite.position=model.project(Vector2(cell)+Vector2(.5,.5))
+		sprite.set_meta("rest_y",sprite.position.y)
+		sprite.set_meta("ground_point",Vector2(cell)+Vector2(.5,.5))
+		staging.add_child(sprite)
+
+## F20: the champions' meeting in the Praça da Matriz, in three small groups with room
+## for Kael. Mikka is the event itself; the others come from each district's cast.
+const CHAMPIONS := [
+	{"name":"Lohan","atlas":"res://assets/npc-ds/bambuzal-iso-v2/"},
+	{"name":"Kleie","atlas":"res://assets/npc-ds/beira-canal-iso-v2/"},
+	{"name":"Dona Zulmira","path":"res://assets/npc-ds/feira-v1/zulmira.png"},
+	{"name":"Marisol","path":"res://assets/npc-ds/cais-v1/marisol.png"},
+	{"name":"Bruno Solda","path":"res://assets/npc-ds/vila-operaria-v1/bruno-solda.png"},
+	{"name":"Caio Garça","path":"res://assets/npc-ds/palafitas-iso-v2/caio.png"},
+	{"name":"Dona Neve","path":"res://assets/npc-ds/serra-v1/dona-neve.png"},
+]
+const CHAMPION_SPOTS := [Vector2i(-3,-2),Vector2i(-4,0),Vector2i(-3,2),Vector2i(0,-3),Vector2i(2,-3),Vector2i(4,-1),Vector2i(4,1)]
+
+func _stage_champions(staging: Node2D, center: Vector2i) -> void:
+	var occupied := {center:true,Vector2i(follower.floor()):true}
+	var occupied_screen := [model.project(player),model.project(follower),model.project(Vector2(center)+Vector2(.5,.5))]
+	for npc: Dictionary in npc_nodes:
+		if npc.root.visible and Vector2i(npc.point.floor())!=center:occupied_screen.append(model.project(npc.point))
+	for i in CHAMPIONS.size():
+		var entry: Dictionary=CHAMPIONS[i]
+		var cell := Vector2i(-1,-1)
+		var preferred: Vector2i=center+CHAMPION_SPOTS[i]
+		var options: Array[Vector2i]=[]
+		for du in range(-7,8):
+			for dv in range(-7,8):options.append(center+Vector2i(du,dv))
+		options.sort_custom(func(a: Vector2i,b: Vector2i):return a.distance_squared_to(preferred)<b.distance_squared_to(preferred))
+		for candidate: Vector2i in options:
+			var point := Vector2(candidate)+Vector2(.5,.5)
+			var screen: Vector2=model.project(point)
+			var separate := true
+			for used: Vector2 in occupied_screen:
+				if screen.distance_to(used)<64.0 or (absf(screen.x-used.x)<60.0 and absf(screen.y-used.y)<100.0):separate=false
+			if separate and not occupied.has(candidate) and model.point_walkable(point) and model.cell_at(candidate).get("ramp")==null and absf(model.height_at(point)-model.height_at(player))<.25 and not model.path_to(Vector2(center)+Vector2(.5,.5),point).is_empty():
+				cell=candidate
+				break
+		if cell.x<0:continue
+		occupied[cell]=true
+		occupied_screen.append(model.project(Vector2(cell)+Vector2(.5,.5)))
+		var sprite := Sprite2D.new()
+		sprite.name=str(entry.name)
+		if entry.has("mock"):
+			preload("res://scripts/npc_pixel_sprite.gd").setup(sprite,str(entry.mock),86.0)
+			sprite.set_meta("placeholder",true)
+		elif entry.has("atlas"):
+			var atlas: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(str(entry.atlas)+"atlas.json"))
+			sprite.texture=load(str(entry.atlas)+"atlas.png")
+			for frame: Dictionary in atlas.sprites:
+				if frame.name==entry.name and frame.facing=="se":
+					sprite.region_enabled=true
+					sprite.region_rect=Rect2(frame.bounds[0],frame.bounds[1],frame.bounds[2],frame.bounds[3])
+		else:
+			sprite.texture=load(str(entry.path))
+			if sprite.texture.get_width()>sprite.texture.get_height():
+				sprite.region_enabled=true
+				sprite.region_rect=Rect2(0,0,64,96)
+		var size: Vector2=sprite.region_rect.size if sprite.region_enabled else sprite.texture.get_size()
+		if not entry.has("mock"):
+			sprite.scale=Vector2.ONE*(86.0/size.y)
+			sprite.offset.y=-size.y*.5
+		sprite.position=model.project(Vector2(cell)+Vector2(.5,.5))
+		sprite.set_meta("ground_point",Vector2(cell)+Vector2(.5,.5))
+		staging.add_child(sprite)
+
+func animate_gollia_entrance() -> void:
+	if reduced_motion:return
+	var story=preload("res://scripts/campaign/endgame_story.gd")
+	var target: Vector2=story.point(area_id,story.STEPS["gollia-arrependimento"].anchor)
+	for npc in npc_nodes:
+		if npc.root.get_meta("event",{}).get("props",{}).get("step","") != "gollia-arrependimento":continue
+		var visual: Node2D=npc.visual
+		var sprite := visual.get_child(0) as Sprite2D
+		var origin := target + Vector2(0,-2)
+		if not model.clear_segment(origin,target):
+			origin=target+Vector2(2,0)
+		if not model.clear_segment(origin,target):return
+		var rest := visual.position
+		var destination: Vector2 = model.project(target)
+		var from: Vector2 = model.project(origin)
+		visual.position=rest+from-destination
+		sprite.flip_h=from.x>destination.x
+		var tween := visual.create_tween()
+		tween.tween_method(func(progress: float):
+			visual.position=rest+model.project(origin.lerp(target,progress))-destination
+			sprite.region_rect.position.x=(1+floori(progress*4.0)%2)*64.0,
+			0.0,1.0,.65).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		await tween.finished
+		sprite.region_rect.position.x=0.0
+		sprite.flip_h=model.project(player).x<destination.x
+		return
+
+func clear_endgame_staging() -> void:
+	var staging := actors.get_node_or_null("EndgameStaging")
+	if staging != null:staging.queue_free()
+
 func _apply_story_light() -> void:
 	var endgame=load("res://scripts/campaign/endgame_story.gd")
 	var tint:=Tokens.UNTINTED
+	_stage_storm_cast()
+	_stage_stadium_lobby()
+	if load("res://scripts/campaign/endgame_story.gd").night_active(saved_player):_stage_night_marks()
+	var storm: bool=(endgame.storm_active(saved_player) or saved_player.get("flags",{}).get("trovaretaReleasePending",false)) and Checkpoint.is_bosque(saved_checkpoint.scene)
 	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.2)
-	elif endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene):tint=Tokens.TINTA_3.lightened(.32)
-	if tint==Tokens.UNTINTED:return
-	endgame.veil(exploration_hud.get_parent() if is_instance_valid(exploration_hud) else null,tint)
+	elif storm:tint=Tokens.TINTA_3.lightened(.32)
+	var layer: Node = exploration_hud.get_parent() if is_instance_valid(exploration_hud) else null
+	if not storm and layer!=null:
+		var old_rain:=layer.get_node_or_null("StoryRain")
+		if old_rain!=null:layer.remove_child(old_rain);old_rain.queue_free()
+	if tint==Tokens.UNTINTED:
+		if layer!=null:
+			var old_light:=layer.get_node_or_null("StoryLight")
+			if old_light!=null:layer.remove_child(old_light);old_light.queue_free()
+		return
+	endgame.veil(layer,tint)
+	if storm and layer != null and not layer.has_node("StoryRain"):
+		var rain := ColorRect.new()
+		rain.name="StoryRain"
+		rain.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		rain.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var surface := ShaderMaterial.new()
+		surface.shader=preload("res://shaders/story_storm.gdshader")
+		surface.set_shader_parameter("motion",not reduced_motion)
+		rain.material=surface
+		layer.add_child(rain)
+		layer.move_child(rain,1)
+
+## F19: Bosque C during the storm shows the bound Trovareta and the black line from
+## Navalha; after her release the Rato watches from the edge until the next story step.
+func _stage_storm_cast() -> void:
+	if saved_checkpoint.scene!="kronasta-bosque-c":return
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	var flags_now: Dictionary=saved_player.get("flags",{})
+	var bound_now: bool=endgame.storm_active(saved_player) or flags_now.get("trovaretaReleasePending",false)
+	var phase:="bound" if bound_now else "rato" if flags_now.get("trovaretaLivre",false) and not flags_now.get("reuniaoCampeoes",false) else "none"
+	var previous:=actors.get_node_or_null("StormCast")
+	if previous!=null:
+		if previous.get_meta("phase","")==phase:return
+		actors.remove_child(previous)
+		previous.queue_free()
+	if phase=="none":return
+	var anchor: Vector2i=endgame.STEPS.trovareta.anchor
+	var navalha: Vector2=endgame.point(saved_checkpoint.scene,anchor)
+	if not navalha.is_finite():return
+	var cast := Node2D.new()
+	cast.name="StormCast"
+	cast.set_meta("phase",phase)
+	cast.y_sort_enabled=true
+	actors.add_child(cast)
+	if bound_now:
+		var bound: Vector2=endgame.point(saved_checkpoint.scene,anchor+Vector2i(0,-4))
+		if not bound.is_finite() or bound.distance_to(navalha)<2.0:return
+		var creature := preload("res://scripts/campaign/trovareta_overworld.gd").new()
+		creature.name="TrovaretaBound"
+		creature.configure(content,150.0)
+		creature.reduced_motion=reduced_motion
+		creature.position=model.project(bound)
+		creature.modulate=Tokens.POSSESSED
+		cast.add_child(creature)
+		var cord := Line2D.new()
+		cord.name="CarretelLine"
+		cord.width=3.0
+		cord.default_color=Tokens.NANQUIM
+		cord.z_index=1
+		cord.points=PackedVector2Array([model.project(navalha)+Vector2(0,-48),model.project(bound)+Vector2(0,-70)])
+		cast.add_child(cord)
+	elif flags_now.get("trovaretaLivre",false) and not flags_now.get("reuniaoCampeoes",false):
+		var edge:=Vector2.INF
+		for offset in [Vector2i(-4,0),Vector2i(0,4),Vector2i(4,0),Vector2i(0,-4)]:
+			var candidate: Vector2=endgame.point(saved_checkpoint.scene,anchor+offset)
+			if not candidate.is_finite() or absf(model.height_at(candidate)-model.height_at(navalha))>.25:continue
+			if model.project(candidate).distance_to(model.project(player))<85.0:continue
+			if not model.clear_segment(navalha,candidate):continue
+			edge=candidate
+			break
+		if not edge.is_finite():return
+		var rato := Sprite2D.new()
+		rato.name="RatoWatching"
+		rato.texture=load("res://assets/overworld/kits/camara-do-elo-v1/rato-idle-eight.png")
+		rato.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+		rato.region_enabled=true
+		rato.region_rect=Rect2(448,0,64,96)
+		rato.offset.y=-48
+		rato.position=model.project(edge)
+		rato.set_meta("ground_point",edge)
+		cast.add_child(rato)
+
+## F27: the next opponent waits by the attendant; earlier opponents watch from the side.
+func _stage_stadium_lobby() -> void:
+	if saved_checkpoint.scene!="kronasta-estadio-a" or actors.has_node("StadiumLobby"):return
+	var finals=load("res://scripts/campaign/ruinas_elo.gd")
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	var current: int=finals.round_index(saved_player.get("flags",{}))
+	if current>=4:return
+	var lobby := Node2D.new()
+	lobby.name="StadiumLobby"
+	lobby.y_sort_enabled=true
+	actors.add_child(lobby)
+	var groups := [[finals.LOBBY[current],finals.LOBBY_SPOT]]
+	var watching := []
+	for index in current:watching.append_array(finals.LOBBY[index])
+	groups.append([watching,finals.STANDS_SPOT])
+	var used := {}
+	for group in groups:
+		for i in group[0].size():
+			var anchor: Vector2i = group[1] + Vector2i(i,0)
+			# Prefer the arena side of the carpet to the trophy display.
+			for offset: Vector2i in [Vector2i.ZERO, Vector2i(0,-1), Vector2i(1,0), Vector2i(1,-1), Vector2i(0,1), Vector2i(-1,1), Vector2i(2,0), Vector2i(-2,0)]:
+				var point: Vector2 = endgame.point(saved_checkpoint.scene,anchor+offset)
+				if not point.is_finite() or used.has(point) or point.distance_to(player)<1.0:continue
+				used[point]=true
+				lobby.add_child(_cast_sprite(str(group[0][i][0]),group[0][i][1],point))
+				break
+
+## A story cast member: [texture, eight-way sheet?, height in pixels, optional foot offset].
+func _cast_sprite(cast_name: String, entry: Array, point: Vector2) -> Sprite2D:
+	var sprite := Sprite2D.new()
+	sprite.name=cast_name
+	sprite.texture=load(str(entry[0]))
+	var height: float=float(sprite.texture.get_height())
+	if entry[1]:
+		sprite.region_enabled=true
+		sprite.region_rect=Rect2(sprite.texture.get_width()*.75,sprite.texture.get_height()*.5,sprite.texture.get_width()*.25,sprite.texture.get_height()*.5)
+		height=sprite.region_rect.size.y
+	sprite.scale=Vector2.ONE*float(entry[2])/height
+	var foot_offset: float = entry[3] if entry.size() > 3 else (4.0 if entry[1] else 0.0)
+	sprite.offset.y = -height * .5 + foot_offset
+	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.position=model.project(point)
+	sprite.set_meta("ground_point",point)
+	return sprite
+
+## F22: at night each locked exit has a visible Bando guard, and the warehouse padlock
+## shows its three knots, one removed after each lieutenant (Peteca, Cola-Fina, Navalha).
+func _stage_night_marks() -> void:
+	if actors.has_node("NightMarks"):return
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	var marks := Node2D.new()
+	marks.name="NightMarks"
+	marks.y_sort_enabled=true
+	actors.add_child(marks)
+	for event:Dictionary in model.data.events:
+		if not endgame.exit_blocked(event,saved_player,area_id):continue
+		var door:=Vector2(event.u+.5,event.v+.5)
+		var spot:=door
+		for offset in [Vector2(1,0),Vector2(-1,0),Vector2(0,-1),Vector2(0,1)]:
+			if model.point_walkable(door+offset):spot=door+offset;break
+		var guard := Sprite2D.new()
+		guard.name="BandoBarrier"
+		guard.texture=load("res://assets/overworld/kits/camara-do-elo-v1/capanga-feminina-idle-eight.png")
+		guard.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+		guard.region_enabled=true
+		guard.region_rect=Rect2(448,0,64,96)
+		guard.offset.y=-48
+		guard.position=model.project(spot)
+		marks.add_child(guard)
+	if saved_checkpoint.scene=="kronasta-industrial-d" and endgame.ready(saved_player,"galpao"):
+		var lock: Vector2=endgame.point(saved_checkpoint.scene,endgame.STEPS.galpao.anchor)
+		if not lock.is_finite():return
+		var lock_marker: Vector2=model.project(lock)+Vector2(54,-60)
+		var base: Vector2=lock_marker+Vector2(0,-58)
+		for i in 3:
+			if saved_player.get("flags",{}).get("endgame-galpao-%d"%i,false):continue
+			var knot := Polygon2D.new()
+			knot.name="Knot%d"%i
+			var c:=base+Vector2((i-1)*22,0)
+			knot.polygon=PackedVector2Array([c+Vector2(0,-9),c+Vector2(9,0),c+Vector2(0,9),c+Vector2(-9,0)])
+			knot.color=Tokens.POSSESSED
+			knot.z_index=2
+			marks.add_child(knot)
+			var rope := Line2D.new()
+			rope.width=2.0;rope.default_color=Tokens.NANQUIM;rope.z_index=2
+			rope.points=PackedVector2Array([c+Vector2(0,9),lock_marker])
+			marks.add_child(rope)
+
+func present_championship_victory() -> void:
+	var route: PackedVector2Array=model.path_to(player,Vector2(24.5,14.5))
+	for destination: Vector2 in route:
+		if reduced_motion:
+			player=destination
+		else:
+			var walk := create_tween()
+			avatar.moving=true
+			walk.tween_method(func(at: Vector2):
+				var movement: Vector2=model.project(at,false)-model.project(player,false)
+				avatar.face_motion(movement)
+				player=at
+				_refresh_positions(),player,destination,.12)
+			await walk.finished
+	avatar.moving=false
+	_refresh_positions()
+	var previous := actors.get_node_or_null("ChampionshipVictory")
+	if previous != null:return
+	var gathering := Node2D.new()
+	gathering.name="ChampionshipVictory"
+	gathering.y_sort_enabled=true
+	gathering.z_index=1
+	actors.add_child(gathering)
+	var cells := [Vector2i(21,12),Vector2i(27,12),Vector2i(21,16)]
+	var identities := ["mae","professor","tyler"]
+	for i in identities.size():
+		var point := Vector2(cells[i])+Vector2(.5,.5)
+		if not model.point_walkable(point):continue
+		var holder := Node2D.new()
+		holder.position=model.project(point,false)
+		gathering.add_child(holder)
+		var sprite := Sprite2D.new()
+		holder.add_child(sprite)
+		if identities[i]=="tyler":
+			sprite.texture=load("res://assets/campaign/tyler-clareira-v1/tyler-overworld-idle-eight.png")
+			sprite.region_enabled=true
+			sprite.region_rect=Rect2(192,96,64,96)
+			sprite.scale=Vector2.ONE*.85
+			sprite.offset.y=-48
+		else:
+			preload("res://scripts/npc_pixel_sprite.gd").setup(sprite,identities[i],82.0)
+		holder.position.y-=model.height_at(point)*64.0
+		if not reduced_motion:
+			sprite.modulate.a=0
+			var entrance := sprite.create_tween()
+			entrance.tween_property(sprite,"modulate:a",1.0,.35)
+			for cheer in 2:
+				entrance.tween_property(sprite,"position:y",-5.0,.12).set_trans(Tween.TRANS_SINE)
+				entrance.tween_property(sprite,"position:y",0.0,.16).set_trans(Tween.TRANS_SINE)
+	var finals=load("res://scripts/campaign/ruinas_elo.gd")
+	for extra in [["Grampo",finals.GRAMPO,Vector2(27.5,15.5)],["Platyx",finals.PLATYX,Vector2(28.5,15.5)]]:
+		if model.point_walkable(extra[2]):gathering.add_child(_cast_sprite(extra[0],extra[1],extra[2]))
+	camera.position_smoothing_enabled=false
+	camera.position=model.project(Vector2(24.5,11.5))
+	camera.zoom=Vector2.ONE*1.15
+	if not reduced_motion:await get_tree().create_timer(.8).timeout
+	# Rabbito stands with Kael for the title (F28), on the side Jamile leaves free.
+	for side in [Vector2(-1,0),Vector2(0,1),Vector2(0,-1)]:
+		if model.point_walkable(player+side):
+			follower=player+side
+			follower_trail.clear()
+			_refresh_positions()
+			break
+	await _pass_title(gathering,finals)
+
+## F28: Jamile comes from the arena side to Kael and ties the Liga's golden ribbon on
+## his reel (BIBLIA §19). The ribbon stays with Kael for the rest of the scene.
+func _pass_title(gathering: Node2D, finals) -> void:
+	var beside := player+Vector2(1,0)
+	if not model.point_walkable(beside):beside=player+Vector2(-1,0)
+	var start: Vector2=Vector2(finals.LOBBY_SPOT)+Vector2(.5,.5)
+	var jamile := _cast_sprite("Jamile",finals.JAMILE,beside if reduced_motion else start)
+	gathering.add_child(jamile)
+	camera.position=model.project((player+beside)*.5)
+	camera.zoom=Vector2.ONE*1.35
+	if not reduced_motion:
+		var route: PackedVector2Array=model.path_to(start,beside)
+		var walk := create_tween()
+		var stride := 0
+		var poses := [
+			preload("res://assets/overworld/kits/camara-do-elo-v1/jamile-1.png"),
+			preload("res://assets/overworld/kits/camara-do-elo-v1/jamile-2.png"),
+		]
+		for step: Vector2 in route:
+			var target: Vector2 = model.project(step)
+			var pose: Texture2D = poses[stride % poses.size()]
+			walk.tween_callback(func(): jamile.texture = pose)
+			walk.tween_property(jamile,"position",target,.16)
+			stride += 1
+		if route.is_empty():walk.tween_property(jamile,"position",model.project(beside),.6)
+		await walk.finished
+		jamile.texture=load(finals.JAMILE[0])
+	jamile.set_meta("ground_point",beside)
+	jamile.flip_h=beside.x>player.x
+	avatar.face_motion(model.project(beside,false)-model.project(player,false))
+	var ribbon := Line2D.new()
+	ribbon.name="TitleRibbon"
+	ribbon.width=4.0
+	ribbon.default_color=Tokens.SOL
+	ribbon.points=PackedVector2Array([Vector2(-8,0),Vector2(-2,-5),Vector2(4,2),Vector2(10,-3)])
+	ribbon.z_index=3
+	ribbon.position=jamile.position+Vector2(0,-44)
+	gathering.add_child(ribbon)
+	var ribbon_art := Sprite2D.new()
+	ribbon_art.name = "RibbonArt"
+	ribbon_art.texture = preload("res://assets/ui/key-items/fita-dourada-liga.svg")
+	ribbon_art.scale = Vector2.ONE * .26
+	ribbon.add_child(ribbon_art)
+	var hand: Vector2=model.project(player)+Vector2(8,-36)
+	if reduced_motion:ribbon.position=hand
+	else:
+		var tie := create_tween()
+		tie.tween_property(ribbon,"position",hand,.45).set_trans(Tween.TRANS_SINE)
+		tie.tween_property(ribbon,"rotation",.35,.12)
+		tie.tween_property(ribbon,"rotation",0.0,.12)
+		await tie.finished
+		if is_instance_valid(companion):
+			var hop := create_tween()
+			hop.tween_property(companion,"position:y",companion.position.y-14.0,.14).set_trans(Tween.TRANS_SINE)
+			hop.tween_property(companion,"position:y",companion.position.y,.18).set_trans(Tween.TRANS_SINE)
+			await hop.finished
+	# Playtest: Rabbito pulls the end of the ribbon, so the gesture is seen, not narrated.
+	if is_instance_valid(companion):
+		var tail: Vector2=ribbon.to_local(companion.global_position+Vector2(0,-18))
+		var tug := PackedVector2Array(ribbon.points)
+		tug.append(tail)
+		if reduced_motion:ribbon.points=tug
+		else:
+			var from: Vector2=ribbon.points[ribbon.points.size()-1]
+			ribbon.add_point(from)
+			var pull := create_tween()
+			pull.tween_method(func(p: Vector2):ribbon.set_point_position(ribbon.get_point_count()-1,p),from,tail,.35).set_trans(Tween.TRANS_SINE)
+			await pull.finished
+	ribbon.set_meta("pulled_by_partner",is_instance_valid(companion))
+func finish_endgame_scene(id: String) -> void:
+	if reduced_motion and id!="gerador":return
+	if id in ["gollia-arrependimento","reuniao"]:
+		var staging := actors.get_node_or_null("EndgameStaging")
+		if staging == null:return
+		var retreat := create_tween().set_parallel(true)
+		for actor: Node2D in staging.get_children():
+			var start: Vector2=actor.get_meta("ground_point")
+			var destination := start+Vector2(0,2)
+			var near_player: Vector2=Geometry2D.get_closest_point_to_segment(model.project(player),model.project(start),model.project(destination))
+			if model.clear_segment(start,destination) and absf(model.height_at(start)-model.height_at(destination))<.25 and near_player.distance_to(model.project(player))>=65.0:
+				retreat.tween_property(actor,"position",model.project(destination),.7)
+			retreat.tween_property(actor,"modulate:a",0.0,.7)
+		await retreat.finished
+	elif id=="gerador":
+		var staging := actors.get_node_or_null("EndgameStaging")
+		if staging==null:return
+		var release := preload("res://scripts/campaign/wind_release.gd").new()
+		actors.add_child(release)
+		var step: Dictionary=preload("res://scripts/campaign/endgame_story.gd").STEPS.gerador
+		var tower:=actors.get_node_or_null("WindTower")
+		var target: Vector2=tower.receptor_position() if tower!=null else model.project(Vector2(step.anchor)+Vector2(.5,.5))+Vector2(0,-90)
+		var old_camera: Vector2=camera.position
+		var focus: Vector2=model.project(player).lerp(target,.4)
+		if reduced_motion:camera.position=focus
+		else:await create_tween().tween_property(camera,"position",focus,.45).set_trans(Tween.TRANS_SINE).finished
+		release.configure(self,staging,target)
+		if tower!=null:tower.set_active(true,reduced_motion)
+		if reduced_motion:
+			await get_tree().create_timer(.4).timeout
+			release.queue_free()
+			camera.position=old_camera
+			return
+		var dawn := ColorRect.new()
+		dawn.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		dawn.color=Tokens.DAWN
+		dawn.modulate.a=0.0
+		dawn.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var material := CanvasItemMaterial.new()
+		material.blend_mode=CanvasItemMaterial.BLEND_MODE_ADD
+		dawn.material=material
+		var layer := exploration_hud.get_parent()
+		layer.add_child(dawn)
+		layer.move_child(dawn,0)
+		var wind := create_tween().set_parallel(true)
+		wind.tween_property(release.get_node("Convergence"),"scale",Vector2.ONE*2.0,1.4)
+		wind.tween_property(release,"modulate:a",0.0,1.4)
+		wind.tween_property(dawn,"modulate:a",.22,.7)
+		await wind.finished
+		var clear := create_tween()
+		clear.tween_property(dawn,"modulate:a",0.0,.5)
+		await clear.finished
+		release.queue_free()
+		dawn.queue_free()
+		await create_tween().tween_property(camera,"position",old_camera,.4).set_trans(Tween.TRANS_SINE).finished

@@ -1,0 +1,83 @@
+{
+  "id": "kronasta-walls-v1",
+  "materials": [
+    {
+      "id": "face-terra-raizes",
+      "name": "Terra com raízes",
+      "dark": "#4c2c1f",
+      "light": "#8a5039"
+    },
+    {
+      "id": "face-argila-rubra",
+      "name": "Argila rubra",
+      "dark": "#682f23",
+      "light": "#bd5540"
+    },
+    {
+      "id": "face-arenito",
+      "name": "Arenito",
+      "dark": "#7d5935",
+      "light": "#e4a261"
+    },
+    {
+      "id": "face-rocha-cinza",
+      "name": "Rocha cinza",
+      "dark": "#464546",
+      "light": "#7f7d7f"
+    },
+    {
+      "id": "face-ardosia",
+      "name": "Ardósia vertical",
+      "dark": "#263137",
+      "light": "#465863"
+    },
+    {
+      "id": "face-basalto",
+      "name": "Basalto colunar",
+      "dark": "#27242a",
+      "light": "#47414c"
+    },
+    {
+      "id": "face-alvenaria",
+      "name": "Alvenaria de pedra",
+      "dark": "#48413c",
+      "light": "#83766d"
+    },
+    {
+      "id": "face-tijolos",
+      "name": "Tijolos envelhecidos",
+      "dark": "#623324",
+      "light": "#b15c42"
+    },
+    {
+      "id": "face-concreto",
+      "name": "Concreto envelhecido",
+      "dark": "#5a5750",
+      "light": "#a49e91"
+    },
+    {
+      "id": "face-ruinas",
+      "name": "Ruínas musgosas",
+      "dark": "#685f4d",
+      "light": "#bdac8c"
+    },
+    {
+      "id": "face-gelo",
+      "name": "Parede de gelo",
+      "dark": "#426b7b",
+      "light": "#78c2df"
+    },
+    {
+      "id": "face-madeira",
+      "name": "Paliçada de madeira",
+      "dark": "#4f3a2a",
+      "light": "#90694c"
+    }
+  ],
+  "texture": [
+    64,
+    64
+  ],
+  "orientation": "front-elevation; source rows follow screen-down, renderer samples negative world height",
+  "recipe": "Generated art; explicit crops; nearest-neighbor; periodic edge strips; 32-color palettes."
+}

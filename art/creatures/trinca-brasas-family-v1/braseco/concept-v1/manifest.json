@@ -1,0 +1,29 @@
+{
+  "id": "braseco",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-c87a77d5-d131-4ac1-90f9-0374d8de86d4.png",
+  "sha256": "b4d096c16bbad0f065c8716ca184b9c7141189f852e23db658767d9ab3c682f6",
+  "width": 1335,
+  "height": 1178,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/soulgen/keys/trinca-brasas/color-rig-v2/preview.png",
+      "role": "identidade da montagem aprovada"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png",
+      "role": "destino aprovado"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "acabamento aprovado"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

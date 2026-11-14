@@ -1,0 +1,3 @@
+# Conferência visual
+
+Imagem inspecionada: Bípede alto digitígrado, duas mãos e dois pés, armações recurvas nos antebraços e manto de pelo-papel. Paleta e família coerentes; silhueta distinta dos outros estágios. Correção v2 removeu as flâmulas duplicadas do punho e preservou a rabiola única da cauda. Armações e pontos de fixação ainda precisam de vistas técnicas antes de rig. Há suaves transições residuais na pintura; concept manga limpo, não pixel art de grade validada. Fundo branco opaco; não recortado, animado ou integrado. Em avaliação pelo autor.

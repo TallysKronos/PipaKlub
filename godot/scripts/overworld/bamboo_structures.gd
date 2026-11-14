@@ -3,6 +3,11 @@ extends RefCounted
 const Building=preload("res://scripts/overworld/street_building.gd")
 const S=preload("res://scripts/overworld/forest_structures.gd")
 const BASE="res://assets/overworld/kits/bambuzal-v1/"
+const LAJES_HOUSES={
+ "a":{Vector2i(6,5):["casa-geminada",416],Vector2i(7,19):["casa-ecologica",256]},
+ "b":{Vector2i(7,19):["sobrado-varanda",288],Vector2i(38,19):["casa-ecologica",256]},
+ "c":{Vector2i(37,5):["residencia-terraco",288],Vector2i(7,19):["sobrado-varanda",288]},
+}
 static func grove(view,p:Vector2,level:float,variant:String,scale:float=.58) -> void:
  var node:=Node2D.new();node.position=view.model.project(p,false);node.set_meta("scenery",true);view.actors.add_child(node)
  var art:=Sprite2D.new();art.name="Art";art.texture=load(BASE+variant+".svg")
@@ -38,6 +43,54 @@ static func build(view) -> void:
    if S.geometry():
     S.quad(node,PackedVector2Array([Vector2(-128,-64-height),Vector2(0,-height),Vector2(128,-64-height),Vector2(0,-128-height)]),Color("5d7281"))
    else:
+    var district:=str(model.data.id).trim_prefix("kronasta-").get_slice("-",0)
+    if district=="morro":
+     var feet_morro:=PackedVector2Array()
+     for at in [Vector2(piece.u,piece.v),Vector2(piece.u+4,piece.v),p,Vector2(piece.u,piece.v+4)]:
+      feet_morro.append(S.iso(at,height)-node.position)
+     var tone:int=["rosa","creme","amarela","azul","verde"].find(str(piece.props.get("variante","creme")))
+     preload("res://scripts/overworld/district_architecture.gd").build(node,feet_morro,"morro",132.0,maxi(0,tone))
+     continue
+    if district in ["centro","lajes"]:
+     var feet:=PackedVector2Array()
+     for at in [Vector2(piece.u,piece.v),Vector2(piece.u+4,piece.v),p,Vector2(piece.u,piece.v+4)]:
+      feet.append(S.iso(at,height)-node.position)
+     var architecture=preload("res://scripts/overworld/district_architecture.gd")
+     var height_px:=172.0 if district=="centro" else 198.0
+     if district=="centro":
+      if str(model.data.id)=="kronasta-centro-a" and Vector2i(piece.u,piece.v) in [Vector2i(7,19),Vector2i(37,5)]:
+       var paper_shop:bool=int(piece.u)==7
+       var file:="papelaria-default" if paper_shop else "cafe-do-vento-default"
+       var facade:=Sprite2D.new()
+       facade.texture=load("res://assets/overworld/kits/urbano/pecas/"+file+".png")
+       facade.centered=false
+       facade.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+       facade.scale=Vector2.ONE*.8
+       facade.position=Vector2(0,-height)-Vector2(160,304 if paper_shop else 368)*.8
+       node.add_child(facade)
+       continue
+      var role := "sobrado"
+      if piece.u==6 and piece.v==5:role="matriz"
+      elif piece.u==35 and piece.v==10:role="tv"
+      elif piece.u==38 and piece.v==19 and str(model.data.id).ends_with("-a"):role="liga"
+      architecture.centro(node,feet,role,height_px)
+     else:
+      var part:=str(model.data.id).right(1)
+      var residence:Array=LAJES_HOUSES.get(part,{}).get(Vector2i(piece.u,piece.v),[])
+      if not residence.is_empty():
+       var facade:=Sprite2D.new()
+       facade.texture=load("res://assets/overworld/kits/urbano/pecas/"+residence[0]+"-default.png")
+       facade.centered=false
+       facade.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+       facade.position=Vector2(0,-height)-Vector2(128,residence[1])
+       node.add_child(facade)
+      elif part=="a" and piece.u==38 and piece.v==19:
+       architecture.lajes_landmark(node,feet,false)
+      elif part=="b" and piece.u==35 and piece.v==10:
+       architecture.lajes_landmark(node,feet,true)
+      else:
+       architecture.build(node,feet,district,height_px)
+     continue
     var house:=Building.new();house.width_cells=4;house.depth_cells=4
     house.modulate=Color(1,.95,.86) if piece.props.get("variante")=="creme" else Color(.84,.96,1) if piece.props.get("variante")=="azul" else Color(1,.87,.81)
     house.position=Vector2(0,-height);node.add_child(house)

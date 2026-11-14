@@ -1,0 +1,521 @@
+{
+  "canvas": [
+    64,
+    64
+  ],
+  "source": "../concept-v4/concept.png",
+  "view": "three-quarter left",
+  "tag": "idle-so",
+  "durationMs": 1200,
+  "palette": {
+    "O": "#18212c",
+    "D": "#28313c",
+    "K": "#3b4149",
+    "k": "#62646c",
+    "I": "#f6f0df",
+    "C": "#d4c8b9",
+    "c": "#969398",
+    "T": "#08737c",
+    "t": "#084a56",
+    "G": "#e6b962",
+    "g": "#a77537",
+    "R": "#e75a3c",
+    "r": "#9f353a",
+    "E": "#ffca55"
+  },
+  "parts": [
+    {
+      "name": "rabiola",
+      "x": 39,
+      "y": 39,
+      "rows": [
+        "........OOO..",
+        "......OOIIO..",
+        ".....OIICO...",
+        "....OIICO....",
+        "...OIICCOOO..",
+        "..OIICIIIIIO.",
+        "..OICIIIIICCO",
+        ".OIICCTTTTTCO",
+        "..OCCTTTTTTTO",
+        "...OTTTTTTTO.",
+        "....OTTTTTO..",
+        ".....OTTO....",
+        "......ORO....",
+        ".....ORRRO...",
+        "......ORO....",
+        ".....OTITO...",
+        "....OTTIITO..",
+        "....OTTIITO..",
+        "....OTTIIITO.",
+        "....OTTIIITO.",
+        "....OO...OO.."
+      ]
+    },
+    {
+      "name": "estrutura",
+      "x": 20,
+      "y": 18,
+      "rows": [
+        "......OOOOOOOO.......",
+        ".....ODKKKKKKDO......",
+        "...OODKKKKKKKKDOO....",
+        "..ODKKKKKKKKKKKKKDO..",
+        ".ODKKKKKKKKKKKKKKKDO.",
+        "ODKKKKKKKKKKKKKKKKKDO",
+        "ODKKKKKKKKKKKKKKKKKDO",
+        ".ODKKKKKKKKKKKKKKKDO.",
+        "..ODKKKKKKKKKKKKKDO..",
+        "...ODKKKKKKKKKKKDO...",
+        "....ODKKKKKKKKKDO....",
+        "....ODKKKKKKKKKDO....",
+        "....ODKKKKKKKKKDO....",
+        "....ODKKKKKKKKKDO....",
+        "....ODKKKKKKKKKDO....",
+        "....ODKKKKKKKKKDO....",
+        "....ODKKKKKKKKKDO....",
+        "....ODKKKKKKKKKDO....",
+        "...ODKKKKKKKKKKKDO...",
+        "...ODKKKKKKKKKKKDO...",
+        "...ODKKKKDDKKKKKDO...",
+        "...ODKKKDOODKKKKDO...",
+        "...ODKKDO..ODKKKDO...",
+        "....ODDO....ODDDO...."
+      ]
+    },
+    {
+      "name": "perna-direita",
+      "x": 34,
+      "y": 36,
+      "rows": [
+        ".OOOOOOOO...",
+        "OICKKKTTTO..",
+        "OICCKKTTTO..",
+        "OICCKKTTTO..",
+        ".OICCKTTO...",
+        ".OICCKTTO...",
+        "..OICCTTO...",
+        "..OCICTTO...",
+        "..OIIICTO...",
+        ".OIICIICO...",
+        ".OIICICCO...",
+        "..OICICCO...",
+        "..OICITCO...",
+        "..OICITCO...",
+        "..OICITCO...",
+        "..OICITCO...",
+        "..OICITCO...",
+        "..OIICICO...",
+        "..OICCCCO...",
+        "..OICICCO...",
+        "..OIIIIICO..",
+        "..OICIIIICO.",
+        ".OICIICIICCO",
+        ".OICIICIICCO",
+        "..OOOOOOOOO."
+      ]
+    },
+    {
+      "name": "perna-esquerda",
+      "x": 19,
+      "y": 36,
+      "rows": [
+        "...OOOOOOOO",
+        "..OTTTKKCIO",
+        "..OTTTKCICO",
+        "..OTTKKCICO",
+        "...OTKCICO.",
+        "...OTKCICO.",
+        "...OTCICO..",
+        "...OTCICO..",
+        "...OICIIO..",
+        "..OCIICIIO.",
+        "..OCCIICCO.",
+        "..OCCICCO..",
+        "..OTCICO...",
+        "..OTCICO...",
+        "..OTCICO...",
+        "..OTCICO...",
+        "..OTCICO...",
+        "..OCIIICO..",
+        "..OCCCIIO..",
+        "..OCCIICO..",
+        "..OIIIIIO..",
+        ".OIIICICO..",
+        "OIIICIICCO.",
+        "OICIICIICCO",
+        ".OOOOOOOOO."
+      ]
+    },
+    {
+      "name": "braco-erguido",
+      "x": 10,
+      "y": 14,
+      "rows": [
+        ".......OOO...",
+        "......OIIIO..",
+        ".....OIICCO..",
+        "....OIICO....",
+        "...OIICCOO...",
+        "...OIIIIIIO..",
+        "...OICCOOIO..",
+        "...OICCO.OO..",
+        "...OKKCO.....",
+        "...ORRRO.....",
+        "...OIICO.....",
+        "...OIICO.....",
+        "..OIICCO.....",
+        "..OIICCO.....",
+        "..OIITCO.....",
+        "..OIITCO.....",
+        "..OIITCO.....",
+        "...OIICO.....",
+        "....OIKKOO...",
+        ".....OKKKKOO.",
+        "......OKKKKKO",
+        ".......OOOOO."
+      ]
+    },
+    {
+      "name": "braco-baixo",
+      "x": 42,
+      "y": 24,
+      "rows": [
+        ".OOOOOO..",
+        "OKKKKKKO.",
+        "OKKKKKKO.",
+        ".OKKKKKO.",
+        "..OKKKKO.",
+        "..OKKKKO.",
+        "...OKKKO.",
+        "...OKKDO.",
+        "...OICCO.",
+        "..OIICCO.",
+        "..OIICCO.",
+        "..OIITCO.",
+        "..OIITCO.",
+        "...OITCO.",
+        "...OICCO.",
+        "...ORRRO.",
+        "...OCCCO.",
+        "..OIIIICO",
+        "..OIIOICO",
+        "..OIO.OIO",
+        "...OO.OIO",
+        ".......OO"
+      ]
+    },
+    {
+      "name": "peitoral",
+      "x": 23,
+      "y": 22,
+      "rows": [
+        "....OOOOOOOO...",
+        "...OIICCIIIIO..",
+        "..OIICCCIIIIIO.",
+        ".OIIICCCIIIIICO",
+        "OIIIICCCIIIICCO",
+        "OIICCCCCCCCCCCO",
+        ".OICCTTTTCCICCO",
+        "..OICCTTCCICCO.",
+        "..OICCTCCICCO..",
+        "..OIICCCICCO...",
+        "...OIICICCO....",
+        "....OIICCO.....",
+        ".....OICO......",
+        "......OO......."
+      ]
+    },
+    {
+      "name": "quadril",
+      "x": 21,
+      "y": 34,
+      "rows": [
+        "...OOOOOOOOOOOOO...",
+        "..OIIICCCIIIIIIIO..",
+        ".OIIICCCOOIIIIIICO.",
+        "OIIICCOO..OOIIIICCO",
+        "OIICCO......OIIIICO",
+        "OICCO........OIIICO",
+        ".OOO..........OOOO."
+      ]
+    },
+    {
+      "name": "ombreira-esquerda",
+      "x": 14,
+      "y": 20,
+      "rows": [
+        ".......OOOO.",
+        "....OOOIIIIO",
+        "..OOIIICCCCO",
+        ".OIIITTTCCCO",
+        "OIIITTTICCO.",
+        "OIIICCIICCO.",
+        ".OICIIIICCO.",
+        "..OIIIIICCO.",
+        "...OIIICCO..",
+        "....OOOOO..."
+      ]
+    },
+    {
+      "name": "ombreira-direita",
+      "x": 39,
+      "y": 20,
+      "rows": [
+        "OOOO........",
+        "OIIIOOO.....",
+        "OIIIIICIOO..",
+        "OICCTTTIIIO.",
+        "OICCTTTIIIIO",
+        "OICCIICIIIIO",
+        "OICIIIIICCO.",
+        ".OICIIIICCO.",
+        "..OICIIICO..",
+        "...OOOOOO..."
+      ]
+    },
+    {
+      "name": "gola",
+      "x": 22,
+      "y": 13,
+      "rows": [
+        "......OOO.....",
+        ".....OIIIO....",
+        "....OIIIICO...",
+        "...OIICIICO...",
+        "..OIICIIICCO..",
+        "..OIICIIICCO..",
+        ".OIICIIIICCO..",
+        "OIICIIIIICCCO.",
+        "OICIIIIIICCCCO",
+        ".OIIIIIIICCCCO",
+        "..OIIIICIIIICO",
+        "...OIIICIIICO.",
+        "....OICCIICO..",
+        ".....OO.OOO..."
+      ]
+    },
+    {
+      "name": "cabeca",
+      "x": 24,
+      "y": 3,
+      "rows": [
+        "..O........O...",
+        "..OIO.....OIO..",
+        "..OTIO....OIO..",
+        "..OTCIO..OICIO.",
+        "...OTCO..OICTO.",
+        "...OKCOOOKCTO..",
+        "....OKKKKKKO...",
+        "...OKIKKKKKKOO.",
+        "..OKIIKKKKKKKKO",
+        ".OKIIIKKKKKKKKO",
+        ".OKEOIKKKKKKOO.",
+        "OOKOIIICKKKTO..",
+        "OKIIIIICKKTTO..",
+        ".OIIIIICCKKO...",
+        "..OCCCCCCOO....",
+        "...OOOOOO......"
+      ]
+    },
+    {
+      "name": "cristal-tirantes",
+      "x": 25,
+      "y": 23,
+      "rows": [
+        ".......OO.......",
+        "......OGTO......",
+        ".....OGITTO.....",
+        "....OGITTtTO....",
+        "...OGITTTttTO...",
+        "..OOGTTTTttGOO..",
+        ".GrrOGTTttGOrrG.",
+        "OGG..OGTtGO..GGO",
+        ".OO...OGGO...OO.",
+        ".......OO......."
+      ]
+    },
+    {
+      "name": "arco-erguido",
+      "x": 2,
+      "y": 5,
+      "rows": [
+        "............OOOO",
+        "..........OOIIIO",
+        "........OOIIICO.",
+        ".......OIICCGO..",
+        "......OIITGO....",
+        ".....OIITGO.....",
+        "....OIITTGO.....",
+        "...OIITTGO......",
+        "..OIITTGO.......",
+        "..OIITTGO.......",
+        ".OIITTGO........",
+        ".OIITTGO........",
+        "OIITTTGO........",
+        "OIITTTGO........",
+        "OIITTTGO........",
+        "OIITTTGO........",
+        "OIITTTGO........",
+        "OIITTTGO........",
+        "OIITTTGO........",
+        "OIITTTGO........",
+        "OIITTTGO........",
+        "OIITTGO.........",
+        "OIITTGO.........",
+        ".OITTGO.........",
+        ".OITTGO.........",
+        "..OTTGO.........",
+        "..OTTGO.........",
+        "...OTGO.........",
+        "...OTGO.........",
+        "....OGO.........",
+        ".....OO........."
+      ]
+    },
+    {
+      "name": "arco-baixo",
+      "x": 53,
+      "y": 26,
+      "rows": [
+        "OO........",
+        "OIOO......",
+        ".OICIO....",
+        ".OICGIO...",
+        "..OIGTIO..",
+        "..OIGTTIO.",
+        "...OGTTIO.",
+        "...OGTTTIO",
+        "...OGTTTIO",
+        "...OGTTTIO",
+        "...OGTTTIO",
+        "...OGTTTIO",
+        "...OGTTTIO",
+        "...OGTTTIO",
+        "...OGTTIO.",
+        "...OGTTIO.",
+        "..OIGTIO..",
+        "..OIGTIO..",
+        ".OICGIO...",
+        ".OICIO....",
+        "OICIO.....",
+        "OIOO......",
+        "OO........"
+      ]
+    }
+  ],
+  "supports": [
+    {
+      "kind": "grid",
+      "x": 7,
+      "y": 26,
+      "rows": [
+        "...GGGG",
+        "...GggG",
+        "GGGGggG",
+        "GggGGGG",
+        "GGGG..."
+      ],
+      "legend": {
+        "O": "#18212c",
+        "D": "#28313c",
+        "K": "#3b4149",
+        "k": "#62646c",
+        "I": "#f6f0df",
+        "C": "#d4c8b9",
+        "c": "#969398",
+        "T": "#08737c",
+        "t": "#084a56",
+        "G": "#e6b962",
+        "g": "#a77537",
+        "R": "#e75a3c",
+        "r": "#9f353a",
+        "E": "#ffca55"
+      }
+    },
+    {
+      "kind": "grid",
+      "x": 48,
+      "y": 37,
+      "rows": [
+        "GGGGGGG",
+        "GgggggG",
+        "GGGGGGG"
+      ],
+      "legend": {
+        "O": "#18212c",
+        "D": "#28313c",
+        "K": "#3b4149",
+        "k": "#62646c",
+        "I": "#f6f0df",
+        "C": "#d4c8b9",
+        "c": "#969398",
+        "T": "#08737c",
+        "t": "#084a56",
+        "G": "#e6b962",
+        "g": "#a77537",
+        "R": "#e75a3c",
+        "r": "#9f353a",
+        "E": "#ffca55"
+      }
+    },
+    {
+      "kind": "grid",
+      "x": 49,
+      "y": 41,
+      "rows": [
+        "GGGGGG",
+        "GggggG",
+        "GGGGGG"
+      ],
+      "legend": {
+        "O": "#18212c",
+        "D": "#28313c",
+        "K": "#3b4149",
+        "k": "#62646c",
+        "I": "#f6f0df",
+        "C": "#d4c8b9",
+        "c": "#969398",
+        "T": "#08737c",
+        "t": "#084a56",
+        "G": "#e6b962",
+        "g": "#a77537",
+        "R": "#e75a3c",
+        "r": "#9f353a",
+        "E": "#ffca55"
+      }
+    }
+  ],
+  "strings": [
+    {
+      "kind": "line",
+      "from": {
+        "x": 15,
+        "y": 7
+      },
+      "to": {
+        "x": 7,
+        "y": 34
+      },
+      "color": "#e75a3c"
+    },
+    {
+      "kind": "line",
+      "from": {
+        "x": 54,
+        "y": 27
+      },
+      "to": {
+        "x": 54,
+        "y": 46
+      },
+      "color": "#e75a3c"
+    }
+  ],
+  "deviations": [
+    "Microfacetas da pelagem omitidas",
+    "Placas e arcos simplificados em planos grandes",
+    "Uma única direção com idle, sem caminhada"
+  ],
+  "integration": false
+}

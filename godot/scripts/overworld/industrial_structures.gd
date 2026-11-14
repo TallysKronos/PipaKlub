@@ -15,8 +15,12 @@ static func build(view) -> void:
  var interior:bool=model.data.forest.get("interior",false)
  if interior:
   # Continuous cutaway shell follows the blocking frame, never an apparent doorway.
-  block(view,Vector2(4,3),32,1,128,"parede-galpao",simple)
-  block(view,Vector2(3,4),1,28,192,"parede-galpao",simple,float(model.data.forest.get("baseLevel",0))*64)
+  var lower_floor:float=model.height_at(Vector2(4.5,30.5))*64
+  var upper_floor:float=model.height_at(Vector2(4.5,4.5))*64
+  var wall_top:float=upper_floor+128
+  block(view,Vector2(4,3),32,1,wall_top-upper_floor,"parede-galpao",simple,upper_floor)
+  block(view,Vector2(3,4),1,24,wall_top-upper_floor,"parede-galpao",simple,upper_floor)
+  block(view,Vector2(3,28),1,4,wall_top-lower_floor,"parede-galpao",simple,lower_floor)
   block(view,Vector2(36,4),1,28,22,"barreira",simple)
   block(view,Vector2(4,32),4,1,22,"barreira",simple)
   block(view,Vector2(12,32),24,1,22,"barreira",simple)
@@ -27,6 +31,7 @@ static func build(view) -> void:
    if c.material=="rocha" and not interior:block(view,Vector2(u,v),1,1,36,"barreira",simple)
  for b:Dictionary in model.data.forest.get("buildings",[]):
   block(view,Vector2(b.u,b.v),float(b.w),float(b.h),float(b.z),str(b.style),simple)
+ if not interior and not simple:D.perimeter_gardens(view)
  if model.data.forest.get("mangaDressing",false) and not simple:
   if interior:D.warehouse(view)
   else:D.yard(view)
@@ -34,7 +39,9 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  var model=view.model
  var level:float=model.height_at(at+Vector2(.5,.5))*64 if base_height<0 else base_height
  var root:=Node2D.new();root.set_meta("scenery",true)
- root.position=S.iso(at+Vector2(w,h));view.actors.add_child(root)
+ # The perimeter is behind every actor in the interior, even when a long wall
+ # spans deeper screen coordinates than the machines against its base.
+ root.position=S.iso(at if style=="parede-galpao" else at+Vector2(w,h));view.actors.add_child(root)
  var a:=S.iso(at,level)-root.position
  var b:=S.iso(at+Vector2(w,0),level)-root.position
  var c:=S.iso(at+Vector2(w,h),level)-root.position
@@ -42,19 +49,7 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  var lift:=Vector2(0,z)
  var manga:bool=model.data.forest.get("mangaDressing",false)
  if manga:root.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
- if style=="carga" and not simple:
-  var sprite:=Sprite2D.new();sprite.centered=false
-  sprite.texture=texture("res://assets/overworld/kits/industrial-v1/pecas/carga-manga.png")
-  # Three measured pallet contacts map onto the exact blocking footprint.
-  var source:=Transform2D(Vector2(-490,-306),Vector2(460,-326),Vector2.ZERO)
-  var target:=Transform2D(d-c,b-c,Vector2.ZERO)
-  var transform:=target*source.affine_inverse()
-  transform.origin=c-transform.basis_xform(Vector2(800,966))
-  sprite.transform=transform
-  var cutout:=ShaderMaterial.new();cutout.shader=preload("res://shaders/industrial_cutout.gdshader");sprite.material=cutout
-  root.add_child(sprite)
-  return
- if style in ["carga","tambor","carretel"]:
+ if style in ["carga","tambor","carretel","armario"]:
   D.cargo(root,a,b,c,d,z,style,simple)
   return
  if style=="caldeira" and not simple:
@@ -86,6 +81,18 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  else:top.color=face_color.lightened(.18)
  if style!="barreira":S.line(root,PackedVector2Array([a-lift,b-lift,c-lift,d-lift,a-lift]),2,Color("34464d"))
  if simple:return
+ if style=="barreira":
+  var coping:=Color("b9ac93")
+  top.color=coping
+  for edge in [[d,c],[c,b]]:
+   var start:Vector2=edge[0]
+   var finish:Vector2=edge[1]
+   var wall:=S.quad(root,PackedVector2Array([start-lift,finish-lift,finish,start]),Color("917b66") if start==d else Color("726454"))
+   wall.texture=texture("res://assets/overworld/kits/industrial-v1/superficies/concreto.png")
+   wall.uv=PackedVector2Array([Vector2.ZERO,Vector2(170,0),Vector2(170,96),Vector2(0,96)])
+   S.line(root,PackedVector2Array([start-lift,finish-lift]),2.0,Color("d2c5a7"))
+   S.line(root,PackedVector2Array([start-Vector2(0,z*.32),finish-Vector2(0,z*.32)]),1.2,Color("635646"))
+  return
  if style=="parede-galpao":
   # All details are mounted on the shell's measured faces, not floating props.
   for edge in [[d,c,int(w/4)],[c,b,int(h/4)]]:
@@ -120,6 +127,16 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
    var p:=d.lerp(c,float(k)/(w*2))
    var q:=d.lerp(c,float(k+1)/(w*2))
    S.quad(root,PackedVector2Array([p,q,q-Vector2(0,7),p-Vector2(0,7)]),Color("e4bc51") if k%2==0 else Color("39474e"))
+   if k%3==1:
+    # The closed service panels hang on the wall and never imply another exit.
+    var low:=p.lerp(q,.18)
+    var high:=p.lerp(q,.70)
+    var face_top:=Vector2(0,z-74)
+    var face_bottom:=Vector2(0,z-90)
+    S.quad(root,PackedVector2Array([low-face_top,high-face_top,high-face_bottom,low-face_bottom]),Color("293d45"))
+    for stripe in [.15,.35,.55,.75,.95]:
+     var notch:=low.lerp(high,stripe)
+     S.line(root,PackedVector2Array([notch-face_top+Vector2(0,4),notch-face_bottom-Vector2(0,3)]),2,Color("819b99"))
  if style=="container":
   for k in range(1,int(w*4)):
    var p:=d.lerp(c,float(k)/(w*4));S.line(root,PackedVector2Array([p-Vector2(0,z-4),p-Vector2(0,4)]),2,Color("203f4a",.65))

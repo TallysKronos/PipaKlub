@@ -1,0 +1,82 @@
+{
+  "family_id": "estrato-rex-entrelaco-v1",
+  "scope": "Parceiros e concept Paleórix v2 aprovados visualmente. Condições do Entrelaço e mecânicas indefinidas; sem integração.",
+  "nodes": [
+    {
+      "id": "estratonte",
+      "name": "Estratonte",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Parceiro fóssil aprovado; arte original preservada.",
+      "story": "Fonte de proteção e sustentação.",
+      "decision_status": "approved",
+      "approval_note": "Autor aprovou família com jovem v3: “Aprovados”.",
+      "production_status": "concept",
+      "art": "../../../art/creatures/estratonte-family-v1/estratonte/concept-v1/concept.png",
+      "brief": "../../../art/creatures/estratonte-family-v1/estratonte/concept-v1/brief.md"
+    },
+    {
+      "id": "rexestrato",
+      "name": "Rexestrato",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Parceiro fóssil aprovado; arte original preservada.",
+      "story": "Fonte de ruptura e ressonância.",
+      "decision_status": "approved",
+      "approval_note": "Autor aprovou linha T-rex: “Aprovado! Faça um fossil brontossauro”.",
+      "production_status": "concept",
+      "art": "../../../art/creatures/rexestrato-family-v1/rexestrato/concept-v1/concept.png",
+      "brief": "../../../art/creatures/rexestrato-family-v1/rexestrato/concept-v1/brief.md"
+    },
+    {
+      "id": "paleorix",
+      "name": "Paleórix (proposto)",
+      "kind": "configuration",
+      "stage": null,
+      "identity": "Guardião fóssil esguio, máscara angular fechada, mandíbula de ruptura e escudo vertebral.",
+      "story": "Coordenação entre conter e projetar vibração.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "partners": [
+        "estratonte",
+        "rexestrato"
+      ],
+      "unknowns": [
+        "requisitos",
+        "duração",
+        "custos",
+        "reversibilidade",
+        "estágio",
+        "efeitos sobre identidades"
+      ],
+      "art": "../../../art/creatures/paleorix/concept-v2/concept.png",
+      "brief": "../../../art/creatures/paleorix/concept-v2/brief.md",
+      "revision": "concept-v2",
+      "approval_note": "Autor: “Aprovado”, após a apresentação da v2 esguia com máscara angular fechada. Aprovação visual do Paleórix v2; não aprova requisitos, duração, efeitos, rig ou integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "estratonte",
+      "to": "paleorix",
+      "kind": "interweaving",
+      "partners": [
+        "estratonte",
+        "rexestrato"
+      ],
+      "reason": "Sustentação e cobertura reorganizam proteção e direção da pressão.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "rexestrato",
+      "to": "paleorix",
+      "kind": "interweaving",
+      "partners": [
+        "estratonte",
+        "rexestrato"
+      ],
+      "reason": "Mandíbula, tórax e membranas fornecem ressonância e ruptura.",
+      "decision_status": "proposed"
+    }
+  ]
+}

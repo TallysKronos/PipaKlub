@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "timedOut": false,
+      "exitCode": 0,
+      "passed": true,
+      "stage": "create"
+    },
+    {
+      "timedOut": false,
+      "exitCode": 0,
+      "passed": true,
+      "stage": "restart"
+    },
+    {
+      "timedOut": false,
+      "exitCode": 0,
+      "passed": true,
+      "stage": "relocated"
+    }
+  ],
+  "sourceCommit": "9951cbac014141564374cb39981818705e703c1b",
+  "profileIsolated": true,
+  "scope": "Windows release headless: main scene, save, restart, moved install; not a clean VM/Steam install"
+}

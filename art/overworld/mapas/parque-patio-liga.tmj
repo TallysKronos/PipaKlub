@@ -2841,7 +2841,7 @@
     },
     {
      "id": 5,
-     "type": "interacao",
+     "type": "npc",
      "name": "Posto de Dona Cida",
      "x": 592,
      "y": 752,
@@ -2856,6 +2856,16 @@
        "name": "blueAction",
        "type": "string",
        "value": "register"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/historia-v1/dona-cida.png"
       }
      ]
     },

@@ -1,0 +1,6241 @@
+{
+  "schema": "overworld-godot-1",
+  "id": "studio-map",
+  "name": "Área do Studio",
+  "scene": "studio-generated",
+  "biome": "comum",
+  "grid": "iso-2:1",
+  "levelPx": 64,
+  "w": 24,
+  "h": 16,
+  "source": {
+    "schema": "soulmonsters-studio-1",
+    "tileSize": 32,
+    "projection": "topdown",
+    "note": "Logical navigation adapter; use area_bridge.gd for the top-down artwork."
+  },
+  "cells": [
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 1,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 1,
+      "corners": [
+        "terra",
+        "terra",
+        "terra",
+        "terra"
+      ],
+      "props": {
+        "studioMaterial": "dirt",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "terra",
+      "level": 0,
+      "ramp": "v+",
+      "rampFrom": 0,
+      "rampTo": 1,
+      "corners": [
+        "terra",
+        "terra",
+        "terra",
+        "terra"
+      ],
+      "props": {
+        "studioMaterial": "dirt",
+        "wall": "earth",
+        "stairs": true
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 1,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "rock",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "terra",
+      "level": 0,
+      "ramp": "u+",
+      "rampFrom": 0,
+      "rampTo": 1,
+      "corners": [
+        "terra",
+        "terra",
+        "terra",
+        "terra"
+      ],
+      "props": {
+        "studioMaterial": "dirt",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 1,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 1,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "terra",
+      "level": 0,
+      "ramp": "u-",
+      "rampFrom": 0,
+      "rampTo": 1,
+      "corners": [
+        "terra",
+        "terra",
+        "terra",
+        "terra"
+      ],
+      "props": {
+        "studioMaterial": "dirt",
+        "wall": "earth",
+        "stairs": true
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "agua",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "agua",
+        "agua",
+        "agua",
+        "agua"
+      ],
+      "props": {
+        "studioMaterial": "water",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    },
+    {
+      "material": "grama",
+      "level": 0,
+      "ramp": null,
+      "corners": [
+        "grama",
+        "grama",
+        "grama",
+        "grama"
+      ],
+      "props": {
+        "studioMaterial": "grass",
+        "wall": "earth",
+        "stairs": false
+      }
+    }
+  ],
+  "pieces": [
+    {
+      "id": 1,
+      "name": "custom-native-check",
+      "asset": "custom-native-check",
+      "u": 9,
+      "v": 11,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "studioId": 1,
+        "pixelX": 300,
+        "pixelY": 360,
+        "collision": {
+          "shape": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 12,
+          "height": 8
+        },
+        "decorative": false
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "npc-patrol",
+      "type": "npc",
+      "name": "Guarda",
+      "u": 3.125,
+      "v": 10.9375,
+      "props": {
+        "id": "npc-patrol",
+        "type": "npc",
+        "x": 100,
+        "y": 350,
+        "label": "Guarda",
+        "text": "Rota de teste",
+        "targetMap": "",
+        "targetEvent": "",
+        "condition": "",
+        "setsFlag": "",
+        "once": false,
+        "route": [
+          {
+            "x": 164,
+            "y": 350
+          }
+        ],
+        "studioId": "npc-patrol",
+        "acao": "npc",
+        "texto": "Rota de teste"
+      }
+    }
+  ],
+  "spawn": {
+    "id": "studio-spawn",
+    "type": "entrada",
+    "name": "Entrada",
+    "u": 10.875,
+    "v": 8.90625,
+    "props": {}
+  },
+  "zones": [],
+  "cliffs": [],
+  "audit": {
+    "source": "Studio; review before campaign merge"
+  }
+}

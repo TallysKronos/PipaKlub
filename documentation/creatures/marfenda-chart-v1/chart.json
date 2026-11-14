@@ -1,0 +1,38 @@
+{
+  "family_id": "marfenda",
+  "family_name": "Marfenda",
+  "scope": "Glaciais das Duas Marés. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "marfenda-jovem",
+      "name": "Marfenda (jovem)",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/glaciais-das-duas-marees/concept-v1/marfenda.png",
+      "brief": "../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+      "story": ""
+    },
+    {
+      "id": "marfenda",
+      "name": "Marfenda",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/glaciais-das-duas-marees/adultos-v2/marfenda.png",
+      "brief": "../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+      "story": "Morsa que nada na vertical e usa as presas para abrir uma comporta de papel."
+    }
+  ],
+  "edges": [
+    {
+      "from": "marfenda-jovem",
+      "to": "marfenda",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

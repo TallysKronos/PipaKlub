@@ -1,0 +1,1 @@
+export function waterTint(color,depth=0){if(!depth)return color;const factor=1-Math.min(3,depth)*.09;return (Math.round((color&255)*factor)|Math.round((color>>>8&255)*factor)<<8|Math.round((color>>>16&255)*(1-depth*.035))<<16|(color&0xff000000))>>>0;}

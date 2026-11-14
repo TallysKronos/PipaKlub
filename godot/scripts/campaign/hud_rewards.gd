@@ -4,6 +4,8 @@ const Encounters = preload("res://scripts/campaign/encounters.gd")
 const Morro = preload("res://scripts/campaign/morro.gd")
 const Rules = preload("res://scripts/campaign/morro_rules.gd")
 const Progression = preload("res://scripts/campaign/progression.gd")
+## Story duels pay Progression.story_xp (the same amount their settlement credits).
+const STORY_KINDS := ["canal-gate","endgame-step","feira-story","mormaco-story","retalho-rescue","retalho-story","ruinas-elo","tufanocorte-story","tyler-lab","warehouse-story"]
 static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted) -> Dictionary:
 	var summary := {"xp": 0, "coins": 0, "stars": 0, "items": [], "before": 0, "after": 0, "name": "Seu parceiro"}
 	var partner: Dictionary = {}
@@ -43,19 +45,21 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 			if encounter.feiraOpponent=="lalau":summary.coins=20
 	elif encounter.get("kind","")=="canal-gate":
 		if won:summary.unlock="Grampo recuou · a comporta pode ser destrancada"
-	elif won:
+	if won and encounter.get("kind","") in STORY_KINDS:
+		amount = Progression.story_xp(player, model.snapshot())
+	elif won and encounter.get("kind","") not in ["district","morro"]:
 		var boss: bool = encounter.get("kind", "") == "lacertubo"
 		amount = Encounters.reward_for(encounter,model.snapshot())
 		if boss: summary.items.append("Rabiola de Lacertubo")
 		elif encounter.get("kind","")!="trainer":
 			var drop: Dictionary = player.get("wildDrop", {"intro": false, "misses": 0})
 			if not drop.intro or drop.misses >= 7 or encounter.get("dropRoll", 1) < .25:
-				var name: String = {"basica": "Carcará", "mata": "Mata verde", "raio": "Raio de sol","rascunho-bicho-pau":"Bicho-pau de Vareta [rascunho]","rascunho-joaninha":"Joaninha-pião [rascunho]"}.get(model.enemy_model_id, model.enemy_model_id)
+				var name: String = {"basica": "Carcará", "mata": "Mata verde", "raio": "Raio de sol","rascunho-bicho-pau":"Bicho-pau de Vareta","rascunho-joaninha":"Joaninha-pião"}.get(model.enemy_model_id, model.enemy_model_id)
 				summary.items.append("Rabiola de " + name)
 	summary.xp = Progression.credit_for(partner, amount)
 	summary.new_items=[]
 	for item in summary.items:
-		var item_id:String={"Rabiola de Bicho-pau de Vareta [rascunho]":"rabiola-rascunho-bicho-pau","Rabiola de Joaninha-pião [rascunho]":"rabiola-rascunho-joaninha","Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(item,"")
+		var item_id:String={"Rabiola de Bicho-pau de Vareta":"rabiola-rascunho-bicho-pau","Rabiola de Joaninha-pião":"rabiola-rascunho-joaninha","Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(item,"")
 		if not item_id.is_empty() and player.get("inventory",{}).get(item_id,0)==0:summary.new_items.append(item)
 	if won and encounter.get("kind","")=="lacertubo" and not player.get("flags",{}).get("ninaTail",false):
 		summary.notice="A rabiola de Nina ficou no chão. Procure-a no pátio, atrás do guardião."

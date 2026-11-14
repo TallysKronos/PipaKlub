@@ -1,0 +1,38 @@
+{
+  "family_id": "singravel",
+  "family_name": "Singravel",
+  "scope": "Glaciais das Duas Marés. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "singravel-jovem",
+      "name": "Singravel (jovem)",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/glaciais-das-duas-marees/concept-v1/singravel.png",
+      "brief": "../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+      "story": ""
+    },
+    {
+      "id": "singravel-cavaleiro-da-alvorada-austral",
+      "name": "Singravel (Cavaleiro da Alvorada Austral)",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/glaciais-das-duas-marees/cavaleiros-v1/singravel.png",
+      "brief": "../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+      "story": "Cavaleiro pinguim que carrega o amanhecer no escudo de pipa."
+    }
+  ],
+  "edges": [
+    {
+      "from": "singravel-jovem",
+      "to": "singravel-cavaleiro-da-alvorada-austral",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

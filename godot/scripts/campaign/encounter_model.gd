@@ -1,5 +1,38 @@
 extends "res://scripts/campaign/first_flight_model.gd"
 const Pacing = preload("res://scripts/campaign/park_pacing.gd")
+const Rope = preload("res://scripts/campaign/soulflight_rope.gd")
+var soulflight := OS.get_environment("PIPAKLUB_SOULFLIGHT") == "1"
+var player_rope := Rope.new()
+var enemy_rope := Rope.new()
+
+func line_points(actor: Dictionary) -> PackedVector2Array:
+	var rope := player_rope if is_same(actor, p) else enemy_rope
+	if soulflight and not rope.points.is_empty(): return rope.points
+	return PackedVector2Array([Vector2(actor.anchor, 585), Vector2(actor.x, actor.y)])
+
+func line_tension(actor: Dictionary) -> float:
+	if not soulflight: return 0.0
+	return player_rope.tension if is_same(actor, p) else enemy_rope.tension
+
+func _fly(actor: Dictionary, direction: Vector2, raw: Dictionary, dt: float, wind: float) -> void:
+	var player := is_same(actor, p)
+	var rope := player_rope if player else enemy_rope
+	var position := Vector2(actor.x, actor.y)
+	var anchor := Vector2(actor.anchor, 585)
+	var reel := float(raw.get("reel", 0.0))
+	if not player:
+		reel = .65 if rope.tension > .36 or contact(p, actor).get("valid", false) else -.35 if contact(actor, p).get("valid", false) else 0.0
+	var gust := wind + sin(time * 2.1) * 14.0
+	var pull := rope.advance(anchor, position, reel, gust, dt)
+	var target := direction.limit_length() * float(actor.stats.speed)
+	if actor.evade > 0:
+		target = actor.dodgeDir * 528.0
+	var response := 9.5 if (model_id if player else enemy_model_id) == "rabbito" else 6.8
+	var velocity := Vector2(actor.vx, actor.vy).lerp(target + Vector2(gust, -4), 1 - exp(-response * dt))
+	velocity += pull * dt
+	actor.x = clampf(position.x + velocity.x * dt, 55, 945)
+	actor.y = clampf(position.y + velocity.y * dt, 70, 480)
+
 const Levels = preload("res://scripts/campaign/partner_levels.gd")
 ## Single-round local Lacertubo encounter. Contact/costs/armor follow src/engine.js.
 ## Does not implement online rooms, specialization classes or the six line loadouts.
@@ -10,6 +43,9 @@ var partner_id := ""
 var model_id := "rabbito"
 var enemy_model_id := "lacertubo"
 var enemy_level := Pacing.BOSS_LEVEL
+## Consecutive losses to this story duel (Progression.story_assist, up to 2): each one
+## lowers the boss's reading a step and its damage by 10%.
+var assist := 0
 signal damage_applied(event: Dictionary)
 signal combat_feedback(event: Dictionary)
 signal signature_started(id:String,enemy:bool)
@@ -18,11 +54,11 @@ func _apply_hit(hit: Dictionary) -> void:
 	var target: Dictionary = hit.target
 	var field: String = "hull" if hit.body else "hp"
 	var previous: float = target[field]
-	var multiplier:=1.0
+	var multiplier:=boss_damage(enemy_level)*(1.0-.1*assist) if is_same(target,p) and q.get("bossScaled",false) else 1.0
 	if p.has("level") and q.has("level"):
 		var lower: Dictionary=p if p.level<q.level else q
 		var penalty:=Pacing.level_penalty(absi(int(p.level)-int(q.level)))
-		multiplier=1.0+penalty if is_same(target,lower) else 1.0-penalty
+		multiplier*=1.0+penalty if is_same(target,lower) else 1.0-penalty
 	target[field] = maxf(0, previous - hit.damage*multiplier)
 	if is_same(target,q) and q.get("mormacoForm","")=="normal":
 		if field=="hp":
@@ -45,17 +81,18 @@ static func xp_for_level(level: int) -> int:
 static func stats(level: int, bonus: float = 0) -> Dictionary:
 	var f := (clampi(level, 1, 50) - 1) / 49.0
 	var result := {"line": roundf(100 + 20 * f), "energy": roundf(100 + 15 * f), "attack": 1 + .12 * f, "defense": 1 + .1 * f, "speed": 165 * (1 + .08 * f), "regen": 18 * (1 + .1 * f)}
-	for key in result: result[key] = snappedf(result[key] * (1 + clampf(bonus, 0, 12) / 100), .000001)
+	# Bônus de criação (até 12%) + bônus do estágio de evolução (jovem 6%, adulto 12%).
+	for key in result: result[key] = snappedf(result[key] * (1 + clampf(bonus, 0, 24) / 100), .000001)
 	return result
 
 func _init(partner: Dictionary = {}, enemy: Dictionary = {}) -> void:
 	super(0)
 	partner_id = partner.get("id", "")
 	model_id = partner.get("modelId", "rabbito")
-	p = _fighter(172, 90, stats(level_for_xp(partner.get("xp", 0)), partner.get("craftBonus", 0)))
+	p = _fighter(172, 90, stats(level_for_xp(partner.get("xp", 0)), partner.get("craftBonus", 0) + preload("res://scripts/campaign/evolution.gd").bonus(model_id)))
 	p.level=level_for_xp(partner.get("xp",0))
 	q = _fighter(828, 910, {"line": 210.0, "energy": 125.0, "attack": 1.12, "defense": 1.05, "speed": 157.0, "regen": 19.0})
-	p.color = {"rabbito": 0, "basica": 0, "mata": 2, "azulao": 3, "raio": 1, "lacertubo": 2}.get(model_id, 0)
+	p.color = {"rabbito": 0, "basica": 0, "mata": 2, "azulao": 3, "raio": 1, "lacertubo": 2}.get(preload("res://scripts/campaign/evolution.gd").root(model_id), 0)
 	q.color = 2
 	q.boss = true
 	if not enemy.is_empty():
@@ -76,14 +113,50 @@ func _fighter(x: float, anchor: float, attributes: Dictionary) -> Dictionary:
 		"signatureCooldown": 6.0, "strike": false, "maneuver": false, "lineHeld": false, "signatureHeld": false}, true)
 	return actor
 
+func contact_hint(a: Dictionary, b: Dictionary) -> Dictionary:
+	return contact(a, b) if soulflight else super.contact_hint(a, b)
+
 func contact(a: Dictionary, b: Dictionary) -> Dictionary:
-	var crossing := super.contact(a, b)
+	var crossing := Rope.crossing(line_points(a), line_points(b)) if soulflight else super.contact(a, b)
 	if not crossing.is_empty() and a.color == 3 and a.skillTime > 0:
 		crossing.valid = crossing.own >= .35 and crossing.own <= .95 and crossing.enemy >= .15 and crossing.enemy <= .92
 	return crossing
 
+## Story bosses (q.boss with a campaign level) were plain Lv.N stats, so every duel from
+## Navalha (Nv.30) to Jamile (Nv.50) lasted ~14 s and was won with 65% line left
+## (tools/story_balance.gd). They get boss line and a reading that climbs with level.
+## Bosses below Nv.26 (the park's Lacertubo and its original trace) keep their authored fight.
+## Measured from the Mormaço (Nv.27) up; earlier bosses keep their authored fight.
+const SCALED_FROM := 26
+
+static func boss_line_scale(level: int) -> float:
+	return clampf(1.9 + .04 * (level - 30), 1.9, 2.7)
+
+## Longer duels without faster deaths: a scaled boss hits for less, and a little
+## harder toward the final (×0.65 at Nv.30, ×0.73 at Nv.50).
+static func boss_damage(level: int) -> float:
+	return lerpf(.65, .73, clampf((level - 30) / 20.0, 0, 1))
+
+static func boss_skill(level: int, phase: int) -> int:
+	if level < SCALED_FROM: return 7 if phase == 2 else 6
+	return clampi(4 + (level - 30) / 6 + (1 if phase == 2 else 0), 3, 10)
+
+static func recovery_scale(skill: int) -> float:
+	return clampf(1.0 - .06 * (skill - 6), .7, 1.15)
+
+func _scale_boss() -> void:
+	if not q.boss or q.get("bossScaled", false) or enemy_level < SCALED_FROM: return
+	q.bossScaled = true
+	var scale := boss_line_scale(enemy_level)
+	var hp_ratio: float = q.hp / q.stats.line
+	var hull_ratio: float = q.hull / q.stats.line
+	q.stats.line = roundf(q.stats.line * scale)
+	q.hp = q.stats.line * hp_ratio
+	q.hull = q.stats.line * hull_ratio
+
 func tick(delta: float, input: Dictionary) -> void:
 	if not outcome.is_empty(): return
+	_scale_boss()
 	var dt := clampf(delta, 0, .05)
 	time += dt
 	if intro > 0:
@@ -93,9 +166,12 @@ func tick(delta: float, input: Dictionary) -> void:
 	var wind := wind_strength()
 	_move_fighter(p, input, dt, wind)
 	_move_fighter(q, _boss_input(dt) if q.boss else _trainer_input(dt) if q.has("trainingRank") else _wild_input(dt), dt, wind)
+	if soulflight:
+		player_rope.solve(Vector2(p.anchor, 585), Vector2(p.x, p.y), wind, dt)
+		enemy_rope.solve(Vector2(q.anchor, 585), Vector2(q.x, q.y), wind, dt)
 	var hits: Array = []
 	if q.boss: _signature_hit(q, p, dt, q.get("mormacoForm","")!="normal", hits)
-	_signature_hit(p, q, dt, input.get("signature", false) and model_id in ["rabbito","rai"], hits)
+	_signature_hit(p, q, dt, input.get("signature", false) and not preload("res://scripts/campaign/evolution.gd").signature(model_id).is_empty(), hits)
 	_strike(p, q, hits)
 	_strike(q, p, hits)
 	_tyler_assist(dt,hits)
@@ -173,7 +249,9 @@ func _move_fighter(actor: Dictionary, raw: Dictionary, dt: float, wind: float) -
 		direction *= .4
 		cut = false
 	var before := Vector2(actor.x, actor.y)
-	if actor.evade > 0:
+	if soulflight and actor.lineMove.is_empty():
+		_fly(actor, direction, raw, dt, wind)
+	elif actor.evade > 0:
 		actor.x = clampf(actor.x + (actor.dodgeDir.x * 165 * 3.2 + wind) * dt, 55, 945)
 		actor.y = clampf(actor.y + actor.dodgeDir.y * 165 * 3.2 * dt, 70, 480)
 	elif actor.lineMove.is_empty():
@@ -206,13 +284,17 @@ func _move_fighter(actor: Dictionary, raw: Dictionary, dt: float, wind: float) -
 
 func _boss_input(dt: float) -> Dictionary:
 	if enemy_model_id=="mormaco-possuido":return _mormaco_input(dt)
-	var phase := 2 if minf(q.hp, q.hull) <= 250 * .55 else 1
+	# Phase 2 at 55% of the boss's own line (it was 55% of 250, so a Lv.30–50 boss
+	# with ~120 line started the duel already in phase 2).
+	var threshold: float = 250 * .55 if not q.get("bossScaled", false) else q.stats.line * .55
+	var phase := 2 if minf(q.hp, q.hull) <= threshold else 1
 	if phase != q.phase:
 		q.phase = phase
 		q.charge = 0.0
 		q.recovery = 1.8
 	if q.signatureWindup > 0: return {}
-	var k := pow(((7 if phase == 2 else 6) - 1) / 9.0, .75)
+	var skill := maxi(1, boss_skill(enemy_level, phase) - (assist if q.get("bossScaled", false) else 0))
+	var k := pow((skill - 1) / 9.0, .75)
 	var speed := minf(1, .6 + .4 * k) * .95
 	var fraction := .6 + .16 * (1 - k) * sin(time * 1000 / 650 + 1.7)
 	var crossing := Vector2(p.anchor, 585).lerp(Vector2(p.x, p.y), fraction)
@@ -220,7 +302,7 @@ func _boss_input(dt: float) -> Dictionary:
 	var input := {"x": clampf((target.x - q.x) / 80, -speed, speed), "y": clampf((target.y - q.y) / 80, -speed, speed), "cut": false}
 	var own_crossing := contact(q, p)
 	var threat := contact(p, q)
-	var dodge := clampf(((7 if phase == 2 else 6) - 2) / 8.0, 0, 1)
+	var dodge := clampf((skill - 2) / 8.0, 0, 1)
 	if threat.get("valid", false) and not own_crossing.get("valid", false):
 		var away: Vector2 = (Vector2(q.x, q.y) - threat.point).normalized()
 		target = Vector2(q.x, q.y) + away * 120 * dodge + (target - Vector2(q.x, q.y)) * (1 - dodge)
@@ -247,7 +329,8 @@ func _boss_input(dt: float) -> Dictionary:
 			input.cut = true
 			q.charge = 0.0
 			q.telegraph = 0.0
-			q.recovery = 1.15 if phase == 2 else 1.5
+			# A sharper scaled boss leaves a shorter opening after each cut.
+			q.recovery = (1.15 if phase == 2 else 1.5) * (recovery_scale(skill) if q.get("bossScaled", false) else 1.0)
 	else: q.telegraph = 0.0
 	return input
 
@@ -352,9 +435,11 @@ func _strike(actor: Dictionary, target: Dictionary, hits: Array) -> void:
 	hits.append({"target":target,"body":body,"damage":damage,"point":Vector2(target.x,target.y) if body else crossing.point,"critical":quality.critical and not maneuver,"color":actor.color})
 
 func snapshot() -> Dictionary:
-	return _encode({"p": p, "q": q, "time": time, "intro": intro, "duration": duration, "outcome": outcome, "partnerId": partner_id, "modelId": model_id, "enemyModelId": enemy_model_id, "enemyLevel": enemy_level})
+	return _encode({"p": p, "q": q, "time": time, "intro": intro, "duration": duration, "outcome": outcome, "partnerId": partner_id, "modelId": model_id, "enemyModelId": enemy_model_id, "enemyLevel": enemy_level, "assist": assist})
 
 func restore(saved: Dictionary) -> void:
+	player_rope = Rope.new()
+	enemy_rope = Rope.new()
 	var decoded: Dictionary = _decode(saved)
 	p = decoded.p
 	q = decoded.q
@@ -366,6 +451,7 @@ func restore(saved: Dictionary) -> void:
 	model_id = decoded.modelId
 	enemy_model_id = decoded.get("enemyModelId", "lacertubo")
 	enemy_level = decoded.get("enemyLevel", 15)
+	assist = int(decoded.get("assist", 0))
 
 static func _encode(value: Variant) -> Variant:
 	if value is Vector2: return {"vector": [value.x, value.y]}

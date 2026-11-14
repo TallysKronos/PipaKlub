@@ -38,6 +38,14 @@ func run()->void:
 	p.flags.firstInsigniaSeen=true;p.flags.demoEndingSeen=true;p.flags.ninaAccepted=true;p.flags.ninaBambuzalOrder=true
 	check(app.session.checkpoint(CP.make("park-clearing",CP.spawn("park-clearing"),CP.SPACE),p).status=="ok","Lohan won fixture")
 	app._show_park();await frames()
+	var rai_visible := false
+	for actor: Dictionary in app.park.npc_nodes:
+		if int(actor.root.get_meta("event", {}).get("id", -1)) != 10602:
+			continue
+		for sprite in actor.visual.get_children():
+			if sprite is Sprite2D and sprite.is_visible_in_tree() and sprite.texture != null:
+				rai_visible = sprite.texture.resource_path.ends_with("/rai-overworld-idle-eight.png") and sprite.region_rect.size == Vector2(64, 96)
+	check(rai_visible, "Rai uses the directional sprite beside Tyler")
 	app.park.encounter_grace=100000;app.park.paused=false;app.park.walk_to(Tyler.point()+Vector2.DOWN)
 	for i in 12000:
 		if app.park.player.distance_to(Tyler.point()+Vector2.DOWN)<.1:break

@@ -334,8 +334,8 @@
         {
           "durationMs": 1000,
           "seat": [
-            151,
-            246
+            131,
+            240
           ]
         }
       ],
@@ -360,8 +360,8 @@
         512
       ],
       "seat": [
-        151,
-        246
+        131,
+        240
       ],
       "farLeg": [
         [
@@ -460,8 +460,9 @@
   },
   "id": "doberman-c",
   "riderScale": 0.18,
-  "riderTexture": "res://assets/mounts/doberman-c-v1/kael-rider-refined.png",
+  "riderTexture": "res://assets/mounts/doberman-overworld-iso/kael-rider.png",
   "scale": 0.4,
   "stage": "static-preview",
-  "texture": "res://assets/mounts/doberman-c-v1/idle-eight.png"
+  "texture": "res://assets/mounts/doberman-overworld-iso/idle-eight.png",
+  "animationManifest": "res://assets/mounts/doberman-overworld-iso/animations.json"
 }

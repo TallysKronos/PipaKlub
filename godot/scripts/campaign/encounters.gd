@@ -3,9 +3,11 @@ const State = preload("res://scripts/campaign/state.gd")
 const Model = preload("res://scripts/campaign/encounter_model.gd")
 const Park = preload("res://scripts/campaign/park_data.gd")
 const Progression = preload("res://scripts/campaign/progression.gd")
+const Levels = preload("res://scripts/campaign/partner_levels.gd")
 const Checkpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Training = preload("res://scripts/campaign/park_training.gd")
 const Pacing = preload("res://scripts/campaign/park_pacing.gd")
+const WildTables = preload("res://scripts/campaign/wild_tables.gd")
 var session: Node
 
 static func reward_amount(boss: bool, _scene: String, enemy_id: String, level: int = 1) -> int:
@@ -23,6 +25,46 @@ static func reward_for(battle: Dictionary, _state: Dictionary) -> int:
 static func owner_bonus(battle:Dictionary,state:Dictionary) -> Dictionary:
 	if battle.get("kind","")!="trainer" or state.get("outcome","")!="won":return {"coins":0,"tamerXp":0}
 	return preload("res://scripts/campaign/opponent_rewards.gd").trainer_bonus(int(state.get("enemyLevel",1)))
+
+## Guardiões das regiões laterais (side_regions.gd): duelo só perto do guardião, uma vez.
+const ABISMO_BOSS_LEVEL := 42
+const GELEIRA_BOSS_LEVEL := 38
+const GRUTA_GUARDIAN_LEVEL := 18
+const VULCAO_GUARDIAN_LEVEL := 40
+## kind → [cena, ação do evento, modelId, nível, flag da vitória, nome, rabiola]
+const GUARDIANS := {
+	"abismo-boss": ["abismo-d", "abismoBoss", "coromar", ABISMO_BOSS_LEVEL, "abismoCoromarVencido", "Coromar", "rabiola-coromar"],
+	"geleira-boss": ["serra-gelada-c", "geleiraBoss", "borealvo", GELEIRA_BOSS_LEVEL, "geleiraBorealvoVencido", "Borealvo", "rabiola-borealvo"],
+	"gruta-boss": ["caverna-c", "grutaBoss", "estratonte", GRUTA_GUARDIAN_LEVEL, "grutaEstratonteVencido", "Estratonte", "rabiola-estratonte"],
+	"vulcao-boss": ["vulcao-a", "vulcaoBoss", "tricordio", VULCAO_GUARDIAN_LEVEL, "vulcaoTricordioVencido", "Tricórdio", "rabiola-tricordio"],
+}
+func start_abismo_boss(point: Vector2) -> Dictionary: return start_guardian("abismo-boss", point)
+func start_geleira_boss(point: Vector2) -> Dictionary: return start_guardian("geleira-boss", point)
+func start_gruta_boss(point: Vector2) -> Dictionary: return start_guardian("gruta-boss", point)
+func start_vulcao_boss(point: Vector2) -> Dictionary: return start_guardian("vulcao-boss", point)
+
+func start_guardian(kind: String, point: Vector2) -> Dictionary:
+	if not GUARDIANS.has(kind): return {"status":"wrong_step"}
+	var g: Array = GUARDIANS[kind]
+	var saved: Dictionary = session.snapshot()
+	if saved.checkpoint.get("scene","")!=g[0] or saved.checkpoint.get("space","")!=Checkpoint.SPACE: return {"status":"wrong_step"}
+	var boss_at := Vector2.INF
+	for event in Checkpoint.data(g[0]).events:
+		if event.props.get("acao","")==g[1]: boss_at=Vector2(event.u+.5,event.v+.5)
+	if not point.is_finite() or point.distance_to(boss_at)>3.0: return {"status":"wrong_step"}
+	var player: Dictionary = saved.player
+	if player.get("flags",{}).get(g[4],false): return {"status":"already_applied"}
+	var partner: Dictionary = {}
+	for entry in player.partners:
+		if entry.id == player.get("equippedPartnerId", ""): partner = entry
+	if partner.is_empty() or partner.get("condition", {}).get("line", 100) <= 0 or partner.get("condition", {}).get("structure", 100) <= 0: return {"status": "repair_needed"}
+	var model := Model.new(partner, {"modelId": g[2], "level": g[3]})
+	model.q.boss = true
+	model.q.name = g[5]
+	Progression.discover(player, g[2])
+	player.encounter = {"id": State.new_id(), "kind": kind, "scene": g[0], "space": Checkpoint.SPACE, "dropRoll": .5, "returnPoint": [point.x, point.y], "state": model.snapshot()}
+	player.encounter.rewardXp = Levels.win_xp(g[3], Levels.level_for_xp(partner.get("xp",0)), "champion")
+	return session.checkpoint({"kind": "encounter"}, player)
 
 func _init(local_session: Node) -> void:
 	session = local_session
@@ -43,10 +85,10 @@ func start_wild(point: Vector2) -> Dictionary:
 	var first: bool = not player.get("wildDrop", {}).get("intro", false)
 	var species := ("basica" if roll < .5 else "mata") if first else ("basica" if roll < .5 else "mata" if roll < .85 else "raio")
 	var level := 5 + bytes.decode_u32(4) % 5 if scene == "park-veredas" else 1 + bytes.decode_u32(4) % 3 + (1 if scene == "park-clearing" else 0)
-	if saved.checkpoint.get("space","")==Checkpoint.SPACE: level=Pacing.wild_level(scene,bytes.decode_u32(4))
-	if scene.begins_with("kronasta-bambuzal-"):species=preload("res://scripts/campaign/bambuzal_wild_drafts.gd").choose(roll)
-	if scene.begins_with("kronasta-feira-"):species="rascunho-bicho-pau" if roll<.5 else "rascunho-joaninha"
-	if scene.begins_with("kronasta-beira-canal-"):species="lacertubo"
+	if saved.checkpoint.get("space","")==Checkpoint.SPACE:
+		level=Pacing.wild_level(scene,bytes.decode_u32(4))
+		# Kronasta regions read assets/campaign/encounters.json (WildTables).
+		species=WildTables.choose(scene,roll,first)
 	var model := Model.new(partner, {"modelId": species, "level": level})
 	Progression.discover(player, species)
 	player.encounter = {"id": State.new_id(), "kind": "wild", "scene": scene, "dropRoll": bytes.decode_u32(8) / 4294967296.0, "returnPoint": [point.x, point.y], "state": model.snapshot()}
@@ -127,7 +169,11 @@ func settle() -> Dictionary:
 	var tamer_before:int=player.get("tamerXp",0)
 	player.coins+=bonus.coins
 	player.tamerXp=mini(31383,tamer_before+int(bonus.tamerXp))
-	if state.outcome == "won" and boss:
+	if state.outcome == "won" and GUARDIANS.has(battle.kind):
+		var g: Array = GUARDIANS[battle.kind]
+		player.flags[g[4]] = true
+		player.inventory[g[6]] = player.inventory.get(g[6], 0) + 1
+	elif state.outcome == "won" and boss:
 		player.flags.guardianDefeated = true
 		player.inventory["rabiola-lacertubo"] = player.inventory.get("rabiola-lacertubo", 0) + 1
 	elif state.outcome == "won" and not training:

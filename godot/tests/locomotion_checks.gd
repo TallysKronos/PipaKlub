@@ -1,11 +1,12 @@
 extends SceneTree
 ## Real campaign movement and HUD, without a save store or rewards.
+const Avatar=preload("res://scripts/kael_video_avatar.gd")
 const Controls=preload("res://scripts/campaign/controls.gd")
 const Motion=preload("res://scripts/campaign/locomotion.gd")
 const State=preload("res://scripts/campaign/state.gd")
 var checks:=0
 var failures:Array[String]=[]
-var output:="res://../art/characters/kael-locomotion-v1/review"
+var output:="res://../art/characters/kael/overworld-isometrico-v2"
 
 func _initialize() -> void:call_deferred("run")
 func check(ok:bool,label:String) -> void:
@@ -29,10 +30,10 @@ func run() -> void:
 	for family in ["xbox","ps","switch"]:
 		check(Controls.button_for("run",family)==JOY_BUTTON_LEFT_STICK,"left stick sprint "+family)
 	Controls.install(Controls.DEFAULTS)
-	var idle:=Image.load_from_file("res://assets/kael-video/kael-idle-eight.png")
-	var run_sheet:=Image.load_from_file("res://assets/kael-video/kael-run-eight.png")
-	var walk:=Image.load_from_file("res://assets/kael-video/kael-walk-eight.png")
-	check(idle.get_size()==Vector2i(512,768) and run_sheet.get_size()==idle.get_size(),"matching 64x96 cells, eight angles and eight phases")
+	var idle:=Image.load_from_file(Avatar.LOCOMOTION_ASSETS+"idle.png")
+	var run_sheet:=Image.load_from_file(Avatar.LOCOMOTION_ASSETS+"run.png")
+	var walk:=Image.load_from_file(Avatar.LOCOMOTION_ASSETS+"walk.png")
+	check(idle.get_size()==Vector2i(512,768) and walk.get_size()==idle.get_size() and run_sheet.get_size()==idle.get_size(),"matching 64x96 cells, eight angles and eight phases")
 	var palette:={}
 	for y in walk.get_height():
 		for x in walk.get_width():palette[walk.get_pixel(x,y).to_rgba32()]=true
@@ -44,6 +45,8 @@ func run() -> void:
 				if color.a!=0 and (color.a!=1 or not palette.has(color.to_rgba32())):clean=false
 		check(clean,"binary alpha and approved palette")
 	for row in 8:
+		var standing := idle.get_region(Rect2i(0, row*96, 64, 96)).get_used_rect()
+		check(standing.size.y in range(66, 77) and standing.end.y == 94, "compact silhouette keeps the idle ground anchor " + str(row))
 		var soles:=idle.get_region(Rect2i(0,row*96+78,64,18)).get_data()
 		var poses:={}
 		for frame in 8:

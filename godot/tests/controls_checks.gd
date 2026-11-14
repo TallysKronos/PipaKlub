@@ -75,10 +75,16 @@ func run_checks() -> void:
 	DirAccess.make_dir_recursive_absolute(directory)
 	var prefs := Preferences.new()
 	prefs.bindings = changed
+	prefs.text_scale = 1.3
+	prefs.reduced_motion = true
+	prefs.audio_levels.music = 0.0
+	prefs.dialogue_blips = true
 	check(prefs.save_settings(directory.path_join("settings.cfg")) == OK, "persist isolated bindings")
 	var loaded := Preferences.new()
 	loaded.load_settings(directory.path_join("settings.cfg"))
 	check(loaded.bindings.cut == KEY_T, "reload preserves remap")
+	check(is_equal_approx(loaded.text_scale,1.3) and loaded.reduced_motion,"reload preserves accessibility settings")
+	check(loaded.audio_levels.music == 0.0 and loaded.dialogue_blips,"reload preserves music mute and dialogue sounds independently")
 	var invalid := changed.duplicate()
 	invalid.guard = KEY_T
 	check(not Controls.validate(invalid), "duplicate saved key rejected")

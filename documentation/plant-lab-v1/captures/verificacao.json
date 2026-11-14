@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "checks": [
+    "plantar",
+    "mover",
+    "espelhar",
+    "duplicar",
+    "excluir",
+    "desfazer/refazer",
+    "pintura contínua de piso",
+    "desfazer pincelada inteira",
+    "exportação Godot com composição editada",
+    "persistência ao recarregar",
+    "importação válida/inválida",
+    "Kael em teste",
+    "grade"
+  ],
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "canvas": {
+        "x": 167,
+        "y": 108,
+        "width": 824,
+        "height": 390,
+        "top": 108,
+        "right": 991,
+        "bottom": 498,
+        "left": 167
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "canvas": {
+        "x": 181,
+        "y": 108,
+        "width": 1418,
+        "height": 734,
+        "top": 108,
+        "right": 1599,
+        "bottom": 842,
+        "left": 181
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "canvas": {
+        "x": 65,
+        "y": 95,
+        "width": 558,
+        "height": 125,
+        "top": 95,
+        "right": 623,
+        "bottom": 220,
+        "left": 65
+      }
+    }
+  ],
+  "browserErrors": []
+}

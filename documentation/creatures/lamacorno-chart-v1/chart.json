@@ -1,0 +1,74 @@
+{
+  "family_id": "lamacorno",
+  "family_name": "Lamacorno",
+  "scope": "Onis do Vento Bravio. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "giripipa",
+      "name": "Giripipa",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "brejoto",
+      "name": "Brejoto",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "saltalodo",
+      "name": "Saltalodo",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/lamacorno.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "lamacorno",
+      "name": "Lamacorno",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/concept-v3/lamacorno.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Sapo saltador que abre a vela entre as patas traseiras."
+    }
+  ],
+  "edges": [
+    {
+      "from": "giripipa",
+      "to": "brejoto",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "brejoto",
+      "to": "saltalodo",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "saltalodo",
+      "to": "lamacorno",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

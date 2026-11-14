@@ -1,11 +1,12 @@
 extends "res://scripts/kael_video_avatar.gd"
+const OVERWORLD_SCALE := .85 * BODY_SCALE
 var mounted:=false
 var mount_rig:Node2D
 var mount_definition_path:="res://assets/mounts/doberman-c-v1/mount.json"
 ## Shared campaign/prototype entry point. Coordinates and foot anchors stay with each scene.
 func _ready() -> void:
 	super()
-	scale=Vector2.ONE*.85*BODY_SCALE
+	scale = Vector2.ONE * OVERWORLD_SCALE
 
 func set_mounted(value:bool) -> void:
 	mounted=value

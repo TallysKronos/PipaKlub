@@ -1,0 +1,82 @@
+{
+  "family_id": "lupunhal",
+  "scope": "Quatro estágios documentais da Armada dos Lobos. Adultos anteriores preservados; novas pré-evoluções e vínculos propostos.",
+  "nodes": [
+    {
+      "id": "lunim",
+      "name": "Lunim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Rosto e corpo em losango fundido, sem membros; duas abas teal, arco superior e uma rabiola com bandeirola de pegada. Olhos menta e superfícies amplas.",
+      "story": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/lupunhal/lunim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lupunhal/lunim/concept-v1/brief.md"
+    },
+    {
+      "id": "lupisco",
+      "name": "Lupisco",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Quatro pernas e quatro pés, corpo baixo de criança e rosto curioso. Abas de punho e pequeno manto apoiado por arco; aprende a prender linha sem portar adagas. Mais dobras e proteção do que o brief mínimo pediu; ainda muito menos massa que jovem e adulto.",
+      "story": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/lupunhal/lupisco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lupunhal/lupisco/concept-v1/brief.md"
+    },
+    {
+      "id": "lupunhal",
+      "name": "Lupunhal",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Duas adagas de linha · Atual · lobo-cinzento",
+      "story": "Abre uma passagem curta cortando a linha da arma adversária; precisa entrar no alcance do oponente.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/lupunhal/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lupunhal/concept-v1/brief.md",
+      "maturity": "Jovem",
+      "stage_note": "Autor: “lupunhal e miralís são como jovens [...] pode ter uma adulto pra eles com muito mais presença” (2026-11-07). Estágio dos dois concepts anteriores passa de adulto proposto para jovem por orientação do autor. Não implica aprovação das novas artes ou nomes."
+    },
+    {
+      "id": "lupregente",
+      "name": "Lupregente",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Dois braços e duas pernas completos; duas adagas curvas, cabeça menor em relação ao peito profundo, manto amplo e saia aberta sem ocultar apoios. Rabiola trançada com três terminais. A guarda craniana permanece aberta, mais próxima de diadema estrutural que de helmet completo. Corpo não reduzido a humano com cabeça de lobo.",
+      "story": "Prender e redirecionar duas linhas com lâminas curvas, dominando o espaço em vez de apenas interceptar.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/lupunhal/lupregente/concept-v1/concept.png",
+      "brief": "../../../art/creatures/lupunhal/lupregente/concept-v1/brief.md",
+      "approval_note": "Autor: “ótimo adorei agora crie as pré-evo pra todos” (2026-11-07). Aprovação visual de Lupregente e Miralcaide apresentados no turno anterior; sem certificação de integração, mecânicas ou aprovação automática das novas pré-evoluções."
+    }
+  ],
+  "edges": [
+    {
+      "from": "lunim",
+      "to": "lupisco",
+      "kind": "reweaving",
+      "reason": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "lupisco",
+      "to": "lupunhal",
+      "kind": "reweaving",
+      "reason": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "lupunhal",
+      "to": "lupregente",
+      "kind": "reweaving",
+      "reason": "De perceber a tensão no próprio corpo a prender e soltar linhas com os punhos; aprende a interceptar com duas adagas e, adulto, redirecionar dois adversários sem romper a formação.",
+      "decision_status": "proposed"
+    }
+  ]
+}

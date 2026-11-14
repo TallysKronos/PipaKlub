@@ -22,7 +22,7 @@
     },
     {
       "speaker": "Kael",
-      "text": "Pronto! O corpo de papel ficou do jeitinho que imaginei. Só falta a rabiola. Mas não dá para invocar um Pipamon sem a rabiola específica dele… Como vou conseguir a sua, se você saiu da minha cabeça?",
+      "text": "Pronto, Rabbito! Agora só falta a sua rabiola… Mas onde eu acho a rabiola de um Pipamon que eu mesmo inventei?",
       "shot": "desk"
     },
     {
@@ -1502,6 +1502,17 @@
   "portraits": {
     "Mãe": "portrait-mother.png",
     "Kael": "portrait-kael-manga-v4.png",
+    "Tyler": "portrait-tyler-manga-v1.png",
+    "Grampo": "portrait-grampo-manga-v1.png",
+    "Gollia": "portrait-gollia-manga-v1.png",
+    "Jamile": "portrait-jamile-manga-v1.png",
+    "Rato": "portrait-rato-manga-v1.png",
+    "Lohan": "portrait-lohan-manga-v1.png",
+    "Kleie": "portrait-kleie-manga-v1.png",
+    "Dona Zulmira": "portrait-zulmira-manga-v1.png",
+    "Marisol": "portrait-marisol-manga-v1.png",
+    "Bruno Solda": "portrait-bruno-solda-manga-v1.png",
+    "Caio Garça": "portrait-caio-garca-manga-v1.png",
     "Sr. Assis": "portrait-assis.png",
     "Locutor · Pipa TV": "portrait-announcer.png",
     "Nina": "portrait-nina.png",
@@ -1514,17 +1525,17 @@
   "lessons": [
     {
       "title": "Encontre o vento",
-      "hint": "Mova o mouse ou use WASD / setas. Leve seu parceiro até o círculo.",
+      "hint": "Guie seu parceiro até o círculo. Ali o vento está a seu favor.",
       "success": "Seu parceiro acompanha você. Agora vamos cruzar as linhas."
     },
     {
       "title": "Ataque no cruzamento",
-      "hint": "Seu alvo é Nozinho. Mantenha distância e cruze sua linha na faixa tracejada dele. Quando a mira ficar verde, clique ou pressione Espaço para atacar. De perto, o ataque atinge a armação; aqui vamos praticar a linha.",
-      "success": "Acertou! Ataque é clique / Espaço. Rebicada é outra ação: uma manobra da linha, usada com R."
+      "hint": "Mantenha distância e cruze a linha de Nozinho na faixa tracejada. Quando a mira ficar verde, ataque. De perto, o golpe acerta a armação.",
+      "success": "Boa! Você acertou a linha. A rebicada é outra manobra. Vamos praticá-la daqui a pouco."
     },
     {
       "title": "Recupere o fôlego",
-      "hint": "A barra azul é sua energia. Solte Espaço ou o botão Atacar e espere ela chegar a 90%. A recuperação é automática; pode continuar voando. Evite habilidades enquanto recarrega.",
+      "hint": "A barra azul mostra sua energia. Solte o ataque e deixe a energia chegar a 90%. Pode continuar voando, mas guarde suas habilidades por enquanto.",
       "success": "Muito bem! Você recuperou energia sem precisar parar. Soltar o ataque recupera mais rápido; habilidades e especiais gastam energia."
     },
     {
@@ -1534,7 +1545,7 @@
     },
     {
       "title": "Uma rodada com o Nozinho",
-      "hint": "Escolha a linha de Nozinho como alvo: cruze a faixa tracejada e ataque com clique / Espaço. O centro dourado, em ângulo aberto e em movimento, favorece o crítico.",
+      "hint": "Cruze a faixa tracejada de Nozinho e ataque. Para tentar um crítico, passe pelo centro dourado em movimento, com as linhas em ângulo aberto.",
       "success": "Primeiro corte! Nozinho está bem e o professor está orgulhoso."
     }
   ],
@@ -1959,6 +1970,53 @@
     }
   },
   "combat": {
+    "trinca-brasas": {"image":"regioes-v1/trinca-brasas.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":281,"h":360}],"flight":[{"x":0,"y":0,"w":281,"h":360}],"attack":[{"x":0,"y":0,"w":281,"h":360}],"hurt":[{"x":0,"y":0,"w":281,"h":360}],"victory":[{"x":0,"y":0,"w":281,"h":360}],"defeat":[{"x":0,"y":0,"w":281,"h":360}]}},
+    "lupregente": {"image":"regioes-v1/lupregente.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":460,"h":360}],"flight":[{"x":0,"y":0,"w":460,"h":360}],"attack":[{"x":0,"y":0,"w":460,"h":360}],"hurt":[{"x":0,"y":0,"w":460,"h":360}],"victory":[{"x":0,"y":0,"w":460,"h":360}],"defeat":[{"x":0,"y":0,"w":460,"h":360}]}},
+    "trincaguarda": {"image":"regioes-v1/trincaguarda.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":405,"h":360}],"flight":[{"x":0,"y":0,"w":405,"h":360}],"attack":[{"x":0,"y":0,"w":405,"h":360}],"hurt":[{"x":0,"y":0,"w":405,"h":360}],"victory":[{"x":0,"y":0,"w":405,"h":360}],"defeat":[{"x":0,"y":0,"w":405,"h":360}]}},
+    "gevardente": {"image":"regioes-v1/gevardente.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":519,"h":360}],"flight":[{"x":0,"y":0,"w":519,"h":360}],"attack":[{"x":0,"y":0,"w":519,"h":360}],"hurt":[{"x":0,"y":0,"w":519,"h":360}],"victory":[{"x":0,"y":0,"w":519,"h":360}],"defeat":[{"x":0,"y":0,"w":519,"h":360}]}},
+    "tricordio": {"image":"regioes-v1/tricordio.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":291,"h":420}],"flight":[{"x":0,"y":0,"w":291,"h":420}],"attack":[{"x":0,"y":0,"w":291,"h":420}],"hurt":[{"x":0,"y":0,"w":291,"h":420}],"victory":[{"x":0,"y":0,"w":291,"h":420}],"defeat":[{"x":0,"y":0,"w":291,"h":420}]}},
+    "urso-polar-young": {"image":"regioes-v1/urso-polar-young.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":576,"h":328}],"flight":[{"x":0,"y":0,"w":576,"h":328}],"attack":[{"x":0,"y":0,"w":576,"h":328}],"hurt":[{"x":0,"y":0,"w":576,"h":328}],"victory":[{"x":0,"y":0,"w":576,"h":328}],"defeat":[{"x":0,"y":0,"w":576,"h":328}]}},
+    "nimbordo": {"image":"regioes-v1/nimbordo.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":557,"h":360}],"flight":[{"x":0,"y":0,"w":557,"h":360}],"attack":[{"x":0,"y":0,"w":557,"h":360}],"hurt":[{"x":0,"y":0,"w":557,"h":360}],"victory":[{"x":0,"y":0,"w":557,"h":360}],"defeat":[{"x":0,"y":0,"w":557,"h":360}]}},
+    "lupunhal": {"image":"regioes-v1/lupunhal.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":475,"h":360}],"flight":[{"x":0,"y":0,"w":475,"h":360}],"attack":[{"x":0,"y":0,"w":475,"h":360}],"hurt":[{"x":0,"y":0,"w":475,"h":360}],"victory":[{"x":0,"y":0,"w":475,"h":360}],"defeat":[{"x":0,"y":0,"w":475,"h":360}]}},
+    "vortespira": {"image":"regioes-v1/vortespira.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":504,"h":360}],"flight":[{"x":0,"y":0,"w":504,"h":360}],"attack":[{"x":0,"y":0,"w":504,"h":360}],"hurt":[{"x":0,"y":0,"w":504,"h":360}],"victory":[{"x":0,"y":0,"w":504,"h":360}],"defeat":[{"x":0,"y":0,"w":504,"h":360}]}},
+    "hipomoranga": {"image":"regioes-v1/hipomoranga.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":151,"h":360}],"flight":[{"x":0,"y":0,"w":151,"h":360}],"attack":[{"x":0,"y":0,"w":151,"h":360}],"hurt":[{"x":0,"y":0,"w":151,"h":360}],"victory":[{"x":0,"y":0,"w":151,"h":360}],"defeat":[{"x":0,"y":0,"w":151,"h":360}]}},
+    "reciforte": {"image":"regioes-v1/reciforte.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":505,"h":360}],"flight":[{"x":0,"y":0,"w":505,"h":360}],"attack":[{"x":0,"y":0,"w":505,"h":360}],"hurt":[{"x":0,"y":0,"w":505,"h":360}],"victory":[{"x":0,"y":0,"w":505,"h":360}],"defeat":[{"x":0,"y":0,"w":505,"h":360}]}},
+    "alvorvela": {"image":"regioes-v1/alvorvela.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":574,"h":360}],"flight":[{"x":0,"y":0,"w":574,"h":360}],"attack":[{"x":0,"y":0,"w":574,"h":360}],"hurt":[{"x":0,"y":0,"w":574,"h":360}],"victory":[{"x":0,"y":0,"w":574,"h":360}],"defeat":[{"x":0,"y":0,"w":574,"h":360}]}},
+    "cristim": {"image":"planicies-v1/cristim.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":408,"h":360}],"flight":[{"x":0,"y":0,"w":408,"h":360}],"attack":[{"x":0,"y":0,"w":408,"h":360}],"hurt":[{"x":0,"y":0,"w":408,"h":360}],"victory":[{"x":0,"y":0,"w":408,"h":360}],"defeat":[{"x":0,"y":0,"w":408,"h":360}]}},
+    "papisco": {"image":"planicies-v1/papisco.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":283,"h":360}],"flight":[{"x":0,"y":0,"w":283,"h":360}],"attack":[{"x":0,"y":0,"w":283,"h":360}],"hurt":[{"x":0,"y":0,"w":283,"h":360}],"victory":[{"x":0,"y":0,"w":283,"h":360}],"defeat":[{"x":0,"y":0,"w":283,"h":360}]}},
+    "javali-child": {"image":"planicies-v1/javali-child.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":516,"h":360}],"flight":[{"x":0,"y":0,"w":516,"h":360}],"attack":[{"x":0,"y":0,"w":516,"h":360}],"hurt":[{"x":0,"y":0,"w":516,"h":360}],"victory":[{"x":0,"y":0,"w":516,"h":360}],"defeat":[{"x":0,"y":0,"w":516,"h":360}]}},
+    "galhim": {"image":"planicies-v1/galhim.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":458,"h":360}],"flight":[{"x":0,"y":0,"w":458,"h":360}],"attack":[{"x":0,"y":0,"w":458,"h":360}],"hurt":[{"x":0,"y":0,"w":458,"h":360}],"victory":[{"x":0,"y":0,"w":458,"h":360}],"defeat":[{"x":0,"y":0,"w":458,"h":360}]}},
+    "vertim": {"image":"planicies-v1/vertim.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":381,"h":360}],"flight":[{"x":0,"y":0,"w":381,"h":360}],"attack":[{"x":0,"y":0,"w":381,"h":360}],"hurt":[{"x":0,"y":0,"w":381,"h":360}],"victory":[{"x":0,"y":0,"w":381,"h":360}],"defeat":[{"x":0,"y":0,"w":381,"h":360}]}},
+    "ossito": {"image":"planicies-v1/ossito.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":402,"h":360}],"flight":[{"x":0,"y":0,"w":402,"h":360}],"attack":[{"x":0,"y":0,"w":402,"h":360}],"hurt":[{"x":0,"y":0,"w":402,"h":360}],"victory":[{"x":0,"y":0,"w":402,"h":360}],"defeat":[{"x":0,"y":0,"w":402,"h":360}]}},
+    "viuva-child": {"image":"planicies-v1/viuva-child.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":479,"h":360}],"flight":[{"x":0,"y":0,"w":479,"h":360}],"attack":[{"x":0,"y":0,"w":479,"h":360}],"hurt":[{"x":0,"y":0,"w":479,"h":360}],"victory":[{"x":0,"y":0,"w":479,"h":360}],"defeat":[{"x":0,"y":0,"w":479,"h":360}]}},
+    "estratonte": {"image":"planicies-v1/estratonte.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":668,"h":420}],"flight":[{"x":0,"y":0,"w":668,"h":420}],"attack":[{"x":0,"y":0,"w":668,"h":420}],"hurt":[{"x":0,"y":0,"w":668,"h":420}],"victory":[{"x":0,"y":0,"w":668,"h":420}],"defeat":[{"x":0,"y":0,"w":668,"h":420}]}},
+    "coromar": {"image":"abismo-v1/coromar.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":608,"h":360}],"flight":[{"x":0,"y":0,"w":608,"h":360}],"attack":[{"x":0,"y":0,"w":608,"h":360}],"hurt":[{"x":0,"y":0,"w":608,"h":360}],"victory":[{"x":0,"y":0,"w":608,"h":360}],"defeat":[{"x":0,"y":0,"w":608,"h":360}]}},
+    "capivara-boia": {"image":"evolucoes-v1/capivara-boia.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":497,"h":360}],"flight":[{"x":0,"y":0,"w":497,"h":360}],"attack":[{"x":0,"y":0,"w":497,"h":360}],"hurt":[{"x":0,"y":0,"w":497,"h":360}],"victory":[{"x":0,"y":0,"w":497,"h":360}],"defeat":[{"x":0,"y":0,"w":497,"h":360}]}},
+    "remansa": {"image":"evolucoes-v1/remansa.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":576,"h":302}],"flight":[{"x":0,"y":0,"w":576,"h":302}],"attack":[{"x":0,"y":0,"w":576,"h":302}],"hurt":[{"x":0,"y":0,"w":576,"h":302}],"victory":[{"x":0,"y":0,"w":576,"h":302}],"defeat":[{"x":0,"y":0,"w":576,"h":302}]}},
+    "capiboia-contensor": {"image":"evolucoes-v1/capiboia-contensor.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":576,"h":296}],"flight":[{"x":0,"y":0,"w":576,"h":296}],"attack":[{"x":0,"y":0,"w":576,"h":296}],"hurt":[{"x":0,"y":0,"w":576,"h":296}],"victory":[{"x":0,"y":0,"w":576,"h":296}],"defeat":[{"x":0,"y":0,"w":576,"h":296}]}},
+    "capiboia-condutor": {"image":"evolucoes-v1/capiboia-condutor.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":541,"h":360}],"flight":[{"x":0,"y":0,"w":541,"h":360}],"attack":[{"x":0,"y":0,"w":541,"h":360}],"hurt":[{"x":0,"y":0,"w":541,"h":360}],"victory":[{"x":0,"y":0,"w":541,"h":360}],"defeat":[{"x":0,"y":0,"w":541,"h":360}]}},
+    "marevia": {"image":"evolucoes-v1/marevia.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":523,"h":360}],"flight":[{"x":0,"y":0,"w":523,"h":360}],"attack":[{"x":0,"y":0,"w":523,"h":360}],"hurt":[{"x":0,"y":0,"w":523,"h":360}],"victory":[{"x":0,"y":0,"w":523,"h":360}],"defeat":[{"x":0,"y":0,"w":523,"h":360}]}},
+    "capiboia-porto": {"image":"evolucoes-v1/capiboia-porto.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":552,"h":360}],"flight":[{"x":0,"y":0,"w":552,"h":360}],"attack":[{"x":0,"y":0,"w":552,"h":360}],"hurt":[{"x":0,"y":0,"w":552,"h":360}],"victory":[{"x":0,"y":0,"w":552,"h":360}],"defeat":[{"x":0,"y":0,"w":552,"h":360}]}},
+    "capiboia-tececorrente": {"image":"evolucoes-v1/capiboia-tececorrente.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":505,"h":360}],"flight":[{"x":0,"y":0,"w":505,"h":360}],"attack":[{"x":0,"y":0,"w":505,"h":360}],"hurt":[{"x":0,"y":0,"w":505,"h":360}],"victory":[{"x":0,"y":0,"w":505,"h":360}],"defeat":[{"x":0,"y":0,"w":505,"h":360}]}},
+    "borealvo": {"image":"geleira-v1/borealvo.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":319,"h":420}],"flight":[{"x":0,"y":0,"w":319,"h":420}],"attack":[{"x":0,"y":0,"w":319,"h":420}],"hurt":[{"x":0,"y":0,"w":319,"h":420}],"victory":[{"x":0,"y":0,"w":319,"h":420}],"defeat":[{"x":0,"y":0,"w":319,"h":420}]}},
+    "caravento": {"image":"evolucoes-v1/caravento.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":299,"h":360}],"flight":[{"x":0,"y":0,"w":299,"h":360}],"attack":[{"x":0,"y":0,"w":299,"h":360}],"hurt":[{"x":0,"y":0,"w":299,"h":360}],"victory":[{"x":0,"y":0,"w":299,"h":360}],"defeat":[{"x":0,"y":0,"w":299,"h":360}]}},
+    "caramastro": {"image":"evolucoes-v1/caramastro.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":576,"h":294}],"flight":[{"x":0,"y":0,"w":576,"h":294}],"attack":[{"x":0,"y":0,"w":576,"h":294}],"hurt":[{"x":0,"y":0,"w":576,"h":294}],"victory":[{"x":0,"y":0,"w":576,"h":294}],"defeat":[{"x":0,"y":0,"w":576,"h":294}]}},
+    "folhante": {"image":"evolucoes-v1/folhante.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":307,"h":360}],"flight":[{"x":0,"y":0,"w":307,"h":360}],"attack":[{"x":0,"y":0,"w":307,"h":360}],"hurt":[{"x":0,"y":0,"w":307,"h":360}],"victory":[{"x":0,"y":0,"w":307,"h":360}],"defeat":[{"x":0,"y":0,"w":307,"h":360}]}},
+    "verdestrama": {"image":"evolucoes-v1/verdestrama.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":366,"h":360}],"flight":[{"x":0,"y":0,"w":366,"h":360}],"attack":[{"x":0,"y":0,"w":366,"h":360}],"hurt":[{"x":0,"y":0,"w":366,"h":360}],"victory":[{"x":0,"y":0,"w":366,"h":360}],"defeat":[{"x":0,"y":0,"w":366,"h":360}]}},
+    "solguarda": {"image":"evolucoes-v1/solguarda.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":327,"h":360}],"flight":[{"x":0,"y":0,"w":327,"h":360}],"attack":[{"x":0,"y":0,"w":327,"h":360}],"hurt":[{"x":0,"y":0,"w":327,"h":360}],"victory":[{"x":0,"y":0,"w":327,"h":360}],"defeat":[{"x":0,"y":0,"w":327,"h":360}]}},
+    "azulineo": {"image":"evolucoes-v1/azulineo.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":540,"h":360}],"flight":[{"x":0,"y":0,"w":540,"h":360}],"attack":[{"x":0,"y":0,"w":540,"h":360}],"hurt":[{"x":0,"y":0,"w":540,"h":360}],"victory":[{"x":0,"y":0,"w":540,"h":360}],"defeat":[{"x":0,"y":0,"w":540,"h":360}]}},
+    "azulume": {"image":"evolucoes-v1/azulume.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":526,"h":360}],"flight":[{"x":0,"y":0,"w":526,"h":360}],"attack":[{"x":0,"y":0,"w":526,"h":360}],"hurt":[{"x":0,"y":0,"w":526,"h":360}],"victory":[{"x":0,"y":0,"w":526,"h":360}],"defeat":[{"x":0,"y":0,"w":526,"h":360}]}},
+    "azulfazo": {"image":"evolucoes-v1/azulfazo.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":458,"h":360}],"flight":[{"x":0,"y":0,"w":458,"h":360}],"attack":[{"x":0,"y":0,"w":458,"h":360}],"hurt":[{"x":0,"y":0,"w":458,"h":360}],"victory":[{"x":0,"y":0,"w":458,"h":360}],"defeat":[{"x":0,"y":0,"w":458,"h":360}]}},
+    "azulaculo": {"image":"evolucoes-v1/azulaculo.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":540,"h":360}],"flight":[{"x":0,"y":0,"w":540,"h":360}],"attack":[{"x":0,"y":0,"w":540,"h":360}],"hurt":[{"x":0,"y":0,"w":540,"h":360}],"victory":[{"x":0,"y":0,"w":540,"h":360}],"defeat":[{"x":0,"y":0,"w":540,"h":360}]}},
+    "azuligero": {"image":"evolucoes-v1/azuligero.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":576,"h":283}],"flight":[{"x":0,"y":0,"w":576,"h":283}],"attack":[{"x":0,"y":0,"w":576,"h":283}],"hurt":[{"x":0,"y":0,"w":576,"h":283}],"victory":[{"x":0,"y":0,"w":576,"h":283}],"defeat":[{"x":0,"y":0,"w":576,"h":283}]}},
+    "azultor": {"image":"evolucoes-v1/azultor.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":540,"h":360}],"flight":[{"x":0,"y":0,"w":540,"h":360}],"attack":[{"x":0,"y":0,"w":540,"h":360}],"hurt":[{"x":0,"y":0,"w":540,"h":360}],"victory":[{"x":0,"y":0,"w":540,"h":360}],"defeat":[{"x":0,"y":0,"w":540,"h":360}]}},
+    "rastro-dos-ventos": {"image":"evolucoes-v1/rastro-dos-ventos-combate.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":651,"h":550}],"flight":[{"x":0,"y":0,"w":651,"h":550}],"attack":[{"x":651,"y":0,"w":652,"h":550}],"hurt":[{"x":651,"y":550,"w":652,"h":657}],"victory":[{"x":0,"y":550,"w":651,"h":657}],"defeat":[{"x":651,"y":550,"w":652,"h":657}]}},
+    "mestre-dos-fios": {"image":"evolucoes-v1/mestre-dos-fios.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":325,"h":360}],"flight":[{"x":0,"y":0,"w":325,"h":360}],"attack":[{"x":0,"y":0,"w":325,"h":360}],"hurt":[{"x":0,"y":0,"w":325,"h":360}],"victory":[{"x":0,"y":0,"w":325,"h":360}],"defeat":[{"x":0,"y":0,"w":325,"h":360}]}},
+    "tecelao-da-aurora": {"image":"evolucoes-v1/tecelao-da-aurora.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":555,"h":360}],"flight":[{"x":0,"y":0,"w":555,"h":360}],"attack":[{"x":0,"y":0,"w":555,"h":360}],"hurt":[{"x":0,"y":0,"w":555,"h":360}],"victory":[{"x":0,"y":0,"w":555,"h":360}],"defeat":[{"x":0,"y":0,"w":555,"h":360}]}},
+    "arauto-da-tempestade": {"image":"evolucoes-v1/arauto-da-tempestade.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":366,"h":360}],"flight":[{"x":0,"y":0,"w":366,"h":360}],"attack":[{"x":0,"y":0,"w":366,"h":360}],"hurt":[{"x":0,"y":0,"w":366,"h":360}],"victory":[{"x":0,"y":0,"w":366,"h":360}],"defeat":[{"x":0,"y":0,"w":366,"h":360}]}},
+    "rabbito-conde-da-ultima-hora": {"image":"evolucoes-v1/rabbito-conde-da-ultima-hora.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":353,"h":360}],"flight":[{"x":0,"y":0,"w":353,"h":360}],"attack":[{"x":0,"y":0,"w":353,"h":360}],"hurt":[{"x":0,"y":0,"w":353,"h":360}],"victory":[{"x":0,"y":0,"w":353,"h":360}],"defeat":[{"x":0,"y":0,"w":353,"h":360}]}},
+    "rabbito-velocista-relampago": {"image":"evolucoes-v1/rabbito-velocista-relampago.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":346,"h":360}],"flight":[{"x":0,"y":0,"w":346,"h":360}],"attack":[{"x":0,"y":0,"w":346,"h":360}],"hurt":[{"x":0,"y":0,"w":346,"h":360}],"victory":[{"x":0,"y":0,"w":346,"h":360}],"defeat":[{"x":0,"y":0,"w":346,"h":360}]}},
+    "dobracula": {"image":"evolucoes-v1/dobracula.png","provisional":true,"animations":{"idle":[{"x":0,"y":0,"w":240,"h":360}],"flight":[{"x":0,"y":0,"w":240,"h":360}],"attack":[{"x":0,"y":0,"w":240,"h":360}],"hurt":[{"x":0,"y":0,"w":240,"h":360}],"victory":[{"x":0,"y":0,"w":240,"h":360}],"defeat":[{"x":0,"y":0,"w":240,"h":360}]}},
     "rabiolava": {"image":"combat-rabiolava.png","animations":{"idle":[{"x":0,"y":0,"w":384,"h":384}],"attack":[{"x":384,"y":0,"w":384,"h":384}],"victory":[{"x":768,"y":0,"w":384,"h":384}],"defeat":[{"x":1152,"y":0,"w":384,"h":384}]}},
     "tufanocorte": {"image": "tufanocorte.png", "animations": {"idle": [{"x": 0, "y": 0, "w": 384, "h": 354}], "attack": [{"x": 0, "y": 0, "w": 384, "h": 354}], "victory": [{"x": 0, "y": 0, "w": 384, "h": 354}], "defeat": [{"x": 0, "y": 0, "w": 384, "h": 354}]}},
     "mormaco-normal": {
@@ -8847,6 +8905,801 @@
             "h": 522
           }
         ]
+      }
+    },
+    "trovareta": {
+      "image": "trovareta-v1/soulgen-atlas.png",
+      "animations": {
+        "idle": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 0,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 0,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 0,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 0,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 0,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 0,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 0,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 256,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 256,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 256,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 256,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 256,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 256,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 256,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 256,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 512,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 512,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 512,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 512,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 512,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 512,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 512,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 512,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 768,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 768,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 768,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 768,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 768,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 768,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 768,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 768,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 1024,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 1024,
+            "w": 256,
+            "h": 256
+          }
+        ],
+        "flight": [
+          {
+            "x": 512,
+            "y": 1024,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 1024,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 1024,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 1024,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 1024,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 1024,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 1280,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 1280,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 1280,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 1280,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 1280,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 1280,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 1280,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 1280,
+            "w": 256,
+            "h": 256
+          }
+        ],
+        "attack": [
+          {
+            "x": 0,
+            "y": 1536,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 1536,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 1536,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 1536,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 1536,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 1536,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 1536,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 1536,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 1792,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 1792,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 1792,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 1792,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 1792,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 1792,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 1792,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 1792,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 2048,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 2048,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 2048,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 2048,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 2048,
+            "w": 256,
+            "h": 256
+          }
+        ],
+        "hurt": [
+          {
+            "x": 1280,
+            "y": 2048,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 2048,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 2048,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 2304,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 2304,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 2304,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 2304,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 2304,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 2304,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 2304,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 2304,
+            "w": 256,
+            "h": 256
+          }
+        ],
+        "victory": [
+          {
+            "x": 0,
+            "y": 2560,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 2560,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 2560,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 2560,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 2560,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 2560,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 2560,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 2560,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 2816,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 2816,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 2816,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 2816,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 2816,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 2816,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 2816,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 2816,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 3072,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 3072,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 3072,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 3072,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 3072,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 3072,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 3072,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 3072,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 3328,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 3328,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 3328,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 3328,
+            "w": 256,
+            "h": 256
+          }
+        ],
+        "defeat": [
+          {
+            "x": 1024,
+            "y": 3328,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 3328,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 3328,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 3328,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 3584,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 3584,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 3584,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 768,
+            "y": 3584,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1024,
+            "y": 3584,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1280,
+            "y": 3584,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1536,
+            "y": 3584,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 1792,
+            "y": 3584,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 0,
+            "y": 3840,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 256,
+            "y": 3840,
+            "w": 256,
+            "h": 256
+          },
+          {
+            "x": 512,
+            "y": 3840,
+            "w": 256,
+            "h": 256
+          }
+        ]
+      },
+      "playback": {
+        "idle": {
+          "fps": 12,
+          "loop": true,
+          "seconds": 2.8
+        },
+        "flight": {
+          "fps": 12,
+          "loop": true,
+          "seconds": 1.15
+        },
+        "attack": {
+          "fps": 12,
+          "loop": false,
+          "seconds": 1.65
+        },
+        "hurt": {
+          "fps": 12,
+          "loop": false,
+          "seconds": 0.8
+        },
+        "victory": {
+          "fps": 12,
+          "loop": false,
+          "seconds": 2.2
+        },
+        "defeat": {
+          "fps": 12,
+          "loop": false,
+          "seconds": 1.1
+        }
+      },
+      "source": {
+        "project": "art/soulgen/keys/trovareta/cutout-rig-v1/trovareta.soulgen.json",
+        "atlasSha256": "5166e3c834c5a0ac877612d823d55e3126753b4fd1df7668418e8d8a955bf426",
+        "pixelPivot": {
+          "x": 137.6,
+          "y": 130.4
+        }
       }
     }
   },

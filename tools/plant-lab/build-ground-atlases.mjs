@@ -1,0 +1,2 @@
+import fs from 'node:fs/promises';import {GROUNDS} from './ground-kit.mjs';import {atlas} from './autotile.mjs';import {png} from './png.mjs';
+const out=new URL('../../art/environment/kronasta-ground-v1/atlases/',import.meta.url);await fs.mkdir(out,{recursive:true});for(const g of GROUNDS)await fs.writeFile(new URL(g.id+'.png',out),png(atlas(g.id)));console.log('27 atlas: 47 encaixes × 3 variações por material.');

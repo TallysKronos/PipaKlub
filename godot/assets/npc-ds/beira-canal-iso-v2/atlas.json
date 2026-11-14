@@ -1,0 +1,61 @@
+{
+  "image": "atlas.png",
+  "sprites": [
+    {
+      "facing": "se",
+      "name": "Vaeli",
+      "bounds": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "directional": "direcoes/vaeli.png"
+    },
+    {
+      "facing": "se",
+      "name": "Noxen",
+      "bounds": [
+        64,
+        0,
+        64,
+        64
+      ],
+      "directional": "direcoes/noxen.png"
+    },
+    {
+      "facing": "se",
+      "name": "Soryn",
+      "bounds": [
+        128,
+        0,
+        64,
+        64
+      ],
+      "directional": "direcoes/soryn.png"
+    },
+    {
+      "facing": "se",
+      "name": "Eriska",
+      "bounds": [
+        192,
+        0,
+        64,
+        64
+      ],
+      "directional": "direcoes/eriska.png"
+    },
+    {
+      "facing": "se",
+      "name": "Kleie",
+      "bounds": [
+        256,
+        0,
+        64,
+        64
+      ],
+      "directional": "direcoes/kleie.png"
+    }
+  ],
+  "version": 1
+}

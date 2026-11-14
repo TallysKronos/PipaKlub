@@ -1,0 +1,34 @@
+{
+  "id": "trancoura",
+  "version": 2,
+  "date": "2026-11-07",
+  "tool": "built-in image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-74f581c7-2e88-4213-af9d-bd10ae8b983b.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "background": "white",
+  "sha256": "c0aeb74068f6fa88e5e36285ac8fd4096dab5bd306c8999534228704bf6cd24f",
+  "references": [
+    {
+      "path": "../concept-v1/concept.png",
+      "role": "author-owned identity/edit target"
+    },
+    {
+      "path": "../../grifarca/concept-v2/concept.png",
+      "role": "approved own living-kite construction guide, not ancestry"
+    }
+  ],
+  "external_images_attached": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "correction_prompt": "prompt-correcao.txt",
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation_status": "not_integrated",
+  "correction_reference": "intermediario-sem-grevas.png",
+  "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+}

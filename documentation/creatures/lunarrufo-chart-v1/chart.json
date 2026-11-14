@@ -1,0 +1,92 @@
+{
+  "family_id": "lunarrufo",
+  "family_name": "Lobisomem / Lunarrufo",
+  "scope": "Demons do Folclore. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "uivim",
+      "name": "Uivim",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "lunarrufo",
+      "name": "Lunarrufo",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/child-v1/lunarrufo.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": ""
+    },
+    {
+      "id": "umbrauivo",
+      "name": "Umbrauivo",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "lobumbrario",
+      "name": "Lobumbrário",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/lunarrufo.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Dianteira pesada e dois crescentes nos ombros. Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "eclipsarro",
+      "name": "Eclipsarro",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/adultos-alternativos-v1/lunarrufo.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Lobo de postura baixa com disco de eclipse."
+    }
+  ],
+  "edges": [
+    {
+      "from": "uivim",
+      "to": "lunarrufo",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "lunarrufo",
+      "to": "umbrauivo",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "umbrauivo",
+      "to": "lobumbrario",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "umbrauivo",
+      "to": "eclipsarro",
+      "kind": "reweaving",
+      "reason": "Rota adulta alternativa, no mesmo estágio da primeira forma adulta.",
+      "decision_status": "proposed"
+    }
+  ]
+}

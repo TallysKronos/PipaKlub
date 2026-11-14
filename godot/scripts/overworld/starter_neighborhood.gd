@@ -303,6 +303,9 @@ func dress() -> void:
 		var kael=preload("res://scripts/kael_video_avatar.gd")
 		billboard(person.image,person.p,support(person.p),pixels.height_for(id,.58*kael.BODY_SCALE),false,Rect2(192,96,64,96))
 		parts.back().node.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+		person.art_part = parts.back()
+		var bounds: AABB = parts.back().node.mesh.get_aabb()
+		person.art_rect = Rect2(Vector2(bounds.position.x, bounds.position.y), Vector2(bounds.size.x, bounds.size.y))
 	street_sign(Vector2(9.4,20),support(Vector2(9.4,20))+30,"RUA DO PRIMEIRO VENTO",.8,true)
 	street_sign(Vector2(18.8,13.5),support(Vector2(18.8,13.5))+30,"LADEIRA DAS RABIOLAS",.8,true)
 	street_sign(Vector2(19.8,.2),support(Vector2(19.8,.2))+30,"RUA DOS INVENTOS",.8,true)
@@ -334,6 +337,10 @@ func _ready() -> void:
 	for s in surfaces:terrain_cell(s)
 	if not geometry_only and decorate:dress()
 	order_faces()
+	for person in people:
+		var art: MeshInstance2D = person.art_part.node
+		art.set_meta("interaction_outline_rect", person.art_rect)
+		person.art = art
 	for item in parts:add_child(item.node)
 	probe = Node2D.new();probe.visible=false;add_child(probe)
 	set_process(false)

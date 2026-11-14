@@ -13,6 +13,7 @@ const MorroBattleView = preload("res://scripts/campaign/morro_battle_view.gd")
 const ParkOverworldView = preload("res://scripts/campaign/park_overworld_view.gd")
 const ParkCheckpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Exploration = preload("res://scripts/campaign/exploration.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 const Encounters = preload("res://scripts/campaign/encounters.gd")
 const EncounterView = preload("res://scripts/campaign/encounter_view.gd")
 const Preferences = preload("res://scripts/campaign/preferences.gd")
@@ -67,8 +68,24 @@ var settings_tab:="Vídeo"
 var settings_focus_controls:=false
 var team_load_state:="ready"
 var scene_loading:CanvasLayer
+var save_status: CanvasLayer
+var rewards_deferred := false
+var rewards_seen_count := 0
+@export var protect_profile := false
+var _profile_lock: RefCounted
 
 func _ready() -> void:
+	if preload("res://scripts/diagnostics/dispatch.gd").try_run(self): return
+	if protect_profile:
+		_profile_lock = preload("res://scripts/campaign/profile_lock.gd").new()
+		if not _profile_lock.acquire():
+			var message := "Não foi possível abrir o perfil local. Feche outra janela do Soulmonsters e tente de novo."
+			if DisplayServer.get_name() != "headless": OS.alert(message, "Perfil indisponível")
+			printerr(message)
+			sound.free()
+			session.free()
+			get_tree().quit(1)
+			return
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	get_tree().auto_accept_quit = false
 	preferences.load_settings()
@@ -90,7 +107,15 @@ func _ready() -> void:
 	_apply_preferences()
 	content = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 	add_child(session)
+	save_status = preload("res://scripts/campaign/hud_save_status.gd").new()
+	add_child(save_status)
+	session.saving_started.connect(save_status.started)
+	session.saving_finished.connect(save_status.finished)
 	session.changed.connect(sound.saved)
+	session.changed.connect(func(value: Dictionary):
+		var count: int=value.get("player",{}).get("pendingPartners",[]).size()
+		if count>rewards_seen_count:rewards_deferred=false
+		rewards_seen_count=count)
 	session.storage_failed.connect(func(_reason: String): sound.play_event("progress.save_error"))
 	opening = Opening.new(session)
 	journey = Journey.new(session)
@@ -111,7 +136,7 @@ func _clear(route: String = "") -> void:
 	flow_busy=false
 	if not binding_target.is_empty():_cancel_binding()
 	for child in get_children():
-		if child != session and child != crt_layer and child != sound and child != scene_loading and child.name != "RecorteUX":
+		if child != session and child != crt_layer and child != sound and child != scene_loading and child != save_status and child.name != "RecorteUX":
 			remove_child(child)
 			child.queue_free()
 	stage = null
@@ -187,8 +212,8 @@ func _menu() -> void:
 	# Leaving a QA jump returns to the player's real save folder.
 	if qa_real_store!=null:session._store=qa_real_store;qa_real_store=null
 	var menu=load("res://scripts/campaign/hud_title_menu.gd").new()
-	for index in range(1,4):
-		if session.inspect_slot("slot-%d"%index).status=="ok":menu.has_saves=true
+	for index in range(0,4):
+		if session.inspect_slot("slot-%d"%index).status!="missing":menu.has_saves=true
 	menu.reduced_motion=preferences.reduced_motion
 	add_child(menu)
 	menu.selected.connect(_main_menu_action)
@@ -220,6 +245,7 @@ func _show_qa_jump() -> void:
 	_button("Voltar",page,_menu)
 
 func _qa_jump(id:String) -> void:
+	if not preload("res://scripts/campaign/kronasta_story.gd").qa(): return
 	var qa=preload("res://scripts/campaign/qa_jump.gd")
 	if qa.jump(id).is_empty():return
 	if qa_real_store==null:qa_real_store=session._store
@@ -251,15 +277,15 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 		name="Treino com o Sr. Assis"
 	elif ParkCheckpoint.is_regional_preview(scene):
 		name=ParkCheckpoint.data(scene).get("name","Kronasta")
-		texture=load("res://assets/campaign/maps/kronasta-atlas-v1.png")
+		texture=load("res://assets/campaign/maps/kronasta-atlas-manga-v3.png")
 	elif scene=="kite-shop":
-		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/loja-tcg-v1/preview.png"))
+		texture=load("res://assets/campaign/loja-tcg-v1/preview.png") as Texture2D
 	elif scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")
 		if not data.get("images",[]).is_empty():texture=load("res://assets/campaign/morro/"+data.images[0].image)
 	elif scene=="professor-home":
-		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/professor-moderno-v1/preview.png"))
+		texture=load("res://assets/campaign/professor-moderno-v1/preview.png") as Texture2D
 	elif scene=="quintal":
 		texture=load("res://assets/campaign/"+content.rooms.street.floorImage)
 	elif scene in ["park-trail","park-clearing"]:
@@ -292,9 +318,10 @@ func _show_slots(new_journey:bool=false) -> void:
 	_label("NOVA JORNADA" if new_journey else "SUAS JORNADAS",heading,38)
 	status=_label("Escolha um espaço vazio." if new_journey else "Retome de onde parou.",page,18)
 	var first:Button
-	for index in range(1,4):
+	for index in range(1 if new_journey else 0,4):
 		var id:="slot-%d"%index
 		var inspection:Dictionary=session.inspect_slot(id)
+		if index == 0 and inspection.status == "missing": continue
 		var card=load("res://scripts/campaign/hud_journey_slot.gd").new()
 		card.slot_id=id;card.inspection=inspection;card.available_for_new=new_journey
 		if inspection.status=="ok":
@@ -303,7 +330,7 @@ func _show_slots(new_journey:bool=false) -> void:
 			var saved_player:Dictionary=inspection.data.get("player",{})
 			for partner in saved_player.get("partners",[]):
 				if partner.id!=saved_player.get("equippedPartnerId",""):continue
-				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,"")
+				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,preload("res://scripts/campaign/evolution.gd").art(partner.modelId,""))
 				if content.combat.has(art_id):
 					card.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
 		page.add_child(card)
@@ -323,28 +350,37 @@ func _show_slots(new_journey:bool=false) -> void:
 
 func _confirm_erase_slot(id:String,inspection:Dictionary,new_journey:bool) -> void:
 	sound.play_event("ui.warning")
-	var dialog:=_confirmation("Excluir jornada", "Excluir a jornada de %s?\n\nVocê poderá desfazer na lista de jornadas enquanto esse espaço continuar vazio."%inspection.data.player.name,"Excluir jornada")
+	var plan: Dictionary = session._store.plan_campaign_archive(id, int(inspection.data.revision))
+	if not _result(plan): return
+	var spaces: Array[String] = []
+	for member: String in plan.members: spaces.append("Autosave 0" if member == "slot-0" else "Espaço " + member.trim_prefix("slot-"))
+	var copy := "Excluir a campanha de %s?\n\nSaves vinculados: %s.\nA história, os itens e os Pipamons desses saves sairão da lista. Configurações e arquivos fora da campanha não serão apagados.\n\nVocê poderá desfazer enquanto todos esses espaços estiverem livres. Uma nova jornada permitirá obter outro Rabbito." % [inspection.data.player.name, ", ".join(spaces)]
+	if plan.legacy or not plan.unidentified.is_empty(): copy += "\n\nHá saves antigos ou ilegíveis sem vínculo confirmado. Eles serão mantidos; não podemos assegurar que todas as cópias antigas desta campanha foram identificadas."
+	var dialog:=_confirmation("Excluir campanha", copy,"Excluir campanha")
 	dialog.confirmed.connect(func():
-		if _result(session._store.archive_slot(id,int(inspection.data.revision))):_show_slots(new_journey))
+		var result: Dictionary = session._store.archive_campaign(plan)
+		_show_slots(new_journey)
+		if result.status != "ok": _notice(_error(result.status)))
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.popup_centered()
 
 func _error(code: String) -> String:
-	return {"corrupt": "Save danificado; mantenha os arquivos para recuperação.",
-		"future": "Este save precisa de uma versão mais recente do jogo.",
-		"unsupported": "Versão do save incompatível.", "occupied": "Esta jornada já existe.",
-		"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
+	var save_message: String = preload("res://scripts/campaign/save_messages.gd").error(code)
+	if not save_message.is_empty(): return save_message
+	return {"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
 		"feira_no_coins":"O apito custa 20 moedas. Os desafios do bairro ajudam a conseguir moedas.",
 		"not_enough_coins":"Você precisa de 12 moedas para descansar aqui. O ateliê do professor continua gratuito.",
-		"stale": "A jornada foi alterada. Volte ao menu e carregue novamente.",
-		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor.",
-		"io_error": "Não foi possível acessar o save. Confira o espaço e a permissão da pasta."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
+		"repair_needed": "Seu parceiro precisa de reparos. Descanse num banco, use um Kit de Remendo em Equipe → Cuidar ou procure o professor."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
 
 func _choose(slot_id: String, create: bool) -> void:
 	sound.reset_session()
+	if slot_id == "slot-0" and create: return
+	session.separate_autosave = true
+	session.autosave_enabled = preferences.autosave
 	var result: Dictionary = session.start(slot_id) if create else session.resume_slot(slot_id)
 	if result.status != "ok":
+		if result.status == "missing": _show_slots(false); return
 		status.text = _error(result.status)
 		return
 	_show_saved()
@@ -355,7 +391,7 @@ func _choose(slot_id: String, create: bool) -> void:
 	wipe.finished.connect(wipe.queue_free,CONNECT_ONE_SHOT)
 	wipe.play(Hud.CYAN,preferences.reduced_motion,false)
 	if result.get("recovered", false):
-		_notice("Recuperamos sua jornada a partir do backup.")
+		_notice(preload("res://scripts/campaign/save_messages.gd").RECOVERED)
 
 func _dialog(title: String, text: String, ok: String, cancel: String = "") -> Control:
 	sound.play_event("dialogue.open")
@@ -377,20 +413,53 @@ func _confirmation(title:String,text:String,ok:String) -> Control:
 	return dialog
 
 func _notice(message: String) -> void:
+	# A notice opened while a map loads would be erased when the load clears the screen;
+	# it waits for the load instead (story lines after duels, F05).
+	if is_instance_valid(scene_loading):
+		_notice_after_load(message)
+		return
 	if is_instance_valid(park) and (message.begins_with("Baú encontrado") or message=="Rabiola do Carcará de Nina recebida."):
 		if park.has_method("celebrate_item") and park.celebrate_item(message):return
 		park.exploration_hud.push_notice(message,"item")
 		return
-	if is_instance_valid(park): park.paused = true
-	var was_walking: bool = is_instance_valid(room) and room.can_walk
-	if was_walking: room.can_walk = false
+	var notice_park: WeakRef = weakref(park) if is_instance_valid(park) else null
+	var notice_room: WeakRef = weakref(room) if is_instance_valid(room) else null
+	if notice_park != null:
+		var depth: int = park.get_meta("system_notice_depth", 0)
+		if depth == 0: park.set_meta("system_notice_was_paused", park.paused)
+		park.set_meta("system_notice_depth", depth + 1)
+		park.paused = true
+	if notice_room != null:
+		var depth: int = room.get_meta("system_notice_depth", 0)
+		if depth == 0:
+			room.set_meta("system_notice_was_walking", room.can_walk)
+			room.set_meta("system_notice_was_paused", room.story_paused)
+		room.set_meta("system_notice_depth", depth + 1)
+		room.can_walk = false
+		room.set_story_paused(true)
 	var dialog := _dialog("Aviso", message, "Entendi")
+	dialog.z_index = 200 # Above full-screen OpeningTV (z=100), not just the room.
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.tree_exiting.connect(func():
-		if is_instance_valid(park): park.paused = false
-		if is_instance_valid(room) and was_walking: room.can_walk = true)
+		var previous_park: Node = notice_park.get_ref() if notice_park != null else null
+		if is_instance_valid(previous_park) and previous_park.is_inside_tree():
+			var depth: int = maxi(0, int(previous_park.get_meta("system_notice_depth", 1)) - 1)
+			previous_park.set_meta("system_notice_depth", depth)
+			if depth == 0: previous_park.paused = previous_park.get_meta("system_notice_was_paused", false)
+		var previous_room: Node = notice_room.get_ref() if notice_room != null else null
+		if is_instance_valid(previous_room) and previous_room.is_inside_tree():
+			var depth: int = maxi(0, int(previous_room.get_meta("system_notice_depth", 1)) - 1)
+			previous_room.set_meta("system_notice_depth", depth)
+			if depth == 0:
+				previous_room.can_walk = previous_room.get_meta("system_notice_was_walking", false)
+				previous_room.set_story_paused(previous_room.get_meta("system_notice_was_paused", false)))
 	dialog.popup_centered(Vector2i(640, 300))
+
+func _notice_after_load(message: String) -> void:
+	while is_instance_valid(scene_loading):
+		await get_tree().process_frame
+	if is_inside_tree():_notice(message)
 
 func _result(result: Dictionary) -> bool:
 	if result.status in ["ok", "already_applied"]:
@@ -399,6 +468,8 @@ func _result(result: Dictionary) -> bool:
 	return false
 
 func _show_saved() -> void:
+	if not rewards_deferred and not session.snapshot().get("player",{}).get("pendingPartners",[]).is_empty():
+		_show_pending_rewards();return
 	if not _result(PipeiroIdentity.ensure_legacy(session)): return
 	if PipeiroIdentity.pending(session.snapshot()):
 		TutorialStaging.resume_documents(self)
@@ -417,6 +488,7 @@ func _show_saved() -> void:
 		"world":
 			_show_world()
 			_present_pending_ending.call_deferred()
+			_present_epilogue.call_deferred()
 		"practice": _show_practice()
 		"starter": _show_starter()
 		"workshop": _show_workshop()
@@ -442,6 +514,8 @@ func _resume_first_insignia() -> void:
 		_present_first_insignia(false)
 
 func _present_first_insignia(from_mikka:bool) -> void:
+	# O Morro carrega pela tela dos bairros: a cerimônia espera a carga (ela apagaria o diálogo).
+	while is_instance_valid(scene_loading): await get_tree().process_frame
 	var generation:=opening_generation
 	if is_instance_valid(park):
 		park.paused=true
@@ -724,8 +798,12 @@ func _show_opening() -> void:
 		name_input.max_length = 24
 		page.add_child(name_input)
 		name_input.text_submitted.connect(func(_value: String): _name())
-		next = _button("Confirmar nome", Hud.focus_space(page), _name)
-		Hud.focus_later(name_input)
+		next = _button("Confirmar · Rabbito", Hud.focus_space(page), _name)
+		name_input.text_changed.connect(func(value: String):
+			next.text = "Confirmar · Rabbito" if value.strip_edges().is_empty() else "Confirmar nome")
+		next.focus_neighbor_top = next.get_path_to(name_input)
+		name_input.focus_neighbor_bottom = name_input.get_path_to(next)
+		Hud.focus_later(next if Controls.gamepad else name_input)
 	elif current_step < 14 and current_step not in [3, 11, 13]:
 		var next_space := Hud.focus_space(page)
 		next_space.size_flags_horizontal = Control.SIZE_SHRINK_END
@@ -819,7 +897,8 @@ func _name() -> void:
 	if opening_busy:return
 	var result: Dictionary = opening.name_partner(name_input.text)
 	if result.status == "ok":
-		_show_opening()
+		if not session.snapshot().player.get("pendingPartners",[]).is_empty():_show_pending_rewards()
+		else:_show_opening()
 	else:
 		status.text = _error(result.status)
 
@@ -843,9 +922,6 @@ func _stage_container() -> void:
 func _show_world() -> void:
 	if session.snapshot().checkpoint.scene=="quintal":
 		_show_neighborhood()
-		return
-	if Morro.maps().has(session.snapshot().checkpoint.scene):
-		_show_morro()
 		return
 	if ParkCheckpoint.MAPS.has(session.snapshot().checkpoint.scene):
 		_load_park()
@@ -897,18 +973,24 @@ func _show_world() -> void:
 		if id=="collection":_show_collection()
 		elif id=="bag":_show_bag()
 		else:_pause_game())
-	if professor and room.actor.distance_to(Vector2(1056,1232))<4:
+	if professor and load("res://scripts/campaign/tyler_arcs.gd").presentation_pending(session.snapshot().player):
+		_play_tyler_flower.call_deferred()
+	if professor and room.actor.distance_to(Vector2(1056,1232))<4 and not load("res://scripts/campaign/tyler_arcs.gd").presentation_pending(session.snapshot().player):
 		TutorialStaging.enter_atelier.call_deferred(self)
 
 func _equip_room_companion()->void:
-	for partner in session.snapshot().player.partners:
-		if partner.id != session.snapshot().player.get("equippedPartnerId", ""): continue
-		if partner.modelId=="retalho-original":
-			room.equip_retalho_follower()
-			return
-		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
-		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
-		room.companion_frames = content.combat[id].animations.idle
+	var model_id := CompanionFollow.equipped_model(session.snapshot().player)
+	room.companion.visible = not model_id.is_empty()
+	if not room.companion.visible: return
+	if model_id == "retalho-original":
+		room.equip_retalho_follower()
+	elif CompanionFollow.setup_overworld_art(room.companion, model_id, room.avatar.scale.y):
+		room.companion_frames.clear()
+		CompanionFollow.orient(room.companion, room.avatar.facing)
+	else:
+		var art: Dictionary = content.combat.get(CompanionFollow.combat_art_id(model_id), content.combat.rabbito)
+		room.companion.texture = load("res://assets/campaign/" + art.image)
+		room.companion_frames = art.animations.idle
 
 func _show_neighborhood() -> void:
 	if is_instance_valid(scene_loading):return
@@ -980,7 +1062,7 @@ func _neighborhood_action(id: String) -> void:
 		"kael-home":
 			if _result(session.checkpoint({"kind":"world","scene":"kael-home","position":[432,1008]},session.snapshot().player)):_show_saved.call_deferred()
 		"morro":
-			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",Vector2(528,752))):_show_saved.call_deferred()
+			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",ParkCheckpoint.spawn("morro"),ParkCheckpoint.SPACE)):_show_saved.call_deferred()
 		"park":
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("park-trail",Vector2(208,816))):_show_saved.call_deferred()
 
@@ -1054,7 +1136,7 @@ func _world_interact(id: String) -> void:
 		_shop_interact(id);return
 	if point.scene == "quintal":
 		if id == "morro" and session.snapshot().player.get("journey", {}).get("phase") == "complete":
-			if _result(journey.enter_world("morro", Vector2(528, 752))): _show_saved()
+			if _result(journey.enter_world("morro", ParkCheckpoint.spawn("morro"), ParkCheckpoint.SPACE)): _show_saved()
 		elif id == "park" and session.snapshot().player.get("journey", {}).get("phase") == "complete":
 			if _result(journey.enter_world("park-trail", Vector2(208, 816))): _show_saved()
 		elif id == "professor-home":
@@ -1266,7 +1348,7 @@ func _show_starter() -> void:
 			var choose := _button(Journey.STARTERS[chosen], Hud.focus_space(detail), func(): _confirm_starter(chosen))
 			Hud.secondary_button(choose)
 
-	_button("Salvar e voltar ao menu", page, _menu)
+	_button("Salvar jornada", page, _show_manual_slots)
 
 func _confirm_starter(model_id: String) -> void:
 	sound.play_event("workshop.select_tail")
@@ -1388,7 +1470,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_pause_game();menu_origin="map";_show_map()
 		get_viewport().set_input_as_handled();return
 	if last_scene_key=="page:Configurações" and event is InputEventJoypadButton and event.pressed and event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
-		var categories:=["Vídeo","Áudio","Acessibilidade","Controles"]
+		var categories:=["Vídeo","Áudio","Acessibilidade","Controles","Jornada"]
 		settings_tab=categories[posmod(categories.find(settings_tab)+(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1),categories.size())]
 		_show_settings();get_viewport().set_input_as_handled();return
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu":
@@ -1396,7 +1478,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu:slots":
 		_menu();get_viewport().set_input_as_handled();return
 	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
-		if last_scene_key=="page:CARTEIRA DE PIPEIRO": _close_identity()
+		if _evolution_running:
+			get_viewport().set_input_as_handled()
+			return
+		if last_scene_key=="page:RECOMPENSAS RESERVADAS":_defer_pending_rewards()
+		elif last_scene_key=="page:ABRIR ESPAÇO":_show_pending_rewards()
+		elif last_scene_key=="page:CARTEIRA DE PIPEIRO": _close_identity()
 		elif last_scene_key=="page:DEMO CONCLUÍDA": _finish_demo("explore")
 		elif last_scene_key=="page:CUIDAR DO PARCEIRO":_leave_partner_care()
 		elif last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
@@ -1439,7 +1526,7 @@ func _pause_game() -> void:
 	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "team"
 	for partner in pause_overlay.player.get("partners",[]):
 		if partner.id!=pause_overlay.player.get("equippedPartnerId",""):continue
-		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,"")
+		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,preload("res://scripts/campaign/evolution.gd").art(partner.modelId,""))
 		if content.combat.has(art_id):pause_overlay.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
 	if is_instance_valid(battle):
 		pause_overlay.battle_paused=true
@@ -1448,8 +1535,17 @@ func _pause_game() -> void:
 			if partner.id==pause_overlay.player.get("equippedPartnerId",""):
 				partner.condition={"line":clampf(battle.model.p.hp/battle.model.p.stats.line*100,0,100),"structure":clampf(battle.model.p.hull/battle.model.p.stats.line*100,0,100)}
 	add_child(pause_overlay)
+	pause_overlay.buttons.save.disabled = is_instance_valid(battle) or is_instance_valid(workshop) or flow_busy or opening_busy
 	pause_overlay.chosen.connect(func(action: String):
-		if action in ["team", "bag", "settings","map","save","identity","emblems","missions","workshop"] and not _remember_world_position(): return
+		if action in ["save", "settings"] and session.separate_autosave:
+			# Recovery routes must remain accessible even when the autosave file is
+			# unavailable. Capture the safe checkpoint in memory before leaving the view.
+			var automatic: bool = session.autosave_enabled
+			session.autosave_enabled = false
+			var captured := _remember_world_position()
+			session.autosave_enabled = automatic
+			if not captured: return
+		elif action in ["team", "bag", "settings","map","save","identity","emblems","missions","workshop"] and not _remember_world_position(): return
 		if action in ["team","bag","settings","map","identity","emblems","missions","workshop"]:menu_origin=action
 		match action:
 			"resume": _resume_game()
@@ -1463,12 +1559,36 @@ func _pause_game() -> void:
 			"map":_show_map()
 			"save":
 				menu_origin="save"
-				sound.play_event("progress.save_ok")
-				pause_overlay.buttons.save.text="Jornada salva"
-				pause_overlay.description.text="Jornada salva. Pode continuar sua aventura."
-				pause_overlay.buttons.save.queue_redraw()
+				_show_manual_slots()
 			"menu": _return_to_menu()
 	)
+
+func _show_manual_slots() -> void:
+	_simple_page("SALVAR JORNADA", true)
+	_label("O autosave usa o espaço 0. Escolha um dos três espaços manuais.", page, 18)
+	for index in range(1, 4):
+		var id := "slot-%d" % index
+		var inspection: Dictionary = session.inspect_slot(id)
+		var valid: bool = inspection.status in ["ok", "missing"]
+		var title := "Espaço %d · Vazio" % index
+		if inspection.status == "ok": title = "Espaço %d · %s · %s" % [index, inspection.data.player.name, _slot_location(inspection.data).name]
+		elif not valid: title = "Espaço %d · %s" % [index, _error(inspection.status)]
+		var button := _button(title, page, func():
+			var revision := int(inspection.data.revision) if inspection.status == "ok" else -1
+			if revision < 0: _save_manual_to(id, revision); return
+			var confirm := _confirmation("Substituir save manual", "Substituir o espaço %d? O autosave permanece separado." % index, "Substituir")
+			confirm.confirmed.connect(func(): _save_manual_to(id, revision))
+			confirm.confirmed.connect(confirm.queue_free)
+			confirm.canceled.connect(confirm.queue_free)
+			confirm.popup_centered())
+		Hud.secondary_button(button)
+		button.disabled = not valid
+	_button("Voltar", page, _return_to_game)
+
+func _save_manual_to(id: String, revision: int) -> void:
+	if _result(session.save_manual(id, revision)):
+		_show_manual_slots()
+		_notice("Jornada salva no espaço " + id.trim_prefix("slot-") + ".")
 
 func _resume_game() -> void:
 	if not is_instance_valid(pause_overlay): return
@@ -1496,7 +1616,7 @@ func _practice_view() -> Control:
 		if child.get_script() == FlightView: return child
 	return null
 
-func _return_to_menu() -> void:
+func _return_to_menu(discard_confirmed: bool = false) -> void:
 	if is_instance_valid(workshop) and not _result(journey.save_workshop(workshop.model.run.duplicate(true))):return
 	if is_instance_valid(battle):
 		battle.paused = true
@@ -1506,12 +1626,23 @@ func _return_to_menu() -> void:
 	if not saved.is_empty() and saved.checkpoint.kind == "world" and is_instance_valid(room):
 		if not _result(journey.enter_world(saved.checkpoint.scene, room.actor)):
 			return
+	if session.has_unpersisted_changes and not discard_confirmed:
+		_confirm_unsaved_exit(func(): _return_to_menu(true))
+		return
 	_menu()
+
+func _confirm_unsaved_exit(leave: Callable) -> void:
+	var dialog := _dialog("Avanços não salvos", "Há avanços que ainda não foram gravados. Voltar ao menu ou fechar o jogo perde esses avanços. Cancele e use Salvar para guardá-los.", "Sair sem salvar", "Continuar jogando")
+	dialog.confirmed.connect(leave)
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
 
 func _notification(what: int) -> void:
 	if what==NOTIFICATION_WM_CLOSE_REQUEST and is_instance_valid(scene_loading):
 		# The destination checkpoint is already committed; don't save a half-built view.
-		get_tree().quit();return
+		if session.has_unpersisted_changes: _confirm_unsaved_exit(func(): get_tree().quit())
+		else: get_tree().quit()
+		return
 	if what==NOTIFICATION_WM_WINDOW_FOCUS_OUT and is_instance_valid(room) and (flow_busy or opening_busy or room.has_meta("opening_room")):
 		room.set_story_paused(true)
 	if what==NOTIFICATION_WM_WINDOW_FOCUS_IN and is_instance_valid(room) and not is_instance_valid(pause_overlay):
@@ -1528,7 +1659,8 @@ func _notification(what: int) -> void:
 		if not saved.is_empty() and saved.checkpoint.kind == "world" and is_instance_valid(room):
 			if not _result(journey.enter_world(saved.checkpoint.scene, room.actor)):
 				return
-		get_tree().quit()
+		if session.has_unpersisted_changes: _confirm_unsaved_exit(func(): get_tree().quit())
+		else: get_tree().quit()
 
 func _load_park() -> void:
 	if DisplayServer.get_name()=="headless": _show_park(); return
@@ -1568,16 +1700,6 @@ func _show_park() -> void:
 		if not _result(load("res://scripts/campaign/marisol_row_trip.gd").new(session).recover()):return
 	if session.snapshot().player.has("ninaGlideFlight"):
 		if not _result(load("res://scripts/campaign/nina_glide.gd").new(session).recover()):return
-	_clear()
-	var container := SubViewportContainer.new()
-	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	container.stretch = true
-	add_child(container)
-	var viewport := SubViewport.new()
-	viewport.size = Vector2i(size)
-	viewport.handle_input_locally = true
-	viewport.world_2d = World2D.new()
-	container.add_child(viewport)
 	var saved: Dictionary = session.snapshot()
 	var resolved: Vector2=ParkCheckpoint.resolve(saved.checkpoint)
 	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE or not resolved.is_equal_approx(Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])):
@@ -1589,6 +1711,18 @@ func _show_park() -> void:
 			_result(discovery)
 			return
 		saved=session.snapshot()
+	# Keep the previous screen available until the destination checkpoint and
+	# arrival writes succeed. A failed write can then present a usable notice.
+	_clear()
+	var container := SubViewportContainer.new()
+	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	container.stretch = true
+	add_child(container)
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(size)
+	viewport.handle_input_locally = true
+	viewport.world_2d = World2D.new()
+	container.add_child(viewport)
 	park = load("res://scripts/campaign/park_row_view.gd").new() if saved.checkpoint.scene=="kronasta-pantano-a" else load("res://scripts/campaign/park_glide_view.gd").new() if saved.checkpoint.scene in ["park-veredas","kronasta-beira-canal-b"] else ParkOverworldView.new()
 	park.ui_theme = theme
 	park.content = content
@@ -1600,28 +1734,43 @@ func _show_park() -> void:
 	park.action_requested.connect(_park_action)
 	park.menu_requested.connect(_pause_game)
 	park.exit_requested.connect(_park_exit)
+	if is_instance_valid(park.get("exploration_hud")):
+		# Avisa uma vez por parceiro e forma; não repete a cada mapa aberto.
+		var fresh:=false
+		for partner in saved.player.partners:
+			var key:=str(partner.id)+":"+str(partner.modelId)
+			if preload("res://scripts/campaign/evolution.gd").can_evolve(partner) and not evolution_noticed.has(key):
+				evolution_noticed[key]=true;fresh=true
+		if fresh:park.exploration_hud.push_notice("Evolução disponível · abra a Equipe","item")
+	if preload("res://scripts/campaign/endgame_story.gd").release_pending(session.snapshot()):_present_trovareta_release.call_deferred()
 
 func _save_park(quiet:bool=false) -> bool:
 	var space: String = park.get("checkpoint_space") if park.get("checkpoint_space")!=null else ""
 	var at:Vector2=park.checkpoint_point() if park.has_method("checkpoint_point") else park.player
-	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), at,space)
+	var result: Dictionary
+	if park.get("data") is Dictionary and park.data.has("places"):
+		# Tela antiga do Morro (mapa pintado, pixels): grava no espaço dela, sem migrar.
+		result = session.checkpoint({"kind": "world", "scene": park.get_meta("campaign_scene"), "position": [at.x, at.y]}, session.snapshot().player)
+	else:
+		result = journey.enter_world(park.get_meta("campaign_scene"), at,space)
 	if result.status != "ok":
-		park.paused = true
 		_notice(_error(result.status))
 		return false
 	if is_instance_valid(park.exploration_hud):
 		park.exploration_hud.refresh(session.snapshot().player)
-		if not quiet:park.exploration_hud.push_notice("Progresso salvo","saved")
+		if not quiet and (not session.separate_autosave or session.autosave_enabled):park.exploration_hud.push_notice("Progresso salvo","saved")
 	return true
 
 func _park_exit(event: Dictionary) -> void:
 	if not _save_park(): return
 	var saved: Dictionary = session.snapshot()
-	if ParkCheckpoint.is_kronasta(saved.checkpoint.scene) and event.props.get("destino","")=="kronasta":
+	if (ParkCheckpoint.is_kronasta(saved.checkpoint.scene) or ParkCheckpoint.is_regional_preview(saved.checkpoint.scene)) and event.props.get("destino","")=="kronasta":
 		_show_kronasta()
 		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
+	if destination.status=="morro_gate":_notice("Converse com os pipeiros deste lugar e vença o desafio para seguir.");return
 	if destination.status=="story_gate":_notice("A passagem para a Clareira abre depois de conquistar o Bambuzal. Vença o Lohan e volte por aqui.");return
+	if destination.status=="night_barrier":_notice("Capanga do Bando: Sem braçadeira, ninguém passa nesta noite.\n\nUma capanga com braçadeira guarda a Praça da Matriz, no Centro A.");return
 	if not _result(destination): return
 	park.paused=true
 	if _result(journey.enter_world(destination.scene,destination.point,destination.space)): _show_saved.call_deferred()
@@ -1642,7 +1791,7 @@ func _park_event(id: String) -> void:
 			if player.flags.get("aracatiRabiolavaLivre",false):
 				_notice("A brisa voltou a atravessar o terreiro.")
 				return
-			_confirm_park("Rabiolava", "Kael: Essa linha é do Carretel Negro. Rabbito, vamos soltar o Rabiolava!", "Enfrentar", func():
+			_confirm_park("Rabiolava", "Kael: Essa linha é do Carretel Negro. Rabbito, vamos soltar a Rabiolava!", "Enfrentar", func():
 				if _result(load("res://scripts/campaign/ruinas_elo.gd").begin(session,park.player)):_show_saved.call_deferred())
 			return
 		if action=="blueExam":
@@ -1655,6 +1804,9 @@ func _park_event(id: String) -> void:
 			var point:Vector2=park.player
 			if action=="serraGalleryReturn":
 				if _result(lesson.leave_gallery(point)):_show_saved.call_deferred()
+			elif action=="learnDig" and session.snapshot().player.flags.get("canCavar",false):
+				# After the lesson the tatu points to the next sub-step instead of repeating it.
+				_notice("Tatutrama cava ao lado da terra fofa, perto do mirante, e olha para você." if "serra-galeria-cavar-v1" not in session.snapshot().player.completedOperations else "Tatutrama aponta o focinho para o paredão abaixo do mirante, onde o vento sobe.")
 			elif action=="learnDig":
 				_confirm_park("Tatutrama","O tatu arranha a terra com as garras, para, depois escuta o chão. Sob a camada solta, aparece a ponta de uma vareta.\n\nKael: Entendi. Primeiro eu procuro onde a terra cede. Depois cavo sem forçar.","Aprender Cavar",func():
 					var result:Dictionary=lesson.learn_dig(point)
@@ -1755,11 +1907,48 @@ func _park_event(id: String) -> void:
 				if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
 			return
 		if action=="pipeiroFantasma":
-			_confirm_park("Pipeiro Fantasma","Tyler: Era eu nos fios. Eu soltava as almas antes que o Bando chegasse. Uma flor caiu junto da última pipa. Guarda pra mim?","Receber Flor de Cerejeira",func():
+			# F04: the identity (Fantasma) and the origin (laboratório) are separate discoveries.
+			var ghost_text:="Tyler: Era eu nos fios. Eu soltava as almas antes que o Bando chegasse. Uma flor caiu junto da última pipa. Guarda pra mim?"
+			if session.snapshot().player.flags.get("tylerCreatedKnown",false):ghost_text="Tyler: Depois do laboratório, achei que você ia ligar os pontos. Era eu nos fios. Pelo menos isso eu escolhi fazer: soltar as almas antes que o Bando chegasse.\n\nTyler: Uma flor caiu junto da última pipa. Guarda pra mim?"
+			_confirm_park("Pipeiro Fantasma",ghost_text,"Receber Flor de Cerejeira",func():
 				if _result(load("res://scripts/campaign/tyler_arcs.gd").finish_ghost(session)):_show_saved.call_deferred())
 			return
 		if action=="districtDuel":
 			_district_action(str(event.props.duel))
+			return
+		if action in preload("res://scripts/campaign/side_regions.gd").actions():
+			var told:Dictionary=preload("res://scripts/campaign/side_regions.gd").new(session).talk(action,park.player)
+			if told.has("text"):
+				if told.status=="ok":park.refresh(session.snapshot().player)
+				_notice(told.text)
+			else:_result(told)
+			return
+		if action=="grutaBoss":
+			_confirm_park("Estratonte","No meio do lago, os ossos de papel do Estratonte se erguem da ilha. O guardião da Gruta do Moinho baixa o pescoço comprido e espera.\n\nNv. %d · guardião opcional. A primeira vitória garante a rabiola dele." % encounters.GRUTA_GUARDIAN_LEVEL,"Enfrentar",func():
+				var started:Dictionary=encounters.start_gruta_boss(park.player)
+				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use a fonte de água fresca ou um Kit de Remendo antes de enfrentar o Estratonte.")
+				elif _result(started):_show_saved.call_deferred())
+			return
+		if action=="vulcaoBoss":
+			_confirm_park("Tricórdio","Na borda da cratera, as três cabeças do Tricórdio se viram ao mesmo tempo. A armadura de brasa estala com o calor da lava.\n\nNv. %d · guardião do Vulcão. A primeira vitória garante a rabiola dele." % encounters.VULCAO_GUARDIAN_LEVEL,"Enfrentar",func():
+				var started:Dictionary=encounters.start_vulcao_boss(park.player)
+				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use o descanso da Caldeira ou um Kit de Remendo antes de enfrentar o Tricórdio.")
+				elif _result(started):_show_saved.call_deferred())
+			return
+		if action=="abismoBoss":
+			_confirm_park("Coromar","A água em volta do trono gira em quatro correntes. O Coromar, guardião das Quatro Marés, abre as nadadeiras e espera.\n\nNv. %d · chefe do Abismo de Kronasta." % encounters.ABISMO_BOSS_LEVEL,"Enfrentar",func():
+				var started:Dictionary=encounters.start_abismo_boss(park.player)
+				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use uma bolha de ar ou um Kit de Remendo antes de enfrentar o Coromar.")
+				elif _result(started):_show_saved.call_deferred())
+			return
+		if action=="geleiraBoss":
+			_confirm_park("Borealvo","O guardião da Coroa Glacial ergue o martelo de gelo. Ele não deixa ninguém chegar ao santuário sem provar a força.\n\nNv. %d · chefe da Serra Gelada." % encounters.GELEIRA_BOSS_LEVEL,"Enfrentar",func():
+				var started:Dictionary=encounters.start_geleira_boss(park.player)
+				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use o abrigo do pico ou um Kit de Remendo antes de enfrentar o Borealvo.")
+				elif _result(started):_show_saved.call_deferred())
+			return
+		if action=="morroDuel":
+			_morro_duel(str(event.props.duel))
 			return
 		if action=="bambuzalClue":
 			var found:Dictionary=load("res://scripts/campaign/district_campaign.gd").new(session).inspect_clue(id,park.player)
@@ -1861,7 +2050,7 @@ func _park_action(id: String) -> void:
 		if player.flags.get("ninaReturned",false) and preload("res://scripts/campaign/league_promotion.gd").eligible(player) and not preload("res://scripts/campaign/league_promotion.gd").promoted(player):
 			if _result(preload("res://scripts/campaign/league_promotion.gd").claim(session,point)):_present_green_promotion()
 			return
-		if player.flags.get("ninaReturned", false): _notice("Nina: O Carcará está comigo de novo. Ainda quero te mostrar a pipa que eu estava construindo!")
+		if player.flags.get("ninaReturned", false): _notice(_idle_line("nina", _nina_lines(player)))
 		elif player.flags.get("ninaTail", false):
 			if _result(exploration.return_tail(point)):
 				park.refresh(session.snapshot().player)
@@ -1870,7 +2059,7 @@ func _park_action(id: String) -> void:
 			_confirm_park("Nina", "[emo=suor]Cortaram a linha do meu Carcará com cerol… Ele se recolheu na rabiola e o vento levou ela. Achei pegadas palmadas seguindo para os canos. Você pode procurar por ele?", "Vou recuperar a rabiola", func():
 				if _result(exploration.accept_nina(point)): park.refresh(session.snapshot().player))
 		elif player.flags.get("ninaBambuzalOrder",false) and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,"park-clearing"):_notice("Nina: A passagem para a Clareira abre depois do campeonato do Bambuzal. Vá pelo Bosque e fale com o Lohan. Eu espero você aqui.")
-		else: _notice("Nina: Siga pelo Jardim até a Clareira e procure os canos nas Veredas. Os pipeiros pelo caminho podem treinar com você. Ele arma a vela antes de puxar… Depois fica parado por um instante.")
+		else: _notice("Nina: Siga pelo Jardim até a Clareira e procure os canos nas Veredas. Os pipeiros pelo caminho podem treinar com você. E repara no Lacertubo: ele arma a vela antes de puxar… depois fica parado por um instante.")
 	elif id == "tail":
 		if _result(exploration.collect_tail(point)):
 			park.refresh(session.snapshot().player)
@@ -1907,16 +2096,36 @@ func _park_training(id: String) -> void:
 		var result: Dictionary=encounters.start_training(id,park.player)
 		if _result(result) and result.status=="ok": _show_saved.call_deferred())
 
-func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> void:
+## Duels chain without healing; a partner that walks in hurt loses in seconds (walker
+## with real duels: Gollia and the Pipa-Dragão at 0% line). The invitation says so.
+const DUEL_ACCEPTS := ["Disputar","Enfrentar","Lutar juntos","Aceitar desafio","Defender meu título","Vamos treinar"]
+func _duel_condition_note() -> String:
+	var player: Dictionary = session.snapshot().get("player", {})
+	for partner in player.get("partners", []):
+		if partner.get("id", "") != player.get("equippedPartnerId", ""): continue
+		var condition: Dictionary = partner.get("condition", {"line": 100, "structure": 100})
+		var lowest: float = minf(float(condition.get("line", 100)), float(condition.get("structure", 100)))
+		if lowest < 50:
+			return "\n\nAtenção: %s está com %d%% de linha. Descanse num banco ou use um Kit de Remendo (Equipe → Cuidar) antes do duelo." % [partner.get("personalName", "Seu parceiro"), int(lowest)]
+	return ""
+
+func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> Control:
 	park.path.clear()
 	park.paused = true
+	if DUEL_ACCEPTS.any(func(verb: String): return accept.begins_with(verb)): text += _duel_condition_note()
 	var dialog := _dialog(title, text, accept, "Agora não")
 	dialog.confirmed.connect(callback)
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.tree_exiting.connect(func():
-		if is_instance_valid(park): park.paused = false)
+		if not is_instance_valid(park): return
+		# A notice opened from the callback (deferred) recorded the park as paused by
+		# this dialog; it must restore movement, not this pause (after "Aprender Cavar"
+		# Kael stayed frozen: campaign walker).
+		if int(park.get_meta("system_notice_depth", 0)) > 0: park.set_meta("system_notice_was_paused", false)
+		else: park.paused = false)
 	dialog.popup_centered(Vector2i(620, 200))
+	return dialog
 
 func _show_encounter() -> void:
 	var saved_encounter:Dictionary=session.snapshot().player.encounter
@@ -1955,7 +2164,8 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/ruinas_elo.gd").settle(session)):_return_ruinas.call_deferred(outcome)
 		elif session.snapshot().player.encounter.kind=="endgame-step":
 			var step_id:String=str(session.snapshot().player.encounter.step)
-			if _result(load("res://scripts/campaign/endgame_story.gd").new(session).settle()):_return_endgame.call_deferred(step_id)
+			var outcome: String=session.snapshot().player.encounter.state.outcome
+			if _result(load("res://scripts/campaign/endgame_story.gd").new(session).settle()):_return_endgame.call_deferred(step_id,outcome)
 		elif session.snapshot().player.encounter.kind=="tyler-lab":
 			if _result(load("res://scripts/campaign/tyler_arcs.gd").settle_lab(session)):_return_tyler_lab.call_deferred()
 		elif session.snapshot().player.encounter.kind=="tufanocorte-story":
@@ -1971,14 +2181,18 @@ func _show_encounter() -> void:
 		elif session.snapshot().player.encounter.kind=="feira-story":
 			if _result(load("res://scripts/campaign/feira_story.gd").new(session).settle()):_return_feira_story.call_deferred()
 		elif session.snapshot().player.encounter.kind=="canal-gate":
-			if _result(load("res://scripts/campaign/canal_gate.gd").new(session).settle()):_show_saved.call_deferred()
+			var gate_outcome: String=session.snapshot().player.encounter.state.outcome
+			if _result(load("res://scripts/campaign/canal_gate.gd").new(session).settle()):
+				_show_saved.call_deferred()
+				# F10: the duel closes with Grampo's reaction and points to the canal control.
+				_notice.call_deferred("Grampo: Tá, tá! Pode mexer no controle. Platyx, vamos embora.\n\nO controle do canal está livre. Destranque a comporta." if gate_outcome=="won" else "Grampo: Viu? O controle é nosso. Volte quando quiser perder de novo.")
 		elif _result(encounters.settle()): _show_saved.call_deferred())
 
 func _remember_world_position() -> bool:
 	if is_instance_valid(workshop):return _result(journey.save_workshop(workshop.model.run.duplicate(true)))
 	if is_instance_valid(battle): return _result(encounters.save_battle(battle.model.snapshot()))
 	if is_instance_valid(park): return _save_park()
-	if is_instance_valid(room): return _result(journey.enter_world(session.snapshot().checkpoint.scene, room.actor))
+	if is_instance_valid(room) and session.snapshot().checkpoint.kind == "world": return _result(journey.enter_world(session.snapshot().checkpoint.scene, room.actor))
 	return true
 
 func _show_collection() -> void:
@@ -1987,13 +2201,16 @@ func _show_collection() -> void:
 	var player: Dictionary = session.snapshot().player
 	_simple_page("EQUIPE",true)
 	_label("Escolha quem vai voar ao seu lado.",page,17).add_theme_color_override("font_color",Hud.MUTED)
+	if not player.get("pendingPartners",[]).is_empty():_button("Recompensas reservadas · %d"%player.pendingPartners.size(),page,_show_pending_rewards)
 	if team_load_state!="ready":
 		var state_view=load("res://scripts/campaign/hud_list_state.gd").new()
 		state_view.state=team_load_state
 		state_view.reduced_motion=preferences.reduced_motion
+		state_view.message = "A equipe não pôde ser exibida. Tente abrir a lista novamente ou volte ao jogo." if team_load_state == "error" else ""
 		page.add_child(state_view)
 		state_view.retry_requested.connect(func():team_load_state="ready";_show_collection())
-		_button("Voltar",page,_return_to_game)
+		var back := _button("Voltar ao jogo",Hud.focus_space(page),_return_to_game)
+		Hud.focus_later(state_view.retry_button if state_view.retry_button != null else back)
 		return
 	var scroll := ScrollContainer.new()
 	scroll.follow_focus = true
@@ -2004,9 +2221,25 @@ func _show_collection() -> void:
 	list.add_theme_constant_override("separation",16)
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(list)
-	var team_capacity:=maxi(1,floori((size.y-300)/(260*preferences.text_scale)))
+	# A lista rola e segue o foco: pelo menos três parceiros por página (a 720p cabia um só).
+	var team_capacity:=maxi(3,floori((size.y-300)/(260*preferences.text_scale)))
 	var team_pages:=maxi(1,ceili(float(player.partners.size())/team_capacity))
 	team_page=clampi(team_page,0,team_pages-1)
+	if team_pages > 1:
+		var pagination := HBoxContainer.new()
+		pagination.add_theme_constant_override("separation",32)
+		page.add_child(pagination)
+		page.move_child(pagination,scroll.get_index())
+		var page_number := _label("Página %d de %d" % [team_page+1,team_pages],pagination,16)
+		page_number.theme_type_variation = "RecorteMutedText"
+		page_number.autowrap_mode = TextServer.AUTOWRAP_OFF
+		page_number.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var previous_page := _button("Anterior",pagination,func():team_page-=1;_show_collection())
+		var next_page := _button("Próxima",pagination,func():team_page+=1;_show_collection())
+		Hud.secondary_button(previous_page)
+		Hud.secondary_button(next_page)
+		previous_page.disabled = team_page == 0
+		next_page.disabled = team_page == team_pages-1
 	for partner in player.partners.slice(team_page*team_capacity,(team_page+1)*team_capacity):
 		var card=load("res://scripts/campaign/hud_result_plate.gd").new()
 		var selected:bool=partner.id==player.get("equippedPartnerId", "")
@@ -2015,14 +2248,14 @@ func _show_collection() -> void:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 20)
 		card.add_child(row)
-		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
-		var art: Dictionary = content.combat[art_id]
-		var frame: Dictionary = art.animations.idle[0]
-		var texture := AtlasTexture.new()
-		texture.atlas = load("res://assets/campaign/" + art.image)
-		texture.region = Rect2(frame.x, frame.y, frame.w, frame.h)
+		var art_id := CompanionFollow.combat_art_id(partner.modelId)
 		var portrait := TextureRect.new()
-		portrait.texture = load("res://scripts/campaign/battle_ink.gd").portrait(texture.atlas,art_id)
+		if not content.combat.has(art_id):
+			portrait.texture = CompanionFollow.overworld_portrait(partner.modelId)
+			art_id = "rabbito"
+		if portrait.texture == null:
+			var art: Dictionary = content.combat[art_id]
+			portrait.texture = load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/" + art.image), art_id)
 		portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		portrait.custom_minimum_size = Vector2(144, 118)
@@ -2047,8 +2280,7 @@ func _show_collection() -> void:
 		if selected:
 			_label("PARCEIRO ATIVO",details,16).theme_type_variation="RecorteAccentText"
 		var partner_title:=_label("%s · Nv. %d" % [partner.get("personalName", partner.modelId), level], details,26)
-		partner_title.autowrap_mode=TextServer.AUTOWRAP_OFF
-		partner_title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		partner_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 		partner_title.tooltip_text=partner_title.text
 		for stat in [["Linha",condition.line,Hud.LINE],["Armação",condition.structure,Hud.GOLD]]:
 			var stat_row:=HBoxContainer.new()
@@ -2076,28 +2308,322 @@ func _show_collection() -> void:
 		details.add_child(progress)
 		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16).theme_type_variation="RecorteMutedText"
 		var id: String = partner.id
-		var care_id:String=partner.id
-		_button("Cuidar",details,func():_show_partner_care(care_id)).disabled=session.snapshot().checkpoint.get("kind","")!="world"
-		var action_space := Hud.focus_space(row)
-		action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", action_space, func():
-			if _result(exploration.equip(id)): _show_collection())
-		button.custom_minimum_size.x = 256
-		Hud.secondary_button(button)
-		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		button.disabled = id == player.get("equippedPartnerId", "")
+		# Evolução: disponível pelo nível; o jogador confirma e escolhe o ramo.
+		var Evo = preload("res://scripts/campaign/evolution.gd")
+		if not Evo.next_forms(partner.modelId).is_empty():
+			var evolve := _button("Evoluir",details,func():_show_evolution(id))
+			evolve.name="Evolve"
+		var care := _button("Cuidar",details,func():_show_partner_care(id))
+		Hud.secondary_button(care)
+		care.disabled = session.snapshot().checkpoint.get("kind","") != "world"
+		if not selected:
+			var action_space := Hud.focus_space(row)
+			action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			var button := _button("Escolher parceiro", action_space, func():
+				if _result(exploration.equip(id)): _show_collection())
+			button.custom_minimum_size.x = 256
 	if player.partners.is_empty():_label("Sua equipe começa com o primeiro elo. Continue sua história com o professor.",list,22)
 	var footer:=HBoxContainer.new()
 	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
-	if team_pages>1:
-		_button("Anterior",footer,func():team_page-=1;_show_collection()).disabled=team_page==0
-		_button("Próxima",footer,func():team_page+=1;_show_collection()).disabled=team_page==team_pages-1
-		var page_number:=_label("%d / %d"%[team_page+1,team_pages],footer,16)
-		page_number.autowrap_mode=TextServer.AUTOWRAP_OFF
-		page_number.custom_minimum_size.x=90
-		page_number.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	var bank := _button("Banco e depósito", footer, _show_partner_bank)
+	bank.custom_minimum_size.x=250
+	Hud.secondary_button(bank)
+
+func _show_partner_bank() -> void:
+	if is_instance_valid(battle) or is_instance_valid(workshop) or flow_busy or opening_busy:
+		_notice(_error("bank_unsafe")); return
+	if not _remember_world_position(): return
+	var saved: Dictionary = session.snapshot()
+	if saved.get("checkpoint",{}).get("kind") != "world": _notice(_error("bank_unsafe")); return
+	var contents: Dictionary = session.bank_contents()
+	if not _result(contents): return
+	var synced: Dictionary = session.bank_reconcile(saved)
+	if not _result(synced): return
+	saved = synced.data
+	_simple_page("BANCO DE PIPAMONS", true)
+	if not saved.player.get("pendingPartners",[]).is_empty():_button("Recompensas reservadas · %d"%saved.player.pendingPartners.size(),page,_show_pending_rewards)
+	_label("Compartilhado entre as jornadas deste perfil, somente neste computador.", page, 17)
+	_label("Transferir grava a campanha, mesmo com autosave desligado. Saves antigos respeitam a propriedade atual de cada criatura.", page, 16)
+	var columns := HBoxContainer.new(); columns.add_theme_constant_override("separation",24)
+	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL; page.add_child(columns)
+	var first: Button
+	for side in ["campaign", "global"]:
+		var panel := VBoxContainer.new(); panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		columns.add_child(panel)
+		var partners: Array = saved.player.partners if side == "campaign" else contents.partners
+		_label(("ESTA CAMPANHA · %d / 30" if side == "campaign" else "DEPÓSITO GLOBAL · %d / 20") % partners.size(), panel, 24)
+		var scroll := ScrollContainer.new(); scroll.follow_focus = true
+		scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL; scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		panel.add_child(scroll)
+		var list := VBoxContainer.new(); list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		list.add_theme_constant_override("separation",14); scroll.add_child(list)
+		if partners.is_empty():
+			var empty_message := "Nenhum parceiro no depósito. Use Guardar no depósito em um parceiro elegível da campanha."
+			if side == "campaign":
+				empty_message = "Nenhum parceiro nesta campanha. Se houver um parceiro no depósito, use Trazer para campanha."
+			_label(empty_message,list,18).theme_type_variation = "RecorteMutedText"
+		for partner in partners:
+			var card = load("res://scripts/campaign/hud_result_plate.gd").new(); list.add_child(card)
+			var details := VBoxContainer.new(); card.add_child(details)
+			var heading := HBoxContainer.new(); heading.add_theme_constant_override("separation",14); details.add_child(heading)
+			var art := TextureRect.new(); art.custom_minimum_size=Vector2(64,64)
+			art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			art.texture = _partner_portrait(partner.modelId) if partner.modelId in ["rabbito","basica","mata","azulao","raio","doberman-c","retalho-original","lacertubo"] or not preload("res://scripts/campaign/evolution.gd").form(partner.modelId).is_empty() else Hud.icon("pipa",true)
+			heading.add_child(art)
+			var copy := VBoxContainer.new(); copy.size_flags_horizontal=Control.SIZE_EXPAND_FILL; heading.add_child(copy)
+			_label("%s · Nv. %d" % [partner.get("personalName",partner.modelId),EncounterView.Model.level_for_xp(partner.get("xp",0))],copy,22)
+			_label("%s · Linha %d%% · Armação %d%%" % [partner.modelId,partner.get("condition",{}).get("line",100),partner.get("condition",{}).get("structure",100)],copy,16)
+			var id: String = partner.id
+			var direction := "deposit" if side == "campaign" else "withdraw"
+			var name: String = partner.get("personalName",partner.modelId)
+			var blocked: String = preload("res://scripts/campaign/partner_bank.gd").new(session._store).restriction(saved,id) if side == "campaign" else "ok"
+			if blocked == "ok" and side == "campaign" and contents.partners.size() >= 20: blocked = "bank_global_full"
+			if side == "global" and saved.player.partners.size() >= 30: blocked = "bank_campaign_full"
+			if blocked != "ok": _label(_error(blocked),details,15)
+			var button := _button("Guardar no depósito" if side == "campaign" else "Trazer para campanha",Hud.focus_space(details),func():_confirm_bank_transfer(id,direction,name))
+			Hud.secondary_button(button); button.disabled = blocked != "ok"
+			if first == null and not button.disabled: first = button
+			if side == "global":
+				var release := _button("Liberar criatura", Hud.focus_space(details), func():_confirm_bank_transfer(id,"discard",name))
+				Hud.secondary_button(release)
+				if first == null: first = release
+	var back := _button("Voltar aos Pipamons",page,_show_collection)
+	Hud.focus_later(first if first != null else back)
+
+## Escolha da evolução: a forma atual e as formas disponíveis, cada uma com o seu botão.
+var evolution_noticed := {}
+func _show_evolution(partner_id: String) -> void:
+	var Evo = preload("res://scripts/campaign/evolution.gd")
+	var player: Dictionary = session.snapshot().player
+	var partner: Dictionary = {}
+	for entry in player.partners:
+		if entry.id == partner_id: partner = entry
+	if partner.is_empty() or Evo.next_forms(partner.modelId).is_empty():
+		_show_collection()
+		return
+	sound.play_event("inventory.inspect")
+	var name: String = partner.get("personalName", Evo.display_name(partner.modelId, partner.modelId))
+	_simple_page("EVOLUÇÃO", true)
+	var options: Array = Evo.next_forms(partner.modelId)
+	_label("Confira os caminhos de evolução de %s." % name, page, 20)
+	_label("Nível, experiência e condição continuam os mesmos. A nova forma ganha força nos atributos de batalha.", page, 16).theme_type_variation = "RecorteMutedText"
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 18)
+	row.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	page.add_child(row)
+	var first: Button
+	for form_id in options:
+		var form: Dictionary = Evo.form(form_id)
+		var card = load("res://scripts/campaign/hud_result_plate.gd").new()
+		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(card)
+		var column := VBoxContainer.new()
+		column.add_theme_constant_override("separation", 8)
+		card.add_child(column)
+		var art := TextureRect.new()
+		art.texture = _partner_portrait(form_id)
+		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		art.custom_minimum_size = Vector2(150, 150) if options.size() > 3 else Vector2(220, 220)
+		column.add_child(art)
+		_label(str(form.name), column, 24)
+		_label("%s · +%d%% atributos" % [str(Evo.data().stages[form.stage].name), int(form.bonus)], column, 15).theme_type_variation = "RecorteMutedText"
+		var pick := _button("Evoluir para " + str(form.name) if options.size() <= 3 else "Escolher", Hud.focus_space(column), func(): _confirm_evolution(partner_id, form_id))
+		if first == null: first = pick
+	var later := _button("Agora não", page, _show_collection)
+	Hud.secondary_button(later)
+	Hud.focus_later(first if first != null else later)
+
+func _confirm_evolution(partner_id: String, form_id: String) -> void:
+	var Evo = preload("res://scripts/campaign/evolution.gd")
+	var player: Dictionary = session.snapshot().player
+	var partner: Dictionary = {}
+	for entry in player.partners:
+		if entry.id == partner_id: partner = entry
+	if partner.is_empty() or form_id not in Evo.next_forms(partner.modelId): return
+	_simple_page("EVOLUIR?", true)
+	_label("%s  →  %s" % [partner.personalName, Evo.display_name(form_id)], page, 26)
+	_evolution_pair(_partner_portrait(partner.modelId), _partner_portrait(form_id), true)
+	var eligible := true
+	for row: Dictionary in Evo.requirements(player, partner, form_id):
+		_label(("✓  " if row.met else "○  ") + row.text, page, 17)
+		eligible = eligible and row.met
+	var actions := HBoxContainer.new()
+	actions.add_theme_constant_override("separation", 24)
+	page.add_child(actions)
+	var confirm := _button("Evoluir", actions, func(): _execute_evolution(partner_id, form_id))
+	confirm.disabled = not eligible
+	var cancel := _button("Cancelar", actions, func(): _show_evolution(partner_id))
+	Hud.secondary_button(cancel)
+	Hud.focus_later(confirm if eligible else cancel)
+
+func _evolution_pair(before: Texture2D, after: Texture2D, silhouette: bool = false) -> void:
+	var row := HBoxContainer.new()
+	row.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	page.add_child(row)
+	for index in 2:
+		var art := TextureRect.new()
+		art.texture = before if index == 0 else after
+		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		art.custom_minimum_size = Vector2(140, 150)
+		art.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		art.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		if silhouette and index == 1:
+			var material := ShaderMaterial.new()
+			material.shader = preload("res://shaders/evolution_silhouette.gdshader")
+			art.material = material
+		row.add_child(art)
+
+var _evolution_running := false
+
+func _execute_evolution(partner_id: String, form_id: String) -> void:
+	if _evolution_running: return
+	_evolution_running = true
+	var Evo = preload("res://scripts/campaign/evolution.gd")
+	var saved: Dictionary = session.snapshot()
+	var result: Dictionary = Evo.evolve(saved.player.duplicate(true), partner_id, form_id)
+	if result.status != "ok":
+		_evolution_running = false
+		_notice("Confira os requisitos da evolução.")
+		return
+	var stored: Dictionary = session.commit_operation("evolve-" + partner_id + "-" + form_id, saved.checkpoint, result.player)
+	if not _result(stored):
+		_evolution_running = false
+		return
+	if preferences.reduced_motion:
+		_show_evolution_result(result)
+		return
+	_simple_page("SANTUÁRIO DA LINHA DA ALMA", true)
+	var ritual := preload("res://scripts/campaign/evolution_ritual.gd").new()
+	ritual.before = _partner_portrait(result.from)
+	ritual.after = _partner_portrait(result.to)
+	ritual.target_form = result.to
+	ritual.sound = sound
+	ritual.finished.connect(func(): _show_evolution_result(result), CONNECT_ONE_SHOT)
+	page.add_child(ritual)
+	var skip := _button("Pular animação", page, ritual.skip)
+	Hud.focus_later(skip)
+
+func _show_evolution_result(result: Dictionary) -> void:
+	_evolution_running = false
+	var Evo = preload("res://scripts/campaign/evolution.gd")
+	_simple_page("EVOLUÇÃO CONCLUÍDA!", true)
+	_evolution_pair(_partner_portrait(result.from), _partner_portrait(result.to))
+	_label("%s  →  %s" % [Evo.display_name(result.from), Evo.display_name(result.to)], page, 25)
+	var model = preload("res://scripts/campaign/encounter_model.gd")
+	var level := int(model.level_for_xp(result.partner.xp))
+	var craft := float(result.partner.get("craftBonus", 0))
+	var previous: Dictionary = model.stats(level, craft + Evo.bonus(result.from))
+	var current: Dictionary = model.stats(level, craft + Evo.bonus(result.to))
+	_label("Linha %+.1f  ·  Defesa %+.2f  ·  Energia %+.1f" % [current.line-previous.line, current.defense-previous.defense, current.energy-previous.energy], page, 17)
+	if Evo.signature(result.to) != Evo.signature(result.from):
+		_label("Especial desbloqueado · " + Evo.signature(result.to), page, 17)
+	var back := _button("Continuar", page, _show_collection)
+	Hud.focus_later(back)
+
+
+func _confirm_bank_transfer(id: String, direction: String, name: String) -> void:
+	var copy := "Guardar %s no depósito global deste perfil?" % name if direction == "deposit" else "Trazer %s para esta campanha?" % name
+	if direction == "discard": copy = "Liberar %s permanentemente? Essa criatura sairá do depósito e não poderá ser recuperada carregando saves antigos." % name
+	copy += "\n\nEsta ação também grava o progresso atual da campanha."
+	var dialog := _confirmation("Liberar criatura" if direction == "discard" else "Transferir Pipamon", copy, "Liberar permanentemente" if direction == "discard" else "Confirmar transferência")
+	var operation := "bank-transfer-" + preload("res://scripts/campaign/state.gd").new_id()
+	dialog.confirmed.connect(func():_execute_bank_transfer(id,direction,operation))
+	dialog.confirmed.connect(dialog.queue_free); dialog.canceled.connect(dialog.queue_free)
+	dialog.popup_centered()
+
+func _execute_bank_transfer(id: String, direction: String, operation: String) -> void:
+	var result: Dictionary = session.transfer_partner(id,direction,operation)
+	if result.status in ["ok","already_applied"]: _show_partner_bank(); return
+	if result.status == "bank_pending":
+		var retry := _dialog("Concluir transferência",_error(result.status),"Tentar novamente","Fechar aviso")
+		retry.confirmed.connect(func():_execute_bank_transfer(id,direction,operation))
+		retry.confirmed.connect(retry.queue_free); retry.canceled.connect(retry.queue_free)
+	else: _notice(_error(result.status))
+
+func _show_pending_rewards() -> void:
+	var sync: Dictionary=session.bank_reconcile(session.snapshot())
+	if not _result(sync):return
+	var saved: Dictionary=sync.data
+	var queue: Array=saved.player.get("pendingPartners",[])
+	if queue.is_empty():rewards_deferred=true;_show_saved();return
+	_simple_page("RECOMPENSAS RESERVADAS",true)
+	_label("Suas criaturas estão protegidas. Escolha um destino; fechar esta tela não apaga a reserva.",page,18)
+	var contents: Dictionary=session.bank_contents()
+	if not _result(contents):return
+	_label("Campanha · %d / 30     Depósito do perfil · %d / 20"%[saved.player.partners.size(),contents.partners.size()],page,22)
+	var safe: bool=saved.checkpoint.get("kind") not in ["encounter","workshop"]
+	if not safe:_label("Conclua a cena ou batalha atual para receber estas recompensas.",page,18)
+	var scroll:=ScrollContainer.new();scroll.follow_focus=true;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",16);scroll.add_child(list)
+	var first: Button
+	for reward: Dictionary in queue:
+		var id: String=reward.id
+		var name: String=reward.partner.get("personalName",reward.partner.modelId)
+		var card=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(card)
+		var body:=VBoxContainer.new();card.add_child(body)
+		var heading:=HBoxContainer.new();heading.add_theme_constant_override("separation",16);body.add_child(heading)
+		var art:=TextureRect.new();art.custom_minimum_size=Vector2(80,80);art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		art.texture=_partner_portrait(reward.partner.modelId) if reward.partner.modelId in ["rabbito","basica","mata","azulao","raio","doberman-c","retalho-original","lacertubo"] or not preload("res://scripts/campaign/evolution.gd").form(reward.partner.modelId).is_empty() else Hud.icon("pipa",true)
+		heading.add_child(art)
+		var caption:=VBoxContainer.new();caption.size_flags_horizontal=Control.SIZE_EXPAND_FILL;heading.add_child(caption)
+		_label(name+(" · PARCEIRO DE HISTÓRIA" if reward.mandatory else " · RESERVADO"),caption,24)
+		_label("Registro · "+id.right(8),caption,15)
+		var claim:=_button("Receber na campanha",Hud.focus_space(body),func():_confirm_reward(id,"campaign","",name))
+		claim.disabled=not safe or saved.player.partners.size()>=30;Hud.secondary_button(claim)
+		if first==null and not claim.disabled:first=claim
+		var replace:=_button("Abrir espaço para receber",Hud.focus_space(body),func():_show_reward_replacement(id,name))
+		replace.disabled=not safe or saved.player.partners.size()<30;Hud.secondary_button(replace)
+		if first==null and not replace.disabled:first=replace
+		if not reward.mandatory:
+			var global:=_button("Guardar no depósito do perfil",Hud.focus_space(body),func():_confirm_reward(id,"global","",name))
+			global.disabled=not safe or contents.partners.size()>=20;Hud.secondary_button(global)
+			var decline:=_button("Recusar esta criatura",Hud.focus_space(body),func():_confirm_reward(id,"decline","",name));decline.disabled=not safe;Hud.secondary_button(decline)
+	var mandatory: bool=queue.any(func(r):return r.mandatory)
+	var back:=_button("Voltar ao menu · reserva mantida" if mandatory and safe else "Receber depois",page,_defer_pending_rewards)
+	Hud.secondary_button(back)
+	Hud.focus_later(first if first!=null else back)
+
+func _defer_pending_rewards() -> void:
+	var saved: Dictionary=session.snapshot()
+	var mandatory: bool=saved.player.get("pendingPartners",[]).any(func(r):return r.mandatory)
+	if mandatory and saved.checkpoint.get("kind") not in ["encounter","workshop"]:_menu()
+	else:rewards_deferred=true;_show_saved()
+
+func _show_reward_replacement(id: String, reward_name: String) -> void:
+	_simple_page("ABRIR ESPAÇO",true)
+	_label("Escolha quem liberar permanentemente para receber "+reward_name+". Seu parceiro ativo e os parceiros de história estão protegidos.",page,18)
+	var saved: Dictionary=session.snapshot()
+	var scroll:=ScrollContainer.new();scroll.follow_focus=true;scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",10);scroll.add_child(list)
+	for partner in saved.player.partners:
+		if partner.id==saved.player.get("equippedPartnerId","") or preload("res://scripts/campaign/partner_bank.gd").new(session._store).story_bound(partner):continue
+		var victim: String=partner.id
+		var name: String=partner.get("personalName",partner.modelId)
+		var button:=_button("Liberar %s · %s"%[name,victim.right(8)],Hud.focus_space(list),func():_confirm_reward(id,"replace",victim,reward_name,name))
+		Hud.secondary_button(button)
+	_button("Voltar sem liberar ninguém",page,_show_pending_rewards)
+
+func _confirm_reward(id: String, destination: String, victim: String, name: String, victim_name: String="") -> void:
+	var copy:= "Receber %s na campanha?"%name if destination=="campaign" else "Guardar %s no depósito compartilhado deste perfil?"%name
+	if destination=="replace":copy="Liberar %s permanentemente para receber %s? A troca será gravada em conjunto; a criatura liberada não voltará ao carregar um save antigo."%[victim_name,name]
+	if destination=="decline":copy="Recusar %s permanentemente? A reserva será encerrada. Itens já utilizados não serão devolvidos."%name
+	copy+="\n\nRegistro · "+id.right(8)+"\nEsta decisão grava o progresso, mesmo com autosave desligado."
+	var dialog:=_confirmation("Destino da recompensa",copy,"Confirmar decisão")
+	var operation: String="bank-transfer-"+preload("res://scripts/campaign/state.gd").new_id()
+	dialog.confirmed.connect(func():_resolve_reward(id,destination,victim,operation))
+	dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free);dialog.popup_centered()
+
+func _resolve_reward(id: String, destination: String, victim: String, operation: String) -> void:
+	var result: Dictionary=session.resolve_reward(id,destination,victim,operation)
+	if result.status in ["ok","already_applied"]:rewards_deferred=false;_show_pending_rewards();return
+	if result.status=="bank_pending":
+		var retry:=_dialog("Concluir recebimento",_error(result.status),"Tentar novamente","Fechar aviso")
+		retry.confirmed.connect(func():_resolve_reward(id,destination,victim,operation));retry.confirmed.connect(retry.queue_free);retry.canceled.connect(retry.queue_free)
+	else:_notice(_error(result.status))
 
 func _route_action(id: String) -> void:
 	for place in park.data.places:
@@ -2273,6 +2799,10 @@ func _show_local_map() -> void:
 		_button("Região de Kronasta",footer,_show_kronasta)
 
 func _show_kronasta() -> void:
+	var here: Dictionary=session.snapshot()
+	if here.get("checkpoint",{}).get("scene","")=="kronasta-coracao-d" and not here.get("player",{}).get("flags",{}).get("enamorDerrotado",false):
+		_notice("A Câmara do Elo se fechou atrás de você. Só será possível sair depois de vencer o Eremor.")
+		return
 	if not _remember_world_position(): return
 	var saved: Dictionary=session.snapshot()
 	var region=load("res://scripts/campaign/bosque_campaign.gd")
@@ -2290,6 +2820,17 @@ func _show_kronasta() -> void:
 		_show_saved())
 
 func _travel_kronasta(destination: String) -> void:
+	# Abismo de Kronasta: só se mergulha montado numa montaria aquática (mount_passives.gd).
+	if destination.begins_with("abismo-"):
+		var Mounts=preload("res://scripts/campaign/mount_passives.gd")
+		var saved:Dictionary=session.snapshot()
+		if not Mounts.has_aquatic(saved.player) and Mounts.grant_boia(saved.player):
+			if not _result(session.commit_operation("marisol-boia-v1",saved.checkpoint,saved.player)):return
+			_notice("Marisol deixou a Boia com você depois da aula de remo. A Capiboia nada fundo: com ela o Kael pode mergulhar no Abismo.")
+			return
+		if not Mounts.can_dive(session.snapshot().player):
+			_notice("O Abismo fica no fundo do mar. Para mergulhar, leve na equipe uma montaria aquática em condição de nadar, como a Capiboia."+("" if session.snapshot().player.get("flags",{}).get("canRemar",false) else "\n\nA Marisol, no Cais Velho, ensina a remar e conhece quem nada fundo."))
+			return
 	if not _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel(destination)): return
 	menu_origin=""
 	sound.set_game_paused(false)
@@ -2302,6 +2843,19 @@ func _show_missions() -> void:
 	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
 	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",16);scroll.add_child(list)
 	var trained:bool=int(player.get("journey",{}).get("lesson",0))>=5
+	# Main story first (one current step), then side activities apart from it.
+	var Story=load("res://scripts/campaign/kronasta_story.gd")
+	var main_beat:Dictionary=Story.current_beat(player)
+	if trained and not main_beat.is_empty():
+		var main=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(main)
+		var main_column:=VBoxContainer.new();main_column.add_theme_constant_override("separation",6);main.add_child(main_column)
+		_label("PRINCIPAL · Ato %d"%int(main_beat.act),main_column,25).add_theme_color_override("font_color",Hud.GOLD)
+		_label(Story.objective(player),main_column,21)
+	for side:Dictionary in Story.optional_quests(player):
+		var plate_side=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(plate_side)
+		var side_column:=VBoxContainer.new();side_column.add_theme_constant_override("separation",6);plate_side.add_child(side_column)
+		_label(("CONCLUÍDA · " if side.done else "OPCIONAL · ")+str(side.title),side_column,25).add_theme_color_override("font_color",Hud.GOLD if side.done else Hud.CYAN)
+		_label(str(side.text),side_column,21)
 	var entries:Array=[["Os primeiros elos","Conclua o treinamento com o Sr. Assis.",trained]]
 	var mount_quest=preload("res://scripts/campaign/mount_quest.gd")
 	if mount_quest.available(player):entries.append([mount_quest.TITLE,mount_quest.objective(player),mount_quest.owned(player)])
@@ -2366,6 +2920,7 @@ func _show_tail_workshop() -> void:
 		else:_show_saved())
 
 func _apply_preferences() -> void:
+	session.autosave_enabled = preferences.autosave
 	if sound.is_inside_tree(): sound.configure(preferences.audio_levels, preferences.dialogue_blips)
 	Controls.set_family(preferences.pad_family)
 	var recorte := get_node_or_null("RecorteUX")
@@ -2397,18 +2952,36 @@ func _show_settings() -> void:
 	category_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	var active_tab:Button
 	page.add_child(category_row)
-	for category in ["Vídeo","Áudio","Acessibilidade","Controles"]:
+	for category in ["Vídeo","Áudio","Acessibilidade","Controles","Jornada"]:
 		var tab:=Button.new();tab.text=category;Hud.navigation_button(tab,true)
 		tab.theme_type_variation="RecorteTabButton"
 		tab.toggle_mode=true;tab.button_pressed=category==settings_tab
-		tab.custom_minimum_size=Vector2(200,48)
+		tab.custom_minimum_size=Vector2(170,48)
+		tab.add_theme_font_size_override("font_size", 20)
 		category_row.add_child(tab)
 		if category==settings_tab:active_tab=tab
 		tab.pressed.connect(func():sound.play_event("ui.tab");settings_tab=category;_show_settings())
 	_label(settings_tab.to_upper(),page,20).add_theme_color_override("font_color",Hud.CYAN)
 	if settings_tab == "Áudio": _audio_settings()
+	if settings_tab == "Jornada":
+		_label("Autosave · espaço 0", page, 24)
+		_label("Ligado por padrão. Desligado, a história fica em memória até salvar. Aquisições, recompensas e transferências gravam um ponto de segurança para proteger suas criaturas.", page, 18)
+		var automatic := CheckButton.new()
+		automatic.text = "Autosave ligado" if preferences.autosave else "Autosave desligado"
+		automatic.button_pressed = preferences.autosave
+		automatic.custom_minimum_size.y = 56
+		page.add_child(automatic)
+		automatic.toggled.connect(func(enabled: bool):
+			var previous: bool = preferences.autosave
+			preferences.autosave = enabled
+			if preferences.save_settings() != OK:
+				preferences.autosave = previous
+				_notice("Não foi possível guardar a configuração.")
+			automatic.set_pressed_no_signal(preferences.autosave)
+			automatic.text = "Autosave ligado" if preferences.autosave else "Autosave desligado"
+			_apply_preferences())
 	for item in [["Filtro de TV (CRT)", "crt", "Linhas suaves de uma TV de tubo sobre o jogo."], ["Tela cheia", "fullscreen", "Use toda a tela para explorar e batalhar."], ["Reduzir animações da interface", "reduced_motion", "Suaviza transições e mantém os avisos estáticos."]]:
-		if settings_tab == "Áudio": continue
+		if settings_tab in ["Áudio", "Jornada"]: continue
 		if (settings_tab=="Vídeo" and item[1]=="reduced_motion") or (settings_tab=="Acessibilidade" and item[1]!="reduced_motion") or settings_tab=="Controles":continue
 		var toggle := CheckButton.new()
 		toggle.tooltip_text=item[0]+" — "+item[2]
@@ -2452,7 +3025,10 @@ func _show_settings() -> void:
 	text_size.item_selected.connect(func(index:int):
 		var old:float=preferences.text_scale
 		preferences.text_scale=[1.0,1.15,1.3][index]
-		if preferences.save_settings()!=OK:preferences.text_scale=old;text_size.select([1.0,1.15,1.3].find(old))
+		if preferences.save_settings() != OK:
+			preferences.text_scale = old
+			text_size.select([1.0,1.15,1.3].find(old))
+			_notice("Não foi possível guardar o tamanho do texto. A configuração anterior foi mantida.")
 		_apply_preferences())
 	var controls_card=load("res://scripts/campaign/hud_result_plate.gd").new()
 	controls_card.visible=settings_tab=="Controles"
@@ -2644,9 +3220,9 @@ func _controller_changed(device: int, connected: bool) -> void:
 	if connected:
 		Controls.configure_device(device,Input.get_joy_name(device),int(Input.get_joy_info(device).get("vendor_id",0)))
 	else: Controls.remove_device(device)
-	if connected or not Controls.gamepad: return
+	if connected or not Controls.gamepad or device != Controls.device_id: return
 	Controls.use_keyboard()
-	if is_instance_valid(battle): battle.paused = true
+	if is_instance_valid(battle): _pause_game()
 	if is_instance_valid(workshop): workshop._pause()
 	for child in get_children():
 		if child.get_script() == FlightView:
@@ -2687,6 +3263,15 @@ func _morro_action(id: String) -> void:
 		return
 	if id == "bag":
 		_show_bag()
+		return
+	# Morro no mapa isométrico: os ids de lugar do mapa pintado continuam valendo (saves,
+	# atalhos e testes antigos). O rival da área abre o desafio pelo fluxo novo.
+	if not park.get("data") is Dictionary or not park.data.has("places"):
+		var legacy: Dictionary = Morro.maps().get(session.snapshot().checkpoint.scene, {})
+		for entry in legacy.get("places", []):
+			if entry.id == id and entry.has("stage"):
+				_morro_duel(str(legacy.stage))
+				return
 		return
 	var data: Dictionary = park.data
 	var place: Dictionary = {}
@@ -2748,6 +3333,35 @@ func _morro_action(id: String) -> void:
 				if exit_place.get("action", "") == "road_next": point = Vector2(exit_place.point[0], exit_place.point[1])
 		if _result(journey.enter_world(place.target, point)): _show_saved.call_deferred()
 
+## Desafio do Morro do Sol no mapa isométrico (o rival da área, evento acao morroDuel).
+func _morro_duel(stage: String) -> void:
+	var names := " e ".join(Morro.Rules.stage(stage).foes.map(func(f): return f.name))
+	var districts=preload("res://scripts/campaign/district_rules.gd")
+	var player:Dictionary=session.snapshot().player
+	var title:Dictionary=districts.entry(player,"morro")
+	if not title.pendingDefense.is_empty():
+		if title.pendingDefense.scene==session.snapshot().checkpoint.scene:_show_title_defense()
+		else:_notice(districts.objective(player,"morro"))
+		return
+	if title.champion=="player" and stage!="morro-5":
+		if _result(morro.offer_defense(park.player)):_show_title_defense()
+		return
+	var planned:Dictionary=districts.prepare(player,"morro",stage)
+	if planned.status=="already_applied":
+		_notice("Você já venceu %s aqui. Este desafio está concluído; o caminho segue aberto." % names)
+		return
+	if planned.status!="ok":
+		_notice(districts.objective(player,"morro") if title.completed else "Vença os desafios anteriores antes de enfrentar este pipeiro.")
+		return
+	var story: Dictionary = Morro.Rules.content().stories[stage]
+	var text := "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]]))
+	if planned.context.mode in ["requalify","reclaim"]:
+		text="Este duelo faz parte da reconquista do título. A primeira recompensa e a insígnia não serão concedidas novamente."
+		if stage=="morro-5":names=districts.opponent_name(player,"morro")
+	text += "\n\nDica de voo: " + story.tactic
+	_confirm_park(names, text, "Vamos voar!", func():
+		if _result(morro.start(park.player)): _show_saved.call_deferred())
+
 func _show_title_defense() -> void:
 	var player:Dictionary=session.snapshot().player
 	var districts=preload("res://scripts/campaign/district_rules.gd")
@@ -2755,7 +3369,8 @@ func _show_title_defense() -> void:
 	var text:="%s desafia você pelo título do Morro do Sol.\n\nSe perder ou desistir da luta, ele fica com o título e você precisa vencer os quatro desafios novamente para recuperá-lo. Sua insígnia e os caminhos já abertos continuam seus.\n\nVocê pode responder depois: o desafio permanece salvo."%opponent
 	_confirm_park("Defesa de título · "+opponent,text,"Defender meu título",func():
 		if _result(morro.start_defense(park.player)):_show_saved.call_deferred())
-	if is_instance_valid(park.goal):park.goal.text=districts.objective(player,"morro")
+	if park.get("goal")!=null and is_instance_valid(park.goal):park.goal.text=districts.objective(player,"morro")
+	elif is_instance_valid(park.get("exploration_hud")):park.exploration_hud.objective.text=districts.objective(player,"morro")
 
 func _return_morro_result() -> void:
 	if not _result(DistrictBadges.ensure_legacy(session)):return
@@ -2773,6 +3388,9 @@ func _return_morro_result() -> void:
 	if result.get("districtMode","progress")!="progress":
 		title="Disputa pelo título"
 		text=preload("res://scripts/campaign/district_rules.gd").objective(session.snapshot().player,"morro")
+	# O Morro abre pela tela dos bairros, que carrega com cobertura: o epílogo espera a carga
+	# terminar, senão a carga apaga o diálogo (como em _notice).
+	while is_instance_valid(scene_loading): await get_tree().process_frame
 	if is_instance_valid(park):park.paused=true
 	var dialog:=_dialog(title,text,"Continuar explorando")
 	dialog.set_meta("morro_epilogue",true)
@@ -2783,7 +3401,7 @@ func _return_morro_result() -> void:
 	dialog.popup_centered()
 
 func _partner_portrait(model_id: String) -> Texture2D:
-	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(model_id, "rabbito")
+	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(model_id, preload("res://scripts/campaign/evolution.gd").art(model_id))
 	var art: Dictionary = content.combat[id]
 	var frame: Dictionary = art.animations.idle[0]
 	var texture := AtlasTexture.new()
@@ -2824,7 +3442,7 @@ func _district_action(id:String,skip_row:bool=false)->void:
 		if rules.status(player,district)=="prerequisite":_notice(service.objective(player,district));return
 		_notice("Vença os quatro pipeiros na ordem do percurso antes do campeão." if id==district+"-5" else "Conclua o desafio anterior para continuar.");return
 	var speaker:String=rules.opponent_name(player,district) if id==district+"-5" and title.completed else entry.name
-	var text:String=entry.before[0][1] if planned.context.mode=="progress" else "Vamos disputar mais uma vez. O caminho para recuperar o título passa por estes quatro desafios."
+	var text:String=_stage_lines(entry.before,speaker) if planned.context.mode=="progress" else "Vamos disputar mais uma vez. O caminho para recuperar o título passa por estes quatro desafios."
 	_confirm_park(speaker,text+"\n\nAdversário Nv. %d · vence quem conquistar %d rodadas."%[entry.level,entry.rounds],"Disputar",func():
 		if _result(service.start(id,park.player)):_show_saved.call_deferred())
 
@@ -2836,16 +3454,53 @@ func _return_district_result()->void:
 	var service=load("res://scripts/campaign/district_campaign.gd")
 	var entry:Dictionary=service.stage(result.duel)
 	var text:String=""
-	if result.mode=="progress":text=entry.won[0][1] if result.outcome=="won" else entry.lost[0][1]
+	if result.mode=="progress":text=_stage_lines(entry.won if result.outcome=="won" else entry.lost,"")
 	else:text=service.objective(player,result.district)
-	if result.get("emblem",false):text+="\n\nInsígnia recebida · "+str(result.district)+". O próximo destino está no mapa de Kronasta."
+	if result.get("emblem",false):
+		var place:String=str(load("res://scripts/campaign/district_rules.gd").definition(result.district).get("name",result.district))
+		text+="\n\nInsígnia recebida · "+place+". "+("Todas as insígnias de Kronasta estão com você. Próximo destino: Estádio de Kronasta." if result.district=="mirante" else "O próximo destino está no mapa de Kronasta.")
+		if load("res://scripts/campaign/tyler_arcs.gd").finale_ready(player):text+="\n\nOpcional · Tyler quer conversar no laboratório do Sr. Assis. Leve a flor de cerejeira."
 	_notice(text)
+
+## Idle talk changes with the story and alternates between visits, so a character
+## spoken to again does not repeat the same line (walker: Nina and Tyler 6× each).
+var idle_turns := {}
+func _idle_line(who: String, lines: Array) -> String:
+	var turn: int = int(idle_turns.get(who, -1)) + 1
+	idle_turns[who] = turn
+	return lines[turn % lines.size()]
+
+func _nina_lines(player: Dictionary) -> Array:
+	var flags: Dictionary = player.get("flags", {})
+	if flags.get("campeaoKronasta", false):
+		return ["Nina: Campeão de Kronasta! O Carcará deu uma volta inteira no céu quando passou na TV.", "Nina: Ainda sinto o nó no pulso às vezes. Mas olha o céu agora: dá até pra ver a linha de todo mundo."]
+	if flags.get("ruinasNinaLivre", false):
+		return ["Nina: Obrigada por ter descido lá, Kael. Ainda sinto o nó no pulso.", "Nina: O Carcará não sai do meu lado desde as Ruínas. Acho que ele também ficou com medo."]
+	var act: int = preload("res://scripts/campaign/kronasta_story.gd").act(player)
+	if act >= 4:
+		return ["Nina: Falam de você na TV, sabia? Kael, da Rabiola Vermelha. Cuida dessa linha lá fora.", "Nina: O Carcará está comigo de novo, graças a você. Quando passar pelo Parque, a gente treina um voo."]
+	return ["Nina: O Carcará está comigo de novo, graças a você. Quando ele ficar mais forte, a gente treina junto.", "Nina: Os canos das Veredas pararam de vibrar. Acho que o Lacertubo também está descansando."]
+
+func _tyler_lines(player: Dictionary) -> Array:
+	var flags: Dictionary = player.get("flags", {})
+	if flags.get("campeaoKronasta", false):
+		return ["Tyler: Campeão! Quando quiser uma revanche de verdade, a Clareira é a nossa arena.", "Tyler: O Rai ainda imita o seu último corte. Ele não admite, mas gostou."]
+	if flags.get("tylerCreatedKnown", false):
+		return ["Tyler: Ainda penso no que li no laboratório. Aqui na Clareira fica mais fácil pensar.", "Tyler: O Rai não liga de onde eu vim. Acho que isso já é uma resposta."]
+	return ["Tyler: Rai e eu vamos conferir este lado. O banco está livre se vocês precisarem descansar.", "Tyler: O vento da Clareira muda antes da chuva. O Rai sempre percebe primeiro."]
+
+## Joins a stage's authored lines; lines from someone other than the dialog's
+## speaker carry their name.
+func _stage_lines(lines:Array,speaker:String)->String:
+	var parts:=PackedStringArray()
+	for line in lines:parts.append(line[1] if line[0]==speaker else "%s: %s"%[line[0],line[1]])
+	return "\n\n".join(parts)
 
 func _show_tyler_clareira()->void:
 	var service=load("res://scripts/campaign/tyler_clareira.gd").new(session)
 	if not service.available(park.player):return
 	if service.done(session.snapshot().player):
-		_notice("Tyler: Rai e eu vamos conferir este lado. O banco está livre se vocês precisarem descansar.");return
+		_notice(_idle_line("tyler", _tyler_lines(session.snapshot().player)));return
 	var index:int=service.step(session.snapshot().player)
 	var line:Dictionary=service.nodes()[index]
 	park.path.clear();park.paused=true
@@ -2873,7 +3528,9 @@ func _show_tyler_clareira()->void:
 func _present_green_promotion()->void:
 	while is_instance_valid(scene_loading):await get_tree().process_frame
 	if not is_inside_tree() or not preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):return
-	if is_instance_valid(park):park.paused=true;park.path.clear()
+	if is_instance_valid(park):
+		park.paused=true
+		if "path" in park:park.path.clear()
 	var promotion_dialog:=_dialog("Rabiola Verde","Nina: [emo=brilho]Você trouxe meu Carcará de volta. Venceu os dois bairros e ajudou alguém fora da arena. Isso também é ser pipeiro.\n\nCarteira de Pipeiro: Exame da categoria Branca concluído. Categoria Rabiola Verde registrada.\n\nNina: Quando meu Carcará estiver pronto para a travessia, pode contar com ele. Guarde esta autorização de empréstimo.\n\nJornada: Experimente Planar nas setas azuis junto ao rio das Veredas. O próximo bairro é Beira-Canal.","Guardar e continuar")
 	promotion_dialog.allow_cancel=false
 	promotion_dialog._portraits["Carteira de Pipeiro"]=null
@@ -3023,7 +3680,7 @@ func _return_warehouse()->void:
 	if result.opponent=="gollia":_notice("Gollia recua. A porta do galpão está adiante, na frente do depósito.")
 	else:
 		if is_instance_valid(park):park.celebrate_item("Recebido · Agulha de desatar")
-		_notice("As almas estão livres. Kael se aproxima de Retalho, ainda ferido.\n\nTyler: Vamos levá-lo ao ateliê.\n\nAgulha de desatar guardada. Sua função de remontagem será integrada depois. Bruno Solda já pode ser desafiado.")
+		_notice("As almas estão livres. Kael se aproxima de Retalho, ainda ferida.\n\nTyler: Vamos levá-la ao ateliê.\n\nAgulha de desatar guardada. Bruno Solda já pode ser desafiado.")
 
 func _show_expedition_photo()->void:
 	if not is_instance_valid(room) or room.actor.distance_to(preload("res://scripts/campaign/expedition_photo.gd").AT)>110:return
@@ -3143,7 +3800,7 @@ func _show_retalho_trust()->void:
 	if not service.available(p):return
 	var n:int=service.stage(p)
 	if n==8:
-		_notice("Retalho escolheu acompanhar você. Ele está no banco de parceiros deste save.");return
+		_notice("Retalho escolheu acompanhar você. Ela está no banco de parceiros deste save.");return
 	var at:Vector2=room.actor if is_instance_valid(room) else park.player if is_instance_valid(park) else Vector2.INF
 	var scene:String=session.snapshot().checkpoint.get("scene","")
 	if not service.near(scene,at):return
@@ -3208,24 +3865,10 @@ func _after_retalho_trust(n:int)->void:
 func _show_retalho_bank()->void:
 	var service=load("res://scripts/campaign/retalho_trust.gd").new(session)
 	var p:Dictionary=session.snapshot().player
-	if service.stage(p)!=7:return
-	_simple_page("Banco cheio · Retalho está esperando",true)
-	_label("Retalho já escolheu você. Libere uma vaga quando quiser; ele não será perdido.",page,22)
-	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.follow_focus=true;page.add_child(scroll)
-	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(list)
-	for partner:Dictionary in p.partners:
-		var id:String=partner.id
-		if id==p.get("equippedPartnerId","") or partner.get("origin","")==service.ORIGIN:continue
-		var partner_name:String=partner.get("personalName",partner.modelId)
-		_button("Liberar "+partner_name+" · Nv. "+str(preload("res://scripts/campaign/partner_levels.gd").level_for_xp(partner.get("xp",0))),list,func():
-			var dialog:=_dialog("Liberar parceiro?",partner_name+" sairá permanentemente do banco deste save. Esta ação não pode ser desfeita. Nenhum outro parceiro será alterado.","Liberar permanentemente","Manter parceiro")
-			dialog.name="RetalhoBankReleaseDialogue"
-			dialog.confirmed.connect(func():
-				if _result(service.release(id)):
-					dialog.queue_free();_show_retalho_bank.call_deferred())
-			dialog.canceled.connect(dialog.queue_free);dialog.popup_centered())
-	_button("Voltar sem liberar ninguém",page,_show_saved)
-	if p.partners.size()<service.CAPACITY:_button("Voltar para acolher Retalho",page,_show_saved)
+	# Migrate the previous accepted-but-bank-full state to a durable reward.
+	if service.stage(p)==7 and p.flags.get("retalhoAceitoKael",false):
+		if not _result(service.claim(service.RESCUE)):return
+	_show_pending_rewards()
 
 func _blue_station(action:String)->void:
 	if flow_busy or not is_instance_valid(park):return
@@ -3328,9 +3971,9 @@ func _request_mormaco(action:String)->void:
 			if _result(story.rest(point)):park.refresh(session.snapshot().player))
 	elif session.snapshot().player.flags.get("mormacoEmboscada",false) and not session.snapshot().player.flags.get("mormacoTylerChegou",false):
 		_confirm_park("Kael","Mormaço recua para o poço. — Espera… tem alguém na margem!\n\nVoz entre as árvores: Agora! Lancem o Carretel Negro!","Olhar para o poço",func():_play_mormaco_ambush.call_deferred(point))
-	elif story.freed(session.snapshot().player):_notice("Mormaço: O frio sabe onde estão os outros. Não confunda pressa com vento, pequeno pipeiro.")
+	elif story.freed(session.snapshot().player):_notice("Mormaço: Os outros Ventos ainda estão presos. Não confunda pressa com vento, pequeno pipeiro.")
 	elif story.won(session.snapshot().player):
-		_confirm_park("O primeiro Vento livre","Os cordões perdem a tensão. O brilho violeta desaparece dos olhos de Mormaço; a água volta a subir clara. Ele respira fundo e observa Kael.\n\nMormaço: Enfim… Achou que eu estava dormindo?\n\nKael: Os outros Ventos também estão presos?\n\nMormaço: O frio sabe onde estão os outros.","Escutar o Vento",func():
+		_confirm_park("O primeiro Vento livre","Os cordões perdem a tensão. O brilho violeta desaparece dos olhos de Mormaço; a água volta a subir clara. Ele respira fundo e observa Kael.\n\nMormaço: Enfim… Achou que eu estava dormindo?\n\nKael: Os outros Ventos também estão presos?\n\nMormaço: Estão. Quando o vento voltar a chamar, siga. O próximo chama do alto da Serra.","Escutar o Vento",func():
 			if _result(story.release(point)):park.refresh(session.snapshot().player))
 	elif not session.snapshot().player.flags.get("mormacoVentosPararam",false):_notice("O ar parado chamou sua atenção na entrada. Examine o sinal junto ao caminho da parte A antes de enfrentar o guardião.")
 	elif session.snapshot().player.flags.get("mormacoTylerChegou",false):
@@ -3381,21 +4024,91 @@ func _endgame_step(id:String)->void:
 	var story=endgame.new(session)
 	var at:Vector2=park.player
 	if not step.has("duels"):
-		_confirm_park(step.name,step.intro,"Continuar",func():
+		park.stage_endgame(id)
+		if id=="gollia-arrependimento":
+			var view=park
+			view.path.clear()
+			view.paused=true
+			await view.animate_gollia_entrance()
+			if not is_instance_valid(view) or park!=view:return
+		var closing := {"accepted":false,"finished":false}
+		var scene_view=park
+		var meeting=preload("res://scripts/campaign/champions_meeting.gd").new() if id=="reuniao" else null
+		if meeting!=null:meeting.configure(scene_view)
+		var dialog := _confirm_park(step.name,story.intro(session.snapshot().player,id),"Continuar",func():
 			if _result(story.talk(id,at)):
-				park.refresh(session.snapshot().player)
+				closing.accepted=true
+				scene_view.paused=true
+				if id in ["gerador","reuniao"]:flow_busy=true
+				await scene_view.finish_endgame_scene(id)
+				if not is_instance_valid(scene_view) or park!=scene_view:return
+				if id=="gerador":
+					var city:=preload("res://scripts/campaign/city_restoration_scene.gd").new()
+					add_child(city)
+					await city.play(session.snapshot().player,content,preferences.reduced_motion)
+					city.queue_free()
+					if not is_instance_valid(scene_view) or park!=scene_view:return
+				if meeting!=null:meeting.dispose()
+				scene_view.clear_endgame_staging()
+				await get_tree().process_frame
+				if not is_instance_valid(scene_view) or park!=scene_view:return
+				scene_view.refresh(session.snapshot().player)
+				closing.finished=true
+				if id in ["gerador","reuniao"]:flow_busy=false
+				scene_view.paused=false
 				_notice.call_deferred(step.outro))
+		dialog.tree_exiting.connect(func():
+			if is_instance_valid(scene_view):
+				scene_view.paused=closing.accepted and not closing.finished
+				if not closing.accepted:
+					if meeting!=null:meeting.dispose()
+					scene_view.clear_endgame_staging())
+		if meeting!=null:
+			dialog.speaker_changed.connect(meeting.focus)
+			if not dialog.pages.is_empty():meeting.focus(str(dialog.pages[dialog.page_index].speaker))
 		return
 	# The title follows the opponent in front of the player (Navalha, then Trovareta...).
 	var index:int=endgame.duel_index(player,id)
 	_confirm_park(step.name if index==0 else str(step.duels[index][0]),endgame.prompt(player,id),"Enfrentar",func():
 		if _result(story.begin(id,at)):_show_saved.call_deferred())
 
-func _return_endgame(id:String)->void:
+func _return_endgame(id:String,outcome:String="won")->void:
 	_show_saved()
+	if outcome!="won":return
+	if id=="trovareta" and preload("res://scripts/campaign/endgame_story.gd").release_pending(session.snapshot()):return
 	var text:String=load("res://scripts/campaign/endgame_story.gd").after(session.snapshot().player,id)
 	if not text.is_empty() and session.snapshot().player.get("flags",{}).get("endgame-%s-0"%id,false):
 		_notice.call_deferred(text)
+
+func _present_trovareta_release() -> void:
+	var generation:=opening_generation
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+		if generation!=opening_generation:return
+	var story=preload("res://scripts/campaign/endgame_story.gd")
+	if not is_instance_valid(park) or not story.release_pending(session.snapshot()):return
+	var view: Node2D=park
+	flow_busy=true
+	view.paused=true
+	view.path.clear()
+	var cut:=preload("res://scripts/campaign/trovareta_release_scene.gd").new()
+	cut.name="TrovaretaRelease"
+	add_child(cut)
+	var played: bool=await cut.play(view,preferences.reduced_motion)
+	cut.queue_free()
+	if not is_instance_valid(view) or view!=park:return
+	if played:
+		var dialogue:=_dialog("Rato","Você também deu alma a uma coisa que fez. Podia vir com a gente.\n\nKael: O Rabbito fica comigo porque quer. Não porque eu mando.\n\nRato: Então guarde essa resposta. Vai precisar dela nas Ruínas.","Continuar")
+		dialogue.confirmed.connect(dialogue.queue_free)
+		dialogue.canceled.connect(dialogue.queue_free)
+		dialogue.popup_centered(Vector2i(640,300))
+		await dialogue.tree_exited
+		if not is_instance_valid(view) or view!=park:return
+	var result: Dictionary=story.new(session).finish_release() if played else {"status":"wrong_step"}
+	view.refresh(session.snapshot().player)
+	flow_busy=false
+	view.paused=false
+	if not _result(result):return
 
 func _return_tufanocorte()->void:
 	_show_saved()
@@ -3424,33 +4137,114 @@ func _ride_serra_wind()->void:
 
 func _tyler_study() -> bool:
 	var arcs = load("res://scripts/campaign/tyler_arcs.gd")
-	var player: Dictionary = session.snapshot().player
+	var player: Dictionary=session.snapshot().player
+	if arcs.presentation_pending(player):
+		_play_tyler_flower.call_deferred()
+		return true
 	if arcs.finale_ready(player):
-		var dialog := _dialog("Tyler · Flor de Cerejeira", "Tyler: O DNA é do Assis. Sou uma cópia dele. Se eu fui feito pra ser alguém que já existe, quem sobra quando eu tiro isso?\n\nKael: Você é alguém que se importa, Tyler. Foi você quem escolheu ajudar. Vem, vamos sair daqui.", "Entregar a flor")
+		if flow_busy:return true
+		if not is_instance_valid(room):_show_world()
+		var scene=_prepare_tyler_flower()
+		if scene==null:return false
+		flow_busy=true
+		room.can_walk=false
+		room.set_story_paused(true)
+		var accepted:={"value":false}
+		var dialog := _dialog("Tyler · Flor de Cerejeira", "Tyler: Você já sabe que eu fui criado aqui. O que eu não contei é o resto do registro: o DNA é do Assis. Se eu fui feito para ser alguém que já existe, quem sobra quando eu tiro isso?
+
+Kael: Sobra quem soltava as almas presas nos fios antes do Bando chegar. Quem tirou a Nina, a Mikka e a Jamile da Câmara do Elo. Ninguém mandou você fazer isso. Você se importa, Tyler.", "Entregar a flor", "Agora não")
 		dialog.confirmed.connect(func():
-			if _result(arcs.finish_finale(session)):_show_saved.call_deferred())
+			if not _result(arcs.finish_finale(session)):return
+			accepted.value=true
+			flow_busy=false
+			_play_tyler_flower.call_deferred())
 		dialog.confirmed.connect(dialog.queue_free)
 		dialog.canceled.connect(dialog.queue_free)
+		dialog.tree_exiting.connect(func():
+			if not accepted.value:
+				flow_busy=false
+				if is_instance_valid(scene):scene.dispose()
+				if is_instance_valid(room):room.can_walk=true;room.set_story_paused(false))
 		return true
 	if not arcs.Rules.completed(player, "centro") or player.flags.get("tylerCreatedKnown", false):
 		return false
-	var dialog := _dialog("Laboratório do Professor", "Tyler: Os registros estão ali. A sentinela fechou a saída. Kael, fica comigo.", "Enfrentar a sentinela", "Voltar")
+	# F21: what wakes the Sentinela comes before the fight.
+	var dialog := _dialog("Laboratório do Professor", "Debaixo da mesa de estudos do Sr. Assis, um alçapão leva ao laboratório. Tyler encontra a gaveta com o nome dele e puxa os registros.\n\nUm zumbido: a sentinela do laboratório acorda e fecha a escada.\n\nTyler: Kael, fica comigo.", "Enfrentar a sentinela", "Voltar")
 	dialog.confirmed.connect(func():
 		if _result(arcs.begin_lab(session)):_show_saved.call_deferred())
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	return true
 
+
+func _prepare_tyler_flower() -> Node2D:
+	if not is_instance_valid(room):return null
+	var scene=room.get_node_or_null("TylerEpilogue")
+	if scene!=null:return scene
+	scene=load("res://scripts/campaign/tyler_epilogue_scene.gd").new()
+	room.add_child(scene)
+	if not scene.configure(room,preferences.reduced_motion):
+		scene.queue_free()
+		return null
+	return scene
+
+const TYLER_FLOWER_REACTION := "Caiu junto da última pipa que eu soltei. Achei que tinha perdido.\n\n…\n\nVamos ver o\u00a0Rai? Ele deve estar com fome."
+
+func _play_tyler_flower() -> void:
+	if flow_busy:return
+	var arcs=load("res://scripts/campaign/tyler_arcs.gd")
+	if not arcs.presentation_pending(session.snapshot().player):return
+	if not is_instance_valid(room):_show_world()
+	var scene=_prepare_tyler_flower()
+	if scene==null:return
+	flow_busy=true
+	var generation:=opening_generation
+	var target_room=room
+	target_room.can_walk=false
+	await scene.give_flower()
+	if not TutorialStaging.valid(self,generation):return
+	target_room.set_story_paused(true)
+	# Playtest: one block with Tyler as the speaker; a pause before the invitation.
+	var given := _dialog("Tyler", TYLER_FLOWER_REACTION, "Continuar")
+	given.confirmed.connect(given.queue_free)
+	given.canceled.connect(given.queue_free)
+	given.popup_centered(Vector2i(640,300))
+	await given.tree_exited
+	if not TutorialStaging.valid(self,generation):return
+	target_room.set_story_paused(false)
+	var left: bool=await scene.leave_together()
+	if not TutorialStaging.valid(self,generation):return
+	if not left:
+		scene.dispose()
+		flow_busy=false
+		target_room.can_walk=true
+		_notice("O caminho está bloqueado. Você pode continuar a conversa no estudo.")
+		return
+	var result: Dictionary=arcs.finish_presentation(session,target_room.actor)
+	scene.dispose()
+	flow_busy=false
+	target_room.can_walk=true
+	target_room.set_story_paused(false)
+	if _result(result):_show_saved.call_deferred()
 func _return_tyler_lab() -> void:
 	_show_saved()
 	if session.snapshot().player.flags.get("tylerCreatedKnown", false):
-		_notice("Tyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\nKael: O Rabbito também foi feito, e ninguém manda no que ele escolhe.")
+		# F21: reading, discovery and consequence, in that order; the night starts here.
+		var kael:="Kael: O Rabbito também foi feito, e ninguém manda no que ele escolhe."
+		if session.snapshot().player.flags.get("pipeiroFantasmaResolvido",false):kael="Kael: Nos fios, você escolheu soltar as almas. O Rabbito também foi feito, e ninguém manda no que ele escolhe. Com você é igual."
+		_notice("A sentinela se apaga. Os registros estão espalhados pelo chão.\n\nTyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\n"+kael+"\n\nLá em cima, as luzes da Vila se apagam de uma vez. O Bando escolheu esta noite: começou a noite do cerol.")
 
 func _return_ruinas(outcome: String = "") -> void:
 	_show_saved()
 	var saved: Dictionary = session.snapshot()
 	var scene: String = saved.checkpoint.get("scene","")
 	var lines = preload("res://scripts/campaign/ruinas_dialogue.gd")
+	if scene=="kronasta-estadio-a":
+		# F27: each round ends with the opponent's reaction and the next step; the
+		# title round goes to the ending instead.
+		var after: String=load("res://scripts/campaign/ruinas_elo.gd").stadium_return_text(saved.player.flags,outcome)
+		if after!="":_notice(after)
+		return
 	if scene not in ["kronasta-coracao-d","kronasta-aracati-c"] and not lines.RESCUES.has(scene):return
 	while is_instance_valid(scene_loading) or flow_busy:
 		await get_tree().process_frame
@@ -3474,7 +4268,10 @@ func _return_ruinas(outcome: String = "") -> void:
 				await release.finished
 				cord.queue_free()
 				break
-		_notice("Kael: Pronto. A linha cedeu. Você está livre, Rabiolava.\n\nCorrente de Ar disponível." if outcome=="won" else "Kael: Vou me recompor. Ainda dá tempo de soltar o Rabiolava.")
+			# The staging pause ends here; the notice keeps its own pause while open
+			# (Kael stayed frozen after it: campaign walker).
+			if is_instance_valid(park): park.paused = false
+		_notice("Kael: Pronto. A linha cedeu. Você está livre, Rabiolava.\n\nO vento quente volta a soprar sobre a ilha." if outcome=="won" else "Kael: Vou me recompor. Ainda dá tempo de soltar a Rabiolava.")
 		return
 	if lines.RESCUES.has(scene):
 		if scene == "kronasta-coracao-c" and outcome == "won":
@@ -3494,11 +4291,23 @@ func _return_ruinas(outcome: String = "") -> void:
 			park.path.clear()
 			park.paused = true
 			await preload("res://scripts/overworld/elo_chamber.gd").untie_prisoner(park)
+			# The staging pause ends here; the notice keeps its own pause while open
+			# (after freeing Nina, Kael stayed frozen: campaign walker).
+			if is_instance_valid(park): park.paused = false
 		_notice(lines.RESCUES[scene].freed if outcome=="won" else lines.LOST_GUARD)
 		return
 	var flags: Dictionary = session.snapshot().player.flags
 	if flags.get("enamorDerrotado",false):
-		_notice(lines.VICTORY)
+		if outcome=="won":
+			park.path.clear()
+			park.paused=true
+			flow_busy=true
+			var shot=park
+			await preload("res://scripts/overworld/elo_chamber.gd").shatter_key(shot,preferences.reduced_motion)
+			flow_busy=false
+			if not is_instance_valid(shot):return
+			shot.paused=false
+		_notice(lines.VICTORY+"\n\nKael: Primeiro, vamos recuperar a equipe. Depois, falta o Alto do Mirante. Ícaro é o último campeão de bairro.")
 	elif flags.get("ruinasChefeVencido",false) and not flags.get("enamorDesperto",false):
 		_request_enamor(load("res://scripts/campaign/ruinas_elo.gd"))
 	elif outcome in ["lost","fled"]:
@@ -3535,6 +4344,17 @@ func _show_stadium_bracket(finals: GDScript) -> void:
 			if row == 1 and round > index: label.text += "  ✓"
 			if index == round: label.add_theme_color_override("font_color", Hud.Tokens.HIGHLIGHT)
 			column.add_child(label)
+	var exchange := Label.new()
+	exchange.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	exchange.custom_minimum_size.x=620
+	exchange.text=[
+		"Grampo: O Platyx quis entrar nessa chave. Desta vez, eu perguntei a ele.\nKael: Então vamos fazer uma boa luta.",
+		"Tyler: Você chegou longe, Kael. Hoje eu quero enfrentar você com tudo que aprendi ao seu lado.",
+		"Faye: A última vaga ficou entre nós dois. Quero que você se lembre desta luta.",
+		"Jamile: Você viu uma final pela televisão. Agora tem alguém em casa assistindo à sua. Pronto, Kael?",
+		"A Liga reconhece Kael como Campeão de Kronasta."
+	][mini(round,4)]
+	layout.add_child(exchange)
 	layout.add_child(HSeparator.new())
 	var title := Label.new()
 	title.text = "Duelo pelo título · Jamile — " + ("Campeão: Kael" if round == 4 else "Desafio liberado" if round == 3 else "Reservado ao vencedor da chave")
@@ -3555,6 +4375,10 @@ func _show_stadium_bracket(finals: GDScript) -> void:
 	back.focus_neighbor_right = back.get_path_to(accept)
 	accept.grab_focus()
 
+## F28: the title passes from Jamile to Kael, and the group reacts. Kael started the
+## journey watching Jamile's final on TV in his room.
+const CHAMPION_LINES := "Jamile: Da última vez, você assistiu à minha final pela TV, do seu quarto. Hoje a cidade inteira assistiu à sua.\n\nJamile: A fita da Liga é sua, campeão. Cuide bem dela.\n\nTyler: Eu falei que ia ser você!\n\nGrampo: O Platyx quer ver a fita de perto.\n\nHeleana: Você foi lá e voltou com todo mundo, filho."
+
 func _present_pending_ending() -> void:
 	var saved: Dictionary = session.snapshot()
 	if saved.checkpoint.get("scene") != "kronasta-estadio-a" or not saved.player.flags.get("campeaoKronasta",false) or saved.player.flags.get("kronastaEndingSeen",false):
@@ -3566,13 +4390,72 @@ func _present_pending_ending() -> void:
 	var view = park
 	view.path.clear()
 	view.paused = true
-	var dialog := _dialog("Campeão de Kronasta", "A arquibancada explode em aplausos. Heleana se levanta, e Tyler ergue a mão para Kael.\n\nJamile: A linha é sua, campeão.", "Ver créditos")
+	if view.ending_presented:return
+	view.ending_presented=true
+	await view.present_championship_victory()
+	if not is_instance_valid(view) or park!=view:return
+	sound.play_event("progress.quest_complete")
+	var broadcast=load("res://scripts/campaign/championship_broadcast.gd").new()
+	broadcast.reduced_motion=preferences.reduced_motion
+	add_child(broadcast)
+	var dialog := _dialog("Jamile", CHAMPION_LINES, "Ver créditos")
 	dialog.confirmed.connect(dialog.queue_free)
+	dialog.confirmed.connect(broadcast.queue_free)
 	dialog.confirmed.connect(_show_kronasta_credits.call_deferred)
-	dialog.popup_centered(Vector2i(640,240))
+	dialog.popup_centered(Vector2i(680,420))
+
+## BIBLIA §13: after the credits, the story closes its arcs once. The Elo stays in the
+## egg chamber (its key broke), Assis accepts Tyler as a person, Heleana goes back to
+## research with her son (and with Retalho, by the branch the player chose). The
+## post-credits hook keeps Tyler's thread open for the sequel.
+static func epilogue_pages(player: Dictionary) -> Array:
+	var flags: Dictionary = player.get("flags", {})
+	var heleana := "Heleana: Vou voltar a pesquisar as Ruínas. Desta vez para entender, não para esconder. Quer vir comigo, filho?\n\nKael: Eu, o Rabbito e a linha inteira."
+	if flags.get("retalhoParceiraHeleana", false):
+		heleana = "Heleana: A Retalho e eu vamos voltar às Ruínas. Desta vez para entender, não para esconder. Vem com a gente, filho?\n\nKael: Eu, o Rabbito e a linha inteira.\n\nA Retalho encosta a rabiola na mão de Heleana."
+	elif flags.get("heleanaLacoKael", false):
+		heleana = "Heleana: Vou voltar a pesquisar as Ruínas. Desta vez para entender, não para esconder. Você e a Retalho vêm comigo?\n\nKael: A gente vai. Ela escolheu esse caminho também."
+	return [
+		["Depois da final", "Kael e Tyler descem uma última vez à câmara do ovo. A chave do Elo continua em pedaços no altar.\n\nKael: O Elo fica aqui. É o lugar dele.\n\nTyler: E sem a chave, ninguém mais estica essa linha à força."],
+		["Ateliê do Sr. Assis", "Sr. Assis: Tyler, passei anos tentando terminar uma coisa que eu comecei. Mas você nunca foi o que faltava em mim.\n\nTyler: Então eu não sou a sua continuação?\n\nSr. Assis: Você é o Tyler. O resto, você escreve."],
+		["Casa de Kael", heleana],
+		["Mais tarde", "No quarto do Tyler, o carretel remendado está sobre a mesa.\n\nUm fio escapa do remendo e se solta mais um pouco, sozinho."],
+	]
+
+func _present_epilogue() -> void:
+	var saved: Dictionary = session.snapshot()
+	if not saved.player.flags.get("kronastaEndingSeen", false) or saved.player.flags.get("kronastaEpilogueSeen", false): return
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+	if session.snapshot().player.flags.get("kronastaEpilogueSeen", false): return
+	flow_busy = true
+	var pages: Array = epilogue_pages(session.snapshot().player)
+	var illustrations := ["elo", "atelie", "casa", "carretel"]
+	var backdrop := TextureRect.new()
+	backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	backdrop.z_index = 79
+	add_child(backdrop)
+	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	for i in pages.size():
+		backdrop.texture = load("res://assets/campaign/epilogue/epilogue-%s.png" % illustrations[i])
+		var page_dialog := _dialog(pages[i][0], pages[i][1], "Continuar" if i < pages.size() - 1 else "Voltar a Kronasta")
+		if illustrations[i] == "atelie":
+			page_dialog.show_portraits = false
+		page_dialog.confirmed.connect(page_dialog.queue_free)
+		page_dialog.canceled.connect(page_dialog.queue_free)
+		page_dialog.popup_centered(Vector2i(660, 340))
+		await page_dialog.tree_exited
+	backdrop.queue_free()
+	flow_busy = false
+	var done: Dictionary = session.snapshot()
+	done.player.flags.kronastaEpilogueSeen = true
+	if _result(session.commit_operation("kronasta-epilogue-v1", done.checkpoint, done.player)): _show_saved.call_deferred()
 
 func _show_kronasta_credits() -> void:
-	var credits := _dialog("Soulmonsters", "CAMPEONATO DE KRONASTA\n\nCriação e desenvolvimento\nEquipe Soulmonsters\n\nObrigado por jogar!", "Voltar à cidade")
+	var credits_text := "CAMPEONATO DE KRONASTA\n\nCriação e desenvolvimento · Equipe Soulmonsters\nMotor · Godot Engine\nFontes · Lilita One, Bangers, Barlow Condensed e Nunito\nÍcones de controle · Kenney Input Prompts\n\nObrigado por jogar!"
+	var credits := _dialog("Soulmonsters", credits_text, "Voltar à cidade")
 	credits.confirmed.connect(func():
 		var saved: Dictionary = session.snapshot()
 		saved.player.flags.kronastaEndingSeen = true
@@ -3580,7 +4463,11 @@ func _show_kronasta_credits() -> void:
 		var result: Dictionary = session.commit_operation("kronasta-ending-v1", {"kind":"world","scene":"quintal","position":[city.x,city.y]}, saved.player)
 		if _result(result):
 			credits.queue_free()
-			_show_saved.call_deferred())
+			_show_saved.call_deferred()
+			_present_epilogue.call_deferred()
+		else:
+			# F28: a failed save keeps the title and the credits; the button works again.
+			credits._closed=false)
 	credits.popup_centered(Vector2i(640,320))
 
 func _request_enamor(ruins: GDScript) -> void:

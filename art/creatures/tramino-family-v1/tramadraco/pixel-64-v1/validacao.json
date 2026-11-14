@@ -1,0 +1,77 @@
+{
+  "sheet": [
+    512,
+    64
+  ],
+  "frames": 8,
+  "frame_sizes": [
+    [
+      64,
+      64
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      64,
+      64
+    ],
+    [
+      64,
+      64
+    ]
+  ],
+  "opaque_counts": [
+    1510,
+    1510,
+    1515,
+    1503,
+    1503,
+    1505,
+    1510,
+    1510
+  ],
+  "alpha_values": [
+    0,
+    255
+  ],
+  "opaque_colors": 12,
+  "durations_ms": [
+    220,
+    100,
+    100,
+    220,
+    180,
+    100,
+    100,
+    180
+  ],
+  "tag": [
+    {
+      "name": "idle-se",
+      "from": 0,
+      "to": 7,
+      "direction": "forward",
+      "color": "#000000ff"
+    }
+  ],
+  "integrated": false,
+  "validation": "Pillow and Aseprite atlas; validate tool not exposed"
+}

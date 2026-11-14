@@ -1,0 +1,97 @@
+{
+  "duration_seconds": 140,
+  "sample_rate": 48000,
+  "type": "edited existing project music; not a new composition",
+  "source": "godot/assets/audio/music/opening-theme-v1/vento-aventura.ogg",
+  "source_segments": [
+    {
+      "at": 0,
+      "until": 16,
+      "source_offset": 0,
+      "gain": 0.22
+    },
+    {
+      "at": 16,
+      "until": 72,
+      "source_offset": 16,
+      "gain": 0.78
+    },
+    {
+      "at": 72,
+      "until": 94,
+      "source_offset": 40,
+      "gain": 0.92
+    },
+    {
+      "at": 94,
+      "until": 110,
+      "source_offset": 8,
+      "gain": 0.4
+    },
+    {
+      "at": 110,
+      "until": 122,
+      "source_offset": 24,
+      "gain": 0.7
+    },
+    {
+      "at": 132,
+      "until": 140,
+      "source_offset": 79.24,
+      "gain": 0.8
+    }
+  ],
+  "markers": [
+    {
+      "at": 0,
+      "event": "contained introduction"
+    },
+    {
+      "at": 16,
+      "event": "beat entry"
+    },
+    {
+      "at": 22,
+      "event": "walking cuts every3.5seconds"
+    },
+    {
+      "at": 50,
+      "event": "panels"
+    },
+    {
+      "at": 72,
+      "event": "duel intensity"
+    },
+    {
+      "at": 94,
+      "event": "portraits breathing room"
+    },
+    {
+      "at": 122,
+      "event": "silence; no music through132"
+    },
+    {
+      "at": 123,
+      "event": "suggested separate roar onset"
+    },
+    {
+      "at": 132,
+      "event": "final chord section"
+    },
+    {
+      "at": 140,
+      "event": "end"
+    }
+  ],
+  "walking_cuts_seconds": [
+    22.0,
+    25.5,
+    29.0,
+    32.5,
+    36.0,
+    39.5,
+    43.0,
+    46.5
+  ],
+  "limitation": "Intro is attenuated existing mix, not an isolated single-instrument stem; final section is the source ending, not a newly composed chord."
+}

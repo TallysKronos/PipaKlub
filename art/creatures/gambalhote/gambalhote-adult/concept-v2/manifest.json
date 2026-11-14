@@ -1,0 +1,21 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-3d4d6d4f-e18b-41f3-abb3-d219e2e0be3c.png",
+  "sha256": "36ee775a06cfb1e011c57b87f237e857bb949be2331aea90a76a4b044515ce29",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "../concept-v1/concept.png: alvo de edição",
+    "../../concept-v1/concept.png: acabamento da criança"
+  ],
+  "decision_status": "approved",
+  "design_approval": "Autor, 2026-11-04: \"Gostei muito de todos por min estariam aprovados mas achei que o ultimo teve um acabamento de luz e sombras na armadura que fugiu do estilo?\" Bebê e jovem aprovados; adulto tem design aceito com ressalva de acabamento. Nova versão de acabamento aguarda conferência.",
+  "production_status": "concept",
+  "integration_status": "not_integrated",
+  "approval_note": "Autor: \"Aprovadissimo\", em 2026-11-04, após conferir o adulto com acabamento 2D manga v2. Aprovação visual do design e acabamento; sem aprovação de nomes, mecânicas ou integração."
+}

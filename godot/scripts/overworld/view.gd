@@ -20,6 +20,7 @@ var campaign_mode := false
 var player := Vector2.ZERO
 var follower := Vector2.ZERO
 var follower_trail: Array[Vector2] = []
+var follower_gap := 1.0 # companheiros 25% maiores desde 12/11/2026
 var path := PackedVector2Array()
 var clock := 0.0
 var actors: Node2D
@@ -62,6 +63,8 @@ var nearby: Dictionary = {}
 var interaction_events: Array = []
 var piece_nodes: Dictionary = {}
 var npc_nodes: Array = []
+var outlined_npc: Node2D
+const InteractionOutline = preload("res://scripts/overworld/interaction_outline.gd")
 var notice := ""
 var notice_until := 0.0
 var grass_distance := 0.0
@@ -97,7 +100,14 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	stairs_drawn.clear()
 	occluders.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
-	RenderingServer.set_default_clear_color(Color.BLACK if model.data.get("forest",{}).get("interior",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
+	# Fora do mapa: mata fechada (verde-noite) nos bairros com moldura de árvores e mar
+	# fundo no porto, em vez de preto puro. Interiores continuam pretos.
+	var outside:=Color.BLACK
+	if not model.data.get("forest",{}).get("interior",false):
+		if model.data.get("forest",{}).get("lava",false):outside=Color("1c0d0a")
+		elif model.data.get("forest",{}).get("harbor",false) and not model.data.get("forest",{}).get("market",false):outside=Color("0b2233")
+		elif model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false):outside=Color("0e2218")
+	RenderingServer.set_default_clear_color(outside if model.data.get("forest",{}).get("interior",false) or model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
 	kits.assign([kit_library.comum])
 	if bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false):
 		kits.append(kit_library.parque.duplicate(true))
@@ -117,6 +127,7 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	path.clear()
 	nearby.clear()
 	piece_nodes.clear()
+	_update_npc_outline({})
 	npc_nodes.clear()
 	interaction_events = model.data.events.duplicate(true)
 	terrain = Node2D.new()
@@ -1740,13 +1751,13 @@ func _build_events() -> void:
 				if event.props.has("storySpriteRegion"):region=event.props.storySpriteRegion
 				list=[{"name":event.name,"image":path,"bounds":region}]
 			if event.props.has("npcIdentity"):
-				list=[{"name":event.name if event.props.get("acao","")=="ruinasDuel" or event.props.get("district","") in ["alto-da-serra","centro","lajes","porto","mirante"] else str(event.props.npcIdentity),"spriteIdentity":_npc_sprite_identity(str(event.props.npcIdentity)),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
+				list=[{"name":event.name if event.props.get("acao","")=="ruinasDuel" or event.props.get("district","") in ["alto-da-serra","centro","lajes","porto","mirante","morro"] else str(event.props.npcIdentity),"spriteIdentity":_npc_sprite_identity(str(event.props.npcIdentity)),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
 			if event.props.get("district","") in ["bambuzal","beira-canal"]:
-				var atlas_path:String="res://assets/npc-ds/"+str(event.props.district)+"-v1/"
+				var atlas_path: String = "res://assets/npc-ds/%s-iso-v2/" % event.props.district
 				var atlas:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(atlas_path+"atlas.json"))
 				for frame:Dictionary in atlas.sprites:
 					if frame.name==event.name and frame.facing=="se":
-						list=[{"name":event.name,"image":atlas_path+"atlas.png","bounds":{"x":frame.bounds[0],"y":frame.bounds[1],"w":frame.bounds[2],"h":frame.bounds[3]}}]
+						list=[{"name":event.name,"image":atlas_path+"atlas.png","directional":atlas_path+str(frame.get("directional", "")),"bounds":{"x":frame.bounds[0],"y":frame.bounds[1],"w":frame.bounds[2],"h":frame.bounds[3]}}]
 
 			var holder := Node2D.new()
 			node.add_child(holder)
@@ -1761,7 +1772,19 @@ func _build_events() -> void:
 				if not identity.is_empty():pixels.setup(sprite,identity,pixels.height_for(identity,.85*Avatar.BODY_SCALE))
 				else:
 					sprite.texture=load(entry.image);sprite.region_enabled=true
-					if event.props.get("district","")=="bambuzal":sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+					var art_path: String = entry.image
+					var directional_path: String = entry.get("directional", art_path.get_base_dir().path_join("direcoes").path_join(art_path.get_file()))
+					if bounds.h in [64, 96] and bounds.w <= 64 and ResourceLoader.exists(directional_path, "Texture2D"):
+						var atlas := load(directional_path) as Texture2D
+						var cell := Vector2(64, bounds.h)
+						if atlas != null and atlas.get_size() == cell * Vector2(4, 2):
+							sprite.texture = atlas
+							bounds = {"x": 192, "y": bounds.h, "w": 64, "h": bounds.h}
+							sprite.set_meta("directional_cell", cell)
+					elif (event.props.has("storySprite") or art_path.ends_with("-idle-eight.png")) and sprite.texture.get_size() == Vector2(256, 192):
+						sprite.set_meta("directional_cell", Vector2(64, 96))
+					if str(entry.image).begins_with("res://assets/npc-ds/") or str(entry.image).begins_with("res://assets/campaign/retalho-mascarada-v1/"):
+						sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 					sprite.region_rect=Rect2(bounds.x,bounds.y,bounds.w,bounds.h)
 					sprite.scale=Vector2.ONE*native_height/float(bounds.h)
 					sprite.offset=Vector2(0,-bounds.h*.5)
@@ -1841,9 +1864,9 @@ func _build_hud() -> void:
 	Hud.fit_footer(footer,hint,83)
 
 func _refresh_positions() -> void:
+	CompanionFollow.orient(companion,avatar.facing)
 	_place_actor(player_root,avatar,player,155 if avatar.mounted else 84)
 	_place_actor(follower_root,companion,follower,42)
-	CompanionFollow.orient(companion,avatar.facing)
 	for actor in npc_nodes:_place_actor(actor.root,actor.visual,actor.point,84)
 	camera.position = model.project(player)
 	_fade_occluders()
@@ -1851,9 +1874,12 @@ func _refresh_positions() -> void:
 func _fade_occluders() -> void:
 	var pair:Array[Dictionary]=[]
 	# Project each actor once, rather than repeat height queries for every tree.
-	for member in [{"point":player,"height":155.0 if avatar.mounted else 84.0},{"point":follower,"height":42.0}]:
+	var members := [{"point":player,"height":155.0 if avatar.mounted else 84.0,"visual":avatar}]
+	if follower_root.visible and companion.visible:
+		members.append({"point":follower,"height":42.0,"visual":companion})
+	for member in members:
 		var at:Vector2=member.point
-		pair.append({"point":at,"body":Rect2(model.project(at)-Vector2(20,member.height),Vector2(40,member.height)),"ground":model.project(at,false).y})
+		pair.append({"point":at,"body":_actor_body(at,member.visual,member.height),"ground":model.project(at,false).y})
 	for node in occluders:
 		if not is_instance_valid(node):continue
 		var art:=node.get_node_or_null("Art") as Sprite2D
@@ -1868,12 +1894,18 @@ func _fade_occluders() -> void:
 			if node.position.y>member.ground and Rect2(node.position+bounds.position,bounds.size).intersects(member.body):covers=true;break
 		art.modulate.a=.45 if covers else 1.0
 
+func _actor_body(point: Vector2, visual: Node2D, height: float) -> Rect2:
+	var raised := model.project(point)
+	if visual is Sprite2D and visual.has_meta("overworld_bounds"):
+		var bounds := CompanionFollow.visible_bounds(visual)
+		return Rect2(raised + bounds.position, bounds.size)
+	return Rect2(raised-Vector2(20,height),Vector2(40,height))
+
 func _place_actor(root: Node2D, visual: Node2D, point: Vector2, height: float) -> void:
 	var ground := model.project(point,false)
-	var raised := model.project(point)
 	var lower := -INF
 	var upper := INF
-	var body := Rect2(raised-Vector2(20,height),Vector2(40,height))
+	var body := _actor_body(point,visual,height)
 	# Large isometric props sort at their front footprint corner. A person can
 	# stand in front of either visible wall before reaching that corner's Y.
 	# Shift only the sort root; compensate its art so the feet never move.
@@ -1956,6 +1988,29 @@ func _physics_process(delta: float) -> void:
 			nearby = event
 			break
 	hint.text = notice if clock < notice_until else "E â€¢ " + nearby.name if not nearby.is_empty() else "WASD / setas â€¢ caminhar   Clique â€¢ ir atÃ© lÃ¡   Roda â€¢ zoom"
+	if not campaign_mode: _update_npc_outline(nearby if clock >= notice_until else {})
+
+func _update_npc_outline(event: Dictionary) -> void:
+	var target: Node2D
+	if event.get("type", "") == "npc" and event.props.get("acao", "") != "parkBoss":
+		var event_id := int(event.id)
+		if is_instance_valid(outlined_npc) and int(outlined_npc.get_parent().get_meta("event", {}).get("id", -1)) == event_id:
+			return
+		for actor: Dictionary in npc_nodes:
+			if int(actor.root.get_meta("event", {}).get("id", -1)) == event_id:
+				target = actor.visual
+				break
+	if outlined_npc == target:
+		return
+	if is_instance_valid(outlined_npc):
+		for child in outlined_npc.get_children():
+			if child is Sprite2D:
+				InteractionOutline.set_active(child, false)
+	outlined_npc = target
+	if is_instance_valid(outlined_npc):
+		for child in outlined_npc.get_children():
+			if child is Sprite2D:
+				InteractionOutline.set_active(child, true)
 
 func _adopt_player_step(next:Vector2) -> void:
 	if next==player:return
@@ -1966,17 +2021,42 @@ func _adopt_player_step(next:Vector2) -> void:
 func _follow_recorded_path(delta: float) -> void:
 	# Follow accepted footsteps; mounted corner recovery stays on walkable paths.
 	var previous:=follower
-	follower=CompanionFollow.advance(follower,follower_trail,delta,8.5 if avatar.mounted else 6.3,.8,model.clear_segment)
+	follower=CompanionFollow.advance(follower,follower_trail,delta,8.5 if avatar.mounted else 6.3,follower_gap,model.clear_segment)
 	# At a tight corner, floating interpolation can leave the follower unable to
 	# enter the next recorded segment. Recover through the same walkable graph.
-	if avatar.mounted and follower==previous and follower.distance_to(player)>1:
+	if avatar.mounted and follower==previous and follower.distance_to(player)>maxf(1.0,follower_gap):
 		var recovery:PackedVector2Array=model.path_to(follower,player)
 		if not recovery.is_empty():
 			follower_trail.assign(recovery)
-			follower=CompanionFollow.advance(follower,follower_trail,delta,8.5,.8,model.clear_segment)
+			follower=CompanionFollow.advance(follower,follower_trail,delta,8.5,follower_gap,model.clear_segment)
+	CompanionFollow.animate(companion,delta,previous.distance_to(follower))
+
+## Face the speaking actor toward Kael in screen space, including isometric diagonals.
+func _face_interaction_npcs(event: Dictionary) -> void:
+	if event.get("type", "") != "npc":
+		return
+	var event_id: int = int(event.id)
+	for actor: Dictionary in npc_nodes:
+		if int(actor.root.get_meta("event", {}).get("id", -1)) != event_id:
+			continue
+		for child in actor.visual.get_children():
+			var sprite := child as Sprite2D
+			if sprite == null:
+				continue
+			var toward := model.project(player, false) - model.project(actor.point, false) - Vector2(sprite.position.x, 0)
+			if toward.is_zero_approx():
+				continue
+			if sprite.has_meta("pixel_npc"):
+				preload("res://scripts/npc_pixel_sprite.gd").face_motion(sprite, toward)
+			elif sprite.has_meta("directional_cell"):
+				var cell: Vector2 = sprite.get_meta("directional_cell")
+				var direction := Avatar.DIRECTIONS.find(Avatar.facing_for(toward))
+				sprite.region_rect = Rect2(Vector2(direction % 4, floori(direction / 4.0)) * cell, cell)
+		return
 
 func interact() -> void:
 	if nearby.is_empty(): return
+	_face_interaction_npcs(nearby)
 	interaction_requested.emit(nearby)
 	if nearby.type == "piece" and nearby.get("asset", "") == "bau":
 		var key := area_id+":"+str(nearby.piece_id)

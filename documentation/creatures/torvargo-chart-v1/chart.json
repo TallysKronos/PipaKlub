@@ -1,0 +1,79 @@
+{
+  "family_id": "torvargo",
+  "scope": "Linha com três pré-formas propostas e adulto existente; sem regras de jogo ou integração.",
+  "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+  "nodes": [
+    {
+      "id": "torvargo-baby",
+      "name": "Torvargo — Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Farejar",
+      "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/torvargo/baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/torvargo/baby/concept-v1/brief.md"
+    },
+    {
+      "id": "torvargo-child",
+      "name": "Torvargo — Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Empurrar",
+      "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/torvargo/child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/torvargo/child/concept-v1/brief.md"
+    },
+    {
+      "id": "torvargo-young",
+      "name": "Torvargo — Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Abrir caminho",
+      "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/torvargo/young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/torvargo/young/concept-v1/brief.md"
+    },
+    {
+      "id": "torvargo",
+      "name": "Torvargo",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Javali-aríete · Romper",
+      "story": "Abre um caminho pela barreira, mas precisa reconhecer o que há atrás dela antes de avançar. A marca de um golpe certo é a passagem que permanece de pé.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/torvargo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/torvargo/concept-v1/brief.md",
+      "approval_note": "Base mantida pelo pedido de criar pré-evoluções; sem nova declaração de integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "torvargo-baby",
+      "to": "torvargo-child",
+      "kind": "reweaving",
+      "reason": "Passa de farejar para empurrar. Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "torvargo-child",
+      "to": "torvargo-young",
+      "kind": "reweaving",
+      "reason": "Passa de empurrar para abrir caminho. Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "torvargo-young",
+      "to": "torvargo",
+      "kind": "reweaving",
+      "reason": "Passa de abrir caminho para romper. Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+      "decision_status": "proposed"
+    }
+  ]
+}

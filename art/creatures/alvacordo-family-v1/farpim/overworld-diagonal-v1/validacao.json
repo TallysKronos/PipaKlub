@@ -1,0 +1,45 @@
+{
+  "canvas": [
+    80,
+    80
+  ],
+  "pivotProposed": [
+    40,
+    65
+  ],
+  "entries": [
+    {
+      "id": "farpim",
+      "view": "frente-sw",
+      "bboxExclusive": [
+        25,
+        34,
+        55,
+        66
+      ],
+      "occupiedSize": [
+        30,
+        32
+      ],
+      "opaqueColors": 18,
+      "opaquePixels": 532
+    },
+    {
+      "id": "farpim",
+      "view": "costas-nw",
+      "bboxExclusive": [
+        25,
+        34,
+        55,
+        66
+      ],
+      "occupiedSize": [
+        30,
+        32
+      ],
+      "opaqueColors": 15,
+      "opaquePixels": 511
+    }
+  ],
+  "inGameValidated": false
+}

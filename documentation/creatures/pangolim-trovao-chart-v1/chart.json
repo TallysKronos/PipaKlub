@@ -1,0 +1,106 @@
+{
+  "family_id": "pangolim-trovao",
+  "scope": "Bebê, criança, jovem e dois adultos alternativos definidos em estágio pelo autor; sem integração.",
+  "nodes": [
+    {
+      "id": "pangolim-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Recolhe-se numa cápsula de escamas e retém pequenas cargas.",
+      "story": "Recolhe-se numa cápsula de escamas e retém pequenas cargas.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-baby/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovados\", em 2026-11-04, após apresentação de bebê, criança, nova jovem e dois adultos alternativos. Aprovação visual dos cinco designs; nomes e mecânicas seguem propostas."
+    },
+    {
+      "id": "pangolim-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Desenrola o corpo e testa pequenas descargas entre as garras.",
+      "story": "Desenrola o corpo e testa pequenas descargas entre as garras.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-child/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovados\", em 2026-11-04, após apresentação de bebê, criança, nova jovem e dois adultos alternativos. Aprovação visual dos cinco designs; nomes e mecânicas seguem propostas."
+    },
+    {
+      "id": "pangolim-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Ganha alcance e controle sem abrir a proteção: aprende a conduzir carga até as mãos.",
+      "story": "Ganha alcance e controle sem abrir a proteção: aprende a conduzir carga até as mãos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-young/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovados\", em 2026-11-04, após apresentação de bebê, criança, nova jovem e dois adultos alternativos. Aprovação visual dos cinco designs; nomes e mecânicas seguem propostas."
+    },
+    {
+      "id": "pangolim-adult-bastiao",
+      "name": "Adulto quadrúpede — Bastião (proposta)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "A rota quadrúpede concentra peso, apoio e condução pelas garras; pequenos leques orientam a descarga.",
+      "story": "A rota quadrúpede concentra peso, apoio e condução pelas garras; pequenos leques orientam a descarga.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-adult-bastiao/concept-v1/concept.png",
+      "brief": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-adult-bastiao/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovados\", em 2026-11-04, após apresentação de bebê, criança, nova jovem e dois adultos alternativos. Aprovação visual dos cinco designs; nomes e mecânicas seguem propostas."
+    },
+    {
+      "id": "pangolim-adult-dragao",
+      "name": "Adulto dragão — Fulguar (nome proposto)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "A rota erguida abre as escamas em grandes leques e redireciona a carga entre condutores.",
+      "story": "A rota erguida abre as escamas em grandes leques e redireciona a carga entre condutores.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-adult-dragao/concept-v1/concept.png",
+      "brief": "../../../art/creatures/pangolim-trovao-family-v1/pangolim-adult-dragao/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovados\", em 2026-11-04, após apresentação de bebê, criança, nova jovem e dois adultos alternativos. Aprovação visual dos cinco designs; nomes e mecânicas seguem propostas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "pangolim-baby",
+      "to": "pangolim-child",
+      "kind": "reweaving",
+      "reason": "Desenrola o corpo e testa pequenas descargas entre as garras.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "pangolim-child",
+      "to": "pangolim-young",
+      "kind": "reweaving",
+      "reason": "Ganha alcance e controle sem abrir a proteção: aprende a conduzir carga até as mãos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "pangolim-young",
+      "to": "pangolim-adult-bastiao",
+      "kind": "reweaving",
+      "reason": "A rota quadrúpede concentra peso, apoio e condução pelas garras; pequenos leques orientam a descarga.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "pangolim-young",
+      "to": "pangolim-adult-dragao",
+      "kind": "reweaving",
+      "reason": "A rota erguida abre as escamas em grandes leques e redireciona a carga entre condutores.",
+      "decision_status": "proposed"
+    }
+  ]
+}

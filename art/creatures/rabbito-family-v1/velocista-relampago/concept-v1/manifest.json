@@ -1,0 +1,32 @@
+{
+  "id": "rabbito-velocista-relampago",
+  "family_id": "rabbito",
+  "name": "Velocista Relâmpago (proposta)",
+  "date": "2026-11-07",
+  "stage": 4,
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation_status": "not_integrated",
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-c5cfd1a2-4267-48e0-8439-1ce020b2af48.png",
+  "sha256": "810043bc3db51a2abd742d532adcd27ad4b32a1ec7d421f0ead2a02047047a03",
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "../../../../soulgen/keys/rabbito/color-rig-v2/concept.png",
+      "role": "Identidade da base própria"
+    },
+    {
+      "path": "../../arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento próprio aprovado; não copiar anatomia"
+    }
+  ],
+  "external_reference": {
+    "path": "../../../../../documentation/creatures/rabbito-velocista-relampago-v1/referencia-fornecida.png",
+    "role": "Estudo visual fornecido pelo autor; não usado como input de geração; crédito visível na imagem, autoria não verificada."
+  },
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha_extrema": null
+}

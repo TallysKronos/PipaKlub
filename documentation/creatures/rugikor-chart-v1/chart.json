@@ -1,0 +1,74 @@
+{
+  "family_id": "rugikor",
+  "family_name": "Rugikor",
+  "scope": "Onis do Vento Bravio. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "brasim",
+      "name": "Brasim",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "roscapata",
+      "name": "Roscapata",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "jubarco",
+      "name": "Jubarco",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/rugikor.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "rugikor",
+      "name": "Rugikor",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/concept-v3/rugikor.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Onça quadrúpede com juba de papel em meia-lua."
+    }
+  ],
+  "edges": [
+    {
+      "from": "brasim",
+      "to": "roscapata",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "roscapata",
+      "to": "jubarco",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "jubarco",
+      "to": "rugikor",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ extends RefCounted
 ## and authored map rewards, using the campaign's atomic receipts.
 const Checkpoint=preload("res://scripts/campaign/park_checkpoint.gd")
 const Story=preload("res://scripts/campaign/kronasta_story.gd")
-const NAMES={"moedas":"moedas","papel-seda":"papel de seda","vareta-bambu":"vareta de bambu","cola-reparo":"cola de reparo","linha-encerada":"linha encerada","pista-caderno-heleana-1":"página do caderno"}
+const NAMES={"kit-remendo":"Kit de Remendo","moedas":"moedas","papel-seda":"papel de seda","vareta-bambu":"vareta de bambu","cola-reparo":"cola de reparo","linha-encerada":"linha encerada","pista-caderno-heleana-1":"página do caderno","pa-do-moinho":"pá do moinho","pedra-de-brasa":"pedra de brasa","flor-de-gelo":"flor de gelo","perola-das-mares":"pérola das marés"}
 var session: Node
 func _init(local_session: Node) -> void: session=local_session
 
@@ -17,7 +17,10 @@ func travel(destination: String) -> Dictionary:
 	var saved: Dictionary=session.snapshot()
 	var source: String=saved.get("checkpoint",{}).get("scene","")
 	if saved.get("checkpoint",{}).get("kind","")!="world" or not available(saved.player): return {"status":"wrong_step"}
-	if source!="quintal" and not Checkpoint.MAPS.has(source) and not preload("res://scripts/campaign/morro.gd").maps().has(source): return {"status":"wrong_step"}
+	# The Câmara do Elo closes behind Kael until the Eremor falls (no city map either).
+	if source=="kronasta-coracao-d" and not saved.player.get("flags",{}).get("enamorDerrotado",false): return {"status":"wrong_step"}
+	# The pause map opens indoors too (ateliê, loja, casa): those rooms are in the Vila.
+	if source not in ["quintal","professor-home","kite-shop","kael-home"] and not Checkpoint.MAPS.has(source) and not preload("res://scripts/campaign/morro.gd").maps().has(source): return {"status":"wrong_step"}
 	if not preload("res://scripts/campaign/kronasta_atlas.gd").can_travel(destination,saved.player):return {"status":"wrong_step"}
 	if destination in ["park-trail","park-clearing","park-veredas"] and not Story.park_access(saved.player,destination):return {"status":"wrong_step"}
 	if destination=="parque-patio-liga" and not load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved.player):return {"status":"wrong_step"}
@@ -54,6 +57,26 @@ func collect(id: String, point: Vector2) -> Dictionary:
 	if not authored_materials(scene) or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
 	var model=Checkpoint.model_for(scene)
 	if not point.is_finite() or not model.point_walkable(point): return {"status":"wrong_step"}
+	# Baús dos mapas novos (peça "bau" com item e quantidade): abrem uma vez e ficam abertos.
+	if id.begins_with("piece-"):
+		for piece in model.data.pieces:
+			if str(int(piece.id))!=id.trim_prefix("piece-") or piece.asset!="bau" or not piece.props.has("item"): continue
+			var chest_id: String="parque:"+Checkpoint.MAPS[scene]+":"+str(int(piece.id))
+			if chest_id in saved.player.get("openedChests",[]): return {"status":"already_applied"}
+			var spot:=Vector2(piece.u+.5,piece.v+.5)
+			if point.distance_to(spot)>1.9 or absf(model.height_at(point)-model.height_at(spot))>=.25: return {"status":"wrong_step"}
+			var item: String=str(piece.props.item)
+			var count: int=int(str(piece.props.get("quantidade","1")))
+			if not NAMES.has(item) or count<1 or count>100: return {"status":"wrong_step"}
+			if item=="moedas": saved.player.coins+=count
+			else: saved.player.inventory[item]=saved.player.inventory.get(item,0)+count
+			var opened: Array=saved.player.get("openedChests",[])
+			opened.append(chest_id)
+			saved.player.openedChests=opened
+			var stored: Dictionary=session.commit_operation("park-chest-"+Checkpoint.MAPS[scene]+"-"+id,saved.checkpoint,saved.player)
+			if stored.status=="ok": stored.reward="%d %s"%[count,NAMES[item]]
+			return stored
+		return {"status":"wrong_step"}
 	for event in model.data.events:
 		if str(int(event.id))!=id or event.type!="item": continue
 		var receipt: String="park-item-"+Checkpoint.MAPS[scene]+"-"+id
@@ -88,11 +111,24 @@ static func rest_events(area: String, model) -> Array:
 static func objective(player: Dictionary, scene: String) -> String:
 	if Checkpoint.region_of(scene)=="palafitas" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"palafitas"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"palafitas")
 	if scene.begins_with("kronasta-pantano-") and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) or scene.begins_with("kronasta-palafitas-"):return load("res://scripts/campaign/retalho_trust.gd").objective(player)
-	if scene=="kronasta-industrial-d" and Story.current_beat(player).get("id","") in ["galpao","gollia-bando"]:return Story.current_beat(player).text
+	if scene=="kronasta-industrial-d" and Story.current_beat(player).get("id","") in ["galpao","gollia-bando"]:return Story.objective(player)
 	if scene=="kronasta-industrial-d":return preload("res://scripts/campaign/warehouse_story.gd").objective(player)
 	if scene=="kronasta-bosque-d":return "Retalho recuou. Guarde a pista do nó de expedição e volte pela trilha." if player.get("flags",{}).get("retalhoBosqueVencido",false) else "Procure Retalho na clareira elevada · Nv.22. O mato dos desvios é opcional."
+	# A conquered place with the story elsewhere points to the next step (F25/F33).
+	var beat:Dictionary=Story.current_beat(player)
+	var away:bool=not beat.is_empty() and str(beat.get("place",""))!=Checkpoint.region_of(scene) and not (Checkpoint.is_bosque(scene) and beat.get("place","")=="bosque")
+	# The Bosque keeps its exploration hints in the early acts; a conquered district always
+	# points onwards (after Dona Zulmira, the Caverna do Mural).
+	var conquered:bool=Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"] and preload("res://scripts/campaign/district_rules.gd").completed(player,Checkpoint.region_of(scene))
+	var clareira:bool=player.get("flags",{}).get("bosqueClareiraDescoberta",false)
+	if away and (conquered or (Checkpoint.is_bosque(scene) and (clareira or int(beat.get("act",0))>=4))):
+		return "Próximo passo · "+Story.objective(player)+" Use o mapa de Kronasta (M)."
 	if Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"]:return preload("res://scripts/campaign/district_campaign.gd").objective(player,Checkpoint.region_of(scene))
-	if not Checkpoint.is_bosque(scene): return Story.region_objective(player,scene)
+	if not Checkpoint.is_bosque(scene):
+		var local:String=Story.region_objective(player,scene)
+		# Nothing to do here and the story is elsewhere: show the next step (F25).
+		if local.strip_edges().is_empty() and away and int(beat.get("act",0))>=4:return "Próximo passo · "+Story.objective(player)+" Use o mapa de Kronasta (M)."
+		return local
 	# The Trovareta storm (act 4) overrides the Bosque's exploration hints.
 	if Story.current_beat(player).get("id","")=="trovareta": return Story.current_beat(player).text
 	if preload("res://scripts/campaign/park_training.gd").needs_rest(player): return "Seu parceiro precisa descansar. Há bancos na Clareira do Marco."

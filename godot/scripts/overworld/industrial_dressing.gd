@@ -10,6 +10,16 @@ static func cargo(root,a:Vector2,b:Vector2,c:Vector2,d:Vector2,z:float,style:Str
  var lift:=Vector2(0,z)
  if simple:
   panel(root,[d-lift,c-lift,c,d],Color("7b9297"));panel(root,[c-lift,b-lift,b,c],Color("60747a"));panel(root,[a-lift,b-lift,c-lift,d-lift],Color("a3b5b5"));return
+ if style=="armario":
+  panel(root,[d-lift,c-lift,c,d],Color("627e82"))
+  panel(root,[c-lift,b-lift,b,c],Color("4c6269"))
+  panel(root,[a-lift,b-lift,c-lift,d-lift],Color("889d9d"))
+  for t in [.27,.52,.77]:
+   var seam:=d.lerp(c,t)
+   S.line(root,PackedVector2Array([seam-Vector2(0,z-4),seam-Vector2(0,4)]),2,INK)
+   var handle:=d.lerp(c,t-.05)-Vector2(0,z*.44)
+   S.line(root,PackedVector2Array([handle,handle+Vector2(0,7)]),3,Color("d5bf8b"))
+  return
  if style in ["tambor","carretel"]:
   for t in [.28,.72]:
    var center:Vector2=d.lerp(b,t).lerp((a+c)*.5,.35)
@@ -82,6 +92,34 @@ static func building(root,a:Vector2,b:Vector2,c:Vector2,d:Vector2,z:float,style:
  panel(root,[p+Vector2(4,13),p+Vector2(26,2),p+Vector2(26,14),p+Vector2(4,25)],Color("3b555e"))
  # The illustrated facade already owns its canopy, emblem and downpipe.
  return
+static func perimeter_gardens(view) -> void:
+ var model=view.model
+ # Landscape the rear retaining strip. Keep all roots on blocked wall cells
+ # and leave the front silhouette, stairs and exits open.
+ var kinds:=["arvore-florida","arvore-b","arvore-a"]
+ for i in [0,1,2,3,4,5]:
+  var cell:=Vector2i(5+i*6,2)
+  if model.cell_at(cell).material!="rocha":continue
+  var point:=Vector2(cell)+Vector2(.5,.5)
+  var art:=Sprite2D.new()
+  art.texture=load("res://assets/overworld/kits/comum/pecas/"+kinds[i%3]+".png")
+  if art.texture==null:continue
+  var factor:=96.0/art.texture.get_height()
+  art.centered=false
+  art.scale=Vector2.ONE*factor
+  art.position=model.project(point)-Vector2(art.texture.get_width()*factor*.5,132)
+  view.actors.add_child(art)
+  for offset in [-1,1]:
+   var bed_cell:=cell+Vector2i(offset,0)
+   if model.cell_at(bed_cell).material!="rocha":continue
+   var bed:=Sprite2D.new()
+   var variant:="a" if offset<0 else "b"
+   bed.texture=load("res://assets/overworld/kits/parque/decalques/arbusto-baixo-"+variant+".png")
+   if bed.texture==null:continue
+   bed.position=model.project(Vector2(bed_cell)+Vector2(.5,.5))-Vector2(0,36)
+   bed.offset=Vector2(0,-bed.texture.get_height()*.4)
+   view.actors.add_child(bed)
+
 static func yard(view) -> void:
  # Flat markings have no blocking silhouette and retain every junction's visibility.
  var model=view.model
@@ -108,6 +146,15 @@ static func decal(view,at:Vector2) -> Node2D:
 static func warehouse(view) -> void:
  # Floor-only language: loading lane and containment workspace, not magical seals.
  var model=view.model
+ for stairs:Dictionary in model.data.forest.get("stairs",[]):
+  var v:=float(stairs.v+stairs.length)+.55
+  for column in int(stairs.width)*2:
+   if column%2!=0:continue
+   var point:=Vector2(float(stairs.u)+float(column)*.5+.16,v)
+   if not model.point_walkable(point):continue
+   var root:=decal(view,point)
+   var segment:=PackedVector2Array([model.project(point),model.project(point+Vector2(.53,.24))])
+   S.line(root,segment,4,Color("cbb170"))
  for at in [Vector2(21,16),Vector2(29,16),Vector2(21,24),Vector2(29,24)]:
   var root:=decal(view,at)
   var h:float=model.height_at(at)*64+.2
@@ -121,3 +168,22 @@ static func warehouse(view) -> void:
   var points:=[S.iso(at,h),S.iso(at+Vector2(1,0),h),S.iso(at+Vector2(1,1),h),S.iso(at+Vector2(0,1),h)]
   panel(root,points,Color("6e8382"))
   for t in [.25,.5,.75]:S.line(root,PackedVector2Array([points[0].lerp(points[1],t),points[3].lerp(points[2],t)]),1,INK)
+ if str(model.data.id)=="kronasta-industrial-d":
+  # Painted loading rectangles frame the existing cargo footprints.
+  loading_zone(view,Vector2(18.5,26.5),Vector2(24.5,30.5),Color("d2aa5e"))
+  loading_zone(view,Vector2(4.5,5.5),Vector2(10.5,10.5),Color("b99553"))
+  loading_zone(view,Vector2(25.5,5.5),Vector2(30.5,9.5),Color("b99553"))
+
+static func loading_zone(view,start:Vector2,end:Vector2,color:Color) -> void:
+ var model=view.model
+ var corners:=[start,Vector2(end.x,start.y),end,Vector2(start.x,end.y)]
+ var root:=decal(view,start)
+ for i in corners.size():
+  var a:Vector2=corners[i]
+  var b:Vector2=corners[(i+1)%corners.size()]
+  var count:=ceili(a.distance_to(b))
+  for dash in count:
+   var p:Vector2=a.lerp(b,float(dash)/count)
+   var q:Vector2=a.lerp(b,(float(dash)+.66)/count)
+   if model.height_at(p)!=model.height_at(q):continue
+   S.line(root,PackedVector2Array([model.project(p)-Vector2(0,.5),model.project(q)-Vector2(0,.5)]),3,color)

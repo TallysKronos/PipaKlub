@@ -38,6 +38,9 @@ static func ellipsis(text: String, font: Font, font_size: int, width: float) -> 
 static func portrait(texture: Texture2D, art_id: String) -> AtlasTexture:
 	if portraits.is_empty(): portraits = JSON.parse_string(FileAccess.get_file_as_string(ROOT + "portrait-regions.json"))
 	var region: Array = portraits.get(art_id, [0, 0, 256, 256])
+	# Formas evoluídas (arte provisória de um quadro): o retrato é a imagem inteira.
+	if not portraits.has(art_id) and texture != null and preload("res://scripts/campaign/evolution.gd").form(art_id).has("source"):
+		region = [0, 0, texture.get_width(), texture.get_height()]
 	var result := AtlasTexture.new()
 	result.atlas = texture
 	result.region = Rect2(region[0], region[1], region[2], region[3])
@@ -88,7 +91,7 @@ static func facing_flip(id:String, x:float, target_x:float) -> bool:
 	if id.begins_with("mormaco-"):return x<target_x
 	if id.begins_with("rascunho-"):return x<target_x
 	if id in ["pipa-dragao-desatada","eremor"]:return x<target_x
-	return id in ["rabbito","nozinho","lacertubo","doberman-c","platyx-draft","retalho-original"] and x>target_x
+	return id in ["rabbito","nozinho","lacertubo","doberman-c","platyx-draft","retalho-original","trovareta"] and x>target_x
 
 static func live_sprite(canvas: CanvasItem, texture: Texture2D, id: String, frame: Dictionary, center: Vector2, extent: float, tint: Color = Tokens.UNTINTED, projection: Vector2 = Vector2.ONE, flip_horizontal:bool=false) -> void:
 	if sprite_bounds.is_empty(): sprite_bounds = JSON.parse_string(FileAccess.get_file_as_string(ROOT + "sprite-bounds.json"))

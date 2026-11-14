@@ -1,0 +1,31 @@
+{
+  "id": "azulineo",
+  "name": "Azulíneo",
+  "stage": "III · jovem · velocidade",
+  "source": "exec-528b1933-72b2-41ea-befc-9a75acdd21eb.png",
+  "file": "azulineo/concept-pipa-v3/concept.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGBA",
+  "alpha": [
+    0,
+    254
+  ],
+  "sha256": "346152a276dabb86fb328c1db6e2f4040b1c0801be5d008b444336f34ab38da4",
+  "tool": "image_gen integrada",
+  "status": "concept visual aprovado pelo autor; sem rig ou integração",
+  "prompt": "prompt.txt",
+  "generation_references": [
+    "art/soulgen/keys/azulao/color-rig-v2/concept.png",
+    "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png",
+    "art/soulgen/campaign-redesigns-v1/azulfazo/concept-v1/opcoes.png"
+  ],
+  "review": "../../lote-pipa-v3/REVISAO.md",
+  "visualApproval": {
+    "date": "2026-11-03",
+    "statement": "Gostei aprovados",
+    "scope": "design visual deste concept"
+  }
+}

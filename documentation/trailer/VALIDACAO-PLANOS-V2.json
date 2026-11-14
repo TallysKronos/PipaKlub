@@ -1,0 +1,62 @@
+{
+  "shots": [
+    {
+      "scene": "park-trail",
+      "partner": "farpim",
+      "returncode": 0,
+      "ready": true,
+      "log": "tmp/trailer-v2/planos/farpim.log"
+    },
+    {
+      "scene": "kronasta-bosque-a",
+      "partner": "gambalhote-baby",
+      "returncode": 0,
+      "ready": true,
+      "log": "tmp/trailer-v2/planos/gambalhote-baby.log"
+    },
+    {
+      "scene": "planicie-d",
+      "partner": "papisco",
+      "returncode": 0,
+      "ready": true,
+      "log": "tmp/trailer-v2/planos/papisco.log"
+    },
+    {
+      "scene": "caverna-c",
+      "partner": "vertim",
+      "returncode": 0,
+      "ready": true,
+      "log": "tmp/trailer-v2/planos/vertim.log"
+    },
+    {
+      "scene": "vulcao-a",
+      "partner": "trincaguarda",
+      "returncode": 0,
+      "ready": true,
+      "log": "tmp/trailer-v2/planos/trincaguarda.log"
+    },
+    {
+      "scene": "serra-gelada-a",
+      "partner": "urso-polar-young",
+      "returncode": 0,
+      "ready": true,
+      "log": "tmp/trailer-v2/planos/urso-polar-young.log"
+    },
+    {
+      "scene": "abismo-b",
+      "partner": "capivara-boia",
+      "returncode": 0,
+      "ready": true,
+      "log": "tmp/trailer-v2/planos/capivara-boia.log"
+    },
+    {
+      "scene": "kronasta-palafitas-b",
+      "partner": "alvacordo",
+      "returncode": 0,
+      "ready": true,
+      "log": "tmp/trailer-v2/planos/alvacordo.log"
+    }
+  ],
+  "failures": 0,
+  "scope": "Headless scene/setup smoke test only; no footage recorded, no visual route review"
+}

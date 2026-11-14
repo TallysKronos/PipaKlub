@@ -39,7 +39,10 @@ func _initialize()->void:
 	check(session.checkpoint(CP.make("kronasta-palafitas-a",CP.spawn("kronasta-palafitas-a"),CP.SPACE),player).status=="ok","fixture ready")
 	var service:=Service.new(session)
 	check(service.start("palafitas-1",Vector2.INF).status=="wrong_step","invalid location rejected")
-	check(service.start("palafitas-5",Vector2(26.5,12.5)).status=="wrong_step","cannot skip opponents")
+	var final_stage:=Service.stage("palafitas-5")
+	var final_point:=Vector2(final_stage.point[0]+.5,final_stage.point[1]+.5)
+	check(service.start("palafitas-5",final_point).status=="wrong_step","cannot skip opponents")
+	check(not CP.model_for(final_stage.scene).path_to(CP.spawn(final_stage.scene), final_point).is_empty(),"dock entrance reaches Caio")
 	for i in 5:
 		var id:="palafitas-"+str(i+1)
 		var stage:=Service.stage(id)
