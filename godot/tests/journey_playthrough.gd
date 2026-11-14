@@ -187,6 +187,10 @@ func settle_room() -> void:
 		if is_instance_valid(view.room) and view.room.can_walk and not view.flow_busy and not is_instance_valid(view.scene_loading): return
 		for dialog in get_nodes_in_group("manga_dialogue"):
 			if dialog.is_visible_in_tree() and dialog.cancel_button_text.is_empty(): dialog.confirmed.emit()
+		# frame() congela as telas; a revelação da alma (soul_reveal.gd, 14/11) precisa avançar
+		# até o fim para mostrar o botão, então o teste a avança à mão, como faz com o resto.
+		for reveal in view.find_children("*", "Control", true, false):
+			if reveal.get("after_frames") != null and not reveal.finished: reveal._process(1.0 / 30)
 		# The birth screen unlocks "Conhecer meu parceiro" only with window focus,
 		# which a virtual display never grants.
 		var meet := button(view, "Conhecer meu parceiro")

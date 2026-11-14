@@ -113,11 +113,17 @@ func run() -> void:
 			root.size = viewport_size
 			await process_frame
 			check(ritual.size.x > 0 and ritual.size.y > 0, "ritual cabe em " + str(viewport_size))
-		ritual.elapsed = 6.8
-		await capture("02-ritual")
-		ritual.elapsed = 8.5
-		await process_frame
-		check(ritual.creature.texture is AtlasTexture, "revelação usa o spritesheet")
+		# O ritual usa a revelação da alma (soul_reveal.gd, 14/11): selado até OPEN, aberto depois.
+		var reveal: Node = null
+		for child in ritual.get_children():
+			if child.get("after_frames") != null: reveal = child
+		check(is_instance_valid(reveal), "ritual monta a revelação da alma")
+		if is_instance_valid(reveal):
+			reveal.elapsed = 2.5
+			await capture("02-ritual")
+			reveal.elapsed = 3.6
+			await process_frame
+			check(reveal.creature.texture is AtlasTexture, "revelação usa o spritesheet")
 		await capture("04-revelacao")
 		ritual.skip()
 	check(app.last_scene_key == "page:EVOLUÇÃO CONCLUÍDA!", "pular mostra o resultado")
