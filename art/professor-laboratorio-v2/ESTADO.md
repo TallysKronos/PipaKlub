@@ -10,7 +10,7 @@
 
 ## Interior
 
-A maquete foi ampliada para 13 × 7,6 células. O [quadro-chave interno](interior/ENTREGA-ETAPA-2.md) está pronto para aprovação, com comparativo, checklist e teste de convivência. A [planta por zonas](interior/planta.png) documenta as medidas para a montagem.
+A maquete foi ampliada para 13 × 7,6 células. O [quadro-chave interno](interior/ENTREGA-ETAPA-2.md) foi recortado em [22 peças de montagem](interior/kit/README.md) com remontagem validada. A próxima etapa é integrar o kit à cena professor-home, usando a [planta por zonas](interior/planta.png) para calibrar acessos e colisões.
 
 ## Pendências do pedido geral
 

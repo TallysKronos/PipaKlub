@@ -1,7 +1,8 @@
 extends SceneTree
 ## Etapa 3: recortes sem reamostragem do quadro-chave aprovado.
-const BASE := "res://../art/professor-laboratorio-v2/fachada/"
-const DEST := BASE+"kit/"
+var base := "res://../art/professor-laboratorio-v2/fachada/"
+var dest := base + "kit/"
+var canvas_size := Vector2i(768, 576)
 var parts:Array=[]
 
 func _initialize() -> void:
@@ -10,7 +11,7 @@ func _initialize() -> void:
 func part(id:String,label:String,polygon:Array,cells:Array,anchor:Array,z:float=0) -> void:
 	var poly:=PackedVector2Array()
 	for xy in polygon:poly.append(Vector2(xy[0],xy[1]))
-	parts.append({"id":id,"label":label,"mask":poly,"footprint_cells":cells,"ground_anchor_cells":anchor,"support_height_px":z,"image":Image.create(768,576,false,Image.FORMAT_RGBA8),"pixels":0})
+	parts.append({"id":id,"label":label,"mask":poly,"footprint_cells":cells,"ground_anchor_cells":anchor,"support_height_px":z,"image":Image.create(canvas_size.x,canvas_size.y,false,Image.FORMAT_RGBA8),"pixels":0})
 
 func canvas_anchor(a:Array,z:float) -> Vector2i:
 	var u:float=a[0]-.5
@@ -44,23 +45,23 @@ func definitions() -> void:
 	part("balizador-b","Balizador central",[[289,413],[304,410],[307,443],[301,453],[289,449]],[8.35,-1.6,8.65,-1.3],[8.5,-1.3])
 
 func build() -> void:
-	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DEST+"pecas"))
-	var source:=Image.load_from_file(ProjectSettings.globalize_path(BASE+"quadro-chave.png"))
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(dest+"pecas"))
+	var source:=Image.load_from_file(ProjectSettings.globalize_path(base+"quadro-chave.png"))
 	source.convert(Image.FORMAT_RGBA8)
-	if not check(source.get_size()==Vector2i(768,576),"Quadro-chave mudou de tamanho"):return
+	if not check(source.get_size()==canvas_size,"Quadro-chave mudou de tamanho"):return
 	definitions()
 	for y in source.get_height():
 		for x in source.get_width():
 			var color:=source.get_pixel(x,y)
 			if color.a==0:continue
-			var owner:=1 if y<300 else 0
+			var owner := base_part(Vector2(x + .5, y + .5))
 			for i in range(1,parts.size()):
-				if Geometry2D.is_point_in_polygon(Vector2(x+.5,y+.5),parts[i].mask):owner=i
+				if parts[i].mask.size() >= 3 and Geometry2D.is_point_in_polygon(Vector2(x+.5,y+.5),parts[i].mask):owner=i
 			parts[owner].image.set_pixel(x,y,color)
 			parts[owner].pixels+=1
 	var atlas:=Image.create(1024,2048,false,Image.FORMAT_RGBA8)
-	var assembled:=Image.create(768,576,false,Image.FORMAT_RGBA8)
-	var debug:=Image.create(768,576,false,Image.FORMAT_RGBA8)
+	var assembled:=Image.create(canvas_size.x,canvas_size.y,false,Image.FORMAT_RGBA8)
+	var debug:=Image.create(canvas_size.x,canvas_size.y,false,Image.FORMAT_RGBA8)
 	var records:Array=[]
 	var shelf:=Vector2i(2,2)
 	var row_h:=0
@@ -71,7 +72,7 @@ func build() -> void:
 		var bounds:Rect2i=full.get_used_rect()
 		if not check(bounds.has_area(),"Peça vazia: "+item.id):return
 		var cut:=full.get_region(bounds)
-		cut.save_png(DEST+"pecas/"+item.id+".png")
+		cut.save_png(dest+"pecas/"+item.id+".png")
 		if shelf.x+cut.get_width()+2>1024:
 			shelf=Vector2i(2,shelf.y+row_h+4)
 			row_h=0
@@ -87,19 +88,20 @@ func build() -> void:
 		shelf.x+=cut.get_width()+4
 		row_h=maxi(row_h,cut.get_height())
 		sum_pixels+=item.pixels
-	atlas.save_png(DEST+"atlas.png")
-	assembled.save_png(DEST+"remontagem.png")
-	debug.save_png(DEST+"mapa-de-recortes.png")
+	atlas.save_png(dest+"atlas.png")
+	assembled.save_png(dest+"remontagem.png")
+	debug.save_png(dest+"mapa-de-recortes.png")
 	var mismatch:=0
 	for y in source.get_height():
 		for x in source.get_width():
 			if source.get_pixel(x,y)!=assembled.get_pixel(x,y):mismatch+=1
 	if not check(mismatch==0,"Remontagem difere do quadro-chave"):return
-	var manifest:={"version":1,"type":"kit de montagem fixa por recortes visíveis","source":"../quadro-chave.png","source_sha256":FileAccess.get_sha256(BASE+"quadro-chave.png"),"canvas":[768,576],"atlas":{"file":"atlas.png","size":[1024,2048],"padding_px":2,"filter":"nearest","mipmaps":false},"grid":{"tile_px":[64,32],"lot_cells":[.5,-10,14,-1],"terrain_height_px":48,"reference_canvas_origin_px":[24,316],"reference_world_cell":[.5,-1]},"entrance_cells":[7.25,-1],"parts":records,"limitations":["Recortes de superfícies visíveis, sem faces ocultas reconstruídas.","Footprints são indicação de apoio da planta aprovada, não colisões prontas.","Conferir encaixe do piso pintado, acesso e profundidade no mapa na etapa 4; não aplicar deformação afim ao PNG."]}
-	var f:=FileAccess.open(DEST+"manifesto.json",FileAccess.WRITE)
+	var manifest:={"version":1,"type":"kit de montagem fixa por recortes visíveis","source":"../quadro-chave.png","source_sha256":FileAccess.get_sha256(base+"quadro-chave.png"),"canvas":[canvas_size.x,canvas_size.y],"atlas":{"file":"atlas.png","size":[1024,2048],"padding_px":2,"filter":"nearest","mipmaps":false},"parts":records}
+	manifest.merge(layout_metadata())
+	var f:=FileAccess.open(dest+"manifesto.json",FileAccess.WRITE)
 	f.store_string(JSON.stringify(manifest,"\t"))
-	var proof:={"piece_count":parts.size(),"opaque_pixels_partitioned":sum_pixels,"reconstruction_mismatched_pixels":mismatch,"source_sha256":manifest.source_sha256,"atlas_size":[1024,2048],"padding_px":2,"stage":"3 · kit, sem integração na Vila"}
-	f=FileAccess.open(DEST+"verificacao.json",FileAccess.WRITE)
+	var proof:={"piece_count":parts.size(),"opaque_pixels_partitioned":sum_pixels,"reconstruction_mismatched_pixels":mismatch,"source_sha256":manifest.source_sha256,"atlas_size":[1024,2048],"padding_px":2,"stage":verification_stage()}
+	f=FileAccess.open(dest+"verificacao.json",FileAccess.WRITE)
 	f.store_string(JSON.stringify(proof,"\t"))
 	print(JSON.stringify(proof))
 	quit()
@@ -109,3 +111,20 @@ func check(condition:bool,message:String) -> bool:
 		push_error(message)
 		quit(1)
 	return condition
+
+func layout_metadata() -> Dictionary:
+	return {
+		"grid": {"tile_px":[64,32], "lot_cells":[.5,-10,14,-1], "terrain_height_px":48, "reference_canvas_origin_px":[24,316], "reference_world_cell":[.5,-1]},
+		"entrance_cells": [7.25,-1],
+		"limitations": [
+			"Recortes de superfícies visíveis, sem faces ocultas reconstruídas.",
+			"Footprints são indicação de apoio da planta aprovada, não colisões prontas.",
+			"Conferir encaixe do piso pintado, acesso e profundidade no mapa na etapa 4; não aplicar deformação afim ao PNG.",
+		],
+	}
+
+func verification_stage() -> String:
+	return "3 · kit, sem integração na Vila"
+
+func base_part(pixel: Vector2) -> int:
+	return 1 if pixel.y < 300 else 0
