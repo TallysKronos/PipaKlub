@@ -1,6 +1,15 @@
 extends SceneTree
 ## Etapa 1. Geometria independente, sem alterar mapas, sprites ou saves.
 const OUT := "res://../art/professor-laboratorio-v2/"
+const ROOM_WIDTH := 13.0
+const ROOM_DEPTH := 7.6
+const RECEPTION := Rect2(.95, 4.35, 2.25, 1.25)
+const CART := Rect2(.42, 2.60, .94, .60)
+const RESEARCH := Rect2(4.30, 4.35, 4.60, 1.30)
+const STOOL := Rect2(6.95, 3.10, .45, .45)
+const SHELF := Rect2(9.20, 6.85, 1.56, .68)
+const STOCK := Rect2(10.95, 5.55, 2.05, 2.05)
+const EQUIPMENT := Rect2(10.55, 1.10, 2.00, 1.35)
 var stage: Node2D
 var shapes: Array = []
 var interior := false
@@ -16,9 +25,6 @@ func _initialize() -> void:
 	run.call_deferred()
 
 func p(u: float, d: float, h: float=0) -> Vector2:
-	if interior:
-		u *= 12.4/13.5
-		d *= 5.3/8.2
 	return origin + Vector2((u+d)*32, (u-d)*16-h)
 
 func face(points: Array, color: Color, outline: bool=true) -> void:
@@ -84,22 +90,27 @@ func screen(u:float,d:float,z:float,w:float=.8,h:float=25) -> void:
 	box(u,d,w,.1,z+7,h,DARK)
 
 func center_apparatus() -> void:
-	# Primeiro equipamento. I1/I2 dominam a sala.
-	bench(4.5,4.5,4.6,1.8,42)
-	box(5.75,5.15,1.8,.65,42,7,DARK)
-	var u:=6.65
-	var d:=5.5
-	diamond(u,d,108,43)
-	for side in [-1,1]:
-		var previous := Vector3(u+side*.57,d,50)
-		for i in 16:
-			var angle := lerpf(-PI*.5,PI*.5,float(i+1)/16)
-			var at := Vector3(u+side*(.57+.9*cos(angle)),d,100+50*sin(angle))
-			segment(previous,at,MID,7)
-			previous=at
-	screen(7.8,4.6,42,.65,22)
-	screen(8.65,4.6,42,.65,22)
-	box(6.9,3.7,.6,.6,0,27,DARK)
+	footprint_bench(RESEARCH, 42)
+	box(5.49, 4.83, 1.62, .62, 42, 7, DARK)
+	var u := 6.30
+	var d := 5.10
+	diamond(u, d, 108, 43)
+	# Os braços partem dos dois lados da base e terminam nos eixos laterais do losango.
+	for side in [-1, 1]:
+		var previous := Vector3(u + side * .52, d - .13, 49)
+		for i in range(1, 17):
+			var t := float(i) / 16.0
+			var x: float = u + side * (.52 + .83 * sin(t * PI * .5))
+			var at := Vector3(x, d - .13, 49 + 59 * t)
+			segment(previous, at, DARK, 8)
+			segment(previous + Vector3(0,0,1), at + Vector3(0,0,1), MID, 4)
+			previous = at
+		box(u + side * 1.35 - .09, d - .23, .18, .19, 104, 8, DARK)
+	screen(7.70, 5.02, 42, .56, 22)
+	screen(8.32, 5.02, 42, .52, 22)
+	box(7.09, 3.24, .15, .15, 3, 18, DARK)
+	box(STOOL.position.x, STOOL.position.y, STOOL.size.x, STOOL.size.y, 0, 3, DARK)
+	box(STOOL.position.x, STOOL.position.y, STOOL.size.x, STOOL.size.y, 21, 6, MID)
 
 func facade() -> void:
 	interior=false
@@ -191,65 +202,144 @@ func facade() -> void:
 		box(u,.35,.14,.14,0,24,DARK)
 
 func inside() -> void:
-	interior=true
-	origin=Vector2(285,600)
-	# Peça central construída antes da planta e do fechamento.
-	group_depth=200
+	interior = true
+	origin = Vector2(142, 382)
+	# I1: a bancada e o losango são a referência da planta.
+	group_depth = 200
 	center_apparatus()
-	group_depth=-10000
-	box(0,0,13.5,8.2,-8,8,MID)
-	group_depth=-9000
-	face([Vector3(0,0,0),Vector3(0,8.2,0),Vector3(0,8.2,135),Vector3(0,0,135)],LIGHT)
-	face([Vector3(0,8.2,0),Vector3(13.5,8.2,0),Vector3(13.5,8.2,135),Vector3(0,8.2,135)],LIGHT)
-	# Janela lateral alta mostrada no corte do designer.
-	face([Vector3(.01,3.5,35),Vector3(.01,7.8,35),Vector3(.01,7.8,115),Vector3(.01,3.5,115)],DARK)
-	for d in [3.5,4.9,6.3,7.8]:
-		segment(Vector3(.02,d,35),Vector3(.02,d,115),LIGHT,2)
-	segment(Vector3(.02,3.5,78),Vector3(.02,7.8,78),LIGHT,2)
-	# Torre alta atrás da peça principal e estrutura das abóbadas em corte.
-	face([Vector3(5.1,8.2,0),Vector3(7.7,8.2,0),Vector3(7.7,8.2,225),Vector3(5.1,8.2,225)],MID)
-	glazing(5.3,8.19,2.2,133,83)
-	roof(0,0,5.3,8.2,138,31,true)
-	roof(7.55,0,5.95,8.2,149,34,true)
-	# Arcos frontais preservam o corte do concept sem esconder a sala.
-	for span in [[0.0,5.3,138.0,31.0],[7.55,5.95,149.0,34.0]]:
-		for i in 24:
-			var x0:float=span[0]+span[1]*i/24
-			var x1:float=span[0]+span[1]*(i+1)/24
-			segment(Vector3(x0,0,span[2]+sin(PI*i/24)*span[3]),Vector3(x1,0,span[2]+sin(PI*(i+1)/24)*span[3]),DARK,7)
-	group_depth=0
-	bench(.8,3.5,3.0,1.3,42)
-	screen(2.1,4.0,42,.65,20)
-	group_depth=-500
-	cabinet(1.1,6.95,1.5,.7,102)
-	diamond(.65,8.1,82,16)
-	group_depth=100
-	cabinet(9.3,7.1,1.55,.8,94)
-	group_depth=150
-	# Sala de estoque pública, porta e caixas.
-	face([Vector3(11.0,4.9,0),Vector3(13.5,4.9,0),Vector3(13.5,4.9,117),Vector3(11.0,4.9,117)],MID)
-	glazing(11.25,4.88,1.65,0,92)
+
+	group_depth = -10000
+	box(0, 0, ROOM_WIDTH, ROOM_DEPTH, -8, 8, MID)
+	for u in range(1, 13):
+		segment(Vector3(u, 0, .1), Vector3(u, ROOM_DEPTH, .1), Color("969696"), 1)
+	for d in range(1, 8):
+		segment(Vector3(0, d, .1), Vector3(ROOM_WIDTH, d, .1), Color("969696"), 1)
+
+	group_depth = -9000
+	face([Vector3(0, 0, 0), Vector3(0, ROOM_DEPTH, 0), Vector3(0, ROOM_DEPTH, 135), Vector3(0, 0, 135)], LIGHT)
+	face([Vector3(0, ROOM_DEPTH, 0), Vector3(ROOM_WIDTH, ROOM_DEPTH, 0), Vector3(ROOM_WIDTH, ROOM_DEPTH, 135), Vector3(0, ROOM_DEPTH, 135)], LIGHT)
+	face([Vector3(.01, 2.7, 35), Vector3(.01, 7.2, 35), Vector3(.01, 7.2, 115), Vector3(.01, 2.7, 115)], DARK)
+	for d in [2.7, 4.2, 5.7, 7.2]:
+		segment(Vector3(.02, d, 35), Vector3(.02, d, 115), LIGHT, 2)
+	segment(Vector3(.02, 2.7, 76), Vector3(.02, 7.2, 76), LIGHT, 2)
+
+	# I2/I10: torre envidraçada no eixo do aparelho e abóbadas cortadas.
+	face([Vector3(4.55, ROOM_DEPTH, 0), Vector3(8.10, ROOM_DEPTH, 0), Vector3(8.10, ROOM_DEPTH, 200), Vector3(4.55, ROOM_DEPTH, 200)], MID)
+	glazing(4.75, 7.59, 3.15, 110, 82)
+	roof(0, 0, 4.75, ROOM_DEPTH, 137, 28, true)
+	roof(7.9, 0, 5.1, ROOM_DEPTH, 145, 32, true)
+	box(0, 0, 5.05, .13, 0, 13, DARK)
+	box(7.55, 0, 5.45, .13, 0, 13, DARK)
+	box(12.87, 0, .13, 5.6, 0, 13, DARK)
+
+	# I3/I4: recepção, carrinho, planta, quadro e estante à esquerda.
+	group_depth = -500
+	cabinet(.95, 6.85, 1.55, .65, 99)
+	diamond(3.25, 7.59, 84, 17)
+	box(.40, 6.05, .46, .46, 0, 22, MID)
+	box(.28, 5.93, .70, .70, 22, 28, DARK)
+	group_depth = 0
+	footprint_bench(RECEPTION, 42)
+	screen(1.75, 5.32, 42, .65, 20)
+	box(2.56, 5.09, .28, .24, 42, 10, DARK)
+	footprint_bench(CART, 20)
+	box(.50, 2.67, .72, .47, 20, 14, DARK)
+	box(.50, 2.67, .72, .47, 0, 13, DARK)
+	for u in [.48, 1.18]:
+		box(u, 2.66, .12, .12, -1, 5, DARK)
+
+	# I6/I7: estante e estoque público com vão de porta desimpedido.
+	group_depth = -450
+	box(STOCK.position.x, STOCK.position.y, STOCK.size.x, STOCK.size.y, 0, .2, Color("a6a6a6"))
+	draw_stock_shelf()
 	for i in 3:
-		box(12.2,6.2,.9,.7,i*24,21,Color(.5+.12*i,.5+.12*i,.5+.12*i))
-	group_depth=500
-	bench(10.0,1.6,2.5,1.5,40)
-	box(10.25,1.8,.9,.7,40,9,DARK)
-	box(10.25,2.49,.9,.08,49,28,DARK)
-	diamond(11.6,2.0,62,10)
-	group_depth=250
-	# Carrinho e vasos.
-	bench(.5,2.1,.9,.65,20)
-	box(.55,2.2,.75,.5,20,15,DARK)
-	box(.55,2.2,.75,.5,0,13,DARK)
-	for at in [Vector2(.7,5.6),Vector2(3.2,4.1)]:
-		box(at.x,at.y,.4,.4,0,22,MID)
-		box(at.x-.15,at.y-.15,.7,.7,22,24,DARK)
-	group_depth=600
-	# Porta na parede dianteira cortada e capacho.
-	for u in [4.95,7.5]:
-		box(u,0,.18,.18,0,94,DARK)
-	glazing(5.15,-.01,2.3,0,91)
-	box(5.25,-.5,2.15,.5,0,1,DARK)
+		box(12.02, 6.8, .70, .56, i * 20, 18, Color(.48 + .11*i, .48 + .11*i, .48 + .11*i))
+	box(12.87, 5.55, .13, 2.05, 0, 28, LIGHT)
+	box(12.87, 7.30, .13, .30, 28, 84, LIGHT)
+	box(10.95, 5.55, .22, .18, 0, 108, MID)
+	box(12.72, 5.55, .28, .18, 0, 108, MID)
+	box(11.17, 5.55, 1.55, .18, 92, 16, MID)
+	# Folha de vidro recolhida à direita, dentro do estoque.
+	face([Vector3(12.62, 5.77, 0), Vector3(12.62, 6.62, 0), Vector3(12.62, 6.62, 92), Vector3(12.62, 5.77, 92)], Color(.45,.45,.45,.38))
+
+	# I8: abrir a maleta na bancada e apoiar o sensor separado, ligado por cabo.
+	group_depth = 480
+	footprint_bench(EQUIPMENT, 40)
+	box(10.78, 1.42, .90, .55, 40, 8, DARK)
+	box(10.78, 1.93, .90, .09, 48, 27, DARK)
+	face([Vector3(10.88, 1.92, 53), Vector3(11.58, 1.92, 53), Vector3(11.58, 1.92, 69), Vector3(10.88, 1.92, 69)], MID)
+	box(12.03, 1.70, .20, .21, 40, 13, DARK)
+	diamond(12.12, 1.70, 59, 10)
+	segment(Vector3(11.65, 1.55, 42), Vector3(11.80, 1.33, 42))
+	segment(Vector3(11.80, 1.33, 42), Vector3(12.11, 1.72, 42))
+
+	# I9: vidro e capacho centralizados no mesmo eixo da torre.
+	group_depth = 600
+	box(5.05, 0, .16, .22, 0, 94, DARK)
+	box(7.39, 0, .16, .22, 0, 94, DARK)
+	face([Vector3(5.21, 0, 0), Vector3(7.39, 0, 0), Vector3(7.39, 0, 92), Vector3(5.21, 0, 92)], Color(.44,.44,.44,.22))
+	for u in [5.95, 6.30, 6.65]:
+		segment(Vector3(u, 0, 0), Vector3(u, 0, 92), MID, 2)
+	box(5.37, -.62, 1.86, .49, 0, 1, DARK)
+
+func footprint_bench(bounds: Rect2, height: float) -> void:
+	bench(bounds.position.x, bounds.position.y, bounds.size.x, bounds.size.y, height)
+
+func draw_stock_shelf() -> void:
+	box(SHELF.position.x, SHELF.position.y, SHELF.size.x, SHELF.size.y, 0, 98)
+	for level in range(3):
+		for slot in range(3):
+			var tone := .43 + .09 * ((slot + level) % 3)
+			box(9.32 + .49 * slot, 6.78, .40, .20, 27 + level * 22, 14, Color(tone, tone, tone))
+
+func draw_plan(layer: Node2D) -> void:
+	var floor_rect := Rect2(plan_point(Vector2(0, ROOM_DEPTH)), Vector2(ROOM_WIDTH, ROOM_DEPTH) * 53)
+	layer.draw_rect(floor_rect, Color("e7e7e7"))
+	for u in range(1, 13):
+		layer.draw_line(plan_point(Vector2(u, 0)), plan_point(Vector2(u, ROOM_DEPTH)), Color("cccccc"))
+	for d in range(1, 8):
+		layer.draw_line(plan_point(Vector2(0, d)), plan_point(Vector2(ROOM_WIDTH, d)), Color("cccccc"))
+	layer.draw_rect(floor_rect, INK, false, 2)
+	plan_prop(layer, STOCK, "I7")
+	plan_prop(layer, Rect2(.95, 6.85, 1.55, .65), "I4  Livros")
+	plan_prop(layer, Rect2(.28, 5.93, .70, .70), "")
+	plan_prop(layer, CART, "")
+	plan_prop(layer, RECEPTION, "I3  Recepção")
+	plan_prop(layer, RESEARCH, "I1/I5  Losango e pesquisa")
+	plan_prop(layer, STOOL, "")
+	plan_prop(layer, SHELF, "I6  Caixas")
+	plan_prop(layer, Rect2(12.02, 6.8, .70, .56), "")
+	label(layer, plan_point(Vector2(11.12,5.84)), "Estoque público", 12)
+	plan_prop(layer, EQUIPMENT, "I8  Maleta")
+	layer.draw_line(plan_point(Vector2(5.21, 0)), plan_point(Vector2(7.39, 0)), LIGHT, 5)
+	var paths := [
+		[Vector2(6.30,.1), Vector2(6.30,2.60), Vector2(6.30,4.05)],
+		[Vector2(1.95,4.05), Vector2(1.95,2.60), Vector2(9.60,2.60), Vector2(9.60,3.55), Vector2(11.92,3.55), Vector2(11.92,6.45)],
+		[Vector2(6.30,2.60), Vector2(9.60,2.60), Vector2(9.60,6.48)],
+		[Vector2(9.60,2.60), Vector2(9.60,1.75), Vector2(10.20,1.75)],
+	]
+	for route in paths:
+		for i in range(1, route.size()):
+			layer.draw_dashed_line(plan_point(route[i-1]), plan_point(route[i]), Color("555555"), 2, 5)
+		layer.draw_circle(plan_point(route.back()), 3, INK)
+	label(layer, Vector2(72,66), "PLANTA POR ZONAS  /  INTERIOR", 26)
+	label(layer, Vector2(72,98), "13 × 7,6 células   ·   +50% de área de piso   ·   mesma altura de Kael e dos equipamentos", 17)
+	label(layer, plan_point(Vector2(5.30,-.42)), "I9  Entrada", 15)
+	label(layer, Vector2(72,627), "Tracejado: percurso proposto. A bancada fica a 4,35 células da porta.", 17)
+	label(layer, Vector2(72,654), "A faixa frontal tem 3,10 células de profundidade até a banqueta.", 17)
+
+func plan_point(point: Vector2) -> Vector2:
+	return Vector2(72 + point.x * 53, 566 - point.y * 53)
+
+func plan_prop(layer: Node2D, bounds: Rect2, title: String) -> void:
+	var rect := Rect2(plan_point(Vector2(bounds.position.x, bounds.end.y)), bounds.size * 53)
+	layer.draw_rect(rect, Color("b6b6b6"))
+	layer.draw_rect(rect, INK, false, 1)
+	if not title.is_empty():
+		label(layer, rect.position + Vector2(4, 17), title, 12)
+
+func label(layer: Node2D, pos: Vector2, title: String, size: int) -> void:
+	layer.draw_string(ThemeDB.fallback_font, pos, title, HORIZONTAL_ALIGNMENT_LEFT, -1, size, INK)
 
 func draw_scene() -> void:
 	shapes.sort_custom(func(a,b):return a.order<b.order if a.depth==b.depth else a.depth<b.depth)
@@ -265,9 +355,13 @@ func draw_scene() -> void:
 
 	stage.draw_string(ThemeDB.fallback_font,Vector2(45,55),"LABORATÓRIO V2 / ETAPA 1 / "+("INTERIOR" if interior else "FACHADA"),HORIZONTAL_ALIGNMENT_LEFT,-1,23,INK)
 	stage.draw_string(ThemeDB.fallback_font,Vector2(45,88),"Câmera 2:1 · célula 64 × 32 px · Kael nativo · maquete de volumes",HORIZONTAL_ALIGNMENT_LEFT,-1,18,INK)
-	stage.draw_string(ThemeDB.fallback_font,Vector2(45,894),"Lote: u 0,5 → 14 · v −10 → −1 · entrada (7,25; −1) · terreno +48 px",HORIZONTAL_ALIGNMENT_LEFT,-1,18,INK)
-	stage.draw_string(ThemeDB.fallback_font,Vector2(45,923),"Faixa frontal livre: 1 célula. Materiais, cores e acabamento: etapa 2.",HORIZONTAL_ALIGNMENT_LEFT,-1,17,INK)
-	var ruler:=p(6.75,.5) if not interior else p(3.9,1.7)
+	if interior:
+		label(stage, Vector2(45,650), "13 × 7,6 células  ·  pé-direito central de 200 px", 18)
+		label(stage, Vector2(45,676), "Passagem de 3,10 células até a banqueta. Luz, cores e materiais na etapa 2.", 17)
+	else:
+		label(stage, Vector2(45,894), "Lote: u 0,5 → 14 · v −10 → −1 · entrada (7,25; −1) · terreno +48 px", 18)
+		label(stage, Vector2(45,923), "Faixa frontal livre: 1 célula. Materiais, cores e acabamento: etapa 2.", 17)
+	var ruler := p(3.70, 2.15) if interior else p(6.75,.5)
 	stage.draw_line(ruler+Vector2(30,0),ruler+Vector2(30,-70),INK,1)
 	stage.draw_string(ThemeDB.fallback_font,ruler+Vector2(39,-32),"70 px",HORIZONTAL_ALIGNMENT_LEFT,-1,14,INK)
 
@@ -277,6 +371,7 @@ func shot(path:String) -> void:
 	root.get_texture().get_image().save_png(OUT+path)
 
 func run() -> void:
+	root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 	root.size=Vector2i(1280,960)
 	DisplayServer.window_set_size(root.size)
 	RenderingServer.set_default_clear_color(Color("f3f3f3"))
@@ -291,21 +386,33 @@ func run() -> void:
 	kael.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	stage.add_child(kael)
 	# A imagem original de Kael serve de régua; toda a maquete usa cinza.
-	facade()
-	kael.position=p(6.75,.5,0)
-	stage.queue_redraw()
-	await shot("fachada/blockout.png")
+	var interior_only := "--interior" in OS.get_cmdline_user_args()
+	if not interior_only:
+		facade()
+		kael.position = p(6.75,.5,0)
+		stage.queue_redraw()
+		await shot("fachada/blockout.png")
 	shapes.clear()
+	root.size = Vector2i(960,720)
+	DisplayServer.window_set_size(root.size)
 	inside()
-	kael.position=p(3.9,1.7)
+	kael.position = p(3.70, 2.15)
 	stage.queue_redraw()
 	await shot("interior/blockout.png")
 	stage.hide()
-	kael.hide()
+
+	var plan := Node2D.new()
+	root.add_child(plan)
+	plan.draw.connect(draw_plan.bind(plan))
+	await shot("interior/planta.png")
+	plan.hide()
+
+	root.size = Vector2i(1280,960)
+	DisplayServer.window_set_size(root.size)
 	var overlay:=Node2D.new()
 	root.add_child(overlay)
 	overlay.draw.connect(draw_overlay.bind(overlay))
-	for side in ["fachada","interior"]:
+	for side in (["interior"] if interior_only else ["fachada","interior"]):
 		var texture:Texture2D=ImageTexture.create_from_image(Image.load_from_file(ProjectSettings.globalize_path(OUT+"referencias/concept-"+side+".png")))
 		overlay.set_meta("texture",texture)
 		overlay.set_meta("side",side)
@@ -364,3 +471,8 @@ func draw_overlay(layer:Node2D) -> void:
 		layer.draw_string(ThemeDB.fallback_font,label_at,group[0],HORIZONTAL_ALIGNMENT_LEFT,-1,15,Color.BLACK)
 	layer.draw_string(ThemeDB.fallback_font,Vector2(45,85),"ETAPA 1  /  "+side.to_upper()+"  /  volumes identificados sobre o concept",HORIZONTAL_ALIGNMENT_LEFT,-1,23,Color("333333"))
 	layer.draw_string(ThemeDB.fallback_font,Vector2(45,127),"Referência em sua câmera original. O blockout.png ao lado usa a câmera 2:1 do jogo.",HORIZONTAL_ALIGNMENT_LEFT,-1,19,Color("555555"))
+
+	if side == "interior":
+		label(layer, Vector2(45,731), "Na maquete revisada, I1 e I2 continuam no eixo da entrada I9.", 19)
+		label(layer, Vector2(45,765), "A profundidade passa de 5,3 para 7,6 células e abre a circulação diante de I5.", 19)
+		label(layer, Vector2(45,799), "I8 continua no primeiro plano à direita, com passagem até I7 e I6 pelo mesmo lado.", 19)

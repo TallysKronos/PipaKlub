@@ -10,7 +10,7 @@
 
 ## Interior
 
-O primeiro blockout ficou apertado. Está pendente a sua ampliação e uma nova aprovação antes do acabamento.
+A maquete revisada amplia a planta para 13 × 7,6 células. [Blockout](interior/blockout.png), [planta por zonas](interior/planta.png) e [contornos sobre o concept](interior/blockout-sobre-concept.png) aguardam aprovação antes do quadro-chave.
 
 ## Pendências do pedido geral
 
