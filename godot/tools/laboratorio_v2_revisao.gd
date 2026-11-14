@@ -136,7 +136,8 @@ func render_interior() -> void:
 	await capture("teste-convivencia.png")
 
 	var concept := img(OUT + "../referencias/concept-interior.png")
-	var current := img(OUT + "../referencias/jogo-atual-interior.png")
+	var integrated := FileAccess.file_exists(OUT + "integracao/depois.png")
+	var current := img(OUT + ("integracao/depois.png" if integrated else "../referencias/jogo-atual-interior.png"))
 	concept.resize(630, roundi(concept.get_height() * 630.0 / concept.get_width()), Image.INTERPOLATE_LANCZOS)
 	current.resize(610, roundi(current.get_height() * 610.0 / current.get_width()), Image.INTERPOLATE_LANCZOS)
 	content = board(2040, 660)
@@ -146,8 +147,8 @@ func render_interior() -> void:
 	labels = [
 		[Vector2(20, 57), "CONCEPT DO DESIGNER", 24],
 		[Vector2(681, 57), "QUADRO-CHAVE  /  720 × 512 NATIVOS", 24],
-		[Vector2(1402, 57), "INTERIOR ATUAL NO JOGO", 24],
-		[Vector2(20, 622), "Interior público do Sr. Assis · Planta ampliada · Revisão de arte antes do kit", 20],
+		[Vector2(1402, 57), "INTERIOR INTEGRADO NO JOGO" if integrated else "INTERIOR ATUAL NO JOGO", 24],
+		[Vector2(20, 622), "Interior público do Sr. Assis · Planta ampliada · Captura in-game" if integrated else "Interior público do Sr. Assis · Planta ampliada · Revisão de arte antes do kit", 20],
 	]
 	await capture("comparativo.png")
 	audit_art(art)

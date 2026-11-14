@@ -10,7 +10,7 @@
 
 ## Interior
 
-A maquete foi ampliada para 13 × 7,6 células. O [quadro-chave interno](interior/ENTREGA-ETAPA-2.md) foi recortado em [22 peças de montagem](interior/kit/README.md) com remontagem validada. A próxima etapa é integrar o kit à cena professor-home, usando a [planta por zonas](interior/planta.png) para calibrar acessos e colisões.
+A maquete foi ampliada para 13 × 7,6 células. O [quadro-chave interno](interior/ENTREGA-ETAPA-2.md) foi recortado em [22 peças de montagem](interior/kit/README.md) com remontagem validada. O [interior está integrado em professor-home](interior/integracao/README.md), com os acessos e as colisões calibrados pela [planta por zonas](interior/planta.png).
 
 ## Pendências do pedido geral
 

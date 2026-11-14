@@ -1,5 +1,6 @@
 extends RefCounted
 ## Presentation only. Receipts, checkpoints and rewards stay in Journey.
+const Lab = preload("res://scripts/campaign/professor_interior_v2.gd")
 const Walk=preload("res://scripts/campaign/opening_staging.gd")
 
 static func valid(front:Control,generation:int)->bool:
@@ -116,7 +117,7 @@ static func meet_professor(front:Control)->void:
 
 static func professor_stage(front:Control,position:Vector2)->Node2D:
 	front._clear("world:professor-home")
-	front._stage_container()
+	front._stage_container(true)
 	var room:Node2D=preload("res://scripts/campaign/room_view.gd").new()
 	front.stage.add_child(room)
 	room.configure(front.content.rooms.professor,[position.x,position.y],false,"",true,true)
@@ -160,11 +161,11 @@ static func handoff(front:Control,starter:bool=true)->void:
 		if not valid(front,generation):return
 		if not await talk(front,"Sr. Assis: Cuide desta rabiola. A alma já tem um caminho; falta você construir a pipa.\n\nSr. Assis: Leve-a à bancada. Vamos começar pela armação.","Ir à bancada"):return
 	if not valid(front,generation):return
-	if not await approach(room,Vector2(1440,672)):
+	if not await approach(room,Lab.WORKBENCH):
 		if valid(front,generation):front._show_saved()
 		return
 	if not valid(front,generation):return
-	room.face_actor(Vector2(1440,480))
+	room.face_actor(Lab.WORKBENCH_FACE)
 	await Walk.wait(room,.25)
 	if valid(front,generation):front._show_saved()
 
@@ -190,11 +191,11 @@ static func open_workbench(front:Control)->void:
 	front.flow_busy=true
 	var generation:int=front.opening_generation
 	var room:Node2D=front.room
-	if not await approach(room,Vector2(1440,672)):
+	if not await approach(room,Lab.WORKBENCH):
 		if valid(front,generation):front.flow_busy=false;room.can_walk=true
 		return
 	if not valid(front,generation):return
-	room.face_actor(Vector2(1440,480))
+	room.face_actor(Lab.WORKBENCH_FACE)
 	var player:Dictionary=front.session.snapshot().player
 	if player.get("journey",{}).get("lesson",0)<5:
 		await talk(front,"Sr. Assis: Antes da bancada, vamos sentir o vento com Nozinho. Venha conversar comigo para começar o treino.")

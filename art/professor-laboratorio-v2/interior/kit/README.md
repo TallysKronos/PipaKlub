@@ -21,3 +21,5 @@ godot --path godot --script tools/laboratorio_v2_kit_preview.gd --rendering-meth
 ```
 
 O primeiro comando gera os cortes e o atlas. O segundo compara cada região do atlas com seu PNG e recria o quadro pelos pivôs. Em seguida compara a captura de 22 Sprite2D com o quadro original no mesmo fundo e em zoom 1. O PNG exportado do Aseprite também passa pela comparação com o quadro original. As verificações cobrem os 210.684 pixels opacos e a margem transparente do atlas. A conferência da fachada regenerou seu atlas com o mesmo SHA-256 e remontou suas 24 peças no Godot.
+
+A cena jogável e as capturas estão na [entrega de integração](../integracao/README.md).

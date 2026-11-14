@@ -1,6 +1,7 @@
 extends RefCounted
 ## Local equivalents of 015, 026, 027 and 030. No authenticated account is faked.
 const State = preload("res://scripts/campaign/state.gd")
+const Lab = preload("res://scripts/campaign/professor_interior_v2.gd")
 const Workshop = preload("res://scripts/campaign/workshop_model.gd")
 const Progression = preload("res://scripts/campaign/progression.gd")
 const STARTERS := {"basica": "Carcará", "mata": "Mata verde", "azulao": "Azulão", "raio": "Raio de sol"}
@@ -117,7 +118,7 @@ func finish_workshop() -> Dictionary:
 			var item: String = "damaged-rabiola-" + job.modelId
 			player.inventory[item] = player.inventory.get(item, 0) + 1
 			job.status = "failed"
-			return session.commit_operation("workshop-failed-" + job.id, {"kind": "world", "scene": "professor-home", "position": [1440, 672]}, player)
+			return session.commit_operation("workshop-failed-" + job.id, {"kind": "world", "scene": "professor-home", "position": [Lab.WORKBENCH.x, Lab.WORKBENCH.y]}, player)
 		player.starter.status = "damaged"
 		job.status = "failed"
 		return session.commit_operation("workshop-failed-" + job.id, {"kind": "starter"}, player)
@@ -133,7 +134,7 @@ func finish_workshop() -> Dictionary:
 	if not inventory_job: player.starter.completed = true
 	job.status = "completed"
 	player.journey.phase = "complete"
-	return session.commit_operation("workshop-birth-" + job.id, {"kind": "world", "scene": "professor-home", "position": [1440, 672]}, player)
+	return session.commit_operation("workshop-birth-" + job.id, {"kind": "world", "scene": "professor-home", "position": [Lab.WORKBENCH.x, Lab.WORKBENCH.y]}, player)
 
 func cancel_workshop() -> Dictionary:
 	var saved: Dictionary = session.snapshot()
@@ -146,7 +147,7 @@ func cancel_workshop() -> Dictionary:
 		player.inventory[item] = player.inventory.get(item, 0) + 1
 		job.status = "cancelled"
 		job.state = {}
-		return session.commit_operation("workshop-cancelled-" + job.id, {"kind": "world", "scene": "professor-home", "position": [1440, 672]}, player)
+		return session.commit_operation("workshop-cancelled-" + job.id, {"kind": "world", "scene": "professor-home", "position": [Lab.WORKBENCH.x, Lab.WORKBENCH.y]}, player)
 	player.workshop.status = "cancelled"
 	player.workshop.state = {}
 	player.starter.status = "ready"

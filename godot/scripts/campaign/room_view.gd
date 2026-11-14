@@ -1,7 +1,7 @@
 extends Node2D
 const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const HouseArt=preload("res://scripts/campaign/house_modern.gd")
-const ProfessorArt=preload("res://scripts/campaign/professor_modern.gd")
+const ProfessorArt=preload("res://scripts/campaign/professor_interior_v2.gd")
 const ShopArt=preload("res://scripts/campaign/shop_modern.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
@@ -57,13 +57,14 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	mother_sprite = null
 	companion_frames.clear()
 	trail.clear()
-	data = HouseArt.room_data(room)
+	data = ProfessorArt.room_data(room) if ProfessorArt.applies(room) else HouseArt.room_data(room)
 	target_marker=Node2D.new()
 	target_marker.z_index=250
 	target_marker.draw.connect(_draw_target)
 	add_child(target_marker)
 	camera = data.camera
 	actor = Vector2(point[0], point[1])
+	if ProfessorArt.applies(data):actor = ProfessorArt.resume_point(actor, data.blocked)
 	if ShopArt.applies(data):actor=preload("res://scripts/campaign/shop_data.gd").resume_point(actor)
 	can_walk = walk
 	target_hotspot = target
@@ -97,7 +98,7 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
 	avatar = Avatar.new()
 	add_child(avatar)
-	avatar.scale = Vector2.ONE * .80 * Avatar.BODY_SCALE * float(camera.scale)
+	avatar.scale = Vector2.ONE if ProfessorArt.applies(data) else Vector2.ONE * .80 * Avatar.BODY_SCALE * float(camera.scale)
 	props.append({"node": avatar, "rect": {}, "layer": "", "actor": true})
 	if mother:
 		var npc := Sprite2D.new()
@@ -172,6 +173,7 @@ func set_story_paused(value: bool) -> void:
 		else:opening_tv.set_process(not value and opening_tv.visible)
 
 func project(p: Vector2) -> Vector2:
+	if ProfessorArt.applies(data):return ProfessorArt.visible_point(p)
 	var point := Vector2((p.x - p.y) * .82, (p.x + p.y) * .41) if data.get("projection") == "street" else Vector2((p.x - p.y) / 3, (p.x + p.y) / 6)
 	return (point - Vector2(camera.x, camera.y)) * float(camera.scale)
 
@@ -272,7 +274,10 @@ func _process(delta: float) -> void:
 	if input.length() < .1:
 		return
 	# Invert the room projection so screen directions match the player's input.
-	var world := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x).normalized() * input.length() * 360 * Locomotion.multiplier() * minf(delta, .05)
+	var travel := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x)
+	if ProfessorArt.applies(data):
+		travel *= ProfessorArt.FLOOR.size / ProfessorArt.CELLS
+	var world := travel.normalized() * input.length() * 360 * Locomotion.multiplier() * minf(delta, .05)
 	var steps := maxi(1, ceili(world.length() / 4))
 	var before := actor
 	for i in steps:
