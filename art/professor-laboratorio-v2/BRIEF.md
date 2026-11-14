@@ -2,6 +2,8 @@
 
 14/11/2026. Refazer seguindo `documentation/art/PIPELINE-CONCEPT-PARA-JOGO.md`, etapa por etapa,
 parando nos portões de aprovação.
+O desenho segue `documentation/art/GUIA-DE-ESTILO-CENARIO.md`: o concept dá o conteúdo; pixel,
+paleta, contorno e sombra vêm dos personagens.
 
 ## Referências (nesta pasta)
 

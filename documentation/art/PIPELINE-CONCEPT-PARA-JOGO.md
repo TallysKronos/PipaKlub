@@ -5,7 +5,10 @@ Motivo: o laboratório do professor saiu "básico e nada parecido com o concept"
 como inspiração, a arte foi desenhada de novo a partir de texto e direto no tamanho final, sem
 etapa de volumes nem conferência. Este fluxo impede isso.
 
-**Regra de ouro: o concept é a fonte da verdade.** Não se reinterpreta, não se "simplifica para
+**Estilo:** o concept define o conteúdo e o clima; o jeito de desenhar (pixel, paleta, contorno,
+sombra) vem dos personagens. Leia `documentation/art/GUIA-DE-ESTILO-CENARIO.md` antes da etapa 2.
+
+**Regra de ouro: o concept é a fonte da verdade do conteúdo.** Não se reinterpreta, não se "simplifica para
 caber"; traduz-se para a câmera e a escala do jogo. Se algo não couber, pare e pergunte.
 
 ## Etapa 0 · Ficha de tradução (antes de desenhar)
@@ -32,8 +35,9 @@ real, com o Kael ao lado para escala. Sem cor, sem textura. Entregue:
 
 ## Etapa 2 · Quadro-chave (beauty shot)
 
-Uma imagem final, de alta qualidade, do prédio inteiro na câmera do jogo, pintada sobre o blockout
-aprovado e no estilo do jogo (contorno, sombra cel, densidade de pixel dos personagens). Use o
+Uma imagem final, de alta qualidade, do prédio inteiro na câmera do jogo, sobre o blockout aprovado e
+nas regras do guia de estilo de cenário (densidade de pixel dos personagens, paleta mestra, contorno,
+sombra cel), com o teste de convivência (Kael, Rabbito e um NPC sobre a peça). Use o
 próprio concept como imagem de entrada (edição/img2img) e os recortes de detalhe, não só texto.
 
 - `quadro-chave.png` e `comparativo.png` (concept | quadro-chave | captura do jogo atual).
