@@ -51,4 +51,4 @@ A cena de produção e os dados de gameplay não são alterados por esta maquete
 
 ## Parada
 
-**Aguardando aprovação da silhueta da fachada e da planta/corte do interior.** Depois desse portão: extensão da paleta e loja-piloto, com seu próprio portão. Regiões somente após ambos aprovados. Quadro-chave e kit do laboratório permanecem sujeitos aos portões específicos do pipeline.
+**Atualização do dono: fachada aprovada; interior considerado apertado e pendente de ampliação.** O pedido seguinte prioriza o quadro-chave da fachada; ver `fachada/ENTREGA-ETAPA-2.md`. Depois desse portão: extensão da paleta e loja-piloto, com seu próprio portão. Regiões somente após ambos aprovados. Quadro-chave e kit do laboratório permanecem sujeitos aos portões específicos do pipeline.
