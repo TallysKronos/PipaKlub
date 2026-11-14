@@ -28,7 +28,25 @@ func settle() -> void:
 
 func run() -> void:
 	root.size = Vector2i(1280,720)
+	var hybrid_only := "--hybrid-only" in OS.get_cmdline_user_args()
+	var models: Array = MODELS
+	if hybrid_only:
+		models = []
+		for id: String in Follow.animation_manifest:
+			if Follow.animation_manifest[id].get("art_version", "").begins_with("hybrid-") or Follow.animation_manifest[id].get("art_version", "").begins_with("sheet-"):
+				models.append(id)
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--model="):
+			models = [argument.trim_prefix("--model=")]
+			hybrid_only = true
+		elif argument.begins_with("--models="):
+			models = Array(argument.trim_prefix("--models=").split(",",false))
+			hybrid_only = true
 	evidence = ProjectSettings.globalize_path("res://../tmp/overworld-animation-playtest")
+	if hybrid_only: evidence = ProjectSettings.globalize_path("res://../tmp/overworld-hybrid/playtest")
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--evidence="):
+			evidence = ProjectSettings.globalize_path("res://../" + argument.trim_prefix("--evidence="))
 	DirAccess.make_dir_recursive_absolute(evidence)
 	front = Front.new()
 	var save_dir := evidence.path_join("save-" + State.new_id())
@@ -41,9 +59,9 @@ func run() -> void:
 	Controls.install(Controls.DEFAULTS)
 	Controls.use_keyboard()
 	var player: Dictionary = front.session.start("slot-1").data.player
-	for id in MODELS:
+	for id in models:
 		player.partners.append({"id":id,"modelId":id,"personalName":id,"xp":0,"craftBonus":0})
-	for id in MODELS:
+	for id in models:
 		player.equippedPartnerId = id
 		var point := Checkpoint.make("park-veredas", Checkpoint.spawn("park-veredas")+Vector2(4,4), Checkpoint.SPACE)
 		check(front.session.checkpoint(point,player).status == "ok","save fixture " + id)
@@ -81,13 +99,12 @@ func run() -> void:
 				distance += before.distance_to(park.player)
 				max_gap = maxf(max_gap,park.player.distance_to(park.follower))
 				check(park.companion.visible and park.follower_root.visible,"follower remains visible " + id)
-				# Pixel da criatura do tamanho do pixel do Kael (companion_follow.gd, sprite_scale).
-				check(is_equal_approx(park.companion.scale.y, park.avatar.scale.y), "native scale in park " + id)
+				check(park.companion.scale.is_equal_approx(Vector2.ONE * Follow.Avatar.OVERWORLD_SCALE), "native scale in park " + id)
 				if not park.avatar.facing in facings: facings.append(park.avatar.facing)
 				for obstacle in park.occluders:
 					var art = obstacle.get_node_or_null("Art")
 					if art != null: minimum_alpha = minf(minimum_alpha,art.modulate.a)
-				if tick % 12 == 0 and DisplayServer.get_name() != "headless":
+				if tick % (4 if hybrid_only else 12) == 0 and DisplayServer.get_name() != "headless":
 					await RenderingServer.frame_post_draw
 					var image := root.get_texture().get_image().get_region(Rect2i(430,180,420,280))
 					image.save_png(evidence.path_join(id + "-%03d.png" % frame))
@@ -106,13 +123,14 @@ func run() -> void:
 			check(park.companion.flip_h == facing.ends_with("e"),"mirror " + id + facing)
 			check(park.companion.offset == Vector2(0,-44),"same pivot " + id + facing)
 		var coverage := check_upper_body_occlusion(park,id)
-		if id == "azulfazo" and DisplayServer.get_name() != "headless":
-			for tick in 12:
+		if (hybrid_only or id == "azulfazo") and DisplayServer.get_name() != "headless":
+			# Include a full slow breathing cycle and its return to the first pose.
+			for tick in 16:
 				Follow.animate(park.companion,.15,0)
 				park._refresh_positions()
 				await process_frame
 				await RenderingServer.frame_post_draw
-				root.get_texture().get_image().get_region(Rect2i(430,180,420,280)).save_png(evidence.path_join("azulfazo-idle-%02d.png" % tick))
+				root.get_texture().get_image().get_region(Rect2i(430,180,420,280)).save_png(evidence.path_join(id + "-idle-%02d.png" % tick))
 		report.append({"id":id,"height":Follow.reviewed_sheets[id].height,"distance":distance,"max_gap":max_gap,"directions":facings,"tree_min_alpha_on_route":minimum_alpha,"frames":frame,"upper_body_occlusion":coverage})
 	var result := {"checks":checks,"failures":failures,"models":report,"method":"Production walk_to and physics follower, graphical captures when available. Synthetic canopy corner checks the tall/wide footprint."}
 	var output := FileAccess.open(evidence.path_join("report.json"),FileAccess.WRITE)

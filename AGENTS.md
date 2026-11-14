@@ -1,5 +1,17 @@
 # Desenvolvimento do PipaKlub
 
+## Pasta principal consolidada
+
+A partir de 13/11/2026, o projeto ativo fica em `C:/Users/user/produto/pipa-club`,
+na branch `codex/unificacao-final`. Leia `COMECE-AQUI.md` antes de abrir o jogo.
+Os antigos worktrees `pipa-club-*` foram substituídos pela consolidação; não
+recrie uma pasta antiga para continuar tarefas. O Godot local fica em
+`.local/godot/`, e o projeto é `godot/project.godot`. Valide sempre o `--path`
+da instância do jogo: a localização do executável Godot não determina o projeto.
+O arquivo `_unificacao-pipaklub/2026-11-13`, fora do repositório, preserva os
+arquivos locais exclusivos e estudos em espera. Preserve a HUD da unificação;
+não reative a HUD experimental ou a fila de vídeos ao recuperar arquivos.
+
 Este projeto usa engine própria em JavaScript/Canvas 2D, interface DOM/CSS e servidor Node/WebSocket. Não introduza Godot, Unity, Phaser ou outro motor apenas porque um exemplo de skill o utiliza.
 
 Para produção/revisão de assets, HUD/menus ou diagnóstico de desempenho, leia `.agents/skills/pipaklub-production/SKILL.md` e somente a referência da área solicitada. Ela conecta as três skills externas instaladas às regras e consumidores locais. Para mudanças fora dessas áreas, trabalhe normalmente.
@@ -9,6 +21,8 @@ A identidade e os contratos existentes estão em `MANUAL-DE-ASSETS.md`, `HUD-KIT
 Os arquivos externos e sua revisão estão registrados em `.agents/vendor/awesome-gamedev-agent-skills/source-lock.json`. Preserve licença e NOTICE ao redistribuí-los. A instalação de skills não autoriza deploy, alterações de banco ou download automático das demais skills citadas nos exemplos.
 
 ## Mapas do overworld
+
+Os concepts de mapas estão centralizados em `art/overworld/conceitos/README.md`, com vistas gerais, pranchas, briefs e prompts por região. A entrada na raiz é `CONCEPTS-DE-MAPAS.md`; o inventário para ferramentas é `art/overworld/conceitos/catalogo.json`. Consulte esse acervo antes de criar ou reconstruir cenários. Caminhos antigos nos registros de geração são históricos; use os arquivos do projeto consolidado.
 
 Os mapas do overworld são construídos no Godot (`godot/`), por decisão do dono. Para criar, corrigir ou melhorar áreas exploráveis (planta, relevo, barrancos, muretas, rampas, escadas, pontes, vegetação, itens e eventos), leia `.agents/skills/soulmonsters-construtor-de-mapas/SKILL.md` e as referências que ela indicar. O agente do Codex para essa tarefa está em `.codex/agents/construtor-de-mapas.toml`.
 

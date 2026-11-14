@@ -1,15 +1,48 @@
 {
   "azulfazo": {
     "idle": "res://assets/campaign/overworld-animations-v1/azulfazo/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/azulfazo/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/azulfazo/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "hybrid-v1"
   },
   "alvacordo": {
     "idle": "res://assets/campaign/overworld-animations-v1/alvacordo/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/alvacordo/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/alvacordo/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "art_version": "sheet-v1"
   },
   "alvaneve": {
     "idle": "res://assets/campaign/overworld-animations-v1/alvaneve/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/alvaneve/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/alvaneve/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "sheet-v1"
   },
   "anaconda-baby": {
     "idle": "res://assets/campaign/overworld-animations-v1/anaconda-baby/idle.png",
@@ -17,7 +50,18 @@
   },
   "anaconda-cavaleiro": {
     "idle": "res://assets/campaign/overworld-animations-v1/anaconda-cavaleiro/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/anaconda-cavaleiro/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/anaconda-cavaleiro/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "sheet-v1"
   },
   "anaconda-child": {
     "idle": "res://assets/campaign/overworld-animations-v1/anaconda-child/idle.png",
@@ -41,11 +85,33 @@
   },
   "aurorastro-jovem": {
     "idle": "res://assets/campaign/overworld-animations-v1/aurorastro-jovem/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/aurorastro-jovem/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/aurorastro-jovem/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "hybrid-v1"
   },
   "azulao": {
     "idle": "res://assets/campaign/overworld-animations-v1/azulao/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/azulao/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/azulao/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "art_version": "sheet-v1"
   },
   "azulfazo-possuido": {
     "idle": "res://assets/campaign/overworld-animations-v1/azulfazo-possuido/idle.png",
@@ -53,11 +119,34 @@
   },
   "azulim": {
     "idle": "res://assets/campaign/overworld-animations-v1/azulim/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/azulim/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/azulim/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/azulim-prancha-v1",
+    "art_version": "sheet-v1-approved"
   },
   "azulongo": {
     "idle": "res://assets/campaign/overworld-animations-v1/azulongo/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/azulongo/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/azulongo/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "hybrid-v1"
   },
   "azultor": {
     "idle": "res://assets/campaign/overworld-animations-v1/azultor/idle.png",
@@ -157,7 +246,19 @@
   },
   "carcara": {
     "idle": "res://assets/campaign/overworld-animations-v1/carcara/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/carcara/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/carcara/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/carcara-hibrido-v1",
+    "art_version": "hybrid-v1"
   },
   "carquim": {
     "idle": "res://assets/campaign/overworld-animations-v1/carquim/idle.png",
@@ -197,7 +298,18 @@
   },
   "doberman-c": {
     "idle": "res://assets/campaign/overworld-animations-v1/doberman-c/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/doberman-c/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/doberman-c/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "art_version": "sheet-v1"
   },
   "dobracula": {
     "idle": "res://assets/campaign/overworld-animations-v1/dobracula/idle.png",
@@ -205,11 +317,35 @@
   },
   "dobrim": {
     "idle": "res://assets/campaign/overworld-animations-v1/dobrim/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/dobrim/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/dobrim/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/dobrim-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "dobrinco": {
     "idle": "res://assets/campaign/overworld-animations-v1/dobrinco/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/dobrinco/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/dobrinco/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/dobrinco-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "etrim": {
     "idle": "res://assets/campaign/overworld-animations-v1/etrim/idle.png",
@@ -225,7 +361,19 @@
   },
   "farpim": {
     "idle": "res://assets/campaign/overworld-animations-v1/farpim/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/farpim/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/farpim/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/farpim-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "fiafalso": {
     "idle": "res://assets/campaign/overworld-animations-v1/fiafalso/idle.png",
@@ -241,7 +389,18 @@
   },
   "gambalhote": {
     "idle": "res://assets/campaign/overworld-animations-v1/gambalhote/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/gambalhote/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/gambalhote/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "sheet-v1"
   },
   "gambalhote-adult": {
     "idle": "res://assets/campaign/overworld-animations-v1/gambalhote-adult/idle.png",
@@ -281,7 +440,19 @@
   },
   "glacerol": {
     "idle": "res://assets/campaign/overworld-animations-v1/glacerol/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/glacerol/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/glacerol/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/glacerol-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "gotamar": {
     "idle": "res://assets/campaign/overworld-animations-v1/gotamar/idle.png",
@@ -333,7 +504,19 @@
   },
   "lacertubo": {
     "idle": "res://assets/campaign/overworld-animations-v1/lacertubo/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/lacertubo/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/lacertubo/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/lacertubo-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "lacustrel": {
     "idle": "res://assets/campaign/overworld-animations-v1/lacustrel/idle.png",
@@ -361,7 +544,19 @@
   },
   "lupisco": {
     "idle": "res://assets/campaign/overworld-animations-v1/lupisco/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/lupisco/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/lupisco/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/lupisco-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "lupunhal": {
     "idle": "res://assets/campaign/overworld-animations-v1/lupunhal/idle.png",
@@ -381,7 +576,18 @@
   },
   "mata-verde": {
     "idle": "res://assets/campaign/overworld-animations-v1/mata-verde/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/mata-verde/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/mata-verde/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "art_version": "sheet-v1"
   },
   "mestre-dos-fios": {
     "idle": "res://assets/campaign/overworld-animations-v1/mestre-dos-fios/idle.png",
@@ -405,7 +611,19 @@
   },
   "mormaco": {
     "idle": "res://assets/campaign/overworld-animations-v1/mormaco/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/mormaco/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/mormaco/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/mormaco-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "mormaco-possuido": {
     "idle": "res://assets/campaign/overworld-animations-v1/mormaco-possuido/idle.png",
@@ -425,7 +643,19 @@
   },
   "nozinho": {
     "idle": "res://assets/campaign/overworld-animations-v1/nozinho/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/nozinho/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/nozinho/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/nozinho-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "orelavela": {
     "idle": "res://assets/campaign/overworld-animations-v1/orelavela/idle.png",
@@ -437,7 +667,18 @@
   },
   "papisco": {
     "idle": "res://assets/campaign/overworld-animations-v1/papisco/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/papisco/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/papisco/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "art_version": "sheet-v1"
   },
   "pavioz": {
     "idle": "res://assets/campaign/overworld-animations-v1/pavioz/idle.png",
@@ -453,11 +694,35 @@
   },
   "pipa-dragao": {
     "idle": "res://assets/campaign/overworld-animations-v1/pipa-dragao/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/pipa-dragao/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/pipa-dragao/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/pipa-dragao-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "pipa-dragao-desatada": {
     "idle": "res://assets/campaign/overworld-animations-v1/pipa-dragao-desatada/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/pipa-dragao-desatada/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/pipa-dragao-desatada/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/pipa-dragao-desatada-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "pirilume": {
     "idle": "res://assets/campaign/overworld-animations-v1/pirilume/idle.png",
@@ -465,7 +730,19 @@
   },
   "platyx": {
     "idle": "res://assets/campaign/overworld-animations-v1/platyx/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/platyx/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/platyx/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/platyx-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "plumico": {
     "idle": "res://assets/campaign/overworld-animations-v1/plumico/idle.png",
@@ -481,7 +758,18 @@
   },
   "rabbito": {
     "idle": "res://assets/campaign/overworld-animations-v1/rabbito/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/rabbito/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/rabbito/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "art_version": "sheet-v1"
   },
   "rabbito-conde-da-ultima-hora": {
     "idle": "res://assets/campaign/overworld-animations-v1/rabbito-conde-da-ultima-hora/idle.png",
@@ -489,27 +777,99 @@
   },
   "rabiolava": {
     "idle": "res://assets/campaign/overworld-animations-v1/rabiolava/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/rabiolava/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/rabiolava/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/rabiolava-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "raiatar": {
     "idle": "res://assets/campaign/overworld-animations-v1/raiatar/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/raiatar/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/raiatar/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/raiatar-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "raibroto": {
     "idle": "res://assets/campaign/overworld-animations-v1/raibroto/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/raibroto/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/raibroto/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/raibroto-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "raigume": {
     "idle": "res://assets/campaign/overworld-animations-v1/raigume/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/raigume/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/raigume/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/raigume-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "raisoberano": {
     "idle": "res://assets/campaign/overworld-animations-v1/raisoberano/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/raisoberano/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/raisoberano/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/raisoberano-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "raivela": {
     "idle": "res://assets/campaign/overworld-animations-v1/raivela/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/raivela/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/raivela/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/raivela-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "raiztrope": {
     "idle": "res://assets/campaign/overworld-animations-v1/raiztrope/idle.png",
@@ -545,7 +905,19 @@
   },
   "riscaz": {
     "idle": "res://assets/campaign/overworld-animations-v1/riscaz/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/riscaz/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/riscaz/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/riscaz-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "riscotim": {
     "idle": "res://assets/campaign/overworld-animations-v1/riscotim/idle.png",
@@ -593,19 +965,67 @@
   },
   "tramadraco": {
     "idle": "res://assets/campaign/overworld-animations-v1/tramadraco/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/tramadraco/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/tramadraco/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/tramadraco-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "tramassauro": {
     "idle": "res://assets/campaign/overworld-animations-v1/tramassauro/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/tramassauro/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/tramassauro/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/tramassauro-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "traminho": {
     "idle": "res://assets/campaign/overworld-animations-v1/traminho/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/traminho/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/traminho/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/traminho-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "tramino": {
     "idle": "res://assets/campaign/overworld-animations-v1/tramino/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/tramino/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/tramino/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/tramino-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "tricerafan": {
     "idle": "res://assets/campaign/overworld-animations-v1/tricerafan/idle.png",
@@ -629,11 +1049,35 @@
   },
   "trovareta": {
     "idle": "res://assets/campaign/overworld-animations-v1/trovareta/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/trovareta/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/trovareta/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/trovareta-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "tufanocorte": {
     "idle": "res://assets/campaign/overworld-animations-v1/tufanocorte/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/tufanocorte/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/tufanocorte/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.75,
+      0.2,
+      0.75,
+      0.2
+    ],
+    "source_folder": "art/creatures/tufanocorte-prancha-v1",
+    "art_version": "sheet-v1"
   },
   "valdrisa": {
     "idle": "res://assets/campaign/overworld-animations-v1/valdrisa/idle.png",
@@ -649,7 +1093,18 @@
   },
   "velcao": {
     "idle": "res://assets/campaign/overworld-animations-v1/velcao/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/velcao/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/velcao/walk.png",
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "sheet-v1"
   },
   "velumbrio": {
     "idle": "res://assets/campaign/overworld-animations-v1/velumbrio/idle.png",
@@ -689,7 +1144,18 @@
   },
   "viuva-young": {
     "idle": "res://assets/campaign/overworld-animations-v1/viuva-young/idle.png",
-    "walk": "res://assets/campaign/overworld-animations-v1/viuva-young/walk.png"
+    "walk": "res://assets/campaign/overworld-animations-v1/viuva-young/walk.png",
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "art_version": "hybrid-v1-approved"
   },
   "voto-do-elo": {
     "idle": "res://assets/campaign/overworld-animations-v1/voto-do-elo/idle.png",

@@ -1,0 +1,50 @@
+{
+  "id": "carcara",
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "source": "art/creatures/soulmonsters-overworld-v2/carcara/duas-vistas.png",
+  "runtime_replaced": true,
+  "method": "source identity locked; native wing keyposes",
+  "identidade_revision": 2,
+  "rejected_previous": "art/creatures/carcara-prancha-v1",
+  "status": "integrado localmente; identidade corrigida e playtest conclu\u00eddo",
+  "review_score": 7.5,
+  "animations": {
+    "idle": {
+      "image": "idle.png",
+      "frames": 4,
+      "durations_ms": [
+        750,
+        200,
+        750,
+        200
+      ]
+    },
+    "walk": {
+      "image": "walk.png",
+      "frames": 6,
+      "durations_ms": [
+        140,
+        100,
+        120,
+        140,
+        100,
+        120
+      ]
+    }
+  },
+  "blocking_findings": [],
+  "reviewer": "/root/animation_pixel_critic",
+  "correction_round": 1,
+  "generation_count": 0
+}

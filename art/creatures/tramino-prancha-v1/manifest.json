@@ -1,0 +1,68 @@
+{
+  "id": "tramino",
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "source": "art/creatures/soulmonsters-overworld-v2/tramino/duas-vistas.png",
+  "runtime_replaced": true,
+  "method": "ImageGen walk poses; Aseprite grid/palette/alpha finalization; source-authored stationary idle",
+  "status": "integrado localmente; testes específicos e capturas no Godot concluídos",
+  "animations": {
+    "idle": {
+      "image": "idle.png",
+      "frames": 4,
+      "durations_ms": [
+        750,
+        200,
+        750,
+        200
+      ],
+      "loop": true
+    },
+    "walk": {
+      "image": "walk.png",
+      "frames": 6,
+      "durations_ms": [
+        140,
+        100,
+        120,
+        140,
+        100,
+        120
+      ],
+      "loop": true
+    }
+  },
+  "generation_count": 2,
+  "batch_generation_count": 10,
+  "source_identity_exact_in_protected_mask": true,
+  "core_masks": {
+    "sw": "core-original-sw.png",
+    "nw": "core-original-nw.png"
+  },
+  "core_audit": "core-original-independent-pixel-audit.json",
+  "motion_limitation": "Original core/head/tail/cape held steady; only configured articulated limb/paddle regions vary. No global bob or regional body stretch.",
+  "review_score": 7,
+  "blocking_findings": [],
+  "review_source": "art/creatures/overworld-pranchas-lote-07/critica-r1.md",
+  "gameplay_validation": {
+    "animation_checks": 4202,
+    "visual_checks": 1675,
+    "failures": 0,
+    "evidence": "tmp/overworld-pranchas-lote-07/playtest",
+    "scope": "specific animation/follower tests, not full-game regression or human approval"
+  },
+  "limitations": [
+    "Upper body remains rigid; short gait amplitude.",
+    "Mechanical checks do not certify absence of foot sliding."
+  ]
+}

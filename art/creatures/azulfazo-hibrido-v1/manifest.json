@@ -1,0 +1,45 @@
+{
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "runtime_replaced": true,
+  "method": "Source face/body/tail retained; video-guided native wing and talon drawings",
+  "animations": {
+    "idle": {
+      "image": "idle.png",
+      "frames": 4,
+      "durations_ms": [
+        400,
+        150,
+        400,
+        150
+      ],
+      "loop": true
+    },
+    "walk": {
+      "image": "walk.png",
+      "frames": 6,
+      "durations_ms": [
+        140,
+        100,
+        120,
+        140,
+        100,
+        120
+      ],
+      "loop": true
+    }
+  },
+  "review_score": 7,
+  "blocking_findings": [],
+  "status": "integrado localmente; playtest gr\u00e1fico conclu\u00eddo"
+}

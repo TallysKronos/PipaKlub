@@ -1,0 +1,72 @@
+[
+  {
+    "id": "alvacordo",
+    "view": "sw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. FRONT LEFT THREE QUARTER SOUTHWEST, identical high top-down isometric camera. Keep all feet planted in a comfortable rest stance; tiny chest breath and cloth/tail settling, NO stepping. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character84px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/alvacordo-prancha-v1/mestre-walk-sw-4x.png",
+    "target": "art/creatures/alvacordo-prancha-v1/gerado-idle-sw.png"
+  },
+  {
+    "id": "alvacordo",
+    "view": "nw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. BACK LEFT THREE QUARTER NORTHWEST, identical high top-down isometric camera. Keep all feet planted in a comfortable rest stance; tiny chest breath and cloth/tail settling, NO stepping. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character84px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/alvacordo-prancha-v1/mestre-walk-nw-4x.png",
+    "target": "art/creatures/alvacordo-prancha-v1/gerado-idle-nw.png"
+  },
+  {
+    "id": "papisco",
+    "view": "sw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. FRONT LEFT THREE QUARTER SOUTHWEST, identical high top-down isometric camera. Keep all feet planted in a comfortable rest stance; tiny chest breath and cloth/tail settling, NO stepping. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character55px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/papisco-prancha-v1/mestre-walk-sw-4x.png",
+    "target": "art/creatures/papisco-prancha-v1/gerado-idle-sw.png"
+  },
+  {
+    "id": "papisco",
+    "view": "nw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. BACK LEFT THREE QUARTER NORTHWEST, identical high top-down isometric camera. Keep all feet planted in a comfortable rest stance; tiny chest breath and cloth/tail settling, NO stepping. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character55px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/papisco-prancha-v1/mestre-walk-nw-4x.png",
+    "target": "art/creatures/papisco-prancha-v1/gerado-idle-nw.png"
+  },
+  {
+    "id": "velcao",
+    "view": "sw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. FRONT LEFT THREE QUARTER SOUTHWEST, identical high top-down isometric camera. Keep all feet planted in a comfortable rest stance; tiny chest breath and cloth/tail settling, NO stepping. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character70px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/velcao-prancha-v1/mestre-walk-sw-4x.png",
+    "target": "art/creatures/velcao-prancha-v1/gerado-idle-sw.png"
+  },
+  {
+    "id": "velcao",
+    "view": "nw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. BACK LEFT THREE QUARTER NORTHWEST, identical high top-down isometric camera. Keep all feet planted in a comfortable rest stance; tiny chest breath and cloth/tail settling, NO stepping. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character70px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/velcao-prancha-v1/mestre-walk-nw-4x.png",
+    "target": "art/creatures/velcao-prancha-v1/gerado-idle-nw.png"
+  },
+  {
+    "id": "gambalhote",
+    "view": "sw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. FRONT LEFT THREE QUARTER SOUTHWEST, identical high top-down isometric camera. Keep all feet planted in a comfortable rest stance; tiny chest breath and cloth/tail settling, NO stepping. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character55px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/gambalhote-prancha-v1/mestre-walk-sw-4x.png",
+    "target": "art/creatures/gambalhote-prancha-v1/gerado-idle-sw.png"
+  },
+  {
+    "id": "gambalhote",
+    "view": "nw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. BACK LEFT THREE QUARTER NORTHWEST, identical high top-down isometric camera. Keep all feet planted in a comfortable rest stance; tiny chest breath and cloth/tail settling, NO stepping. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character55px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/gambalhote-prancha-v1/mestre-walk-nw-4x.png",
+    "target": "art/creatures/gambalhote-prancha-v1/gerado-idle-nw.png"
+  },
+  {
+    "id": "alvaneve",
+    "view": "sw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. FRONT LEFT THREE QUARTER SOUTHWEST, identical high top-down isometric camera. Remain hovering, wings hold same span; subtle wing settling and small attached tail motion, no invented feet. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character84px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/alvaneve-prancha-v1/mestre-walk-sw-4x.png",
+    "target": "art/creatures/alvaneve-prancha-v1/gerado-idle-sw.png"
+  },
+  {
+    "id": "alvaneve",
+    "view": "nw",
+    "prompt": "Create4-frame IDLE PIXEL ART spritesheet of EXACT creature from reference, preserving its final pixel-art design. Reference is the approved master from its walk animation: MATCH head size, shoulder/chest breadth, body mass, equipment, markings and colors EXACTLY, do not redesign or make thicker/thinner. BACK LEFT THREE QUARTER NORTHWEST, identical high top-down isometric camera. Remain hovering, wings hold same span; subtle wing settling and small attached tail motion, no invented feet. Four poses read left-right then nextrow:rest,slow breath,rest,small settling/blink returning seamlessly to1. Precise2columns x2rows equal-square cells. Logical cell112x112; visible character84px tall and body same volume as reference master, anchor56,100; generous margins and no clipping. Crisp square pixel clusters and dark1pixel outlines, limited flat ramps, light upper-left. Whole sheet square1:1. Fully transparent background and opaque character. No text, labels, grid, scenery, floor shadows, glow, gradients, blur, missing parts or extra anatomy.",
+    "source": "art/creatures/alvaneve-prancha-v1/mestre-walk-nw-4x.png",
+    "target": "art/creatures/alvaneve-prancha-v1/gerado-idle-nw.png"
+  }
+]

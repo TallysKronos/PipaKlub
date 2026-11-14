@@ -124,11 +124,15 @@ static func animate(sprite: Sprite2D, delta: float, distance: float, cycle_dista
 		for state: String in ["idle", "walk"]:
 			var texture: Texture2D = load(animation_manifest[id][state])
 			var image := texture.get_image()
+			var count := maxi(1,texture.get_width()/112)
 			var bounds: Array[Rect2] = []
 			for row in 2:
-				for col in 8:
+				for col in count:
 					bounds.append(Rect2(image.get_region(Rect2i(col*112,row*112,112,112)).get_used_rect()))
-			loaded[state] = {"texture":texture,"bounds":bounds}
+			var durations: Array = animation_manifest[id].get("idle_durations",[.32,.14,.22,.32,.14,.22,.20,.24])
+			var duration := 0.0
+			for value: float in durations: duration += value
+			loaded[state] = {"texture":texture,"bounds":bounds,"frames":count,"durations":durations,"duration":duration}
 		animation_cache[id] = loaded
 	var state := "walk" if distance > .00001 else "idle"
 	if sprite.get_meta("animation_state") != state:
@@ -168,19 +172,20 @@ static func orient(sprite:Sprite2D,facing:String) -> void:
 		if not state.is_empty():
 			var id: String = sprite.get_meta("animation_model")
 			var data: Dictionary = animation_cache[id][state]
+			var count: int = data.frames
 			var frame := 0
 			if state == "walk":
-				frame = mini(7, int(float(sprite.get_meta("animation_phase"))*8))
+				frame = mini(count-1, int(float(sprite.get_meta("animation_phase"))*count))
 			else:
-				var remaining := fmod(float(sprite.get_meta("animation_clock")),1.8)
-				for duration: float in [.32,.14,.22,.32,.14,.22,.20,.24]:
+				var remaining := fmod(float(sprite.get_meta("animation_clock")),float(data.duration))
+				for duration: float in data.durations:
 					if remaining < duration: break
 					remaining -= duration
 					frame += 1
-				frame = mini(frame,7)
+				frame = mini(frame,count-1)
 			sprite.texture = data.texture
 			sprite.region_rect = Rect2(frame*cell.x,cell.y if rear else 0.0,cell.x,cell.y)
-			sprite.set_meta("animated_bounds", data.bounds[(8 if rear else 0)+frame])
+			sprite.set_meta("animated_bounds", data.bounds[(count if rear else 0)+frame])
 		sprite.offset = Vector2(0, cell.y * .5 - (pivots.y if rear else pivots.x))
 		sprite.set_meta("facing", facing)
 		return

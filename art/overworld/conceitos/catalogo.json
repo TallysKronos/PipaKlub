@@ -1,0 +1,741 @@
+{
+  "updated": "2026-11-14",
+  "root": "art/overworld/conceitos",
+  "index": "README.md",
+  "regions": [
+    {
+      "id": "alto-serra-contemporaneo-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "alto-serra-contemporaneo-v1/BRIEF.md",
+          "bytes": 2181
+        },
+        {
+          "path": "alto-serra-contemporaneo-v1/comercio-moradias.png",
+          "bytes": 2576312
+        },
+        {
+          "path": "alto-serra-contemporaneo-v1/DETALHAMENTO.md",
+          "bytes": 1442
+        },
+        {
+          "path": "alto-serra-contemporaneo-v1/jardim-acessos.png",
+          "bytes": 2435133
+        },
+        {
+          "path": "alto-serra-contemporaneo-v1/prompt.json",
+          "bytes": 4051
+        },
+        {
+          "path": "alto-serra-contemporaneo-v1/prompts-detalhamento.json",
+          "bytes": 5617
+        },
+        {
+          "path": "alto-serra-contemporaneo-v1/torre-praca.png",
+          "bytes": 2329946
+        },
+        {
+          "path": "alto-serra-contemporaneo-v1/vista-geral.png",
+          "bytes": 3043647
+        }
+      ]
+    },
+    {
+      "id": "bairro",
+      "current_round": false,
+      "files": [
+        {
+          "path": "bairro/aprovacao.json",
+          "bytes": 386
+        },
+        {
+          "path": "bairro/brief.json",
+          "bytes": 9977
+        },
+        {
+          "path": "bairro/README.md",
+          "bytes": 2637
+        },
+        {
+          "path": "bairro/referencia.png",
+          "bytes": 883592
+        },
+        {
+          "path": "bairro/registro-geometrico.svg",
+          "bytes": 1238
+        },
+        {
+          "path": "bairro/revisao-alinhamento.png",
+          "bytes": 129276
+        },
+        {
+          "path": "bairro/revisao-navegador.png",
+          "bytes": 128203
+        },
+        {
+          "path": "bairro/revisao.html",
+          "bytes": 2906
+        },
+        {
+          "path": "bairro/rua-estudo-v2.png",
+          "bytes": 2168021
+        }
+      ]
+    },
+    {
+      "id": "beira-canal-contemporanea-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "beira-canal-contemporanea-v1/BRIEF.md",
+          "bytes": 1436
+        },
+        {
+          "path": "beira-canal-contemporanea-v1/cafe-passeio.png",
+          "bytes": 2543275
+        },
+        {
+          "path": "beira-canal-contemporanea-v1/casas-oficina.png",
+          "bytes": 2317217
+        },
+        {
+          "path": "beira-canal-contemporanea-v1/DETALHAMENTO.md",
+          "bytes": 1383
+        },
+        {
+          "path": "beira-canal-contemporanea-v1/estacao-arena.png",
+          "bytes": 2329970
+        },
+        {
+          "path": "beira-canal-contemporanea-v1/prompt.json",
+          "bytes": 4334
+        },
+        {
+          "path": "beira-canal-contemporanea-v1/prompts-detalhamento.json",
+          "bytes": 7248
+        },
+        {
+          "path": "beira-canal-contemporanea-v1/vista-geral.png",
+          "bytes": 3129920
+        }
+      ]
+    },
+    {
+      "id": "bosque-kronasta-contemporaneo-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "bosque-kronasta-contemporaneo-v1/BRIEF.md",
+          "bytes": 1557
+        },
+        {
+          "path": "bosque-kronasta-contemporaneo-v1/clareira-arvore.png",
+          "bytes": 2532551
+        },
+        {
+          "path": "bosque-kronasta-contemporaneo-v1/corrego-passagem.png",
+          "bytes": 2732078
+        },
+        {
+          "path": "bosque-kronasta-contemporaneo-v1/DETALHAMENTO.md",
+          "bytes": 1451
+        },
+        {
+          "path": "bosque-kronasta-contemporaneo-v1/entrada-observacao.png",
+          "bytes": 2853309
+        },
+        {
+          "path": "bosque-kronasta-contemporaneo-v1/prompt.json",
+          "bytes": 3601
+        },
+        {
+          "path": "bosque-kronasta-contemporaneo-v1/prompts-detalhamento.json",
+          "bytes": 7181
+        },
+        {
+          "path": "bosque-kronasta-contemporaneo-v1/vista-geral.png",
+          "bytes": 3413657
+        }
+      ]
+    },
+    {
+      "id": "cais-velho-contemporaneo-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "cais-velho-contemporaneo-v1/barcos-pieres.png",
+          "bytes": 2257594
+        },
+        {
+          "path": "cais-velho-contemporaneo-v1/BRIEF.md",
+          "bytes": 2139
+        },
+        {
+          "path": "cais-velho-contemporaneo-v1/DETALHAMENTO.md",
+          "bytes": 1912
+        },
+        {
+          "path": "cais-velho-contemporaneo-v1/mirante-marisol.png",
+          "bytes": 2694402
+        },
+        {
+          "path": "cais-velho-contemporaneo-v1/prompt.json",
+          "bytes": 3681
+        },
+        {
+          "path": "cais-velho-contemporaneo-v1/prompts-detalhamento.json",
+          "bytes": 6124
+        },
+        {
+          "path": "cais-velho-contemporaneo-v1/servicos-comercio.png",
+          "bytes": 2145496
+        },
+        {
+          "path": "cais-velho-contemporaneo-v1/vista-geral.png",
+          "bytes": 2821817
+        }
+      ]
+    },
+    {
+      "id": "caverna-mural-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "caverna-mural-v1/BRIEF.md",
+          "bytes": 2086
+        },
+        {
+          "path": "caverna-mural-v1/camara-mural.png",
+          "bytes": 2391105
+        },
+        {
+          "path": "caverna-mural-v1/DETALHAMENTO.md",
+          "bytes": 1494
+        },
+        {
+          "path": "caverna-mural-v1/entrada-apito.png",
+          "bytes": 2086163
+        },
+        {
+          "path": "caverna-mural-v1/poco-travessias.png",
+          "bytes": 2304271
+        },
+        {
+          "path": "caverna-mural-v1/prompt.json",
+          "bytes": 3222
+        },
+        {
+          "path": "caverna-mural-v1/prompts-detalhamento.json",
+          "bytes": 6242
+        },
+        {
+          "path": "caverna-mural-v1/vista-geral.png",
+          "bytes": 2853132
+        }
+      ]
+    },
+    {
+      "id": "feira-do-largo-contemporanea-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "feira-do-largo-contemporanea-v1/bancas-carrinho.png",
+          "bytes": 2475046
+        },
+        {
+          "path": "feira-do-largo-contemporanea-v1/BRIEF.md",
+          "bytes": 1838
+        },
+        {
+          "path": "feira-do-largo-contemporanea-v1/DETALHAMENTO.md",
+          "bytes": 1637
+        },
+        {
+          "path": "feira-do-largo-contemporanea-v1/mercado-beco.png",
+          "bytes": 2660789
+        },
+        {
+          "path": "feira-do-largo-contemporanea-v1/praca-zulmira.png",
+          "bytes": 2469810
+        },
+        {
+          "path": "feira-do-largo-contemporanea-v1/prompt.json",
+          "bytes": 3352
+        },
+        {
+          "path": "feira-do-largo-contemporanea-v1/prompts-detalhamento.json",
+          "bytes": 6401
+        },
+        {
+          "path": "feira-do-largo-contemporanea-v1/vista-geral.png",
+          "bytes": 3046773
+        }
+      ]
+    },
+    {
+      "id": "jardim-nina-v1",
+      "current_round": false,
+      "files": [
+        {
+          "path": "jardim-nina-v1/prompt.txt",
+          "bytes": 2144
+        },
+        {
+          "path": "jardim-nina-v1/proposta-de-acabamento.png",
+          "bytes": 1853747
+        },
+        {
+          "path": "jardim-nina-v1/README.md",
+          "bytes": 1792
+        },
+        {
+          "path": "jardim-nina-v1/referencia-da-geracao.png",
+          "bytes": 1185865
+        }
+      ]
+    },
+    {
+      "id": "morro",
+      "current_round": false,
+      "files": [
+        {
+          "path": "morro/geracao-v2.json",
+          "bytes": 11686
+        },
+        {
+          "path": "morro/morro-escadaria-da-sombra-brief.json",
+          "bytes": 26113
+        },
+        {
+          "path": "morro/morro-escadaria-da-sombra-estudo-v2.png",
+          "bytes": 2285413
+        },
+        {
+          "path": "morro/morro-laje-dos-ventos-brief.json",
+          "bytes": 27341
+        },
+        {
+          "path": "morro/morro-laje-dos-ventos-estudo-v2.png",
+          "bytes": 2316869
+        },
+        {
+          "path": "morro/morro-mirante-da-caixa-dagua-brief.json",
+          "bytes": 27107
+        },
+        {
+          "path": "morro/morro-mirante-da-caixa-dagua-estudo-v2.png",
+          "bytes": 2406799
+        },
+        {
+          "path": "morro/morro-parque-dos-ventos-brief.json",
+          "bytes": 22287
+        },
+        {
+          "path": "morro/morro-parque-dos-ventos-estudo-v2.png",
+          "bytes": 2383175
+        },
+        {
+          "path": "morro/morro-praca-da-chegada-brief.json",
+          "bytes": 24846
+        },
+        {
+          "path": "morro/morro-praca-da-chegada-estudo-v2.png",
+          "bytes": 2386100
+        },
+        {
+          "path": "morro/PRANCHA-ESTUDOS-V2.png",
+          "bytes": 2325978
+        },
+        {
+          "path": "morro/README.md",
+          "bytes": 1616
+        }
+      ]
+    },
+    {
+      "id": "morro-do-sol-contemporaneo-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "morro-do-sol-contemporaneo-v1/BRIEF.md",
+          "bytes": 1750
+        },
+        {
+          "path": "morro-do-sol-contemporaneo-v1/DETALHAMENTO.md",
+          "bytes": 1536
+        },
+        {
+          "path": "morro-do-sol-contemporaneo-v1/escadaria-residencial.png",
+          "bytes": 2187478
+        },
+        {
+          "path": "morro-do-sol-contemporaneo-v1/laje-treino.png",
+          "bytes": 2356049
+        },
+        {
+          "path": "morro-do-sol-contemporaneo-v1/mirante-arena.png",
+          "bytes": 2185975
+        },
+        {
+          "path": "morro-do-sol-contemporaneo-v1/praca-cafe.png",
+          "bytes": 2296745
+        },
+        {
+          "path": "morro-do-sol-contemporaneo-v1/prompts-detalhamento.json",
+          "bytes": 10144
+        },
+        {
+          "path": "morro-do-sol-contemporaneo-v1/prompts.json",
+          "bytes": 3905
+        },
+        {
+          "path": "morro-do-sol-contemporaneo-v1/vista-geral.png",
+          "bytes": 3107921
+        }
+      ]
+    },
+    {
+      "id": "palafitas-contemporaneas-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "palafitas-contemporaneas-v1/arena-mirante.png",
+          "bytes": 2694894
+        },
+        {
+          "path": "palafitas-contemporaneas-v1/BRIEF.md",
+          "bytes": 2387
+        },
+        {
+          "path": "palafitas-contemporaneas-v1/casas-passarelas.png",
+          "bytes": 2657114
+        },
+        {
+          "path": "palafitas-contemporaneas-v1/DETALHAMENTO.md",
+          "bytes": 1611
+        },
+        {
+          "path": "palafitas-contemporaneas-v1/oficina-chegada.png",
+          "bytes": 2420726
+        },
+        {
+          "path": "palafitas-contemporaneas-v1/prompt.json",
+          "bytes": 3921
+        },
+        {
+          "path": "palafitas-contemporaneas-v1/prompts-detalhamento.json",
+          "bytes": 6219
+        },
+        {
+          "path": "palafitas-contemporaneas-v1/vista-geral.png",
+          "bytes": 3018464
+        }
+      ]
+    },
+    {
+      "id": "pantano-mormaco-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "pantano-mormaco-v1/BRIEF.md",
+          "bytes": 2261
+        },
+        {
+          "path": "pantano-mormaco-v1/DETALHAMENTO.md",
+          "bytes": 1795
+        },
+        {
+          "path": "pantano-mormaco-v1/lago-guardiao.png",
+          "bytes": 2180195
+        },
+        {
+          "path": "pantano-mormaco-v1/margens-ponte.png",
+          "bytes": 2312226
+        },
+        {
+          "path": "pantano-mormaco-v1/posto-embarques.png",
+          "bytes": 2320100
+        },
+        {
+          "path": "pantano-mormaco-v1/prompt.json",
+          "bytes": 3567
+        },
+        {
+          "path": "pantano-mormaco-v1/prompts-detalhamento.json",
+          "bytes": 5999
+        },
+        {
+          "path": "pantano-mormaco-v1/vista-geral.png",
+          "bytes": 2650156
+        }
+      ]
+    },
+    {
+      "id": "parque",
+      "current_round": false,
+      "files": [
+        {
+          "path": "parque/clareira-do-papel-brief.json",
+          "bytes": 19794
+        },
+        {
+          "path": "parque/clareira-do-papel-estudo-v1.png",
+          "bytes": 2356093
+        },
+        {
+          "path": "parque/clareira-do-papel-legendas.png",
+          "bytes": 362126
+        },
+        {
+          "path": "parque/clareira-do-papel-referencia.png",
+          "bytes": 448818
+        },
+        {
+          "path": "parque/geracao.json",
+          "bytes": 7212
+        },
+        {
+          "path": "parque/jardim-das-pipas-brief.json",
+          "bytes": 22808
+        },
+        {
+          "path": "parque/jardim-das-pipas-estudo-v1.png",
+          "bytes": 2274696
+        },
+        {
+          "path": "parque/jardim-das-pipas-legendas.png",
+          "bytes": 356152
+        },
+        {
+          "path": "parque/jardim-das-pipas-referencia.png",
+          "bytes": 439577
+        },
+        {
+          "path": "parque/README.md",
+          "bytes": 3229
+        },
+        {
+          "path": "parque/revisao.html",
+          "bytes": 2644
+        }
+      ]
+    },
+    {
+      "id": "parque-dos-ventos-contemporaneo-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "parque-dos-ventos-contemporaneo-v1/BRIEF.md",
+          "bytes": 1758
+        },
+        {
+          "path": "parque-dos-ventos-contemporaneo-v1/clareira-travessia.png",
+          "bytes": 2429154
+        },
+        {
+          "path": "parque-dos-ventos-contemporaneo-v1/DETALHAMENTO.md",
+          "bytes": 1346
+        },
+        {
+          "path": "parque-dos-ventos-contemporaneo-v1/jardim-pavilhao.png",
+          "bytes": 2548282
+        },
+        {
+          "path": "parque-dos-ventos-contemporaneo-v1/prompt.json",
+          "bytes": 4197
+        },
+        {
+          "path": "parque-dos-ventos-contemporaneo-v1/prompts-detalhamento.json",
+          "bytes": 7567
+        },
+        {
+          "path": "parque-dos-ventos-contemporaneo-v1/veredas-comporta.png",
+          "bytes": 2783452
+        },
+        {
+          "path": "parque-dos-ventos-contemporaneo-v1/vista-geral.png",
+          "bytes": 3458721
+        }
+      ]
+    },
+    {
+      "id": "rua-dos-ventos-contemporanea-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "rua-dos-ventos-contemporanea-v1/BRIEF.md",
+          "bytes": 2570
+        },
+        {
+          "path": "rua-dos-ventos-contemporanea-v1/casa-kael.png",
+          "bytes": 1922722
+        },
+        {
+          "path": "rua-dos-ventos-contemporanea-v1/laboratorio-assis.png",
+          "bytes": 2028977
+        },
+        {
+          "path": "rua-dos-ventos-contemporanea-v1/loja-do-elo.png",
+          "bytes": 1877332
+        },
+        {
+          "path": "rua-dos-ventos-contemporanea-v1/prompts.json",
+          "bytes": 17757
+        },
+        {
+          "path": "rua-dos-ventos-contemporanea-v1/residencias-e-mobiliario.png",
+          "bytes": 1935924
+        },
+        {
+          "path": "rua-dos-ventos-contemporanea-v1/vista-geral.png",
+          "bytes": 2864958
+        }
+      ]
+    },
+    {
+      "id": "serra-minuano-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "serra-minuano-v1/abrigo-sope.png",
+          "bytes": 2142553
+        },
+        {
+          "path": "serra-minuano-v1/BRIEF.md",
+          "bytes": 1966
+        },
+        {
+          "path": "serra-minuano-v1/cume-minuano.png",
+          "bytes": 2207775
+        },
+        {
+          "path": "serra-minuano-v1/DETALHAMENTO.md",
+          "bytes": 1702
+        },
+        {
+          "path": "serra-minuano-v1/prompt.json",
+          "bytes": 3633
+        },
+        {
+          "path": "serra-minuano-v1/prompts-detalhamento.json",
+          "bytes": 5933
+        },
+        {
+          "path": "serra-minuano-v1/trilhas-patamares.png",
+          "bytes": 2023255
+        },
+        {
+          "path": "serra-minuano-v1/vista-geral.png",
+          "bytes": 2648708
+        }
+      ]
+    },
+    {
+      "id": "veredas",
+      "current_round": false,
+      "files": [
+        {
+          "path": "veredas/README.md",
+          "bytes": 679
+        },
+        {
+          "path": "veredas/veredas-do-encanamento-brief.json",
+          "bytes": 18302
+        },
+        {
+          "path": "veredas/veredas-estudo-v1.png",
+          "bytes": 2190207
+        },
+        {
+          "path": "veredas/veredas-piloto-brief.json",
+          "bytes": 9873
+        },
+        {
+          "path": "veredas/veredas-vale-conceito-v3.md",
+          "bytes": 1963
+        },
+        {
+          "path": "veredas/veredas-vale-conceito-v3.png",
+          "bytes": 2648868
+        }
+      ]
+    },
+    {
+      "id": "vila-bambuzal-contemporanea-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "vila-bambuzal-contemporanea-v1/BRIEF.md",
+          "bytes": 1473
+        },
+        {
+          "path": "vila-bambuzal-contemporanea-v1/chegada-padaria.png",
+          "bytes": 2661104
+        },
+        {
+          "path": "vila-bambuzal-contemporanea-v1/DETALHAMENTO.md",
+          "bytes": 1403
+        },
+        {
+          "path": "vila-bambuzal-contemporanea-v1/jardim-quadra.png",
+          "bytes": 2772808
+        },
+        {
+          "path": "vila-bambuzal-contemporanea-v1/oficina-varetas.png",
+          "bytes": 2483317
+        },
+        {
+          "path": "vila-bambuzal-contemporanea-v1/prompt.json",
+          "bytes": 4089
+        },
+        {
+          "path": "vila-bambuzal-contemporanea-v1/prompts-detalhamento.json",
+          "bytes": 7439
+        },
+        {
+          "path": "vila-bambuzal-contemporanea-v1/vista-geral.png",
+          "bytes": 3353210
+        }
+      ]
+    },
+    {
+      "id": "vila-operaria-contemporanea-v1",
+      "current_round": true,
+      "files": [
+        {
+          "path": "vila-operaria-contemporanea-v1/BRIEF.md",
+          "bytes": 2381
+        },
+        {
+          "path": "vila-operaria-contemporanea-v1/DETALHAMENTO.md",
+          "bytes": 1833
+        },
+        {
+          "path": "vila-operaria-contemporanea-v1/fabrica-linha.png",
+          "bytes": 2375126
+        },
+        {
+          "path": "vila-operaria-contemporanea-v1/galpao-bando.png",
+          "bytes": 2388033
+        },
+        {
+          "path": "vila-operaria-contemporanea-v1/prompt.json",
+          "bytes": 3883
+        },
+        {
+          "path": "vila-operaria-contemporanea-v1/prompts-detalhamento.json",
+          "bytes": 6294
+        },
+        {
+          "path": "vila-operaria-contemporanea-v1/rua-oficina-praca.png",
+          "bytes": 2378992
+        },
+        {
+          "path": "vila-operaria-contemporanea-v1/vista-geral.png",
+          "bytes": 2971259
+        }
+      ]
+    }
+  ]
+}
