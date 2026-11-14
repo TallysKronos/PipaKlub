@@ -14,5 +14,5 @@ A maquete foi ampliada para 13 × 7,6 células. O [quadro-chave interno](interio
 
 ## Pendências do pedido geral
 
-- Extensão da paleta de cenário e loja-piloto com teste de convivência.
+- [Extensão da paleta de cenário e loja-piloto](../overworld/estilo/loja-piloto-v2/README.md) com prova de convivência prontas para aprovação.
 - Rua dos Ventos, Morro do Sol, Parque e Bosque após os portões anteriores.
