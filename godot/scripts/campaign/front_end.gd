@@ -18,6 +18,8 @@ const Encounters = preload("res://scripts/campaign/encounters.gd")
 const EncounterView = preload("res://scripts/campaign/encounter_view.gd")
 const Preferences = preload("res://scripts/campaign/preferences.gd")
 const Backdrop = preload("res://scripts/campaign/hud_backdrop.gd")
+const OpeningDialogue = preload("res://scripts/campaign/hud_opening_dialogue.gd")
+const HudLayout = preload("res://scripts/campaign/hud_layout.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const Sound = preload("res://scripts/campaign/sound_director.gd")
@@ -683,6 +685,7 @@ func _show_opening() -> void:
 	else: sound.stop_music()
 	current_step=step
 	next=null
+	OpeningDialogue.make_backdrop(self, step)
 	stage=Node2D.new()
 	add_child(stage)
 	var map: Dictionary=content.rooms[room_key]
@@ -717,32 +720,28 @@ func _show_opening() -> void:
 	room.opening_pose()
 	_layout_stage()
 	portrait = load("res://scripts/campaign/hud_dialogue_portrait.gd").new()
-	portrait.anchor_top = 1
-	portrait.anchor_bottom = 1
-	portrait.offset_left = 8
-	portrait.offset_right = 295
-	portrait.offset_top = -380
-	portrait.offset_bottom = -18
 	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(portrait)
-	var panel=load("res://scripts/campaign/hud_dialogue_surface.gd").new()
-	panel.anchor_top = .72
-	panel.anchor_right = 1
-	panel.anchor_bottom = 1
-	panel.offset_left = 230
-	panel.offset_right = -40
-	panel.offset_top = -12
-	panel.offset_bottom = -20
-	panel.theme_type_variation = "RecorteDialoguePanel"
+	portrait.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	var opening_portrait := portrait
+	var fit_portrait := func():
+		var safe := HudLayout.safe_rect(size)
+		var height := clampf(size.y * .80, 480, 640)
+		opening_portrait.size = Vector2(height * .67, height)
+		opening_portrait.position = Vector2(safe.position.x - height * .125, size.y - height)
+	resized.connect(fit_portrait)
+	portrait.tree_exiting.connect(func(): resized.disconnect(fit_portrait), CONNECT_ONE_SHOT)
+	fit_portrait.call()
+	var panel := OpeningDialogue.new()
 	add_child(panel)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 20)
 	panel.add_child(row)
 	page = VBoxContainer.new()
 	page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	page.add_theme_constant_override("separation", 6)
+	page.add_theme_constant_override("separation", 12)
 	row.add_child(page)
 	var story: Dictionary = content.opening[mini(current_step, 13)]
 	var dialogue_tags=load("res://scripts/campaign/hud_dialogue_surface.gd").parse_tags(story.text)
@@ -750,31 +749,22 @@ func _show_opening() -> void:
 	portrait.emotion=dialogue_tags.emotion
 	portrait.reaction=dialogue_tags.reaction
 	var speaker: String = story.speaker
+	panel.speaker = speaker
 	if content.portraits.has(speaker):
 		portrait.texture = load("res://assets/campaign/" + content.portraits[speaker])
 	portrait.visible = portrait.texture != null
-	var nameplate=load("res://scripts/campaign/hud_result_plate.gd").new()
-	nameplate.accent=Hud.CORAL
-	nameplate.position = Vector2(22, -34)
-	nameplate.custom_minimum_size = Vector2(maxf(180, Hud.font().get_string_size(speaker, HORIZONTAL_ALIGNMENT_LEFT, -1, 24).x + 48), 48)
-	nameplate.theme_type_variation = "RecorteNamePanel"
-	nameplate.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var plate_holder := Node2D.new()
-	panel.add_child(plate_holder)
-	plate_holder.add_child(nameplate)
-	var heading := _label(speaker, nameplate, 24)
-	heading.add_theme_font_override("font",Hud.display())
-	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
-	nameplate.visible = not speaker.is_empty()
-	heading.theme_type_variation = "Label"
-	speech = _label(dialogue_tags.text, page, 22)
+	panel.portrait_present = portrait.visible
+	panel.fit()
+	speech = _label(dialogue_tags.text, page, 23)
+	speech.add_theme_font_override("font", Hud.font())
+	speech.add_theme_color_override("font_color", OpeningDialogue.ICE)
+	speech.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	opening_pages.clear()
 	opening_page_index=0
-	var paginate_opening:=func():
-		if not is_instance_valid(speech) or not speech.is_visible_in_tree() or current_step in [3,10,11,13,14]:return
-		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(dialogue_tags.text,Hud.font(),22,maxf(160,speech.size.x-12))
-		speech.text=opening_pages[0]
-	paginate_opening.call_deferred()
+	var opening_speech := speech
+	speech.resized.connect(func():
+		if opening_speech == speech and not opening_busy:
+			_paginate_opening(dialogue_tags.text))
 	speech.theme_type_variation = "Label"
 	status = _label("", page, 16)
 	status.theme_type_variation = "RecorteMutedText"
@@ -783,10 +773,6 @@ func _show_opening() -> void:
 		speech.text = ""
 		speech.hide()
 		portrait.hide()
-		nameplate.hide()
-		panel.offset_left = 40
-		panel.anchor_top = 1
-		panel.offset_top = -110
 		status.text = "WASD / setas · E para interagir"
 		panel.hide()
 		var hint=load("res://scripts/campaign/hud_opening_hint.gd").new()
@@ -798,32 +784,38 @@ func _show_opening() -> void:
 		name_input.max_length = 24
 		page.add_child(name_input)
 		name_input.text_submitted.connect(func(_value: String): _name())
-		next = _button("Confirmar · Rabbito", Hud.focus_space(page), _name)
+		next = _button("Confirmar · Rabbito", page, _name)
+		next.size_flags_horizontal = Control.SIZE_SHRINK_END
+		OpeningDialogue.style_button(next, "accept")
 		name_input.text_changed.connect(func(value: String):
 			next.text = "Confirmar · Rabbito" if value.strip_edges().is_empty() else "Confirmar nome")
 		next.focus_neighbor_top = next.get_path_to(name_input)
 		name_input.focus_neighbor_bottom = name_input.get_path_to(next)
 		Hud.focus_later(next if Controls.gamepad else name_input)
 	elif current_step < 14 and current_step not in [3, 11, 13]:
-		var next_space := Hud.focus_space(page)
-		next_space.size_flags_horizontal = Control.SIZE_SHRINK_END
-		next = _button("Avançar", next_space, _advance)
+		next = _button("Avançar", page, _advance)
+		OpeningDialogue.style_button(next, "accept")
 		next.size_flags_horizontal = Control.SIZE_SHRINK_END
 		next.custom_minimum_size.x = 180
 		Hud.focus_later(next)
 	elif current_step == 14:
 		speech.text = ""
-		_button("Sair para a rua", Hud.focus_space(page), func():
+		var exit_button := _button("Sair para a rua", page, func():
 			if _result(journey.enter_world("quintal", Vector2(480, 768))):
 				_show_saved())
-	var menu := _button("", self, _pause_game)
-	Hud.pause_glyph(menu)
-	menu.anchor_left = 1
-	menu.anchor_right = 1
-	menu.offset_left = -80
-	menu.offset_right = -24
-	menu.offset_top = 16
-	menu.offset_bottom = 70
+		exit_button.size_flags_horizontal = Control.SIZE_SHRINK_END
+		OpeningDialogue.style_button(exit_button, "accept")
+		Hud.focus_later(exit_button)
+	var menu := _button("Menu", self, _pause_game)
+	OpeningDialogue.style_button(menu, "pause")
+	var fit_menu := func():
+		var safe := HudLayout.safe_rect(size)
+		menu.size = menu.get_combined_minimum_size().max(Vector2(146, 50))
+		menu.position = Vector2(safe.end.x - menu.size.x, safe.position.y)
+	resized.connect(fit_menu)
+	menu.minimum_size_changed.connect(fit_menu.call_deferred)
+	menu.tree_exiting.connect(func(): resized.disconnect(fit_menu), CONNECT_ONE_SHOT)
+	fit_menu.call()
 	menu.z_index=110
 	opening_busy=true
 	if is_instance_valid(next):next.disabled=true
@@ -835,22 +827,31 @@ func _show_opening() -> void:
 func _present_opening(step: int,generation: int,panel: Control,hidden_for_action: bool) -> void:
 	await preload("res://scripts/campaign/opening_staging.gd").play(room,step)
 	if generation!=opening_generation or not is_instance_valid(room) or not is_instance_valid(panel):return
-	opening_busy=false
-	if step<=1 and is_instance_valid(room.opening_tv) and room.opening_tv.cinematic_handoff:return
-	if is_instance_valid(next):next.disabled=false
+	if step<=1 and is_instance_valid(room.opening_tv) and room.opening_tv.cinematic_handoff:
+		opening_busy=false
+		return
 	if hidden_for_action and step not in [3,11,13,14]:
 		panel.show()
 		portrait.visible=portrait.texture!=null
-		# Hidden containers have no final line width until layout has run.
+	if panel.visible:
 		await get_tree().process_frame
 		await get_tree().process_frame
 		if generation!=opening_generation or not is_instance_valid(speech):return
 		var story: Dictionary=content.opening[mini(step,13)]
 		var text: String=load("res://scripts/campaign/hud_dialogue_surface.gd").parse_tags(story.text).text
-		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(text,Hud.font(),22,maxf(160,speech.size.x-12))
-		opening_page_index=0
-		speech.text=opening_pages[0]
-	if is_instance_valid(next):Hud.focus_later(next)
+		_paginate_opening(text)
+	opening_busy=false
+	if is_instance_valid(next):
+		next.disabled=false
+		Hud.focus_later(next)
+
+func _paginate_opening(text: String) -> void:
+	if not speech.is_visible_in_tree() or current_step in [3, 10, 11, 13, 14]:
+		return
+	opening_pages = load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(
+		text, speech.get_theme_font("font"), speech.get_theme_font_size("font_size"), maxf(1.0, speech.size.x - 4.0))
+	opening_page_index = mini(opening_page_index, opening_pages.size() - 1)
+	speech.text = opening_pages[opening_page_index]
 
 func _finish_opening_film()->void:
 	if opening_busy or is_instance_valid(pause_overlay) or not is_instance_valid(room) or not is_instance_valid(room.opening_tv) or current_step not in [0,1]:return
@@ -1598,6 +1599,8 @@ func _resume_game() -> void:
 	pause_overlay.queue_free()
 	pause_overlay = null
 	menu_origin=""
+	if last_scene_key.begins_with("opening:") and is_instance_valid(next) and next.visible:
+		Hud.focus_later(next)
 	if is_instance_valid(battle): battle.paused = pause_previous.get("battle", false)
 	if is_instance_valid(park): park.paused = pause_previous.get("park", false)
 	if is_instance_valid(room):
