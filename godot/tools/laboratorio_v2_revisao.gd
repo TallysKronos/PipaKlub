@@ -1,6 +1,6 @@
 extends SceneTree
 ## Pranchas de aprovação; nenhuma alteração do mapa ou dos sprites de produção.
-const OUT := "res://../art/professor-laboratorio-v2/fachada/"
+var OUT := "res://../art/professor-laboratorio-v2/fachada/"
 var content:Image
 var labels:Array=[]
 var canvas:Node2D
@@ -28,11 +28,23 @@ func board(w:int,h:int) -> Image:
 	result.fill(Color("e8edf0"))
 	return result
 
-func figure(target:Image,path:String,region:Rect2i,feet:Vector2i) -> void:
+func figure(target:Image,path:String,region:Rect2i,feet:Vector2i,outline:bool=false) -> void:
 	var frame:=img(path).get_region(region)
 	var bound:=frame.get_used_rect()
 	frame=frame.get_region(bound)
-	target.blend_rect(frame,Rect2i(Vector2i.ZERO,frame.get_size()),feet-Vector2i(frame.get_width()/2,frame.get_height()))
+	var at := feet - Vector2i(frame.get_width()/2, frame.get_height())
+	if outline:
+		var padded := Image.create_empty(frame.get_width() + 2, frame.get_height() + 2, false, Image.FORMAT_RGBA8)
+		for y in frame.get_height():
+			for x in frame.get_width():
+				if frame.get_pixel(x, y).a <= .5:
+					continue
+				for step in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+					padded.set_pixelv(Vector2i(x + 1, y + 1) + step, Color(.10, .07, .09, .92))
+		padded.blit_rect_mask(frame, frame, Rect2i(Vector2i.ZERO, frame.get_size()), Vector2i.ONE)
+		target.blend_rect(padded, Rect2i(Vector2i.ZERO, padded.get_size()), at - Vector2i.ONE)
+	else:
+		target.blend_rect(frame, Rect2i(Vector2i.ZERO, frame.get_size()), at)
 
 func draw() -> void:
 	canvas.draw_texture(render_texture,Vector2.ZERO)
@@ -56,6 +68,10 @@ func run() -> void:
 	canvas.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	root.add_child(canvas)
 	canvas.draw.connect(draw)
+	if "--interior" in OS.get_cmdline_user_args():
+		OUT = "res://../art/professor-laboratorio-v2/interior/"
+		await render_interior()
+		return
 	var art:=img(OUT+"quadro-chave.png")
 	var native:=board(768,576)
 	native.blend_rect(art,Rect2i(Vector2i.ZERO,art.get_size()),Vector2i.ZERO)
@@ -86,6 +102,57 @@ func run() -> void:
 	content.blend_rect(current,Rect2i(Vector2i.ZERO,current.get_size()),Vector2i(1480,165))
 	labels=[[Vector2(20,60),"CONCEPT DO DESIGNER",24],[Vector2(680,60),"QUADRO-CHAVE / 768 × 576 NATIVOS",24],[Vector2(1480,60),"INTEGRADO NA VILA" if integrated else "JOGO ATUAL / REFERÊNCIA LEGADA",24],[Vector2(20,742),"Fachada integrada em escala nativa. Interior: ampliação e nova aprovação pendentes." if integrated else "Fachada: etapa 2 para aprovação. Interior: espaço a rever. Kit e montagem no mapa após os portões.",22]]
 	await capture("comparativo.png")
+	audit_art(art)
+
+func render_interior() -> void:
+	var art := img(OUT + "quadro-chave.png")
+	var size := art.get_size()
+	var rect := Rect2i(Vector2i.ZERO, size)
+	var native := board(size.x, size.y)
+	native.blend_rect(art, rect, Vector2i.ZERO)
+	figure(native, "res://assets/campaign/overworld-animations-v1/rabbito/idle.png", Rect2i(0, 0, 112, 112), Vector2i(259, 301), true)
+	figure(native, "res://assets/npc-ds/professor.png", Rect2i(0, 0, 64, 96), Vector2i(514, 381))
+	figure(native, "res://assets/kael-video/iso-v2/idle.png", Rect2i(0, 672, 64, 96), Vector2i(299, 327))
+	native.save_png(OUT + "convivencia-nativa.png")
+	var mono := gray(native)
+	mono.save_png(OUT + "convivencia-cinza.png")
+	var native2 := native.duplicate()
+	native2.resize(size.x * 2, size.y * 2, Image.INTERPOLATE_NEAREST)
+	var mono2 := gray(native2)
+	var large_rect := Rect2i(Vector2i.ZERO, size * 2)
+	content = board(size.x * 3 + 80, size.y * 4 + 160)
+	var right := size.x + 50
+	var lower := size.y * 2 + 130
+	content.blit_rect(native, rect, Vector2i(20, 70))
+	content.blit_rect(native2, large_rect, Vector2i(right, 70))
+	content.blit_rect(mono, rect, Vector2i(20, lower))
+	content.blit_rect(mono2, large_rect, Vector2i(right, lower))
+	labels = [
+		[Vector2(20, 48), "CONVIVÊNCIA / COR / 1× NATIVO", 22],
+		[Vector2(right, 48), "KAEL, RABBITO E SR. ASSIS / 2× NEAREST", 22],
+		[Vector2(20, lower - 22), "ESCALA DE CINZA / 1×", 22],
+		[Vector2(right, lower - 22), "ESCALA DE CINZA / 2×", 22],
+	]
+	await capture("teste-convivencia.png")
+
+	var concept := img(OUT + "../referencias/concept-interior.png")
+	var current := img(OUT + "../referencias/jogo-atual-interior.png")
+	concept.resize(630, roundi(concept.get_height() * 630.0 / concept.get_width()), Image.INTERPOLATE_LANCZOS)
+	current.resize(610, roundi(current.get_height() * 610.0 / current.get_width()), Image.INTERPOLATE_LANCZOS)
+	content = board(2040, 660)
+	content.blend_rect(concept, Rect2i(Vector2i.ZERO, concept.get_size()), Vector2i(20, 205))
+	content.blend_rect(art, rect, Vector2i(651, 82))
+	content.blit_rect(current, Rect2i(Vector2i.ZERO, current.get_size()), Vector2i(1402, 154))
+	labels = [
+		[Vector2(20, 57), "CONCEPT DO DESIGNER", 24],
+		[Vector2(681, 57), "QUADRO-CHAVE  /  720 × 512 NATIVOS", 24],
+		[Vector2(1402, 57), "INTERIOR ATUAL NO JOGO", 24],
+		[Vector2(20, 622), "Interior público do Sr. Assis · Planta ampliada · Revisão de arte antes do kit", 20],
+	]
+	await capture("comparativo.png")
+	audit_art(art)
+
+func audit_art(art:Image) -> void:
 	var colors:={}
 	var semi:=0
 	var opaque:=0
@@ -102,7 +169,7 @@ func run() -> void:
 				var p:Vector2i=Vector2i(x,y)+v
 				if Rect2i(Vector2i.ZERO,art.get_size()).has_point(p) and art.get_pixelv(p).a>0:connected=true
 			if not connected:stray.append([x,y])
-	var metrics:={"canvas":[768,576],"colors_opaque":colors.size(),"semi_transparent_pixels":semi,"opaque_pixels":opaque,"isolated_opaque_pixels":stray,"character_scale":"1:1 original PNG frames","test":"render de aprovação, não integração de gameplay"}
+	var metrics:={"canvas":[art.get_width(),art.get_height()],"colors_opaque":colors.size(),"semi_transparent_pixels":semi,"opaque_pixels":opaque,"isolated_opaque_pixels":stray,"character_scale":"1:1 original PNG frames","test":"render de aprovação, não integração de gameplay"}
 	var f:=FileAccess.open(OUT+"verificacao.json",FileAccess.WRITE)
 	f.store_string(JSON.stringify(metrics,"\t"))
 	print(JSON.stringify(metrics))

@@ -10,7 +10,7 @@
 
 ## Interior
 
-A maquete revisada amplia a planta para 13 × 7,6 células. [Blockout](interior/blockout.png), [planta por zonas](interior/planta.png) e [contornos sobre o concept](interior/blockout-sobre-concept.png) aguardam aprovação antes do quadro-chave.
+A maquete foi ampliada para 13 × 7,6 células. O [quadro-chave interno](interior/ENTREGA-ETAPA-2.md) está pronto para aprovação, com comparativo, checklist e teste de convivência. A [planta por zonas](interior/planta.png) documenta as medidas para a montagem.
 
 ## Pendências do pedido geral
 
