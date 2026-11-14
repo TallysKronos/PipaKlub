@@ -11,7 +11,7 @@ func run() -> void:
  var original:Dictionary=content.rooms.professor.duplicate(true)
  var room:=Room.new();root.add_child(room);room.configure(content.rooms.professor,[1056,1232],true,"*",true,true);room.set_process(false)
  check(room.data==original,"all canonical dimensions, camera, blocking and hotspots preserved")
- check(room.get_meta("professor_art","")=="modern-v1","professor receives its new presentation")
+ check(room.get_meta("professor_art","")=="pixel-v2","professor receives its new presentation")
  check(content.rooms.professor==original,"shared content not mutated")
  var visited:Dictionary={};var queue:Array[Vector2i]=[Vector2i(1056,1232)];visited[queue[0]]=true;var n:=0
  while n<queue.size():
@@ -25,6 +25,16 @@ func run() -> void:
   check(found,"reachable canonical interaction: "+str(hotspot.id))
  for blocked in room.data.blocked:
   check(not room._safe(Vector2(blocked[0]+blocked[2]/2.,blocked[1]+blocked[3]/2.)),"furniture remains solid")
+ var staging=preload("res://scripts/campaign/tutorial_staging.gd")
+ for hotspot in room.data.hotspots:
+  var entry:=Vector2(1056,1232)
+  var end:=Vector2(hotspot.x,hotspot.y)
+  room.actor=entry
+  var outbound:Array=staging.route(room,end)
+  check(not outbound.is_empty() and outbound.back()==end,"collision-free path to "+str(hotspot.id))
+  room.actor=end
+  var inbound:Array=staging.route(room,entry)
+  check(not inbound.is_empty() and inbound.back()==entry,"collision-free return from "+str(hotspot.id))
  var walk_samples:=0
  var unreachable:=0
  var f:Dictionary=room.data.layout.floor
@@ -40,13 +50,22 @@ func run() -> void:
   var art:Sprite2D=node.get_node_or_null("Art")
   check(art!=null,"new art present: "+id)
   if art:
-   check(is_equal_approx(art.scale.x,art.scale.y),"uniform scaling: "+id)
+   check(art.scale==Vector2.ONE and art.texture_filter==CanvasItem.TEXTURE_FILTER_NEAREST,"native pixel density: "+id)
    check(art.region_rect.end.x<=art.texture.get_width() and art.region_rect.end.y<=art.texture.get_height(),"crop inside original PNG: "+id)
  for pose in [{"at":Vector2(624,528),"id":"desk","behind":true},{"at":Vector2(624,816),"id":"desk","behind":false},{"at":Vector2(1200,480),"id":"workbench","behind":true},{"at":Vector2(1440,672),"id":"workbench","behind":false}]:
   check(room._safe(pose.at),"occlusion pose stands on walkable ground")
   room.actor=pose.at;room.opening_pose()
   var prop:Node2D=room.get_node("Professor_"+str(pose.id))
   check((room.avatar.z_index<prop.z_index) if pose.behind else (room.avatar.z_index>prop.z_index),"actor depth ordering: "+str(pose.id))
+ Engine.time_scale = 30.0
+ room.actor=Vector2(1056,1232)
+ room.opening_pose()
+ for hotspot in room.data.hotspots:
+  var target:=Vector2(hotspot.x,hotspot.y)
+  check(await staging.approach(room,target),"Kael walks to "+str(hotspot.id))
+  check(room.actor.distance_to(target)<2.0,"Kael reaches "+str(hotspot.id))
+  check(await staging.approach(room,Vector2(1056,1232)),"Kael walks back from "+str(hotspot.id))
+ Engine.time_scale = 1.0
  room.free()
  print("PROFESSOR MODERNO ",checks," checks; ",visited.size()," reachable samples; ",unreachable," unreachable walkable samples; ",failures," failures; no save access")
  quit(0 if failures==0 else 1)

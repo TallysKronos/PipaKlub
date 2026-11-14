@@ -7,7 +7,9 @@ static func place(world: Node2D,b: Array,id: String,variant: String) -> void:
 	var manifest: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(BASE+"architecture.json"))
 	var model := variant if variant in ["kael","professor","shop"] else "neighbor-north" if id=="vizinha-norte" else "neighbor-south"
 	var info: Dictionary=manifest.models[model]
+	# Keep the canonical lot and doorway. The new painting has its own calibrated base.
 	var corners: Array=info.groundCorners
+	var art_corners: Array = [[13, 190], [143, 255], [291, 181]] if model == "professor" else corners
 	var left := Vector2(corners[0][0],corners[0][1])
 	var front := Vector2(corners[1][0],corners[1][1])
 	var right := Vector2(corners[2][0],corners[2][1])
@@ -16,10 +18,13 @@ static func place(world: Node2D,b: Array,id: String,variant: String) -> void:
 	var depth_cells := total-width_cells
 	var footprint: Array=[b[2]-width_cells,b[3]-depth_cells,b[2],b[3]]
 	var ground: float=world.support(Vector2(footprint[0]+.5,footprint[3]-.5))
-	var texture: Texture2D=load(BASE+str(info.file))
+	var texture: Texture2D = preload("res://assets/campaign/professor-pixel-v2/fachada.png") if model == "professor" else load(BASE + str(info.file))
 	var kind := "painted-building-"+model
-	world.textures[kind]=texture
-	var pixels:=texture.get_size()
+	world.textures[kind] = texture
+	var pixels := texture.get_size()
+	left = Vector2(art_corners[0][0], art_corners[0][1])
+	front = Vector2(art_corners[1][0], art_corners[1][1])
+	right = Vector2(art_corners[2][0], art_corners[2][1])
 	# A single affine transform must apply to the entire painting.
 	# Independent vertical scaling of the two halves folds the roof at front.x.
 	var left_slope: float=(front.y-left.y)/(front.x-left.x)
@@ -41,6 +46,8 @@ static func place(world: Node2D,b: Array,id: String,variant: String) -> void:
 		world.face(points,uv,kind)
 		var item: Dictionary=world.parts.back()
 		item.transparent=true
+		if model == "professor":
+			item.node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		# Sort painted facade halves by their foundation rather than roof height.
 		# Otherwise a tall illustration draws over people standing at its door.
 		item.depth=((footprint[0]+footprint[2])*.5+footprint[3])*32.0+ground if side==0 else (footprint[2]+(footprint[1]+footprint[3])*.5)*32.0+ground
