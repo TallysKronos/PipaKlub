@@ -78,12 +78,13 @@ func run() -> void:
 	content=board(2176,800)
 	var concept:=img(OUT+"../referencias/concept-fachada.png")
 	concept.resize(640,314,Image.INTERPOLATE_LANCZOS)
-	var current:=img(OUT+"../referencias/jogo-atual-fachada.png")
+	var integrated:=FileAccess.file_exists(OUT+"integracao/depois.png")
+	var current:=img(OUT+("integracao/depois.png" if integrated else "../referencias/jogo-atual-fachada.png"))
 	current.resize(640,360,Image.INTERPOLATE_LANCZOS)
 	content.blend_rect(concept,Rect2i(Vector2i.ZERO,concept.get_size()),Vector2i(20,180))
 	content.blend_rect(art,Rect2i(0,0,768,576),Vector2i(680,110))
 	content.blend_rect(current,Rect2i(Vector2i.ZERO,current.get_size()),Vector2i(1480,165))
-	labels=[[Vector2(20,60),"CONCEPT DO DESIGNER",24],[Vector2(680,60),"QUADRO-CHAVE / 768 × 576 NATIVOS",24],[Vector2(1480,60),"JOGO ATUAL / REFERÊNCIA LEGADA",24],[Vector2(20,742),"Fachada: etapa 2 para aprovação. Interior: espaço a rever. Kit e montagem no mapa após os portões.",22]]
+	labels=[[Vector2(20,60),"CONCEPT DO DESIGNER",24],[Vector2(680,60),"QUADRO-CHAVE / 768 × 576 NATIVOS",24],[Vector2(1480,60),"INTEGRADO NA VILA" if integrated else "JOGO ATUAL / REFERÊNCIA LEGADA",24],[Vector2(20,742),"Fachada integrada em escala nativa. Interior: ampliação e nova aprovação pendentes." if integrated else "Fachada: etapa 2 para aprovação. Interior: espaço a rever. Kit e montagem no mapa após os portões.",22]]
 	await capture("comparativo.png")
 	var colors:={}
 	var semi:=0

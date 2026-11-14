@@ -74,3 +74,5 @@ Os testes são de integridade de assets e de remontagem estática. Não comprova
 ## Resultado da conferência
 
 24 camadas no Aseprite; 24 Sprite2D no teste Godot. PNGs individuais, atlas e exportação do Aseprite recompõem os 232.810 pixels opacos da fonte, com zero diferenças. A segunda execução manteve o mesmo SHA-256 do atlas (registrado em verificacao.json). Fonte aprovada preservada com SHA-256 53e9aac4b1f742e63aea1958b9d3257f3fc2ddd8302fce72d0a60ffc83e68f6c. Avisos de acesso ao cache/log do Godot no ambiente restrito não afetaram as capturas; os comandos concluíram com código 0.
+
+A montagem no jogo está registrada na [entrega de integração](../integracao/README.md).

@@ -2,7 +2,7 @@ extends RefCounted
 ## Legacy street coordinates and native city cells are different save spaces.
 const SPACE := "bairro-inicial-v2"
 const HOME := Vector2(4.4,17.4)
-const PROFESSOR := Vector2(5.9,-.65)
+const PROFESSOR := Vector2(7.25,-1)
 const PARK := Vector2(30.5,20)
 const MORRO := Vector2(30.5,.2)
 

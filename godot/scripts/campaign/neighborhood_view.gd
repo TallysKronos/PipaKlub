@@ -103,6 +103,8 @@ func _equip_partner() -> void:
 	partner_root.visible = not model_id.is_empty()
 	if not partner_root.visible: return
 	if CompanionFollow.setup_overworld_art(partner, model_id, avatar.scale.y):
+		# A profundidade da Vila prevalece sobre o shader opcional de contorno.
+		partner.material=partner_material
 		partner_frames.clear()
 		return
 	var catalog: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
@@ -151,7 +153,7 @@ func _update_hint() -> void:
 	super._update_hint()
 	# At the shop threshold, entering wins; Lia can still be greeted a step away.
 	for house in world.houses:
-		if house.id=="loja" and cell.distance_to(house.door)<.65:
+		if (house.id=="loja" and cell.distance_to(house.door)<.65) or (house.id=="professor" and cell.distance_to(house.get("door_threshold",house.door))<.8):
 			near_house=house;near_person={};break
 	context.hide();objective.hide();progress_label.hide()
 	if not is_instance_valid(exploration_hud):return

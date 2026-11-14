@@ -18,7 +18,6 @@ const FOUNDATION_BOTTOM := -40.0
 const NORTH := -10
 ## Lote do laboratório v2: [u0, v0, u1, v1] em células do bairro (13,5 × 9). A frente dá para a
 ## calçada da Rua dos Inventos (v = -1); a entrada fica no meio da frente.
-const PROFESSOR_LOT := [0.5, -10.0, 14.0, -1.0]
 var road_names := ["Rua do Primeiro Vento","Ladeira das Rabiolas","Rua dos Inventos"]
 
 static func cell_id(u: int,v: int) -> String:return "%d:%d" % [u,v]
@@ -51,13 +50,15 @@ func patch_height(s: Dictionary,p: Vector2) -> float:
 
 func surface_height(s: Dictionary,p: Vector2,stepped: bool=false) -> float:
 	if stepped and s.get("shortcut",false):return 8.0+ceil(clampf((11.0-p.y)/4.0,0,1)*8.0)*6.0
-	return patch_height(s,p)
+	return patch_height(s,p)+ProfessorExteriorV2.added_height(p,stepped)
 
 func find_surface(id: String) -> Dictionary:return lookup.get(id,{})
 
+const ProfessorExteriorV2 = preload("res://scripts/overworld/professor_exterior_v2.gd")
+
 func support(p: Vector2) -> float:
 	var s: Dictionary = lookup.get(cell_id(floori(p.x),floori(p.y)),{})
-	return patch_height(s,p) if not s.is_empty() else 0.0
+	return patch_height(s,p)+ProfessorExteriorV2.added_height(p) if not s.is_empty() else 0.0
 
 func plan() -> void:
 	surfaces.clear();lookup.clear()
@@ -258,11 +259,11 @@ func garden(b: Array,gate: float) -> void:
 
 func dress() -> void:
 	building([2,12,7,16],"casa-kael","kael")
-	building([2,-5,8,-1.7],"professor","professor")
+	ProfessorExteriorV2.place(self)
 	building([23,-5,29,-1.7],"loja","shop")
 	building([15,-6,20,-2.7],"vizinha-norte","neighbor") # 2 células a leste: o lote do laboratório vai até u = 14
 	building([24,12,29,16],"vizinha-sul","neighbor")
-	for row in [[1.2,11,9.8,18.2,4.4],[PROFESSOR_LOT[0],-6,PROFESSOR_LOT[2],-.15,4.9],[22.2,-6,30.8,-.15,25.9],[23,11,30.5,18.2,26.4]]:garden(row.slice(0,4),row[4])
+	for row in [[1.2,11,9.8,18.2,4.4],[22.2,-6,30.8,-.15,25.9],[23,11,30.5,18.2,26.4]]:garden(row.slice(0,4),row[4])
 	for u in [9.0,20.0]:
 		for v in [1.2,21.2]:
 			for i in range(6):paint([u,v+float(i)*.57,u+1.8,v+.26+float(i)*.57],Color("E9DFC0"))
@@ -293,7 +294,7 @@ func dress() -> void:
 	volume([5.23,18.0,5.65,18.3],27,39,Color("438998"))
 	wall_patch([5.23,18.0,5.65,18.3],false,.15,.85,31,33,INK,.02)
 	blockers.append({"bounds":[5.23,18.0,5.65,18.3],"id":"correio"})
-	for p in [Vector2(3,16.8),Vector2(6.7,16.8),Vector2(2.3,-.9),Vector2(7.2,-.9),Vector2(23.3,-.8),Vector2(28.5,-.8),Vector2(24.5,16.9)]:
+	for p in [Vector2(3,16.8),Vector2(6.7,16.8),Vector2(23.3,-.8),Vector2(28.5,-.8),Vector2(24.5,16.9)]:
 		billboard("res://assets/overworld/kits/comum/pecas/vaso-ceramica.png",p,support(p),24)
 	for p in [Vector2(8.7,17),Vector2(1,13),Vector2(29.7,17),Vector2(21.3,16.4)]:
 		billboard("res://assets/overworld/kits/comum/pecas/flores-coral.png",p,support(p),13)
@@ -306,8 +307,7 @@ func dress() -> void:
 		var id: String="professor" if person.id=="assis" else person.id
 		person.image="res://assets/npc-ds/"+id+".png"
 		var pixels=preload("res://scripts/npc_pixel_sprite.gd")
-		var kael=preload("res://scripts/kael_video_avatar.gd")
-		billboard(person.image,person.p,support(person.p),pixels.height_for(id,.58*kael.BODY_SCALE),false,Rect2(192,96,64,96))
+		billboard(person.image,person.p,support(person.p),pixels.height_for(id,1.0),false,Rect2(192,96,64,96))
 		parts.back().node.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 		person.art_part = parts.back()
 		var bounds: AABB = parts.back().node.mesh.get_aabb()
