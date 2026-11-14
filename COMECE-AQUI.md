@@ -7,6 +7,7 @@ Branch de consolidação: `codex/unificacao-final`.
 - **ABRIR-EDITOR.cmd:** abre o projeto desta pasta no editor Godot.
 - **SOULGEN.cmd:** inicia o Soulgen desta pasta em `http://127.0.0.1:5241`.
 - **godot/project.godot:** arquivo para importar diretamente no Godot.
+- **CONCEPTS-DE-MAPAS.md:** acesso ao catálogo central de concepts, pranchas e briefs dos cenários.
 
 A base é `origin/claude/unificacao` em `44b4865a`, com trailer, mapas,
 kits e demais integrações já reunidas nela. Acrescentamos as 40 animações
