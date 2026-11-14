@@ -7,7 +7,7 @@ const PARK := Vector2(30.5,20)
 const MORRO := Vector2(30.5,.2)
 
 static func is_cell(point: Vector2) -> bool:
-	return point.is_finite() and point.x>=0 and point.x<32 and point.y>=-7 and point.y<28
+	return point.is_finite() and point.x>=0 and point.x<32 and point.y>=-10 and point.y<28
 
 static func resolve(point: Vector2,player: Dictionary) -> Vector2:
 	if is_cell(point):return point

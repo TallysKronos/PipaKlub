@@ -7,7 +7,7 @@ const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 var saved_player: Dictionary = {}
 var checkpoint_position := Checkpoint.HOME
 var exploration_hud: Control
-var data := {"walkable":[[0,-7,32,35]]}
+var data := {"walkable":[[0,-10,32,38]]} # borda norte: StarterNeighborhood.NORTH
 var player: Vector2:
 	get:return cell
 var autosave_age := 0.0
@@ -18,7 +18,7 @@ var active_dialogue: Control
 # Merge identical row spans before projection: streets stay legible without a tile grid.
 func _map_spans(kind: String) -> Array[Rect2]:
 	var spans: Array[Rect2] = []
-	for v in range(-7,28):
+	for v in range(-10,28):
 		var start := -1
 		for u in range(33):
 			var matches: bool = u<32 and world.find_surface(world.cell_id(u,v)).get("kind","")==kind
@@ -42,7 +42,7 @@ func map_polygons() -> Array[PackedVector2Array]:
 	return paths
 
 func map_regions() -> Array[Dictionary]:
-	var regions: Array[Dictionary] = [{"polygon":_map_rect(Rect2(0,-7,32,35)),"color":Color("647B58")}]
+	var regions: Array[Dictionary] = [{"polygon":_map_rect(Rect2(0,-10,32,38)),"color":Color("647B58")}]
 	for kind in ["paving","asphalt"]:
 		for span in _map_spans(kind):
 			regions.append({"polygon":_map_rect(span),"color":Color("D8CDAF") if kind=="paving" else Color("405766")})

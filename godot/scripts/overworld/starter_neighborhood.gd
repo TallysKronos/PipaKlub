@@ -13,6 +13,12 @@ const PERSON_HEIGHT := 51.0
 const VEHICLE_HEIGHTS := {"fusca-azul":100.0,"kombi-oficina":128.0,"jipe-pesquisa":118.0}
 const BUS_STOP_HEIGHT := 130.0
 const FOUNDATION_BOTTOM := -40.0
+## Borda norte do bairro. Era -7; foi para -10 (14/11/2026) para caber o laboratório v2 do
+## Sr. Assis (art/professor-laboratorio-v2/BRIEF.md). Os quintais do norte ganham 3 linhas de fundo.
+const NORTH := -10
+## Lote do laboratório v2: [u0, v0, u1, v1] em células do bairro (13,5 × 9). A frente dá para a
+## calçada da Rua dos Inventos (v = -1); a entrada fica no meio da frente.
+const PROFESSOR_LOT := [0.5, -10.0, 14.0, -1.0]
 var road_names := ["Rua do Primeiro Vento","Ladeira das Rabiolas","Rua dos Inventos"]
 
 static func cell_id(u: int,v: int) -> String:return "%d:%d" % [u,v]
@@ -56,13 +62,13 @@ func support(p: Vector2) -> float:
 func plan() -> void:
 	surfaces.clear();lookup.clear()
 	for u in range(0,32):
-		for v in range(-7,28):
+		for v in range(NORTH,28):
 			var point := Vector2(u+.5,v+.5)
 			var s := {"id":cell_id(u,v),"bounds":[u,v,u+1,v+1],"kind":kind_at(point),"height":0.0,"neighbors":[]}
 			if u>=8 and u<10 and v>=7 and v<11:s.kind="paving";s.shortcut=true
 			s.height = patch_height(s,point)
 			for d in [Vector2i.RIGHT,Vector2i.LEFT,Vector2i.UP,Vector2i.DOWN]:
-				if u+d.x>=0 and u+d.x<32 and v+d.y>=-7 and v+d.y<28:s.neighbors.append(cell_id(u+d.x,v+d.y))
+				if u+d.x>=0 and u+d.x<32 and v+d.y>=NORTH and v+d.y<28:s.neighbors.append(cell_id(u+d.x,v+d.y))
 			lookup[s.id]=s;surfaces.append(s)
 
 func terrain_cell(s: Dictionary) -> void:
@@ -254,9 +260,9 @@ func dress() -> void:
 	building([2,12,7,16],"casa-kael","kael")
 	building([2,-5,8,-1.7],"professor","professor")
 	building([23,-5,29,-1.7],"loja","shop")
-	building([13,-6,18,-2.7],"vizinha-norte","neighbor")
+	building([15,-6,20,-2.7],"vizinha-norte","neighbor") # 2 células a leste: o lote do laboratório vai até u = 14
 	building([24,12,29,16],"vizinha-sul","neighbor")
-	for row in [[1.2,11,9.8,18.2,4.4],[1.2,-6,9.8,-.15,4.9],[22.2,-6,30.8,-.15,25.9],[23,11,30.5,18.2,26.4]]:garden(row.slice(0,4),row[4])
+	for row in [[1.2,11,9.8,18.2,4.4],[PROFESSOR_LOT[0],-6,PROFESSOR_LOT[2],-.15,4.9],[22.2,-6,30.8,-.15,25.9],[23,11,30.5,18.2,26.4]]:garden(row.slice(0,4),row[4])
 	for u in [9.0,20.0]:
 		for v in [1.2,21.2]:
 			for i in range(6):paint([u,v+float(i)*.57,u+1.8,v+.26+float(i)*.57],Color("E9DFC0"))
@@ -270,7 +276,7 @@ func dress() -> void:
 		billboard("res://assets/overworld/kits/mobilidade/pecas/"+id+"-default.png",p,support(p),VEHICLE_HEIGHTS[id],true)
 		var length_cells := 4.6 if id=="kombi-oficina" else 4.0 if id=="jipe-pesquisa" else 3.6
 		blockers.append({"bounds":[p.x-length_cells,p.y-1.15,p.x+.8,p.y+.65],"id":"carro"})
-	for p in [Vector2(1.3,10.5),Vector2(9.0,16.5),Vector2(22.5,12),Vector2(30.4,15),Vector2(1.0,-4),Vector2(10,-4.5),Vector2(21,-4),Vector2(30.5,-4.5),Vector2(28,18.5)]:
+	for p in [Vector2(1.3,10.5),Vector2(9.0,16.5),Vector2(22.5,12),Vector2(30.4,15),Vector2(21,-4),Vector2(30.5,-4.5),Vector2(28,18.5)]:
 		billboard("res://assets/overworld/kits/planicie-v1/props/arvore.png",p,support(p),90)
 		blockers.append({"bounds":[p.x-.23,p.y-.23,p.x+.23,p.y+.23],"id":"arvore"})
 	for p in [Vector2(11.5,1),Vector2(18.5,5.7),Vector2(11.5,19.5),Vector2(18.5,20),Vector2(22,25.8)]:
@@ -332,7 +338,7 @@ func _ready() -> void:
 	add_child(backdrop)
 	plan()
 	# Close the monolithic slab underneath. It does not add walkable surfaces.
-	var base := rect([0,-7,32,28])
+	var base := rect([0,NORTH,32,28])
 	quad(base[0],base[1],base[2],base[3],FOUNDATION_BOTTOM,FOUNDATION_BOTTOM,FOUNDATION_BOTTOM,FOUNDATION_BOTTOM,"ink",Color("55402F"))
 	for s in surfaces:terrain_cell(s)
 	if not geometry_only and decorate:dress()
