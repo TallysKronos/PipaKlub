@@ -1,9 +1,25 @@
 extends RefCounted
 const H=preload("res://scripts/campaign/house_modern.gd")
-const BASE="res://assets/campaign/professor-moderno-v1/"
+const PIXEL_ART := "res://assets/campaign/professor-pixel-v2/"
+# Atlas cells and front-corner pivots on the 2:1 grid.
+const FURNITURE := {
+ "library": [Rect2(14, 582, 144, 207), Vector2(120, 785)],
+ "study": [Rect2(254, 582, 144, 207), Vector2(360, 785)],
+ "workbench": [Rect2(462, 572, 207, 217), Vector2(600, 785)],
+ "desk": [Rect2(734, 582, 174, 207), Vector2(840, 785)],
+ "chest": [Rect2(46, 861, 115, 79), Vector2(120, 937)],
+}
 static func applies(data:Dictionary) -> bool:return data.get("id","")=="professor"
 static func build_floor(room) -> void:
  var root:=Node2D.new();root.name="AtelieModernoFloor";room.add_child(root)
+ if applies(room.data) and not H.geometry():
+  var shell := Sprite2D.new()
+  shell.texture = load(PIXEL_ART + "estrutura.png")
+  shell.centered = false
+  shell.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+  root.add_child(shell)
+  room.set_meta("professor_art","pixel-v2")
+  return
  var f:Dictionary=room.data.layout.floor;var s:float=room.camera.scale
  var back:Vector2=room.project(Vector2(f.x,f.y));var left:Vector2=room.project(Vector2(f.x,f.y+f.h));var right:Vector2=room.project(Vector2(f.x+f.w,f.y));var front:Vector2=room.project(Vector2(f.x+f.w,f.y+f.h));var up:=Vector2(0,-160*s)
  H.poly(root,PackedVector2Array([left,back,back+up,left+up]),Color("a9bcc7") if H.geometry() else Color("dae5e6"),true,2.)
@@ -22,14 +38,37 @@ static func build_floor(room) -> void:
    H.rect(room,root,x,y,w,h,Color(.73+t,.79+t,.81+t),false)
    H.line(root,room.project(Vector2(x,y)),room.project(Vector2(x+w,y)),Color("9cafb5"),.7)
    H.line(root,room.project(Vector2(x,y)),room.project(Vector2(x,y+h)),Color("9cafb5"),.7)
- room.set_meta("professor_art","modern-v1")
+ room.set_meta("professor_art","pixel-v2")
 
 static func create_prop(room,p:Dictionary) -> Node2D:
  var root:=Node2D.new();root.name="Professor_"+str(p.id)
  var r:=Rect2(p.rect[0],p.rect[1],p.rect[2],p.rect[3]);var id:String=p.id
+ if applies(room.data) and not H.geometry():
+  if id in ["window", "papers"]:
+   # Glazing is painted into the two walls.
+   return root
+  if FURNITURE.has(id):
+   var part: Array = FURNITURE[id]
+   var fp: Dictionary = p.footprint
+   var floor_data: Dictionary = room.data.layout.floor
+   var front: Vector2 = room.project(Vector2(floor_data.x + fp.u1 * 96, floor_data.y + fp.v1 * 96))
+   var pixels := Sprite2D.new()
+   pixels.name = "Art"
+   pixels.texture = load(PIXEL_ART + "moveis.png")
+   pixels.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+   pixels.centered = false
+   pixels.region_enabled = true
+   pixels.region_rect = part[0]
+   pixels.region_filter_clip_enabled = true
+   pixels.position = front.round() + pixels.region_rect.position - Vector2(part[1])
+   root.add_child(pixels)
+   return root
  if id in ["rug","exit"]:
   var fp:Dictionary=p.footprint;var f:Dictionary=room.data.layout.floor
   var x:float=f.x+fp.u0*96;var y:float=f.y+fp.v0*96;var w:float=(fp.u1-fp.u0)*96;var h:float=(fp.v1-fp.v0)*96
+  if applies(room.data) and not H.geometry():
+   _floor_marks(room, root, Rect2(x, y, w, h), id)
+   return root
   H.rect(room,root,x,y,w,h,Color("e6e9df"));H.rect(room,root,x+12,y+12,w-24,h-24,Color("416c86"))
   if id=="exit":H.rect(room,root,x+12,y+h-24,w-24,12,Color("6cbacb"),false)
   else:
@@ -60,11 +99,22 @@ static func create_prop(room,p:Dictionary) -> Node2D:
   a+=lift;b+=lift;c+=lift;d+=lift
   H.poly(root,PackedVector2Array([b,c,c+rise,b+rise]),Color("4c6e81"));H.poly(root,PackedVector2Array([c,d,d+rise,c+rise]),Color("608698"));H.poly(root,PackedVector2Array([a+rise,b+rise,c+rise,d+rise]),Color("aac9ce"))
   return root
- var manifest:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(BASE+"kit.json"));var spec:Dictionary=manifest.pieces[id]
- var bounds:=Rect2(spec.bounds[0],spec.bounds[1],spec.bounds[2],spec.bounds[3])
- var sprite:=Sprite2D.new();sprite.name="Art";sprite.texture=load(BASE+id+".png");sprite.centered=false;sprite.region_enabled=true;sprite.region_rect=bounds
- var fit:float=minf(r.size.x/bounds.size.x,r.size.y/bounds.size.y);sprite.scale=Vector2.ONE*fit
- sprite.position=Vector2(r.position.x+(r.size.x-bounds.size.x*fit)*.5,r.end.y-bounds.size.y*fit)
- sprite.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
- var material:=ShaderMaterial.new();material.shader=preload("res://shaders/industrial_cutout.gdshader");sprite.material=material
- root.add_child(sprite);return root
+ return root
+
+static func _floor_marks(room, root: Node2D, area: Rect2, id: String) -> void:
+ var guide := Color("378d9f")
+ if id == "exit":
+  H.rect(room, root, area.position.x, area.position.y, area.size.x, area.size.y, Color("32576c"))
+  for index in 5:
+   H.rect(room, root, area.position.x + 15 + index * 33, area.end.y - 23, 21, 9, Color("76d1c4"), false)
+  return
+ for edge in [area.position, area.end - Vector2(0, area.size.y)]:
+  H.rect(room, root, edge.x - 4, edge.y + 8, 12, area.size.y - 16, guide, false)
+  for end in [edge.y + 8, edge.y + area.size.y - 20]:
+   H.rect(room, root, edge.x - 27, end, 35, 12, guide, false)
+ for index in 3:
+  var center := area.get_center() + Vector2(0, (index - 1) * 42)
+  var diamond := PackedVector2Array()
+  for corner in [Vector2(-20, -20), Vector2(20, -20), Vector2(20, 20), Vector2(-20, 20)]:
+   diamond.append(room.project(center + corner).round())
+  H.poly(root, diamond, Color("80b9c5"), false)
