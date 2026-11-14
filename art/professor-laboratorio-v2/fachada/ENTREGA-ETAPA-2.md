@@ -17,4 +17,4 @@ A partir da raiz do checkout, `godot --path godot --script tools/laboratorio_v2_
 
 A verificação terminou com código 0. Avisos do ambiente restrito sobre cache/log do Godot não afetaram o render. A ferramenta Aseprite disponível não expõe a operação `validate`; foram executadas verificação de alpha/cores/pixels isolados, inspeção ampliada, prova de convivência e crítica independente. Não se declara uma validação de gameplay.
 
-Parada: **aguardando aprovação do quadro-chave da fachada**.
+Atualização: o pedido seguinte “next” autorizou o avanço para o kit da etapa 3. Ver [kit e instruções](kit/README.md). O interior continua pendente de ampliação.
