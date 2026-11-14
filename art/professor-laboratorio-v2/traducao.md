@@ -1,15 +1,15 @@
-# Laboratório v2 · Etapa 0
+# Laboratório v2 · Ficha de tradução
 
-Tradução do concept do designer para a câmera isométrica 2:1 do jogo.
+A ficha da etapa 0 foi recuperada e publicada nesta branch, criada da `claude/unificacao` atualizada em 14/11/2026.
 
-- [Fachada, F1–F9, paleta, escala e lote](fachada/traducao.md).
-- [Interior, I1–I10, peça central e planta por zonas](interior/traducao.md).
-- Fonte da verdade: BRIEF.md e referencias/concept-designer.png.
-- Processo: ../../documentation/art/PIPELINE-CONCEPT-PARA-JOGO.md.
+- [Fachada F1–F9, materiais e escala](fachada/traducao.md).
+- [Interior I1–I10 e planta por zonas](interior/traducao.md).
+- Fontes: `BRIEF.md`, `referencias/concept-designer.png` e recortes de detalhe.
+- Processo: [pipeline](../../documentation/art/PIPELINE-CONCEPT-PARA-JOGO.md).
+- [Revisão da etapa 1](ETAPA-1.md).
 
-**Portão de área.** Solicitar ao integrador 24 × 16 células para fachada,
-pátio e acessos; corpo público e interior propostos em 18 × 10 células.
-O lote de referência atual tem 6 × 3,3 células antes da calibração da pintura.
-As medidas novas são uma proposta de tradução para validar no blockout.
-A etapa 1 depende da atualização do lote e de suas coordenadas no mapa.
-Nenhuma arte de blockout, quadro-chave ou kit foi produzida nesta etapa.
+## Atualização do portão de área
+
+A estimativa inicial de 24 × 16 células foi substituída pela reserva definida pelo integrador em `lote/LOTE.md`: **13,5 × 9 células**, u 0,5 → 14, v −10 → −1. A tradução dimensional do blockout usa a régua atual do cenário: Kael 70 px, célula 64 × 32, terreno +48 px, degrau 8 px. Não se aplica redução global do prédio ou ampliação do Kael para encaixar a imagem.
+
+O lote completo é mostrado no blockout, incluindo acessos e pátio. A silhueta e a distribuição ainda dependem da aprovação do dono. Nenhum quadro-chave ou kit foi iniciado.

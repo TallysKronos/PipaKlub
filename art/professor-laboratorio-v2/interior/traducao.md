@@ -5,13 +5,7 @@ concept-detalhe-maleta.png. O interior corresponde ao edifício da fachada.
 
 ## Peça central, primeiro elemento do blockout
 
-I1 será o primeiro volume a montar na etapa 1. Um losango gigante, suspenso
-em suporte de arcos, fica sobre a bancada de pesquisa, diante da janela alta
-e sob o pé-direito duplo. Ele ocupa aproximadamente 3 células de largura no
-plano de intenção. O conjunto bancada/aparelho fica dentro de uma área de
-8 × 4 células, com circulação ao redor. A altura do losango proposto é de
-96 px e a do conjunto é de aproximadamente 160 px a partir do piso.
-A silhueta é traçada sobre o concept antes de qualquer acabamento.
+I1 foi montado primeiro: losango de 86 px em suporte de arcos, sobre bancada de 42 px. O aparelho alcança aproximadamente 151 px a partir do piso, sob o pé-direito central de 200 px. A bancada mede cerca de 4,23 × 1,16 células.
 
 ## Elementos obrigatórios
 
@@ -31,35 +25,28 @@ A silhueta é traçada sobre o concept antes de qualquer acabamento.
 Os dez elementos estão identificados na referência. O checklist da etapa 2
 terá a presença de cada um conferida contra o quadro-chave.
 
-## Planta de intenção por zonas
+## Planta por zonas · etapa 1
 
-Coordenadas locais de intenção u=0..18, v=0..10. Fundo em v=0, frente em
-v=10. A câmera vê os lados +u e +v. O desenho abaixo é uma planta por zonas,
-não um blockout e não representa volumes aprovados.
+Envelope interno de apresentação: **12,4 × 5,3 células**, na régua nativa do Kael. x cresce à direita, d para o fundo. Corte das paredes dianteiras com as duas abóbadas preservadas. Geometria para aprovação antes de pintura e colisões.
 
 ```text
-FUNDO v=0
-+------------------+--------------------------+---------------------+
-| livros / quadro  | torre / janela alta     | estoque / maletas   |
-| I4               | I2                      | I6 / sala pública I7|
-+------------------+--------------------------+---------------------+
-| recepção I3      |     LOSANGO I1          | acesso ao estoque   |
-| monitor/planta   | bancada I5 / monitores  |                     |
-| carrinho         | banqueta / circulação   |                     |
-+------------------+--------------------------+---------------------+
-| chegada livre    | porta de vidro I9       | mesa / maleta I8    |
-|                  | capacho / acesso frontal| sensor conectado    |
-+------------------+--------------------------+---------------------+
-FRENTE v=10 · paredes cortadas, telhados visíveis em corte I10
+FUNDO d=5,3
++----------------+-----------------------+----------------------+
+| I4 livros      | I2 torre / janela alta| I6 caixas / estoque |
+| quadro-losango |                       | I7 porta / maletas  |
++----------------+-----------------------+----------------------+
+| I3 recepção    |       I1 LOSANGO      | acesso ao estoque   |
+| monitor/planta | I5 bancada / monitores|                     |
+| carrinho       | banqueta              |                     |
++----------------+-----------------------+----------------------+
+| Kael / chegada | I9 vidro / capacho    | I8 maleta e sensor  |
++----------------+-----------------------+----------------------+
+FRENTE d=0 · I10 paredes cortadas / abóbadas em corte
 ```
 
-Recepção aproximada u=0..5; pesquisa u=5..13; estoque u=13..18.
-Faixa frontal v=7..10 para a chegada e a mesa de equipamento à direita.
-Rota proposta: porta → área central livre → Assis/bancada, com ramais
-para recepção e estoque. Reservar 2 células livres nos trajetos principais.
-A posição final dos objetos será definida após o lote ampliado e o blockout.
-O laboratório secreto e qualquer pista sobre a origem do Tyler estão
-excluídos da composição, da planta e dos objetos desta entrega.
+Recepção x≈0,7..3,5; pesquisa x≈4,1..8,4; estoque x≈8,5..12,4. Bancada principal d≈2,9..4,1; mesa de equipamento d≈1..2. Rota de intenção: entrada → frente da bancada → recepção/estoque, contornando os móveis. A faixa central diante da bancada tem aproximadamente 1,3 célula de profundidade; validação dimensional no portão com Kael visível.
+
+A sala dos fundos é apenas o estoque público do concept. Nenhum espaço adicional de revelação narrativa é representado.
 
 ## Simplificações permitidas
 
@@ -84,46 +71,23 @@ esquerdo. Metal claro reutiliza o claro do telhado; a seleção final de highlig
 vem do recorte do instrumento. Caixas amarelas, azul e laranja e a luz ciano
 serão amostradas dos recortes específicos na etapa 2, sem substituir estas bases.
 
-## Régua de escala
+## Régua atualizada na etapa 1
 
-Kael tem 70 px visíveis em godot/assets/kael-video/iso-v2/idle.png.
-A projeção do mapa é 64 × 32 px por célula, com 64 px por nível vertical.
-Logo, o Kael mede 1,094 nível vertical. Isso mede altura, não sua pegada no piso.
+Célula 64 × 32 px; projeção 2:1. Kael nativo, referência de 70 px (1,46 desnível de terreno de 48 px). Altura não é pegada no chão.
 
-Proposta dimensional para validar no blockout, sem transformar o concept em
-projeto arquitetônico com medidas reais conhecidas:
-
-| Referência | Medida nativa proposta | Relação com Kael |
+| Referência | Altura nativa | Relação com Kael |
 | --- | --- | --- |
 | Kael | 70 px | 1 |
-| Porta de vidro | 96 px de altura livre | 1,37 |
-| Espelho da escada | 6 px; quatro espelhos | 0,086 por espelho |
-| Patamar da entrada | 24 px acima do passeio | 0,343 |
-| Pé-direito dos volumes laterais | 128 px | 1,83 |
-| Pé-direito central | 208 px | 2,97 |
-| Topo da torre, incluindo base elevada | aproximadamente 256 px | 3,66 |
+| Porta | 92 px | 1,31 |
+| Degrau | 8 px, três espelhos | 0,11 |
+| Patamar | 24 px sobre passeio | 0,34 |
+| Volumes laterais até cobertura | aproximadamente 133 px | 1,90 |
+| Pé-direito central | aproximadamente 200 px | 2,86 |
+| Torre incluindo patamar | 224 px | 3,20 |
 
-O número de caixilhos e a espessura do desenho serão adaptados à densidade
-nativa. O enquadramento inteiro pode mudar de zoom no jogo, mantendo a relação
-entre Kael, porta e edifício. As alturas relativas e as duas abóbadas virão
-do traçado sobre as imagens na etapa 1.
+As amostras de cor acima identificam materiais do concept. A pintura será remapeada para a paleta dos personagens e sua extensão de cenário conforme o guia. Na etapa 1, somente cinzas, com Kael original como régua.
+## Compatibilidade e portão
 
-## Dimensão e compatibilidade
+Mesma régua nativa da fachada. O gerador mapeia as coordenadas de construção da planta para o envelope de 12,4 × 5,3, mantendo as alturas de equipamentos e portas. Sala de produção `professor-home`, gatilhos, colisões e saves pertencem à etapa de integração.
 
-Proposta de interior: 18 × 10 células do mapa, coerente com o corpo da
-fachada. A sala atual usa 14 × 11 células lógicas de 96 unidades. Seu
-renderer divide as coordenadas por 3 e por 6, produzindo células de cerca
-de 31,5 × 15,75 px após a câmera. Essa régua interna antiga não equivale às
-células 64 × 32 do overworld.
-
-A tradução deverá usar uma única régua com Kael 70 px e projeção 64 × 32.
-O integrador precisa transformar entrada, gatilhos, colisões, pontos de
-encenação e retorno de saves juntos ao atualizar a sala. A proposta não
-altera esses arquivos nesta etapa. O mapa público permanece em professor-home.
-
-## Portão
-
-Aguardando a reserva de 24 × 16 células da fachada e a definição da área
-18 × 10 do interior. Não produzir a peça central nem o blockout antes de
-confirmar o espaço. Após a atualização, começar por I1/I2, montar a planta
-por zonas, acrescentar as demais peças e capturar a silhueta com o Kael.
+Etapa 1: `blockout.png` e `blockout-sobre-concept.png`. Aguardando aprovação da planta, peça central e corte junto à fachada. Ver `../ETAPA-1.md`.

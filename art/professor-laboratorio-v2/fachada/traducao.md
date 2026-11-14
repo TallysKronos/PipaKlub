@@ -43,62 +43,38 @@ esquerdo. Metal claro reutiliza o claro do telhado; a seleção final de highlig
 vem do recorte do instrumento. Caixas amarelas, azul e laranja e a luz ciano
 serão amostradas dos recortes específicos na etapa 2, sem substituir estas bases.
 
-## Régua de escala
+## Régua atualizada na etapa 1
 
-Kael tem 70 px visíveis em godot/assets/kael-video/iso-v2/idle.png.
-A projeção do mapa é 64 × 32 px por célula, com 64 px por nível vertical.
-Logo, o Kael mede 1,094 nível vertical. Isso mede altura, não sua pegada no piso.
+Célula 64 × 32 px; projeção 2:1. Kael nativo, referência de 70 px (1,46 desnível de terreno de 48 px). Altura não é pegada no chão.
 
-Proposta dimensional para validar no blockout, sem transformar o concept em
-projeto arquitetônico com medidas reais conhecidas:
-
-| Referência | Medida nativa proposta | Relação com Kael |
+| Referência | Altura nativa | Relação com Kael |
 | --- | --- | --- |
 | Kael | 70 px | 1 |
-| Porta de vidro | 96 px de altura livre | 1,37 |
-| Espelho da escada | 6 px; quatro espelhos | 0,086 por espelho |
-| Patamar da entrada | 24 px acima do passeio | 0,343 |
-| Pé-direito dos volumes laterais | 128 px | 1,83 |
-| Pé-direito central | 208 px | 2,97 |
-| Topo da torre, incluindo base elevada | aproximadamente 256 px | 3,66 |
+| Porta | 92 px | 1,31 |
+| Degrau | 8 px, três espelhos | 0,11 |
+| Patamar | 24 px sobre passeio | 0,34 |
+| Volumes laterais até cobertura | aproximadamente 133 px | 1,90 |
+| Pé-direito central | aproximadamente 200 px | 2,86 |
+| Torre incluindo patamar | 224 px | 3,20 |
 
-O número de caixilhos e a espessura do desenho serão adaptados à densidade
-nativa. O enquadramento inteiro pode mudar de zoom no jogo, mantendo a relação
-entre Kael, porta e edifício. As alturas relativas e as duas abóbadas virão
-do traçado sobre as imagens na etapa 1.
+As amostras de cor acima identificam materiais do concept. A pintura será remapeada para a paleta dos personagens e sua extensão de cenário conforme o guia. Na etapa 1, somente cinzas, com Kael original como régua.
+## Lote aprovado
 
-## Lote necessário e portão
+A estimativa inicial de 24 × 16 células foi substituída pela reserva do integrador em `../lote/LOTE.md`: **13,5 × 9 células**, u 0,5..14, v −10..−1, terreno +48 px. Entrada no alinhamento **(7,25; −1)**; Sr. Assis em **(6,8; −0,65)**. Vizinho a partir de u=15.
 
-O runtime atual coloca o laboratório em [2,-5,8,-1.7] no gerador
-godot/scripts/overworld/starter_neighborhood.gd. Esse retângulo tem 6 × 3,3
-células. A calibração de neighborhood_architecture.gd redistribui o somatório
-das duas dimensões usando groundCorners da pintura antiga, resultando em uma
-pegada aproximada de 4,35 × 4,95 células. O SVG antigo professorHouse.svg é
-referência legada; não é a fonte geométrica do lote renderizado hoje.
+Coordenadas do modelo: x=u−0,5, d=−1−v. O render usa altura relativa ao passeio; a integração deve somar 48 px.
 
-Solicitação para o integrador: reservar **24 × 16 células** para o conjunto
-público, além da calçada/rua existentes. Esta é uma estimativa técnica para o
-blockout e deve ser reservada antes de desenhá-lo.
+| Volume | x local | d local |
+| --- | --- | --- |
+| Faixa livre junto à calçada | 0..13,5 | 0..1 |
+| Ala esquerda | 0,55..5,35 | 3..8,3 |
+| Torre | 5,15..7,55 | 3,8..6,9 |
+| Ala direita | 7,2..12,95 | 4,25..8,4 |
+| Escada e rampa | 3,85..8,05 | 1,05..3 |
+| Pátio e cabine | 8,8..13,2 | 1,05..4,1 |
 
-- Corpo principal e torre: 18 × 10 células.
-- Pátio direito: 6 × 8 células, contíguo ao volume direito.
-- Faixa frontal de 5 células de profundidade para escada, rampa e chegada.
-- Faixa de fundo de 1 célula para fechamento/vegetação.
-- Na lateral do pátio, usar o restante da profundidade para canteiros e acesso.
+O lote projeta 720 × 360 px de chão. Alturas nativas fixadas pela régua acima; não se aplica redução global para encaixar o prédio. A distribuição e as proporções estão submetidas ao portão de silhueta.
 
-Na câmera 2:1, o envelope de 24 × 16 projeta aproximadamente 1280 × 640 px
-de chão, antes da altura da torre. O corpo 18 × 10 projeta 896 × 448 px.
-A dimensão por eixos foi estimada pela proporção das portas duplas e das
-alas no concept, pela escala do Kael e pelo espaço de aproximação à cabine.
-São medidas propostas; não são dimensões fornecidas pelo designer.
+## Portão
 
-O pátio e o acesso não cabem no lote existente com essa régua. Não há
-blockout nem alteração do mapa nesta etapa. O integrador deve confirmar
-coordenadas do lote ampliado, cota da calçada e orientação da entrada.
-A fachada e o interior retomam juntos a etapa 1 depois dessa atualização.
-
-## Próxima etapa
-
-Sobrepor os volumes cinza ao concept, apresentar a projeção na câmera do jogo
-e colocar Kael ao lado da porta, da rampa e da cabine. O portão da silhueta
-exige aprovação antes de pintar o quadro-chave.
+Etapa 1: `blockout.png` e `blockout-sobre-concept.png`. Aguardando aprovação junto ao interior, antes de pintura. A sobreposição identifica os volumes na câmera original do concept; a maquete apresenta a tradução para a câmera 2:1. Detalhes de acabamento serão conferidos no checklist da etapa 2.
