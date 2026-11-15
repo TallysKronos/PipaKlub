@@ -65,6 +65,10 @@ func draw() -> void:
 func draw_facade() -> void:
 	origin=Vector2(674,185)
 	box([LOT.position.x,LOT.position.y,LOT.end.x,LOT.end.y],0,8)
+	# Muro distante e caminho ficam atrás da casa, nunca sobre a fachada.
+	box([1.2,11,1.32,18.2],8,48)
+	box([1.5,12,1.9,16.2],8,24)
+	flat([3.7,16.0,5.1,18.2],9,Color("c2c9cf"))
 	for tree in [Vector2(1.6,12.5),Vector2(1.6,14.3)]:
 		box([tree.x-.07,tree.y-.07,tree.x+.07,tree.y+.07],8,68)
 		var crown:=point(tree.x,tree.y,82)
@@ -94,22 +98,30 @@ func draw_facade() -> void:
 		line(Vector3(u,12.2,325),Vector3(u,13.3,325),1)
 	box([5.1,12.4,5.8,13.0],320,333)
 	# Piso de acesso conserva o portão em u=4,4.
-	flat([3.7,16.0,5.1,18.2],9,Color("c2c9cf"))
-	for b in [[1.2,11,1.32,18.2],[9.68,11,9.8,18.2],[1.2,18.08,3.65,18.2],[5.15,18.08,9.8,18.2]]:
+
+	for b in [[9.68,11,9.8,18.2],[1.2,18.08,3.65,18.2],[5.15,18.08,9.8,18.2]]:
 		box(b,8,48)
-	for b in [[1.5,12,1.9,16.2],[7.9,17.2,9.3,17.8]]:
+	for b in [[7.9,17.2,9.3,17.8]]:
 		box(b,8,24)
 	box([5.2,18.0,5.65,18.2],8,57)
 	front_panel(3.65,5.15,18.21,8,43)
-	var wheel_a:=point(1.6,16.4,18)
-	var wheel_b:=point(1.6,17.5,18)
+	# Bicicleta apoiada na cota do jardim, com quadro e rodas legíveis.
+	var wheel_a:=point(1.6,16.35,20)
+	var wheel_b:=point(1.6,17.65,20)
+	var crank:=point(1.6,17.02,25)
+	var saddle:=point(1.6,16.9,44)
+	var headset:=point(1.6,17.48,43)
 	for wheel in [wheel_a,wheel_b]:
-		canvas.draw_circle(wheel,12,Color("a6afb6"))
-		canvas.draw_arc(wheel,12,0,TAU,24,INK,1,false)
-	var saddle:=point(1.6,16.95,43)
-	canvas.draw_line(wheel_a,saddle,INK,2)
-	canvas.draw_line(saddle,wheel_b,INK,2)
-	canvas.draw_line(wheel_a,wheel_b,INK,2)
+		canvas.draw_circle(wheel,12,Color("c8cdd1"))
+		canvas.draw_arc(wheel,12,0,TAU,24,INK,2,false)
+		canvas.draw_line(wheel-Vector2(9,0),wheel+Vector2(9,0),INK,1)
+		canvas.draw_line(wheel-Vector2(0,9),wheel+Vector2(0,9),INK,1)
+	canvas.draw_polyline(PackedVector2Array([wheel_a,saddle,crank,wheel_a]),INK,2)
+	canvas.draw_polyline(PackedVector2Array([saddle,headset,crank]),INK,2)
+	canvas.draw_line(headset,wheel_b,INK,2)
+	canvas.draw_line(saddle-Vector2(6,1),saddle+Vector2(6,1),INK,3)
+	canvas.draw_line(headset,headset+Vector2(-3,-7),INK,2)
+	canvas.draw_line(headset+Vector2(-3,-7),headset+Vector2(5,-7),INK,2)
 	person_at(4.4,19.0,8)
 func stair_rect(dimensions:Vector2) -> Array:
 	return [STAIR.position.x*dimensions.x,STAIR.position.y*dimensions.y,STAIR.end.x*dimensions.x,STAIR.end.y*dimensions.y]

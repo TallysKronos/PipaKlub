@@ -20,3 +20,7 @@ Para reproduzir a partir da raiz do repositório no PowerShell
 ```
 
 O overlay é uma comparação de proporções em escala uniforme. O concept tem outra câmera e não permite um alinhamento perfeito de todas as quinas com a projeção do jogo.
+
+## Revisão da entrada
+
+Corrigida a oclusão do muro e do canteiro laterais, antes desenhados sobre a marquise. O caminho agora é desenhado antes do prédio. Bicicleta refeita com quadro e rodas apoiados na cota do jardim. Fachada e comparativos foram recapturados no Godot. Permanece na etapa de aprovação de volumes.
