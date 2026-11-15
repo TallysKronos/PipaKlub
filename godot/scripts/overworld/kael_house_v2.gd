@@ -48,6 +48,8 @@ static func place(world:Node2D) -> void:
 			world.parts.back().transparent=true
 			world.parts.back().skip_terrain_clip=true
 	build_gate(world)
+	var bicycle:Node2D=preload("res://scenes/overworld/props/bicycle.tscn").instantiate()
+	bicycle.install(world)
 	world.blockers.append({"bounds":BODY,"id":"casa-kael"})
 	world.houses.append({"id":"casa-kael","bounds":BODY,"door":DOOR,"height":8,"variant":"kael","paintedModel":"kael-v2","gate":GATE})
 
@@ -92,6 +94,3 @@ static func build_gate(world:Node2D) -> void:
 	solid(world,mail,20,38,Color("2b5ba5"),Color("303b58"),Color("55709b"))
 	world.wall_patch(mail,false,.12,.88,34,35,Color("18394e"),.012)
 	world.face([Vector3(5.475,18.62,31),Vector3(5.55,18.62,27),Vector3(5.475,18.62,23),Vector3(5.40,18.62,27)],PackedVector2Array([Vector2.ZERO,Vector2.RIGHT,Vector2.ONE,Vector2.DOWN]),"ink",Color("c8cdd1"))
-	var bike:Texture2D=load(BASE+"bicicleta.png")
-	world.billboard(BASE+"bicicleta.png",Vector2(2.0,18.85),8,bike.get_image().get_used_rect().size.y)
-	world.parts.back().node.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST

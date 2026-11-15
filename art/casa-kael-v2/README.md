@@ -1,6 +1,6 @@
 # Casa do Kael v2
 
-Atualização atual: [portão independente com abertura e fechamento automáticos](fachada/integracao/PORTAO-ANIMADO.md), integrado e verificado com 51 checks, zero falhas. Os registros abaixo preservam as etapas anteriores.
+Atualização atual: [portão independente com abertura e fechamento automáticos](fachada/integracao/PORTAO-ANIMADO.md) e [bicicleta em cena e asset próprios](fachada/integracao/BICICLETA-SEPARADA.md), integrados e verificados com 55 checks, zero falhas. Os registros abaixo preservam as etapas anteriores.
 
 Concept, ficha de tradução e blockout preparados. A correção dos volumes da entrada foi aceita para avançar à candidata de pintura da fachada. Nenhum asset do jogo foi substituído nesta etapa.
 

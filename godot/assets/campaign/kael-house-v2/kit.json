@@ -282,7 +282,7 @@
   },
   "props": [
     {
-      "file": "bicicleta.png",
+      "file": "res://assets/overworld/props/kael-bicycle/bicicleta.png",
       "id": "bicicleta",
       "scale": 1,
       "cell": [
@@ -292,7 +292,8 @@
       "canvas": [
         80,
         85
-      ]
+      ],
+      "scene": "res://scenes/overworld/props/bicycle.tscn"
     }
   ]
 }

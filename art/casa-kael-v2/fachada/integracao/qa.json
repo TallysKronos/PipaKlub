@@ -97,11 +97,27 @@
 			"ok": true
 		},
 		{
-			"label": "nearest retained after visibility rebuild",
+			"label": "six house cutouts without baked bicycle",
 			"ok": true
 		},
 		{
-			"label": "six house cutouts and independent bicycle mounted",
+			"label": "independent bicycle scene installed",
+			"ok": true
+		},
+		{
+			"label": "bicycle retains its rebuilt render mesh",
+			"ok": true
+		},
+		{
+			"label": "separate bicycle retains native nearest pixels",
+			"ok": true
+		},
+		{
+			"label": "bicycle uses its own asset outside the house kit",
+			"ok": true
+		},
+		{
+			"label": "bicycle wheels remain on sidewalk support",
 			"ok": true
 		},
 		{
@@ -206,6 +222,6 @@
 		}
 	],
 	"failed": 0,
-	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-4f1699ce-d08d-45c1-a0d9-d9db0bf536fd",
+	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-ae0942cb-782d-4906-90bc-59e09d817132",
 	"user_saves_touched": false
 }

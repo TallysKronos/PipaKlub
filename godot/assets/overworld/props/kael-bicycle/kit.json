@@ -1,0 +1,13 @@
+{
+  "id": "kael-bicycle",
+  "scene": "res://scenes/overworld/props/bicycle.tscn",
+  "texture": "bicicleta.png",
+  "canvas": [80, 85],
+  "scale": 1,
+  "filter": "nearest",
+  "anchor": "bottom-center of opaque bounds, at world.support(cell)",
+  "defaultCell": [2, 18.85],
+  "source": "art/casa-kael-v2/fachada/fontes/bicicleta-portao-v3.aseprite",
+  "origin": "Existing approved bicycle isolated in Aseprite; extracted from the house runtime kit into its own prop. No new raster generation.",
+  "install": "Instantiate scene and call install(world) before order_faces/depth bake. Configure cell and flip_h before install. Static prop; move by changing cell before installation."
+}

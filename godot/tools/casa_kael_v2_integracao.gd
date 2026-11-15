@@ -143,7 +143,14 @@ func run() -> void:
 		if texture!=null and texture.resource_path.begins_with(House.BASE):
 			meshes+=1
 			check(item.node.texture_filter==CanvasItem.TEXTURE_FILTER_NEAREST,"nearest retained after visibility rebuild")
-	check(meshes==7,"six house cutouts and independent bicycle mounted")
+	check(meshes==6,"six house cutouts without baked bicycle")
+	var bicycle=play.world.get_node_or_null("Bicycle")
+	check(bicycle!=null,"independent bicycle scene installed")
+	if bicycle!=null:
+		check(is_instance_valid(bicycle.art()),"bicycle retains its rebuilt render mesh")
+		check(bicycle.art().texture_filter==CanvasItem.TEXTURE_FILTER_NEAREST,"separate bicycle retains native nearest pixels")
+		check(bicycle.art().texture.resource_path==bicycle.TEXTURE,"bicycle uses its own asset outside the house kit")
+		check(is_equal_approx(play.world.support(bicycle.cell),8),"bicycle wheels remain on sidewalk support")
 	var gate_faces:Array=play.world.parts.filter(func(item:Dictionary)->bool:return item.get("kael_gate_volume",false))
 	check(gate_faces.size()>12 and gate_faces.all(func(item:Dictionary)->bool:return not item.get("transparent",false)),"opaque geometric gate faces participate in depth")
 	check(play.world.blockers.filter(func(b:Dictionary)->bool:return b.id=="kael-gate-pillar").size()==2,"both approved pillar footprints installed")
