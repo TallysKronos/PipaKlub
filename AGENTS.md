@@ -22,6 +22,8 @@ Os arquivos externos e sua revisão estão registrados em `.agents/vendor/awesom
 
 ## Mapas do overworld
 
+Para produzir uma região a partir de concept, use o [guia de produção de mapas no Godot](documentation/art/GUIA-PRODUCAO-MAPAS-GODOT.md). O [pedido para o agente](documentation/art/PEDIDO-AGENTE-MAPAS.md) reúne as entradas e os portões de aprovação.
+
 Os concepts de mapas estão centralizados em `art/overworld/conceitos/README.md`, com vistas gerais, pranchas, briefs e prompts por região. A entrada na raiz é `CONCEPTS-DE-MAPAS.md`; o inventário para ferramentas é `art/overworld/conceitos/catalogo.json`. Consulte esse acervo antes de criar ou reconstruir cenários. Caminhos antigos nos registros de geração são históricos; use os arquivos do projeto consolidado.
 
 Os mapas do overworld são construídos no Godot (`godot/`), por decisão do dono. Para criar, corrigir ou melhorar áreas exploráveis (planta, relevo, barrancos, muretas, rampas, escadas, pontes, vegetação, itens e eventos), leia `.agents/skills/soulmonsters-construtor-de-mapas/SKILL.md` e as referências que ela indicar. O agente do Codex para essa tarefa está em `.codex/agents/construtor-de-mapas.toml`.
