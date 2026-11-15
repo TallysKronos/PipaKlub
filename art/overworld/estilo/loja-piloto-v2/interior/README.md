@@ -1,5 +1,7 @@
 # Linha & Papel · interior
 
+O mapeamento aprovado recebeu um [novo quadro com mobiliário moderno](modernizacao/README.md), acompanhado de arquivo Aseprite e prova com os personagens.
+
 A perspectiva das prateleiras está em [revisão de mapeamento](remapeamento/README.md), com planta, diagnóstico sobre a pintura e blockout de volumes na projeção 64 × 32.
 
 O quadro-chave usa os volumes da loja jogável como referência e os materiais da fachada-piloto. O rodapé coral, os vidros azuis, o reboco creme e a parede verde-água ligam os dois lados da loja. O jogador entra pelo vidro frontal, vê a vitrine vertical de pipas à esquerda e tem um corredor livre até o caixa. As duas mesas com bancos e tapetes ficam juntas à direita, onde as cartas estão à vista.
