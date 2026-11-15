@@ -33,6 +33,31 @@ func shot(id:String,zoom:float=1.0) -> void:
 	for i in 5:await process_frame
 	await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png(OUT+id+".png")
+func passage() -> void:
+	var play=app.park
+	travel(Vector2(4.4,19.2))
+	var sheet:=Image.create_empty(1500,740,false,Image.FORMAT_RGBA8)
+	play.camera.position_smoothing_enabled=false
+	play.camera.zoom=Vector2.ONE*2
+	play.camera.position=play.world.iso(House.GATE,8)-Vector2(0,50)
+	for direction in [-1,1]:
+		play.avatar.moving=true
+		play.avatar.facing="ne" if direction<0 else "sw"
+		for frame in 31:
+			if frame>0:play.walk(Vector2(0,float(direction)*.08))
+			play._refresh_visuals()
+			await process_frame
+			if frame%6==0:
+				await RenderingServer.frame_post_draw
+				var picture:=root.get_texture().get_image()
+				picture.save_png(OUT+"passagem-"+str(direction)+"-"+str(frame)+".png")
+				if direction<0:
+					var index:=frame/6
+					sheet.blit_rect(picture,Rect2i(365,260,500,370),Vector2i((index%3)*500,(index/3)*370))
+		check(play.cell.distance_to(Vector2(4.4,16.8) if direction<0 else Vector2(4.4,19.2))<.03,"continuous gate crossing "+str(direction))
+	play.avatar.moving=false
+	sheet.save_png(OUT+"passagem-contato.png")
+	travel(CP.HOME)
 func run() -> void:
 	root.size=Vector2i(1280,720)
 	root.gui_disable_input=true
@@ -63,9 +88,10 @@ func run() -> void:
 		if texture!=null and texture.resource_path.begins_with(House.BASE):
 			meshes+=1
 			check(item.node.texture_filter==CanvasItem.TEXTURE_FILTER_NEAREST,"nearest retained after visibility rebuild")
-	check(meshes==8,"seven cutouts and split foreground mounted")
+	check(meshes==9,"cutouts, ground threshold and split foreground mounted")
 	check((House.origin(play.world)+House.GATE_PIXEL).distance_to(play.world.iso(House.GATE,8))<1,"gate pixel aligned within one pixel")
 	await shot("01-geral")
+	await passage()
 	travel(Vector2(4.4,19.0))
 	await shot("02-portao-fora",2.0)
 	travel(CP.HOME)

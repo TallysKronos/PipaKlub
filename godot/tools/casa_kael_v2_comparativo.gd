@@ -17,4 +17,7 @@ func run() -> void:
 	content.blit_rect(game,Rect2i(0,0,1000,562),Vector2i(1380,110))
 	labels=[[Vector2(20,40),"CONCEPT",26],[Vector2(700,40),"KIT NATIVO CALIBRADO",26],[Vector2(1380,40),"INTEGRADO NA CAMPANHA",26],[Vector2(20,780),"Portão aberto, soleira interativa, profundidade por pixel e retorno ao HOME preservado",23]]
 	await capture("comparativo.png")
+	var detail:=img(OUT+"02-portao-fora.png").get_region(Rect2i(480,260,450,300))
+	detail.resize(900,600,Image.INTERPOLATE_NEAREST)
+	detail.save_png(OUT+"portao-detalhe.png")
 	quit()

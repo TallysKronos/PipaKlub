@@ -40,6 +40,7 @@ static func place(world:Node2D) -> void:
 			node.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 			var plane:=Vector3(0,-1,(DOOR.x+15.1)*48)
 			if part.id=="base-jardim":plane=Vector3(0,2,24.2)
+			elif part.id=="soleira-portao":plane=Vector3(0,2,24.7)
 			elif part.id=="fechamento-frontal":plane=Vector3(1.5,-1,96*18.2) if i==0 else Vector3(-1.5,-1,96*9.8)
 			var center:=at+rect.get_center()
 			world.queue(node,plane.x*center.x+plane.y*center.y+plane.z,vertices,plane)

@@ -57,11 +57,31 @@
 			"ok": true
 		},
 		{
-			"label": "seven cutouts and split foreground mounted",
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "cutouts, ground threshold and split foreground mounted",
 			"ok": true
 		},
 		{
 			"label": "gate pixel aligned within one pixel",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 19.2)",
+			"ok": true
+		},
+		{
+			"label": "continuous gate crossing -1",
+			"ok": true
+		},
+		{
+			"label": "continuous gate crossing 1",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 17.4)",
 			"ok": true
 		},
 		{
@@ -126,6 +146,6 @@
 		}
 	],
 	"failed": 0,
-	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-ac8e6c3f-c853-4e5e-95a5-06b58cc993b6",
+	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-798be053-5b54-4c64-b6c0-97694515b41f",
 	"user_saves_touched": false
 }

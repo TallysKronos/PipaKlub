@@ -4,7 +4,7 @@
 
 ## Resultado
 
-- Sete recortes nativos em `godot/assets/campaign/kael-house-v2/`, sem ampliação individual, com filtro nearest e importação lossless sem mipmaps.
+- Oito recortes nativos, incluindo o piso da passagem, em `godot/assets/campaign/kael-house-v2/`, sem ampliação individual, com filtro nearest e importação lossless sem mipmaps.
 - Portão com abertura permanente alinhada a (4,4, 18,2), com erro de projeção inferior a 1 px. A folha fica recolhida junto ao vão. A bicicleta foi deslocada ao longo do muro para liberar a abertura.
 - A porta da pintura fica ligada ao ponto de aproximação (5,8, 16,2). O caminho do portão até ela foi percorrido nos dois sentidos. O corpo bloqueado termina em v 15,55, deixando a soleira acessível.
 - O retorno da campanha continua em HOME (4,4, 17,4). A entrada usa o fluxo existente de `kael-home`, e a saída do interior continua usando o checkpoint original.
@@ -19,7 +19,7 @@ O quadro aprovado foi mantido em pixels nativos. A porta desenhada tem cerca de 
 
 ## Verificação
 
-`qa.json` registra **31 verificações e zero falhas**. O teste carregou o frontend e a cena de campanha, percorreu portão, jardim e soleira com o resolvedor real de movimento, acionou a interação que abre o interior e acionou a saída para retornar à cidade. Também conferiu os filtros após a reconstrução das faces, as colisões e o alinhamento do apoio do portão.
+`qa.json` registra **36 verificações e zero falhas**. O teste carregou o frontend e a cena de campanha, percorreu portão, jardim e soleira com o resolvedor real de movimento, acionou a interação que abre o interior e acionou a saída para retornar à cidade. Também conferiu os filtros após a reconstrução das faces, as colisões e o alinhamento do apoio do portão.
 
 Foi usado um slot descartável em `.local/qa/casa-kael-v2-<id>`, dentro do workspace. Nenhum save pessoal foi aberto ou alterado. O slot usa um parceiro de teste para representar a fase posterior à criação do primeiro Soulmonster, necessária pelo fluxo existente de viagens. Não foi alterada essa regra de campanha.
 
@@ -41,3 +41,7 @@ Para reproduzir os testes e as capturas
 ```
 
 Os avisos de log/cache de `user://` no ambiente de execução não impediram as capturas ou os testes. Os interiores da casa continuam nas versões existentes, e seus blockouts v2 permanecem como a próxima etapa de arte. Não houve exportação de build ou push nesta entrega.
+
+## Revisão da passagem após feedback
+
+Corrigidos o capeamento e os resíduos da bicicleta, removida a faixa sobre o vão e adicionado um piso próprio com profundidade de chão. A rotina de QA agora também registra a travessia contínua nos dois sentidos. Veja `passagem-contato.png`, `portao-detalhe.png` e o relatório em `../revisao-portao/README.md`. As capturas anteriores estão preservadas nessa pasta de revisão.

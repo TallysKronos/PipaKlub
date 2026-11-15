@@ -93,7 +93,7 @@
         9.8,
         18.2
       ],
-      "opaquePixels": 16474,
+      "opaquePixels": 15762,
       "boundsPx": [
         89,
         359,
@@ -223,7 +223,7 @@
         2,
         18.2
       ],
-      "opaquePixels": 15716,
+      "opaquePixels": 15048,
       "boundsPx": [
         75,
         208,
@@ -249,13 +249,33 @@
         9.8,
         18.2
       ],
-      "opaquePixels": 19769,
+      "opaquePixels": 19685,
       "boundsPx": [
         77,
         198,
         497,
         343
       ]
+    },
+    {
+      "id": "soleira-portao",
+      "file": "soleira-portao.png",
+      "canvas": [
+        654,
+        601
+      ],
+      "anchorPx": [
+        326,
+        540
+      ],
+      "footprintCells": [
+        3.6,
+        17.3,
+        5.2,
+        18.7
+      ],
+      "drawOrder": 1,
+      "opaquePixels": 2296
     }
   ],
   "placement": {
@@ -279,6 +299,7 @@
     "gatePixel": [
       177,
       447
-    ]
+    ],
+    "gateOpening": "widened inner opening; no lintel"
   }
 }
