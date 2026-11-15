@@ -3,6 +3,7 @@ extends SceneTree
 var base := "res://../art/professor-laboratorio-v2/fachada/"
 var dest := base + "kit/"
 var canvas_size := Vector2i(768, 576)
+var atlas_size := Vector2i(1024, 2048)
 var parts:Array=[]
 
 func _initialize() -> void:
@@ -62,7 +63,7 @@ func build() -> void:
 				if parts[i].mask.size() >= 3 and Geometry2D.is_point_in_polygon(Vector2(x+.5,y+.5),parts[i].mask):owner=i
 			parts[owner].image.set_pixel(x,y,color)
 			parts[owner].pixels+=1
-	var atlas:=Image.create(1024,2048,false,Image.FORMAT_RGBA8)
+	var atlas:=Image.create(atlas_size.x,atlas_size.y,false,Image.FORMAT_RGBA8)
 	var assembled:=Image.create(canvas_size.x,canvas_size.y,false,Image.FORMAT_RGBA8)
 	var debug:=Image.create(canvas_size.x,canvas_size.y,false,Image.FORMAT_RGBA8)
 	var records:Array=[]
@@ -76,10 +77,11 @@ func build() -> void:
 		if not check(bounds.has_area(),"Peça vazia: "+item.id):return
 		var cut:=full.get_region(bounds)
 		cut.save_png(dest+"pecas/"+item.id+".png")
-		if shelf.x+cut.get_width()+2>1024:
+		if not check(cut.get_width()+4<=atlas_size.x,"Peça excede a largura do atlas: "+item.id):return
+		if shelf.x+cut.get_width()+2>atlas_size.x:
 			shelf=Vector2i(2,shelf.y+row_h+4)
 			row_h=0
-		if not check(shelf.y+cut.get_height()+2<=2048,"Atlas excedido"):return
+		if not check(shelf.y+cut.get_height()+2<=atlas_size.y,"Atlas excedido"):return
 		atlas.blit_rect(cut,Rect2i(Vector2i.ZERO,cut.get_size()),shelf)
 		var pivot:=canvas_anchor(item.ground_anchor_cells,item.support_height_px)
 		records.append({"id":item.id,"label":item.label,"file":"pecas/"+item.id+".png","atlas_rect":[shelf.x,shelf.y,bounds.size.x,bounds.size.y],"source_rect":[bounds.position.x,bounds.position.y,bounds.size.x,bounds.size.y],"pivot_px":[pivot.x-bounds.position.x,pivot.y-bounds.position.y],"position_px":[pivot.x,pivot.y],"draw_order":i,"footprint_cells":item.footprint_cells,"ground_anchor_cells":item.ground_anchor_cells,"support_height_px":item.support_height_px,"opaque_pixels":item.pixels})
@@ -99,11 +101,11 @@ func build() -> void:
 		for x in source.get_width():
 			if source.get_pixel(x,y)!=assembled.get_pixel(x,y):mismatch+=1
 	if not check(mismatch==0,"Remontagem difere do quadro-chave"):return
-	var manifest:={"version":1,"type":"kit de montagem fixa por recortes visíveis","source":"../quadro-chave.png","source_sha256":FileAccess.get_sha256(base+"quadro-chave.png"),"canvas":[canvas_size.x,canvas_size.y],"atlas":{"file":"atlas.png","size":[1024,2048],"padding_px":2,"filter":"nearest","mipmaps":false},"parts":records}
+	var manifest:={"version":1,"type":"kit de montagem fixa por recortes visíveis","source":"../quadro-chave.png","source_sha256":FileAccess.get_sha256(base+"quadro-chave.png"),"canvas":[canvas_size.x,canvas_size.y],"atlas":{"file":"atlas.png","size":[atlas_size.x,atlas_size.y],"padding_px":2,"filter":"nearest","mipmaps":false},"parts":records}
 	manifest.merge(layout_metadata())
 	var f:=FileAccess.open(dest+"manifesto.json",FileAccess.WRITE)
 	f.store_string(JSON.stringify(manifest,"\t"))
-	var proof:={"piece_count":parts.size(),"opaque_pixels_partitioned":sum_pixels,"reconstruction_mismatched_pixels":mismatch,"source_sha256":manifest.source_sha256,"atlas_size":[1024,2048],"padding_px":2,"stage":verification_stage()}
+	var proof:={"piece_count":parts.size(),"opaque_pixels_partitioned":sum_pixels,"reconstruction_mismatched_pixels":mismatch,"source_sha256":manifest.source_sha256,"atlas_size":[atlas_size.x,atlas_size.y],"padding_px":2,"stage":verification_stage()}
 	f=FileAccess.open(dest+"verificacao.json",FileAccess.WRITE)
 	f.store_string(JSON.stringify(proof,"\t"))
 	print(JSON.stringify(proof))

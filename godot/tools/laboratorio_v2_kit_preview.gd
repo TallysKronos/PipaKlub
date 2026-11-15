@@ -4,7 +4,12 @@ extends "res://tools/laboratorio_v2_revisao.gd"
 func run() -> void:
 	var title := "LABORATÓRIO V2"
 	var args := OS.get_cmdline_user_args()
-	if "--loja-interior" in args:
+	var sheet_size := Vector2i(1600,1800)
+	if "--loja-moderna" in args:
+		OUT = "res://../art/overworld/estilo/loja-piloto-v2/interior/modernizacao/"
+		title = "LINHA & PAPEL / MODERNA"
+		sheet_size = Vector2i(2000,2200)
+	elif "--loja-interior" in args:
 		OUT = "res://../art/overworld/estilo/loja-piloto-v2/interior/"
 		title = "LINHA & PAPEL"
 	elif "--interior" in args:
@@ -74,17 +79,17 @@ func run() -> void:
 	var renders_match := rendered.get_region(Rect2i(reference_at, source_size)).get_data() == rendered.get_region(Rect2i(render_at, source_size)).get_data()
 	if not check(renders_match, "Sprite2D renderizado difere da referência na captura"):return
 	nodes.hide()
-	content=board(1600,1800)
+	content=board(sheet_size.x,sheet_size.y)
 	labels=[[Vector2(20,40),title+" / KIT DE MONTAGEM FIXA / RECORTES VISÍVEIS",24]]
 	var cursor:=Vector2i(20,90)
 	var row_height:=0
 	for part in data.parts:
 		var png:=img(kit+part.file)
 		var slot_width:=maxi(220,png.get_width()+24)
-		if cursor.x+slot_width>1580:
+		if cursor.x+slot_width>sheet_size.x-20:
 			cursor=Vector2i(20,cursor.y+row_height+58)
 			row_height=0
-		if not check(cursor.y+png.get_height()<1760,"Prancha excedida"):return
+		if not check(cursor.y+png.get_height()<sheet_size.y-40,"Prancha excedida"):return
 		content.blend_rect(png,Rect2i(Vector2i.ZERO,png.get_size()),cursor)
 		labels.append([Vector2(cursor.x,cursor.y-12),part.id,17])
 		cursor.x+=slot_width
