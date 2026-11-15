@@ -1,0 +1,98 @@
+{
+	"all_footprints_inside_room": true,
+	"all_u_edges_slope": 0.5,
+	"furniture": [
+		{
+			"height": 110,
+			"id": "A",
+			"name": "Prateleira do fundo",
+			"rect": [
+				0.5,
+				0.3,
+				6.5,
+				1.2
+			]
+		},
+		{
+			"height": 110,
+			"id": "B",
+			"name": "Prateleira direita",
+			"rect": [
+				11.5,
+				0.3,
+				17.5,
+				1.2
+			]
+		},
+		{
+			"height": 110,
+			"id": "C",
+			"name": "Expositor de pipas",
+			"rect": [
+				0.3,
+				7.0,
+				1.3,
+				10.0
+			]
+		},
+		{
+			"height": 65,
+			"id": "D",
+			"name": "Gôndola de materiais",
+			"rect": [
+				3.5,
+				6.5,
+				6.5,
+				8.0
+			]
+		},
+		{
+			"height": 66,
+			"id": "E",
+			"name": "Balcão e caixa",
+			"rect": [
+				5.0,
+				2.5,
+				11.0,
+				4.0
+			]
+		},
+		{
+			"height": 52,
+			"id": "F",
+			"name": "Mesa e bancos do fundo",
+			"rect": [
+				11.0,
+				6.0,
+				15.0,
+				8.0
+			]
+		},
+		{
+			"height": 52,
+			"id": "G",
+			"name": "Mesa e bancos da frente",
+			"rect": [
+				11.0,
+				10.5,
+				15.0,
+				12.5
+			]
+		}
+	],
+	"kael_visible_height_px": 70,
+	"origin_px": [
+		480,
+		220
+	],
+	"projection_px": [
+		64,
+		32
+	],
+	"room_cells": [
+		18,
+		14
+	],
+	"scope": "blockout para aprovação, circulação estimada em planta",
+	"stage": "revisão de planta e perspectiva"
+}
