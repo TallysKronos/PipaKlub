@@ -32,3 +32,5 @@ Para regenerar a cartela e as pranchas a partir da raiz do checkout:
 godot --headless --path godot --script tools/paleta_cenario_cartela.gd
 godot --path godot --script tools/paleta_cenario_loja_preview.gd --rendering-method gl_compatibility
 ```
+
+A [proposta para o interior da Linha & Papel](interior/README.md) usa os materiais desta fachada e a disposição da loja atual.
