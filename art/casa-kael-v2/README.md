@@ -6,6 +6,10 @@ Concept, ficha de tradução e blockout preparados. A correção dos volumes da 
 
 O dono autorizou avançar após a correção da entrada. A candidata de pintura da fachada está em [quadro-chave.png](fachada/quadro-chave.png), com [comparativo](fachada/comparativo.png), [prévia com Kael](fachada/previa-com-kael.png), [checklist e limitações](fachada/checklist.md) e [prompt integral](fachada/PROMPT.md). Aguardando aprovação visual desta candidata antes do kit. A fonte está salva também em Aseprite. A limpeza na grade nativa e a modularização continuam pendentes, assim como a pintura dos interiores.
 
+## Recortes em escala nativa
+
+O dono autorizou continuar a partir da pintura. Foram preparados [sete recortes complementares](fachada/kit/README.md), com [manifesto](fachada/kit/kit.json), [remontagem](fachada/kit-remontado.png), [contato das peças](fachada/kit-contato.png) e [convivência em 1×](fachada/kit-convivencia.png). O QA registrou zero lacunas, zero sobreposição e alpha binário. A posição do portão e a altura da porta precisam ser calibradas ao blockout antes da integração. O jogo ainda usa a casa anterior.
+
 - [Concept](concept/prancha.png)
 - [Ficha de tradução](traducao.md)
 - [Fachada em escala nativa com Kael](fachada/blockout.png)
