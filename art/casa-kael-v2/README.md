@@ -1,6 +1,10 @@
 # Casa do Kael v2
 
-Concept aprovado, ficha de tradução e blockout preparados. Aguardando aprovação dos volumes antes da etapa de pintura. Nenhum asset do jogo foi substituído nesta etapa.
+Concept, ficha de tradução e blockout preparados. A correção dos volumes da entrada foi aceita para avançar à candidata de pintura da fachada. Nenhum asset do jogo foi substituído nesta etapa.
+
+## Atualização da fachada
+
+O dono autorizou avançar após a correção da entrada. A candidata de pintura da fachada está em [quadro-chave.png](fachada/quadro-chave.png), com [comparativo](fachada/comparativo.png), [prévia com Kael](fachada/previa-com-kael.png), [checklist e limitações](fachada/checklist.md) e [prompt integral](fachada/PROMPT.md). Aguardando aprovação visual desta candidata antes do kit. A fonte está salva também em Aseprite. A limpeza na grade nativa e a modularização continuam pendentes, assim como a pintura dos interiores.
 
 - [Concept](concept/prancha.png)
 - [Ficha de tradução](traducao.md)
