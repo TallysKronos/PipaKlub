@@ -281,7 +281,7 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 		name=ParkCheckpoint.data(scene).get("name","Kronasta")
 		texture=load("res://assets/campaign/maps/kronasta-atlas-manga-v3.png")
 	elif scene=="kite-shop":
-		texture=load("res://assets/campaign/loja-tcg-v1/preview.png") as Texture2D
+		texture=load("res://assets/campaign/loja-interior-v2/preview.png") as Texture2D
 	elif scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")
@@ -905,18 +905,24 @@ func _name() -> void:
 
 func _layout_stage() -> void:
 	if is_instance_valid(stage):
-		var factor := minf(size.x / 960, size.y * .72 / 640)
+		var native_room: bool = stage.get_meta("native_room",false)
+		var height := size.y * (.88 if native_room else .72)
+		var design_height := 590 if native_room else 640
+		var factor := minf(size.x / 960, height / design_height)
+		if native_room:factor = minf(factor, 1.0)
 		stage.scale = Vector2.ONE * factor
-		stage.position = Vector2((size.x - 960 * factor) / 2, (size.y * .72 - 640 * factor) / 2)
+		stage.position = Vector2((size.x - 960 * factor) / 2, (height - design_height * factor) / 2)
+		if native_room:stage.position = stage.position.round()
 
-func _stage_container() -> void:
+func _stage_container(native_room: bool = false) -> void:
 	var clip := Control.new()
 	clip.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	clip.anchor_bottom = .72
+	clip.anchor_bottom = .88 if native_room else .72
 	clip.clip_contents = true
 	clip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(clip)
 	stage = Node2D.new()
+	stage.set_meta("native_room",native_room)
 	clip.add_child(stage)
 	_layout_stage()
 
@@ -928,7 +934,7 @@ func _show_world() -> void:
 		_load_park()
 		return
 	_clear()
-	_stage_container()
+	_stage_container(session.snapshot().checkpoint.get("scene","")=="kite-shop")
 	var point: Dictionary = session.snapshot().checkpoint
 	var professor: bool = point.scene == "professor-home"
 	var shop:bool=point.scene=="kite-shop"
