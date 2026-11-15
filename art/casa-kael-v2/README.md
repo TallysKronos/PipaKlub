@@ -12,7 +12,9 @@ O dono autorizou continuar a partir da pintura. Foram preparados [sete recortes 
 
 ## Integração aplicada
 
-A calibração dos acessos e a substituição da fachada foram autorizadas e executadas. A casa v2 agora é montada na Vila. Veja o [relatório da integração](fachada/integracao/README.md), o [comparativo](fachada/integracao/comparativo.png) e as [36 verificações sem falhas](fachada/integracao/qa.json). O portão está aberto no caminho existente, a soleira abre o interior e a saída preserva HOME. Os parágrafos anteriores registram as entregas históricas. A pintura dos interiores v2 permanece pendente.
+A calibração dos acessos e a substituição da fachada foram autorizadas e executadas. A casa v2 agora é montada na Vila. Veja o [relatório da integração](fachada/integracao/README.md), o [comparativo](fachada/integracao/comparativo.png) e as [39 verificações sem falhas](fachada/integracao/qa.json). O portão está aberto no caminho existente, a soleira abre o interior e a saída preserva HOME. Os parágrafos anteriores registram as entregas históricas. A pintura dos interiores v2 permanece pendente.
+
+O estudo geométrico do portão foi aprovado e [aplicado com acabamento na paleta da casa](fachada/portao-geometria-v3/aplicacao/README.md). A versão atual usa faces completas nos muros e pilares e piso cinza no plano da calçada, substituindo as correções anteriores por recorte.
 
 - [Concept](concept/prancha.png)
 - [Ficha de tradução](traducao.md)

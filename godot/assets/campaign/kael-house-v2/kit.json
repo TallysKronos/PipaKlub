@@ -25,7 +25,7 @@
     8,
     16
   ],
-  "source": "art/casa-kael-v2/fachada/fontes/kit-integrado.aseprite",
+  "source": "art/casa-kael-v2/fachada/fontes/kit-portao-v3.aseprite",
   "palette": [
     "#191e30",
     "#303b58",
@@ -75,32 +75,6 @@
   ],
   "assembly": "recortes complementares da fachada aprovada; não contêm superfícies ocultas",
   "parts": [
-    {
-      "id": "fechamento-frontal",
-      "file": "fechamento-frontal.png",
-      "canvas": [
-        654,
-        601
-      ],
-      "anchorPx": [
-        326,
-        540
-      ],
-      "drawOrder": 30,
-      "footprintCells": [
-        1.2,
-        17.9,
-        9.8,
-        18.2
-      ],
-      "opaquePixels": 15762,
-      "boundsPx": [
-        89,
-        359,
-        473,
-        175
-      ]
-    },
     {
       "id": "varanda",
       "file": "varanda.png",
@@ -171,7 +145,7 @@
         8,
         17
       ],
-      "opaquePixels": 31188,
+      "opaquePixels": 31094,
       "boundsPx": [
         195,
         264,
@@ -223,7 +197,7 @@
         2,
         18.2
       ],
-      "opaquePixels": 15048,
+      "opaquePixels": 13596,
       "boundsPx": [
         75,
         208,
@@ -249,33 +223,13 @@
         9.8,
         18.2
       ],
-      "opaquePixels": 19685,
+      "opaquePixels": 8304,
       "boundsPx": [
         77,
         198,
         497,
         343
       ]
-    },
-    {
-      "id": "soleira-portao",
-      "file": "soleira-portao.png",
-      "canvas": [
-        654,
-        601
-      ],
-      "anchorPx": [
-        326,
-        540
-      ],
-      "footprintCells": [
-        3.6,
-        17.3,
-        5.2,
-        18.7
-      ],
-      "drawOrder": 1,
-      "opaquePixels": 2296
     }
   ],
   "placement": {
@@ -300,6 +254,45 @@
       177,
       447
     ],
-    "gateOpening": "widened inner opening; no lintel"
-  }
+    "gateOpening": "approved volumetric pillars and gate; coplanar stone paving"
+  },
+  "geometry": {
+    "opening": [
+      3.55,
+      5.25
+    ],
+    "pillars": [
+      [
+        3.1,
+        17.94,
+        3.55,
+        18.46
+      ],
+      [
+        5.25,
+        17.94,
+        5.7,
+        18.46
+      ]
+    ],
+    "groundHeight": 8,
+    "builder": "godot/scripts/overworld/kael_house_v2.gd",
+    "capTop": 53,
+    "wallTop": 48
+  },
+  "props": [
+    {
+      "file": "bicicleta.png",
+      "id": "bicicleta",
+      "scale": 1,
+      "cell": [
+        2,
+        18.85
+      ],
+      "canvas": [
+        80,
+        85
+      ]
+    }
+  ]
 }

@@ -13,6 +13,7 @@ static func place(world:Node2D) -> void:
 	var manifest:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(BASE+"kit.json"))
 	var at:=origin(world)
 	for part in manifest.parts:
+		if part.id in ["fechamento-frontal","soleira-portao"]:continue
 		var texture:Texture2D=load(BASE+str(part.file))
 		var bounds:Rect2i=texture.get_image().get_used_rect()
 		var spans:Array=[Rect2(bounds)]
@@ -46,5 +47,52 @@ static func place(world:Node2D) -> void:
 			world.queue(node,plane.x*center.x+plane.y*center.y+plane.z,vertices,plane)
 			world.parts.back().transparent=true
 			world.parts.back().skip_terrain_clip=true
+	build_gate(world)
 	world.blockers.append({"bounds":BODY,"id":"casa-kael"})
 	world.houses.append({"id":"casa-kael","bounds":BODY,"door":DOOR,"height":8,"variant":"kael","paintedModel":"kael-v2","gate":GATE})
+
+static func solid(world:Node2D,b:Array,low:float,high:float,front:Color,side:Color,top:Color) -> void:
+	var first:int=world.parts.size()
+	var uv:=PackedVector2Array([Vector2.ZERO,Vector2.RIGHT,Vector2.ONE,Vector2.DOWN])
+	world.face([Vector3(b[2],b[1],high),Vector3(b[2],b[3],high),Vector3(b[2],b[3],low),Vector3(b[2],b[1],low)],uv,"ink",side)
+	world.face([Vector3(b[0],b[3],high),Vector3(b[2],b[3],high),Vector3(b[2],b[3],low),Vector3(b[0],b[3],low)],uv,"ink",front)
+	world.face([Vector3(b[0],b[1],high),Vector3(b[2],b[1],high),Vector3(b[2],b[3],high),Vector3(b[0],b[3],high)],uv,"ink",top)
+	for i in range(first,world.parts.size()):world.parts[i].kael_gate_volume=true
+
+static func edge(world:Node2D,a:Vector3,b:Vector3,color:Color) -> void:
+	world.line3([a,b],color,1,.25)
+	world.parts.back().node.antialiased=false
+
+static func build_gate(world:Node2D) -> void:
+	# Approved blockout dimensions. Materials never change the support geometry.
+	var cream:=Color("f0dcc0")
+	var shade:=Color("b59f8e")
+	var cap:=Color("f7f3ee")
+	var trim:=Color("84727c")
+	world.paint([1.2,16,9.8,18.46],Color("789661"),.03)
+	world.paint([3.55,16.3,5.25,20.2],Color("c8cdd1"),.15)
+	for v in [17.1,18.2,19.15]:edge(world,Vector3(3.55,v,8.2),Vector3(5.25,v,8.2),Color("9da9b5"))
+	for span in [[1.2,3.55],[5.25,9.8]]:
+		world.paint([span[0],18.46,span[1],18.73],Color("b8c4d0"),.10)
+		for u in range(ceili(span[0]*2),floori(span[1]*2)+1):edge(world,Vector3(float(u)*.5,18.46,8.2),Vector3(float(u)*.5,18.73,8.2),Color("8a99b0"))
+	# Contact shadows lie on the floor, immediately outside the pillar bases.
+	for b in [[3.1,17.94,3.55,18.46],[5.25,17.94,5.7,18.46]]:
+		world.paint([b[0],b[3],b[2],b[3]+.10],Color("9da9b5"),.16)
+		world.blockers.append({"bounds":b,"id":"kael-gate-pillar"})
+		solid(world,b,8,50,cream,shade,cap)
+		solid(world,[b[0]-.035,b[1]-.035,b[2]+.035,b[3]+.035],50,53,Color("d6b79f"),shade,cap)
+		edge(world,Vector3(b[2],b[3],8),Vector3(b[2],b[3],50),trim)
+	for b in [[1.2,18.08,3.1,18.32],[5.7,18.08,9.8,18.32],[9.68,11,9.8,18.32]]:
+		solid(world,b,8,48,cream,shade,cap)
+		edge(world,Vector3(b[0],b[3],48),Vector3(b[2],b[3],48),Color("d6b79f"))
+	# Blue gate folds into the garden. Rails and hinges remain real volumes.
+	for z in [12,41]:solid(world,[3.48,17.08,3.56,18.08],z,z+3,Color("445b86"),Color("303b58"),Color("788497"))
+	for v in [17.08,17.24,17.40,17.56,17.72,17.88,18.05]:solid(world,[3.48,v,3.56,v+.03],15,41,Color("445b86"),Color("303b58"),Color("788497"))
+	for z in [17,35]:solid(world,[3.48,18.02,3.61,18.1],z,z+3,Color("788497"),Color("485476"),Color("c8cdd1"))
+	var mail:=[5.32,18.46,5.63,18.60]
+	solid(world,mail,20,38,Color("2b5ba5"),Color("303b58"),Color("55709b"))
+	world.wall_patch(mail,false,.12,.88,34,35,Color("18394e"),.012)
+	world.face([Vector3(5.475,18.62,31),Vector3(5.55,18.62,27),Vector3(5.475,18.62,23),Vector3(5.40,18.62,27)],PackedVector2Array([Vector2.ZERO,Vector2.RIGHT,Vector2.ONE,Vector2.DOWN]),"ink",Color("c8cdd1"))
+	var bike:Texture2D=load(BASE+"bicicleta.png")
+	world.billboard(BASE+"bicicleta.png",Vector2(2.0,18.85),8,bike.get_image().get_used_rect().size.y)
+	world.parts.back().node.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST

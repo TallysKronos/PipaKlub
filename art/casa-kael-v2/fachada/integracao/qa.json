@@ -53,15 +53,27 @@
 			"ok": true
 		},
 		{
-			"label": "nearest retained after visibility rebuild",
+			"label": "six house cutouts and independent bicycle mounted",
 			"ok": true
 		},
 		{
-			"label": "nearest retained after visibility rebuild",
+			"label": "opaque geometric gate faces participate in depth",
 			"ok": true
 		},
 		{
-			"label": "cutouts, ground threshold and split foreground mounted",
+			"label": "both approved pillar footprints installed",
+			"ok": true
+		},
+		{
+			"label": "left pillar blocks movement",
+			"ok": true
+		},
+		{
+			"label": "right pillar blocks movement",
+			"ok": true
+		},
+		{
+			"label": "passage and sidewalk share support height",
 			"ok": true
 		},
 		{
@@ -146,6 +158,6 @@
 		}
 	],
 	"failed": 0,
-	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-798be053-5b54-4c64-b6c0-97694515b41f",
+	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-593123ce-1fc3-4ae4-a873-0eca5168670f",
 	"user_saves_touched": false
 }

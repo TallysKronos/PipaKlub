@@ -88,7 +88,13 @@ func run() -> void:
 		if texture!=null and texture.resource_path.begins_with(House.BASE):
 			meshes+=1
 			check(item.node.texture_filter==CanvasItem.TEXTURE_FILTER_NEAREST,"nearest retained after visibility rebuild")
-	check(meshes==9,"cutouts, ground threshold and split foreground mounted")
+	check(meshes==7,"six house cutouts and independent bicycle mounted")
+	var gate_faces:Array=play.world.parts.filter(func(item:Dictionary)->bool:return item.get("kael_gate_volume",false))
+	check(gate_faces.size()>12 and gate_faces.all(func(item:Dictionary)->bool:return not item.get("transparent",false)),"opaque geometric gate faces participate in depth")
+	check(play.world.blockers.filter(func(b:Dictionary)->bool:return b.id=="kael-gate-pillar").size()==2,"both approved pillar footprints installed")
+	check(play._obstructed(Vector2(3.3,18.2),"3:18"),"left pillar blocks movement")
+	check(play._obstructed(Vector2(5.45,18.2),"5:18"),"right pillar blocks movement")
+	check(is_equal_approx(play.world.support(House.GATE),play.world.support(Vector2(4.4,19.15))),"passage and sidewalk share support height")
 	check((House.origin(play.world)+House.GATE_PIXEL).distance_to(play.world.iso(House.GATE,8))<1,"gate pixel aligned within one pixel")
 	await shot("01-geral")
 	await passage()
