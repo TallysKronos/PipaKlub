@@ -281,7 +281,7 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 		name=ParkCheckpoint.data(scene).get("name","Kronasta")
 		texture=load("res://assets/campaign/maps/kronasta-atlas-manga-v3.png")
 	elif scene=="kite-shop":
-		texture=load("res://assets/campaign/loja-tcg-v1/preview.png") as Texture2D
+		texture=load("res://assets/campaign/loja-interior-v2/preview.png") as Texture2D
 	elif scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")
@@ -936,7 +936,7 @@ func _show_world() -> void:
 	_clear()
 	var point: Dictionary = session.snapshot().checkpoint
 	var professor: bool = point.scene == "professor-home"
-	_stage_container(professor)
+	_stage_container(professor or point.scene=="kite-shop")
 	var shop:bool=point.scene=="kite-shop"
 	var home:bool=point.scene=="kael-home"
 	var data: Dictionary = ShopData.room() if shop else (content.rooms.home if home else content.rooms.professor if professor else content.rooms.street).duplicate(true)

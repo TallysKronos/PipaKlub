@@ -1,5 +1,7 @@
 # Linha & Papel — interior moderno
 
+A versão moderna está [integrada na cena kite-shop](integracao/README.md), com capturas do fluxo da campanha, colisões e pontos de interação calibrados.
+
 O quadro aprovado agora tem [kit com vinte peças, atlas e pivôs](kit/README.md). A remontagem foi conferida no Godot e no Aseprite.
 
 Quadro-chave da revisão aprovada de volumes. A loja usa estruturas de metal claro, vidro, bases azul-escuras e acabamentos verde-água. O laranja aparece nos encaixes e nas quinas. As mercadorias continuam sendo pipas, linhas, papéis, kits e cartas.
@@ -25,7 +27,7 @@ A revisão visual independente atribuiu 9/10 e não encontrou bloqueios no quadr
 
 O quadro usa 88 cores da paleta do projeto, alpha binário e zero pixels opacos isolados. O arquivo Aseprite foi salvo em sessão headless, com base e acabamento separados.
 
-O quadro corresponde à etapa 2 aprovada, conforme documentation/art/PIPELINE-CONCEPT-PARA-JOGO.md. O kit encerra a etapa 3. A próxima etapa é conferir a montagem na cena kite-shop. A prancha-assets mostra recortes de detalhe para revisão de arte.
+O quadro corresponde à etapa 2 aprovada, conforme documentation/art/PIPELINE-CONCEPT-PARA-JOGO.md. O kit encerra a etapa 3 e as capturas de integração registram a etapa 4. A prancha-assets mostra recortes de detalhe para revisão de arte.
 
 ## Reprodução
 

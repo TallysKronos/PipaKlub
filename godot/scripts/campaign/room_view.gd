@@ -98,7 +98,7 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
 	avatar = Avatar.new()
 	add_child(avatar)
-	avatar.scale = Vector2.ONE if ProfessorArt.applies(data) else Vector2.ONE * .80 * Avatar.BODY_SCALE * float(camera.scale)
+	avatar.scale = Vector2.ONE if ProfessorArt.applies(data) or ShopArt.applies(data) else Vector2.ONE * .80 * Avatar.BODY_SCALE * float(camera.scale)
 	props.append({"node": avatar, "rect": {}, "layer": "", "actor": true})
 	if mother:
 		var npc := Sprite2D.new()
@@ -174,6 +174,7 @@ func set_story_paused(value: bool) -> void:
 
 func project(p: Vector2) -> Vector2:
 	if ProfessorArt.applies(data):return ProfessorArt.visible_point(p)
+	if ShopArt.applies(data):return ShopArt.visible_point(p)
 	var point := Vector2((p.x - p.y) * .82, (p.x + p.y) * .41) if data.get("projection") == "street" else Vector2((p.x - p.y) / 3, (p.x + p.y) / 6)
 	return (point - Vector2(camera.x, camera.y)) * float(camera.scale)
 
@@ -187,6 +188,8 @@ func _behind(a: Dictionary, b: Dictionary) -> bool:
 
 func _update_order() -> void:
 	avatar.position = project(actor)
+	if ShopArt.applies(data):
+		position = ShopArt.camera_offset(actor)
 	if data.get("projection") == "street":
 		position = Vector2(480, 320) - avatar.position
 	var rest: Array[Dictionary] = []

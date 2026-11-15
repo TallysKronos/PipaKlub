@@ -24,7 +24,7 @@ O kit recorta superfícies visíveis. Paredes, piso, móveis e sombras mantêm o
 
 As pegadas usam [u inicial,v inicial,u final,v final] e vêm da planta aprovada. Os apoios visuais foram estimados na pintura para remontagem, e precisam ser calibrados no mapa. Na integração da cena kite-shop, conferir acesso pela porta, escala, corredor, interações e colisões. Para intercalar personagens entre partes do móvel, completar as faces ocultas e definir a ordenação pelo chão.
 
-Esta entrega encerra a etapa 3. As evidências de remontagem estão em remontagem-godot.png, remontagem-aseprite.png e verificacao.json.
+As evidências de remontagem da etapa 3 estão em remontagem-godot.png, remontagem-aseprite.png e verificacao.json. A montagem jogável e os testes da etapa 4 estão registrados em ../integracao/README.md.
 
 ## Reprodução
 
