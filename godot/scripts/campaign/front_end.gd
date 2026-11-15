@@ -1174,20 +1174,53 @@ func _shop_interact(id:String)->void:
 		var previous:Array=session.snapshot().player.get("cityPosition",[ShopData.CITY_ENTRY.x,ShopData.CITY_ENTRY.y])
 		if _result(journey.enter_world("quintal",Vector2(previous[0],previous[1]))):_show_saved.call_deferred()
 		return
-	var title:="Dono da loja" if id=="counter" else "Linha & Papel"
+	if id=="counter":
+		_show_item_shop()
+		return
+	var title:="Linha & Papel"
 	var text:String={"counter":"Bem-vindo à Linha & Papel! Pode olhar os mostruários com calma. As mesas são o ponto de encontro de quem gosta de montar, colecionar e conversar sobre Soulmonsters.","showcase":"Mostruários de papéis, linhas e kits de montagem. Cada cor ajuda a dar personalidade a uma pipa.","gondola":"Kits, pastas e acessórios organizados para os colecionadores.","table-a":"Mesas da comunidade, com espaço para abrir pastas, mostrar coleções e conhecer outros jogadores.","table-b":"Um segundo espaço de convivência para os jogadores do bairro."}.get(id,"Fique à vontade para explorar a loja.")
 	room.can_walk=false
-	if id=="counter":room.face_actor(ShopData.OWNER)
 	var dialog:=_dialog(title,text,"Continuar")
 	dialog.name="ShopConversation"
-	if id=="counter":
-		var owner_art:Sprite2D=room.get_node("ShopOwner/Art")
-		dialog._portraits[title]=owner_art.texture
-		dialog.portrait.material=owner_art.material
 	dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free)
 	dialog.tree_exiting.connect(func():
 		if is_instance_valid(room):room.can_walk=true)
 	dialog.popup_centered()
+
+func _show_item_shop() -> void:
+	if flow_busy or is_instance_valid(get_node_or_null("ItemShop")):
+		return
+	if not _remember_world_position():
+		return
+	var model=preload("res://scripts/campaign/item_shop.gd").new(session)
+	var view=preload("res://scripts/campaign/item_shop_view.gd").new()
+	view.name="ItemShop"
+	view.z_index=210
+	view.player=session.snapshot().player
+	room.face_actor(ShopData.OWNER)
+	var previous_room:WeakRef=weakref(room)
+	var previous_walk:bool=room.can_walk
+	var previous_story:bool=room.story_paused
+	room.can_walk=false
+	room.set_story_paused(true)
+	flow_busy=true
+	var pending:Dictionary={}
+	view.purchase_requested.connect(func(item_id:String,quantity:int):
+		if pending.get("item")!=item_id or pending.get("quantity")!=quantity:
+			pending.assign({"item":item_id,"quantity":quantity,"operation":"shop-purchase-"+preload("res://scripts/campaign/state.gd").new_id()})
+		var result:Dictionary=model.purchase(item_id,quantity,pending.operation)
+		if result.status in ["ok","already_applied"]:
+			pending.clear()
+		if is_instance_valid(view):
+			view.purchase_result(session.snapshot().player,result,quantity))
+	view.back_requested.connect(view.queue_free)
+	view.tree_exiting.connect(func():
+		var original:Node2D=previous_room.get_ref()
+		if is_instance_valid(original):
+			original.set_story_paused(previous_story)
+			original.can_walk=previous_walk
+		flow_busy=false)
+	add_child(view)
 
 func _show_practice() -> void:
 	_clear()
@@ -1462,6 +1495,9 @@ func _process(_delta: float) -> void:
 			status.text = ("Analógico · Mover" if Controls.gamepad else "WASD / setas · Mover") + "  ·  " + {3: "Aproxime-se da mesa de desenho.", 11: "Aproxime-se da escada para descer.", 13: "Aproxime-se da porta para sair."}[current_step]
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_instance_valid(get_node_or_null("ItemShop")):
+		get_viewport().set_input_as_handled()
+		return
 	var mount_key:bool=event is InputEventKey and event.pressed and not event.echo and event.physical_keycode==KEY_B
 	var mount_pad:bool=event is InputEventJoypadButton and event.pressed and event.button_index==JOY_BUTTON_DPAD_UP
 	if (mount_key or mount_pad) and not flow_busy and not is_instance_valid(scene_loading) and last_scene_key.begins_with("world:") and is_instance_valid(park) and park.has_method("toggle_mount") and not park.paused and get_tree().get_nodes_in_group("manga_dialogue").is_empty():

@@ -47,11 +47,11 @@ func run()->void:
  if not require(await Staging.approach(front.room,D.point(8,5.7)),"walk to counter without crossing furniture"):return
  front.room.can_walk=true;front.room.interacted.emit("counter")
  await process_frame
- var dialog:Control=front.get_node_or_null("ShopConversation")
- if not require(is_instance_valid(dialog) and not front.room.can_walk,"owner conversation opens and stops movement"):return
+ var dialog:Control=front.get_node_or_null("ItemShop")
+ if not require(is_instance_valid(dialog) and not front.room.can_walk,"shopkeeper opens store and stops movement"):return
  await shot("03-dono-conversa")
- dialog.confirmed.emit();await process_frame;await process_frame
- if not require(front.room.can_walk,"conversation restores controls"):return
+ dialog.back_requested.emit();await process_frame;await process_frame
+ if not require(front.room.can_walk,"closing item shop restores controls"):return
  if not require(front._remember_world_position(),"save walked position"):return
  var at:Vector2=front.room.actor
  front.session.close_session()

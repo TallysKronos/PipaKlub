@@ -254,11 +254,15 @@ const ILLUSTRATED_ITEMS := [
 	"linha-encerada",
 ]
 
+const SHOP_ITEM_ICONS := ["kit-remendo","papel-seda","vareta-bambu","cola-reparo","linha-encerada"]
+
 static func item_icon(id: String) -> Texture2D:
+	if id in SHOP_ITEM_ICONS: return item_art(id)
 	if id in ILLUSTRATED_ITEMS or id == "agulha-desatar": return item_art(id)
 	return icon("missoes" if id.begins_with("quest-") else "rabiola" if "rabiola" in id else "mochila")
 
 static func item_art(id: String) -> Texture2D:
+	if id in SHOP_ITEM_ICONS: return load("res://assets/ui/loja-itens-v1/"+id+".png")
 	if id in ILLUSTRATED_ITEMS: return load("res://assets/ui/key-items/" + id + ".svg")
 	if id=="agulha-desatar":return load("res://assets/campaign/warehouse-v1/agulha-desatar.svg")
 	if id in ["apito-de-elo","carteira-pipeiro","porta-emblemas","insignia-morro-do-sol"]:return load("res://assets/ui/key-items/"+id+".png")
