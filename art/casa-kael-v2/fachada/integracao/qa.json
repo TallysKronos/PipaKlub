@@ -1,0 +1,131 @@
+{
+	"checks": [
+		{
+			"label": "isolated QA slot",
+			"ok": true
+		},
+		{
+			"label": "HOME checkpoint accepted",
+			"ok": true
+		},
+		{
+			"label": "HOME unchanged on load",
+			"ok": true
+		},
+		{
+			"label": "return point unblocked",
+			"ok": true
+		},
+		{
+			"label": "gate opening unblocked",
+			"ok": true
+		},
+		{
+			"label": "front wall blocks walking",
+			"ok": true
+		},
+		{
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "nearest retained after visibility rebuild",
+			"ok": true
+		},
+		{
+			"label": "seven cutouts and split foreground mounted",
+			"ok": true
+		},
+		{
+			"label": "gate pixel aligned within one pixel",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 19.0)",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 17.4)",
+			"ok": true
+		},
+		{
+			"label": "walk (7.0, 17.7)",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 17.4)",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 19.0)",
+			"ok": true
+		},
+		{
+			"label": "walk (7.0, 18.7)",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 19.0)",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 17.4)",
+			"ok": true
+		},
+		{
+			"label": "walk (4.4, 16.7)",
+			"ok": true
+		},
+		{
+			"label": "walk (5.8, 16.2)",
+			"ok": true
+		},
+		{
+			"label": "visible doorway selects house",
+			"ok": true
+		},
+		{
+			"label": "doorway shows enter-home prompt",
+			"ok": true
+		},
+		{
+			"label": "interaction opens real home interior",
+			"ok": true
+		},
+		{
+			"label": "home exit returns to city",
+			"ok": true
+		},
+		{
+			"label": "home exit preserves canonical HOME",
+			"ok": true
+		}
+	],
+	"failed": 0,
+	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-ac8e6c3f-c853-4e5e-95a5-06b58cc993b6",
+	"user_saves_touched": false
+}

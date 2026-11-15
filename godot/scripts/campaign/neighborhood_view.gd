@@ -159,7 +159,7 @@ func _update_hint() -> void:
 	var hint := ""
 	if not exit_id.is_empty():hint="Seguir para o Morro do Sol" if exit_id=="morro" else "Seguir para o parque"
 	elif not near_person.is_empty():hint="Entrar no ateliê do professor" if near_person.id=="assis" else "Conversar com "+str(near_person.name)
-	elif not near_house.is_empty():hint="Entrar na Linha & Papel" if near_house.id=="loja" else "Entrar no ateliê" if near_house.id=="professor" else "Examinar a entrada"
+	elif not near_house.is_empty():hint="Entrar na Linha & Papel" if near_house.id=="loja" else "Entrar no ateliê" if near_house.id=="professor" else "Entrar em casa" if near_house.id=="casa-kael" else "Examinar a entrada"
 	var quest=preload("res://scripts/campaign/mount_quest.gd")
 	if quest.available(saved_player) and quest.stage(saved_player)<3:
 		if near_person.get("id")=="zeca":hint+=" · Missão de montaria"

@@ -87,8 +87,8 @@ static func rebuild(item: Dictionary,pieces: Array[PackedVector2Array]) -> void:
  result.texture = texture
  result.material = original.material
  result.modulate = color
- result.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
- result.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+ result.texture_repeat = original.texture_repeat
+ result.texture_filter = original.texture_filter
  if item.get("transparent",false):result.z_index = 1
  original.free()
  item.node = result

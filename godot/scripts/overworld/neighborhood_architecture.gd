@@ -4,6 +4,9 @@ extends RefCounted
 const BASE := "res://assets/overworld/kits/bairro-inicial-v2/"
 
 static func place(world: Node2D,b: Array,id: String,variant: String) -> void:
+	if id=="casa-kael":
+		preload("res://scripts/overworld/kael_house_v2.gd").place(world)
+		return
 	var manifest: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(BASE+"architecture.json"))
 	var model := variant if variant in ["kael","professor","shop"] else "neighbor-north" if id=="vizinha-norte" else "neighbor-south"
 	var info: Dictionary=manifest.models[model]

@@ -10,6 +10,10 @@ O dono autorizou avançar após a correção da entrada. A candidata de pintura 
 
 O dono autorizou continuar a partir da pintura. Foram preparados [sete recortes complementares](fachada/kit/README.md), com [manifesto](fachada/kit/kit.json), [remontagem](fachada/kit-remontado.png), [contato das peças](fachada/kit-contato.png) e [convivência em 1×](fachada/kit-convivencia.png). O QA registrou zero lacunas, zero sobreposição e alpha binário. A posição do portão e a altura da porta precisam ser calibradas ao blockout antes da integração. O jogo ainda usa a casa anterior.
 
+## Integração aplicada
+
+A calibração dos acessos e a substituição da fachada foram autorizadas e executadas. A casa v2 agora é montada na Vila. Veja o [relatório da integração](fachada/integracao/README.md), o [comparativo](fachada/integracao/comparativo.png) e as [31 verificações sem falhas](fachada/integracao/qa.json). O portão está aberto no caminho existente, a soleira abre o interior e a saída preserva HOME. Os parágrafos anteriores registram as entregas históricas. A pintura dos interiores v2 permanece pendente.
+
 - [Concept](concept/prancha.png)
 - [Ficha de tradução](traducao.md)
 - [Fachada em escala nativa com Kael](fachada/blockout.png)

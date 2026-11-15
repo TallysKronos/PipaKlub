@@ -242,13 +242,17 @@ func billboard(path: String,p: Vector2,h: float,height_pixels: float,flip: bool=
 
 func garden(b: Array,gate: float) -> void:
 	var h := support(Vector2(b[0]+.5,b[3]-.5))
+	var kael_v2:=is_equal_approx(gate,4.4)
 	# Short side fences leave the center gate and all sidewalks open.
 	for span in [[b[0],gate-.85],[gate+.85,b[2]]]:
-		for x in range(ceili(span[0]*2),floori(span[1]*2)+1):
+		for x in range(ceili(span[0]*2),floori(span[1]*2)+1) if not kael_v2 else []:
 			var u := float(x)*.5
 			volume([u-.035,b[3]-.035,u+.035,b[3]+.035],h,h+12,Color("B6AA85"))
-		line3([Vector3(span[0],b[3],h+9),Vector3(span[1],b[3],h+9)],Color("E3D3A8"),2)
+		if not kael_v2:line3([Vector3(span[0],b[3],h+9),Vector3(span[1],b[3],h+9)],Color("E3D3A8"),2)
 		blockers.append({"bounds":[span[0],b[3]-.08,span[1],b[3]+.08],"id":"fence"})
+	if kael_v2:
+		blockers.append({"bounds":[b[0]-.08,b[1],b[0]+.08,b[3]],"id":"fence"})
+		blockers.append({"bounds":[b[2]-.08,b[1],b[2]+.08,b[3]],"id":"fence"})
 
 func dress() -> void:
 	building([2,12,7,16],"casa-kael","kael")
@@ -270,7 +274,7 @@ func dress() -> void:
 		billboard("res://assets/overworld/kits/mobilidade/pecas/"+id+"-default.png",p,support(p),VEHICLE_HEIGHTS[id],true)
 		var length_cells := 4.6 if id=="kombi-oficina" else 4.0 if id=="jipe-pesquisa" else 3.6
 		blockers.append({"bounds":[p.x-length_cells,p.y-1.15,p.x+.8,p.y+.65],"id":"carro"})
-	for p in [Vector2(1.3,10.5),Vector2(9.0,16.5),Vector2(22.5,12),Vector2(30.4,15),Vector2(1.0,-4),Vector2(10,-4.5),Vector2(21,-4),Vector2(30.5,-4.5),Vector2(28,18.5)]:
+	for p in [Vector2(1.3,10.5),Vector2(22.5,12),Vector2(30.4,15),Vector2(1.0,-4),Vector2(10,-4.5),Vector2(21,-4),Vector2(30.5,-4.5),Vector2(28,18.5)]:
 		billboard("res://assets/overworld/kits/planicie-v1/props/arvore.png",p,support(p),90)
 		blockers.append({"bounds":[p.x-.23,p.y-.23,p.x+.23,p.y+.23],"id":"arvore"})
 	for p in [Vector2(11.5,1),Vector2(18.5,5.7),Vector2(11.5,19.5),Vector2(18.5,20),Vector2(22,25.8)]:
@@ -282,14 +286,10 @@ func dress() -> void:
 	var bus := Vector2(5.6,26.6)
 	billboard("res://assets/overworld/kits/mobilidade/pecas/ponto-onibus-default.png",bus,support(bus),BUS_STOP_HEIGHT)
 	blockers.append({"bounds":[3.2,25.55,6.65,26.75],"id":"ponto-onibus"})
-	# Mailbox fixed to a post beside Kael's open gate.
-	volume([5.4,18.1,5.5,18.2],8,29,Color("8E7956"))
-	volume([5.23,18.0,5.65,18.3],27,39,Color("438998"))
-	wall_patch([5.23,18.0,5.65,18.3],false,.15,.85,31,33,INK,.02)
-	blockers.append({"bounds":[5.23,18.0,5.65,18.3],"id":"correio"})
-	for p in [Vector2(3,16.8),Vector2(6.7,16.8),Vector2(2.3,-.9),Vector2(7.2,-.9),Vector2(23.3,-.8),Vector2(28.5,-.8),Vector2(24.5,16.9)]:
+	# Kael's mailbox, porch pots and flowers are now part of the native kit.
+	for p in [Vector2(2.3,-.9),Vector2(7.2,-.9),Vector2(23.3,-.8),Vector2(28.5,-.8),Vector2(24.5,16.9)]:
 		billboard("res://assets/overworld/kits/comum/pecas/vaso-ceramica.png",p,support(p),24)
-	for p in [Vector2(8.7,17),Vector2(1,13),Vector2(29.7,17),Vector2(21.3,16.4)]:
+	for p in [Vector2(29.7,17),Vector2(21.3,16.4)]:
 		billboard("res://assets/overworld/kits/comum/pecas/flores-coral.png",p,support(p),13)
 	people = [
 		{"id":"assis","name":"Prof. Assis","p":Vector2(6.8,-.65),"image":"res://assets/campaign/assis-overworld.png","line":"Bom dia, Kael! O vento ganha vida nas mãos de quem cuida dele. Conheça a lojinha da Lia, aqui na rua alta."},
