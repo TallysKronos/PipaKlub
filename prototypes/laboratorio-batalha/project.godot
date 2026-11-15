@@ -1,0 +1,14 @@
+config_version=5
+
+[application]
+config/name="Soulmonsters · Laboratório de Batalha"
+run/main_scene="res://arena.tscn"
+
+[display]
+window/size/viewport_width=1000
+window/size/viewport_height=562
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
