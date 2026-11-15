@@ -13,6 +13,54 @@
 			"ok": true
 		},
 		{
+			"label": "independent animated gate component installed",
+			"ok": true
+		},
+		{
+			"label": "closed gate blocks crossing",
+			"ok": true
+		},
+		{
+			"label": "opening has intermediate hinged poses",
+			"ok": true
+		},
+		{
+			"label": "opening reaches full inward rotation",
+			"ok": true
+		},
+		{
+			"label": "open gate releases crossing",
+			"ok": true
+		},
+		{
+			"label": "closing has intermediate hinged poses",
+			"ok": true
+		},
+		{
+			"label": "direction reversal ends open without snapping",
+			"ok": true
+		},
+		{
+			"label": "recorded full open-close cycle ends closed",
+			"ok": true
+		},
+		{
+			"label": "gate stays closed when both actors are distant",
+			"ok": true
+		},
+		{
+			"label": "Kael approach automatically opens gate",
+			"ok": true
+		},
+		{
+			"label": "follower in passage keeps gate open",
+			"ok": true
+		},
+		{
+			"label": "gate automatically closes once both actors leave",
+			"ok": true
+		},
+		{
 			"label": "return point unblocked",
 			"ok": true
 		},
@@ -158,6 +206,6 @@
 		}
 	],
 	"failed": 0,
-	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-593123ce-1fc3-4ae4-a873-0eca5168670f",
+	"qa_store": "C:/Users/user/produto/pipa-club/godot/../.local/qa/casa-kael-v2-4f1699ce-d08d-45c1-a0d9-d9db0bf536fd",
 	"user_saves_touched": false
 }

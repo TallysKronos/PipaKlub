@@ -85,10 +85,9 @@ static func build_gate(world:Node2D) -> void:
 	for b in [[1.2,18.08,3.1,18.32],[5.7,18.08,9.8,18.32],[9.68,11,9.8,18.32]]:
 		solid(world,b,8,48,cream,shade,cap)
 		edge(world,Vector3(b[0],b[3],48),Vector3(b[2],b[3],48),Color("d6b79f"))
-	# Blue gate folds into the garden. Rails and hinges remain real volumes.
-	for z in [12,41]:solid(world,[3.48,17.08,3.56,18.08],z,z+3,Color("445b86"),Color("303b58"),Color("788497"))
-	for v in [17.08,17.24,17.40,17.56,17.72,17.88,18.05]:solid(world,[3.48,v,3.56,v+.03],15,41,Color("445b86"),Color("303b58"),Color("788497"))
-	for z in [17,35]:solid(world,[3.48,18.02,3.61,18.1],z,z+3,Color("788497"),Color("485476"),Color("c8cdd1"))
+	# Installed after static visibility reconstruction: the leaf is a moving component.
+	var gate:Node2D=preload("res://scenes/overworld/props/kael_gate.tscn").instantiate()
+	world.call_deferred("add_child",gate)
 	var mail:=[5.32,18.46,5.63,18.60]
 	solid(world,mail,20,38,Color("2b5ba5"),Color("303b58"),Color("55709b"))
 	world.wall_patch(mail,false,.12,.88,34,35,Color("18394e"),.012)

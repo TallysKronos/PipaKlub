@@ -5,7 +5,7 @@
 ## Resultado
 
 - Seis recortes da casa e uma bicicleta independente em `godot/assets/campaign/kael-house-v2/`, sem ampliação individual. Muros, pilares, portão, correio e piso agora usam a geometria aprovada no estudo v3.
-- Portão com abertura permanente alinhada a (4,4, 18,2), com erro de projeção inferior a 1 px. A folha fica recolhida junto ao vão. A bicicleta foi deslocada ao longo do muro para liberar a abertura.
+- O vão continua alinhado a (4,4, 18,2). A folha fixa foi substituída pelo [componente animado independente](PORTAO-ANIMADO.md): abre na aproximação e fecha após Kael e companheiro se afastarem. A bicicleta permanece fora da passagem. Validação atual: 51 checks, zero falhas.
 - A porta da pintura fica ligada ao ponto de aproximação (5,8, 16,2). O caminho do portão até ela foi percorrido nos dois sentidos. O corpo bloqueado termina em v 15,55, deixando a soleira acessível.
 - O retorno da campanha continua em HOME (4,4, 17,4). A entrada usa o fluxo existente de `kael-home`, e a saída do interior continua usando o checkpoint original.
 - Cerca, correio, dois vasos, árvore e flores antigos que se duplicavam no jardim foram retirados da montagem. Os muros mantêm colisão, com o vão do portão livre.

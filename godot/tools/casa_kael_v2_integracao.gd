@@ -58,6 +58,21 @@ func passage() -> void:
 	play.avatar.moving=false
 	sheet.save_png(OUT+"passagem-contato.png")
 	travel(CP.HOME)
+func gate_record(gate:Node2D) -> void:
+	var folder:="res://../.local/qa/kael-gate-record/"
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(folder))
+	var play=app.park
+	play.camera.position_smoothing_enabled=false
+	play.camera.zoom=Vector2.ONE*2
+	play.camera.position=play.world.iso(House.GATE,8)-Vector2(0,50)
+	gate.set_open(false,true)
+	for frame in 56:
+		if frame==8:gate.set_open(true)
+		if frame==32:gate.set_open(false)
+		await create_timer(.05).timeout
+		await RenderingServer.frame_post_draw
+		root.get_texture().get_image().get_region(Rect2i(380,210,520,380)).save_png(folder+"%03d.png"%frame)
+	check(is_zero_approx(gate.openness),"recorded full open-close cycle ends closed")
 func run() -> void:
 	root.size=Vector2i(1280,720)
 	root.gui_disable_input=true
@@ -79,6 +94,46 @@ func run() -> void:
 	await ready_city()
 	var play=app.park
 	check(play.cell==CP.HOME,"HOME unchanged on load")
+	var gate=play.world.get_node_or_null("KaelGate")
+	check(gate!=null,"independent animated gate component installed")
+	if gate!=null:
+		gate.automatic=false
+		gate.set_open(false,true)
+		check(play._obstructed(House.GATE,"4:18"),"closed gate blocks crossing")
+		await shot("portao-fechado",2.0)
+		gate.set_open(true)
+		await create_timer(.30).timeout
+		check(gate.openness>0 and gate.openness<1,"opening has intermediate hinged poses")
+		await shot("portao-abrindo",2.0)
+		await create_timer(.5).timeout
+		check(is_equal_approx(gate.openness,1),"opening reaches full inward rotation")
+		check(not play._obstructed(House.GATE,"4:18"),"open gate releases crossing")
+		await shot("portao-aberto",2.0)
+		gate.set_open(false)
+		await create_timer(.30).timeout
+		check(gate.openness>0 and gate.openness<1,"closing has intermediate hinged poses")
+		gate.set_open(true)
+		await create_timer(.8).timeout
+		check(is_equal_approx(gate.openness,1),"direction reversal ends open without snapping")
+		await gate_record(gate)
+		# Automatic sensing includes the follower and uses hysteresis to avoid chattering.
+		var home_cell:Vector2=play.cell
+		var home_follower:Vector2=play.follower
+		play.cell=Vector2(8.0,20.5);play.follower=Vector2(8.0,20.5)
+		gate.automatic=true
+		await create_timer(.8).timeout
+		check(is_zero_approx(gate.openness),"gate stays closed when both actors are distant")
+		play.cell=Vector2(4.4,19.4)
+		await create_timer(.8).timeout
+		check(is_equal_approx(gate.openness,1),"Kael approach automatically opens gate")
+		play.cell=Vector2(8.0,20.5);play.follower=Vector2(4.4,18.5)
+		await create_timer(.8).timeout
+		check(is_equal_approx(gate.openness,1),"follower in passage keeps gate open")
+		play.follower=Vector2(8.0,20.5)
+		await create_timer(.8).timeout
+		check(is_zero_approx(gate.openness),"gate automatically closes once both actors leave")
+		play.cell=home_cell;play.follower=home_follower
+		await create_timer(.8).timeout
 	check(not play._obstructed(CP.HOME,"4:17"),"return point unblocked")
 	check(not play._obstructed(House.GATE,"4:18"),"gate opening unblocked")
 	check(play._obstructed(Vector2(2.0,18.2),"2:18"),"front wall blocks walking")
