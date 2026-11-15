@@ -17,7 +17,9 @@ O estudo de acabamento veio do ImageGen com a captura da loja atual, a fachada-p
 - [Verificação da arte](verificacao.json) com canvas 976 × 680, 88 cores da paleta mestra e da extensão, zero pixels semitransparentes e zero pixels opacos isolados.
 - [Fonte e prompt do ImageGen](fontes/PROMPT.md).
 
-A posição desenhada do balcão e dos móveis é visual. Em uma etapa de integração, os pontos da planta e oclusores precisam ser calibrados contra a cena `kite-shop`. Esta entrega é o quadro-chave para aprovação.
+A posição desenhada do balcão e dos móveis é visual. Em uma etapa de integração, os pontos da planta e oclusores precisam ser calibrados contra a cena `kite-shop`.
+
+O quadro aprovado foi dividido em [19 peças com atlas, pivôs e camadas Aseprite](kit/README.md). A remontagem foi conferida no Godot e no Aseprite, preservando todos os pixels visíveis. A próxima etapa é a integração na cena e a verificação de circulação e oclusão.
 
 Comandos de reprodução na raiz:
 

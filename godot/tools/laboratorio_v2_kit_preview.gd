@@ -2,7 +2,12 @@ extends "res://tools/laboratorio_v2_revisao.gd"
 ## Remontagem via Sprite2D/AtlasTexture e prancha de recortes.
 
 func run() -> void:
-	if "--interior" in OS.get_cmdline_user_args():
+	var title := "LABORATÓRIO V2"
+	var args := OS.get_cmdline_user_args()
+	if "--loja-interior" in args:
+		OUT = "res://../art/overworld/estilo/loja-piloto-v2/interior/"
+		title = "LINHA & PAPEL"
+	elif "--interior" in args:
 		OUT = "res://../art/professor-laboratorio-v2/interior/"
 	var kit := OUT + "kit/"
 	root.content_scale_size=Vector2i.ZERO
@@ -16,6 +21,13 @@ func run() -> void:
 	var atlas_image:=img(kit+"atlas.png")
 	var atlas_texture:=ImageTexture.create_from_image(atlas_image)
 	var source:=img(OUT+"quadro-chave.png")
+	# O quadro pode conservar RGB sob alfa zero. Compare somente a arte visível.
+	var source_pixels := source.get_data()
+	for i in range(0, source_pixels.size(), 4):
+		if source_pixels[i + 3] == 0:
+			source_pixels[i] = 0
+			source_pixels[i + 1] = 0
+			source_pixels[i + 2] = 0
 	var source_size := source.get_size()
 	var reconstructed := Image.create(source_size.x, source_size.y, false, Image.FORMAT_RGBA8)
 	var nodes:=Node2D.new()
@@ -47,7 +59,7 @@ func run() -> void:
 		sprite.position=Vector2(pos)
 		sprite.z_index=part.draw_order
 		nodes.add_child(sprite)
-	if not check(source.get_data()==reconstructed.get_data(),"Atlas/pivôs não reproduzem o quadro-chave"):return
+	if not check(source_pixels==reconstructed.get_data(),"Atlas/pivôs não reproduzem o quadro-chave"):return
 	content = board(source_size.x * 2 + 90, source_size.y + 150)
 	var reference_at := Vector2i(20, 90)
 	var full_rect := Rect2i(Vector2i.ZERO, source_size)
@@ -63,7 +75,7 @@ func run() -> void:
 	if not check(renders_match, "Sprite2D renderizado difere da referência na captura"):return
 	nodes.hide()
 	content=board(1600,1800)
-	labels=[[Vector2(20,40),"LABORATÓRIO V2 / KIT DE MONTAGEM FIXA / RECORTES VISÍVEIS",24]]
+	labels=[[Vector2(20,40),title+" / KIT DE MONTAGEM FIXA / RECORTES VISÍVEIS",24]]
 	var cursor:=Vector2i(20,90)
 	var row_height:=0
 	for part in data.parts:
@@ -87,7 +99,7 @@ func run() -> void:
 	proof.godot_render_matches_reference=renders_match
 	if FileAccess.file_exists(kit+"remontagem-aseprite.png"):
 		var aseprite_output:=img(kit+"remontagem-aseprite.png")
-		proof.aseprite_layers_reconstruct_exactly=source.get_data()==aseprite_output.get_data()
+		proof.aseprite_layers_reconstruct_exactly=source_pixels==aseprite_output.get_data()
 		if not check(proof.aseprite_layers_reconstruct_exactly,"Camadas Aseprite não reproduzem a fonte"):return
 	var f:=FileAccess.open(kit+"verificacao.json",FileAccess.WRITE)
 	f.store_string(JSON.stringify(proof,"\t"))

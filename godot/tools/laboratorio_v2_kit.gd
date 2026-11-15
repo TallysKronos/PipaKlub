@@ -53,7 +53,10 @@ func build() -> void:
 	for y in source.get_height():
 		for x in source.get_width():
 			var color:=source.get_pixel(x,y)
-			if color.a==0:continue
+			if color.a==0:
+				# RGB de pixels invisíveis não faz parte de nenhum recorte.
+				source.set_pixel(x,y,Color(0,0,0,0))
+				continue
 			var owner := base_part(Vector2(x + .5, y + .5))
 			for i in range(1,parts.size()):
 				if parts[i].mask.size() >= 3 and Geometry2D.is_point_in_polygon(Vector2(x+.5,y+.5),parts[i].mask):owner=i
