@@ -27,3 +27,7 @@ Antes de entregar um layout, inspecione em captura nativa ampliada cada boca de 
 Áreas naturais que recebem cachoeiras devem ter um poço rebaixado com profundidade legível: recortar de fato o piso superior, fechar as faces da margem até a cota da água e apoiar o impacto nessa cota. Usar o mesmo contorno medido para o recorte, o barranco e a superfície inferior. O comprimento da queda inclui a diferença entre o solo e a água. Não entregar um retângulo de água como decalque sobre o piso, nem simular o volume apenas com borda escura ou sombra. Contornos naturais devem ser irregulares/arredondados; formas retangulares precisam corresponder a uma estrutura construída intencional.
 
 Conferir a oclusão da margem próxima e a projeção do rebaixo dentro do terreno de sustentação. Água, laterais e espuma não podem vazar por baixo ou para fora da margem, nem cobrir o chão caminhável. Validar em captura nativa geral e ampliada, sem objetos encobrindo as juntas, mais uma versão geométrica simples. A regra vale para os novos assets e cenários Godot e para o renderer legado. Ver a seção "Margens e cotas de água" em `documentation/continuidade-terreno-isometrico.md`.
+
+## Criaturas 3D articuladas
+
+Para modelar, pintar, animar ou revisar Soulmonsters low-poly no Blender para Godot, consulte [o guia e os três modelos de referência](art/soulmonsters-3d-dw3/README.md).
