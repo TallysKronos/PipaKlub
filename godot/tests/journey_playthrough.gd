@@ -122,7 +122,9 @@ func walk_room(target: Vector2) -> bool:
 		for tick in 200:
 			if room.actor.distance_to(point) < 5: break
 			var before: Vector2 = room.actor
-			direction((room.project(point) - room.project(room.actor)).normalized())
+			# Aim through a far point: room projections round to whole screen pixels,
+			# which skews the direction once the actor is a few pixels from the target.
+			direction((room.project(room.actor + (point - room.actor).normalized() * 200) - room.project(room.actor)).normalized())
 			room._process(1.0 / 60)
 			walked += before.distance_to(room.actor)
 			if tick == 199:
