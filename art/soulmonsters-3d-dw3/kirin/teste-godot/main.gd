@@ -2,6 +2,7 @@ extends Node3D
 var actor:Node3D
 var player:AnimationPlayer
 var camera:Camera3D
+var anim_walk:StringName
 var anim_idle:StringName
 var anim_proud:StringName
 var anim_roar:StringName
@@ -51,6 +52,7 @@ func _ready()->void:
 	player=find_player(actor)
 	assert(player!=null,"AnimationPlayer ausente")
 	for a in player.get_animation_list():
+		if a=="Walk":anim_walk=a;player.get_animation(a).loop_mode=Animation.LOOP_LINEAR
 		if "Idle" in a:anim_idle=a;player.get_animation(a).loop_mode=Animation.LOOP_LINEAR
 		if "Despertar" in a:anim_roar=a
 		if "Imponencia" in a:anim_proud=a
@@ -64,6 +66,13 @@ func _ready()->void:
 	build_ui();build_sound()
 	player.animation_finished.connect(_on_clip_finished)
 	play_idle()
+	if "--walk" in OS.get_cmdline_user_args():
+		play_walk()
+		await get_tree().create_timer(3.5).timeout
+		assert(player.current_animation==anim_walk and player.current_animation_position<.5)
+		play_idle()
+		print("KIRIN_WALK_LOOP_OK")
+		get_tree().quit()
 	if "--poses" in OS.get_cmdline_user_args():
 		assert(player.current_animation==anim_idle)
 		await get_tree().create_timer(5.3).timeout
@@ -96,9 +105,13 @@ func build_ui()->void:
 	var layer=CanvasLayer.new();add_child(layer)
 	var title=Label.new();title.text="SOULMONSTERS   /   KIRIN";title.position=Vector2(36,25);title.add_theme_font_size_override("font_size",25);layer.add_child(title)
 	status=Label.new();status.position=Vector2(38,62);status.add_theme_color_override("font_color",Color("f4b878"));layer.add_child(status)
-	var controls=Label.new();controls.text="P  Imponência     •     I  Repouso     •     Espaço  Despertar     •     ← →  Câmera";controls.position=Vector2(36,667);layer.add_child(controls)
+	var controls=Label.new();controls.text="W  Caminhar   •   P  Imponência   •     I  Repouso     •     Espaço  Despertar     •     ← →  Câmera";controls.position=Vector2(36,667);layer.add_child(controls)
 	var pose_button=Button.new();pose_button.text="Imponência";pose_button.position=Vector2(880,655);pose_button.size=Vector2(150,38);pose_button.pressed.connect(play_proud);layer.add_child(pose_button)
 	var replay=Button.new();replay.text="Repetir despertar";replay.position=Vector2(1050,655);replay.size=Vector2(195,38);replay.pressed.connect(play_intro);layer.add_child(replay)
+func play_walk()->void:
+	playing=false
+	sound.stop()
+	player.play(anim_walk,.18)
 func play_idle()->void:
 	playing=false
 	if sound:sound.stop()
@@ -126,6 +139,7 @@ func play_intro()->void:
 func _unhandled_key_input(e:InputEvent)->void:
 	if not e.is_pressed() or e.is_echo():return
 	if e.physical_keycode==KEY_SPACE:play_intro()
+	if e.physical_keycode==KEY_W:play_walk()
 	if e.physical_keycode==KEY_I:play_idle()
 	if e.physical_keycode==KEY_P:play_proud()
 func _process(dt:float)->void:
@@ -148,4 +162,4 @@ func update_stage(_dt:float)->void:
 		var progress=(elapsed-2.25-i*.22)/1.35
 		rings[i].visible=playing and progress>0 and progress<1
 		if rings[i].visible:rings[i].scale=Vector3.ONE*(.5+progress*5)
-	status.text=("DESPERTAR  /  " + ("Preparação" if elapsed<1.6 else ("Rugido" if elapsed<4.5 else "Recuperação"))) if playing else ("IMPONÊNCIA" if player.current_animation==anim_proud else "REPOUSO")
+	status.text=("DESPERTAR  /  " + ("Preparação" if elapsed<1.6 else ("Rugido" if elapsed<4.5 else "Recuperação"))) if playing else ("IMPONÊNCIA" if player.current_animation==anim_proud else ("CAMINHADA" if player.current_animation==anim_walk else "REPOUSO"))

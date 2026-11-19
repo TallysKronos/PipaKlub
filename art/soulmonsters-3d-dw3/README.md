@@ -7,7 +7,7 @@ Use este guia para transformar uma prancha aprovada em uma criatura jogável no 
 | Exemplo entregue | O que estudar | Triângulos / malhas / ossos no GLB | Clipes |
 |---|---|---:|---|
 | [Mormaço livre](mormaco/Mormaco-livre.png) · [Blender](mormaco/Mormaco.blend) · [GLB](mormaco/Mormaco.glb) | Quadrúpede baixo. Ombro, cotovelo e palma sustentam uma carapaça larga. A pata levanta mantendo três apoios. | 2.382 / 63 / 15 | Firmar apoio |
-| [Kirin vulcânico evoluído](kirin/Kirin.png) · [Blender](kirin/Kirin.blend) · [GLB](kirin/Kirin.glb) | Quadrúpede alto. Máscara, chifre em arco, crina, vela dorsal e quatro anéis acompanham cadeias diferentes. | 3.014 / 1 / 22 | Idle, Despertar, Imponencia |
+| [Kirin vulcânico evoluído](kirin/Kirin.png) · [Blender](kirin/Kirin.blend) · [GLB](kirin/Kirin.glb) | Quadrúpede alto. Máscara, chifre em arco, crina, vela dorsal e quatro anéis acompanham cadeias diferentes. | 3.014 / 1 / 26 | Idle, Despertar, Imponencia, Walk |
 | [Rabbito criança](rabbito/Rabbito.png) · [Blender](rabbito/Rabbito.blend) · [GLB](rabbito/Rabbito.glb) | Bípede pequeno. Orelhas assimétricas, gola dobrada, roupa curta, azul na lateral da perna e no calcanhar, dois cordões. | 1.828 / 1 / 15 | Idle, Alerta |
 
 Os três GLBs usam um material cada. Na amostra de DW3 estudada, Renamon tinha 848 triângulos e 22 ossos, Kyubimon tinha 1.779 e 45, e MegaGargomon tinha 1.678 e 27. São medidas dos arquivos de referência fornecidos. Use-as para decidir onde gastar geometria. Um osso útil pode valer mais para a expressão do que subdividir o rosto. O Mormaço anterior tinha 9.906 triângulos e 17 materiais e ainda perdia a expressão de frente.
@@ -67,7 +67,7 @@ As versões usadas foram Blender 5.3 e Godot 4.7.2. Os exemplos abaixo partem **
 | Kirin | `python atlas.py` (Pillow e NumPy) | `blender -b --python-exit-code 1 -P construir.py` | Após reconstruir, copie `Kirin.glb` sobre `teste-godot/kirin-animado.glb`. A cena usa essa cópia. |
 | Rabbito | `python pintar.py` (Pillow) | `blender -b --python-exit-code 1 -P construir.py` | `godot --headless --script verificar.gd -- Rabbito.glb`. Espere `RABBITO_OK 15`. |
 
-Para testar o Kirin, abra [o projeto de demonstração](kirin/teste-godot/project.godot) e execute a cena. **P** aciona imponência, **I** volta ao repouso, **Espaço** aciona despertar e as setas giram a câmera. Para verificar a troca de estados por linha de comando, rode na pasta `kirin/teste-godot`:
+Para testar o Kirin, abra [o projeto de demonstração](kirin/teste-godot/project.godot) e execute a cena. **W** inicia a caminhada de quatro tempos (1,6 s por ciclo, deslocamento recomendado de 0,9 unidade/s para frente). **P** aciona imponência, **I** volta ao repouso, **Espaço** aciona despertar e as setas giram a câmera. Para verificar a troca de estados por linha de comando, rode na pasta `kirin/teste-godot`:
 
 ```sh
 godot --headless --editor --import

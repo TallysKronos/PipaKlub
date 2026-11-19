@@ -118,12 +118,14 @@ for side in (-1,1):
    ix=sum(i>=c for c in cuts[1:-1]);ww.extend([({labels[ix-1]:.5,labels[ix]:.5} if i in cuts[1:-1] else labels[ix])]*8)
   rings(rr,tt,ww)
   x=rows[-1][0]+offset
+  toe_name=('toe_front_' if fore else 'toe_back_')+tag
+  spec[toe_name]=((x,lateral,725),(x-14,lateral,757),labels[-1])
   for toe in (-1,1):
    rr=[];tt=[]
    for h,dx,w,r in [(710,4,12,18),(731,-3,17,30),(757,-11,17,32)]:
     rr.append([(x+dx+r*cos(j*pi/4),lateral+toe*14+w*sin(j*pi/4),h) for j in range(8)])
     tt.append([(329+cos(j*pi/4)*13, min(752,h+4)) for j in range(8)])
-   rings(rr,tt,labels[-1])
+   rings(rr,tt,toe_name)
   if fore:
    leaf([(x-24,673),(x-9,652),(x+15,636),(x+29,614),(x+28,660),(x+17,696),(x+4,713),(x-23,711)],(x,683),lateral+side*18,12,labels[-1],side,[(312,695),(318,673),(349,649),(367,629),(363,664),(348,693),(335,709),(309,714)])
   else:
@@ -183,10 +185,11 @@ ob.parent=rig;ob.modifiers.new('Articulações','ARMATURE').object=rig
 def rot(name,axis,angle):
  pb=rig.pose.bones[name];pb.rotation_quaternion=Quaternion(arm.bones[name].matrix_local.to_3x3().inverted()@Vector(axis),angle)
 exec((D/'movimentos.py').read_text(encoding='utf-8-sig'),globals())
+exec((D/'caminhada.py').read_text(encoding='utf-8-sig'),globals())
 s.render.fps=30
-for name,frames in [('Idle',151),('Despertar',241),('Imponencia',181)]:
+for name,frames in [('Idle',151),('Despertar',241),('Imponencia',181),('Walk',49)]:
  rig.animation_data_create();rig.animation_data.action=None
- for f in sorted(set(range(1,frames+1,3)) | {frames}):
+ for f in sorted(set(range(1,frames+1,1 if name=='Walk' else 3)) | {frames}):
   s.frame_set(f);t=(f-1)/30;phase=t*pi/2
   for p in rig.pose.bones:p.rotation_quaternion=Quaternion();p.scale=(1,1,1)
   roar=sin(pi*min(1,max(0,(t-1.4)/4.2)))**2 if name=='Despertar' else 0
@@ -196,12 +199,17 @@ for name,frames in [('Idle',151),('Despertar',241),('Imponencia',181)]:
   for j in range(3):rot('tail'+str(j+1),(0,0,1),(.09+.025*j)*sin(phase-.6*j)+.06*roar*sin(4*t-j))
   for side in 'LR':
    rot('front_'+side,(0,1,0),.24*roar-.07*dip);rot('fore_'+side,(0,1,0),-.39*roar)
-  if name!='Despertar':pose_kirin(name,t)
+  if name=='Walk':
+   for p in rig.pose.bones:p.rotation_quaternion=Quaternion()
+   walk_pose(t)
+  elif name!='Despertar':pose_kirin(name,t)
   for p in rig.pose.bones:
    p.keyframe_insert(data_path='rotation_quaternion',frame=f)
+   if name=='Walk' and p.name=='root':p.keyframe_insert(data_path='location',frame=f)
    if p.name=='breath':p.keyframe_insert(data_path='scale',frame=f)
  action=rig.animation_data.action;action.name=name
  track=rig.animation_data.nla_tracks.new();track.name=name;track.strips.new(name,1,action);track.mute=True;rig.animation_data.action=None
+rig.pose.bones['root'].location=(0,0,0)
 for tr in rig.animation_data.nla_tracks:tr.mute=False
 s.frame_set(1);ob.select_set(True);bpy.ops.export_scene.gltf(filepath=str(D/'Kirin.glb'),use_selection=True,export_animation_mode='NLA_TRACKS')
 for tr in rig.animation_data.nla_tracks:tr.mute=tr.name!='Idle'
