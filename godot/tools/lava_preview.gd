@@ -25,6 +25,7 @@ func start() -> void:
  title.add_theme_font_size_override("font_size",28)
  root.add_child(title)
  scene = load("res://scenes/overworld/lava/rio-de-brasa.tscn").instantiate()
+ scene.playable = false
  scene.position = Vector2(600,170)
  root.add_child(scene)
  await capture("lava-1280x720")
@@ -41,6 +42,7 @@ func start() -> void:
   scene.set_animation_time(-1.0)
   return
  var geometry: Node2D = load("res://scenes/overworld/lava/rio-de-brasa.tscn").instantiate()
+ geometry.playable = false
  geometry.position = scene.position
  geometry.show_geometry = true
  root.remove_child(scene)

@@ -5,6 +5,7 @@ extends Node2D
 @export var show_geometry := false
 @export var show_props := true
 const BASE := "res://assets/overworld/kits/lava-v1/"
+@export var playable := true
 var preview_time := -1.0
 var elapsed := 0.0
 var lava_material: ShaderMaterial
@@ -55,6 +56,24 @@ func _ready() -> void:
  var room := PackedVector2Array([iso(-.5,-.5),iso(13.5,-.5),iso(13.5,11.5),iso(-.5,11.5)])
  var pieces := Geometry2D.clip_polygons(room,contour)
  floor_piece_count = pieces.size()
+ if not show_geometry:
+  for piece in pieces:
+   for i in range(piece.size()):
+    var a: Vector2 = piece[i]
+    var b: Vector2 = piece[(i+1)%piece.size()]
+    var mid := (a+b)*.5
+    var gx := mid.x/64.+mid.y/32.
+    var gy := mid.y/32.-mid.x/64.
+    if absf(gx-13.5)<.015 or absf(gy-11.5)<.015:
+     var blocks := maxi(1,roundi(a.distance_to(b)/30.))
+     for j in blocks:
+      var p := a.lerp(b,float(j)/blocks)
+      var q := a.lerp(b,float(j+1)/blocks)
+      var footp := p+Vector2(1,25+4*sin(p.x*.05))
+      var footq := q+Vector2(1,25+4*sin(q.x*.05))
+      var tone := Color("504150") if gx>13.4 else Color("423946")
+      polygon(PackedVector2Array([p,q,footq,footp]),null,tone.darkened(.12*absf(sin(p.x))))
+      polygon(PackedVector2Array([p,q,q+Vector2.DOWN*3,p+Vector2.DOWN*2]),null,Color("79636a"))
  for piece in pieces:
   var bank := polygon(piece,null if show_geometry else ground_material,Color("536875") if show_geometry else Color.WHITE)
   bank.name = "SoloSuperiorRecortado"
@@ -78,6 +97,11 @@ func _ready() -> void:
   visual.material.set_shader_parameter("body_tint",Color(0.57,0.43,0.53))
   props.add_child(rock)
  _apply(0.0)
+ if playable:
+  var exploration := Node2D.new()
+  exploration.set_script(load("res://scripts/overworld/lava_exploration.gd"))
+  exploration.name = "Exploracao"
+  add_child(exploration)
 
 func polygon(points: PackedVector2Array,material_value: Material,color_value: Color) -> Polygon2D:
  var node := Polygon2D.new()
