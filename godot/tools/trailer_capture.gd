@@ -35,6 +35,11 @@ const MOTIF_DIRECTION := Vector2(1, -1)
 ## Duel shots: scene (sets the arena), rival model, level, boss, name, encounter kind (the
 ## save validation accepts it: wild species and level band of the region, or the Estádio
 ## bracket). "titulo" records the title screen with its logo.
+## Cinemática de guardião (página de mangá) dentro do mapa real:
+##   -- --shot=guardiao --id=vulcaoBoss [--silhueta] --secs=10
+const GUARDIAN_SCENES := {"mormacoStory": "kronasta-pantano-c", "grutaBoss": "caverna-c", "vulcaoBoss": "vulcao-a", "abismoBoss": "abismo-d", "geleiraBoss": "serra-gelada-c", "eremor": "kronasta-coracao-d"}
+var guardian_at := Vector2.INF
+var guardian_fired := false
 const DUELS := {
 	"duelo-mirante": ["kronasta-mirante-a", "raio", 42, false, "Vael", "wild"],
 	"duelo-serra": ["kronasta-montanha-c", "mata", 30, true, "Navalha", "wild"],
@@ -83,7 +88,41 @@ func setup() -> void:
 	if result.status != "ok": printerr("salto QA recusado: ", result); quit(1); return
 	var player: Dictionary = front.session.snapshot().player
 	player.name = "Kael"
-	if shot == "motivo":
+	if shot == "evolucao":
+		# Ritual de evolução real: página de escolha, depois o ritual com a revelação.
+		#   -- --shot=evolucao --from=rabbito --to=rastro-dos-ventos [--escolha=3]
+		var partner: Dictionary = player.partners[0]
+		partner.modelId = arg("from", "rabbito")
+		partner.xp = 999999
+		player.equippedPartnerId = partner.id
+		var form: Dictionary = preload("res://scripts/campaign/evolution.gd").form(arg("to", "rastro-dos-ventos"))
+		for item in form.get("items", []): player.inventory[item.id] = 9
+		for flag in form.get("flags", []): player.flags[flag] = true
+		result = front.session.checkpoint(CP.make("kronasta-bosque-a", nearest_walkable(CP.model_for("kronasta-bosque-a"), Vector2(24.5, 24.5)), CP.SPACE), player)
+	elif shot == "guardiao":
+		var id := arg("id", "vulcaoBoss")
+		var scene: String = GUARDIAN_SCENES[id]
+		var map = CP.model_for(scene)
+		if id == "mormacoStory": guardian_at = Vector2(24.5, 28.5)
+		elif id == "eremor": guardian_at = Vector2(24, 15.5)
+		else:
+			for event in CP.data(scene).events:
+				if event.props.get("acao", "") == id: guardian_at = Vector2(event.u + .5, event.v + .5)
+		var at := nearest_walkable(map, guardian_at + Vector2(1.5, 3.5))
+		if arg("at", "") != "":
+			var parts := arg("at", "").split(",")
+			at = nearest_walkable(map, Vector2(float(parts[0]) + .5, float(parts[1]) + .5))
+		var model_id := arg("partner", "")
+		if model_id != "":
+			var partner: Dictionary = player.partners[0].duplicate(true)
+			partner.id = "trailer-" + model_id
+			partner.modelId = model_id
+			partner.personalName = model_id
+			player.partners.append(partner)
+			player.equippedPartnerId = partner.id
+		result = front.session.checkpoint(CP.make(scene, at, CP.SPACE), player)
+		print("GUARDIAO ", id, " em ", scene, " de ", at, " foco ", guardian_at)
+	elif shot == "motivo":
 		var scene := arg("scene", "planicie-d")
 		var map = CP.model_for(scene)
 		var at := Vector2.INF
@@ -179,12 +218,36 @@ func _process(_delta: float) -> bool:
 		quit(0)
 		return false
 	tick += 1
+	if shot == "evolucao" and (tick > 70 or (front.get("park") != null and is_instance_valid(front.park))):
+		var pid: String = front.session.snapshot().player.partners[0].id
+		var choose := int(float(arg("escolha", "3")) * 30)
+		if tick == 70: front._show_evolution(pid)
+		if tick == 70 + choose:
+			var probe: Dictionary = preload("res://scripts/campaign/evolution.gd").evolve(front.session.snapshot().player.duplicate(true), pid, arg("to", "rastro-dos-ventos"))
+			print("EVOLUCAO ", probe.status, " ", front.session.snapshot().player.partners[0].modelId)
+			front._execute_evolution(pid, arg("to", "rastro-dos-ventos"))
+	if shot == "guardiao" and not guardian_fired and tick >= int(arg("delay", "80")) and front.get("park") != null and is_instance_valid(front.park):
+		guardian_fired = true
+		var id := arg("id", "vulcaoBoss")
+		if "--silhueta" in OS.get_cmdline_user_args() or id == "eremor":
+			var cine: Control = preload("res://scripts/campaign/guardian_cinematic.gd").create(id, front.park, front.park.model.project(guardian_at) - Vector2(0, 60))
+			cine.silhouette = "--silhueta" in OS.get_cmdline_user_args()
+			if cine.silhouette: cine.title = ""; cine.subtitle = ""
+			var layer := CanvasLayer.new()
+			layer.layer = 30
+			front.add_child(layer)
+			layer.add_child(cine)
+		else:
+			front._guardian_cinematic(id, guardian_at)
 	# The virtual screen loses focus, which pauses duels (encounter_view, focus out).
 	if duel and front.get("battle") != null and is_instance_valid(front.battle):
 		front.battle.paused = false
 	# Clean frames for the trailer: exploration without the HUD panels.
 	if front.get("park") != null and is_instance_valid(front.park) and is_instance_valid(front.park.get("exploration_hud")):
 		front.park.exploration_hud.hide()
+	# Gravação: a cinemática sem o botão de pular.
+	for node in front.find_children("*", "Button", true, false):
+		if node.text == "Pular · Esc": node.visible = false
 	# Motivo: quadro limpo (sem minimapa nem camadas de interface) e câmera perto, como um painel.
 	if shot == "motivo" and front.get("park") != null and is_instance_valid(front.park):
 		for layer in front.park.find_children("*", "CanvasLayer", true, false): layer.visible = false

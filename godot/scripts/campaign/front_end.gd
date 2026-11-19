@@ -1933,24 +1933,28 @@ func _park_event(id: String) -> void:
 			else:_result(told)
 			return
 		if action=="grutaBoss":
+			if await _guardian_cinematic(action,Vector2(event.u+.5,event.v+.5)):return
 			_confirm_park("Estratonte","No meio do lago, os ossos de papel do Estratonte se erguem da ilha. O guardião da Gruta do Moinho baixa o pescoço comprido e espera.\n\nNv. %d · guardião opcional. A primeira vitória garante a rabiola dele." % encounters.GRUTA_GUARDIAN_LEVEL,"Enfrentar",func():
 				var started:Dictionary=encounters.start_gruta_boss(park.player)
 				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use a fonte de água fresca ou um Kit de Remendo antes de enfrentar o Estratonte.")
 				elif _result(started):_show_saved.call_deferred())
 			return
 		if action=="vulcaoBoss":
+			if await _guardian_cinematic(action,Vector2(event.u+.5,event.v+.5)):return
 			_confirm_park("Tricórdio","Na borda da cratera, as três cabeças do Tricórdio se viram ao mesmo tempo. A armadura de brasa estala com o calor da lava.\n\nNv. %d · guardião do Vulcão. A primeira vitória garante a rabiola dele." % encounters.VULCAO_GUARDIAN_LEVEL,"Enfrentar",func():
 				var started:Dictionary=encounters.start_vulcao_boss(park.player)
 				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use o descanso da Caldeira ou um Kit de Remendo antes de enfrentar o Tricórdio.")
 				elif _result(started):_show_saved.call_deferred())
 			return
 		if action=="abismoBoss":
+			if await _guardian_cinematic(action,Vector2(event.u+.5,event.v+.5)):return
 			_confirm_park("Coromar","A água em volta do trono gira em quatro correntes. O Coromar, guardião das Quatro Marés, abre as nadadeiras e espera.\n\nNv. %d · chefe do Abismo de Kronasta." % encounters.ABISMO_BOSS_LEVEL,"Enfrentar",func():
 				var started:Dictionary=encounters.start_abismo_boss(park.player)
 				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use uma bolha de ar ou um Kit de Remendo antes de enfrentar o Coromar.")
 				elif _result(started):_show_saved.call_deferred())
 			return
 		if action=="geleiraBoss":
+			if await _guardian_cinematic(action,Vector2(event.u+.5,event.v+.5)):return
 			_confirm_park("Borealvo","O guardião da Coroa Glacial ergue o martelo de gelo. Ele não deixa ninguém chegar ao santuário sem provar a força.\n\nNv. %d · chefe da Serra Gelada." % encounters.GELEIRA_BOSS_LEVEL,"Enfrentar",func():
 				var started:Dictionary=encounters.start_geleira_boss(park.player)
 				if started.status=="repair_needed":_notice("Seu parceiro precisa se recuperar. Use o abrigo do pico ou um Kit de Remendo antes de enfrentar o Borealvo.")
@@ -3989,8 +3993,33 @@ func _request_mormaco(action:String)->void:
 		_confirm_park("Kael e Tyler","Tyler: Rai e eu vamos abrir espaço. Mire nos fios do Carretel, Kael!\n\nKael: Entendido. Vamos trazer Mormaço de volta.","Lutar juntos",func():
 			if _result(story.begin(point)):_show_saved.call_deferred())
 	else:
+		if await _guardian_cinematic("mormacoStory",Vector2.INF):return
 		_confirm_park("Kael · Mormaço","Mormaço ergue a cabeça sobre a água e aceita o desafio.\n\nKael: Quero ver o que o primeiro Vento sabe fazer.","Enfrentar",func():
 			if _result(story.begin(point)):_show_saved.call_deferred())
+
+## Apresentação em página de mangá antes do primeiro desafio de um guardião (uma vez por sessão).
+## Devolve true quando a cena mudou durante a apresentação e quem chamou deve parar.
+var cinematics_seen:={}
+func _guardian_cinematic(id:String,at:Vector2)->bool:
+	if cinematics_seen.has(id) or not is_instance_valid(park):return false
+	var stage:Node2D=park
+	var focus:Vector2
+	if id=="mormacoStory" and is_instance_valid(stage.get("mormaco")):focus=stage.mormaco.root.position+Vector2(0,-150)
+	elif at.is_finite():focus=stage.model.project(at)-Vector2(0,60)
+	else:return false
+	var shot:Control=preload("res://scripts/campaign/guardian_cinematic.gd").create(id,stage,focus,preferences.reduced_motion)
+	if shot==null:return false
+	cinematics_seen[id]=true
+	shot.cue.connect(func(event_id:String):sound.play_event(event_id))
+	var layer:=CanvasLayer.new()
+	layer.layer=30
+	add_child(layer)
+	layer.add_child(shot)
+	flow_busy=true
+	await shot.finished
+	flow_busy=false
+	layer.queue_free()
+	return not is_instance_valid(park) or park!=stage
 
 func _finish_mormaco_ambush()->bool:
 	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
