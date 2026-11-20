@@ -21,7 +21,8 @@ func _ready() -> void:
 	follower_surface = "4:17"
 	visited = {surface:true}
 	super._ready()
-	camera.zoom = Vector2.ONE*1.45
+	avatar.scale = Vector2.ONE
+	camera.zoom = Vector2.ONE
 	for label in hud_root.find_children("*","Label",true,false):
 		if label.text=="CAIS DOS ELOS":label.text="VILA DO PRIMEIRO VENTO"
 	for button in pause_panel.find_children("*","Button",true,false):
@@ -46,6 +47,19 @@ func _physics_process(delta: float) -> void:
 		avatar.running = false
 		return
 	super._physics_process(delta)
+
+const ProfessorExteriorV2 = preload("res://scripts/overworld/professor_exterior_v2.gd")
+
+func resolve_step(origin:Dictionary,next:Vector2) -> Dictionary:
+	var resolved:Dictionary=super.resolve_step(origin,next)
+	if resolved.p==origin.p:return resolved
+	# Também conferir juntas internas à célula: o piso da fachada tem apoios próprios.
+	var before := ProfessorExteriorV2.added_height(origin.p)
+	var after := ProfessorExteriorV2.added_height(resolved.p)
+	if absf(after-before)>8.5:return origin
+	for offset in [Vector2(RADIUS,0),Vector2(-RADIUS,0),Vector2(0,RADIUS),Vector2(0,-RADIUS)]:
+		if absf(ProfessorExteriorV2.added_height(resolved.p+offset)-after)>9:return origin
+	return resolved
 
 func _goal() -> Dictionary:
 	var p := Vector2(6.8,-.65) if not greeted.has("assis") else Vector2(25.8,-.6) if not greeted.has("lia") else Vector2(22,18.5)
@@ -102,7 +116,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	super._unhandled_input(event)
 	if Controls.pressed(event,"map") and not paused:
-		camera.zoom=Vector2.ONE*(.44 if overview else 1.45)
+		camera.zoom=Vector2.ONE*(.44 if overview else 1.0)
 		_update_hint()
 
 func _build_dialogue() -> void:

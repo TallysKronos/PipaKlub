@@ -1,0 +1,3 @@
+# Conferência
+
+Quatro patas curtas, três segmentos principais no pescoço e ventre redondo de papel. Imagem inspecionada antes da continuidade. Quatro pernas visíveis e conectadas; sem membros extras. Canal branco opaco, suaves transições residuais, não pixel art de grade. Contagens de segmentos e unhas precisam padronização em vistas técnicas. Função estrutural não testada em rig. Em avaliação, sem recortes, animações ou integração.

@@ -69,14 +69,46 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	model = Model.new()
 	model.restore(state)
 	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "rai":"rai", "lacertubo": "lacertubo"}
-	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["rabiolava","platyx-draft","retalho-original","pipa-dragao-desatada","mormaco-possuido","tufanocorte","eremor"] else assets.get(model.enemy_model_id, "lacertubo")])
+	art_ids.assign([assets.get(model.model_id, preload("res://scripts/campaign/evolution.gd").art(model.model_id)), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["rabiolava","platyx-draft","retalho-original","pipa-dragao-desatada","mormaco-possuido","tufanocorte","eremor"] else assets.get(model.enemy_model_id, model.enemy_model_id if content.combat.has(model.enemy_model_id) else "lacertubo")])
+	# Presentation-only alias preserves the saved encounter and existing Raio mechanics.
+	if model.enemy_model_id=="raio" and model.q.get("name","")=="Trovareta":art_ids[1]="trovareta"
 	if model.q.has("mormacoForm"):
 		if model.q.get("tylerAlly",false):rai_ally=load("res://assets/campaign/tyler-clareira-v1/rai.png")
 		if model.q.mormacoForm!="possessed":art_ids[1]="mormaco-normal"
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
-	background = load("res://assets/campaign/elo-arena.png" if reward_encounter.get("scene","").begins_with("kronasta-coracao-") else "res://assets/campaign/veredas-arena-wide-v2.png")
+	background = load(arena_path(reward_encounter))
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
 	panel_styles.assign([_panel("dark"), _panel("danger")])
+
+const DISTRICT_ARENAS := {
+	"industrial": "res://assets/campaign/vila-operaria-arena-wide-v1.png",
+	"aracati": "res://assets/campaign/aracati-arena-wide-v1.png",
+	"bosque": "res://assets/campaign/bosque-arena-wide-v1.png",
+	"pantano": "res://assets/campaign/pantano-arena-wide-v1.png",
+	"bambuzal": "res://assets/campaign/bambuzal-arena-wide-v1.png",
+	"beira-canal": "res://assets/campaign/beira-canal-arena-wide-v1.png",
+	"feira": "res://assets/campaign/feira-arena-wide-v1.png",
+	"cais": "res://assets/campaign/cais-arena-wide-v1.png",
+	"lajes": "res://assets/campaign/lajes-arena-wide-v1.png",
+	"centro": "res://assets/campaign/centro-arena-wide-v1.png",
+	"porto": "res://assets/campaign/porto-arena-wide-v1.png",
+	"mirante": "res://assets/campaign/mirante-arena-wide-v1.png",
+}
+
+static func district_arena_path(area_id: String) -> String:
+	var separator := area_id.rfind("-")
+	return DISTRICT_ARENAS.get(area_id.left(separator), "") if separator >= 0 else ""
+
+static func arena_path(encounter: Dictionary) -> String:
+	var scene: String = encounter.get("scene", "")
+	if scene.begins_with("kronasta-coracao-"): return "res://assets/campaign/elo-arena.png"
+	if scene == "kronasta-industrial-d" or encounter.get("kind") == "warehouse-story": return "res://assets/campaign/galpao-arena-wide-v2.png"
+	var district_arena := district_arena_path(scene.trim_prefix("kronasta-"))
+	if not district_arena.is_empty(): return district_arena
+	if scene == "kronasta-estadio-a": return "res://assets/campaign/estadio-arena-wide-v1.png"
+
+	if scene.begins_with("kronasta-montanha-") or scene.begins_with("serra-gelada-") or encounter.get("kind") == "tufanocorte-story": return "res://assets/campaign/serra-arena-wide-v1.png"
+	return "res://assets/campaign/veredas-arena-wide-v2.png"
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -123,7 +155,7 @@ func _ready() -> void:
 	resized.connect(_layout_actions)
 	bottom.add_child(command_row)
 	var entries := [["Espaço", "Cortar", "attack", "attackCooldown", 12], ["Q", "Habilidade", "energy", "skillCooldown", 25], ["Shift", "Esquiva", "dodge", "dodgeCooldown", 18], ["R", "Puxão", "puxao", "lineCooldown", 28], ["G", "Guarda", "line", "guardCooldown", 0]]
-	if model.model_id in ["rabbito","rai"]: entries.append(["F", "Especial", "team", "signatureCooldown", 40])
+	if not preload("res://scripts/campaign/evolution.gd").signature(model.model_id).is_empty(): entries.append(["F", "Especial", "team", "signatureCooldown", 40])
 	for entry in entries:
 		var command := VBoxContainer.new()
 		command.add_theme_constant_override("separation", 2)
@@ -320,7 +352,7 @@ func _physics_process(delta: float) -> void:
 	if not paused and not blocked and model.outcome.is_empty():
 		var previous_form:String=model.q.get("mormacoForm","")
 		var direction := Controls.direction()
-		model.tick(delta, {"x": direction.x, "y": direction.y, "cut": _action_held("cut"), "skill": _action_held("skill"), "dodge": _action_held("dodge"), "line": _action_held("line"), "guard": _action_held("guard"), "signature": _action_held("signature")})
+		model.tick(delta, {"x": direction.x, "y": direction.y, "cut": _action_held("cut"), "skill": _action_held("skill"), "dodge": _action_held("dodge"), "line": _action_held("line"), "guard": _action_held("guard"), "signature": _action_held("signature"), "reel": Controls.reel_axis()})
 		pointer_tapped.clear()
 		save_clock += delta
 		if previous_form!=model.q.get("mormacoForm","") or save_clock>=5 or not model.outcome.is_empty():
@@ -352,7 +384,8 @@ func _physics_process(delta: float) -> void:
 	resume_button.visible = model.outcome.is_empty() or blocked
 	resume_button.text = "Tentar salvar novamente" if blocked else "Retomar" if paused else "Pausar"
 	actions.visible = model.outcome.is_empty() and paused
-	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: Pulo do Elo" % Controls.prompt("signature") if model.model_id == "rabbito" else " · %s: Especial" % Controls.prompt("signature") if model.model_id=="rai" else "")
+	var signature := preload("res://scripts/campaign/evolution.gd").signature(model.model_id)
+	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: %s" % [Controls.prompt("signature"), signature] if not signature.is_empty() else "")
 	if paused: controls.text = "Jogo pausado. " + ACTION_COPY[selected_action] if not blocked else "Não foi possível salvar. Tente novamente antes de continuar."
 	elif model.intro > 0: controls.text = str(model.q.get("name","Lacertubo")) + " — Leia o vento. Espere a abertura." if model.q.boss else ("%s · duelo de preparação" % reward_encounter.get("trainerName","Pipeiro") if reward_encounter.get("kind","")=="trainer" else "Um Soulmon selvagem cruzou seu caminho!")
 	if model.intro>0 and model.enemy_model_id=="mormaco-possuido":controls.text="Mormaço · os gêiseres estão represados. Espere o sinal e procure a abertura."
@@ -428,6 +461,20 @@ func _draw_feedback() -> void:
 		SkySignals.draw_on(self,model,_project_field,live_age,reduced_motion)
 	impacts.protected_points.clear()
 	var actors: Array = model.actors if model.get("actors")!=null else [model.p,model.q]
+	# Duel bot (tools/duel_balance.gd): Mata verde rivals shield exactly when Kael
+	# threatens them, and a player who pulls into the shield loses. The leaf ring shows
+	# the shield; the note says what to do.
+	for rival: Dictionary in actors.slice(1):
+		if int(rival.get("color",-1))!=2 or float(rival.get("skillTime",0))<=0 or rival.get("hp",0)<=0:continue
+		var at: Vector2=_project_field(Vector2(rival.x,rival.y))
+		var radius: float=64.0*_field_scale().x
+		draw_arc(at,radius,0,TAU,40,Tokens.NANQUIM,7,true)
+		draw_arc(at,radius,0,TAU,40,Tokens.FOLHA,4,true)
+		var note:="Defesa da folha · espere baixar"
+		var width: float=Hud.font().get_string_size(note,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x
+		var spot:=Vector2(clampf(at.x-width*.5,12,size.x-width-12),at.y-radius-12)
+		draw_string_outline(Hud.font(),spot,note,HORIZONTAL_ALIGNMENT_LEFT,-1,18,6,Tokens.NANQUIM)
+		draw_string(Hud.font(),spot,note,HORIZONTAL_ALIGNMENT_LEFT,-1,18,Tokens.FOLHA)
 	for actor: Dictionary in actors: impacts.protected_points.append(_project_field(Vector2(actor.x,actor.y)))
 	impacts.visible_rect=Rect2(10,_field_top()-20,size.x-20,maxf(80,bottom_panel.position.y-_field_top()+10))
 	impacts.suppress_secondary=actors.slice(1).any(func(actor:Dictionary):return actor.get("signatureWindup",0)>0 or model.attack_notice(actor).active)
@@ -453,7 +500,10 @@ func _project_field(point: Vector2) -> Vector2:
 	return _field_origin() + point * _field_scale()
 
 func _draw_foreground() -> void:
-	if reward_encounter.get("kind")=="warehouse-story":return
+	if background != null and (background.resource_path in DISTRICT_ARENAS.values() or background.resource_path.get_file() in [
+		"galpao-arena-wide-v2.png", "serra-arena-wide-v1.png", "estadio-arena-wide-v1.png",
+	]):
+		return
 	var source: Texture2D = foreground
 	var cap := source.get_width() / 4.0
 	var height := size.y * .15
@@ -490,8 +540,19 @@ func _draw() -> void:
 	for index in 2:
 		if model.q.get("boss",false) and model.intro>0:continue
 		var actor: Dictionary = model.p if index == 0 else model.q
-		draw_line(Vector2(actor.anchor, 585), Vector2(actor.x, actor.y), Hud.BLACK, 6)
-		draw_line(Vector2(actor.anchor, 585), Vector2(actor.x, actor.y), Hud.CYAN if index == 0 else Hud.CORAL, 3)
+		var points: PackedVector2Array = model.line_points(actor)
+		draw_polyline(points, Hud.BLACK, 6, true)
+		var tension: float = model.line_tension(actor)
+		var line_color: Color = Hud.CYAN if index == 0 else Hud.CORAL
+		var stress := smoothstep(.18, .82, tension)
+		draw_polyline(points, line_color, 3, true)
+		if stress > 0.0 and points.size() > 2:
+			var travel := fposmod(clock * 1.65, 1.0) * (points.size() - 1)
+			var segment := mini(int(travel), points.size() - 2)
+			var pulse := points[segment].lerp(points[segment + 1], fposmod(travel, 1.0))
+			var tangent := points[segment].direction_to(points[segment + 1])
+			var opacity := stress * sin(travel / (points.size() - 1) * PI) * .75
+			draw_line(pulse - tangent * 4, pulse + tangent * 4, Color(Tokens.PAPEL, opacity), 2, true)
 		_draw_anchor(actor.anchor, Hud.CYAN if index == 0 else Hud.CORAL)
 		var action := "idle"
 		if not model.outcome.is_empty(): action = "victory" if (model.outcome == "won") == (index == 0) else "defeat"
@@ -511,6 +572,8 @@ func _draw() -> void:
 		Ink.live_sprite(self,rai_ally,"rai",ally_frame,ally_position,115,Tokens.UNTINTED,_field_scale(),ally_position.x>model.q.x)
 		draw_string(Hud.font(),ally_position+Vector2(-45,-55),"Tyler · Rai",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Tokens.PAPEL)
 
+	if model.soulflight and model.intro <= 0 and model.outcome.is_empty():
+		_draw_soulflight_crossing()
 	_draw_feedback()
 
 	if not model.outcome.is_empty() and model.q.get("mormacoForm","")!="ambush":
@@ -542,7 +605,9 @@ func _draw_status() -> void:
 	var names:Array=[]
 	for index in actors.size():
 		faces.append(Ink.portrait(textures[index],art_ids[index]))
-		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","doberman-c":"Dóber de papel","lacertubo":"Lacertubo","retalho-original":"Retalho","rai":"Rai","eremor":"Eremor","tufanocorte":"Tufanocorte","mormaco-normal":"Mormaço","mormaco-possuido":"Mormaço · Possuído"}.get(art_ids[index],"Parceiro")
+		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","doberman-c":"Dóber de papel","lacertubo":"Lacertubo","retalho-original":"Retalho","rai":"Rai","eremor":"Eremor","tufanocorte":"Tufanocorte","mormaco-normal":"Mormaço","mormaco-possuido":"Mormaço · Possuído"}.get(art_ids[index],"")
+		if title.is_empty() and index>0:title=str(actors[index].get("name",""))
+		if title.is_empty():title=species_name(art_ids[index])
 		var level:int=model.enemy_level if index>0 else 1
 		if index==0 and model.model_id=="rai":
 			level=int(actors[index].level)
@@ -551,7 +616,7 @@ func _draw_status() -> void:
 				if partner.id==reward_player.get("equippedPartnerId",""):
 					title=partner.get("personalName",title)
 					level=Model.level_for_xp(partner.get("xp",0))
-		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta [rascunho]" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião [rascunho]"
+		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião"
 		if index>0 and art_ids[index]=="mormaco-possuido":title="Mormaço · Possuído"
 		if index>0 and model.enemy_model_id=="veskoro":title="Veskoro"
 		if index>0 and model.enemy_model_id=="pipa-dragao-desatada":title="Pipa-Dragão desatada"
@@ -634,3 +699,26 @@ func _sprite_frame(index:int,actor:Dictionary,legacy_action:String) -> Dictionar
 	var frame_index:=maxi(0,floori((sprite_clock-float(sprite_states[index].start))*float(playback.fps)))
 	frame_index=frame_index%frames.size() if playback.loop else mini(frame_index,frames.size()-1)
 	return frames[frame_index]
+
+## Nome de espécie para as formas sem nome fixo acima: criaturas das regiões novas e formas
+## de evolução (assets/campaign/evolutions.json).
+const SPECIES_NAMES := {"cristim":"Cristim","papisco":"Papisco","javali-child":"Javali","galhim":"Galhim","vertim":"Vertim","ossito":"Ossito","viuva-child":"Viúva","estratonte":"Estratonte","trincaguarda":"Trincaguarda","gevardente":"Gevardente","trinca-brasas":"Trinca-brasas","tricordio":"Tricórdio","urso-polar-young":"Urso-polar","nimbordo":"Nimbordo","lupunhal":"Lupunhal","lupregente":"Lupregente","vortespira":"Vortespira","hipomoranga":"Hipomoranga","reciforte":"Reciforte","alvorvela":"Alvorvela","borealvo":"Borealvo","coromar":"Coromar","capivara-boia":"Capiboia","rascunho-bicho-pau":"Bicho-pau","rascunho-joaninha":"Joaninha-pião"}
+static func species_name(id: String) -> String:
+	if SPECIES_NAMES.has(id):return SPECIES_NAMES[id]
+	if ResourceLoader.exists("res://assets/campaign/evolutions.json") or FileAccess.file_exists("res://assets/campaign/evolutions.json"):
+		var table:Variant=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/evolutions.json"))
+		if table is Dictionary and table.get("forms",{}).has(id):return str(table.forms[id].get("name","Parceiro"))
+	return "Parceiro"
+
+func _draw_soulflight_crossing() -> void:
+	var contact: Dictionary = model.contact_hint(model.p, model.q)
+	if contact.is_empty(): return
+	var point: Vector2 = contact.point
+	var ready: bool = contact.valid and model.p.attackCooldown <= 0 and model.p.energy >= 12 and model.p.evade <= 0 and model.p.guardTime <= 0 and model.p.lineMove.is_empty() and model.p.signatureWindup <= 0
+	var radius := 8.0 if ready else 5.0
+	var diamond := PackedVector2Array([point + Vector2.UP * radius, point + Vector2.RIGHT * radius, point + Vector2.DOWN * radius, point + Vector2.LEFT * radius])
+	draw_circle(point, radius + 3.0, Hud.BLACK)
+	draw_colored_polygon(diamond, Hud.GOLD if ready else Tokens.PAPEL)
+	if ready:
+		draw_line(point - Vector2(12, 0), point + Vector2(12, 0), Hud.GOLD, 2, true)
+		draw_line(point - Vector2(0, 12), point + Vector2(0, 12), Hud.GOLD, 2, true)

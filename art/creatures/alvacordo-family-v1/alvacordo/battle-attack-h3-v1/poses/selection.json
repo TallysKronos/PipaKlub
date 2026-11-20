@@ -1,0 +1,72 @@
+[
+  {
+    "file": "poses/00-ready.png",
+    "time": 0.0,
+    "phase": "ready"
+  },
+  {
+    "file": "poses/01-anticipation-start.png",
+    "time": 0.5,
+    "phase": "anticipation-start"
+  },
+  {
+    "file": "poses/02-anticipation.png",
+    "time": 1.0,
+    "phase": "anticipation"
+  },
+  {
+    "file": "poses/03-strike-start.png",
+    "time": 1.3,
+    "phase": "strike-start"
+  },
+  {
+    "file": "poses/04-strike-1.png",
+    "time": 1.6,
+    "phase": "strike-1"
+  },
+  {
+    "file": "poses/05-strike-1-end.png",
+    "time": 1.9,
+    "phase": "strike-1-end"
+  },
+  {
+    "file": "poses/06-counter-start.png",
+    "time": 2.2,
+    "phase": "counter-start"
+  },
+  {
+    "file": "poses/07-counter.png",
+    "time": 2.5,
+    "phase": "counter"
+  },
+  {
+    "file": "poses/08-follow-through.png",
+    "time": 2.8,
+    "phase": "follow-through"
+  },
+  {
+    "file": "poses/09-follow-through-end.png",
+    "time": 3.2,
+    "phase": "follow-through-end"
+  },
+  {
+    "file": "poses/10-recovery.png",
+    "time": 3.7,
+    "phase": "recovery"
+  },
+  {
+    "file": "poses/11-recovery-end.png",
+    "time": 4.2,
+    "phase": "recovery-end"
+  },
+  {
+    "file": "poses/12-ready-return.png",
+    "time": 4.7,
+    "phase": "ready-return"
+  },
+  {
+    "file": "poses/13-ready-hold.png",
+    "time": 5.0,
+    "phase": "ready-hold"
+  }
+]

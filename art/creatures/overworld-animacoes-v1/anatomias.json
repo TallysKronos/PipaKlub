@@ -1,0 +1,7722 @@
+[
+  {
+    "id": "alvacordo",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Husky / border collie de papel",
+    "views": [
+      {
+        "bounds": [
+          15,
+          16,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          20,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "alvaneve",
+    "anatomy": "voador",
+    "stage": "Não definido",
+    "family": "Alvaneve",
+    "views": [
+      {
+        "bounds": [
+          21,
+          16,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          25,
+          16,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "anaconda-baby",
+    "anatomy": "serpentino",
+    "stage": "Bebê",
+    "family": "Anaconda do retrato",
+    "views": [
+      {
+        "bounds": [
+          39,
+          59,
+          73,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          42,
+          59,
+          71,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "anaconda-cavaleiro",
+    "anatomy": "bipede",
+    "stage": "Adulto — cavaleiro do retrato",
+    "family": "Anaconda do retrato",
+    "views": [
+      {
+        "bounds": [
+          21,
+          16,
+          92,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "anaconda-child",
+    "anatomy": "serpentino",
+    "stage": "Criança",
+    "family": "Anaconda do retrato",
+    "views": [
+      {
+        "bounds": [
+          33,
+          45,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          30,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "anaconda-young",
+    "anatomy": "serpentino",
+    "stage": "Jovem",
+    "family": "Anaconda do retrato",
+    "views": [
+      {
+        "bounds": [
+          29,
+          30,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          27,
+          30,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "araruna-memoria",
+    "anatomy": "voador",
+    "stage": "Não definido",
+    "family": "Araruna",
+    "views": [
+      {
+        "bounds": [
+          25,
+          45,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          27,
+          45,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "auriflama",
+    "anatomy": "voador",
+    "stage": "Não definido",
+    "family": "Auriflama",
+    "views": [
+      {
+        "bounds": [
+          22,
+          16,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "aurorastro-guardia-das-rotas-da-aurora",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Aurorastro",
+    "views": [
+      {
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          16,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "aurorastro-jovem",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Aurorastro",
+    "views": [
+      {
+        "bounds": [
+          23,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          30,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "azulao",
+    "anatomy": "voador",
+    "stage": "Criança",
+    "family": "Azulão",
+    "views": [
+      {
+        "bounds": [
+          32,
+          45,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          34,
+          45,
+          78,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "azulfazo-possuido",
+    "anatomy": "voador",
+    "stage": "Jovem",
+    "family": "Azulão",
+    "views": [
+      {
+        "bounds": [
+          25,
+          30,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          25,
+          30,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "azulim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Azulão",
+    "views": [
+      {
+        "bounds": [
+          43,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          42,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "azulongo",
+    "anatomy": "nadador",
+    "stage": "Jovem",
+    "family": "",
+    "views": [
+      {
+        "bounds": [
+          32,
+          30,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          33,
+          30,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "azultor",
+    "anatomy": "voador",
+    "stage": "Adulto",
+    "family": "Azulão",
+    "views": [
+      {
+        "bounds": [
+          9,
+          16,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 37,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          14,
+          16,
+          99,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "bicapena",
+    "anatomy": "bipede",
+    "stage": "Criança",
+    "family": "Corvotengu",
+    "views": [
+      {
+        "bounds": [
+          34,
+          45,
+          78,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 47,
+        "core_right": 65,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          35,
+          45,
+          77,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "bocobasto",
+    "anatomy": "bipede",
+    "stage": "Jovem",
+    "family": "Cravofenda",
+    "views": [
+      {
+        "bounds": [
+          25,
+          30,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          25,
+          30,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "bolotim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Cernebravio",
+    "views": [
+      {
+        "bounds": [
+          41,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          39,
+          59,
+          73,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "bradamara",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Bradamara",
+    "views": [
+      {
+        "bounds": [
+          13,
+          16,
+          100,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 39,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          15,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "brancofaro-jovem",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Brancofaro",
+    "views": [
+      {
+        "bounds": [
+          18,
+          30,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          18,
+          30,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "braseco",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Trinca-brasas / cérbero",
+    "views": [
+      {
+        "bounds": [
+          34,
+          59,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          34,
+          59,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "brasim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Rugikor",
+    "views": [
+      {
+        "bounds": [
+          40,
+          59,
+          73,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          41,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "brejoto",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Lamacorno",
+    "views": [
+      {
+        "bounds": [
+          27,
+          45,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          30,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "brotim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Mata Verde",
+    "views": [
+      {
+        "bounds": [
+          37,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          43,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 62,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "brotozaino",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Cernebravio",
+    "views": [
+      {
+        "bounds": [
+          29,
+          45,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          31,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "brumim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Nebrisco",
+    "views": [
+      {
+        "bounds": [
+          38,
+          59,
+          74,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          38,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "caimbira-memoria",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Caimbira",
+    "views": [
+      {
+        "bounds": [
+          25,
+          45,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          20,
+          45,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "capibaluarte",
+    "anatomy": "bipede",
+    "stage": "Adulto / candidato de rota",
+    "family": "Capivara aquática / Capiboia",
+    "views": [
+      {
+        "bounds": [
+          21,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          14,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 39,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "capiboia-condutor",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Capivara aquática / Capiboia",
+    "views": [
+      {
+        "bounds": [
+          17,
+          30,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          17,
+          30,
+          96,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "capiboia-contensor",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Capivara aquática / Capiboia",
+    "views": [
+      {
+        "bounds": [
+          14,
+          30,
+          99,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 40,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          10,
+          30,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 38,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "capimansa",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Capimansa",
+    "views": [
+      {
+        "bounds": [
+          21,
+          45,
+          92,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          24,
+          45,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 70,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "capivara-boia",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Capivara aquática / Capiboia",
+    "views": [
+      {
+        "bounds": [
+          27,
+          45,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          23,
+          45,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "caramastro",
+    "anatomy": "voador",
+    "stage": "Adulto",
+    "family": "Carcará",
+    "views": [
+      {
+        "bounds": [
+          1,
+          16,
+          111,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 34,
+        "core_right": 78,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          1,
+          16,
+          111,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 34,
+        "core_right": 78,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "caramund",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Caramelo / Caramund",
+    "views": [
+      {
+        "bounds": [
+          22,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "caramund-baby",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Caramelo / Caramund",
+    "views": [
+      {
+        "bounds": [
+          42,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          42,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "caramund-child",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Caramelo / Caramund",
+    "views": [
+      {
+        "bounds": [
+          30,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          27,
+          45,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "caramund-young",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Caramelo / Caramund",
+    "views": [
+      {
+        "bounds": [
+          24,
+          30,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          24,
+          30,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "caravento",
+    "anatomy": "voador",
+    "stage": "Jovem",
+    "family": "Carcará",
+    "views": [
+      {
+        "bounds": [
+          24,
+          30,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          27,
+          30,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "carcara",
+    "anatomy": "voador",
+    "stage": "Base · criança neste estudo",
+    "family": "Carcará",
+    "views": [
+      {
+        "bounds": [
+          36,
+          45,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          38,
+          45,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "carquim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Carcará",
+    "views": [
+      {
+        "bounds": [
+          36,
+          59,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          41,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 63,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "casulim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Ganchofenda",
+    "views": [
+      {
+        "bounds": [
+          44,
+          59,
+          68,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 61,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          44,
+          59,
+          68,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 61,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "chaspiral",
+    "anatomy": "bipede",
+    "stage": "Criança (posição proposta)",
+    "family": "Chaspiral / chapeleira",
+    "views": [
+      {
+        "bounds": [
+          32,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          32,
+          45,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "chaspiral-imperial",
+    "anatomy": "bipede",
+    "stage": "Adulta",
+    "family": "Chaspiral / chapeleira",
+    "views": [
+      {
+        "bounds": [
+          20,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          20,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "chavalsa",
+    "anatomy": "bipede",
+    "stage": "Jovem",
+    "family": "Chaspiral / chapeleira",
+    "views": [
+      {
+        "bounds": [
+          20,
+          30,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          19,
+          30,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 42,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "cidraco",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Cidraco",
+    "views": [
+      {
+        "bounds": [
+          15,
+          16,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          15,
+          16,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "dirubalu",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Dirubastião",
+    "views": [
+      {
+        "bounds": [
+          16,
+          30,
+          96,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          17,
+          30,
+          96,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "dirum",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Dirubastião",
+    "views": [
+      {
+        "bounds": [
+          35,
+          59,
+          78,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          36,
+          59,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "dirupac",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Dirubastião",
+    "views": [
+      {
+        "bounds": [
+          21,
+          45,
+          92,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          25,
+          45,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "doberman-c",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "",
+    "views": [
+      {
+        "bounds": [
+          24,
+          30,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          22,
+          30,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "dobracula",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Dóber / Dobrácula",
+    "views": [
+      {
+        "bounds": [
+          21,
+          16,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          20,
+          16,
+          92,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "dobrim",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Dóber / Dobrácula",
+    "views": [
+      {
+        "bounds": [
+          28,
+          45,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          29,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "dobrinco",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Dóber / Dobrácula",
+    "views": [
+      {
+        "bounds": [
+          35,
+          59,
+          77,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          36,
+          59,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "etrim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Etruslança",
+    "views": [
+      {
+        "bounds": [
+          39,
+          59,
+          74,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          39,
+          59,
+          74,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": true,
+    "steady_walk": false
+  },
+  {
+    "id": "etrupim",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Etruslança",
+    "views": [
+      {
+        "bounds": [
+          26,
+          45,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          28,
+          45,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "etrusvara",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Etruslança",
+    "views": [
+      {
+        "bounds": [
+          30,
+          30,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          31,
+          30,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "farpim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Husky / border collie de papel",
+    "views": [
+      {
+        "bounds": [
+          36,
+          59,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          37,
+          59,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "fiafalso",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Lobo em pele de cordeiro",
+    "views": [
+      {
+        "bounds": [
+          14,
+          30,
+          99,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 40,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          22,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "flautrevo",
+    "anatomy": "voador",
+    "stage": "Criança existente",
+    "family": "Flautrevo / morcego flautista",
+    "views": [
+      {
+        "bounds": [
+          32,
+          45,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          33,
+          45,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "folhante",
+    "anatomy": "voador",
+    "stage": "Jovem",
+    "family": "Mata Verde",
+    "views": [
+      {
+        "bounds": [
+          29,
+          30,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          30,
+          30,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gambalhote",
+    "anatomy": "bipede",
+    "stage": "Criança",
+    "family": "Gambá / Gambalhote",
+    "views": [
+      {
+        "bounds": [
+          31,
+          45,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          30,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gambalhote-adult",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Gambá / Gambalhote",
+    "views": [
+      {
+        "bounds": [
+          28,
+          16,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          29,
+          16,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gambalhote-baby",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Gambá / Gambalhote",
+    "views": [
+      {
+        "bounds": [
+          39,
+          59,
+          73,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          40,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gambalhote-young",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Gambá / Gambalhote",
+    "views": [
+      {
+        "bounds": [
+          21,
+          30,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          24,
+          30,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gata-lunar-baby",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Gata lunar / Noctiluna",
+    "views": [
+      {
+        "bounds": [
+          43,
+          59,
+          69,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 61,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          44,
+          59,
+          69,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 52,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gata-lunar-child",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Gata lunar / Noctiluna",
+    "views": [
+      {
+        "bounds": [
+          32,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          32,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gata-lunar-young",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Gata lunar / Noctiluna",
+    "views": [
+      {
+        "bounds": [
+          29,
+          30,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          30,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "geordraco",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Geordraco",
+    "views": [
+      {
+        "bounds": [
+          14,
+          16,
+          99,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          11,
+          16,
+          101,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 38,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "giripipa",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Lamacorno",
+    "views": [
+      {
+        "bounds": [
+          36,
+          59,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          37,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "girobroto",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Fendafolha",
+    "views": [
+      {
+        "bounds": [
+          40,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          40,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "glacerol",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Glacerol",
+    "views": [
+      {
+        "bounds": [
+          18,
+          16,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          19,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gotamar",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Lunafauce",
+    "views": [
+      {
+        "bounds": [
+          41,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          42,
+          59,
+          71,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "goticra",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Cravofenda",
+    "views": [
+      {
+        "bounds": [
+          38,
+          59,
+          74,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          39,
+          59,
+          74,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "gotim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Capivara aquática / Capiboia",
+    "views": [
+      {
+        "bounds": [
+          30,
+          59,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          32,
+          59,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "guaravento",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Guaravento",
+    "views": [
+      {
+        "bounds": [
+          11,
+          16,
+          101,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          11,
+          16,
+          102,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "guelfita",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Lunafauce",
+    "views": [
+      {
+        "bounds": [
+          31,
+          45,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          32,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "herravento",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Herravento",
+    "views": [
+      {
+        "bounds": [
+          6,
+          16,
+          106,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 36,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          9,
+          16,
+          104,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "hiponilo",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Hiponilo",
+    "views": [
+      {
+        "bounds": [
+          9,
+          16,
+          104,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          7,
+          16,
+          105,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 36,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "infusim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Chaspiral / chapeleira",
+    "views": [
+      {
+        "bounds": [
+          31,
+          59,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          31,
+          59,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "jaguarluar",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Jaguarluar",
+    "views": [
+      {
+        "bounds": [
+          20,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          20,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "jarabrasa",
+    "anatomy": "bipede",
+    "stage": "Não definido",
+    "family": "Jarabrasa",
+    "views": [
+      {
+        "bounds": [
+          29,
+          16,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          31,
+          16,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "joanacendra",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Joanacendra",
+    "views": [
+      {
+        "bounds": [
+          14,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 39,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          18,
+          16,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "jubarco",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Rugikor",
+    "views": [
+      {
+        "bounds": [
+          22,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          22,
+          30,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lacertubo",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Lacertubo",
+    "views": [
+      {
+        "bounds": [
+          8,
+          16,
+          105,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 37,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          13,
+          16,
+          100,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 39,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lacustrel",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Lacustrel",
+    "views": [
+      {
+        "bounds": [
+          17,
+          16,
+          96,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          18,
+          16,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lanzinho",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Lobo em pele de cordeiro",
+    "views": [
+      {
+        "bounds": [
+          30,
+          59,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          32,
+          59,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lequeiro",
+    "anatomy": "voador",
+    "stage": "Criança",
+    "family": "",
+    "views": [
+      {
+        "bounds": [
+          29,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          28,
+          45,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lobo-cordeiro",
+    "anatomy": "quadrupede",
+    "stage": "Base · criança no estudo",
+    "family": "Lobo em pele de cordeiro",
+    "views": [
+      {
+        "bounds": [
+          23,
+          45,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          26,
+          45,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 69,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lumevigia",
+    "anatomy": "bipede",
+    "stage": "Jovem",
+    "family": "Lumicerno",
+    "views": [
+      {
+        "bounds": [
+          30,
+          30,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          30,
+          30,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lunim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Lupunhal",
+    "views": [
+      {
+        "bounds": [
+          37,
+          59,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          38,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lupisco",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Lupunhal",
+    "views": [
+      {
+        "bounds": [
+          16,
+          45,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          20,
+          45,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lupunhal",
+    "anatomy": "bipede",
+    "stage": "Jovem",
+    "family": "Lupunhal",
+    "views": [
+      {
+        "bounds": [
+          23,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          25,
+          30,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 44,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "luziquino",
+    "anatomy": "bipede",
+    "stage": "Criança",
+    "family": "Lumicerno",
+    "views": [
+      {
+        "bounds": [
+          36,
+          45,
+          77,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 48,
+        "core_right": 65,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          37,
+          45,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "marfenda-jovem",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Marfenda",
+    "views": [
+      {
+        "bounds": [
+          16,
+          30,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          18,
+          30,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "marulume",
+    "anatomy": "nadador",
+    "stage": "Não definido",
+    "family": "Marulume",
+    "views": [
+      {
+        "bounds": [
+          27,
+          16,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          22,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "mata-verde",
+    "anatomy": "voador",
+    "stage": "Base · criança no estudo",
+    "family": "Mata Verde",
+    "views": [
+      {
+        "bounds": [
+          34,
+          45,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          36,
+          45,
+          77,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "mestre-dos-fios",
+    "anatomy": "voador",
+    "stage": "Hipótese de associação III/IV; sem retcon de origem.",
+    "family": "Rabbito",
+    "views": [
+      {
+        "bounds": [
+          21,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 42,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          20,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "micofolha",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Micofolha",
+    "views": [
+      {
+        "bounds": [
+          34,
+          45,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          35,
+          45,
+          78,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "mirafim",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Miralís",
+    "views": [
+      {
+        "bounds": [
+          28,
+          45,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          29,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "miralis",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Miralís",
+    "views": [
+      {
+        "bounds": [
+          16,
+          30,
+          98,
+          100
+        ],
+        "center": 57,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 73,
+        "stride": 2,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          19,
+          30,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 72,
+        "stride": 2,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "mirim-fio",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Miralís",
+    "views": [
+      {
+        "bounds": [
+          35,
+          59,
+          78,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          41,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": true,
+    "steady_walk": false
+  },
+  {
+    "id": "mormaco",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Mormaço — livre e possuído",
+    "views": [
+      {
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          16,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "mormaco-possuido",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Mormaço — livre e possuído",
+    "views": [
+      {
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          16,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "nebripasso",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Nebrisco",
+    "views": [
+      {
+        "bounds": [
+          27,
+          45,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          31,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "nevagume",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Nevagume",
+    "views": [
+      {
+        "bounds": [
+          27,
+          16,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          27,
+          16,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "noctiluna",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Gata lunar / Noctiluna",
+    "views": [
+      {
+        "bounds": [
+          19,
+          16,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "nozinho",
+    "anatomy": "pequeno",
+    "stage": "Não definido",
+    "family": "Nozinho",
+    "views": [
+      {
+        "bounds": [
+          34,
+          45,
+          78,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          34,
+          45,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "orelavela",
+    "anatomy": "voador",
+    "stage": "Criança",
+    "family": "Vespergume",
+    "views": [
+      {
+        "bounds": [
+          37,
+          45,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          39,
+          45,
+          74,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 50,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "ossavento",
+    "anatomy": "voador",
+    "stage": "Jovem",
+    "family": "Vespergume",
+    "views": [
+      {
+        "bounds": [
+          28,
+          30,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          30,
+          30,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "papisco",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Husky / border collie de papel",
+    "views": [
+      {
+        "bounds": [
+          36,
+          45,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          37,
+          45,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "pavioz",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Vespergume",
+    "views": [
+      {
+        "bounds": [
+          42,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          42,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "penabroto",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Corvotengu",
+    "views": [
+      {
+        "bounds": [
+          38,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          38,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "pernalume",
+    "anatomy": "multipatas",
+    "stage": "Jovem",
+    "family": "Ganchofenda",
+    "views": [
+      {
+        "bounds": [
+          22,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          27,
+          30,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "pipa-dragao",
+    "anatomy": "bipede",
+    "stage": "Não definido",
+    "family": "Pipa-Dragão — sobrecarregada e desatada",
+    "views": [
+      {
+        "bounds": [
+          10,
+          16,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 38,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          17,
+          16,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "pipa-dragao-desatada",
+    "anatomy": "bipede",
+    "stage": "Não definido",
+    "family": "Pipa-Dragão — sobrecarregada e desatada",
+    "views": [
+      {
+        "bounds": [
+          1,
+          16,
+          111,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 34,
+        "core_right": 78,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          9,
+          16,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 37,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "pirilume",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Lumicerno",
+    "views": [
+      {
+        "bounds": [
+          43,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          43,
+          59,
+          70,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "platyx",
+    "anatomy": "bipede",
+    "stage": "Não definido",
+    "family": "Platyx",
+    "views": [
+      {
+        "bounds": [
+          28,
+          45,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          32,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "plumico",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Suturanoite",
+    "views": [
+      {
+        "bounds": [
+          40,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          42,
+          59,
+          71,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 51,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "pteralis",
+    "anatomy": "voador",
+    "stage": "Não definido",
+    "family": "Pteralis",
+    "views": [
+      {
+        "bounds": [
+          16,
+          16,
+          96,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          16,
+          16,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "rabbitknight",
+    "anatomy": "bipede",
+    "stage": "Hipótese de associação III/IV; sem retcon de origem.",
+    "family": "Rabbito",
+    "views": [
+      {
+        "bounds": [
+          23,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          22,
+          16,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "rabbito",
+    "anatomy": "bipede",
+    "stage": "Grau II sugerido; não é cânone de estágios.",
+    "family": "Rabbito",
+    "views": [
+      {
+        "bounds": [
+          32,
+          45,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          32,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "rabbito-conde-da-ultima-hora",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Rabbito",
+    "views": [
+      {
+        "bounds": [
+          22,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          20,
+          16,
+          92,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "rabiolava",
+    "anatomy": "serpentino",
+    "stage": "Não definido",
+    "family": "Rabiolava",
+    "views": [
+      {
+        "bounds": [
+          15,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          13,
+          16,
+          100,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 39,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "raiatar",
+    "anatomy": "voador",
+    "stage": "Adulto",
+    "family": "Rai / Saber",
+    "views": [
+      {
+        "bounds": [
+          23,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          26,
+          16,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 44,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "raibroto",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Rai / Saber",
+    "views": [
+      {
+        "bounds": [
+          36,
+          59,
+          77,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 65,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          36,
+          59,
+          77,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 65,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "raigume",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Rai / Saber",
+    "views": [
+      {
+        "bounds": [
+          27,
+          30,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          29,
+          30,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "raisoberano",
+    "anatomy": "voador",
+    "stage": "Adulto",
+    "family": "Rai / Saber",
+    "views": [
+      {
+        "bounds": [
+          15,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          17,
+          16,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "raivela",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Rai / Saber",
+    "views": [
+      {
+        "bounds": [
+          7,
+          30,
+          106,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 37,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          1,
+          30,
+          111,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 34,
+        "core_right": 78,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "raiztrope",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Cernebravio",
+    "views": [
+      {
+        "bounds": [
+          23,
+          30,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          26,
+          30,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "rasacopa",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Fendafolha",
+    "views": [
+      {
+        "bounds": [
+          15,
+          30,
+          99,
+          100
+        ],
+        "center": 57,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 40,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          10,
+          30,
+          100,
+          100
+        ],
+        "center": 55,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 37,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "rasapena",
+    "anatomy": "voador",
+    "stage": "Criança",
+    "family": "Suturanoite",
+    "views": [
+      {
+        "bounds": [
+          34,
+          45,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          33,
+          45,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "rastro-dos-ventos",
+    "anatomy": "voador",
+    "stage": "Hipótese de associação III/IV; sem retcon de origem.",
+    "family": "Rabbito",
+    "views": [
+      {
+        "bounds": [
+          12,
+          16,
+          101,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 39,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          10,
+          16,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "remansa",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Capivara aquática / Capiboia",
+    "views": [
+      {
+        "bounds": [
+          21,
+          30,
+          92,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          18,
+          30,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "rexal",
+    "anatomy": "bipede",
+    "stage": "Não definido",
+    "family": "Rexal",
+    "views": [
+      {
+        "bounds": [
+          15,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          18,
+          16,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "riscarion",
+    "anatomy": "bipede",
+    "stage": "Adulto cavaleiro",
+    "family": "Riscaz",
+    "views": [
+      {
+        "bounds": [
+          14,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 39,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          13,
+          16,
+          100,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 39,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "riscavela",
+    "anatomy": "bipede",
+    "stage": "Jovem",
+    "family": "Riscaz",
+    "views": [
+      {
+        "bounds": [
+          21,
+          30,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 2,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          20,
+          30,
+          94,
+          100
+        ],
+        "center": 57,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 42,
+        "core_right": 72,
+        "stride": 2,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "riscaz",
+    "anatomy": "bipede",
+    "stage": "Criança existente",
+    "family": "Riscaz",
+    "views": [
+      {
+        "bounds": [
+          30,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          28,
+          45,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "riscotim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Riscaz",
+    "views": [
+      {
+        "bounds": [
+          30,
+          59,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          31,
+          59,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "rolandor",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Rolandor",
+    "views": [
+      {
+        "bounds": [
+          14,
+          16,
+          99,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          12,
+          16,
+          100,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 38,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "roscapata",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Rugikor",
+    "views": [
+      {
+        "bounds": [
+          31,
+          45,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          31,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "saltalodo",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Lamacorno",
+    "views": [
+      {
+        "bounds": [
+          18,
+          30,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          19,
+          30,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "seraf-seda",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Viúva-negra / Seraf Seda",
+    "views": [
+      {
+        "bounds": [
+          16,
+          16,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          15,
+          16,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "serpelume",
+    "anatomy": "serpentino",
+    "stage": "Jovem",
+    "family": "Lunafauce",
+    "views": [
+      {
+        "bounds": [
+          34,
+          30,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          33,
+          30,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "singravel-cavaleiro-da-alvorada-austral",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Singravel",
+    "views": [
+      {
+        "bounds": [
+          20,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 2,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          22,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 2,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "singravel-jovem",
+    "anatomy": "voador",
+    "stage": "Jovem",
+    "family": "Singravel",
+    "views": [
+      {
+        "bounds": [
+          24,
+          30,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          25,
+          30,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "stegaru",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Stegaru",
+    "views": [
+      {
+        "bounds": [
+          9,
+          16,
+          104,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          16,
+          16,
+          96,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "sussurim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Flautrevo / morcego flautista",
+    "views": [
+      {
+        "bounds": [
+          36,
+          59,
+          76,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          38,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "tomoeryu",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Tomoeryu",
+    "views": [
+      {
+        "bounds": [
+          17,
+          16,
+          96,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          15,
+          16,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "tramadraco",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Dragão / Tramino",
+    "views": [
+      {
+        "bounds": [
+          14,
+          16,
+          99,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          16,
+          16,
+          96,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "tramassauro",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Dragão / Tramino",
+    "views": [
+      {
+        "bounds": [
+          23,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 2,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 2,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "traminho",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Dragão / Tramino",
+    "views": [
+      {
+        "bounds": [
+          28,
+          59,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          29,
+          59,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "tramino",
+    "anatomy": "bipede",
+    "stage": "Criança",
+    "family": "Dragão / Tramino",
+    "views": [
+      {
+        "bounds": [
+          27,
+          45,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          26,
+          45,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 44,
+        "core_right": 69,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "tricerafan",
+    "anatomy": "quadrupede",
+    "stage": "Não definido",
+    "family": "Tricerafan",
+    "views": [
+      {
+        "bounds": [
+          9,
+          16,
+          104,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          15,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "tricordio",
+    "anatomy": "bipede",
+    "stage": "Adulto cavaleiro",
+    "family": "Trinca-brasas / cérbero",
+    "views": [
+      {
+        "bounds": [
+          24,
+          16,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          16,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "trinca-brasas",
+    "anatomy": "bipede",
+    "stage": "Criança existente",
+    "family": "Trinca-brasas / cérbero",
+    "views": [
+      {
+        "bounds": [
+          37,
+          45,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          34,
+          45,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": true
+  },
+  {
+    "id": "trincaguarda",
+    "anatomy": "quadrupede",
+    "stage": "Jovem quadrúpede",
+    "family": "Trinca-brasas / cérbero",
+    "views": [
+      {
+        "bounds": [
+          26,
+          30,
+          86,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          20,
+          30,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "trincasco",
+    "anatomy": "multipatas",
+    "stage": "Criança",
+    "family": "Ganchofenda",
+    "views": [
+      {
+        "bounds": [
+          29,
+          45,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          29,
+          45,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "trovareta",
+    "anatomy": "voador",
+    "stage": "Não definido",
+    "family": "Trovareta",
+    "views": [
+      {
+        "bounds": [
+          8,
+          16,
+          104,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 37,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          10,
+          16,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "tufanocorte",
+    "anatomy": "voador",
+    "stage": "Não definido",
+    "family": "Tufanocorte",
+    "views": [
+      {
+        "bounds": [
+          19,
+          16,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 42,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          19,
+          16,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 42,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "valdrisa",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Valdrisa",
+    "views": [
+      {
+        "bounds": [
+          9,
+          16,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 37,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          9,
+          16,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 37,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "velaespreita",
+    "anatomy": "bipede",
+    "stage": "Jovem",
+    "family": "Suturanoite",
+    "views": [
+      {
+        "bounds": [
+          26,
+          30,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 44,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          29,
+          30,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "velalvo",
+    "anatomy": "quadrupede",
+    "stage": "Adulto natural",
+    "family": "Lobo em pele de cordeiro",
+    "views": [
+      {
+        "bounds": [
+          15,
+          16,
+          98,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          11,
+          16,
+          102,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "velcao",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Husky / border collie de papel",
+    "views": [
+      {
+        "bounds": [
+          20,
+          30,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          19,
+          30,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "velumbrio",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Nebrisco",
+    "views": [
+      {
+        "bounds": [
+          19,
+          30,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "ventalume",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Fendafolha",
+    "views": [
+      {
+        "bounds": [
+          32,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          35,
+          45,
+          78,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 48,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "ventucravo",
+    "anatomy": "multipatas",
+    "stage": "Criança",
+    "family": "Cravofenda",
+    "views": [
+      {
+        "bounds": [
+          29,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          30,
+          45,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "verdestrama",
+    "anatomy": "voador",
+    "stage": "Adulto",
+    "family": "Mata Verde",
+    "views": [
+      {
+        "bounds": [
+          15,
+          16,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          9,
+          16,
+          104,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "vesperalia",
+    "anatomy": "bipede",
+    "stage": "Adulta cavaleira",
+    "family": "Flautrevo / morcego flautista",
+    "views": [
+      {
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          19,
+          16,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "vespergume",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "",
+    "views": [
+      {
+        "bounds": [
+          21,
+          16,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          16,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "vesperina",
+    "anatomy": "voador",
+    "stage": "Jovem arauto",
+    "family": "Flautrevo / morcego flautista",
+    "views": [
+      {
+        "bounds": [
+          18,
+          30,
+          94,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          22,
+          30,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "viuva-baby",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Viúva-negra / Seraf Seda",
+    "views": [
+      {
+        "bounds": [
+          38,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          38,
+          59,
+          75,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "viuva-child",
+    "anatomy": "multipatas",
+    "stage": "Criança",
+    "family": "Viúva-negra / Seraf Seda",
+    "views": [
+      {
+        "bounds": [
+          28,
+          45,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          25,
+          45,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "viuva-young",
+    "anatomy": "multipatas",
+    "stage": "Jovem",
+    "family": "Viúva-negra / Seraf Seda",
+    "views": [
+      {
+        "bounds": [
+          24,
+          30,
+          89,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          25,
+          30,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 44,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "voto-do-elo",
+    "anatomy": "bipede",
+    "stage": "Guerreiro · especial",
+    "family": "Lobo em pele de cordeiro",
+    "views": [
+      {
+        "bounds": [
+          22,
+          16,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          24,
+          16,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "yaguarda",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Yaguarú / onça mumificada",
+    "views": [
+      {
+        "bounds": [
+          20,
+          30,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          17,
+          30,
+          95,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "yaguarion",
+    "anatomy": "bipede",
+    "stage": "Adulto cavaleiro",
+    "family": "Yaguarú / onça mumificada",
+    "views": [
+      {
+        "bounds": [
+          21,
+          16,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 42,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          22,
+          16,
+          91,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "yaguaru-memoria",
+    "anatomy": "quadrupede",
+    "stage": "Criança existente",
+    "family": "Yaguarú / onça mumificada",
+    "views": [
+      {
+        "bounds": [
+          31,
+          45,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          25,
+          45,
+          87,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "yaguim",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Yaguarú / onça mumificada",
+    "views": [
+      {
+        "bounds": [
+          32,
+          59,
+          81,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          33,
+          59,
+          80,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 47,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lince-de-cerco-baby",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Adulto — Lince de Cerco",
+    "views": [
+      {
+        "bounds": [
+          36,
+          59,
+          78,
+          100
+        ],
+        "center": 57,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          36,
+          59,
+          78,
+          100
+        ],
+        "center": 57,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 49,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lince-de-cerco-child",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Adulto — Lince de Cerco",
+    "views": [
+      {
+        "bounds": [
+          25,
+          45,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 44,
+        "core_right": 69,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          29,
+          45,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lince-de-cerco-young",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Adulto — Lince de Cerco",
+    "views": [
+      {
+        "bounds": [
+          13,
+          30,
+          99,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 39,
+        "core_right": 73,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          21,
+          30,
+          92,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 42,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "lince-de-cerco",
+    "anatomy": "quadrupede",
+    "stage": "Adulto",
+    "family": "Adulto — Lince de Cerco",
+    "views": [
+      {
+        "bounds": [
+          13,
+          16,
+          100,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 39,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          11,
+          16,
+          101,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "avelince-baby",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Avelince",
+    "views": [
+      {
+        "bounds": [
+          35,
+          59,
+          77,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 64,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          34,
+          59,
+          78,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 47,
+        "core_right": 65,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "avelince-child",
+    "anatomy": "quadrupede",
+    "stage": "Criança",
+    "family": "Avelince",
+    "views": [
+      {
+        "bounds": [
+          28,
+          45,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 45,
+        "core_right": 68,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          31,
+          45,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "avelince-young",
+    "anatomy": "quadrupede",
+    "stage": "Jovem",
+    "family": "Avelince",
+    "views": [
+      {
+        "bounds": [
+          15,
+          30,
+          97,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 40,
+        "core_right": 72,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          19,
+          30,
+          93,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 41,
+        "core_right": 71,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "avelince",
+    "anatomy": "quadrupede",
+    "stage": "Adulto",
+    "family": "Avelince",
+    "views": [
+      {
+        "bounds": [
+          8,
+          16,
+          104,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 37,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          11,
+          16,
+          101,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 74,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "najarcal-baby",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Najarcal",
+    "views": [
+      {
+        "bounds": [
+          34,
+          59,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          34,
+          59,
+          79,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 48,
+        "core_right": 66,
+        "stride": 1,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "najarcal-child",
+    "anatomy": "serpentino",
+    "stage": "Criança",
+    "family": "Najarcal",
+    "views": [
+      {
+        "bounds": [
+          30,
+          45,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 66,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          30,
+          45,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 71,
+        "hip_row": 84,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "najarcal-young",
+    "anatomy": "serpentino",
+    "stage": "Jovem",
+    "family": "Najarcal",
+    "views": [
+      {
+        "bounds": [
+          30,
+          30,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          29,
+          30,
+          83,
+          100
+        ],
+        "center": 56,
+        "head_row": 64,
+        "hip_row": 80,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "najarcal",
+    "anatomy": "serpentino",
+    "stage": "Adulto",
+    "family": "Najarcal",
+    "views": [
+      {
+        "bounds": [
+          10,
+          16,
+          103,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 38,
+        "core_right": 75,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          7,
+          16,
+          105,
+          100
+        ],
+        "center": 56,
+        "head_row": 56,
+        "hip_row": 76,
+        "core_left": 36,
+        "core_right": 76,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "mico-baby",
+    "anatomy": "pequeno",
+    "stage": "Bebê",
+    "family": "Mico samurai",
+    "views": [
+      {
+        "bounds": [
+          40,
+          59,
+          73,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 63,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          40,
+          59,
+          72,
+          100
+        ],
+        "center": 56,
+        "head_row": 79,
+        "hip_row": 88,
+        "core_left": 50,
+        "core_right": 62,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "mico-child",
+    "anatomy": "bipede",
+    "stage": "Criança",
+    "family": "Mico samurai",
+    "views": [
+      {
+        "bounds": [
+          31,
+          45,
+          82,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 46,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      },
+      {
+        "bounds": [
+          28,
+          45,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 68,
+        "hip_row": 85,
+        "core_left": 45,
+        "core_right": 67,
+        "stride": 2,
+        "amplitude": 1
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "mico-young",
+    "anatomy": "bipede",
+    "stage": "Jovem",
+    "family": "Mico samurai",
+    "views": [
+      {
+        "bounds": [
+          24,
+          30,
+          88,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 43,
+        "core_right": 69,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          23,
+          30,
+          90,
+          100
+        ],
+        "center": 56,
+        "head_row": 59,
+        "hip_row": 81,
+        "core_left": 43,
+        "core_right": 70,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  },
+  {
+    "id": "micoshiro",
+    "anatomy": "bipede",
+    "stage": "Adulto",
+    "family": "Mico samurai",
+    "views": [
+      {
+        "bounds": [
+          29,
+          16,
+          84,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 46,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      },
+      {
+        "bounds": [
+          27,
+          16,
+          85,
+          100
+        ],
+        "center": 56,
+        "head_row": 51,
+        "hip_row": 77,
+        "core_left": 44,
+        "core_right": 68,
+        "stride": 3,
+        "amplitude": 2
+      }
+    ],
+    "coupled_head": false,
+    "steady_walk": false
+  }
+]

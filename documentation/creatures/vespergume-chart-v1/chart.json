@@ -1,0 +1,74 @@
+{
+  "family_id": "vespergume",
+  "family_name": "Vespergume",
+  "scope": "Soldados da Meia-Noite. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "pavioz",
+      "name": "Pavioz",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "orelavela",
+      "name": "Orelavela",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "ossavento",
+      "name": "Ossavento",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/vespergume.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "vespergume",
+      "name": "Vespergume",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/concept-v2/vespergume.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Vela óssea de morcego entre escápula e cotovelo."
+    }
+  ],
+  "edges": [
+    {
+      "from": "pavioz",
+      "to": "orelavela",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "orelavela",
+      "to": "ossavento",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ossavento",
+      "to": "vespergume",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

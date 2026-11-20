@@ -25,7 +25,8 @@ pieces.push(obj('peca','Posto da Liga',15,20,{asset:'feira-banca',pegada:'3x2',b
 pieces.push(obj('peca','Obstáculo do circuito',25,20,{asset:'feira-banca',pegada:'3x2',bloqueia:true,variante:'teal'}));
 E('entrada','Chegada ao pátio',20,29);
 E('saida','Voltar ao Jardim das Pipas',20,31,{destino:'park-trail',chegada_u:34,chegada_v:31});
-for(const [action,name,u,v]of [['register','Posto de Dona Cida',18,23],['observe','Examinar Carcará',10,8],['escort','Iniciar condução',21,24],['control','Campo de controle',23,12]])E('interacao',name,u,v,{acao:'blueExam',blueAction:action});
+E('npc','Posto de Dona Cida',18,23,{acao:'blueExam',blueAction:'register',bloqueia:false,storySpritePath:'res://assets/npc-ds/historia-v1/dona-cida.png'});
+for(const [action,name,u,v]of [['observe','Examinar Carcará',10,8],['escort','Iniciar condução',21,24],['control','Campo de controle',23,12]])E('interacao',name,u,v,{acao:'blueExam',blueAction:action});
 for(const [u,v,item,hidden]of [[7,23,'papel-seda',true],[33,9,'linha-encerada',false],[33,26,'cola-reparo',false]])E('item','Material da área de espera',u,v,{item,quantidade:1,visibilidade:hidden?'escondido':'brilho'});
 const guards=[];for(let u=4;u<18;u++)if(u<12||u>=16)guards.push({u,v:13,side:'v'});for(let v=4;v<14;v++)guards.push({u:17,v,side:'u'});
 const f={nativeProps:true,market:true,stairs:[{u:12,v:14,width:4,length:2},{u:19,v:27,width:4,length:2}],guards,shots:[{name:'entrada',u:20.5,v:27.5,zoom:1,kind:'jogo'},{name:'observacao',u:10.5,v:8.5,zoom:1,kind:'jogo'},{name:'conducao',u:26,v:23,zoom:1,kind:'jogo'},{name:'controle',u:23.5,v:12.5,zoom:1,kind:'jogo'}]};

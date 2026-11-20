@@ -1,0 +1,366 @@
+{
+  "id": "vesperalia",
+  "anatomy": "bipede",
+  "max_volume_drift": 0.038,
+  "issues": [],
+  "status": "checagem-tecnica-ok",
+  "states": {
+    "idle": [
+      {
+        "view": 0,
+        "frame": 0,
+        "bounds": [
+          17,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3604
+      },
+      {
+        "view": 1,
+        "frame": 0,
+        "bounds": [
+          18,
+          16,
+          93,
+          100
+        ],
+        "pixels": 3367
+      },
+      {
+        "view": 0,
+        "frame": 1,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3579
+      },
+      {
+        "view": 1,
+        "frame": 1,
+        "bounds": [
+          19,
+          16,
+          93,
+          100
+        ],
+        "pixels": 3381
+      },
+      {
+        "view": 0,
+        "frame": 2,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3571
+      },
+      {
+        "view": 1,
+        "frame": 2,
+        "bounds": [
+          19,
+          16,
+          93,
+          100
+        ],
+        "pixels": 3365
+      },
+      {
+        "view": 0,
+        "frame": 3,
+        "bounds": [
+          18,
+          17,
+          94,
+          100
+        ],
+        "pixels": 3525
+      },
+      {
+        "view": 1,
+        "frame": 3,
+        "bounds": [
+          19,
+          17,
+          93,
+          100
+        ],
+        "pixels": 3325
+      },
+      {
+        "view": 0,
+        "frame": 4,
+        "bounds": [
+          18,
+          17,
+          94,
+          100
+        ],
+        "pixels": 3500
+      },
+      {
+        "view": 1,
+        "frame": 4,
+        "bounds": [
+          19,
+          17,
+          94,
+          100
+        ],
+        "pixels": 3341
+      },
+      {
+        "view": 0,
+        "frame": 5,
+        "bounds": [
+          18,
+          17,
+          94,
+          100
+        ],
+        "pixels": 3533
+      },
+      {
+        "view": 1,
+        "frame": 5,
+        "bounds": [
+          19,
+          17,
+          93,
+          100
+        ],
+        "pixels": 3341
+      },
+      {
+        "view": 0,
+        "frame": 6,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3579
+      },
+      {
+        "view": 1,
+        "frame": 6,
+        "bounds": [
+          19,
+          16,
+          93,
+          100
+        ],
+        "pixels": 3381
+      },
+      {
+        "view": 0,
+        "frame": 7,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3579
+      },
+      {
+        "view": 1,
+        "frame": 7,
+        "bounds": [
+          19,
+          16,
+          93,
+          100
+        ],
+        "pixels": 3381
+      }
+    ],
+    "walk": [
+      {
+        "view": 0,
+        "frame": 0,
+        "bounds": [
+          17,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3659
+      },
+      {
+        "view": 1,
+        "frame": 0,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3446
+      },
+      {
+        "view": 0,
+        "frame": 1,
+        "bounds": [
+          17,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3626
+      },
+      {
+        "view": 1,
+        "frame": 1,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3421
+      },
+      {
+        "view": 0,
+        "frame": 2,
+        "bounds": [
+          18,
+          17,
+          94,
+          100
+        ],
+        "pixels": 3531
+      },
+      {
+        "view": 1,
+        "frame": 2,
+        "bounds": [
+          19,
+          17,
+          93,
+          100
+        ],
+        "pixels": 3330
+      },
+      {
+        "view": 0,
+        "frame": 3,
+        "bounds": [
+          18,
+          17,
+          94,
+          100
+        ],
+        "pixels": 3485
+      },
+      {
+        "view": 1,
+        "frame": 3,
+        "bounds": [
+          19,
+          17,
+          93,
+          100
+        ],
+        "pixels": 3293
+      },
+      {
+        "view": 0,
+        "frame": 4,
+        "bounds": [
+          18,
+          17,
+          94,
+          100
+        ],
+        "pixels": 3443
+      },
+      {
+        "view": 1,
+        "frame": 4,
+        "bounds": [
+          19,
+          17,
+          93,
+          100
+        ],
+        "pixels": 3263
+      },
+      {
+        "view": 0,
+        "frame": 5,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3528
+      },
+      {
+        "view": 1,
+        "frame": 5,
+        "bounds": [
+          19,
+          16,
+          93,
+          100
+        ],
+        "pixels": 3336
+      },
+      {
+        "view": 0,
+        "frame": 6,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3570
+      },
+      {
+        "view": 1,
+        "frame": 6,
+        "bounds": [
+          19,
+          16,
+          93,
+          100
+        ],
+        "pixels": 3374
+      },
+      {
+        "view": 0,
+        "frame": 7,
+        "bounds": [
+          17,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3626
+      },
+      {
+        "view": 1,
+        "frame": 7,
+        "bounds": [
+          18,
+          16,
+          94,
+          100
+        ],
+        "pixels": 3421
+      }
+    ]
+  },
+  "source_signature": "3b0b01b9693cbb5cd0ab5c1fa1e2481412f9913cf5c9edad0be571d5186693a6"
+}

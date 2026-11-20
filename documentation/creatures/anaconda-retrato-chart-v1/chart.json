@@ -1,0 +1,85 @@
+{
+  "family_id": "anaconda-retrato",
+  "scope": "Quatro concepts visuais aprovados; mecânicas propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "anaconda-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Manchas ovais, membrana marfim, jade escuro, vareta dourada e linha vinho.",
+      "story": "Protege-se no próprio arco e descobre a linha que o mantém unido.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/anaconda-retrato-family-v1/anaconda-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/anaconda-retrato-family-v1/anaconda-baby/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “ótimo estão todos aprovados”, antes de pedir o guerreiro coruja. Aprovação dos quatro designs; funções propostas do retrato e regras não se tornam cânone por esta aprovação visual."
+    },
+    {
+      "id": "anaconda-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Manchas ovais, membrana marfim, jade escuro, vareta dourada e linha vinho.",
+      "story": "Explora seus movimentos e carrega uma moldura ainda vazia.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/anaconda-retrato-family-v1/anaconda-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/anaconda-retrato-family-v1/anaconda-child/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “ótimo estão todos aprovados”, antes de pedir o guerreiro coruja. Aprovação dos quatro designs; funções propostas do retrato e regras não se tornam cânone por esta aprovação visual."
+    },
+    {
+      "id": "anaconda-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Manchas ovais, membrana marfim, jade escuro, vareta dourada e linha vinho.",
+      "story": "Ganha peso de constritora e passa a cultivar a própria imagem.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/anaconda-retrato-family-v1/anaconda-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/anaconda-retrato-family-v1/anaconda-young/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “ótimo estão todos aprovados”, antes de pedir o guerreiro coruja. Aprovação dos quatro designs; funções propostas do retrato e regras não se tornam cânone por esta aprovação visual."
+    },
+    {
+      "id": "anaconda-cavaleiro",
+      "name": "Adulto — cavaleiro do retrato",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto — cavaleiro do retrato",
+      "identity": "Manchas ovais, membrana marfim, jade escuro, vareta dourada e linha vinho.",
+      "story": "Troca força bruta por precisão de esgrima; o retrato marcado contrasta com a armadura impecável.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/anaconda-retrato-family-v1/anaconda-cavaleiro/concept-v1/concept.png",
+      "brief": "../../../art/creatures/anaconda-retrato-family-v1/anaconda-cavaleiro/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “ótimo estão todos aprovados”, antes de pedir o guerreiro coruja. Aprovação dos quatro designs; funções propostas do retrato e regras não se tornam cânone por esta aprovação visual."
+    }
+  ],
+  "edges": [
+    {
+      "from": "anaconda-baby",
+      "to": "anaconda-child",
+      "kind": "reweaving",
+      "reason": "Explora seus movimentos e carrega uma moldura ainda vazia.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "anaconda-child",
+      "to": "anaconda-young",
+      "kind": "reweaving",
+      "reason": "Ganha peso de constritora e passa a cultivar a própria imagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "anaconda-young",
+      "to": "anaconda-cavaleiro",
+      "kind": "reweaving",
+      "reason": "Troca força bruta por precisão de esgrima; o retrato marcado contrasta com a armadura impecável.",
+      "decision_status": "proposed"
+    }
+  ]
+}

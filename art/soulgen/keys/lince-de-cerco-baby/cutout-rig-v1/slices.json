@@ -1,0 +1,171 @@
+{
+  "sourceSize": [
+    1774,
+    887
+  ],
+  "boxes": {
+    "body": [
+      34,
+      34,
+      411,
+      414
+    ],
+    "flapNear": [
+      577,
+      122,
+      767,
+      357
+    ],
+    "flapFar": [
+      1008,
+      122,
+      1198,
+      357
+    ],
+    "tail": [
+      1420,
+      20,
+      1686,
+      422
+    ],
+    "fierce": [
+      34,
+      478,
+      411,
+      859
+    ],
+    "hurt": [
+      478,
+      478,
+      854,
+      859
+    ],
+    "happy": [
+      921,
+      478,
+      1297,
+      859
+    ],
+    "knot": [
+      1479,
+      594,
+      1628,
+      737
+    ]
+  },
+  "parts": {
+    "body": {
+      "size": [
+        377,
+        380
+      ],
+      "opaque_pixels": 78242,
+      "cell": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "sha256": "0917a149951294662e768b75ea32e8e81771ef7dfcc533fbbf50f9b1cc8d754d"
+    },
+    "flapNear": {
+      "size": [
+        190,
+        235
+      ],
+      "opaque_pixels": 21754,
+      "cell": [
+        444,
+        0,
+        887,
+        444
+      ],
+      "sha256": "f551143a3cc9138eb9ae081aa7c2755d98680fea82eb72f6b68b83d3d4ea7297"
+    },
+    "flapFar": {
+      "size": [
+        190,
+        235
+      ],
+      "opaque_pixels": 21731,
+      "cell": [
+        887,
+        0,
+        1330,
+        444
+      ],
+      "sha256": "0e23600b52b21385652108bc7aa8e3bc2e239245aa9dd07f00158602861a78cb"
+    },
+    "tail": {
+      "size": [
+        266,
+        402
+      ],
+      "opaque_pixels": 37981,
+      "cell": [
+        1330,
+        0,
+        1774,
+        444
+      ],
+      "sha256": "77b24fd72f8821300f6ea9126d7b871344811945988e2d798b384cfdbd56741d"
+    },
+    "fierce": {
+      "size": [
+        377,
+        381
+      ],
+      "opaque_pixels": 78167,
+      "cell": [
+        0,
+        444,
+        444,
+        887
+      ],
+      "sha256": "a07e97dbff5b92464ef5784c15c2d1a8553418bc0239afa01460f8c7a4fdc3f5"
+    },
+    "hurt": {
+      "size": [
+        376,
+        381
+      ],
+      "opaque_pixels": 78172,
+      "cell": [
+        444,
+        444,
+        887,
+        887
+      ],
+      "sha256": "2c866cf4ef090fccb168cdfde5c90586d2b0c73edab67c98376402d203c3eeab"
+    },
+    "happy": {
+      "size": [
+        376,
+        381
+      ],
+      "opaque_pixels": 78229,
+      "cell": [
+        887,
+        444,
+        1330,
+        887
+      ],
+      "sha256": "39e2d370a39290efa798fc0425e93ad9406dac022df5577f4d5039ad0f5633a0"
+    },
+    "knot": {
+      "size": [
+        149,
+        143
+      ],
+      "opaque_pixels": 13404,
+      "cell": [
+        1330,
+        444,
+        1774,
+        887
+      ],
+      "sha256": "fb8c1332d91a4f537cfeb1f55e9d40504aa904e3ff1aba65e3e1231f28949676"
+    }
+  },
+  "method": "Regular cell extraction, connected alpha silhouette plus 2px antialias border; RGB preserved."
+}

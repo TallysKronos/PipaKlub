@@ -75,6 +75,7 @@ func settle()->Dictionary:
  if s.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
  for partner:Dictionary in saved.player.partners:
   if partner.id==s.partnerId:partner.condition={"line":clampf(s.p.hp/s.p.stats.line*100,0,100),"structure":clampf(s.p.hull/s.p.stats.line*100,0,100)}
+ if s.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,s)
  if s.outcome=="won":saved.player.flags.retalhoPalafitasLivre=true
  saved.player.erase("encounter")
  return session.commit_operation("encounter-"+e.id,CP.make(C,CP.spawn(C) if s.outcome=="lost" else Vector2(e.returnPoint[0],e.returnPoint[1]),CP.SPACE),saved.player)
@@ -85,12 +86,6 @@ func claim(point:Vector2)->Dictionary:
  if not near(C,point):return {"status":"wrong_step"}
  if stage(p)==8:return {"status":"already_applied"}
  if stage(p)!=7:return {"status":"wrong_step"}
- if p.partners.size()>=CAPACITY:
-  if not p.flags.get("retalhoAceitoKael",false):
-   p.flags.retalhoAceitoKael=true
-   var accepted:Dictionary=session.commit_operation("retalho-accepted-pending-bank",saved.checkpoint,p)
-   if accepted.status!="ok":return accepted
-  return {"status":"bank_full"}
  if p.partners.any(func(partner):return partner.get("origin","")==ORIGIN):return {"status":"already_applied"}
  p.partners.append({"id":State.new_id(),"modelId":"retalho-original","personalName":"Retalho","xp":Levels.xp_for_level(22),"craftBonus":0,"condition":{"line":100,"structure":100},"origin":ORIGIN,"certification":"unverified"})
  preload("res://scripts/campaign/progression.gd").acquire(p,"retalho-original")
@@ -114,9 +109,8 @@ func rest(point:Vector2)->Dictionary:
  return session.commit_operation("retalho-trust-rest-"+State.new_id(),CP.make(scene,point,CP.SPACE),saved.player)
 func release(partner_id:String)->Dictionary:
  var saved:Dictionary=session.snapshot();var p:Dictionary=saved.player
- if stage(p)!=7 or not available(p) or saved.checkpoint.get("scene")!=C or saved.checkpoint.get("kind")!="world":return {"status":"wrong_step"}
  if partner_id==p.get("equippedPartnerId",""):return {"status":"equipped"}
- var found:bool=p.partners.any(func(partner):return partner.id==partner_id and partner.get("origin","")!=ORIGIN)
- if not found:return {"status":"wrong_step"}
- p.partners=p.partners.filter(func(partner):return partner.id!=partner_id)
- return session.commit_operation("retalho-bank-release-"+partner_id,saved.checkpoint,p)
+ var pending:Array=p.get("pendingPartners",[]).filter(func(reward):return reward.source==ORIGIN)
+ if pending.is_empty():return {"status":"wrong_step"}
+ # Compatibility entry point: release and adoption now share one recoverable commit.
+ return session.resolve_reward(pending[0].id,"replace",partner_id,"bank-transfer-"+State.new_id())

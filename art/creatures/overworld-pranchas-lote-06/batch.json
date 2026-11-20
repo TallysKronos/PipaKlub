@@ -1,0 +1,274 @@
+{
+  "version": 1,
+  "video_generation": false,
+  "models": [
+    {
+      "id": "farpim",
+      "source": "art/creatures/soulmonsters-overworld-v2/farpim/duas-vistas.png",
+      "folder": "art/creatures/farpim-prancha-v1",
+      "height": 41,
+      "motion": "Tiny baby creature shaped as a compact cream/charcoal DIAMOND paper kite with a small puppy face, teal accent/tail knot and two short triangular ear points. Exact source has no developed terrestrial walking legs. Locomotion is gentle in-place kite hovering/tilt with tiny connected side-panel and tail response, stable diamond proportions. Do not grow a body/legs or turn baby into humanoid puppy.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation, zero silhouette/head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              69,
+              91,
+              73,
+              94
+            ],
+            "edits": [
+              {
+                "x": 70,
+                "y": 92,
+                "color": "e6b87a"
+              },
+              {
+                "x": 71,
+                "y": 92,
+                "color": "e6b87a"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              69,
+              91,
+              73,
+              94
+            ],
+            "edits": [
+              {
+                "x": 70,
+                "y": 92,
+                "color": "e6b87a"
+              },
+              {
+                "x": 71,
+                "y": 92,
+                "color": "e6b87a"
+              }
+            ]
+          }
+        }
+      },
+      "sheet_overrides": {
+        "walk-sw": "art/creatures/farpim-prancha-v1/gerado-walk-sw-r1.png"
+      }
+    },
+    {
+      "id": "azulim",
+      "source": "art/creatures/soulmonsters-overworld-v2/azulim/duas-vistas.png",
+      "folder": "art/creatures/azulim-prancha-v1",
+      "height": 41,
+      "motion": "Tiny blue cream BABY BIRD KITE: diamond-like paper body/face, small yellow beak, small blue kite wings and connected blue curled ribbon tail. Gentle in-place six-phase wingbeat, same baby proportions and small face. No new legs, grown bird torso or adult feather anatomy.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation, zero silhouette/head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              49,
+              95,
+              53,
+              98
+            ],
+            "edits": [
+              {
+                "x": 50,
+                "y": 96,
+                "color": "f4cea4"
+              },
+              {
+                "x": 51,
+                "y": 96,
+                "color": "f4cea4"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              61,
+              95,
+              65,
+              98
+            ],
+            "edits": [
+              {
+                "x": 62,
+                "y": 96,
+                "color": "f4cea4"
+              },
+              {
+                "x": 63,
+                "y": 96,
+                "color": "f4cea4"
+              }
+            ]
+          }
+        }
+      },
+      "sheet_overrides": {
+        "walk-sw": "art/creatures/azulim-prancha-v1/gerado-walk-sw-r1.png"
+      }
+    },
+    {
+      "id": "dobrim",
+      "source": "art/creatures/soulmonsters-overworld-v2/dobrim/duas-vistas.png",
+      "folder": "art/creatures/dobrim-prancha-v1",
+      "height": 55,
+      "motion": "Small child doberman kite puppy with cream/charcoal/orange markings, two upright paper-kite ears, short legs, connected orange/cream kite ribbon tail and cord details. Four-paw short puppy steps, alternating contacts and passing, preserve short child body and exact head/muzzle. No adult stretched legs, saddle or rider.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation, zero silhouette/head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              48,
+              83,
+              52,
+              86
+            ],
+            "edits": [
+              {
+                "x": 49,
+                "y": 84,
+                "color": "e5c8b3"
+              },
+              {
+                "x": 50,
+                "y": 84,
+                "color": "e5c8b3"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              52,
+              82,
+              56,
+              85
+            ],
+            "edits": [
+              {
+                "x": 53,
+                "y": 83,
+                "color": "e5c8b3"
+              },
+              {
+                "x": 54,
+                "y": 83,
+                "color": "e5c8b3"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "dobrinco",
+      "source": "art/creatures/soulmonsters-overworld-v2/dobrinco/duas-vistas.png",
+      "folder": "art/creatures/dobrinco-prancha-v1",
+      "height": 41,
+      "motion": "Tiny baby doberman paper-kite head creature: cream/charcoal/orange face, two short triangular upright ears, compact diamond paper form, attached short orange string/ribbon. No full adult torso or developed canine legs. Locomotion is gentle in-place floating kite sway and small attached ribbon follow-through; source face/ears/paper shape must stay baby-simple.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation, zero silhouette/head/feet/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              65,
+              94,
+              69,
+              97
+            ],
+            "edits": [
+              {
+                "x": 66,
+                "y": 95,
+                "color": "f8db9e"
+              },
+              {
+                "x": 67,
+                "y": 95,
+                "color": "f8db9e"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              65,
+              94,
+              69,
+              97
+            ],
+            "edits": [
+              {
+                "x": 66,
+                "y": 95,
+                "color": "f8db9e"
+              },
+              {
+                "x": 67,
+                "y": 95,
+                "color": "f8db9e"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "lupisco",
+      "source": "art/creatures/soulmonsters-overworld-v2/lupisco/duas-vistas.png",
+      "folder": "art/creatures/lupisco-prancha-v1",
+      "height": 55,
+      "motion": "Small single-headed gray wolf kite puppy EXACTLY as canonical source, compact child quadruped with FOUR short connected paws. Graphite and ivory body, cobalt folded shoulder bib, two small teal bamboo-edged forepaw fins, mint eyes and short ivory muzzle. ONE thin teal braided ribbon tail ends in TWO tiny gray PAW PENNANTS, not faces or extra heads. Preserve source head, four legs, short body, collar and forepaw fins; grounded alternating puppy support/passing, no humanoid proportions.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation, zero silhouette/head/feet/global translation",
+      "anatomy_source": "art/creatures/lupunhal/lupisco/concept-v1/brief.md",
+      "anatomy_correction": "Single head, four paws; two tail pennants are not heads. Historical prompts remain unchanged.",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              48,
+              82,
+              52,
+              85
+            ],
+            "edits": [
+              {
+                "x": 49,
+                "y": 83,
+                "color": "d3a887"
+              },
+              {
+                "x": 50,
+                "y": 83,
+                "color": "d3a887"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              54,
+              78,
+              58,
+              81
+            ],
+            "edits": [
+              {
+                "x": 55,
+                "y": 79,
+                "color": "d3a887"
+              },
+              {
+                "x": 56,
+                "y": 79,
+                "color": "d3a887"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 extends RefCounted
 ## Device preferences are separate from campaign slots and are never uploaded.
 var crt := true
+var autosave := true
 var fullscreen := false
 var reduced_motion := false
 var text_scale:=1.0
@@ -15,6 +16,8 @@ func load_settings(path: String = "") -> void:
 	if path.is_empty(): path = storage_path
 	var config := ConfigFile.new()
 	if config.load(path) != OK: return
+	var automatic: Variant = config.get_value("save", "autosave", true)
+	autosave = automatic if automatic is bool else true
 	for key: String in audio_levels:
 		var level: Variant = config.get_value("audio", key, audio_levels[key])
 		if (level is float or level is int) and is_finite(float(level)): audio_levels[key] = clampf(float(level), 0, 1)
@@ -36,6 +39,7 @@ func load_settings(path: String = "") -> void:
 func save_settings(path: String = "") -> Error:
 	if path.is_empty(): path = storage_path
 	var config := ConfigFile.new()
+	config.set_value("save", "autosave", autosave)
 	for key: String in audio_levels: config.set_value("audio", key, audio_levels[key])
 	config.set_value("audio", "dialogue_blips", dialogue_blips)
 	config.set_value("video", "crt", crt)

@@ -1,0 +1,1172 @@
+{
+  "version": 1,
+  "purpose": "sprites estáticos de exploração",
+  "count": 50,
+  "cell": {
+    "width": 80,
+    "height": 80,
+    "anchor": {
+      "x": 40,
+      "y": 72
+    }
+  },
+  "sheet": {
+    "width": 160,
+    "height": 80
+  },
+  "sampling": "nearest",
+  "rendering": "2D isométrico top-down",
+  "tool": "ImageGen + Aseprite 1.3",
+  "assets": [
+    {
+      "id": "brancofaro-jovem",
+      "name": "Brancofaro (jovem)",
+      "family": "Brancofaro",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/brancofaro-jovem.png",
+      "concept_sha256": "849d3c41e8465ee1191f38d0e2f803760e1274d307db91052bf5bd2f9d2d53e4",
+      "sheet": "brancofaro-jovem/duas-vistas.png",
+      "atlas": "brancofaro-jovem/duas-vistas.json",
+      "editable": "brancofaro-jovem/brancofaro-jovem-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "brancofaro-jovem/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "brancofaro-jovem/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "bolotim",
+      "name": "Bolotim",
+      "family": "Cernebravio",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/bolotim.png",
+      "concept_sha256": "ac612ba35548c374fc4c06730cf856bd1b1de7ffc3942b5e264e0fcc319ac6fa",
+      "sheet": "bolotim/duas-vistas.png",
+      "atlas": "bolotim/duas-vistas.json",
+      "editable": "bolotim/bolotim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "bolotim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "bolotim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "brotozaino",
+      "name": "Brotozaino",
+      "family": "Cernebravio",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/brotozaino.png",
+      "concept_sha256": "51fa239435a5c39d734bf7ad9a39088079acec32f06cc5e1b63761c89274df1c",
+      "sheet": "brotozaino/duas-vistas.png",
+      "atlas": "brotozaino/duas-vistas.json",
+      "editable": "brotozaino/brotozaino-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "brotozaino/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "brotozaino/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "raiztrope",
+      "name": "Raiztrope",
+      "family": "Cernebravio",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/raiztrope.png",
+      "concept_sha256": "6e3d42f5064780c3c8617cb6d8b49807602e91dbd223e686fa791bcbb9bda64c",
+      "sheet": "raiztrope/duas-vistas.png",
+      "atlas": "raiztrope/duas-vistas.json",
+      "editable": "raiztrope/raiztrope-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "raiztrope/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "raiztrope/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "bicapena",
+      "name": "Bicapena",
+      "family": "Corvotengu",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/bicapena.png",
+      "concept_sha256": "bb3d8a14001761d3dfc631cd6ba07bdfebbbae4b54efd58a5879e848da3b7df6",
+      "sheet": "bicapena/duas-vistas.png",
+      "atlas": "bicapena/duas-vistas.json",
+      "editable": "bicapena/bicapena-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "bicapena/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "bicapena/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "lequeiro",
+      "name": "Lequeiro",
+      "family": "Corvotengu",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/lequeiro-v2.png",
+      "concept_sha256": "f93d02aa2c66ff0e9d96bc5d54fd7b2da9f8c3e4688aba0ef3ee8b1066fd2689",
+      "sheet": "lequeiro/duas-vistas.png",
+      "atlas": "lequeiro/duas-vistas.json",
+      "editable": "lequeiro/lequeiro-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "lequeiro/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "lequeiro/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "penabroto",
+      "name": "Penabroto",
+      "family": "Corvotengu",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/penabroto.png",
+      "concept_sha256": "ffc614cd42b3b990500a417a0ed4765d6b826a85094a76f8334898bd6dfa2184",
+      "sheet": "penabroto/duas-vistas.png",
+      "atlas": "penabroto/duas-vistas.json",
+      "editable": "penabroto/penabroto-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "penabroto/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "penabroto/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "bocobasto",
+      "name": "Bocobasto",
+      "family": "Cravofenda",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/bocobasto.png",
+      "concept_sha256": "271219c07f755b5f22222fff5ef9d35c9c976790fb0b177dcbddd837b4757035",
+      "sheet": "bocobasto/duas-vistas.png",
+      "atlas": "bocobasto/duas-vistas.json",
+      "editable": "bocobasto/bocobasto-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "bocobasto/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "bocobasto/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "goticra",
+      "name": "Goticra",
+      "family": "Cravofenda",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/goticra.png",
+      "concept_sha256": "7915de9b1e52afcb48576ab6d939ccce6ac1ef510aa1690b909c3a799fcb47bc",
+      "sheet": "goticra/duas-vistas.png",
+      "atlas": "goticra/duas-vistas.json",
+      "editable": "goticra/goticra-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "goticra/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "goticra/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "ventucravo",
+      "name": "Ventucravo",
+      "family": "Cravofenda",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/ventucravo.png",
+      "concept_sha256": "480eaf3007500976e49aaedfd05d00cdeb7433d8818091c5cb969742cd88da01",
+      "sheet": "ventucravo/duas-vistas.png",
+      "atlas": "ventucravo/duas-vistas.json",
+      "editable": "ventucravo/ventucravo-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "ventucravo/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "ventucravo/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "dirubalu",
+      "name": "Dirubalu",
+      "family": "Dirubastião",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/dirubalu.png",
+      "concept_sha256": "31e6b05898b059c294c961591ee12bed49cc73e720a4e18f34fcfd0cf9784e3a",
+      "sheet": "dirubalu/duas-vistas.png",
+      "atlas": "dirubalu/duas-vistas.json",
+      "editable": "dirubalu/dirubalu-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "dirubalu/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "dirubalu/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "dirum",
+      "name": "Dirum",
+      "family": "Dirubastião",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/dirum.png",
+      "concept_sha256": "a6bfb54ece46cf9bafdd83325e3cb5c45215e13ef669534ba898871d2717a1e1",
+      "sheet": "dirum/duas-vistas.png",
+      "atlas": "dirum/duas-vistas.json",
+      "editable": "dirum/dirum-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "dirum/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "dirum/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "dirupac",
+      "name": "Dirupac",
+      "family": "Dirubastião",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/dirupac.png",
+      "concept_sha256": "adfda1cfa5ee1377ac4cda9177f3fec510c21ea0561abb8bb24d166c39b1ccd2",
+      "sheet": "dirupac/duas-vistas.png",
+      "atlas": "dirupac/duas-vistas.json",
+      "editable": "dirupac/dirupac-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "dirupac/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "dirupac/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "etrim",
+      "name": "Etrim",
+      "family": "Etruslança",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/etrim.png",
+      "concept_sha256": "56e5e54cca3e9fee91d430625296457f8061a4e60b326d44c3d457e655f84b72",
+      "sheet": "etrim/duas-vistas.png",
+      "atlas": "etrim/duas-vistas.json",
+      "editable": "etrim/etrim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "etrim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "etrim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "etrupim",
+      "name": "Etrupim",
+      "family": "Etruslança",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/etrupim.png",
+      "concept_sha256": "9d6871846f2909161dafde6b9feaf9fccb0b7e76616c99d841832d43b152d510",
+      "sheet": "etrupim/duas-vistas.png",
+      "atlas": "etrupim/duas-vistas.json",
+      "editable": "etrupim/etrupim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "etrupim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "etrupim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "etrusvara",
+      "name": "Etrusvara",
+      "family": "Etruslança",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/etrusvara.png",
+      "concept_sha256": "703dd7e653132ae078d75df072c3ef3ef8e6ee05a83670c8e3155741ad137c7f",
+      "sheet": "etrusvara/duas-vistas.png",
+      "atlas": "etrusvara/duas-vistas.json",
+      "editable": "etrusvara/etrusvara-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "etrusvara/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "etrusvara/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "girobroto",
+      "name": "Girobroto",
+      "family": "Fendafolha",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/girobroto.png",
+      "concept_sha256": "4a727592e35eeaea81c6d68b149e74715191279bd7fcbc5d084ebfb3d991d6f9",
+      "sheet": "girobroto/duas-vistas.png",
+      "atlas": "girobroto/duas-vistas.json",
+      "editable": "girobroto/girobroto-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "girobroto/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "girobroto/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "alvaneve",
+      "name": "Alvaneve",
+      "family": "Alvaneve",
+      "stage": "Não definido",
+      "concept": "../soulsmonsters concept art/alvaneve.png",
+      "concept_sha256": "cbc3af4e743ab27eee923af06cf54ec34774074b4771490733578540062b2b56",
+      "sheet": "alvaneve/duas-vistas.png",
+      "atlas": "alvaneve/duas-vistas.json",
+      "editable": "alvaneve/alvaneve-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "alvaneve/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "alvaneve/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "ventalume",
+      "name": "Ventalume",
+      "family": "Fendafolha",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/ventalume.png",
+      "concept_sha256": "5d88f8b8341f064b42814f4604575f2cde8c4e9b8def35a9bf9bc468dc72f534",
+      "sheet": "ventalume/duas-vistas.png",
+      "atlas": "ventalume/duas-vistas.json",
+      "editable": "ventalume/ventalume-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "ventalume/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "ventalume/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "casulim",
+      "name": "Casulim",
+      "family": "Ganchofenda",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/casulim.png",
+      "concept_sha256": "9d4785f11d822077d65ef8ebc90110d7630da62faafcb0a98d4c5a535158bdea",
+      "sheet": "casulim/duas-vistas.png",
+      "atlas": "casulim/duas-vistas.json",
+      "editable": "casulim/casulim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "casulim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "casulim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "pernalume",
+      "name": "Pernalume",
+      "family": "Ganchofenda",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/pernalume.png",
+      "concept_sha256": "1084fc456644d2404cf1f321ee110ef7ee9ebae32aa4dbd2902a13e447c78bf9",
+      "sheet": "pernalume/duas-vistas.png",
+      "atlas": "pernalume/duas-vistas.json",
+      "editable": "pernalume/pernalume-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "pernalume/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "pernalume/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "trincasco",
+      "name": "Trincasco",
+      "family": "Ganchofenda",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/trincasco.png",
+      "concept_sha256": "e2ac44d6a70050dbd5581f6836bd4c8c5599cceb4de91fdb33be720f8957aabb",
+      "sheet": "trincasco/duas-vistas.png",
+      "atlas": "trincasco/duas-vistas.json",
+      "editable": "trincasco/trincasco-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "trincasco/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "trincasco/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "brejoto",
+      "name": "Brejoto",
+      "family": "Lamacorno",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/brejoto.png",
+      "concept_sha256": "35b1953cad2992813491dd4bbeb67afc209475eb3c936b21d338847789275fb6",
+      "sheet": "brejoto/duas-vistas.png",
+      "atlas": "brejoto/duas-vistas.json",
+      "editable": "brejoto/brejoto-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "brejoto/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "brejoto/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "giripipa",
+      "name": "Giripipa",
+      "family": "Lamacorno",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/giripipa.png",
+      "concept_sha256": "37106155ae7d9d6934f8fa26350557af9e3708f9f3b7f17292af2e4b8447a1bc",
+      "sheet": "giripipa/duas-vistas.png",
+      "atlas": "giripipa/duas-vistas.json",
+      "editable": "giripipa/giripipa-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "giripipa/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "giripipa/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "saltalodo",
+      "name": "Saltalodo",
+      "family": "Lamacorno",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/saltalodo.png",
+      "concept_sha256": "c2affbec43ddc0b29086b38b348cc142e0891ecd06c54a33da71b1890b7bd765",
+      "sheet": "saltalodo/duas-vistas.png",
+      "atlas": "saltalodo/duas-vistas.json",
+      "editable": "saltalodo/saltalodo-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "saltalodo/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "saltalodo/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "lumevigia",
+      "name": "Lumevigia",
+      "family": "Lumicerno",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/lumevigia.png",
+      "concept_sha256": "f4dbc01ab363c247841a14cd9da2add30347f726fd7f40f1fcc8723ee22b8177",
+      "sheet": "lumevigia/duas-vistas.png",
+      "atlas": "lumevigia/duas-vistas.json",
+      "editable": "lumevigia/lumevigia-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "lumevigia/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "lumevigia/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "luziquino",
+      "name": "Luziquino",
+      "family": "Lumicerno",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/luziquino.png",
+      "concept_sha256": "f8629626e9118f72eb41be3c78327d531b2a655f3fdf4bb6d466fcae3972493e",
+      "sheet": "luziquino/duas-vistas.png",
+      "atlas": "luziquino/duas-vistas.json",
+      "editable": "luziquino/luziquino-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "luziquino/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "luziquino/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "pirilume",
+      "name": "Pirilume",
+      "family": "Lumicerno",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/pirilume.png",
+      "concept_sha256": "0d10918b73c4710a3ed86880aec1edf29e1ad6e1b82a70324af923109ff1ce23",
+      "sheet": "pirilume/duas-vistas.png",
+      "atlas": "pirilume/duas-vistas.json",
+      "editable": "pirilume/pirilume-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "pirilume/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "pirilume/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "gotamar",
+      "name": "Gotamar",
+      "family": "Lunafauce",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/gotamar.png",
+      "concept_sha256": "2796e68e89425f288205f064283ebb5fd887ddc7dfbcf326d99cc22155c5a7dc",
+      "sheet": "gotamar/duas-vistas.png",
+      "atlas": "gotamar/duas-vistas.json",
+      "editable": "gotamar/gotamar-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "gotamar/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "gotamar/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "guelfita",
+      "name": "Guelfita",
+      "family": "Lunafauce",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/guelfita.png",
+      "concept_sha256": "25089ec2e8d80e73d5d00dfcc6a61d95a9f73c8999c0aa8256a9aeec09133a5c",
+      "sheet": "guelfita/duas-vistas.png",
+      "atlas": "guelfita/duas-vistas.json",
+      "editable": "guelfita/guelfita-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "guelfita/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "guelfita/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "serpelume",
+      "name": "Serpelume",
+      "family": "Lunafauce",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/serpelume.png",
+      "concept_sha256": "2ab05a901a5b8cf53cc34491ed1901d85a9d544162821f88197c09301e9cb108",
+      "sheet": "serpelume/duas-vistas.png",
+      "atlas": "serpelume/duas-vistas.json",
+      "editable": "serpelume/serpelume-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "serpelume/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "serpelume/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "lunim",
+      "name": "Lunim",
+      "family": "Lupunhal",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/lunim.png",
+      "concept_sha256": "cb671bdc03b31680222c18309158a9e7a91ae7d10f87b6fbef03e9ad49381324",
+      "sheet": "lunim/duas-vistas.png",
+      "atlas": "lunim/duas-vistas.json",
+      "editable": "lunim/lunim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "lunim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "lunim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "lupisco",
+      "name": "Lupisco",
+      "family": "Lupunhal",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/lupisco.png",
+      "concept_sha256": "4a80cd5a92670fdc7f71f61e89cf617183d032c14cfeb6c693ce1ed70f8c050d",
+      "sheet": "lupisco/duas-vistas.png",
+      "atlas": "lupisco/duas-vistas.json",
+      "editable": "lupisco/lupisco-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "lupisco/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "lupisco/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "lupunhal",
+      "name": "Lupunhal",
+      "family": "Lupunhal",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/lupunhal.png",
+      "concept_sha256": "6f3252fcb4bbdb21c68d51318e8fc9e76ca7674d7e6054281aed59da7e202a39",
+      "sheet": "lupunhal/duas-vistas.png",
+      "atlas": "lupunhal/duas-vistas.json",
+      "editable": "lupunhal/lupunhal-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "lupunhal/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "lupunhal/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "marfenda-jovem",
+      "name": "Marfenda (jovem)",
+      "family": "Marfenda",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/marfenda-jovem.png",
+      "concept_sha256": "f324fdbd939dcd74e16baf712243f758a5ba0c4930d29802d0da9f94f4757f78",
+      "sheet": "marfenda-jovem/duas-vistas.png",
+      "atlas": "marfenda-jovem/duas-vistas.json",
+      "editable": "marfenda-jovem/marfenda-jovem-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "marfenda-jovem/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "marfenda-jovem/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "mirafim",
+      "name": "Mirafim",
+      "family": "Miralís",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/mirafim.png",
+      "concept_sha256": "3936a0c6fe44106c78cef243829094d1b40d26fd3cd07d5995743c9ae1d44c6f",
+      "sheet": "mirafim/duas-vistas.png",
+      "atlas": "mirafim/duas-vistas.json",
+      "editable": "mirafim/mirafim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "mirafim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "mirafim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "miralis",
+      "name": "Miralís",
+      "family": "Miralís",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/miralis.png",
+      "concept_sha256": "9d16fbd276ea6e752509e7034576d626d040c7f4494d2ba07d3ff416042a5ed1",
+      "sheet": "miralis/duas-vistas.png",
+      "atlas": "miralis/duas-vistas.json",
+      "editable": "miralis/miralis-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "miralis/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "miralis/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "mirim-fio",
+      "name": "Mirimfio",
+      "family": "Miralís",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/mirim-fio.png",
+      "concept_sha256": "885dcd7b553a01bdcc393576c2603026c7de68967b4cd172c143544da4243898",
+      "sheet": "mirim-fio/duas-vistas.png",
+      "atlas": "mirim-fio/duas-vistas.json",
+      "editable": "mirim-fio/mirim-fio-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "mirim-fio/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "mirim-fio/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "brumim",
+      "name": "Brumim",
+      "family": "Nebrisco",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/brumim.png",
+      "concept_sha256": "9b2b429dac9afca2a49d7feefdeadc1531ab00dbf8be2c0ce4679c47abdaa817",
+      "sheet": "brumim/duas-vistas.png",
+      "atlas": "brumim/duas-vistas.json",
+      "editable": "brumim/brumim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "brumim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "brumim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "nebripasso",
+      "name": "Nebripasso",
+      "family": "Nebrisco",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/nebripasso.png",
+      "concept_sha256": "24813f56cfcd89eb1d7133d2b14aec1cdac0ebb33670d1a3b566c33e3892277d",
+      "sheet": "nebripasso/duas-vistas.png",
+      "atlas": "nebripasso/duas-vistas.json",
+      "editable": "nebripasso/nebripasso-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "nebripasso/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "nebripasso/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "velumbrio",
+      "name": "Velumbrio",
+      "family": "Nebrisco",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/velumbrio.png",
+      "concept_sha256": "740b74677899b79a36146a6aa835b76dcf2644e9c1b3aa419444c41e268a1c2e",
+      "sheet": "velumbrio/duas-vistas.png",
+      "atlas": "velumbrio/duas-vistas.json",
+      "editable": "velumbrio/velumbrio-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "velumbrio/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "velumbrio/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "brasim",
+      "name": "Brasim",
+      "family": "Rugikor",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/brasim.png",
+      "concept_sha256": "537e108ef2c494929989c74deac48cb98da1ebfb654d016927ff5d9b9ed587d9",
+      "sheet": "brasim/duas-vistas.png",
+      "atlas": "brasim/duas-vistas.json",
+      "editable": "brasim/brasim-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "brasim/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "brasim/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "jubarco",
+      "name": "Jubarco",
+      "family": "Rugikor",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/jubarco.png",
+      "concept_sha256": "4b89dadc44b5cd24c3b33a4b4f617ab2869ad09237840871b3756ce5b2e0fbb1",
+      "sheet": "jubarco/duas-vistas.png",
+      "atlas": "jubarco/duas-vistas.json",
+      "editable": "jubarco/jubarco-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "jubarco/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "jubarco/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "roscapata",
+      "name": "Roscapata",
+      "family": "Rugikor",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/roscapata.png",
+      "concept_sha256": "e22935d387db101367ec42f07a78deba69cae12a130b221a0b8831aff799aaed",
+      "sheet": "roscapata/duas-vistas.png",
+      "atlas": "roscapata/duas-vistas.json",
+      "editable": "roscapata/roscapata-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "roscapata/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "roscapata/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "plumico",
+      "name": "Plumico",
+      "family": "Suturanoite",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/plumico.png",
+      "concept_sha256": "bfefbe4eb35bf92ea12dc6452fd532111bce1df375fc097c272ae15f22fb7675",
+      "sheet": "plumico/duas-vistas.png",
+      "atlas": "plumico/duas-vistas.json",
+      "editable": "plumico/plumico-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "plumico/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "plumico/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "rasapena",
+      "name": "Rasapena",
+      "family": "Suturanoite",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/rasapena.png",
+      "concept_sha256": "2e7fdfa1297a3e50808452c2d6cbbba48eb1b8615e4244d3ea691cee89410dcf",
+      "sheet": "rasapena/duas-vistas.png",
+      "atlas": "rasapena/duas-vistas.json",
+      "editable": "rasapena/rasapena-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "rasapena/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "rasapena/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "velaespreita",
+      "name": "Velaespreita",
+      "family": "Suturanoite",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/velaespreita.png",
+      "concept_sha256": "973a4eb0db910b687379da1b1a2fa2b5c28c5ad8cb28237205b6e9b6a5809a18",
+      "sheet": "velaespreita/duas-vistas.png",
+      "atlas": "velaespreita/duas-vistas.json",
+      "editable": "velaespreita/velaespreita-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "velaespreita/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "velaespreita/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "orelavela",
+      "name": "Orelavela",
+      "family": "Vespergume",
+      "stage": "Criança",
+      "concept": "../soulsmonsters concept art/orelavela.png",
+      "concept_sha256": "128c32a6addf6aacb3ce83ec4fb8dc63824fedfa0f3a8bc8cf7a563dc6aaf790",
+      "sheet": "orelavela/duas-vistas.png",
+      "atlas": "orelavela/duas-vistas.json",
+      "editable": "orelavela/orelavela-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "orelavela/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "orelavela/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "ossavento",
+      "name": "Ossavento",
+      "family": "Vespergume",
+      "stage": "Jovem",
+      "concept": "../soulsmonsters concept art/ossavento.png",
+      "concept_sha256": "375c7cd6d73e9d82e651ea3be30c71d357007a617a67d74cd5786334f20e5d17",
+      "sheet": "ossavento/duas-vistas.png",
+      "atlas": "ossavento/duas-vistas.json",
+      "editable": "ossavento/ossavento-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "ossavento/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "ossavento/costas-nw.png"
+        }
+      ]
+    },
+    {
+      "id": "pavioz",
+      "name": "Pavioz",
+      "family": "Vespergume",
+      "stage": "Bebê",
+      "concept": "../soulsmonsters concept art/pavioz.png",
+      "concept_sha256": "443c72fa621d2e36e19b91a8ecb087b480df8b74144d1f6c25264cc36167c19a",
+      "sheet": "pavioz/duas-vistas.png",
+      "atlas": "pavioz/duas-vistas.json",
+      "editable": "pavioz/pavioz-overworld.aseprite",
+      "views": [
+        {
+          "id": "frente-sw",
+          "name": "Frente · sudoeste",
+          "path": "pavioz/frente-sw.png"
+        },
+        {
+          "id": "costas-nw",
+          "name": "Costas · noroeste",
+          "path": "pavioz/costas-nw.png"
+        }
+      ]
+    }
+  ]
+}

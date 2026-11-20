@@ -1,0 +1,3 @@
+Revisão independente R1:7/10, sem bloqueante identificado. Versão corrigida preferida em comparação cega contra snapshot. Membros completos com troca de apoio mais legível; rosto e núcleo superior canônicos. Passadas contidas e corpo superior rígido são limitações, conferir cadência no renderer. Aprovação humana pendente. Relatório: ../overworld-pranchas-lote-07/critica-r1.md.
+
+Integrado localmente;4.202checks de animação e1.675de percurso, zero falhas.40capturas de movimento e16idle por modelo. Ver ../../../../tmp/overworld-pranchas-lote-07/playtest. Testes específicos não são regressão completa nem aprovação humana.

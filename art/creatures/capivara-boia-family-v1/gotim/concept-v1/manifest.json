@@ -1,0 +1,24 @@
+{
+  "id": "gotim",
+  "name": "Gotim",
+  "stage": 1,
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-e0096096-377d-453e-91d3-db26a1aeecc2.png",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "sha256": "04b8915489902b976e6020b638429598e37ce7cf4f69164381ba32102e9d1242",
+  "references": [
+    "art/creatures/capivara-boia/child-manga-v1/concept.png"
+  ],
+  "decision_status": "superseded",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "prompt": "prompt.txt",
+  "review": "revisao.md",
+  "brief": "brief.md",
+  "decision_note": "Revisão posterior solicitada pelo autor; não registrar como aprovação."
+}

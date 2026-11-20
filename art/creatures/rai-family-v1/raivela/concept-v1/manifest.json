@@ -1,0 +1,26 @@
+{
+  "id": "raivela",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-03920a9b-5a2a-467f-9c6b-f5f0c151359e.png",
+  "sha256": "1532bbe6808e4b23874a8933f80f97034321ae317ffb8a8fcdda5ac3c3d32415",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/soulgen/keys/rai/cutout-rig-v1/preview.png",
+      "role": "Identidade do parceiro existente e projeto do autor"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento limpo aprovado"
+    }
+  ],
+  "decision_status": "approved",
+  "approval_note": "Autor: \"Todos aprovados!\" após a entrega do chart completo. Aprovação dos nomes e concepts, incluindo Entreflor; sem certificar regras, rigs ou integração.",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

@@ -1,0 +1,3 @@
+# Conferência
+
+Quatro patas robustas, torso largo e baixo, cobertura de pipa integrada às costelas, pescoço e cauda longos. Imagem inspecionada antes da continuidade. Quatro pernas visíveis e conectadas; sem membros extras. Cobertura ligada às costelas por apoios e nós; vão sob a borda permite ler a sustentação. Canal branco opaco, suaves transições residuais, não pixel art de grade. Contagens de segmentos e unhas precisam padronização em vistas técnicas. Função estrutural não testada em rig. Em avaliação, sem recortes, animações ou integração.

@@ -1,0 +1,33 @@
+# Linha & Papel · interior
+
+O mapeamento aprovado recebeu um [novo quadro com mobiliário moderno](modernizacao/README.md), acompanhado de arquivo Aseprite e prova com os personagens.
+
+A perspectiva das prateleiras está em [revisão de mapeamento](remapeamento/README.md), com planta, diagnóstico sobre a pintura e blockout de volumes na projeção 64 × 32.
+
+O quadro-chave usa os volumes da loja jogável como referência e os materiais da fachada-piloto. O rodapé coral, os vidros azuis, o reboco creme e a parede verde-água ligam os dois lados da loja. O jogador entra pelo vidro frontal, vê a vitrine vertical de pipas à esquerda e tem um corredor livre até o caixa. As duas mesas com bancos e tapetes ficam juntas à direita, onde as cartas estão à vista.
+
+| Zona | Elementos conferidos |
+| --- | --- |
+| Entrada | Duas folhas de vidro, puxadores, capacho e circulação desde a porta. |
+| Lateral esquerda | Janela, exposição vertical de pipas e gôndola baixa de papel e acessórios. |
+| Fundo | Prateleiras com rolos e carretéis, três quadros de pipa e caixa com terminal. |
+| Lateral direita | Segunda janela, mais prateleiras e duas mesas comunitárias com cartas e bancos. |
+
+O estudo de acabamento veio do ImageGen com a captura da loja atual, a fachada-piloto e o interior do laboratório como entradas. Depois de normalizar a base para a paleta do projeto, o Aseprite recebeu uma camada para o acabamento da luz no piso e nas paredes e para o capacho.
+
+- [Quadro-chave transparente](quadro-chave.png) e [fonte editável Aseprite](quadro-chave.aseprite).
+- [Comparativo com o interior atual](comparativo.png).
+- Convivência em [cor 1×](convivencia-nativa.png), [cor 2×](convivencia-cor-2x.png), [cinza 1×](convivencia-cinza.png) e [cinza 2×](convivencia-cinza-2x.png). As pranchas usam Kael, Rabbito e Lia em escala nativa.
+- [Verificação da arte](verificacao.json) com canvas 976 × 680, 88 cores da paleta mestra e da extensão, zero pixels semitransparentes e zero pixels opacos isolados.
+- [Fonte e prompt do ImageGen](fontes/PROMPT.md).
+
+A posição desenhada do balcão e dos móveis é visual. Em uma etapa de integração, os pontos da planta e oclusores precisam ser calibrados contra a cena `kite-shop`.
+
+O quadro aprovado foi dividido em [19 peças com atlas, pivôs e camadas Aseprite](kit/README.md). A remontagem foi conferida no Godot e no Aseprite, preservando todos os pixels visíveis. A próxima etapa é a integração na cena e a verificação de circulação e oclusão.
+
+Comandos de reprodução na raiz:
+
+```powershell
+godot --headless --path godot --script tools/loja_interior_base.gd
+godot --path godot --script tools/loja_interior_revisao.gd --rendering-method gl_compatibility
+```

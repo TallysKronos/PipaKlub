@@ -1,0 +1,91 @@
+{
+  "family_id": "flautrevo",
+  "scope": "Dois concepts novos e duas bases preservadas; maturidade documental, sem integração.",
+  "nodes": [
+    {
+      "id": "sussurim",
+      "name": "Sussurim",
+      "kind": "stage",
+      "stage": 1,
+      "age": "Bebê",
+      "action": "Escutar e responder",
+      "identity": "Uma cabeça-pipa com duas pequenas asas e rabiola curta; sem tronco, braços ou patas.",
+      "story": "Descobre escuta, equilíbrio e resposta ao primeiro som.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation": "não integrado por este estudo",
+      "art": "../../../art/creatures/flautrevo-family-v1/sussurim/concept-v2/concept.png",
+      "brief": "../../../art/creatures/flautrevo-family-v1/sussurim/concept-v2/brief.md"
+    },
+    {
+      "id": "flautrevo",
+      "name": "Flautrevo",
+      "kind": "stage",
+      "stage": 2,
+      "age": "Criança existente",
+      "action": "Recolher notas",
+      "identity": "Morcego roxo/creme, orelha enrolada, asas com varetas-flauta e rabiola com sino.",
+      "story": "Recolhe assobios esquecidos e cria trilhas de vento no catálogo existente.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "implementation": "não integrado por este estudo",
+      "art": "../../../art/soulgen/keys/flautrevo/color-rig-v2/preview.png",
+      "brief": "../../../art/soulgen/keys/flautrevo/README.md",
+      "approval_note": "README registra revisão final das asas e montagem aprovadas pelo autor; maturidade documental proposta."
+    },
+    {
+      "id": "vesperina",
+      "name": "Vesperina",
+      "kind": "stage",
+      "stage": 3,
+      "age": "Jovem arauto",
+      "action": "Sinalizar caminhos",
+      "identity": "Corpo esguio de pipa, asas grandes, duas mãos e pernas, flauta-galhardete e proteção inicial.",
+      "story": "Aprende a orientar os outros sem transformar a melodia em imposição.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation": "não integrado por este estudo",
+      "art": "../../../art/creatures/flautrevo-family-v1/vesperina/concept-v1/concept.png",
+      "brief": "../../../art/creatures/flautrevo-family-v1/vesperina/concept-v1/brief.md"
+    },
+    {
+      "id": "vesperalia",
+      "name": "Vesperália",
+      "kind": "stage",
+      "stage": 4,
+      "age": "Adulta cavaleira",
+      "action": "Conduzir e proteger",
+      "identity": "Elmo fechado de orelhas reinterpretadas, armadura completa, asas-flauta e estandarte.",
+      "story": "Assume responsabilidade de conduzir; voto de respeitar a escolha alheia continua proposta.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "implementation": "não integrado por este estudo",
+      "art": "../../../art/creatures/onze-cavaleiros-v1/vesperalia/concept-v1/concept.png",
+      "brief": "../../../art/creatures/onze-cavaleiros-v1/vesperalia/concept-v1/brief.md",
+      "approval_note": "Autor aprovou a arte concept-v1 com “aprovadíssimo” e pediu bebê e jovem; escopo visual."
+    }
+  ],
+  "edges": [
+    {
+      "from": "sussurim",
+      "to": "flautrevo",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Escutar e equilibrar-se prepara as primeiras trilhas de notas."
+    },
+    {
+      "from": "flautrevo",
+      "to": "vesperina",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Novos apoios e sinais permitem orientar outros."
+    },
+    {
+      "from": "vesperina",
+      "to": "vesperalia",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "O gesto de arauto assume armadura e estandarte; corpo se reorganiza sem trocar a alma."
+    }
+  ]
+}

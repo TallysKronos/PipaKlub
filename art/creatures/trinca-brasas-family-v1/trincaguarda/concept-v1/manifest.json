@@ -1,0 +1,29 @@
+{
+  "id": "trincaguarda",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-1d2fa855-d269-4bdf-9fa5-c08ddfb7425d.png",
+  "sha256": "92c495a74d5f469684efc74cc756642a0859cdfc46e069a84ae356978335e5f1",
+  "width": 1335,
+  "height": 1178,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/soulgen/keys/trinca-brasas/color-rig-v2/preview.png",
+      "role": "identidade da montagem aprovada"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png",
+      "role": "destino aprovado"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "acabamento aprovado"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

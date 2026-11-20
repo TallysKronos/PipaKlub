@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "materials": 12,
+  "checks": [
+    "all 12 painted on existing face",
+    "floor/height/ramps preserved",
+    "floor paint preserves walls",
+    "undo/redo",
+    "2× wall detail"
+  ],
+  "errors": []
+}

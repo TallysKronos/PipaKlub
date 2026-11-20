@@ -1,0 +1,26 @@
+{
+  "id": "raiatar",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-1a224675-09d0-4952-9673-b08977793b5b.png",
+  "sha256": "888347d0f22881b6881e67894415af21772743e1b5fdac505949255310594e0d",
+  "width": 1312,
+  "height": 1199,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/soulgen/keys/rai/cutout-rig-v1/preview.png",
+      "role": "Identidade do parceiro existente e projeto do autor"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento limpo aprovado"
+    }
+  ],
+  "decision_status": "approved",
+  "approval_note": "Autor: \"Todos aprovados!\" após a entrega do chart completo. Aprovação dos nomes e concepts, incluindo Entreflor; sem certificar regras, rigs ou integração.",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

@@ -1,0 +1,5 @@
+# Conferência visual
+
+Uma cabeça fechada em elmo, olhos âmbar estreitos e faceira marfim; duas aletas auriculares, uma reta e outra enrolada, reinterpretam o Flautrevo. Cabeça não é um rosto infantil sobre corpo adulto. A gola e a moldura protegem a face sem copiar o elmo de Alphamon.
+Dois braços com mãos, duas pernas/pés com garras e duas asas separadas atrás dos ombros. Asas de papel roxo/creme com nervuras-flauta e furos visíveis. Estandarte inteiro e fora da face; espada inteira baixa; sino da garganta e rabiola azul-petróleo completa com sino terminal preservam identidade musical. Armadura completa, couraça sem taças separadas, sem pele humana exposta. Planos grandes e contorno nítido.
+Limites: aleta auricular reta é muito alta e merece conferir giro e encaixe com estandarte. Raízes posteriores das asas precisam de costas/perfil. A pose parece um avanço discreto, não certifica passada animada. Símbolo de lua/vento é proposta autoral, não heráldica histórica. Não afirmar precisão da armadura de Joana d'Arc. Concept em avaliação, não rig ou integração.

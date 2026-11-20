@@ -1,0 +1,23 @@
+{
+  "id": "rabbitknight",
+  "version": 3,
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-ff01c899-00c8-4cd0-9783-607f929a12db.png",
+  "sha256": "b0d1b5dbabdb80e121f2592f88300fca333b8b4746c35939789232eb5ac88c26",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/creatures/rabbito-family-v1/rabbitknight/concept-v2/concept.png",
+      "role": "Alvo de edição: armadura e luvas"
+    }
+  ],
+  "decision_status": "approved",
+  "approval_note": "Autor: \"aprovado, todos, esse estilo ficou maravilhoso\". Aprovação visual do conjunto atual, sem certificar integração ou mecânicas.",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

@@ -36,7 +36,7 @@ func run()->void:
  check(service.read(Vector2.INF).status=="wrong_step","invalid point")
  check(service.read(Vector2(1056,1296)).status=="wrong_step","remote reading rejected")
  app._show_world();await frames()
- check(is_instance_valid(app.room) and app.room._safe(at),"archive approach is walkable")
+ check(is_instance_valid(app.room) and app.room._safe(app.room.actor) and app.room.actor.distance_to(Photo.AT) <= 110,"legacy archive save resumes on walkable ground within reading range")
  app._world_interact("study");await frames()
  check(is_instance_valid(dialog()) and is_instance_valid(app.get_node_or_null("ExpeditionPhotograph")),"photo and dialogue visible")
  check(not app.room.can_walk and app.flow_busy,"exploration suspended")

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overworld em ¾ — estudo Soulmonsters</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#14191f;color:#ece9df;font:16px/1.55 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:24px}h1{font-size:28px;margin:0}p{max-width:850px}a{color:#82ddd0}header{margin-bottom:24px}label{display:inline-flex;gap:8px;align-items:center;margin:0 16px 12px 0}select{font:inherit;padding:6px;background:#26323c;color:white;border:1px solid #718391;border-radius:4px}.controls{position:sticky;top:0;background:#14191fee;padding:14px 0;z-index:2}.viewport{overflow:auto;max-height:70vh;border:1px solid #647582;background:#444}img{display:block;image-rendering:pixelated;image-rendering:crisp-edges;max-width:none}.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:24px}.notes article{border-top:2px solid #82ddd0;padding-top:12px}h2{font-size:19px;margin:0 0 8px}.small{color:#bac7d0;font-size:14px}
+</style>
+<main>
+<header><p class="small">Soulmonsters · laboratório de referência · 05/11/2026</p>
+<h1>Vista elevada em três quartos</h1>
+<p>Inspeção da folha enviada: topo dos volumes, cabeça como foco, anatomia compactada e escala variável. A imagem é mostrada sem suavização. As faixas selecionadas são recortes de inspeção, não células confirmadas de um atlas.</p>
+<a href="ESTUDO.md">Ler estudo e plano de produção</a> · <a href="medidas.json">Medidas da referência</a></header>
+<div class="controls">
+<label>Zoom <select id="zoom"><option value="1">1× — pixels do arquivo</option><option value="2" selected>2×</option><option value="3">3×</option><option value="4">4×</option></select></label>
+<label>Faixa <select id="band"><option value="0,1169">Folha inteira</option><option value="2,46">Figura dourada · frente/costas</option><option value="295,60">Extensão lateral e cauda</option><option value="551,45" selected>Figura pequena · cabeça dominante</option><option value="770,68">Figura robusta · volumes</option><option value="1088,62">Figura com manto · costas</option></select></label>
+<label>Fundo <select id="bg"><option value="#444444">Cinza</option><option value="#ffffff">Branco</option><option value="#e000c8">Magenta</option><option value="#000000">Preto</option></select></label>
+</div>
+<div class="viewport" id="viewport"><div id="clip" style="overflow:hidden;position:relative"><img id="sheet" src="referencia.png" alt="Folha de sprites de referência enviada pelo usuário"></div></div>
+<p class="small">Arquivo: 600×1169. Zoom 1× significa tamanho do PNG recebido; não comprova resolução nativa do jogo de origem. Use a rolagem para ver toda a linha.</p>
+<section class="notes">
+<article><h2>Projeção</h2>Ver topo da cabeça e costas; encurtar tronco/pernas pela câmera. Uma pose lateral reduzida não resolve.</article>
+<article><h2>Identidade</h2>Concentrar leitura no rosto e em três sinais do design. Cabeça importante não exige olhos infantis.</article>
+<article><h2>Contorno</h2>Separar sobreposições com bordas escuras e sombras de contato. Preservar cor dentro de partes finas.</article>
+<article><h2>Escala</h2>As figuras ocupam larguras diferentes. Comparar com Kael; não forçar todos ao mesmo retângulo ocupado.</article>
+<article><h2>Movimento</h2>Planejar apoios e preservar conexões. A folha estática não revela FPS nem ordem de reprodução.</article>
+<article><h2>Piloto</h2>Alvacordo: frente e costas em ¾, estáticas primeiro; depois idle/walk e lados espelhados com revisão.</article>
+</section>
+</main>
+<script>
+const zoom=document.getElementById('zoom'),band=document.getElementById('band'),bg=document.getElementById('bg'),clip=document.getElementById('clip'),sheet=document.getElementById('sheet'),viewport=document.getElementById('viewport');
+function update(){const z=Number(zoom.value),[y,h]=band.value.split(',').map(Number);clip.style.width=`${600*z}px`;clip.style.height=`${h*z}px`;sheet.style.width=`${600*z}px`;sheet.style.height=`${1169*z}px`;sheet.style.position='absolute';sheet.style.left='0';sheet.style.top=`${-y*z}px`;viewport.style.background=bg.value;}
+for(const control of [zoom,band,bg])control.addEventListener('change',update);update();
+</script>
+</html>

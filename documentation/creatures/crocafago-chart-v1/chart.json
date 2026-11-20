@@ -1,0 +1,89 @@
+{
+  "family_id": "crocafago",
+  "scope": "Concept e lore propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "atadim",
+      "name": "Atadim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Cabeça/corpo num estojo curto, dois apoios em abas e ponto posterior; faixa, aba dorsal pequena e rabiola. Olhos lavanda, sem dentes adultos.",
+      "story": "Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+      "action": "perceber e proteger a si",
+      "tradeoff": "Pouca autonomia de movimento.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/crocafago/atadim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/crocafago/atadim/concept-v1/brief.md"
+    },
+    {
+      "id": "crocote",
+      "name": "Crocote",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Revisão retirou a couraça adulta em miniatura; quatro patas pequenas, corpo mais esguio, focinho maior e uma única placa dorsal. Rabiola distinta da cauda. Face tem curvas mais suaves e olhos maiores, coerentes com criança, mas requer calibração em futuras vistas.",
+      "story": "Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+      "action": "explorar a função",
+      "tradeoff": "Proteção e controle ainda limitados.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/crocafago/crocote/concept-v1/concept.png",
+      "brief": "../../../art/creatures/crocafago/crocote/concept-v1/brief.md"
+    },
+    {
+      "id": "crocurna",
+      "name": "Crocurna",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Estudo inicial da criança realocado como jovem após correção da criança. Quatro patas, três placas/arqueamentos dorsais, olhos grandes e sem grevas adultas. Jovem robusto; difere do brief atlético inicial, cuja versão foi abandonada. Original preservado.",
+      "story": "Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+      "action": "coordenar apoio e ação",
+      "tradeoff": "Estrutura em desenvolvimento, alcance parcial.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/crocafago/crocurna/concept-v1/concept.png",
+      "brief": "../../../art/creatures/crocafago/crocurna/concept-v1/brief.md"
+    },
+    {
+      "id": "crocafago",
+      "name": "Crocáfago",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Quatro patas com garras, couraça em três tampas e uma parcialmente aberta; faixas conectam raízes e apoios. Uma cauda corporal compacta e uma rabiola trançada distinta. Focinho curto proposital, olhos lavanda e proteção adulta.",
+      "story": "Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+      "action": "Os porteiros das águas",
+      "tradeoff": "Especialização exige preparar apoio e controlar tensão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/crocafago/crocafago/concept-v1/concept.png",
+      "brief": "../../../art/creatures/crocafago/crocafago/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "atadim",
+      "to": "crocote",
+      "kind": "reweaving",
+      "reason": "Atadim ganha apoios e partes próprias para começar a função de os porteiros das águas.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "crocote",
+      "to": "crocurna",
+      "kind": "reweaving",
+      "reason": "Crocote desenvolve sustentação e articulações para coordenar essa função em Crocurna.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "crocurna",
+      "to": "crocafago",
+      "kind": "reweaving",
+      "reason": "Crocurna reorganiza seus apoios e faixas na estrutura especializada de Crocáfago; Começa protegendo uma poça com o próprio corpo; aprende a abrir o dorso em abrigo e se torna uma passagem móvel sobre correntes perigosas. Só transporta quem sobe por vontade própria.",
+      "decision_status": "proposed"
+    }
+  ]
+}

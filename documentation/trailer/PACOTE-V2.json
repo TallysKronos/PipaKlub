@@ -1,0 +1,547 @@
+{
+  "version": 2,
+  "branch": "codex/trailer-v2",
+  "base": "59ab40f1",
+  "video_recorded": false,
+  "public_legendary": {
+    "image": "godot/assets/campaign/eremor-rugido-silhueta-v1.png",
+    "json": "godot/assets/campaign/eremor-rugido-silhueta-v1.json",
+    "show_name": false,
+    "show_original_appearance": false,
+    "owner_confirmed": "2026-11-13"
+  },
+  "integration_dependencies": [
+    {
+      "branch": "codex/soulflight-evolucao-arte",
+      "commit": "fbcea50278a0b15e4f3f8d50903424ec25325dc2",
+      "merge_owner": "Claude"
+    },
+    {
+      "branch": "codex/kits-tiles-v1",
+      "commit": "98ac9b6f959169f80b6fe6885469e7f8013f882c",
+      "merge_owner": "Claude"
+    }
+  ],
+  "assets": [
+    {
+      "path": "godot/assets/campaign/portrait-mikka-manga-v1.png",
+      "type": "png",
+      "sha256": "7ad4ab4c134903b97114c3a0ee2b0b45c78a2ff164b9c0e1d9b67db6226059b2",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/portrait-dona-neve-manga-v1.png",
+      "type": "png",
+      "sha256": "df39b493acd1cf1ff910fa055ac2a1477f92a972e1026ea5622a34fbc74900f0",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/portrait-icaro-manga-v1.png",
+      "type": "png",
+      "sha256": "b7bf5a995aae8858ed30badcc9a31f6078e9cb5188647e1c3aa72cba89a71a67",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/portrait-nina-manga-v1.png",
+      "type": "png",
+      "sha256": "fd1b92895de4797664408c04e844b4617c2a2e41178d3e12a465d15640a380d7",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/portrait-retalho-manga-v1.png",
+      "type": "png",
+      "sha256": "ab8e6c3116642f27c6c06a31aeab1a4e7a4922767f727c0d267824cb7ace01a8",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/portrait-tufanocorte-manga-v1.png",
+      "type": "png",
+      "sha256": "28530312e5b437520f91dade6dae6f01bd9b6a51c9286ead00c5cd32669a6df9",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/abertura-carretel.png",
+      "type": "png",
+      "sha256": "beb2f7ecc46b075743355c63b081241afb6c3870525e79291f6495428b232e6d",
+      "size": [
+        1920,
+        1080
+      ],
+      "alpha_required": false
+    },
+    {
+      "path": "art/trailer-v2/kronasta-ceu.png",
+      "type": "png",
+      "sha256": "8c3c7608fa97cc4f3bef4660ce109a4cd2cd22c476ad4f8cc0d70027c36729ef",
+      "size": [
+        1920,
+        1080
+      ],
+      "alpha_required": false
+    },
+    {
+      "path": "art/trailer-v2/fecho-estadio.png",
+      "type": "png",
+      "sha256": "c67cfcf7a1a4ba26bacdc713a671f220b7eede8d78917f5ac2e92b3cde8afb62",
+      "size": [
+        1920,
+        1080
+      ],
+      "alpha_required": false
+    },
+    {
+      "path": "art/trailer-v2/impact-especial-rabbito.png",
+      "type": "png",
+      "sha256": "7c03947105c9c2aa9259d2f844637006676a94496c06d577637bdced55d8da97",
+      "size": [
+        1920,
+        1080
+      ],
+      "alpha_required": false
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/tsk.png",
+      "type": "png",
+      "sha256": "93df5b952666d86f2b58711d6528630aeb98fb2802a95eda5f1e794f8e80cf89",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/zaak.png",
+      "type": "png",
+      "sha256": "666c8e2afaf6fc65d3f6ce2b1d3ac862bed162d9c3d5cdab2e4730d7001a4824",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/fwush.png",
+      "type": "png",
+      "sha256": "1f53c790369e0559eade675f24e9344faf1b2b93afb32a1cfe382c330b46ce57",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/krak.png",
+      "type": "png",
+      "sha256": "4485d7e2c03f93e1990c5909034ab790c7ae16cabc226d35857ba5157cbd21ca",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/vuuum.png",
+      "type": "png",
+      "sha256": "845396cab643b1eac4be5df8f6b4554ec7e0976bd835f2fa92e762c8d4963c32",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/splash.png",
+      "type": "png",
+      "sha256": "9ff4a05ce819e467716539941a889c5ca6bd870e50f07fa216758d5feb728b10",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/grrraaaooo.png",
+      "type": "png",
+      "sha256": "367a3cc91187962e5d5a019d9c1262091b0483f0c3453772124eb701c096acc0",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/grrraaaooo-01.png",
+      "type": "png",
+      "sha256": "6282f408de49a3791d91326a2285e52697661799a9aa13c2848d3357ab951d8f",
+      "size": [
+        512,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/grrraaaooo-02.png",
+      "type": "png",
+      "sha256": "8f838cb513c79ea265f664c28207b78cda1cbf0db2539c21f98e44c2f439fdf3",
+      "size": [
+        512,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/onomatopeias/grrraaaooo-03.png",
+      "type": "png",
+      "sha256": "6d1823919dfef90696b43e3b3c9eda2d035dfbb59b75abfe0aae6e3c7820ac7c",
+      "size": [
+        512,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/linhas-velocidade-horizontal.png",
+      "type": "png",
+      "sha256": "02886503b0a54b7537b571d0c421de76baace526e3cc1d673465861ab84613a5",
+      "size": [
+        1920,
+        1080
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/trailer-v2/linhas-velocidade-radial.png",
+      "type": "png",
+      "sha256": "2fcd2e4d7f666f2f0ab3650dd5738e12364851fe6472fa300474428f591a3cc6",
+      "size": [
+        1920,
+        1080
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/overworld-companions-v2/vertim.png",
+      "type": "png",
+      "sha256": "fc90bf4847f163920eadd46a71f480e38f050ab087060e55b6524d89fe4e595f",
+      "size": [
+        224,
+        112
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/overworld-companions-v2/trincaguarda.png",
+      "type": "png",
+      "sha256": "8f18144e28d8076eb76ba39fd8531c003a2ea97100b6135bc8c9eca58034a60a",
+      "size": [
+        224,
+        112
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/overworld-companions-v2/urso-polar-young.png",
+      "type": "png",
+      "sha256": "8fd3c18c245bf50dd8f5a9d4e58e7c76e14dc73a4a77abcdce779f7a247a1cc6",
+      "size": [
+        224,
+        112
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/overworld-companions-v2/carcara.png",
+      "type": "png",
+      "sha256": "7ba41e39519b92c10f2d8d50cf2fe5c0e099b5ba6be9245e899a9e9e09fe017b",
+      "size": [
+        224,
+        112
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/overworld-companions-v2/mata-verde.png",
+      "type": "png",
+      "sha256": "504534c1d67ad12e97da3569c924d669a8a5b658d699812be4343563af756216",
+      "size": [
+        224,
+        112
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/overworld-companions-v2/rabbito.png",
+      "type": "png",
+      "sha256": "726cbea164665cd6d7944d5293874bd7c064dea10c46df2e8c6078366cbd1638",
+      "size": [
+        224,
+        112
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/eremor-rugido-v1.png",
+      "type": "png",
+      "sha256": "f9e34fc84c3ae31c87e881bccbc842e3dd7ce41249684b5745003755f696dd5f",
+      "size": [
+        2800,
+        313
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/eremor-rugido-v1.json",
+      "type": "json",
+      "sha256": "9297772afeef0460b6ab049a7fdd078c7e7743cf15933955e6b567d394524ee6"
+    },
+    {
+      "path": "godot/assets/campaign/eremor-rugido-silhueta-v1.png",
+      "type": "png",
+      "sha256": "ce5f00c191326a5700eea44efcad2dc6ae80f96d2ab0be487bce9208c7b010bc",
+      "size": [
+        2800,
+        313
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/eremor-rugido-silhueta-v1.json",
+      "type": "json",
+      "sha256": "2ae72da580751f4d2bab14448e7b8bb0815ae53000f83470aeb7a8ece5a56c7f"
+    },
+    {
+      "path": "godot/assets/campaign/eremor-onda-rugido-v1.png",
+      "type": "png",
+      "sha256": "4f4034ed0440e05d0483fe4c39394df8ad11ad43d237860f857fe9af0590a482",
+      "size": [
+        6144,
+        512
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/eremor-onda-rugido-v1.json",
+      "type": "json",
+      "sha256": "bd212f31ee8f8c86b1e58b3c88b9a4b659ef94fd6d03de54a9cba1a50f0e3c13"
+    },
+    {
+      "path": "godot/assets/campaign/rabbito-rastro-v1.png",
+      "type": "png",
+      "sha256": "3db540fe6db1ca964619c766d6d6b1e6230722ab33dc59cdd3df1df30c5250b5",
+      "size": [
+        3072,
+        512
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "godot/assets/campaign/rabbito-rastro-v1.json",
+      "type": "json",
+      "sha256": "8ffab30abcf7de8e906cefe635335187715326cc90657344f47d6083d8ce3d2b"
+    },
+    {
+      "path": "godot/assets/audio/sfx-v1/creature/eremor_rugido_01.wav",
+      "type": "wav",
+      "sha256": "158595067769c7783b00d9bf1d87f78eb797b907b68a8095fe695f77bd437a7a"
+    },
+    {
+      "path": "godot/assets/audio/music/trailer-v2/trailer-v2.ogg",
+      "type": "ogg",
+      "sha256": "69fc2a928a978f2ff666d18391eb239c487368eed2014bbccfbfb4f45bca0b39"
+    },
+    {
+      "path": "godot/assets/audio/music/trailer-v2/marcos.json",
+      "type": "json",
+      "sha256": "53d55ebd33682528135a20658892da1bd59d14bedf0a40068f3fa5895350430a"
+    },
+    {
+      "path": "art/creatures/estratonte-family-v1/vertim/overworld-diagonal-v1/geracao.png",
+      "type": "png",
+      "sha256": "19f4f99b506be07be552d05f637e7baa822f150848f6584fbecfdaffa9515b66",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/creatures/estratonte-family-v1/vertim/overworld-diagonal-v1/normalizacao.json",
+      "type": "json",
+      "sha256": "cdfff2a872d1fce1d2316c2487f9deb96a4ef48486ff9015079872d66217399a"
+    },
+    {
+      "path": "art/creatures/trinca-brasas-family-v1/trincaguarda/overworld-diagonal-v1/geracao.png",
+      "type": "png",
+      "sha256": "b8663305285e8eb3593006684a139755300645c9c09cafbe80473f8143b52808",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/creatures/trinca-brasas-family-v1/trincaguarda/overworld-diagonal-v1/normalizacao.json",
+      "type": "json",
+      "sha256": "904301b3c68f983f57f5f7f1803ec89e3c4284778f55ec00fc63cbd19d8e8943"
+    },
+    {
+      "path": "art/creatures/urso-polar-family-v1/urso-polar-young/overworld-diagonal-v1/geracao.png",
+      "type": "png",
+      "sha256": "1c8cbc0da00325542f7505fa9b19f4de71c31bfe0fa1f32022f43a42497c37be",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/creatures/urso-polar-family-v1/urso-polar-young/overworld-diagonal-v1/normalizacao.json",
+      "type": "json",
+      "sha256": "6cdd93b0cde23b09caf052faa5e310e0cb0218d20d57954819fba33729cc1e23"
+    },
+    {
+      "path": "art/creatures/carcara-family-v1/carcara/overworld-diagonal-v1/geracao.png",
+      "type": "png",
+      "sha256": "59c3abdb86b481c7b2c7fab79266906419a06ce968b69e75bea85c913cffcf64",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/creatures/carcara-family-v1/carcara/overworld-diagonal-v1/normalizacao.json",
+      "type": "json",
+      "sha256": "0986e07cdb2fd4b6523ff6bd9138b5ff7eec5341a192bd042b45f37c8a219ee5"
+    },
+    {
+      "path": "art/creatures/mata-verde-family-v1/mata-verde/overworld-diagonal-v1/geracao.png",
+      "type": "png",
+      "sha256": "ef55f1a100e3df7104abd66a7e4e839c9a25668df462b86c56932ae44eadd6ec",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/creatures/mata-verde-family-v1/mata-verde/overworld-diagonal-v1/normalizacao.json",
+      "type": "json",
+      "sha256": "9755aab1f314a99a83461a1cf7c11d0fad924766308fbd9eeca68267a4884c2a"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/rabbito/overworld-diagonal-v1/geracao.png",
+      "type": "png",
+      "sha256": "639ba5d5e2d29c003faca92e21289f9c53ff4ba9c0a209d96ae4287e981c89d8",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_required": true
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/rabbito/overworld-diagonal-v1/normalizacao.json",
+      "type": "json",
+      "sha256": "35b7e4d2617aed13efa6060170e9c2b0ab7543556251fa4acc7f2f7c1eaf6a32"
+    }
+  ],
+  "atlases": [
+    {
+      "image": "godot/assets/campaign/eremor-rugido-v1.png",
+      "json": "godot/assets/campaign/eremor-rugido-v1.json",
+      "frames": 8,
+      "duration_ms": 2900,
+      "animation": "roar"
+    },
+    {
+      "image": "godot/assets/campaign/eremor-rugido-silhueta-v1.png",
+      "json": "godot/assets/campaign/eremor-rugido-silhueta-v1.json",
+      "frames": 8,
+      "duration_ms": 2900,
+      "animation": "roar"
+    },
+    {
+      "image": "godot/assets/campaign/eremor-onda-rugido-v1.png",
+      "json": "godot/assets/campaign/eremor-onda-rugido-v1.json",
+      "frames": 12,
+      "duration_ms": 1100,
+      "animation": "shockwave"
+    },
+    {
+      "image": "godot/assets/campaign/rabbito-rastro-v1.png",
+      "json": "godot/assets/campaign/rabbito-rastro-v1.json",
+      "frames": 6,
+      "duration_ms": 533,
+      "animation": "wind-trail"
+    }
+  ],
+  "overworld_sources": [
+    {
+      "id": "vertim",
+      "image": "art/creatures/estratonte-family-v1/vertim/overworld-diagonal-v1/geracao.png",
+      "json": "art/creatures/estratonte-family-v1/vertim/overworld-diagonal-v1/normalizacao.json"
+    },
+    {
+      "id": "trincaguarda",
+      "image": "art/creatures/trinca-brasas-family-v1/trincaguarda/overworld-diagonal-v1/geracao.png",
+      "json": "art/creatures/trinca-brasas-family-v1/trincaguarda/overworld-diagonal-v1/normalizacao.json"
+    },
+    {
+      "id": "urso-polar-young",
+      "image": "art/creatures/urso-polar-family-v1/urso-polar-young/overworld-diagonal-v1/geracao.png",
+      "json": "art/creatures/urso-polar-family-v1/urso-polar-young/overworld-diagonal-v1/normalizacao.json"
+    },
+    {
+      "id": "carcara",
+      "image": "art/creatures/carcara-family-v1/carcara/overworld-diagonal-v1/geracao.png",
+      "json": "art/creatures/carcara-family-v1/carcara/overworld-diagonal-v1/normalizacao.json"
+    },
+    {
+      "id": "mata-verde",
+      "image": "art/creatures/mata-verde-family-v1/mata-verde/overworld-diagonal-v1/geracao.png",
+      "json": "art/creatures/mata-verde-family-v1/mata-verde/overworld-diagonal-v1/normalizacao.json"
+    },
+    {
+      "id": "rabbito",
+      "image": "art/creatures/rabbito-family-v1/rabbito/overworld-diagonal-v1/geracao.png",
+      "json": "art/creatures/rabbito-family-v1/rabbito/overworld-diagonal-v1/normalizacao.json"
+    }
+  ],
+  "roar_audio": "godot/assets/audio/sfx-v1/creature/eremor_rugido_01.wav",
+  "music": "godot/assets/audio/music/trailer-v2/trailer-v2.ogg",
+  "constraints": [
+    "Normal legendary atlas is internal source only; use silhouette for public footage.",
+    "Music is an edited existing track; human listening and final video mix belong to editing.",
+    "Headless scene readiness does not certify visual framing or unobstructed camera paths."
+  ],
+  "kronasta_sky_revision": {
+    "revision": 4,
+    "reason": "Entirely new dynamic manga composition with Raivela,Tufanocorte,Folhante,Azulao interacting in one gust",
+    "owner_approval": "pending",
+    "history": "art/trailer-v2/fontes/kronasta-ceu-historico"
+  }
+}

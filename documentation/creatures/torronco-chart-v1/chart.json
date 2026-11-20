@@ -1,0 +1,74 @@
+{
+  "family_id": "torronco",
+  "family_name": "Torronco",
+  "scope": "Bisões de Açúcar. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "torri",
+      "name": "Torri",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/torronco.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "torronco",
+      "name": "Torronco",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/concept-v1/torronco.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": ""
+    },
+    {
+      "id": "trancatorte",
+      "name": "Trancatorte",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/torronco.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "torronco-bastao",
+      "name": "Torronco Bastão",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/adultos-v2/torronco.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Elmo de bombom e escudo dorsal de chocolate."
+    }
+  ],
+  "edges": [
+    {
+      "from": "torri",
+      "to": "torronco",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "torronco",
+      "to": "trancatorte",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "trancatorte",
+      "to": "torronco-bastao",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

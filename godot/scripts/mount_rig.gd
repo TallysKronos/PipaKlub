@@ -38,7 +38,8 @@ func _ready() -> void:
 	foreground=Sprite2D.new();foreground.name="NeckForeground";foreground.centered=false;foreground.region_enabled=true
 	foreground.texture=body.texture;foreground.use_parent_material=true;add_child(foreground);foreground.z_index=2
 	animated=Sprite2D.new();animated.name="MountedAnimation";animated.centered=false;animated.region_enabled=true;animated.use_parent_material=true;animated.z_index=1;add_child(animated)
-	var manifest=JSON.parse_string(FileAccess.get_file_as_string("res://assets/mounts/doberman-animated-v1/animations.json"))
+	var manifest_path: String = definition.get("animationManifest", "res://assets/mounts/doberman-animated-v1/animations.json")
+	var manifest=JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
 	if manifest is Dictionary:animations=manifest.get("animations",{})
 	set_facing(facing)
 

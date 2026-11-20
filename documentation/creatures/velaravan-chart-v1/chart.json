@@ -1,0 +1,89 @@
+{
+  "family_id": "velaravan",
+  "scope": "Concept e lore propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "velim",
+      "name": "Velim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Corpo-embrulho com dois apoios em abas, duas orelhas compridas dobradas, pequena corcova e uma rabiola. Rosto arredondado de estágio inicial; não é cavalo adulto miniaturizado.",
+      "story": "De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+      "action": "perceber e proteger a si",
+      "tradeoff": "Pouca autonomia de movimento.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/velaravan/velim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/velaravan/velim/concept-v1/brief.md"
+    },
+    {
+      "id": "dunelo",
+      "name": "Dunelo",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Quatro patas baixas, cabeça camelídea, corcova pequena, olhos azuis e uma rabiola. Os pés saíram com três separações visuais, enquanto jovem/adulto usam dois apoios digitais; unificar vistas antes de rig.",
+      "story": "De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+      "action": "explorar a função",
+      "tradeoff": "Proteção e controle ainda limitados.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/velaravan/dunelo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/velaravan/dunelo/concept-v1/brief.md"
+    },
+    {
+      "id": "velaruta",
+      "name": "Velaruta",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Quatro patas compridas, focinho camelídeo, um ressonador e dois painéis menores na corcova. Um único terminal de rabiola com abas. Proteção parcial e massa leve em comparação ao adulto.",
+      "story": "De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+      "action": "coordenar apoio e ação",
+      "tradeoff": "Estrutura em desenvolvimento, alcance parcial.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/velaravan/velaruta/concept-v1/concept.png",
+      "brief": "../../../art/creatures/velaravan/velaruta/concept-v1/brief.md"
+    },
+    {
+      "id": "velaravan",
+      "name": "Velaravan",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Correção dirigida deu focinho camelídeo e reduziu orelhas. Quatro apoios, dois painéis na corcova e três câmaras cerâmicas com raízes próprias, rabiola única. Estrutura de sombra plana; bordas completas apesar das margens estreitas.",
+      "story": "De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+      "action": "Os guias do vento adormecido",
+      "tradeoff": "Especialização exige preparar apoio e controlar tensão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/velaravan/velaravan/concept-v1/concept.png",
+      "brief": "../../../art/creatures/velaravan/velaravan/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "velim",
+      "to": "dunelo",
+      "kind": "reweaving",
+      "reason": "Velim ganha apoios e partes próprias para começar a função de os guias do vento adormecido.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "dunelo",
+      "to": "velaruta",
+      "kind": "reweaving",
+      "reason": "Dunelo desenvolve sustentação e articulações para coordenar essa função em Velaruta.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "velaruta",
+      "to": "velaravan",
+      "kind": "reweaving",
+      "reason": "Velaruta reorganiza seus apoios e faixas na estrutura especializada de Velaravan; De pequeno casulo que acompanha passos a condutor de rotas. A corcova guarda faixas que vibram como mapas sonoros. O adulto reduz o ruído da tempestade para o grupo ouvir o próximo marco.",
+      "decision_status": "proposed"
+    }
+  ]
+}

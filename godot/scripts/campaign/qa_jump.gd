@@ -10,7 +10,7 @@ const Endgame=preload("res://scripts/campaign/endgame_story.gd")
 const STORE_PATH:="user://qa-jump"
 
 ## Acts 1-3 and the start of act 4, as the beats in kronasta_story.gd record them.
-const BASE_FLAGS:=["ninaAccepted","guardianDefeated","ninaReturned","ninaGlideTutorialDone","leagueGreen","tylerClareiraMet","bosqueClareiraDescoberta","comportaVeredasAberta","muralPrimeiroLaco","feiraApitoComprado","feiraApitoFalsoTestado","feiraApitoVerdadeiro","retalhoBosqueVencido","fotoExpedicaoLida","golliaCarretelVencida","pipaDragaoDesatadaVencida","exameAzulOrientadoV2","leagueBlue","marisolRemarOrientado","marisolRemarPratica","canRemar","assisReconheceuNoRetalho","retalhoAcolhido","mormacoVentosPararam","mormacoLiberto"]
+const BASE_FLAGS:=["ninaAccepted","guardianDefeated","ninaReturned","ninaGlideTutorialDone","demoEndingSeen","leagueGreen","leagueGreenSeen","tylerClareiraMet","bosqueClareiraDescoberta","comportaVeredasAberta","muralPrimeiroLaco","feiraApitoComprado","feiraApitoFalsoTestado","feiraApitoVerdadeiro","retalhoBosqueVencido","fotoExpedicaoLida","golliaCarretelVencida","pipaDragaoDesatadaVencida","exameAzulOrientadoV2","leagueBlue","marisolRemarOrientado","marisolRemarPratica","canRemar","assisReconheceuNoRetalho","retalhoAcolhido","mormacoVentosPararam","mormacoLiberto"]
 const BASE_DISTRICTS:=["morro","bambuzal","beira-canal","feira","cais","industrial","palafitas"]
 
 ## Each jump adds districts and flags on top of the previous ones, in story order.
@@ -61,6 +61,8 @@ static func build(id:String)->Dictionary:
 		for op in entry.get("ops",[]):player.completedOperations.append(op)
 		if entry.id==id:break
 	for district in districts:_win(player,district)
+	# The Fantasma leaves the flower of the optional epilogue (F29).
+	if player.flags.get("pipeiroFantasmaResolvido",false):player.inventory["flor-de-cerejeira"]=1
 	var at:String=target.at
 	var scene:String=Endgame.STEPS[at].scene if Endgame.STEPS.has(at) else at
 	var point:Vector2=CP.spawn(scene)

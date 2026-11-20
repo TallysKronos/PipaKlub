@@ -1,0 +1,10 @@
+import {PLANTS,clone} from './model.mjs';import {isTree} from './nature-kit.mjs';import {focusAllows,pointOnLevel,focusLocked} from './level-focus.mjs';
+export function assetInBiome(asset,biome){if(biome==='all')return true;const id=asset.id;if(biome==='brejo')return /agua|water|brejo|lodo|junco|vitoria|cachoeira|folhas-do-brejo|musgo/.test(id);if(biome==='ruinas')return /ruina|pedra|rocha|ardosia|basalto|calcamento|raizes|ancestral/.test(id);if(biome==='kronasta')return /tijolo|concreto|trilha|terra|madeira|bromelia|capim/.test(id);return /arvore|grama|folha|flor|capim|arbusto|musgo|cogumelo|galho|raizes|terra/.test(id);}
+export function scatterRegion(a,cells,{seed=1,density=25,group='plants',weights={},focus=null}={}){
+ const assets=PLANTS.filter(p=>!p.waterfall&&(group==='trees'?isTree(p.id):group==='rocks'?/pedra|rocha/.test(p.id):!isTree(p.id)&&!/pedra|rocha/.test(p.id)));
+ if(!cells.length||!assets.length)throw Error('Selecione uma região e uma coleção.');const next=clone(a),added=[];
+ const hash=(i,k)=>{let n=(Math.imul(i+1,374761393)^Math.imul(Number(seed)||1,668265263)^k)>>>0;n=Math.imul(n^(n>>>13),1274126177);return (n^(n>>>16))>>>0;};
+ const weighted=assets.map(a=>({asset:a,weight:Math.max(0,Number(weights[a.id]??1))})),total=weighted.reduce((s,w)=>s+w.weight,0);if(!Number.isFinite(total)||total<=0)throw Error('Os pesos precisam somar mais de zero.');
+ for(const i of cells){if(next.objects.length>=1500)break;if(!focusAllows(a,i,focus)||a.floors[i]==='water'||a.ramps[i]||hash(i,3)%100>=density)continue;const p={x:i%a.width*32+16,y:Math.floor(i/a.width)*32+24};if(focusLocked(focus)&&!pointOnLevel(a,p,focus.level))continue;if(next.objects.some(o=>Math.hypot(o.x-p.x,o.y-p.y)<20))continue;let choice=hash(i,9)/4294967296*total,asset=weighted.at(-1).asset;for(const w of weighted){choice-=w.weight;if(choice<0){asset=w.asset;break;}}const o={id:next.nextId++,asset:asset.id,...p,flip:!!(hash(i,17)%2),layer:'vegetation',collidable:isTree(asset.id)||!!asset.collidable};next.objects.push(o);added.push(o);}
+ return {next,added};
+}

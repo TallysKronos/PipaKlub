@@ -1,0 +1,83 @@
+{
+  "family_id": "doberman-c",
+  "scope": "Bebê/criança novos; jovem e adulto definidos pelo autor. Sem integração.",
+  "nodes": [
+    {
+      "id": "dobrinco",
+      "name": "Dobrinco",
+      "age": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Cabeça-pipa canina, sem torso ou patas, orelhas de dobra e duas pequenas rabiolas.",
+      "story": "Aprende a equilibrar a primeira armação.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/doberman-family-v1/dobrinco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/doberman-family-v1/dobrinco/concept-v1/brief.md"
+    },
+    {
+      "id": "dobrim",
+      "name": "Dobrim",
+      "age": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Filhote quadrúpede compacto, quatro patas grandes, focinho curto, uma orelha dobrada e losango no peito.",
+      "story": "Passa a sustentar quatro apoios e tensionar o losango do peito.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/doberman-family-v1/dobrim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/doberman-family-v1/dobrim/concept-v1/brief.md"
+    },
+    {
+      "id": "doberman-c",
+      "name": "Dóber",
+      "age": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Dóber autoral de pernas altas, orelhas-pipa, estalactites faciais e duas folhas de rabiola.",
+      "story": "O autor definiu explicitamente que a forma existente é jovem.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/soulgen/keys/doberman-c/refined-rig-v3/preview.png",
+      "brief": "../../../art/soulgen/keys/doberman-c/README.md",
+      "approval_note": "Identidade C aprovada e estágio jovem explicitamente definido pelo autor."
+    },
+    {
+      "id": "dobracula",
+      "name": "Dobrácula",
+      "age": "Adulto",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Cavaleiro de armadura marfim/obsidiana, gola alta, capa vinho e espada-estalactite.",
+      "story": "Forma adulta de Trevas inspirada em Drácula aprovada visualmente pelo autor.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onze-cavaleiros-v1/dobracula/concept-v1/concept.png",
+      "brief": "../../../art/creatures/onze-cavaleiros-v1/dobracula/concept-v1/brief.md",
+      "approval_note": "Autor: aprovadissimo; este dobrácula é adulto."
+    }
+  ],
+  "edges": [
+    {
+      "from": "dobrinco",
+      "to": "dobrim",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Cabeça-pipa ganha tronco, peito e quatro apoios."
+    },
+    {
+      "from": "dobrim",
+      "to": "doberman-c",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Pernas e orelhas crescem, estalactites e rabiolas assumem a forma jovem existente."
+    },
+    {
+      "from": "doberman-c",
+      "to": "dobracula",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Corpo assume postura cavaleiresca, couraça, capa e espada da forma adulta."
+    }
+  ]
+}

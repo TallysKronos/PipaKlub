@@ -1,0 +1,586 @@
+carcara
+# Carcará · pose-chave Soulgen
+
+## Revisão atual: arte original colorida e expressões
+
+Após revisão do usuário, a apresentação preferida passou a ser `color-rig/`, preservando a arte original e abandonando a redução de paleta na animação apresentada. `preview.html` agora abre essa revisão. O material pixel art abaixo permanece como histórico da entrega anterior; o linter de 15 cores não valida esta nova versão colorida.
+
+A revisão usa transformações contínuas, pivôs fixos e texturas faciais registradas sobre o mesmo corpo, em vez dos pequenos overlays desalinhados do primeiro ensaio. Golpe, dano e vitória têm expressões sincronizadas e retornam à neutra na recuperação. Veja `color-rig/README.md`, fontes geradas, prompts, validação facial e testes. Esta revisão é local e ainda não foi integrada ao jogo.
+
+Brief entregue em 2026-10-21. Único brief pendente encontrado na branch `origin/claude/soulgen-codex`, commit `41be85d`. Os arquivos do pipeline e o exemplo foram obtidos dessa branch sem modificações; o exemplo procedural não foi usado como arte final.
+
+## Conteúdo
+
+- Nove camadas PNG 96×96: corpo, duas asas, rabiola e cinco expressões; normal vazia conforme contrato.
+- `key.json`: 15 cores, pivôs nos ombros/laço, âncoras e variante noturna por slots.
+- `pose.png` e `pose-preview
+
+flautrevo
+# Flautrevo · Flautista dos Ventos Perdidos
+
+Morcego de papel roxo/creme, focinho sem bico, orelhas dobradas, asas com varetas-flauta de bambu e rabiola azul-petróleo com sino. Vista oblíqua para a direita com olho distante menor. Quatro peças editáveis com pivôs próprios e profundidades distintas: corpo/rosto/orelhas, duas asas e rabiola.
+
+Soulgen: http://127.0.0.1:5240/?preset=flautrevo
+
+Cinco ações: Melodia na brisa (2,4 s), Voo do flautista (1,2 s), Sopro dos ventos (1,8 s, impacto 0,66 s), Nota interrompida (1,2 s), Reverência musical (2,6 s). Ciclos fecham; ações únicas retornam ao neutro. Expressões registradas somente na janela dos olhos/sobrancelhas, preservando alpha e demais pixels.
+
+Fonte ImageGen de 25/10/2026 preservada em color-rig-v2/source.png; prompt em prompts.json. Referências: atlas original da espécie e acabamento Carcará aprovado. prepare.py mede e recorta componentes; build.mjs gera projeto portátil, preview.html com controles, review.png em dois fundos e review-full.png com todos os 116 quadros do atlas de estudo. Montagem 256 × 240, atlas de estudo 12 fps/células 256 px, fontes na resolução original.
+
+Reprodução: Python/Pillow para prepare.py, Node com @napi-rs/canvas para build.mjs (SOULGEN_CANVAS_MODULE pode indicar instalação externa). Rig configurado
+
+trinca-brasas
+# Trinca-brasas · Três Guardiões, um Coração
+
+Um só corpo de papel carvão/laranja, três cabeças caninas com focinhos creme, quatro patas com garras, peitoral de pipa e rabiola trançada com três folhas de brasa. Vista oblíqua para a direita. Nove peças com profundidades distintas, cabeças articuladas separadamente e pivôs próprios.
+
+Soulgen: http://127.0.0.1:5240/?preset=trinca-brasas
+
+Cinco ações: Três sentinelas (2,4 s), Passada das brasas (1,2 s), Investida tripla (1,8 s; impacto 0,66 s), Recuo dos guardiões (1,2 s), Um só coração (2,6 s). Expressões de golpe e vitória nas três cabeças; dano na central com recuo corporal nas demais. Ciclos fechados e ações únicas retornam ao neutro.
+
+ImageGen em 25/10/2026 com atlas original e acabamento Carcará. Fonte preservada em color-rig-v2/source.png, prompts em prompts.json. Tronco corrigido por ImageGen para fechar aberturas de encaixe. prepare.py mede componentes e registra variantes somente na janela dos olhos, com alpha e pixels externos idênticos. build.mjs gera projeto portátil, preview.html com controles/miniatura, review.png em dois fundos e review-full.png com os 116 quadros do atlas de estudo (12 fps, células 256 px). Montagem lógica 272 × 240; imagens preservam resolução original.
+
+Reprodução: Python/Pillow para prepare.py; No
+
+alvaneve
+# Alvaneve · O Inverno que Aprendeu a Confiar
+
+Dragão de papel branco/ciano/lavanda, asas de pipa com bambu e rabiola com folhas de gelo. Nove peças articuladas em vista oblíqua para a direita. Todas mantêm exatamente a proporção largura/altura dos recortes originais: define-se apenas a altura e calcula-se a largura. preserveSourceAspect ativa verificação de esticamento no exportador. Não altera os rigs já aprovados pelo autor.
+
+Soulgen: http://127.0.0.1:5240/?preset=alvaneve
+
+Cinco ações: Brisa do inverno, Voo cristalino, Sopro frio, Recuo e Confiança conquistada. Ciclos fechados e ações únicas retornam ao neutro. Expressões preservam a silhueta e os pixels externos à janela facial. Fonte ImageGen de 25/10/2026 preservada em color-rig-v2/source.png; prompt e referências em prompts.json. prepare.py mede componentes e registra expressões, sem redesenhar olhos ou anatomia por código. build.mjs monta pivôs próprios e exporta projeto portátil, prévia HTML com controles e miniatura, review.png em dois fundos e review-full.png com os 116 quadros do atlas de estudo (12 fps/256 px). Montagem lógica 272 × 256; PNGs na resolução original.
+
+Reprodução: Python/Pillow para prepare.py, Node com @napi-rs/canvas para build.mjs (SOULGEN_CANVAS_MODULE aceita instalação externa). Verificação técnic
+
+chaspiral
+# Chaspiral · Atrasada para o Próximo Segundo
+
+Criatura de papel com xícara no topo, cachos em espiral, asas rosa e verde-petróleo, varinha e rabiola de etiquetas com sino. Vista oblíqua para a direita. Seis peças com pivôs e profundidades próprios: corpo/rosto/xícara, duas asas, dois braços e rabiola. Todas preservam a proporção original dos recortes; preserveSourceAspect impede exportação de peças esticadas.
+
+Soulgen: http://127.0.0.1:5240/?preset=chaspiral
+
+Cinco ações: Pausa para o chá (2,4 s), Voo entre segundos (1,2 s), Espiral do instante (1,8 s, impacto 0,66 s), Segundo perdido (1,2 s), Hora de comemorar (2,6 s). Ambas as mãos possuem canais em todas as ações; ciclos fechados, ações únicas retornam ao neutro.
+
+Fonte ImageGen de 25/10/2026 preservada em color-rig-v2/source.png, prompt em prompts.json. Referências: identidade do atlas Chaspiral e acabamento Carcará aprovado. prepare.py mede componentes e registra recortes dos olhos das variantes sobre a face canônica, preservando silhueta, boca, xícara e pixels fora das janelas. build.mjs gera projeto portátil, preview.html com controles/miniatura, review.png em dois fundos e review-full.png com os 116 quadros do atlas de estudo (12 fps/células de 256 px). Montagem lógica 256 × 240; imagens na resolução original.
+
+Reproduçã
+
+hiponilo
+# Hiponilo · Guardião do Rio Sagrado
+
+Hipopótamo roxo de papel com pequenas presas, cobertura rosa/coral de bambu e rabiola turquesa. Vista oblíqua para a direita, focinho frontal visível. Oito peças articuladas com proporções originais e profundidades distintas. Montagem lógica 272 × 240.
+
+Soulgen: http://127.0.0.1:5240/?preset=hiponilo
+
+Cinco ações: Guarda do rio (2,4 s), Passada do guardião (1,2 s), Avanço da corrente (1,8 s; impacto 0,68 s), Recuo (1,2 s), Sossego do rio (2,6 s). Ciclos fechados, ações únicas retornam ao neutro. Variantes faciais mantêm alpha e pixels externos às janelas idênticos.
+
+ImageGen, 25/10/2026. Identidade do atlas Hiponilo, acabamento Carcará aprovado. Fonte preservada em color-rig-v2/source.png e torso corrigido em body-core-source.png. Prompt completo em prompts.json. prepare.py mede recortes, registra expressões e normaliza o torso gerado sem patas duplicadas. build.mjs monta articulações próprias e gera projeto portátil, preview.html com controles/miniatura, review.png em dois fundos e review-full.png com todos os 116 quadros do atlas de estudo (12 fps/células 256 px). Fontes na resolução original; preserveSourceAspect rejeita esticamento.
+
+Reprodução: Python/Pillow e Node com @napi-rs/canvas (SOULGEN_CANVAS_MODULE aceita instalação externa). Ag
+
+marulume
+# Marulume · Mensageiro de Atlântida
+
+Golfinho de papel azul/ciano/creme, focinho alongado, laço vermelho e peitoral de pipa com ondas. Quatro peças: corpo/rosto/peitoral, duas nadadeiras e cauda bifurcada. Vista oblíqua para a direita. Proporções originais preservadas, com verificação de esticamento.
+
+Soulgen: http://127.0.0.1:5240/?preset=marulume
+
+Cinco ações: À deriva (2,4 s), Nado nas correntes (1,2 s), Impulso da maré (1,8 s, impacto 0,66 s), Recuo na corrente (1,2 s), Salto de alegria (2,6 s). Cauda e nadadeiras possuem canais próprios; ciclos fechados e ações únicas retornam ao neutro. Expressões registradas somente na janela dos olhos, sem alterar alpha e demais pixels.
+
+ImageGen em 25/10/2026 com identidade do atlas Marulume e acabamento Carcará aprovado. Fonte preservada em color-rig-v2/source.png; prompt em prompts.json. prepare.py mede componentes e registra as expressões. build.mjs monta pivôs próprios e gera projeto portátil, preview.html com controles e miniatura, review.png em dois fundos e review-full.png com os 116 quadros do atlas de estudo (12 fps/células 256 px). Montagem lógica 256 × 240, imagens na resolução original.
+
+Reprodução: Python/Pillow e Node com @napi-rs/canvas (SOULGEN_CANVAS_MODULE aceita instalação externa). Aguarda avaliação do autor. Validaç
+
+jarabrasa
+# Jarabrasa · Sentinela das Brasas da Mata
+
+Serpente de papel vermelho/creme com crista, corpo em S, leque estrutural de pipa em duas metades e rabiola bifurcada. Quatro peças proporcionais em vista oblíqua para a direita; sem patas. Profundidades distintas e pivôs próprios.
+
+Soulgen: http://127.0.0.1:5240/?preset=jarabrasa
+
+Cinco ações: Vigia das brasas (2,4 s), Ondulação da serpente (1,2 s), Bote de papel (1,8 s; impacto 0,66 s), Recuo da crista (1,2 s), Orgulho da serpente (2,6 s). Ciclos fechados, ações únicas retornam ao neutro. Expressões regeneradas na pose canônica, mantendo alpha e pixels fora dos olhos.
+
+ImageGen em 25/10/2026 com referências do atlas original e acabamento Carcará aprovado. Fontes em color-rig-v2/source.png e expressions-source.png; prompts em prompts.json. prepare.py mede componentes e registra expressões. build.mjs usa proporções originais e gera projeto portátil, preview.html com controles/miniatura, review.png em dois fundos e review-full.png com 116 quadros do atlas de estudo (12 fps/células 256 px). Montagem lógica 256 × 240, imagens na resolução original.
+
+Reprodução: Python/Pillow e Node com @napi-rs/canvas (SOULGEN_CANVAS_MODULE aceita instalação externa). Configurado no Soulgen, aguardando revisão visual do autor. Testes técnicos não equivalem
+
+jaguarluar
+# Jaguarluar · A Sombra da Lua Cheia
+
+Onça de papel ocre com rosetas, focinho creme, vela verde de bambu e rabiola enrolada com folhas. Oito peças em vista oblíqua para a direita: corpo, cabeça, vela, quatro patas e rabiola. Proporções dos recortes originais preservadas e profundidades distintas.
+
+Soulgen: http://127.0.0.1:5240/?preset=jaguarluar
+
+Cinco ações: Vigia ao luar (2,4 s), Passos de sombra (1,2 s), Bote da lua (1,8 s; impacto 0,68 s), Recuo (1,2 s), Alegria da mata (2,6 s). Ciclos fechados; ações únicas retornam ao neutro.
+
+ImageGen em 25/10/2026. Identidade do atlas Jaguarluar e acabamento Carcará aprovado. Fonte de peças em color-rig-v2/source.png e expressões dedicadas da cabeça canônica em expressions-source.png, prompts em prompts.json. prepare.py mede componentes e registra olhos sem alterar alpha e pixels externos. build.mjs usa articulações próprias e gera projeto portátil, preview.html com controles/miniatura, review.png em dois fundos e review-full.png com os 116 quadros do atlas de estudo (12 fps/células 256 px). Montagem lógica 272 × 240, PNGs na resolução original.
+
+Reprodução: Python/Pillow e Node com @napi-rs/canvas (SOULGEN_CANVAS_MODULE aceita instalação externa). Configurado no Soulgen, aguardando revisão visual do autor. Testes técnicos não representa
+
+azulongo
+# Azulongo · O Fio das Marés
+
+Rig de revisão no [Soulgen](http://127.0.0.1:5240/?preset=azulongo).
+
+Cinco peças editáveis: corpo, cabeça chibi de fuça curta, dois braços e rabiola. Cinco ações: repouso, voo, habilidade, dano e vitória. Proporções dos recortes preservadas; articulações mantêm os encaixes e expressões preservam a silhueta da cabeça.
+
+Arte gerada com ImageGen, fonte original em color-rig-v2/source.png e revisão chibi em head-chibi-source.png. Direção: papel azul e creme, bambu dourado, bigodes e chifres, três quartos para a direita. Sem asas ou pernas traseiras. Prompt da revisão em head-chibi-prompt.txt.
+
+Execute prepare.py e build.mjs para reproduzir os recortes e a montagem. Projeto portátil, prévia e atlas de estudo em color-rig-v2/. Aguarda revisão do autor; não altera o atlas do jogo.
+`nRevisão 2: corpo, braços e rabiola regenerados a partir da cabeça chibi aprovada, com volumes compactos, contorno forte e planos de papel simplificados. Fonte: color-rig-v2/body-chibi-source.png; prompt adjacente. Cabeça preservada. Cache do preset atualizado para revisão 2.
+
+Versão aprovada pelo autor importada do arquivo azulongo-o-fio-das-mares.soulgen (1).json. Seis peças; poses, profundidade, transformações e animações preservadas exatamente. Revisão 3.
+
+Revisão 4: corpo c
+
+auriflama
+# Auriflama · A Centelha que Volta
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=auriflama).
+
+Fênix de papel em três quartos para a direita. Corpo central em filtro dos sonhos, aro vermelho e dourado, trama vazada e centelha. Seis peças editáveis: corpo/rosto, duas asas, duas garras e rabiolas de chama. Cinco ações com 116 frames no atlas de estudo; proporções das fontes preservadas.
+
+Fontes ImageGen: color-rig-v2/source.png (peças) e dreamcatcher-source.png (novo corpo e expressões). Prompt ao lado da fonte. Recortes e montagem reproduzidos por prepare.py e build.mjs. Prévia, projeto portátil e atlas de estudo na mesma pasta. Aguardando revisão do autor; não integrado ao jogo.
+
+
+umbrocasco
+# Umbrocasco · A Memória do Vento
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=umbrocasco).
+
+Guardião tartaruga e serpente de papel verde-escuro, creme e dourado, em três quartos para a direita. Casco central em filtro dos sonhos, trama vazada e pequeno espiral. Sete peças editáveis: casco, cabeça, quatro patas e serpente. Cinco ações: repouso, flutuação, habilidade, dano e vitória. A pata traseira distante usa a mesma arte da próxima com tamanho proporcional próprio.
+
+Fonte ImageGen e prompt em color-rig-v2/. Recortes medidos e proporções preservadas por prepare.py; montagem reproduzível com build.mjs. Expressões sobre a cabeça canônica, com alpha e pixels externos preservados. Prévia, projeto portátil e atlas de estudo de 116 frames na mesma pasta.
+
+Versão final aprovada pelo autor, importada de umbrocasco-a-memoria-do-vento.soulgen (3).json. Poses, profundidade, transformações e clipes preservados exatamente. Revisão 2. Não altera assets de runtime nem o atlas do jogo.
+
+
+nevagume
+# Nevagume · A Costura da Coragem
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=nevagume).
+
+Tigre branco de papel com listras azul-escuras, detalhes lilases e laço vermelho no punho. Corpo central de filtro dos sonhos: aro de bambu envolvido em papel branco/lilás, trama vazada e pequeno motivo central. Vista em três quartos para a direita, olhos pequenos e focinho felino curto.
+
+Sete peças editáveis: corpo, cabeça, quatro patas e rabiola listrada com ponta de pipa lilás. A pata traseira distante compartilha a arte da próxima, com escala proporcional própria. Cinco ações: repouso, passos no vento, investida, dano e vitória.
+
+Fonte gerada com ImageGen em color-rig-v2/source.png. Recortes medidos por prepare.py; montagem reproduzível por build.mjs. Projeto portátil, prévia e atlas de estudo na mesma pasta. Versão aprovada pelo autor, importada de nevagume-a-costura-da-coragem.soulgen.json. Ajustes e animações preservados; nenhum atlas do jogo alterado.
+
+
+rexal
+# Rexal · Tiranossauro das Rajadas
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=rexal).
+
+Tiranossauro de papel vermelho e creme em três quartos para a direita, braços curtos, duas pernas e vela poligonal de bambu nas costas. O filtro dos sonhos pertence à coleção das quatro bestas, não ao Rexal.
+
+Oito peças proporcionais e editáveis: torso, cabeça, vela, dois braços, duas pernas e rabiola. Cinco ações e 116 quadros no atlas de estudo. Expressões registradas sobre a cabeça canônica; silhueta e focinho preservados.
+
+Fonte ImageGen em color-rig-v2/source.png; torso separado corrigido em torso-source.png. Prompts adjacentes. Recortes medidos por prepare.py, montagem por build.mjs. Projeto portátil, prévia e atlas de estudo na mesma pasta. Aguarda revisão do autor; não integrado ao atlas do jogo.
+`nRevisão 2: torso substituído por vela vermelha/creme com varetas aparentes, nós, encaixes de corda e remendo costurado. Fonte e prompt em torso-kite-source.png e torso-kite-prompt.txt. Cabeça, membros e clipes preservados.
+`nRevisão 3: redesenho integral a partir do Rexal original. Cabeça grande, tronco horizontal compacto, coxas fortes, braços curtos e cauda longa. Papel, costura e varetas seguem a anatomia do dinossauro. Fonte redesenhada em redesign-source.png, prompt adjacente. Tod
+
+tricerafan
+# Tricerafan · Guardião do Leque Celeste
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=tricerafan).
+
+Tricerátopo de papel azul e creme com três chifres dourados, quatro patas, rabiola curva e leque celeste independente com estrutura de bambu. Oito peças editáveis e cinco ações. As patas dianteiras compartilham a arte das pernas robustas, com pivôs e escalas próprios, para evitar braços finos na anatomia quadrúpede.
+
+Fonte ImageGen e prompt em color-rig-v2/. Recortes medidos por prepare.py e montagem reproduzível por build.mjs, com proporções preservadas. Expressões mantêm alpha e silhueta da cabeça canônica. Projeto portátil, prévia e atlas de estudo de 116 quadros na mesma pasta. Aguarda revisão do autor; nenhum atlas do jogo alterado.
+
+Revisão 2: redesenho integral sem referência do Rexal. Fonte quadruped-source.png e prompt adjacente. Corpo baixo e horizontal, quatro pernas colunares próprias, cauda curta, cabeça baixa e leque radial junto ao pescoço. Não compartilha mais a arte das patas. Novos pivôs e amplitude das animações das patas reduzida.
+
+Revisão 3: [auditoria dos encaixes](AUDITORIA-ENCAIXES.md). Fonte corrigida seamless-source.png sem cavidades, tubos ou pinos. Patas sob o torso com raízes sobrepostas.
+
+
+pteralis
+# Pteralis · Explorador das Correntes
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=pteralis).
+
+Pterossauro de papel roxo, laranja e creme em três quartos para a direita. Bico longo, crista triangular, duas asas membranosas com varetas de bambu, garras e rabiola longa. Seis peças proporcionais, cinco ações e 116 quadros no atlas de estudo. Raízes sólidas, sem cavidades, tubos ou pinos.
+
+Fonte ImageGen e prompt em color-rig-v2/. Recortes medidos por prepare.py e montagem por build.mjs. Expressões registradas sobre a cabeça/peito canônica, sem trocar o bico ou a silhueta. Projeto portátil e prévias na mesma pasta. Versão final aprovada pelo autor, importada de pteralis-explorador-das-correntes.soulgen.json. Peças, transformações, pivô e clipes preservados; nenhum atlas do jogo alterado.
+
+
+stegaru
+# Stegaru · Jardim de Varetas
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=stegaru).
+
+Estegossauro verde, laranja e creme com corpo baixo, cabeça pequena, quatro patas próprias e cinco placas dorsais em forma de pipa com varetas e nós. Oito peças editáveis, cinco ações e atlas de estudo de 116 quadros. Proporções das fontes preservadas; raízes das patas sobrepostas sob o torso, sem tubos ou pinos.
+
+Fontes ImageGen em color-rig-v2/source.png e torso-source.png; prompts adjacentes. Torso separado para remover patas que vieram grudadas na prancha inicial. Recortes medidos por prepare.py; montagem reproduzível por build.mjs. Projeto portátil e prévias na mesma pasta.
+
+Versão final aprovada pelo autor; peças e animações importadas do arquivo stegaru-jardim-de-varetas.soulgen (1).json; nenhum atlas do jogo alterado.
+
+
+guaravento
+# Guaravento · Vigia das Rajadas
+
+Rig em três quartos, com acabamento artesanal baseado no Carcará aprovado. Oito peças: tronco, cabeça/juba, quatro pernas, vela e rabiola. Cinco ações com expressões: vigia ao vento, corrente de ar, rajada guardiã, recuo e orgulho do vigia.
+
+Studio: http://127.0.0.1:5240/?preset=guaravento
+
+Conceito e peças gerados com ImageGen em 25/10/2026, usando o Guaravento original e a direção do Carcará. Fontes preservadas em color-rig-v2/concept.png e source.png, prompts em prompts.json. prepare.py normaliza recortes e registra expressões sobre o alpha canônico. build.mjs gera projeto portátil, prévia HTML com controles, review.png (fundos claro/escuro), review-full.png (todos os quadros) e atlas de estudo de 116 quadros.
+
+Reprodução: Python/Pillow para prepare.py; Node e @napi-rs/canvas para build.mjs (SOULGEN_CANVAS_MODULE aceita instalação externa). As validações técnicas não equivalem à aprovação visual do autor. Atlas do jogo preservado; integração ao jogo pendente.
+
+
+micofolha
+# Micofolha · Mensageiro das Copas
+
+Pequeno mico de papel alaranjado, rosto escuro, vela de folhas em creme/laranja/verde-petróleo, bambu, nós e rabiola enrolada. Vista em três quartos para a direita; face distante menor. Acabamento baseado no Carcará aprovado, preservando a identidade do atlas original.
+
+## Entrega
+
+Abra http://127.0.0.1:5240/?preset=micofolha. Oito peças: tronco, cabeça/juba, dois braços, duas pernas, vela e rabiola. Cada peça possui profundidade diferente e pivô próprio. Cinco ações com expressões registradas: Curioso nas copas (2,4 s), Salto de folha (1,2 s), Bote das copas (1,8 s; impacto 0,65 s), Susto nas folhas (1,2 s) e Festa do mensageiro (2,6 s). Ciclos fechados; ações únicas retornam ao neutro.
+
+Projeto editável e portátil em color-rig-v2/. preview.html tem controles de ação, tempo, velocidade, fundo e miniatura. review.png mostra cinco poses nos fundos claro/escuro; review-full.png mostra os 116 quadros do atlas de estudo de 256 px, a 12 fps. A montagem usa 224 × 224 unidades lógicas, com fontes em resolução original e transparência.
+
+## Origem e reprodução
+
+Fonte ImageGen gerada em 25/10/2026, preservada em source.png, prompt e referências em prompts.json. prepare.py mede componentes conectados e recortes; as expressões são registradas somente na ja
+
+capimansa
+# Capimansa · Companheira das Águas Calmas
+
+Capivara de papel ocre/caramelo, focinho largo escuro, orelhas pequenas, quatro patas curtas, vela verde-petróleo e marfim com bambu, nós, remendos e folhas. Referência de identidade: atlas original da espécie. Acabamento: Carcará aprovado. Vista oblíqua para a direita, com face frontal do focinho visível; o olho distante fica oculto nesta projeção.
+
+Soulgen: http://127.0.0.1:5240/?preset=capimansa
+
+Oito peças editáveis, com profundidades distintas e pivôs próprios. Cinco ações: Brisa tranquila (2,4 s), Deslize sereno (1,2 s), Onda mansa (1,8 s, impacto 0,68 s), Recuo (1,2 s), Alegria tranquila (2,6 s). Ciclos fecham e ações únicas retornam ao neutro. Expressões só alteram olhos e sobrancelhas da cabeça canônica; silhueta, focinho, nariz e orelhas ficam preservados.
+
+## Fontes e revisão
+
+ImageGen, 25/10/2026. Fonte intacta em color-rig-v2/source.png; prompt e referências em prompts.json. prepare.py mede componentes, normaliza recortes e registra os olhos das variantes. build.mjs monta o rig, gera projeto portátil, preview.html com controles e miniatura, review.png com poses em fundos claro/escuro e review-full.png com todos os 116 quadros do atlas de estudo. Fontes em resolução original; montagem lógica 240 × 224 e atlas de estudo a 12 
+
+tatutrama
+# Tatutrama · Guardião das Dobras Antigas
+
+Tatu de papel em vermelho, creme e carvão. A carapaça é a própria estrutura de pipa, com bambu, nós e borlas. Focinho afilado, quatro patas curtas com garras e rabiola segmentada enrolada. Sete peças editáveis com profundidades distintas e pivôs próprios. Vista oblíqua para a direita; face frontal do focinho visível, olho distante oculto pela projeção.
+
+Soulgen: http://127.0.0.1:5240/?preset=tatutrama
+
+Cinco ações: Vigia das dobras (2,4 s), Impulso rente ao chão (1,2 s), Investida da trama (1,8 s; impacto 0,66 s), Recolher sob a carapaça (1,2 s), Orgulho do guardião (2,6 s). Ciclos fechados, ações únicas retornam ao neutro e expressões mudam somente a janela dos olhos/sobrancelhas.
+
+## Fonte e reprodução
+
+ImageGen em 25/10/2026, usando o Tatutrama original e o Carcará aprovado como referências de identidade e acabamento. Fonte preservada em color-rig-v2/source.png, prompt em prompts.json. prepare.py mede recortes e registra expressões no alpha canônico, sem redesenhar anatomia por código. build.mjs monta o rig e gera projeto portátil, preview.html com controles/miniatura, review.png em dois fundos e review-full.png com todos os 116 quadros do atlas de estudo (12 fps, células de 256 px). Montagem lógica 248 × 224, imagens na resolução ori
+
+yaguaru-memoria
+# Yaguarú · Guardião dos Nós Antigos
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=yaguaru-memoria).
+
+Onça de papel ocre e creme com rosetas geométricas, amarrações, vela vermelha/verde-escura e cauda curva com fitas. Vista em três quartos para a direita. Oito peças editáveis e cinco ações; fontes proporcionais e raízes sobrepostas sem encaixes ocos. Expressões registradas sobre a cabeça canônica, preservando silhueta e focinho.
+
+Fonte ImageGen e prompt em color-rig-v2/. Recortes medidos por prepare.py; montagem reproduzível por build.mjs. Projeto portátil, prévias e atlas de estudo de 116 quadros na mesma pasta. Versão final aprovada pelo autor, importada de yaguaru-guardiao-dos-nos-antigos.soulgen (1).json. Inclui torso retocado, fonte original para restauração, peças e animações exatas; não integrado ao atlas do jogo.
+
+Revisão 3 incorporada do arquivo yaguaru-guardiao-dos-nos-antigos.soulgen (2).json, incluindo fontes pintadas e paleta da criatura.
+
+
+araruna-memoria
+# Araruna · Asa das Lembranças
+
+Novo rig em três quartos para a direita, baseado no atlas original da Araruna e na linguagem de papel do Carcará. Fonte gerada com ImageGen; prompt preservado em PROMPT.md. Sem alterações no atlas utilizado pelo jogo.
+
+Seis peças editáveis: cabeça e peito, duas asas, duas garras e rabiola. Proporções das imagens preservadas. Expressões de ataque, dano e vitória aplicadas apenas na janela dos olhos, mantendo o alpha e o restante do corpo.
+
+Cinco ações: idle, flight, skill, hurt e victory. Os ciclos fecham e as ações retornam à pose neutra. Exportação: 116 quadros, sem pixels nas bordas das células.
+
+Abrir: http://127.0.0.1:5240/?preset=araruna-memoria
+
+Projeto portátil: color-rig-v2/araruna-memoria.portable.soulgen.json. Reconstrução: prepare.py e build.mjs. Revisão visual em review.png e sequência completa em review-full.png.
+
+Verificação: testes de pivôs, encaixes, proporções, expressões, limites em movimento, carregamento e exportação. Pendente aprovação visual do usuário no Soulgen.
+
+A fonte gerada chega à borda inferior nas cópias de expressão; somente a área dos olhos dessas cópias é utilizada. O corpo canônico e as peças independentes possuem margem transparente na fonte.
+
+Revisão 2: incorporado integralmente o arquivo aprovado `araruna-asa-d
+
+caimbira-memoria
+# Caimbira · Vigia das Marés Esquecidas
+
+Jacaré baixo de papel creme e verde-escuro, vista em três quartos à direita, vela de bambu e nós laranja. Anatomia baseada exclusivamente no atlas original do Caimbira; linguagem de papel baseada no Carcará. Fonte gerada com ImageGen, prompt em PROMPT.md.
+
+Oito peças independentes: torso, cabeça, vela, quatro patas e cauda. Raízes sólidas sobrepostas, proporções das fontes preservadas. Sem alterações no atlas do jogo.
+
+Cinco ações: idle (vigia), flight (nado nas correntes), skill (bote), hurt e victory. Expressões registradas apenas na janela dos olhos; alpha e restante da cabeça preservados.
+
+Abrir em http://127.0.0.1:5240/?preset=caimbira-memoria . Projeto portátil em color-rig-v2/caimbira-memoria.portable.soulgen.json.
+
+Reconstrução: prepare.py e build.mjs. Recortes e registro em color-rig-v2/registration.json; prévias em review.png e review-full.png. Exportação com 116 quadros e zero pixels nas bordas. Treze testes passaram, incluindo proporções, pivôs em movimento, fechamento dos ciclos, expressões e carregamento HTTP.
+
+Revisão 2: arquivo aprovado do usuário incorporado integralmente, preservando peças, camadas e animações.
+
+
+tamoata-memoria
+# Tamoatá · Tecelão dos Caminhos
+
+Tamanduá de papel preto e creme em três quartos para a direita, focinho comprido, medalhão espiral, vela de bambu e cauda volumosa de fitas carmim, verde e creme. Anatomia baseada no atlas original do Tamoatá; acabamento baseado no Carcará. Fonte gerada com ImageGen, prompt em PROMPT.md.
+
+Oito peças: torso, cabeça, vela, quatro patas e cauda. Fontes proporcionais, raízes sólidas sobrepostas. As expressões usam apenas a janela dos olhos mantendo o alpha e o restante da cabeça.
+
+Cinco ações: idle, flight, skill, hurt e victory. Exportação de 116 quadros, sem pixels nas bordas. Treze testes verificam pivôs em movimento, proporções, fechamento dos ciclos, expressões, carregamento e exportação.
+
+Abrir: http://127.0.0.1:5240/?preset=tamoata-memoria
+
+Projeto portátil: color-rig-v2/tamoata-memoria.portable.soulgen.json. Fontes e registro em color-rig-v2; reconstrução em prepare.py e build.mjs. Pranchas em review.png e review-full.png.
+
+Revisão 2: arquivo aprovado do usuário incorporado integralmente, preservando peças, camadas e animações. Atlas do jogo preservado.
+
+
+herravento
+# Herravento · Caçador das Rajadas
+
+Herrerasauro esguio de papel carmim, verde-escuro e creme, em três quartos à direita. Braços longos com três garras, pernas de corredor, vela de bambu e rabiola longa. Referência de anatomia: atlas original do Herravento; referência de acabamento: Carcará. Nenhuma arte do Rexal foi usada na geração.
+
+Fonte gerada com ImageGen, prompt em PROMPT.md. source-closed-torso.png é uma edição da fonte fechando somente a abertura no topo do torso; somente o recorte desse torso é utilizado da edição. As demais peças e expressões vêm de source.png. Raízes sobrepostas e sólidas.
+
+Oito peças editáveis e cinco ações: idle, flight, skill, hurt e victory. Proporções das fontes preservadas. Expressões registradas apenas nos olhos; alpha e restante da cabeça mantidos.
+
+Abrir: http://127.0.0.1:5240/?preset=herravento
+
+Projeto portátil em color-rig-v2/herravento.portable.soulgen.json; reconstrução em prepare.py e build.mjs. Recortes em registration.json, pranchas em review.png e review-full.png. Exportação com 116 quadros e zero pixels nas bordas; 13 testes passaram incluindo pivôs, ciclos, proporções, expressões e carregamento.
+
+Revisão 2: versão aprovada do usuário incorporada integralmente. Atlas do jogo preservado.
+
+
+nozinho
+# Nozinho · rig artesanal em três quartos
+
+Primeira conversão da fila de 25/10/2026. Nozinho mantém o corpo de nós de linha, rosto turquesa, laços superiores, punhos amarrados e pontas desfiadas. A câmera é três quartos para a direita, com lado distante menor. Não foi transformado em ave, coelho ou mascote com pipa decorativa.
+
+## Abrir
+
+`npm run studio:sprites` → http://127.0.0.1:5240/?preset=nozinho.
+
+A biblioteca oferece **Abrir Nozinho · três quartos**. O endereço de preset usa recuperação própria, sem carregar o cache de outro personagem. Também é possível arrastar `color-rig-v2/nozinho.portable.soulgen.json` para o Studio; esse projeto incorpora os oito PNGs e pode ser aberto em outro computador.
+
+`color-rig-v2/preview.html` é uma prévia independente com as mesmas peças e sampler: cinco ações, pausa, reinício, busca temporal, velocidade ¼×/½×/1×, fundo claro/escuro e miniatura de 128 px. Abra o arquivo diretamente no navegador. O servidor do Studio não serve esse HTML de dentro da biblioteca, preservando a restrição de arquivos existente.
+
+## Produção e revisão
+
+ImageGen gerou `concept-draft.png` usando Nozinho antigo como identidade e Carcará/Rabbito artesanal como estilo. A pose respeitou três quartos, mas os olhos do primeiro conceito ficaram grandes/claros. A folha `sou
+
+doberman-c
+# Dóber de papel — recorte fiel para o Soulgen
+
+[Abrir no Soulgen](http://127.0.0.1:5240/?preset=doberman-c). Nome provisório, identidade da opção C aprovada.
+
+Versão ativa: **refined-rig-v3**. A revisão 2 permanece arquivada como referência. A imagem enviada pelo autor foi copiada para `source.png`; nenhuma peça foi redesenhada. A tentativa anterior de geração de peças foi rejeitada e não é carregada pelo preset nem pelo jogo.
+
+## Refinamento 3
+
+- Sete peças: torso, cabeça, quatro patas e uma rabiola completa. Fios, nós traseiros e ambas as folhas pertencem à rabiola; o pivô fica no nó do quadril. O trecho de fio que some sob o dorso acompanha a mesma peça. Os tirantes e nós do peito continuam no torso, pois fazem parte da armação.
+- Cortes das patas traseiras reposicionados para devolver o flanco ao torso. Bordas das pernas não ficam mais soltas na camada do corpo.
+- Limpeza registrada: 15.860 pixels de névoa/alpha fraco distante e 712 pixels de pequenos fragmentos desconectados do torso foram removidos. Os 364.730 pixels restantes mantêm seu RGBA da fonte. A revisão 3 não é apresentada como remontagem integral dos 381.302 pixels da revisão 2.
+- Expressões novas de ataque, vitória e dano: geradas com imagegen e registradas somente nas janelas de olhos/boca da cabeça canônica. A
+
+platyx
+# Platyx C — conversão spritelizada para Soulgen
+
+**Aprovação do dono registrada:** “aprovado next”. Refere-se à montagem spritelizada revision 1 apresentada no Soulgen. Nenhum novo arquivo editado foi anexado a essa aprovação; preservado o projeto atual, sem inventar ajustes manuais ou integração no jogo.
+
+Identidade recuperada de `origin/feature/retalho-bosque-d:art/characters/platyx/exploracao-v3/design-c.png`. A seleção C pelo dono está documentada no README da fonte. Cópia, decisão e hash em `art/soulgen/campaign-redesigns-v1/references/platyx-git/`. A/B e o conceito v2 são alternativas arquivadas, não identidade deste rig.
+
+Conversão com image_gen nativo, mantendo o ornitorrinco-pipa tímido e medroso: cabeça teal larga em losango, olhos castanhos preocupados sobre creme, bico e pés ocres, corpo índigo/creme, braços dobrados junto ao rosto e cauda larga teal/índigo com nó, vareta e duas fitas. Carcará e Tufanocorte usados somente como acabamento: contorno escuro em degraus, sombras em blocos, sem ilustrar novamente em linha fina. Não é garantia de pixel art de grade única.
+
+Sete peças independentes: torso, cabeça, dois braços, dois pés e cauda completa. Sem tubos ou cotos metálicos. Cada uma das três expressões alternativas contém a **cabeça inteira**, no mesmo canvas, não s
+
+rai
+# Rai / Saber — parceiro do Tyler
+
+## Projeto do dono incorporado
+
+Recebido `rai-saber-parceiro-do-tyler.soulgen.json` com autorização de envio. Preservados retângulos, pivôs, hierarquia, pixels embutidos e os seis clipes do arquivo. Original integral em `cutout-rig-v1/author-approved.portable.soulgen.json`; hash em `author-import.json`. Rig ativo revision 2, artRevision 1. Auditoria de juntas recalibrada aos encaixes do autor, sem resetar sua geometria. O exportador reusa esse projeto aprovado por padrão. Rascunhos de revisão anterior no navegador são arquivados antes de abrir o atualizado.
+
+Reexportados oito componentes, quatro rostos e 132 frames sem corte nas bordas; 18 testes passaram com a regressão do Platyx e do sampler/editor. Importação não integra no jogo nem cria nova espécie para o alias Saber.
+
+Rai é o nome na bíblia; Saber é o nome anterior da prancha existente, não outra espécie. Identidade recuperada de `origin/feature/retalho-bosque-d:art/tyler-saber-manga-v2/saber-sheet-v2.png`, com cópia/hash em `art/soulgen/campaign-redesigns-v1/references/rai-saber-git/`. A referência original não foi sobrescrita, e não houve renomeação automática de IDs do jogo.
+
+Conversão spritelizada com image_gen nativo: tigre branco de sabre, olhos vermelhos, manchas rosadas em losango,
+
+riscaz
+# Riscaz — direção A no Soulgen
+
+**Versão final aprovada pelo autor.** O projeto enviado `riscaz-direcao-a.soulgen.json` foi incorporado como rig revisão 2, preservando suas peças, pivôs, hierarquia, clipes e PNGs embutidos. Cópia integral em `author-approved.portable.soulgen.json`, hash e normalizações em `author-import.json`. Metadados de auditoria das juntas foram recalibrados; não alteram a montagem. O construtor protege a edição final por padrão e o editor arquiva o rascunho anterior ao carregar esta revisão. A aprovação deste asset não define por inferência vínculo narrativo, poderes ou integração no jogo.
+
+Fonte de identidade recuperada de `codex/concepts-personagens`, em `art/characters/riscaz/concept-v1/prancha.png`. Cópias, decisões, revisão e hashes em `art/soulgen/campaign-redesigns-v1/references/riscaz-git/`. A arquitetura A e a montagem final editada foram aprovadas pelo autor. O vínculo definitivo com Rato e os atributos não são decididos por este rig.
+
+Abrir: http://127.0.0.1:5241/?preset=riscaz
+
+Preservados focinho em cunha, incisivos de papel, orelhas assimétricas, olho verde, carvão/creme/verde e arquitetura baixa com vela de ombro. Oito peças: torso, cabeça, quatro membros, vela e rabiola completa com nó e duas fitas desiguais. Fio solto do peito omitido do as
+
+retalho-original
+# Retalho original — rig em revisão
+
+**Revisão atual: [cutout-rig-v2/README.md](cutout-rig-v2/README.md).** O preset abre a v2 spritelizada com cabeças completas. O registro abaixo descreve somente a v1 preservada.
+
+Identidade: opção A aprovada da antiga parceira de Heleana, registrada em `art/soulgen/campaign-redesigns-v1/retalho-decisoes.md`. Esta forma **não** é a Retalho mascarada/evoluída do roteiro atual. A escolha do dono pela original foi preservada, sem incorporar possessão ou trocar cronologia.
+
+Arte de partes gerada com image_gen usando `retalho-original-reference.png` como identidade e `references/carcara.png` como referência de contorno. Duas gerações: primeira folha preservada em `source-inicial.png`, correção de margens em `source.png`. Sete partes: torso, cabeça, dois braços, duas pernas, rabiola completa incluindo nó/cordão. Quatro rostos (normal, ataque, dano, vitória). Somente janelas do rosto mudam; alpha e desenho externo da cabeça são idênticos para não deformar orelhas.
+
+Seis ações propostas: vigília, passo suspenso, corte da vela, recuo, vitória, derrota. Impacto proposto do golpe em 0,72 s; sem habilidade ou dano canônico. 135 frames a 12 fps, atlas sem pixels cortados na borda. Validação técnica não é aprovação dos encaixes pelo dono. Pescoço, ombros, pr
+
+retalho-mascarada
+# Retalho mascarada — C selvagem e corcunda
+
+**Rig revisão 2 aprovado e editado pelo autor.** Projeto recebido: `retalho-mascarada-cicatrizes-das-ruinas.soulgen.json`. Todas as sete peças reposicionadas, seus pivôs, hierarquia, clipes e PNGs embutidos foram preservados. Cópia integral em `author-approved.portable.soulgen.json`, origem e hash em `author-import.json`. Apenas referências locais e auditoria de juntas foram normalizadas. O construtor protege a edição por padrão e o editor arquiva a revisão antiga do navegador antes de carregar a aprovada.
+
+Concept aprovado explicitamente pelo autor em `art/soulgen/campaign-redesigns-v1/retalho-mascarada/concept-v2/APROVACAO.md`. Esta entrega converte a identidade aprovada para peças e animações revisáveis, sem substituir a Retalho original.
+
+Abrir: http://127.0.0.1:5241/?preset=retalho-mascarada
+
+Sete peças: torso arqueado, cabeça mascarada com ambas as orelhas, dois braços completos com velas e garras, duas pernas flexionadas e rabiola completa com nó. Preservados máscara C berinjela, olhos âmbar, dorso alto, cabeça baixa, cicatrizes coral e paleta marfim/ocre/teal/berinjela.
+
+Quatro cabeças completas: neutra, ataque, dano e confiança serena. Máscara integra cada cabeça. `prepare.py` extrai componentes alpha e registra cabeças inteir
+
+pipa-dragao
+# Pipa-Dragão — forma sobrecarregada
+
+## Edição aprovada do autor
+
+O autor enviou `pipa-dragao-sobrecarregada-quimico-b.soulgen.json`. Rig revisão 2 preserva cabeça, membros, cauda e equipamento reposicionados, pivôs, clipes e PNGs embutidos. Cópia integral em `author-approved.portable.soulgen.json`, hash em `author-import.json`. Apenas referências locais de assets e metadados da auditoria de juntas foram normalizados. O construtor protege esta edição por padrão. A revisão anterior do navegador é arquivada antes de carregar a aprovada.
+
+Conversão para o Soulgen da identidade químico B escolhida pelo autor, recuperada do Git. Fonte: `art/soulgen/campaign-redesigns-v1/references/pipa-dragao-git/prancha.png`; commit e hash no `source-lock.json` dessa pasta. Esta é a forma grande anterior ao desatar dos nós, não uma espécie nova. Preservados corpo pesado cinza-lilás manchado, espinhos escuros, peitoral ocre, tubos verdes no torso, equipamento dorsal e rabiola com amarrações.
+
+Abrir: http://127.0.0.1:5241/?preset=pipa-dragao
+
+Oito peças independentes: torso, cabeça, quatro membros, rabiola completa e conjunto dorsal. Quatro cabeças completas (normal, ataque, dano e vitória serena). Seis clipes técnicos: idle, deslocamento, investida, dano, vitória e derrota. Estes clipes não determina
+
+pipa-dragao-desatada
+# Pipa-Dragão desatada — químico B no Soulgen
+
+## Aprovada pelo dono — importação do projeto editado
+
+Arquivo recebido: `pipa-dragao-desatada-quimico-b.soulgen.json`. Preservados pixels embutidos e todos os ajustes de retângulos/pivôs da cabeça, pernas e equipamento; clipes mantidos como no arquivo exportado. Original integral em `cutout-rig-v3/author-approved.portable.soulgen.json`, SHA-256 em `author-import.json`. Rig ativo revision 2, artRevision 3. A exportação padrão agora respeita esse projeto aprovado em vez de reconstruir os encaixes iniciais. Drafts de revisão anterior são arquivados pelo editor.
+
+Reexportação validou oito partes, seis ações e 145 frames sem corte de borda. Aprovação visual registrada, sem integração no jogo nesta branch de arte.
+
+## Revisão 3 — cabeça completa e encaixes dos membros
+
+Preset ativo: `cutout-rig-v3/`, artRevision 3. Corrigido o relato de perda da face na investida: cada variante agora contém **a cabeça inteira**, registrada no mesmo canvas/retângulo, sem overlay apenas de boca. Verificação exige pelo menos 75% da área opaca da cabeça normal em todas as expressões; as três atuais têm mais de 100%. Novas URLs evitam reutilização dos PNGs anteriores em cache. Draft anterior é arquivado pelo editor ao abrir esta revisão, não apagado.
+
+Arte cor
+
+azulfazo
+# Azulfazo — forma normal, evolução de Ataque
+
+**Versão editada e aprovada pelo autor, rig revisão 2.** Projeto integral e hash preservados em `author-approved.portable.soulgen.json` e `author-import.json`; geometria, pivôs, clipes e PNGs não foram alterados. Quatro referências de juntas ficaram fora do domínio UV normalizado após os ajustes; seus pivôs reais foram preservados, e apenas esses registros da auditoria estão separados em `author-external-pivot-joints.json`. A auditoria normalizada cobre as juntas restantes; não comprova sozinha os encaixes das asas, cabeça e cauda. Editor arquiva o rascunho anterior antes de carregar esta revisão.
+
+Arquitetura A escolhida pelo autor para o parceiro do Gollia. Evolução normal do Azulão, cores azul/creme, bico e patas dourados, olhos âmbar e motivos de nuvem. B/Velocidade e C/Inteligência continuam preservadas no concept; não são substituídas por este rig.
+
+Abrir: http://127.0.0.1:5241/?preset=azulfazo
+
+Sete peças: torso, cabeça completa com crista dupla, duas asas com armação e juntas, duas pernas inteiras e rabiola de duas fitas com nó e terminal de nuvem. Quatro cabeças completas (normal, ataque, dano e orgulho), seis animações técnicas. Formato e família de peças acompanham a forma possuída, mas a arte normal foi gerada separadamen
+
+azulfazo-possuido
+# Azulfazo possuído — rig para revisão
+
+**Edição do autor incorporada, revisão 2.** Arquivo original integral e hash em `author-approved.portable.soulgen.json` e `author-import.json`. Peças, pivôs, pixels e clipes preservados. Pivôs das asas editadas estão fora do domínio UV normalizado exigido pela auditoria automática: foram mantidos na montagem e seus registros guardados em `author-external-pivot-joints.json`, fora apenas dessa auditoria. A revisão renderizada continua necessária. Rascunho anterior do navegador é arquivado ao carregar a revisão aprovada.
+
+Identidade: evolução A/Ataque do Azulão do Gollia, estado possuído da prancha `art/soulgen/campaign-redesigns-v1/azulfazo/possuido-v1/prancha.png`, aprovado para conversão pelo autor. A evolução livre e B/Velocidade e C/Inteligência permanecem preservadas como concepts. Este projeto não converte automaticamente essas outras formas.
+
+Abrir: http://127.0.0.1:5241/?preset=azulfazo-possuido
+
+Sete peças: torso com nó e amarras, cabeça completa com duas penas de crista, duas asas com juntas e amarras próprias, duas pernas completas e rabiola inteira. Paleta índigo/ameixa, olhos violeta e marcas magenta seguem a prancha. Quatro cabeças registradas: normal, ataque de bico aberto, dano e postura dominante. Cada expressão substitui a c
+
+trovareta
+# Trovareta — Soulgen cutout v1
+
+Primeira dos quatro guardiões, executada antes das demais conforme pedido do dono.
+
+Atualização aprovada pelo dono: incorporado `trovareta-guardia-do-trovao.soulgen.json` exportado do editor. Posição/pivô da asa próxima, profundidades, animações e PNGs preservados. Revisão de rig 2; arquivo recebido arquivado integralmente e hash em `author-import.json`. O build reexporta o projeto editado por padrão, sem sobrescrever os ajustes com a montagem inicial.
+
+- Preset local: `http://127.0.0.1:5241/?preset=trovareta`.
+- Oito peças: torso, cabeça, asa próxima/distante, pata próxima/distante, duas rabiolas inteiras com seus fios e nós.
+- Expressões: neutra, ataque, dano e vitória. O alpha e os pixels externos à janela do olho são idênticos à cabeça canônica.
+- Seis ações: repouso (2,8 s), voo (1,15 s), ataque (1,65 s, impacto 0,65 s), dano (0,8 s), vitória (2,2 s) e derrota (1,1 s).
+- Projeto editável: `cutout-rig-v1/trovareta.soulgen.json`; cópia portátil com PNGs embutidos ao lado.
+- Fontes, prompts, atlas de estudo de 123 frames e prévia independente preservados em `cutout-rig-v1/`.
+
+## Reprodução
+
+1. `python art/soulgen/keys/trovareta/slice.py` (Pillow).
+2. `python art/soulgen/keys/trovareta/register-faces.py`.
+3. `node art/soulgen/keys/trovareta/build
+
+rabiolava
+# Rabiolava — Soulgen cutout v1
+
+Segunda criatura do lote, após Trovareta aprovada pelo dono. Preserva a raia B, paleta magenta/azul-violeta e duas rabiolas incandescentes.
+
+- Soulgen: `http://127.0.0.1:5241/?preset=rabiolava`.
+- Seis partes: torso, cabeça, duas nadadeiras e duas rabiolas completas.
+- Quatro rostos: neutro, ataque, dano e vitória. Janelas fixas nos olhos preservam todo o alpha e pixels fora dessas regiões.
+- Seis ações: repouso 3,2 s; voo 1,6 s; golpe 1,85 s (impacto em 0,78 s); dano 0,9 s; vitória 2,5 s; derrota 1,2 s.
+- Projeto editável e cópia portátil em `cutout-rig-v1/`. Atlas de estudo: 142 frames, 12 fps, sem contato com bordas das células.
+
+## Reprodução
+
+`slice.py` requer Pillow, numpy e OpenCV; `register-faces.py` requer Pillow. Rodar nessa ordem antes de `build-rig.mjs`, que requer `@napi-rs/canvas` ou `SOULGEN_CANVAS_MODULE`. Depois executar `node --test art/soulgen/keys/rabiolava/rig.test.mjs`. `review-poses.mjs` renderiza extremos maiores com o sampler real do editor.
+
+As partes foram geradas a partir da identidade aprovada; as fontes e os prompts completos estão preservados. A extração mantém os pixels RGBA próximos da tinta de cada peça e remove apenas a névoa distante da geração. Não é grade nativa estrita de pixel art. O contorno segue o acabame
+
+glacerol
+# Glacerol — Soulgen cutout v1
+
+Terceira criatura do lote, após Trovareta e Rabiolava revisadas pelo dono. Preserva o felino A de geleira, paleta turquesa/azul-marinho/creme/lilás e os dois fios cortantes das orelhas.
+
+## Contrato de montagem
+
+- Torso sem patas, cabeça, cauda ou fios embutidos.
+- Cabeça, quatro patas, cauda bifurcada completa e dois fios completos com seus terminais.
+- Fios têm parentesco com a cabeça, não com o torso; os pivôs ficam na raiz das orelhas. A cauda liga ao quadril.
+- Neutro, ataque, dano e vitória compartilham o alpha e o registro da cabeça; substituir apenas regiões faciais delimitadas.
+- Repouso e deslocamento fecham os ciclos. Ataque, dano e vitória recuperam a postura; derrota sustenta a pose abatida.
+
+Fontes e prompts em `cutout-rig-v1/`. O preset é `glacerol`. A anatomia de espécie e seus tempos serão medidos no projeto real; não reutilizar amplitudes da ave ou da raia por conveniência.
+
+Preset local: `http://127.0.0.1:5241/?preset=glacerol`. Projeto editável e portátil: `cutout-rig-v1/glacerol.soulgen.json` e `glacerol.portable.soulgen.json`.
+
+Seis ações: repouso 3 s, passo na corrente fria 1,25 s, bote 1,6 s (impacto 0,62 s), dano 0,8 s, vitória 2,2 s e derrota 1,1 s. Exportados 126 frames de estudo a 12 fps sem contato com as bordas. Fios e
+
+tufanocorte
+# Tufanocorte — Soulgen cutout v1
+
+Quarto e último guardião escolhido deste lote. Identidade: carneiro A da montanha, duas espirais de seda cortante, paleta jade/azul-marinho/marfim/ocre/coral e duas rabiolas.
+
+Atualização aprovada pelo dono: recebido `tufanocorte-guardiao-da-montanha.soulgen.json`, preservado integralmente em `author-approved.portable.soulgen.json`. Incorporados cabeça, pivôs dos chifres e animações editadas. Revisão de rig 2; hash e normalizações em `author-import.json`. O build reexporta o projeto aprovado por padrão sem recalcular a montagem inicial.
+
+Contrato de peças: torso limpo, cabeça, quatro patas com cascos fendidos, dois chifres completos com centros vazados e duas rabiolas completas. Chifres se articulam com a cabeça; rabiolas com o quadril. Não incorporar metade de um apêndice no torso para facilitar a montagem.
+
+Direção de movimento: repouso firme e pequenas compensações na crina/cabeça; passo pesado contido; preparação do golpe recua e baixa a cabeça antes de avançar para a esquerda; dano e vitória recuperam postura; derrota sustenta a pose final. As espirais não giram continuamente como peças mecânicas.
+
+Fontes e prompts preservados em `cutout-rig-v1/`. Produção local, sem integração em jogo. Acabamento híbrido de contorno Carcará, não uma garant
+
+mormaco
+# Mormaço C — forma livre no Soulgen
+
+**Edição aprovada do autor, rig revisão 2.** `mormaco-forma-livre.soulgen.json` incorporado preservando geometria, pivôs, hierarquia, clipes e PNGs embutidos. Cópia integral e hash em `author-approved.portable.soulgen.json` e `author-import.json`. Todas as seis juntas anatômicas recalibradas passaram na auditoria normalizada, sem exclusões. O editor arquiva rascunhos da revisão anterior antes de carregar a aprovada. Construtor respeita esta edição por padrão.
+
+Identidade existente recuperada de `origin/feature/retalho-bosque-d`: `art/creatures/mormaco/model-c-v1/prancha-c-livre.png`, opção C de areia/gêiseres escolhida pelo autor. Cópia e hashes em `art/soulgen/campaign-redesigns-v1/references/mormaco-git/`. Não confundir com Rabiolava nem substituir outras criaturas por causa dos nomes antigos do roteiro.
+
+Abrir: http://127.0.0.1:5241/?preset=mormaco
+
+Onze peças: torso com placas e duas bases, cabeça, quatro pernas, cauda orgânica, membrana de pipa, rabiola completa com três folhas e dois gêiseres independentes. Água/vapor não fazem parte do torso; as bases permanecem nele. Rabiola herda a membrana, sem duplicar a cauda orgânica. Grandes garras claras, corpo magenta, placas roxas, ventre ocre e olhos âmbar preservados.
+
+Quatro cabeças comple
+
+eremor
+# Eremor · Soulgen Studio v3
+
+22/10/2026. Rig editável derivado do conceito de `art/concepts/eremor-v1/eremor.png`, usando a engine Canvas existente. Preserva a paleta marfim, petróleo, terracota e turquesa, garras, nó, velas e rabiola bifurcada. As folhas de batalha e overworld anteriores permanecem intactas.
+
+## Abrir
+
+Execute `npm run studio:sprites`, abra http://127.0.0.1:5240/ e use **Projeto e biblioteca → Abrir Eremor · Elo das Ruínas**. Abrir um preset usa o diálogo e histórico existentes; não substitui um ajuste de pose pendente.
+
+Também é possível abrir ou arrastar `eremor-v3.soulgen.json` para o Soulgen. Esse JSON incorpora os sete PNGs e não depende dos caminhos do repositório para reabrir. O preset e o arquivo portátil contêm as mesmas peças, articulações e ações. Salvar, reabrir, editar e exportar continuam usando o fluxo comum da ferramenta. `eremor.soulgen.json` é um alias atualizado da revisão 3. Projetos antigos salvos no navegador não são migrados automaticamente: abra o preset atualizado ou o arquivo v2; salve suas alterações anteriores antes de substituí-las.
+
+## Construção
+
+Espaço lógico 340×280, pivô global (157,177). PNGs proporcionais, sem redução de paleta ou redesenho procedural. As dimensões reais e os hashes estão em `parts-report.json`; montagem em `

@@ -15,11 +15,7 @@ var logo:Texture2D
 static var _art_cache:Dictionary={}
 static func artwork(path:String) -> Texture2D:
 	if _art_cache.has(path):return _art_cache[path]
-	if ResourceLoader.exists(path) and (FileAccess.file_exists(path+".import") or OS.has_feature("standalone")):
-		_art_cache[path]=load(path)
-		return _art_cache[path]
-	var image:=Image.load_from_file(ProjectSettings.globalize_path(path))
-	_art_cache[path]=ImageTexture.create_from_image(image)
+	_art_cache[path]=load(path) as Texture2D
 	return _art_cache[path]
 func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)

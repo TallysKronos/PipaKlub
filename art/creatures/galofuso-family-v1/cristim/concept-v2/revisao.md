@@ -1,0 +1,3 @@
+# Conferência
+
+Corpo baixo e arredondado, duas patas curtas, duas asas e pequeno estilingue na ponta da asa. Imagem gerada e inspecionada antes da etapa seguinte. V1 ficou excessivamente parecida com o jovem; v2 foi gerada por texto para mudar estrutura e escala do mecanismo. Há pequenos traços expressivos junto à cabeça e leve textura residual. A função descrita ainda é proposta: não foi validada em ação. Leves transições de sombra residuais; concept mangá, não pixel art de grade. Fundo branco opaco, não recortado, sem rig, animação ou integração. Em avaliação do autor.

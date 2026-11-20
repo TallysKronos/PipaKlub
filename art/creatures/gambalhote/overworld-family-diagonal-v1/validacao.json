@@ -1,0 +1,115 @@
+{
+  "cell": [
+    96,
+    96
+  ],
+  "columns": [
+    "baby",
+    "child",
+    "young",
+    "adult"
+  ],
+  "rows": [
+    "front",
+    "back"
+  ],
+  "inGameValidated": false,
+  "entries": [
+    {
+      "id": "gambalhote-baby",
+      "view": "frente-3q",
+      "bboxExclusive": [
+        35,
+        50,
+        61,
+        82
+      ],
+      "occupiedSize": [
+        26,
+        32
+      ],
+      "opaqueColors": 18,
+      "opaquePixels": 488
+    },
+    {
+      "id": "gambalhote-baby",
+      "view": "costas-3q",
+      "bboxExclusive": [
+        35,
+        50,
+        61,
+        82
+      ],
+      "occupiedSize": [
+        26,
+        32
+      ],
+      "opaqueColors": 16,
+      "opaquePixels": 471
+    },
+    {
+      "id": "gambalhote-young",
+      "view": "frente-3q",
+      "bboxExclusive": [
+        16,
+        17,
+        79,
+        81
+      ],
+      "occupiedSize": [
+        63,
+        64
+      ],
+      "opaqueColors": 23,
+      "opaquePixels": 1854
+    },
+    {
+      "id": "gambalhote-young",
+      "view": "costas-3q",
+      "bboxExclusive": [
+        18,
+        18,
+        77,
+        82
+      ],
+      "occupiedSize": [
+        59,
+        64
+      ],
+      "opaqueColors": 23,
+      "opaquePixels": 1809
+    },
+    {
+      "id": "gambalhote-adult",
+      "view": "frente-3q",
+      "bboxExclusive": [
+        22,
+        5,
+        73,
+        82
+      ],
+      "occupiedSize": [
+        51,
+        77
+      ],
+      "opaqueColors": 22,
+      "opaquePixels": 1784
+    },
+    {
+      "id": "gambalhote-adult",
+      "view": "costas-3q",
+      "bboxExclusive": [
+        23,
+        5,
+        72,
+        81
+      ],
+      "occupiedSize": [
+        49,
+        76
+      ],
+      "opaqueColors": 20,
+      "opaquePixels": 1697
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "Quatro Marés",
+  "name_status": "author_defined",
+  "scope": "Quatro concepts aquáticos individuais; lore e adultos propostos, sem integração.",
+  "members": [
+    {
+      "id": "alvorraia",
+      "name": "Alvorraia",
+      "tide": "Enchente",
+      "action": "erguer e conduzir",
+      "role": "Abre caminho quando a água avança, elevando parceiros sobre obstáculos.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation_status": "not_integrated",
+      "art": "../../../art/creatures/alvorraia/concept-v1/concept.png",
+      "brief": "../../../art/creatures/alvorraia/concept-v1/brief.md",
+      "review": "../../../art/creatures/alvorraia/concept-v1/revisao.md"
+    },
+    {
+      "id": "coroabissal",
+      "name": "Coroabissal",
+      "tide": "Preamar",
+      "action": "sustentar e amortecer",
+      "role": "Recebe a pressão da água e protege as passagens durante a cheia.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation_status": "not_integrated",
+      "art": "../../../art/creatures/coroabissal/concept-v1/concept.png",
+      "brief": "../../../art/creatures/coroabissal/concept-v1/brief.md",
+      "review": "../../../art/creatures/coroabissal/concept-v1/revisao.md"
+    },
+    {
+      "id": "vortentaculo",
+      "name": "Vortentáculo",
+      "tide": "Vazante",
+      "action": "recolher e desembaraçar",
+      "role": "Libera o fluxo retido e devolve às margens o que a corrente arrastou.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation_status": "not_integrated",
+      "art": "../../../art/creatures/vortentaculo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/vortentaculo/concept-v1/brief.md",
+      "review": "../../../art/creatures/vortentaculo/concept-v1/revisao.md"
+    },
+    {
+      "id": "reciferreo",
+      "name": "Reciférreo",
+      "tide": "Baixamar",
+      "action": "ancorar e resguardar",
+      "role": "Mantém os abrigos entre recifes quando a água recua.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation_status": "not_integrated",
+      "art": "../../../art/creatures/reciferreo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/reciferreo/concept-v1/brief.md",
+      "review": "../../../art/creatures/reciferreo/concept-v1/revisao.md"
+    }
+  ]
+}

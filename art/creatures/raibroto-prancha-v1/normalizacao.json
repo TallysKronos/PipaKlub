@@ -1,0 +1,437 @@
+{
+  "id": "raibroto",
+  "folder": "art/creatures/raibroto-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/raibroto/duas-vistas.png",
+  "height": 41,
+  "motion": "BABY saber-feline paper-kite cub, small low rounded body with FOUR short paws, ivory pink charcoal face/ears, tiny red eyes, two small saber fangs and gold bell. One compact pink diamond sail bud above back and one attached gold-cord tail ending four pink petals. Real tiny quadruped walking, alternate diagonal support with complete short fore/hind limbs lifting and planting. No adult body or new ears/heads.",
+  "sheets": [
+    {
+      "path": "art/creatures/raibroto-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "16802e87d52e2b62da0c95a065da3d92603a86fed632cb36a759ad566be7be60",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.13225806451612904,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          112,
+          110,
+          429,
+          419
+        ],
+        [
+          94,
+          110,
+          418,
+          419
+        ],
+        [
+          78,
+          109,
+          420,
+          419
+        ],
+        [
+          106,
+          111,
+          447,
+          409
+        ],
+        [
+          96,
+          110,
+          423,
+          418
+        ],
+        [
+          86,
+          108,
+          418,
+          415
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 22,
+          "offset_y": 45,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 22,
+          "offset_y": 45,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 22,
+          "offset_y": 45,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 22,
+          "offset_y": 45,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 22,
+          "offset_y": 45,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 22,
+          "offset_y": 45,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/raibroto-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "b736e1feb65c85a999c5fc9cd2e4865d7dbb886a4d94787222459de71d7be011",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.128125,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          114,
+          100,
+          445,
+          418
+        ],
+        [
+          114,
+          98,
+          440,
+          414
+        ],
+        [
+          108,
+          98,
+          435,
+          418
+        ],
+        [
+          118,
+          98,
+          438,
+          418
+        ],
+        [
+          117,
+          98,
+          446,
+          416
+        ],
+        [
+          114,
+          98,
+          442,
+          417
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 21,
+          "offset_y": 46,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 21,
+          "offset_y": 46,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 21,
+          "offset_y": 46,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 21,
+          "offset_y": 46,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 21,
+          "offset_y": 46,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 21,
+          "offset_y": 46,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "06e088bca6448d262f8724f7df62af72c121779fc57bfcae4468eb33b313bd2a",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          57,
+          90,
+          61,
+          93
+        ],
+        "edits": [
+          {
+            "x": 58,
+            "y": 91,
+            "color": "f77c87"
+          },
+          {
+            "x": 59,
+            "y": 91,
+            "color": "f77c87"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          57,
+          90,
+          61,
+          93
+        ],
+        "edits": [
+          {
+            "x": 58,
+            "y": 91,
+            "color": "f0d5c5"
+          },
+          {
+            "x": 59,
+            "y": 91,
+            "color": "f0d5c5"
+          }
+        ]
+      }
+    }
+  },
+  "source_core_lock": {
+    "views": {
+      "sw": {
+        "moving_regions": [
+          [
+            0,
+            0,
+            112,
+            105
+          ]
+        ],
+        "protected_polygons": [
+          [
+            [
+              33,
+              70
+            ],
+            [
+              63,
+              70
+            ],
+            [
+              63,
+              91
+            ],
+            [
+              33,
+              91
+            ]
+          ],
+          [
+            [
+              38,
+              89
+            ],
+            [
+              50,
+              89
+            ],
+            [
+              50,
+              96
+            ],
+            [
+              38,
+              96
+            ]
+          ],
+          [
+            [
+              50,
+              56
+            ],
+            [
+              70,
+              56
+            ],
+            [
+              70,
+              83
+            ],
+            [
+              50,
+              83
+            ]
+          ],
+          [
+            [
+              52,
+              78
+            ],
+            [
+              66,
+              78
+            ],
+            [
+              69,
+              86
+            ],
+            [
+              61,
+              90
+            ],
+            [
+              53,
+              87
+            ]
+          ]
+        ]
+      },
+      "nw": {
+        "moving_regions": [
+          [
+            0,
+            0,
+            112,
+            105
+          ]
+        ],
+        "protected_polygons": [
+          [
+            [
+              34,
+              68
+            ],
+            [
+              60,
+              68
+            ],
+            [
+              60,
+              89
+            ],
+            [
+              34,
+              89
+            ]
+          ],
+          [
+            [
+              49,
+              56
+            ],
+            [
+              70,
+              56
+            ],
+            [
+              70,
+              83
+            ],
+            [
+              49,
+              83
+            ]
+          ],
+          [
+            [
+              48,
+              78
+            ],
+            [
+              61,
+              78
+            ],
+            [
+              64,
+              86
+            ],
+            [
+              58,
+              90
+            ],
+            [
+              50,
+              88
+            ]
+          ]
+        ]
+      }
+    }
+  }
+}

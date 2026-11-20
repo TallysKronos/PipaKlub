@@ -47,6 +47,9 @@ const NIGHT_ROOM := Color("9aabc7")
 const POSSESSED := Color("b978dd")
 const MIST := Color(.76, .65, .79, .55)
 const MUTED_ICON := Color(.45, .45, .45)
+## Torre do Vento: one ribbon per Wind (Tufanocorte, Rabiolava, Trovareta, Mormaço) and dawn.
+const WIND_RIBBONS := [Color("bce9e3"), Color("f4c27d"), Color("d2c6f1"), Color("d5e6a8")]
+const DAWN := Color("eadbb0")
 const ACTION_COLORS := {"attack": RABIOLA, "energy": FOLHA, "dodge": CEU,
 	"puxao": SOL, "line": PAPEL, "team": SOL}
 const FONT_ROOT := "res://assets/campaign/ui-modern/fonts/"
@@ -89,3 +92,14 @@ static func display() -> Font:
 static func lettering() -> Font:
 	if not _fonts.has("lettering"): _fonts.lettering = load(LETTERING_PATH)
 	return _fonts.lettering
+## Act 4-6 story scenes (Codex refino): speaker ring and name tag of the champions'
+## meeting, light motes of the restored city, Navalha's black strand, the cherry
+## blossom of Tyler's epilogue and the core of a released Wind.
+const MEETING_RING := Color("86d7de")
+const MEETING_NAME := Color("fff2d1")
+const MEETING_NAME_OUTLINE := Color("172b37")
+const MEETING_LISTENER := Color(.72, .72, .72, 1)
+const CITY_MOTE := Color("fff0b0")
+const CAROL_STRAND := Color("24202b")
+const CHERRY_BLOSSOM := Color("edb1cf")
+const WIND_CORE := Color("fff3c4")

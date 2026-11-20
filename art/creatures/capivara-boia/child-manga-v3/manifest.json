@@ -1,0 +1,30 @@
+{
+  "id": "capivara-boia",
+  "name": "Capiboia",
+  "stage": 2,
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-0298d825-ffc0-4b62-ae85-4eac10d01fc6.png",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "sha256": "64a615a5d02bb2d54338e3cabed84a74e4ddafbe3032f7721595357105953a72",
+  "references": [
+    {
+      "path": "art/creatures/capivara-boia-family-v1/gotim/concept-v4/concept.png",
+      "role": "construção de bebê e parentesco"
+    },
+    {
+      "path": "art/creatures/capivara-boia/child-manga-v2/concept.png",
+      "role": "identidade anterior da criança"
+    }
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "limitation": "Miniaturas simplificaram rabiola de três para duas abas; não são frames técnicos."
+}

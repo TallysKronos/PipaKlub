@@ -1,0 +1,23 @@
+{
+  "id": "remansa",
+  "name": "Remansa",
+  "stage": 3,
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-1ed3efaf-cbf7-4fcb-b9f5-d1d1f2880459.png",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "sha256": "cee81673972131ae0475a1afb506c31f7af8d8c0938fb463a78e99ee3ce66b82",
+  "references": [
+    "art/creatures/capivara-boia/child-manga-v1/concept.png"
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "prompt": "prompt.txt",
+  "review": "revisao.md",
+  "brief": "brief.md"
+}

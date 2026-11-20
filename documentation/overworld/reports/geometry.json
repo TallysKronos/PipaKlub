@@ -295,37 +295,175 @@
       "walkable": 1081
     },
     {
-      "directed_edges": 3074,
+      "directed_edges": 3006,
       "id": "kronasta-industrial-d",
       "ramp_probes": 80,
-      "walkable": 845
+      "walkable": 833
     },
     {
-      "directed_edges": 3346,
+      "directed_edges": 3324,
       "id": "kronasta-palafitas-a",
       "ramp_probes": 40,
-      "walkable": 925
+      "walkable": 922
     },
     {
-      "directed_edges": 3564,
+      "directed_edges": 3540,
       "id": "kronasta-palafitas-b",
       "ramp_probes": 40,
-      "walkable": 986
+      "walkable": 983
     },
     {
-      "directed_edges": 3762,
+      "directed_edges": 3742,
       "id": "kronasta-palafitas-c",
       "ramp_probes": 80,
-      "walkable": 1038
+      "walkable": 1035
     },
     {
       "directed_edges": 2896,
       "id": "parque-patio-liga",
       "ramp_probes": 80,
       "walkable": 772
+    },
+    {
+      "directed_edges": 2846,
+      "id": "kronasta-aracati-a",
+      "ramp_probes": 40,
+      "walkable": 772
+    },
+    {
+      "directed_edges": 4036,
+      "id": "kronasta-aracati-b",
+      "ramp_probes": 40,
+      "walkable": 1064
+    },
+    {
+      "directed_edges": 3448,
+      "id": "kronasta-aracati-c",
+      "ramp_probes": 40,
+      "walkable": 914
+    },
+    {
+      "directed_edges": 1818,
+      "id": "kronasta-mirante-a",
+      "ramp_probes": 50,
+      "walkable": 491
+    },
+    {
+      "directed_edges": 1946,
+      "id": "kronasta-mirante-b",
+      "ramp_probes": 50,
+      "walkable": 525
+    },
+    {
+      "directed_edges": 2130,
+      "id": "kronasta-mirante-c",
+      "ramp_probes": 50,
+      "walkable": 570
+    },
+    {
+      "directed_edges": 3702,
+      "id": "kronasta-centro-a",
+      "ramp_probes": 80,
+      "walkable": 1050
+    },
+    {
+      "directed_edges": 3878,
+      "id": "kronasta-centro-b",
+      "ramp_probes": 50,
+      "walkable": 1063
+    },
+    {
+      "directed_edges": 2828,
+      "id": "kronasta-centro-c",
+      "ramp_probes": 100,
+      "walkable": 775
+    },
+    {
+      "directed_edges": 3016,
+      "id": "kronasta-lajes-a",
+      "ramp_probes": 80,
+      "walkable": 869
+    },
+    {
+      "directed_edges": 3326,
+      "id": "kronasta-lajes-b",
+      "ramp_probes": 50,
+      "walkable": 927
+    },
+    {
+      "directed_edges": 2510,
+      "id": "kronasta-lajes-c",
+      "ramp_probes": 100,
+      "walkable": 696
+    },
+    {
+      "directed_edges": 2982,
+      "id": "kronasta-porto-a",
+      "ramp_probes": 80,
+      "walkable": 838
+    },
+    {
+      "directed_edges": 3804,
+      "id": "kronasta-porto-b",
+      "ramp_probes": 40,
+      "walkable": 1069
+    },
+    {
+      "directed_edges": 2222,
+      "id": "kronasta-porto-c",
+      "ramp_probes": 40,
+      "walkable": 634
+    },
+    {
+      "directed_edges": 1522,
+      "id": "kronasta-coracao-a",
+      "ramp_probes": 0,
+      "walkable": 415
+    },
+    {
+      "directed_edges": 1262,
+      "id": "kronasta-coracao-b",
+      "ramp_probes": 0,
+      "walkable": 354
+    },
+    {
+      "directed_edges": 1444,
+      "id": "kronasta-coracao-c",
+      "ramp_probes": 0,
+      "walkable": 396
+    },
+    {
+      "directed_edges": 3110,
+      "id": "kronasta-morro-a",
+      "ramp_probes": 100,
+      "walkable": 893
+    },
+    {
+      "directed_edges": 3284,
+      "id": "kronasta-morro-e",
+      "ramp_probes": 50,
+      "walkable": 883
+    },
+    {
+      "directed_edges": 2090,
+      "id": "kronasta-morro-b",
+      "ramp_probes": 100,
+      "walkable": 583
+    },
+    {
+      "directed_edges": 2804,
+      "id": "kronasta-morro-c",
+      "ramp_probes": 100,
+      "walkable": 774
+    },
+    {
+      "directed_edges": 2374,
+      "id": "kronasta-morro-d",
+      "ramp_probes": 100,
+      "walkable": 666
     }
   ],
-  "checks": 507287,
+  "checks": 725102,
   "failures": [],
   "scope": "isolated geometry and preview; no campaign saves touched"
 }

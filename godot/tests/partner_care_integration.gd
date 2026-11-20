@@ -101,6 +101,10 @@ func run() -> void:
 	check(app.session.snapshot().player.partners[0].condition.line==100,"campaign partner repaired")
 	await shot("03-recuperado")
 	view.back_requested.emit();await process_frame
+	# O Morro abre pela tela dos bairros, que carrega com cobertura animada.
+	for i in 240:
+		if is_instance_valid(app.park) and not is_instance_valid(app.scene_loading):break
+		await process_frame
 	check(is_instance_valid(app.park),"back returns to overworld")
 	var before:Dictionary=app.session.snapshot()
 	app._show_partner_care();await process_frame

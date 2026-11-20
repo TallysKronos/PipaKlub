@@ -1,0 +1,33 @@
+{
+  "id": "canticripta",
+  "version": 2,
+  "date": "2026-11-07",
+  "tool": "built-in image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-f8c62343-acca-4741-8e43-7abd58b913cb.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "background": "white",
+  "sha256": "d720971db86bceef10419a8e2758d3294d9ba968a7c94a9ab39f66adea4ab4c1",
+  "references": [
+    {
+      "path": "../concept-v1/concept.png",
+      "role": "author-owned identity/edit target"
+    },
+    {
+      "path": "../../grifarca/concept-v2/concept.png",
+      "role": "approved own living-kite construction guide, not ancestry"
+    }
+  ],
+  "external_images_attached": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "correction_prompt": null,
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation_status": "not_integrated",
+  "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+}

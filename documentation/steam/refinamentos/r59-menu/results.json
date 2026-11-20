@@ -1,0 +1,11 @@
+{
+  "orphanBaseline": 0,
+  "afterLeakDiagnostics": 0,
+  "cycleChecks": 55,
+  "scope": "headless title, settings, menu teardown; not whole campaign or physical audio hardware",
+  "base": "bfac009c plus this refinement",
+  "titleChecks": 350,
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "nodeBaseline": 2,
+  "cycles": 5
+}

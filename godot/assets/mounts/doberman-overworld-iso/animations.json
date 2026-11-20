@@ -1,0 +1,264 @@
+{
+  "version": 1,
+  "kind": "complete-mounted-sprites",
+  "animations": {
+    "walk-e": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/walk-e.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 150,
+      "pivot": [
+        128,
+        236.11028617240058
+      ],
+      "scale": 0.9217313860958607,
+      "mirroredFrom": null
+    },
+    "walk-w": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/walk-w.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 150,
+      "pivot": [
+        128,
+        232.8544905712991
+      ],
+      "scale": 0.9208391001461067,
+      "mirroredFrom": "walk-e"
+    },
+    "run-e": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/run-e.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 100,
+      "pivot": [
+        128,
+        234.15482951653945
+      ],
+      "scale": 0.9101267229879947,
+      "mirroredFrom": null
+    },
+    "run-w": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/run-w.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 100,
+      "pivot": [
+        128,
+        230.85858524173028
+      ],
+      "scale": 0.9101267229879947,
+      "mirroredFrom": "run-e"
+    },
+    "walk-sw": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/walk-sw.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 150,
+      "pivot": [
+        128,
+        233.65545173278022
+      ],
+      "scale": 0.8845432206882968,
+      "mirroredFrom": null
+    },
+    "walk-se": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/walk-se.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 150,
+      "pivot": [
+        128,
+        234.8109168356998
+      ],
+      "scale": 0.9044953234105892,
+      "mirroredFrom": "walk-sw"
+    },
+    "run-sw": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/run-sw.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 100,
+      "pivot": [
+        128,
+        230.77293233082708
+      ],
+      "scale": 0.9198810697363816,
+      "mirroredFrom": null
+    },
+    "run-se": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/run-se.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 100,
+      "pivot": [
+        128,
+        231.885046653144
+      ],
+      "scale": 0.9415488510430245,
+      "mirroredFrom": "run-sw"
+    },
+    "walk-ne": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/walk-ne.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 150,
+      "pivot": [
+        128,
+        240.1634336586201
+      ],
+      "scale": 0.7930564048978597,
+      "mirroredFrom": null
+    },
+    "walk-nw": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/walk-nw.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 150,
+      "pivot": [
+        128,
+        231.39286511822556
+      ],
+      "scale": 0.8110804141000838,
+      "mirroredFrom": "walk-ne"
+    },
+    "run-ne": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/run-ne.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 100,
+      "pivot": [
+        128,
+        240.7805786680363
+      ],
+      "scale": 0.8271009298194736,
+      "mirroredFrom": null
+    },
+    "run-nw": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/run-nw.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 100,
+      "pivot": [
+        128,
+        232.37993153379367
+      ],
+      "scale": 0.8490998085110253,
+      "mirroredFrom": "run-ne"
+    },
+    "walk-n": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/walk-n.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 150,
+      "pivot": [
+        128,
+        236.82430480241007
+      ],
+      "scale": 0.7549058849214673,
+      "mirroredFrom": null
+    },
+    "run-n": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/run-n.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 100,
+      "pivot": [
+        128,
+        233.76230637199058
+      ],
+      "scale": 0.8162637277618193,
+      "mirroredFrom": null
+    },
+    "run-s": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/run-s.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 100,
+      "pivot": [
+        128,
+        233.15150310559005
+      ],
+      "scale": 0.8623947206444927,
+      "mirroredFrom": null
+    },
+    "walk-s": {
+      "texture": "res://assets/mounts/doberman-overworld-iso/walk-s.png",
+      "cell": [
+        256,
+        256
+      ],
+      "columns": 4,
+      "frames": 8,
+      "durationMs": 150,
+      "pivot": [
+        128,
+        231.1681626199887
+      ],
+      "scale": 0.9243755376097139,
+      "mirroredFrom": null
+    }
+  },
+  "source": "art/concepts/montaria-doberman/animation-v1/corrected-pack-v1",
+  "idle": "existing edited static eight views"
+}

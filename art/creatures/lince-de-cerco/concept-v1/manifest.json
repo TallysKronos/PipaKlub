@@ -1,0 +1,20 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-fe5d8c40-c3ba-4e4b-8ad3-7e080501393c.png",
+  "sha256": "2ddbf3c611db108bce05763da4d6112ea1fc39de112b53128bb88c3300be6dc4",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "javali-guerreiro/concept-v1/concept.png: acabamento e volumes; não identidade"
+  ],
+  "external_inputs": [],
+  "decision_status": "approved",
+  "production_status": "concept",
+  "integration_status": "not_integrated",
+  "approval_note": "2026-11-04 — autor: “Aprovado, quais outras ideias você tem para quadrupedes?”. Escopo: concept visual do lince; funções e nomes permanecem propostos."
+}

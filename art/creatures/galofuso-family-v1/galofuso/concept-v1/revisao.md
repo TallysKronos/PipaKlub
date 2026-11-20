@@ -1,0 +1,3 @@
+# Conferência
+
+Atirador aviano bípede de armadura, crista-elmo e dois lançadores integrados aos antebraços, carretéis nos ombros. Imagem gerada e inspecionada antes da etapa seguinte. Dois braços e mãos estão conectados, cada um com um trilho; carretéis nos ombros ligados por linha. Pescoço, bico e crista conservam leitura de galo. A função descrita ainda é proposta: não foi validada em ação. Leves transições de sombra residuais; concept mangá, não pixel art de grade. Fundo branco opaco, não recortado, sem rig, animação ou integração. Em avaliação do autor.

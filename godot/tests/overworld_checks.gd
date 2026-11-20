@@ -22,9 +22,15 @@ func run() -> void:
 		model.setup(data)
 		var expected_cells: Dictionary = {}
 		var expected_edges: Dictionary = {}
-		for id in data.oracle.walkable: expected_cells[int(id)] = true
-		for edge in data.oracle.edges: expected_edges[str(int(edge[0]))+":"+str(int(edge[1]))] = true
-		for v in int(data.h):
+		# Maps compiled from Tiled carry the Mapa Studio oracle. The Coração galleries are
+		# drawn straight into JSON (tools/mapa-studio/desenhar-coracao-galerias.mjs drops the
+		# oracle); for them only the entrance and the event approach below are checked.
+		var oracle: Dictionary = data.get("oracle", {})
+		if oracle.is_empty():
+			check(model.walkable(Vector2i(int(data.spawn.u),int(data.spawn.v))),area.id+" entrance walkable (no oracle)")
+		for id in oracle.get("walkable", []): expected_cells[int(id)] = true
+		for edge in oracle.get("edges", []): expected_edges[str(int(edge[0]))+":"+str(int(edge[1]))] = true
+		for v in int(data.h) if not oracle.is_empty() else 0:
 			for u in int(data.w):
 				var at := Vector2i(u,v)
 				check(model.walkable(at)==expected_cells.has(model.key(at)),area.id+" walkable "+str(at))
@@ -32,7 +38,7 @@ func run() -> void:
 					var next: Vector2i = at+delta
 					var key := str(model.key(at))+":"+str(model.key(next))
 					check(model.can_step(at,next)==expected_edges.has(key),area.id+" edge "+key)
-		for probe in data.oracle.heightProbes: check(is_equal_approx(model.height_at(Vector2(probe[0],probe[1])),float(probe[2])),area.id+" continuous ramp")
+		for probe in oracle.get("heightProbes", []): check(is_equal_approx(model.height_at(Vector2(probe[0],probe[1])),float(probe[2])),area.id+" continuous ramp")
 		for event in data.events:
 			if event.type == "entrada":continue
 			var candidates := [Vector2(event.u+.5,event.v+.5)]
@@ -41,7 +47,7 @@ func run() -> void:
 			for candidate in candidates:
 				if model.path_to(Vector2(data.spawn.u+.5,data.spawn.v+.5),candidate).size()>0:reached=true;break
 			check(reached,area.id+" event approachable "+event.name)
-		areas.append({"id":area.id,"walkable":expected_cells.size(),"directed_edges":expected_edges.size(),"ramp_probes":data.oracle.heightProbes.size()})
+		areas.append({"id":area.id,"walkable":expected_cells.size(),"directed_edges":expected_edges.size(),"ramp_probes":oracle.get("heightProbes", []).size()})
 	# Instantiate both review modes, and inspect real Godot tile coordinate transforms.
 	var view: Node2D = load("res://scripts/overworld/view.gd").new()
 	view.art_preview = true

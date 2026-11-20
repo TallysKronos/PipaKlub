@@ -1,0 +1,92 @@
+{
+  "family_id": "grifarca",
+  "scope": "Concepts visuais aprovados pelo autor; relações, lore e condições propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "grifim",
+      "name": "Grifim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Rosto-pipa integrado, bico curto, duas abas e dois pequenos pés; rabiola com terminal bilobado. Sem corpo de adulto reduzido.",
+      "story": "Da cabeça-pipa ao vigia alado; aprender a equilibrar apoio, salto e voo.",
+      "action": "perceber",
+      "tradeoff": "Pouca autonomia e alcance.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/grifarca/grifim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/grifarca/grifim/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "grifote",
+      "name": "Grifote",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Quatro membros, anteriores com garras e posteriores com patas largas. Correção removeu linha decorativa entre pata e cauda. Uma rabiola. Um broto de asa está legível; contralateral fica oculto e requer vista posterior antes de rig.",
+      "story": "Da cabeça-pipa ao vigia alado; aprender a equilibrar apoio, salto e voo.",
+      "action": "explorar",
+      "tradeoff": "Pouca resistência e controle.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/grifarca/grifote/concept-v1/concept.png",
+      "brief": "../../../art/creatures/grifarca/grifote/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "grifalce",
+      "name": "Grifalce",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Quatro membros, duas asas com raízes separadas dos braços, bico mais firme e guarda parcial anterior. Rabiola única, sem cristal e sem peito adulto pesado.",
+      "story": "Da cabeça-pipa ao vigia alado; aprender a equilibrar apoio, salto e voo.",
+      "action": "especializar",
+      "tradeoff": "Menor sustentação e proteção que o adulto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/grifarca/grifalce/concept-v1/concept.png",
+      "brief": "../../../art/creatures/grifarca/grifalce/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "grifarca",
+      "name": "Grifarca",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Identidade da arte adulta atual preservada; cristal central, papel vivo e rabiola da própria família.",
+      "story": "Da cabeça-pipa ao vigia alado; aprender a equilibrar apoio, salto e voo.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/grifarca/concept-v2/concept.png",
+      "brief": "../../../art/creatures/grifarca/concept-v2/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "grifim",
+      "to": "grifote",
+      "kind": "reweaving",
+      "reason": "A construção simples de Grifim ganha corpo e órgãos de exploração em Grifote.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "grifote",
+      "to": "grifalce",
+      "kind": "reweaving",
+      "reason": "A exploração de Grifote exige movimento mais especializado e proteção parcial em Grifalce.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "grifalce",
+      "to": "grifarca",
+      "kind": "reweaving",
+      "reason": "Grifalce desenvolve sustentação e controle para a arquitetura adulta de Grifarca; aquisição do cristal e condições continuam propostas.",
+      "decision_status": "proposed"
+    }
+  ],
+  "crystal_note": "Proposta: cristal ancestral adquirido na forma adulta; nenhum novo fragmento/alma nas formas anteriores."
+}

@@ -1,0 +1,15 @@
+from pathlib import Path
+import json,html,statistics
+ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'art/creatures/overworld-video-v2'
+m=json.loads((OUT/'queue.json').read_text(encoding='utf-8'));cards=[];rows=[]
+for j in m['jobs']:
+    key=j['id'].replace('/','-');draft=f'review/{key}/preview.gif';video=j.get('outputs',[None])[0] if j.get('outputs') else None
+    if video:
+        cards.append(f'<article><h3>{html.escape(j["id"])}</h3><p>{j.get("elapsed_seconds","?")} s para gerar · vídeo384×384</p><p>{html.escape(j.get("review_status","Estudo: aguarda revisão"))}</p><video controls loop muted preload="none" src="{video}"></video>'+ (f'<img loading="lazy" src="{draft}" alt="Extração experimental em112px">' if (OUT/draft).exists() else '')+'</article>')
+    link=f'<a href="{video}">Vídeo</a>' if video else '—'
+    rows.append(f'<tr><td>{j["creature"]}</td><td>{j["anatomy"]}</td><td>{j["action"]}</td><td>{j["view"]}</td><td>{j["status"]}</td><td>{j.get("elapsed_seconds", "—")}</td><td>{link}</td></tr>')
+times=[j['elapsed_seconds'] for j in m['jobs'] if isinstance(j.get('elapsed_seconds'),(int,float))];average=statistics.mean(times) if times else None
+summary=dict(creatures=m['total_creatures'],jobs=len(m['jobs']),completed=sum(j['status']=='completed' for j in m['jobs']),measured_mean_seconds=average,rough_total_gpu_hours=average*len(m['jobs'])/3600 if average else None,runtime_replaced=False)
+(OUT/'benchmark.json').write_text(json.dumps(summary,indent=2))
+(OUT/'index.html').write_text('''<!doctype html><meta charset="utf-8"><title>Soulmonsters · vídeo para sprites</title><style>body{font:16px system-ui;background:#112b34;color:#f6e9ce;margin:24px}a{color:#7edcd3}header{position:sticky;top:0;background:#112b34;padding:10px}input{padding:10px;width:340px}.previews{display:flex;flex-wrap:wrap;gap:16px}article{background:#263d48;padding:12px}video{width:320px}img{width:224px;image-rendering:pixelated}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:8px;border-bottom:1px solid #35515c}</style><header><h1>Vídeo → sprites de overworld</h1><p>194 criaturas · 776 clipes previstos ·384×384 ·56 quadros/24fps ·12 passos. Perfil experimental; o jogo atual está preservado.</p><input placeholder="Filtrar criatura, anatomia ou estado" oninput="document.querySelectorAll('tbody tr').forEach(r=>r.hidden=!r.textContent.toLowerCase().includes(this.value.toLowerCase()))"><p><a href="lista.csv">Baixar listaCSV</a> · <a href="README.md">Método e limites</a> · <a href="quality-review-v1/comparar.html">Revisão de qualidade</a></p></header><h2>Pilotos concluídos</h2><p>O vídeo mostra as poses geradas. O GIF ao lado é extração experimental em pixels, ainda sujeita a revisão.</p><section class="previews">'''+''.join(cards)+'''</section><h2>Fila completa</h2><table><thead><tr><th>Criatura</th><th>Anatomia</th><th>Ação</th><th>Vista</th><th>Estado</th><th>Tempo(s)</th><th>Arquivo</th></tr></thead><tbody>'''+''.join(rows)+'''</tbody></table>''',encoding='utf-8')
+print(json.dumps(summary))

@@ -4,7 +4,7 @@ const State=preload("res://scripts/campaign/state.gd")
 const Store=preload("res://scripts/campaign/save_store.gd")
 const D=preload("res://scripts/campaign/shop_data.gd")
 const Staging=preload("res://scripts/campaign/tutorial_staging.gd")
-const OUT="res://../documentation/overworld/loja-tcg/fluxo/"
+const OUT="res://../art/overworld/estilo/loja-piloto-v2/interior/modernizacao/integracao/"
 var front:Control
 var checks:=0
 func require(ok:bool,message:String)->bool:
@@ -24,11 +24,12 @@ func shot(name:String)->void:
  root.get_texture().get_image().save_png(OUT+name+".png")
 func run()->void:
  root.size=Vector2i(1280,720);DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUT))
- front=Front.new();front.session._store=Store.new("user://shop-flow-"+State.new_id());root.add_child(front)
+ var folder:=ProjectSettings.globalize_path("res://.godot/shop-flow-"+State.new_id())
+ front=Front.new();front.session._store=Store.new(folder);front.preferences.storage_path=folder+"/preferences.cfg";root.add_child(front)
  if not require(front.session.start("slot-1").status=="ok","isolated slot"):return
  var saved:Dictionary=front.session.snapshot()
  saved.player.partners=[{"id":State.new_id(),"modelId":"rabbito","personalName":"Rabbito","xp":0,"craftBonus":0,"condition":{"line":100,"structure":100}}]
- saved.player.equippedPartnerId=saved.player.partners[0].id;saved.player.journey={"lesson":5,"phase":"complete"}
+ saved.player.equippedPartnerId=saved.player.partners[0].id;saved.player.journey={"lesson":5,"phase":"complete"};saved.player.starter={"completed":true}
  if not require(front.session.checkpoint({"kind":"world","scene":"quintal","position":[D.CITY_ENTRY.x,D.CITY_ENTRY.y],"space":"bairro-inicial-v2"},saved.player).status=="ok","city checkpoint"):return
  front._show_saved()
  if not require(await wait_for(false),"neighborhood loads"):return
@@ -39,9 +40,11 @@ func run()->void:
  if not require(await wait_for(true),"real doorway enters shop"):return
  await create_timer(.8).timeout
  await shot("02-interior-hud")
+ if not require(front.stage.scale==Vector2.ONE and front.room.avatar.scale==Vector2.ONE,"shop stage and Kael are displayed at native scale"):return
+ if not require(front.room.get_meta("shop_art")=="interior-moderno-v2","modern atlas is active in campaign"):return
  if not require(await Staging.approach(front.room,D.point(8.5,9)),"walk through the widened central aisle"):return
  await shot("02b-corredor-livre")
- if not require(await Staging.approach(front.room,D.point(8,4.5)),"walk to counter without crossing furniture"):return
+ if not require(await Staging.approach(front.room,D.point(8,5.7)),"walk to counter without crossing furniture"):return
  front.room.can_walk=true;front.room.interacted.emit("counter")
  await process_frame
  var dialog:Control=front.get_node_or_null("ShopConversation")
@@ -59,6 +62,15 @@ func run()->void:
  if not require(front.room.actor.distance_to(at)<.01,"resume preserves position"):return
  if not require(front._slot_location(front.session.snapshot()).name=="Linha & Papel","save card names shop"):return
  await shot("04-retomada")
+ for visit in [
+  ["06-estantes",D.point(15,2.9)],
+  ["07-mesa-fundo",D.point(9.1,7.5)],
+  ["08-mesa-frente",D.point(9.1,11.7)],
+  ["09-gondola",D.point(5.3,10.7)],
+ ]:
+  if not require(await Staging.approach(front.room,visit[1]),"walk to "+visit[0]+" without crossing furniture"):return
+  front.room.can_walk=true
+  await shot(visit[0])
  if not require(await Staging.approach(front.room,D.ENTRY),"walk back to exit"):return
  front.room.interacted.emit("exit")
  if not require(await wait_for(false),"exit returns to neighborhood"):return

@@ -12,6 +12,8 @@ var ambience: AudioStreamPlayer
 var music: AudioStreamPlayer
 var music_id := ""
 var music_fade: Tween
+var outgoing_music: AudioStreamPlayer
+var outgoing_fade: Tween
 var observer: RefCounted
 var previous_save: Dictionary = {}
 var game_paused := false
@@ -124,7 +126,9 @@ func clear_context() -> void:
 	context_generation += 1
 	game_paused = false
 	scene_paused = false
-	if is_instance_valid(ambience): ambience.queue_free()
+	if is_instance_valid(ambience):
+		ambience.stop()
+		ambience.queue_free()
 	ambience = null
 	for voice: AudioStreamPlayer in voices:
 		if is_instance_valid(voice) and not bool(voice.get_meta("ui", false)) and not bool(voice.get_meta("persistent", false)): voice.stop(); voice.queue_free()
@@ -133,9 +137,11 @@ func clear_context() -> void:
 
 func start_ambience(id: String) -> void:
 	if not events.has(id): return
-	if is_instance_valid(ambience): ambience.queue_free()
 	var original := _stream(str(events[id].files[0].path)) as AudioStreamWAV
 	if original == null: return
+	if is_instance_valid(ambience):
+		ambience.stop()
+		ambience.queue_free()
 	var loop := original.duplicate() as AudioStreamWAV
 	loop.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	loop.loop_begin = 0
@@ -176,13 +182,17 @@ func play_music(id: String) -> void:
 func stop_music() -> void:
 	music_id = ""
 	if not is_instance_valid(music): return
-	var outgoing := music
+	if is_instance_valid(outgoing_music):
+		if outgoing_fade != null and outgoing_fade.is_valid(): outgoing_fade.kill()
+		outgoing_music.stop()
+		outgoing_music.queue_free()
+	outgoing_music = music
 	music = null
 	# Cancel an unfinished fade-in before starting the fade-out.
 	if music_fade != null and music_fade.is_valid(): music_fade.kill()
-	var fade := create_tween()
-	fade.tween_property(outgoing, "volume_db", -60.0, .65)
-	fade.tween_callback(outgoing.queue_free)
+	outgoing_fade = create_tween()
+	outgoing_fade.tween_property(outgoing_music, "volume_db", -60.0, .65)
+	outgoing_fade.tween_callback(outgoing_music.queue_free)
 
 func _update_pause() -> void:
 	for child: Node in get_children():

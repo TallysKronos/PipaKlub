@@ -1,0 +1,17 @@
+{
+  "id": "tricordio",
+  "name": "Tricórdio — Valete do Limiar",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-3bf97b50-bcff-4a94-920c-a356f57b848c.png",
+  "sha256": "bd324c7bd88db05b41d86016a2716a3434df55e833b49381361272e40d43e29f",
+  "prompt": "prompt.txt",
+  "references": [
+    {"path": "art/creatures/lobo-cordeiro-family-v1/voto-do-elo/concept-v1/concept.png", "role": "construção própria aprovada"},
+    {"path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png", "role": "acabamento próprio aprovado"}
+  ],
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false
+}

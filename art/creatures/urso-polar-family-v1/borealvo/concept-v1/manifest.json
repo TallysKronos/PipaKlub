@@ -1,0 +1,19 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-1b47da48-5f2b-4191-8986-49c81b196f6c.png",
+  "sha256": "550222ec4d312e4ce8bd4ba9650ead8c3361fb6a8a955638b4c3c5f1b9d351b6",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "../gambalhote/gambalhote-adult/concept-v2/concept.png: acabamento apenas"
+  ],
+  "reference_paths_relative_to": "art/creatures/urso-polar-family-v1",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "integration_status": "not_integrated"
+}

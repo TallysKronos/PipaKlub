@@ -1,0 +1,33 @@
+{
+  "id": "azuligero",
+  "name": "Azulígero",
+  "stage": "IV · adulto · velocidade",
+  "source": "exec-d2de889b-a38e-434d-aab0-a2a8602222d8.png",
+  "file": "azuligero/concept-pipa-v3/concept.png",
+  "size": [
+    1774,
+    887
+  ],
+  "mode": "RGBA",
+  "alpha": [
+    0,
+    255
+  ],
+  "sha256": "b6d9d64a3eeb748ecfbe0d1d3b98189d2b2962b02829dff83da907792a1fb109",
+  "tool": "image_gen integrada",
+  "status": "concept visual aprovado pelo autor; sem rig ou integração",
+  "prompt": "prompt.txt",
+  "generation_references": [
+    "art/soulgen/keys/azulao/color-rig-v2/concept.png",
+    "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png",
+    "art/creatures/azulao-family-v1/azulineo/concept-pipa-v3/concept.png"
+  ],
+  "correction_reference": "rascunho-proximo-do-jovem.png",
+  "effective_prompt": "prompt-correcao.txt",
+  "review": "../../lote-pipa-v3/REVISAO.md",
+  "visualApproval": {
+    "date": "2026-11-03",
+    "statement": "Gostei aprovados",
+    "scope": "design visual deste concept"
+  }
+}

@@ -1,0 +1,483 @@
+{
+ "version": 1,
+ "fonte": "tools/package-evolucoes.py · plano de povoamento aprovado",
+ "regra": "A evolução fica disponível quando o parceiro alcança o nível do estágio seguinte; o jogador confirma (e escolhe entre ramos, quando há mais de um). Nível, XP, condição e nome dado pelo jogador são mantidos.",
+ "stages": {
+  "crianca": {
+   "name": "Criança",
+   "level": 1,
+   "bonus": 0
+  },
+  "jovem": {
+   "name": "Jovem",
+   "level": 16,
+   "bonus": 6
+  },
+  "adulto": {
+   "name": "Adulto",
+   "level": 32,
+   "bonus": 12
+  }
+ },
+ "forms": {
+  "basica": {
+   "name": "Carcará",
+   "family": "carcara",
+   "root": "basica",
+   "stage": "crianca",
+   "level": 1,
+   "bonus": 0,
+   "from": [],
+   "identity": "carcara:carcara",
+   "status": "Aprovado visualmente",
+   "provisional": false
+  },
+  "caravento": {
+   "name": "Caravento",
+   "family": "carcara",
+   "root": "basica",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "basica"
+   ],
+   "identity": "carcara:caravento",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/carcara-family-v1/caravento/concept-v1/concept.png"
+  },
+  "caramastro": {
+   "name": "Caramastro",
+   "family": "carcara",
+   "root": "basica",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "caravento"
+   ],
+   "identity": "carcara:caramastro",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/carcara-family-v1/caramastro/concept-v1/concept.png"
+  },
+  "mata": {
+   "name": "Mata Verde",
+   "family": "mata-verde",
+   "root": "mata",
+   "stage": "crianca",
+   "level": 1,
+   "bonus": 0,
+   "from": [],
+   "identity": "mata-verde:mata-verde",
+   "status": "Aprovado visualmente",
+   "provisional": false
+  },
+  "folhante": {
+   "name": "Folhante",
+   "family": "mata-verde",
+   "root": "mata",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "mata"
+   ],
+   "identity": "mata-verde:folhante",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/mata-verde-family-v1/folhante/concept-v1/concept.png"
+  },
+  "verdestrama": {
+   "name": "Verdestrama",
+   "family": "mata-verde",
+   "root": "mata",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "folhante"
+   ],
+   "identity": "mata-verde:verdestrama",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/mata-verde-family-v1/verdestrama/concept-v1/concept.png"
+  },
+  "raio": {
+   "name": "Raio de Sol",
+   "family": "raio-de-sol",
+   "root": "raio",
+   "stage": "crianca",
+   "level": 1,
+   "bonus": 0,
+   "from": [],
+   "identity": "raio-de-sol:raio-de-sol-crianca",
+   "status": "Proposto",
+   "provisional": false
+  },
+  "solguarda": {
+   "name": "Solguarda",
+   "family": "raio-de-sol",
+   "root": "raio",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "raio"
+   ],
+   "identity": "raio-de-sol:solguarda",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/raio-de-sol-family-v1/solguarda/concept-v1/concept.png"
+  },
+  "azulao": {
+   "name": "Azulão",
+   "family": "azulao",
+   "root": "azulao",
+   "stage": "crianca",
+   "level": 1,
+   "bonus": 0,
+   "from": [],
+   "identity": "azulao:azulao",
+   "status": "Existente",
+   "provisional": false
+  },
+  "azulineo": {
+   "name": "Azulíneo",
+   "family": "azulao",
+   "root": "azulao",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "azulao"
+   ],
+   "identity": "azulao:azulineo",
+   "status": "Aprovado visualmente (registro visual)",
+   "provisional": true,
+   "source": "art/creatures/azulao-family-v1/azulineo/concept-pipa-v3/concept.png"
+  },
+  "azulume": {
+   "name": "Azulume",
+   "family": "azulao",
+   "root": "azulao",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "azulao"
+   ],
+   "identity": "azulao:azulume",
+   "status": "Aprovado visualmente (registro visual)",
+   "provisional": true,
+   "source": "art/creatures/azulao-family-v1/azulume/concept-pipa-v3/concept.png"
+  },
+  "azulfazo": {
+   "name": "Azulfazo",
+   "family": "azulao",
+   "root": "azulao",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "azulao"
+   ],
+   "identity": "azulao:azulfazo",
+   "status": "Estado visual a conferir",
+   "provisional": true,
+   "source": "art/soulgen/keys/azulfazo/cutout-rig-v1/preview.png"
+  },
+  "azulaculo": {
+   "name": "Azuláculo",
+   "family": "azulao",
+   "root": "azulao",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "azulineo",
+    "azulume",
+    "azulfazo"
+   ],
+   "identity": "azulao:azulaculo",
+   "status": "Aprovado visualmente (registro visual)",
+   "provisional": true,
+   "source": "art/creatures/azulao-family-v1/azulaculo/concept-pipa-v3/concept.png"
+  },
+  "azuligero": {
+   "name": "Azulígero",
+   "family": "azulao",
+   "root": "azulao",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "azulineo",
+    "azulume",
+    "azulfazo"
+   ],
+   "identity": "azulao:azuligero",
+   "status": "Aprovado visualmente (registro visual)",
+   "provisional": true,
+   "source": "art/creatures/azulao-family-v1/azuligero/concept-pipa-v3/concept.png"
+  },
+  "azultor": {
+   "name": "Azultor",
+   "family": "azulao",
+   "root": "azulao",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "azulineo",
+    "azulume",
+    "azulfazo"
+   ],
+   "identity": "azulao:azultor",
+   "status": "Estado visual a conferir",
+   "provisional": true,
+   "source": "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png"
+  },
+  "rabbito": {
+   "name": "Rabbito",
+   "family": "rabbito",
+   "root": "rabbito",
+   "stage": "crianca",
+   "level": 1,
+   "bonus": 0,
+   "from": [],
+   "identity": "rabbito:rabbito",
+   "status": "Aprovado visualmente",
+   "provisional": false
+  },
+  "rastro-dos-ventos": {
+   "name": "Rastro dos Ventos",
+   "family": "rabbito",
+   "root": "rabbito",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "items": [{"id":"papel-seda","label":"Papel de seda","quantity":1,"consume":true}],
+   "signature": "Espiral dos Ventos",
+   "from": [
+    "rabbito"
+   ],
+   "identity": "rabbito:rastro-dos-ventos",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/rabbito-family-v1/rastro-dos-ventos/concept-v2/concept.png"
+  },
+  "mestre-dos-fios": {
+   "name": "Mestre dos Fios",
+   "family": "rabbito",
+   "root": "rabbito",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "rastro-dos-ventos"
+   ],
+   "identity": "rabbito:mestre-dos-fios",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/rabbito-family-v1/mestre-dos-fios/concept-v2/concept.png"
+  },
+  "tecelao-da-aurora": {
+   "name": "Tecelão da Aurora",
+   "family": "rabbito",
+   "root": "rabbito",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "rastro-dos-ventos"
+   ],
+   "identity": "rabbito:tecelao-da-aurora",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/rabbito-family-v1/tecelao-da-aurora/concept-v2/concept.png"
+  },
+  "arauto-da-tempestade": {
+   "name": "Arauto da Tempestade",
+   "family": "rabbito",
+   "root": "rabbito",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "rastro-dos-ventos"
+   ],
+   "identity": "rabbito:arauto-da-tempestade",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png"
+  },
+  "rabbito-conde-da-ultima-hora": {
+   "name": "Conde da Última Hora",
+   "family": "rabbito",
+   "root": "rabbito",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "rastro-dos-ventos"
+   ],
+   "identity": "rabbito:rabbito-conde-da-ultima-hora",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/rabbito-family-v1/conde-da-ultima-hora/concept-v2/concept.png"
+  },
+  "rabbito-velocista-relampago": {
+   "name": "Velocista Relâmpago",
+   "family": "rabbito",
+   "root": "rabbito",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "rastro-dos-ventos"
+   ],
+   "identity": "rabbito:rabbito-velocista-relampago",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/rabbito-family-v1/velocista-relampago/concept-v1/concept.png"
+  },
+  "doberman-c": {
+   "name": "Dóber",
+   "family": "doberman-c",
+   "root": "doberman-c",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 0,
+   "from": [],
+   "identity": "doberman-c:doberman-c",
+   "status": "Aprovado visualmente",
+   "provisional": false
+  },
+  "dobracula": {
+   "name": "Dobrácula",
+   "family": "doberman-c",
+   "root": "doberman-c",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "doberman-c"
+   ],
+   "identity": "doberman-c:dobracula",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/onze-cavaleiros-v1/dobracula/concept-v1/concept.png"
+  },
+  "capivara-boia": {
+   "name": "Capiboia",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "crianca",
+   "level": 1,
+   "bonus": 0,
+   "from": [],
+   "identity": "capivara-boia:capivara-boia",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia/child-manga-v3/concept.png"
+  },
+  "remansa": {
+   "name": "Remansa",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "capivara-boia"
+   ],
+   "identity": "capivara-boia:remansa",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/remansa/concept-v1/concept.png"
+  },
+  "capiboia-contensor": {
+   "name": "B — Contensor de correnteza",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "capivara-boia"
+   ],
+   "identity": "capivara-boia:capiboia-contensor",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/b-quebra-corrente/concept.png"
+  },
+  "capiboia-condutor": {
+   "name": "C — Condutor de canais",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "jovem",
+   "level": 16,
+   "bonus": 6,
+   "from": [
+    "capivara-boia"
+   ],
+   "identity": "capivara-boia:capiboia-condutor",
+   "status": "Aprovado visualmente",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/c-condutor/concept.png"
+  },
+  "marevia": {
+   "name": "Marévia",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "remansa",
+    "capiboia-contensor",
+    "capiboia-condutor"
+   ],
+   "identity": "capivara-boia:marevia",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/marevia/concept-v1/concept.png"
+  },
+  "capiboia-porto": {
+   "name": "Adulto de B — Porto vivo",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "remansa",
+    "capiboia-contensor",
+    "capiboia-condutor"
+   ],
+   "identity": "capivara-boia:capiboia-porto",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/capiboia-porto/concept-v1/concept.png"
+  },
+  "capiboia-tececorrente": {
+   "name": "Adulto de C — Mestre da vazante",
+   "family": "capivara-boia",
+   "root": "capivara-boia",
+   "stage": "adulto",
+   "level": 32,
+   "bonus": 12,
+   "from": [
+    "remansa",
+    "capiboia-contensor",
+    "capiboia-condutor"
+   ],
+   "identity": "capivara-boia:capiboia-tececorrente",
+   "status": "Proposto",
+   "provisional": true,
+   "source": "art/creatures/capivara-boia-family-v1/capiboia-tececorrente/concept-v3/concept.png"
+  }
+ }
+}

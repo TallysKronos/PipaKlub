@@ -1,0 +1,41 @@
+{
+  "family_id": "miralis",
+  "scope": "Jovem definido pelo autor e adulto novo proposto; sem integração.",
+  "nodes": [
+    {
+      "id": "miralis",
+      "name": "Miralís",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Sniper almática de carretel · Atual · lobo-etíope",
+      "story": "Marca um alvo distante estabilizando a arma no próprio dorso; deve manter a posição para preservar a precisão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/miralis/concept-v1/concept.png",
+      "brief": "../../../art/creatures/miralis/concept-v1/brief.md",
+      "maturity": "Jovem",
+      "stage_note": "Autor: “lupunhal e miralís são como jovens [...] pode ter uma adulto pra eles com muito mais presença” (2026-11-07). Estágio dos dois concepts anteriores passa de adulto proposto para jovem por orientação do autor. Não implica aprovação das novas artes ou nomes."
+    },
+    {
+      "id": "miralcaide",
+      "name": "Miralcaide",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Quatro pernas e quatro pés separados; peito alto e profundo, rosto alongado com olhos pequenos sob meia-máscara, duas abas de bochecha e manto em planos largos. Arma em dois suportes dorsais, sem cruzar face nesta vista; rabiola única distinta da linha da arma. Rotação, recuo e folgas sob movimento ainda não validados.",
+      "story": "Tensionar uma linha de cobertura mantendo quatro apoios estáveis; perde a liberdade de avançar enquanto cobre a retirada.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/miralis/miralcaide/concept-v1/concept.png",
+      "brief": "../../../art/creatures/miralis/miralcaide/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "miralis",
+      "to": "miralcaide",
+      "kind": "reweaving",
+      "reason": "Tensionar uma linha de cobertura mantendo quatro apoios estáveis; perde a liberdade de avançar enquanto cobre a retirada.",
+      "decision_status": "proposed"
+    }
+  ]
+}

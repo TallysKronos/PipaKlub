@@ -1,0 +1,31 @@
+{
+  "id": "azulume",
+  "name": "Azulume",
+  "stage": "III · jovem · inteligência",
+  "source": "exec-bc0fc702-9093-46b6-ad33-71966765a970.png",
+  "file": "azulume/concept-pipa-v3/concept.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGBA",
+  "alpha": [
+    0,
+    254
+  ],
+  "sha256": "71f9affa65fdf6795e0260d7c10b26cc72560d165b074bc247ede6fe2a9e91f8",
+  "tool": "image_gen integrada",
+  "status": "concept visual aprovado pelo autor; sem rig ou integração",
+  "prompt": "prompt.txt",
+  "generation_references": [
+    "art/soulgen/keys/azulao/color-rig-v2/concept.png",
+    "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png",
+    "art/soulgen/campaign-redesigns-v1/azulfazo/concept-v1/opcoes.png"
+  ],
+  "review": "../../lote-pipa-v3/REVISAO.md",
+  "visualApproval": {
+    "date": "2026-11-03",
+    "statement": "Gostei aprovados",
+    "scope": "design visual deste concept"
+  }
+}

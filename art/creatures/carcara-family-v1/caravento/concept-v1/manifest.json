@@ -1,0 +1,26 @@
+{
+  "id": "caravento",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-189f1ebb-145f-40e1-afb2-4e124ada0235.png",
+  "sha256": "0f2a8a8ac44fa3995757428ba9da8b546fcca5eba1992befbcacb062bb8c8b04",
+  "width": 1230,
+  "height": 1278,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/creatures/carcara-family-v1/references/carcara-identity.png",
+      "role": "Identidade própria: crop de célula do atlas existente"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento limpo aprovado, sem importar espécie/paleta"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "approved",
+  "approval_note": "Autor: aprovados, antes do pedido Mata Verde. Aprovação visual, não integração.",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

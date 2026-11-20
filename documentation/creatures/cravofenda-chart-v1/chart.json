@@ -1,0 +1,74 @@
+{
+  "family_id": "cravofenda",
+  "family_name": "Cravofenda",
+  "scope": "Soldados da Meia-Noite. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "goticra",
+      "name": "Goticra",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "ventucravo",
+      "name": "Ventucravo",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "bocobasto",
+      "name": "Bocobasto",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/cravofenda.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "cravofenda",
+      "name": "Cravofenda",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/concept-v2/cravofenda.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Pipa hexagonal que protege os ombros da vanguarda."
+    }
+  ],
+  "edges": [
+    {
+      "from": "goticra",
+      "to": "ventucravo",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ventucravo",
+      "to": "bocobasto",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "bocobasto",
+      "to": "cravofenda",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

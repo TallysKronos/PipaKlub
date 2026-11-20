@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pixel art 32×32 · Estudo Soulmonsters</title>
+<style>
+:root{color-scheme:dark;--ink:#eef1e8;--muted:#b4c0c6;--paper:#16232b;--line:#344852;--accent:#83dad2}*{box-sizing:border-box}body{margin:0;background:#0c151c;color:var(--ink);font:16px/1.6 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:40px 24px 80px}h1{font-size:clamp(30px,5vw,52px);line-height:1.1;max-width:850px}h2{font-size:25px;margin:36px 0 12px}h3{margin:0 0 12px}p{max-width:85ch}a{color:var(--accent)}.lead{font-size:20px;color:var(--muted)}.controls{display:flex;gap:16px;flex-wrap:wrap;align-items:center;background:var(--paper);padding:20px;border:1px solid var(--line);border-radius:8px;position:sticky;top:0;z-index:2}label{display:flex;gap:8px;align-items:center}select,button{padding:9px;border:1px solid #637c88;border-radius:4px;background:#102029;color:var(--ink);font:inherit}.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:20px}.card{border:1px solid var(--line);border-radius:8px;overflow:hidden}.card header{padding:18px;background:var(--paper)}.stage{min-height:280px;padding:24px;display:flex;align-items:center;justify-content:center;overflow:auto;background:var(--bg,#c9ced3)}.stage img{image-rendering:pixelated;image-rendering:crisp-edges;max-width:none;flex-shrink:0}.grey img{filter:grayscale(1)}.silhouette img{filter:brightness(0)}.info{padding:18px;color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.lesson{padding:20px;border:1px solid var(--line);background:var(--paper);border-radius:8px}.lesson p{margin-bottom:0}.samples{display:flex;gap:24px;flex-wrap:wrap;align-items:start}pre{line-height:1.15;font-size:18px;background:#253741;padding:16px;letter-spacing:3px;max-width:100%;overflow:auto}.note{padding:16px 20px;border-left:3px solid var(--accent);background:var(--paper)}ul,ol{padding-left:24px}li{margin:8px 0}small,.muted{color:var(--muted)}:focus-visible{outline:3px solid #ffe49c;outline-offset:3px}@media(max-width:650px){.compare,.grid{grid-template-columns:1fr}.controls{position:static}main{padding:24px 16px}.stage{min-height:230px}}
+</style>
+<main>
+<small>SOULMONSTERS · ESTUDO DE PRODUÇÃO · 05 NOV 2026</small>
+<h1>32×32 precisa de desenho próprio.</h1>
+<p class="lead">O sprite pode ter pixels perfeitamente duros e continuar pouco legível. O problema do Papisco é distribuição de formas, bordas e valores — não falta de um filtro de nitidez.</p>
+<p><a href="ESTUDO.md">Ler estudo completo</a> · <a href="auditoria-papisco.json">Medições dos PNGs</a></p>
+<h2>Compare em tamanho real</h2>
+<p>As imagens abaixo são os arquivos existentes, sem correção nova. Em 1×, o Papisco 32 ocupa apenas 20 pixels de largura real. Alterne também a silhueta e o cinza: cada teste revela um problema diferente.</p>
+<div class="controls">
+<label>Ampliação <select id="zoom"><option value="1">1× nativo</option><option value="2">2×</option><option value="4" selected>4×</option><option value="8">8×</option></select></label>
+<label>Fundo <select id="background"><option value="#c9ced3">Claro</option><option value="#17212c">Escuro</option><option value="#708944">Verde diagnóstico</option><option value="#7bc6ff">Azul diagnóstico</option></select></label>
+<label>Leitura <select id="mode"><option value="color">Cor</option><option value="grey">Cinza</option><option value="silhouette">Silhueta</option></select></label>
+<label>Animação <select id="motion"><option value="master">Pose</option><option value="idle">Idle</option><option value="walk">Caminhada</option></select></label>
+</div>
+<div class="compare" id="compare">
+<article class="card"><header><h3>Papisco · 32×32</h3><small>Caixa ocupada: 20×29 · 316 px opacos · 9 cores</small></header><div class="stage"><img id="sprite32" alt="Papisco em 32 por 32 pixels" width="32" height="32"></div><p class="info">O losango do peito perde forma, a mão se aproxima do focinho e o contorno consome espaço de preenchimento.</p></article>
+<article class="card"><header><h3>Papisco · 64×64</h3><small>Caixa ocupada: 39×58 · 1.206 px opacos · 11 cores</small></header><div class="stage"><img id="sprite64" alt="Papisco em 64 por 64 pixels" width="64" height="64"></div><p class="info">Referência própria para identidade e gesto. Não deve ser reduzida automaticamente e tratada como desenho resolvido em 32.</p></article>
+</div>
+<p class="muted">O fundo verde é uma cor de diagnóstico, não uma captura do jogo. Os ciclos 64 são intermediários; o foco mudou para 32 antes da revisão final deles. Nenhuma versão foi testada aqui no runtime.</p>
+<h2>O custo da linha</h2>
+<div class="samples"><div><b>Peça com 3 px de largura</b><pre>■ □ ■
+■ □ ■
+■ □ ■</pre><small>1 px de contorno em cada lado<br>deixa só 1 px de cor no meio.</small></div><div><b>Peça com 2 px de largura</b><pre>■ ■
+■ ■
+■ ■</pre><small>O contorno dos dois lados<br>pode consumir todo o preenchimento.</small></div></div>
+<p>É uma demonstração geométrica, não uma regra para remover o preto aprovado. A solução pode ser alargar a peça, compartilhar uma borda ou omitir uma linha interna secundária.</p>
+<h2>Três decisões que vêm antes do acabamento</h2>
+<div class="grid">
+<article class="lesson"><h3>Silhueta</h3><p>Separar focinho, mão e orelha dobrada. Conectar as articulações. Um único componente de alpha não prova anatomia.</p></article>
+<article class="lesson"><h3>Massas de cor</h3><p>Fazer o losango marfim existir como área, não como uma tira entre linhas escuras. Reservar âmbar para os olhos e vermelho para os nós.</p></article>
+<article class="lesson"><h3>Luz com direção</h3><p>Um plano de sombra por parte pequena; sombra de contato sob mandíbula e mãos. Evitar anéis de sombra acompanhando todo o contorno.</p></article>
+</div>
+<h2>Contrato para o próximo Papisco</h2>
+<ol><li>Redesenhar a pose diretamente em 32×32, com massas simples e sem detalhes.</li><li>Dar largura ao peito-pipa e afastar a mão do focinho, mantendo o pulso conectado.</li><li>Resolver rosto e orelha assimétrica dentro do orçamento nativo.</li><li>Aplicar luz, sombra e depois lineart seletiva; não contornar cada tom.</li><li>Validar em 1×, cinza e fundos diferentes antes de animar.</li><li>Aprovar a pose estática; só então produzir os demais frames.</li></ol>
+<p class="note">A geração pode ajudar com conceito e proporção. O trabalho final em 32 exige decisões de desenho. Não há uma quantidade de cores, pixels pretos ou frames que substitua a avaliação visual do autor.</p>
+<h2>Fontes dos próprios artistas</h2>
+<ul><li><a href="https://www.derekyu.com/makegames/pixelart.html">Derek Yu · Basics, incluindo o exercício 32×32</a></li><li><a href="https://www.derekyu.com/makegames/pixelart2.html">Derek Yu · Common Mistakes</a></li><li><a href="https://saint11.art/blog/thoughts_on_low_resolution/">Saint11 · Very Low Resolution</a></li><li><a href="https://saint11.art/pixel_art_articles/article2/">Saint11 · Cluster Sketching</a></li><li><a href="https://saint11.art/pixel_art_articles/article4/">Saint11 · Basic Shading</a></li><li><a href="https://saint11.art/pixel_art_articles/article5/">Saint11 · Anti-Alias and Banding</a></li><li><a href="https://www.slynyrd.com/blog/2018/6/15/pixelblog-6-light-and-shadow">Slynyrd · Light and Shadow</a></li><li><a href="https://www.slynyrd.com/blog/2025/3/24/pixelblog-55-top-down-character-animation">Slynyrd · Top Down Character Animation</a></li></ul>
+<p><small>Laboratório local de estudo. As referências externas não são assets licenciados para o jogo; nenhum design ou pixel delas foi incorporado ao Papisco.</small></p>
+</main>
+<script>
+const root='../../creatures/alvacordo-family-v1/papisco/';
+const files={32:{master:'overworld-32-v1/papisco-master-32.png',idle:'overworld-32-v1/idle-10x.gif',walk:'overworld-32-v1/walk-10x.gif'},64:{master:'overworld-64-v1/papisco-master-64.png',idle:'overworld-64-v1/idle-6x.gif',walk:'overworld-64-v1/walk-6x.gif'}};
+function update(){const z=Number(document.querySelector('#zoom').value),m=document.querySelector('#mode').value,motion=document.querySelector('#motion').value;document.querySelector('#compare').className='compare '+(m==='color'?'':m);for(const n of [32,64]){const img=document.querySelector('#sprite'+n);img.src=root+files[n][motion];img.style.width=n*z+'px';img.style.height=n*z+'px';}for(const stage of document.querySelectorAll('.stage'))stage.style.setProperty('--bg',document.querySelector('#background').value);}
+for(const select of document.querySelectorAll('select'))select.addEventListener('change',update);update();
+</script>
+</html>

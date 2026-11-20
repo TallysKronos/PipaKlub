@@ -1,0 +1,25 @@
+{
+  "id": "gotim",
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-595a072e-f4f0-4c68-9e07-04020f967a1a.png",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "sha256": "5a70594b45d8a6d4eaeeb520fcb7903dea5cd706982ddb54dcadaba96f7d7fef",
+  "references": [
+    {
+      "path": "art/creatures/capivara-boia/child-manga-v2/concept.png",
+      "role": "identidade e acabamento próprios"
+    }
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "sheet": "Uma vista principal e dois estudos de gesto; não são frames de animação."
+}

@@ -1,0 +1,202 @@
+{
+  "family_id": "capivara-boia",
+  "scope": "Linha existente preservada; B e C aprovadas como evoluções jovens alternativas. Nomes e requisitos novos indefinidos; sem integração. Dois adultos propostos acima de B e C, em avaliação.",
+  "nodes": [
+    {
+      "id": "gotim",
+      "name": "Gotim",
+      "age": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Pequeno corpo de papel tensionado em gota assimétrica, base flexível em crescente e rabiola com uma aba.",
+      "story": "Aprende a recuperar equilíbrio pela dobra do próprio corpo.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/capivara-boia-family-v1/gotim/concept-v4/concept.png",
+      "brief": "../../../art/creatures/capivara-boia-family-v1/gotim/concept-v4/brief.md"
+    },
+    {
+      "id": "capivara-boia",
+      "name": "Capiboia",
+      "age": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Corpo baixo de papel aquático com dobra de flutuação integrada, quatro apoios palmados, uma quilha-vela e três abas na rabiola principal.",
+      "story": "Aprende a sustentar-se em terra e dirigir o primeiro impulso na água com o próprio corpo.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/capivara-boia/child-manga-v3/concept.png",
+      "brief": "../../../art/creatures/capivara-boia/child-manga-v3/brief.md"
+    },
+    {
+      "id": "remansa",
+      "name": "Remansa",
+      "age": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Corpo baixo e largo, membros palmados fortes, flutuação lateral e duas velas estabilizadoras; quatro abas na rabiola.",
+      "story": "Aprende a sustentar direção em correntes mais fortes e abre passagem com os apoios dianteiros.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/capivara-boia-family-v1/remansa/concept-v1/concept.png",
+      "brief": "../../../art/creatures/capivara-boia-family-v1/remansa/concept-v1/brief.md"
+    },
+    {
+      "id": "marevia",
+      "name": "Marévia",
+      "age": "Adulto",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Capivara de peito elevado e corpo petróleo, gola de quebra-mar, mantos laterais e vela-leque arqueada; cinco abas na rabiola.",
+      "story": "Reorganiza a flutuação em abrigo que desvia correntes ao redor de quem acompanha.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/capivara-boia-family-v1/marevia/concept-v1/concept.png",
+      "brief": "../../../art/creatures/capivara-boia-family-v1/marevia/concept-v1/brief.md"
+    },
+    {
+      "id": "capiboia-porto",
+      "name": "Adulto de B — Porto vivo",
+      "age": "Adulto",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Quadrúpede de peito elevado e membranas quebra-mar integradas.",
+      "story": "Conter torna-se abrigar: reorganiza a proteção ao redor da passagem.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation_status": "not_integrated",
+      "art": "../../../art/creatures/capivara-boia-family-v1/capiboia-porto/concept-v1/concept.png",
+      "brief": "../../../art/creatures/capivara-boia-family-v1/capiboia-porto/concept-v1/brief.md",
+      "name_status": "descriptive_label_not_final_species_name",
+      "unknowns": [
+        "Nome definitivo",
+        "Requisitos",
+        "Ações e limites de jogo"
+      ]
+    },
+    {
+      "id": "capiboia-tececorrente",
+      "name": "Adulto de C — Mestre da vazante (proposta)",
+      "age": "Adulto",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Capivara-pipa bípede robusta, dois braços com mãos distintas, manto curto e um remo reforçado.",
+      "story": "Concentra a técnica dos remos num gesto de impacto preciso e abre passagem pela corrente.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "implementation_status": "not_integrated",
+      "art": "../../../art/creatures/capivara-boia-family-v1/capiboia-tececorrente/concept-v3/concept.png",
+      "brief": "../../../art/creatures/capivara-boia-family-v1/capiboia-tececorrente/concept-v3/brief.md",
+      "name_status": "descriptive_label_not_final_species_name",
+      "unknowns": [
+        "Nome definitivo",
+        "Requisitos",
+        "Ações e limites de jogo"
+      ],
+      "revision": "concept-v3"
+    },
+    {
+      "id": "capiboia-contensor",
+      "name": "B — Contensor de correnteza",
+      "kind": "stage",
+      "stage": 3,
+      "age": "Jovem",
+      "identity": "Quadrúpede baixo de peito largo; dobra de papel em crescente integrada como quebra-corrente.",
+      "story": "Aprende a conter o fluxo para proteger uma passagem.",
+      "action": "Conter",
+      "tradeoff_proposed": "Manobra lenta ao sustentar o crescente aberto.",
+      "decision_status": "approved",
+      "approval_note": "Gosto de B e C useos como evos alternativas",
+      "production_status": "concept",
+      "implementation_status": "not_integrated",
+      "name_status": "descriptive_label_not_final_species_name",
+      "art": "../../../art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/b-quebra-corrente/concept.png",
+      "brief": "../../../art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/b-quebra-corrente/brief.md",
+      "unknowns": [
+        "Nome definitivo",
+        "Requisitos de Remonta",
+        "Ligação futura com Marévia ou Capibaluarte"
+      ]
+    },
+    {
+      "id": "capiboia-condutor",
+      "name": "C — Condutor de canais",
+      "kind": "stage",
+      "stage": 3,
+      "age": "Jovem",
+      "identity": "Semiereto de dois apoios; membros anteriores com membranas-remo e rabiola de três abas.",
+      "story": "Aprende a conduzir a água por movimentos precisos dos membros.",
+      "action": "Conduzir",
+      "tradeoff_proposed": "Precisa de margem e apoio para orientar a corrente.",
+      "decision_status": "approved",
+      "approval_note": "Gosto de B e C useos como evos alternativas",
+      "production_status": "concept",
+      "implementation_status": "not_integrated",
+      "name_status": "descriptive_label_not_final_species_name",
+      "art": "../../../art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/c-condutor/concept.png",
+      "brief": "../../../art/creatures/capivara-boia-family-v1/teste-jovem-benchmark-v1/c-condutor/brief.md",
+      "unknowns": [
+        "Nome definitivo",
+        "Requisitos de Remonta",
+        "Ligação futura com Marévia ou Capibaluarte"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "gotim",
+      "to": "capivara-boia",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Equilíbrio inicial adquire quatro apoios, crescente nos quadris e primeira vela."
+    },
+    {
+      "from": "capivara-boia",
+      "to": "remansa",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Flutuação se distribui pelas laterais; quatro pés controlam direção e impulso."
+    },
+    {
+      "from": "remansa",
+      "to": "marevia",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Estruturas laterais se abrem em abrigo e quebra-mar; a vela vira leque arqueado."
+    },
+    {
+      "from": "capiboia-contensor",
+      "to": "capiboia-porto",
+      "kind": "reweaving",
+      "reason": "Conter torna-se abrigar: reorganiza a proteção ao redor da passagem.",
+      "decision_status": "proposed",
+      "requirements_status": "undefined"
+    },
+    {
+      "from": "capiboia-condutor",
+      "to": "capiboia-tececorrente",
+      "kind": "reweaving",
+      "reason": "Conduzir torna-se coordenar: recolhe e abre as superfícies para distribuir o fluxo.",
+      "decision_status": "proposed",
+      "requirements_status": "undefined"
+    },
+    {
+      "from": "capivara-boia",
+      "to": "capiboia-contensor",
+      "kind": "reweaving",
+      "reason": "Aprende a conter o fluxo para proteger uma passagem.",
+      "decision_status": "approved",
+      "approval_note": "Gosto de B e C useos como evos alternativas",
+      "requirements_status": "undefined"
+    },
+    {
+      "from": "capivara-boia",
+      "to": "capiboia-condutor",
+      "kind": "reweaving",
+      "reason": "Aprende a conduzir a água por movimentos precisos dos membros.",
+      "decision_status": "approved",
+      "approval_note": "Gosto de B e C useos como evos alternativas",
+      "requirements_status": "undefined"
+    }
+  ]
+}

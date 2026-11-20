@@ -1,0 +1,219 @@
+{
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "boxes": {
+    "body": [
+      51,
+      10,
+      279,
+      314
+    ],
+    "head": [
+      358,
+      32,
+      620,
+      305
+    ],
+    "upperNear": [
+      638,
+      10,
+      929,
+      313
+    ],
+    "upperFar": [
+      1004,
+      46,
+      1186,
+      305
+    ],
+    "foreNear": [
+      47,
+      318,
+      240,
+      614
+    ],
+    "foreFar": [
+      356,
+      319,
+      540,
+      625
+    ],
+    "thighNear": [
+      686,
+      316,
+      866,
+      538
+    ],
+    "thighFar": [
+      1003,
+      315,
+      1183,
+      515
+    ],
+    "shinNear": [
+      49,
+      629,
+      221,
+      940
+    ],
+    "shinFar": [
+      380,
+      627,
+      582,
+      924
+    ],
+    "cape": [
+      629,
+      627,
+      911,
+      940
+    ],
+    "sword": [
+      940,
+      639,
+      1251,
+      937
+    ],
+    "tail": [
+      16,
+      1001,
+      287,
+      1208
+    ],
+    "fierce": [
+      348,
+      964,
+      610,
+      1247
+    ],
+    "hurt": [
+      658,
+      967,
+      924,
+      1247
+    ],
+    "happy": [
+      974,
+      969,
+      1236,
+      1247
+    ]
+  },
+  "parts": {
+    "body": {
+      "size": [
+        228,
+        304
+      ],
+      "sha256": "024a26583a19008590212f3ba5222716e9ef10913c04f45bacf43afc2f24fd28"
+    },
+    "head": {
+      "size": [
+        262,
+        273
+      ],
+      "sha256": "2e1ab404ff0019efdf4ba3d45f09034bb44b8fc45a69a7a8986d9674f3bc82da"
+    },
+    "upperNear": {
+      "size": [
+        291,
+        303
+      ],
+      "sha256": "1f1248832e1236e1dfba77c320a421b2f8ebc5c37c708c59a24143f202f021ff"
+    },
+    "upperFar": {
+      "size": [
+        182,
+        259
+      ],
+      "sha256": "522d2aa8df9e38690694b3aa336b98966737d4e5b910552653c66a518bd06a60"
+    },
+    "foreNear": {
+      "size": [
+        193,
+        296
+      ],
+      "sha256": "d92e2a5f59c4cce6cd8ec6ad573699676f5fad260e1559d0db1f73d6ceb43c28"
+    },
+    "foreFar": {
+      "size": [
+        184,
+        306
+      ],
+      "sha256": "bd9389463046c77d8b6ced612b7363711ba3392f76280377817c01b1f694e23e"
+    },
+    "thighNear": {
+      "size": [
+        180,
+        222
+      ],
+      "sha256": "3911bd1fe1208da366c4f6226053418d03f87bd5417ee48809155c043830b7e0"
+    },
+    "thighFar": {
+      "size": [
+        180,
+        200
+      ],
+      "sha256": "900c9f634659405b017c66efdc484413e8924edadf0cb73c21bd94f9e29a85a4"
+    },
+    "shinNear": {
+      "size": [
+        172,
+        311
+      ],
+      "sha256": "459bc36b74f5b2d62022c4b65305f92aaa66b0270ba2ae22304eba09dc67218d"
+    },
+    "shinFar": {
+      "size": [
+        202,
+        297
+      ],
+      "sha256": "aef3bbfc27adde6d6bca74e08635499c780a980ed9c96b4c42a5cf7e01b8633a"
+    },
+    "cape": {
+      "size": [
+        282,
+        313
+      ],
+      "sha256": "e5514652b03f13389a5ede4a0423b9cb866bd5e4d009b6490ecc3b5a199a4d39"
+    },
+    "sword": {
+      "size": [
+        311,
+        298
+      ],
+      "sha256": "f9364ac006eb49fcc97bed5fa28f906b834977fba1c1081d0684eabd5cb6b9ca"
+    },
+    "tail": {
+      "size": [
+        271,
+        207
+      ],
+      "sha256": "8ccdc0364f7b952ee85e03f310be67a6a7aec7705273a660d27377bc3624f8ef"
+    },
+    "fierce": {
+      "size": [
+        262,
+        283
+      ],
+      "sha256": "1f6c722a94f2fe8d2dae9e69a3aaba7c093bbaf506b4de0ee7f1662c3f09e7f9"
+    },
+    "hurt": {
+      "size": [
+        266,
+        280
+      ],
+      "sha256": "183e6d247fcf6adaeb1cda4452c6bf09a9c1196b7f5e86972b8cb73edb50a171"
+    },
+    "happy": {
+      "size": [
+        262,
+        278
+      ],
+      "sha256": "f74c432462f341ee7fbb42b24346de551dca578d9da3c55663f0da1362fb13fc"
+    }
+  },
+  "method": "Cell crop; connected alpha cleanup; no redrawing; full helmets registered on identical canvas."
+}

@@ -1,0 +1,32 @@
+{
+  "id": "canticripta",
+  "group_proposed": "portadores dos Crystais Pipas",
+  "date": "2026-11-06",
+  "tool": "built-in image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-42ffbb9d-6651-4a36-a736-ed92af6758e3.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "background": "white",
+  "sha256": "d79a2182a04b3cc5ccd070d7feb58c6dd097d1f04abf2a97b9d27443779c35b5",
+  "references": [
+    {
+      "path": "../../../artifacts/crystais-pipas/concept-v1/concept.png",
+      "role": "own artifact identity"
+    },
+    {
+      "path": "../../vesperalito/concept-v2/concept.png",
+      "role": "own rendering and density"
+    }
+  ],
+  "external_images_attached": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "correction_prompt": "prompt-correcao.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation_status": "not_integrated"
+}

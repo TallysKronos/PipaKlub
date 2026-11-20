@@ -1,0 +1,251 @@
+{
+  "sourceSize": [
+    1448,
+    1086
+  ],
+  "boxes": {
+    "body": [
+      7,
+      77,
+      362,
+      319
+    ],
+    "head": [
+      442,
+      15,
+      720,
+      349
+    ],
+    "frontNear": [
+      819,
+      2,
+      1055,
+      362
+    ],
+    "frontFar": [
+      1192,
+      16,
+      1382,
+      362
+    ],
+    "rearNear": [
+      90,
+      367,
+      311,
+      718
+    ],
+    "rearFar": [
+      437,
+      374,
+      626,
+      714
+    ],
+    "tail": [
+      724,
+      418,
+      1059,
+      689
+    ],
+    "bowNear": [
+      1094,
+      384,
+      1439,
+      697
+    ],
+    "bowFar": [
+      32,
+      762,
+      338,
+      1028
+    ],
+    "fierce": [
+      408,
+      733,
+      703,
+      1074
+    ],
+    "hurt": [
+      772,
+      734,
+      1054,
+      1075
+    ],
+    "happy": [
+      1124,
+      734,
+      1409,
+      1070
+    ]
+  },
+  "parts": {
+    "body": {
+      "size": [
+        355,
+        242
+      ],
+      "opaque_pixels": 57463,
+      "cell": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "sha256": "97085d010c7bfb84adb9984d5a8bf314ea0d1042af9b8fa29e33f0bc89cd4ec3"
+    },
+    "head": {
+      "size": [
+        278,
+        334
+      ],
+      "opaque_pixels": 49446,
+      "cell": [
+        362,
+        0,
+        724,
+        362
+      ],
+      "sha256": "4e1473ea074c26f0a1f95d1754b0d1a4b00c4472b96a842eb2f8c3eafc6237b4"
+    },
+    "frontNear": {
+      "size": [
+        236,
+        360
+      ],
+      "opaque_pixels": 35760,
+      "cell": [
+        724,
+        0,
+        1086,
+        362
+      ],
+      "sha256": "d1544a7005f7b32fb193f9769433e787f3aa2260a82246c04e0c2c26237c4581"
+    },
+    "frontFar": {
+      "size": [
+        190,
+        346
+      ],
+      "opaque_pixels": 28898,
+      "cell": [
+        1086,
+        0,
+        1448,
+        362
+      ],
+      "sha256": "ea18968f42a5e6345328fe0feb2e9d3e516592022cf0f85af4edd006de3278cf"
+    },
+    "rearNear": {
+      "size": [
+        221,
+        351
+      ],
+      "opaque_pixels": 41037,
+      "cell": [
+        0,
+        362,
+        362,
+        724
+      ],
+      "sha256": "7c9b45be52bf5be9e1881dcc68609d9c0b6867ff395875642c6e3d1152c69de8"
+    },
+    "rearFar": {
+      "size": [
+        189,
+        340
+      ],
+      "opaque_pixels": 29633,
+      "cell": [
+        362,
+        362,
+        724,
+        724
+      ],
+      "sha256": "f133c2bb9ce6740b1377a348dc9d65e2e0c2b443b11ee81299558f6c4dc6fcd0"
+    },
+    "tail": {
+      "size": [
+        335,
+        271
+      ],
+      "opaque_pixels": 26764,
+      "cell": [
+        724,
+        362,
+        1086,
+        724
+      ],
+      "sha256": "79bced5780a40c9b79c172166da026add18f30bb88cd4a410c1fbb827e5df6e2"
+    },
+    "bowNear": {
+      "size": [
+        345,
+        313
+      ],
+      "opaque_pixels": 46119,
+      "cell": [
+        1086,
+        362,
+        1448,
+        724
+      ],
+      "sha256": "dee60859ae0015b76be8bbce8059d654252905d33ba677ab5f1be5c83f5a0367"
+    },
+    "bowFar": {
+      "size": [
+        306,
+        266
+      ],
+      "opaque_pixels": 34949,
+      "cell": [
+        0,
+        724,
+        362,
+        1086
+      ],
+      "sha256": "6e2601a296c2abfbcbf53d85ce918986d113aae8e59523e9d46dcc8a29b5dd35"
+    },
+    "fierce": {
+      "size": [
+        295,
+        341
+      ],
+      "opaque_pixels": 53487,
+      "cell": [
+        362,
+        724,
+        724,
+        1086
+      ],
+      "sha256": "0a0eb8673a5ae6ade8f6c87c620b0a6902b5c572b1cb6aa591d846ab225132a0"
+    },
+    "hurt": {
+      "size": [
+        282,
+        341
+      ],
+      "opaque_pixels": 52374,
+      "cell": [
+        724,
+        724,
+        1086,
+        1086
+      ],
+      "sha256": "2435a7ef0df1a0c380fde98305fbd7ac0841f37e440e790be184e3dc4a277511"
+    },
+    "happy": {
+      "size": [
+        285,
+        336
+      ],
+      "opaque_pixels": 52083,
+      "cell": [
+        1086,
+        724,
+        1448,
+        1086
+      ],
+      "sha256": "8f668bab44d6b7bec5f297c5ab9aea120bfc4767f18e566af317dbd83c2d88f7"
+    }
+  },
+  "method": "Regular cell extraction, connected alpha silhouette plus 2px antialias border; RGB preserved."
+}

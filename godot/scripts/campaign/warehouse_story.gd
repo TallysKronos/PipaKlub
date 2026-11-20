@@ -25,7 +25,7 @@ static func objective(p:Dictionary)->String:
 static func nodes()->Array[Dictionary]:
  return [
   {"title":"Três rabiolas, um só corpo","text":"Kael: Três rabiolas… Elas foram costuradas juntas!\n\nA Pipa-Dragão tensiona as três linhas. O chão vibra antes do avanço. Rabbito recua: disputar força agora colocaria todos em risco.\n\nKael: Precisamos sair da frente!"},
-  {"title":"Retalho entra na frente","text":"Retalho salta entre Kael e a Pipa-Dragão. As linhas se chocam; o impulso o arremessa para trás. Ele tenta se erguer, mas suas patas cedem.\n\nKael: Retalho! Você veio me proteger…\n\nA criatura prepara outro avanço. Kael se coloca ao lado de Retalho, procurando uma saída."},
+  {"title":"Retalho entra na frente","text":"Retalho salta entre Kael e a Pipa-Dragão. As linhas se chocam; o impulso a arremessa para trás. Ela tenta se erguer, mas suas patas cedem.\n\nKael: Retalho! Você veio me proteger…\n\nA criatura prepara outro avanço. Kael se coloca ao lado de Retalho, procurando uma saída."},
   {"title":"Desatar, não cortar","text":"Tyler: Não dispute as três linhas! Elas não pertencem ao mesmo corpo.\n\nTyler se aproxima pelo lado e afrouxa um nó. Depois, o segundo. Duas luzes se desprendem das rabiolas e ganham o ar.\n\nA Pipa-Dragão encolhe. Continua exausta e assustada, mas já não carrega a pressão das três almas.\n\nTyler: Agora podemos encerrar o confronto sem cortar a rabiola."}
  ]
 func near(scene:String,at:Vector2,point:Vector2)->bool:
@@ -69,6 +69,7 @@ func settle()->Dictionary:
  if e.warehouseOpponent=="dragon" and (step(saved.player)!=3 or not saved.player.flags.get("golliaCarretelVencida",false)):return {"status":"wrong_step"}
  for partner:Dictionary in saved.player.partners:
   if partner.id==s.partnerId:partner.condition={"line":clampf(s.p.hp/s.p.stats.line*100,0,100),"structure":clampf(s.p.hull/s.p.stats.line*100,0,100)}
+ if s.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,s)
  if s.outcome=="won":
   if e.warehouseOpponent=="gollia":saved.player.flags.golliaCarretelVencida=true
   else:

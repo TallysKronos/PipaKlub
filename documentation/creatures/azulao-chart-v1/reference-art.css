@@ -1,0 +1,4 @@
+/* Enquadramento das referências B/C sem distorcer a prancha ou alterar pixels. */
+.thumb .art-window{height:116px;width:82px;flex-shrink:0}
+.reference .art-window{height:340px;width:241px;max-width:100%}
+.art-window img{height:100%;width:auto;max-width:none;object-fit:initial;top:0;left:50%;transform:translateX(var(--shift,-50%))}

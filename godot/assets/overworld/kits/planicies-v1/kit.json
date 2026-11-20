@@ -1,0 +1,236 @@
+{
+  "id": "planicies-v1",
+  "source": "Original art generated with image_gen and normalized for the game",
+  "state": "2D manga art; static kit QA passed",
+  "projection": "isometric64x32",
+  "assets": {
+    "moinho": {
+      "file": "pecas/moinho.png",
+      "size": [
+        155,
+        215
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        69,
+        178
+      ],
+      "basePolygon": [
+        [
+          69,
+          146
+        ],
+        [
+          133,
+          178
+        ],
+        [
+          69,
+          210
+        ],
+        [
+          5,
+          178
+        ]
+      ],
+      "fitReferenceSize": [
+        158,
+        194
+      ],
+      "source": "image_gen; manga style revision"
+    },
+    "cerca": {
+      "file": "pecas/cerca.png",
+      "size": [
+        73,
+        76
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        55
+      ],
+      "basePolygon": [
+        [
+          36,
+          39
+        ],
+        [
+          68,
+          55
+        ],
+        [
+          36,
+          71
+        ],
+        [
+          4,
+          55
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        70
+      ]
+    },
+    "feno": {
+      "file": "pecas/feno.png",
+      "size": [
+        73,
+        66
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        45
+      ],
+      "basePolygon": [
+        [
+          36,
+          29
+        ],
+        [
+          68,
+          45
+        ],
+        [
+          36,
+          61
+        ],
+        [
+          4,
+          45
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        68
+      ]
+    },
+    "arvore-solitaria": {
+      "file": "pecas/arvore-solitaria.png",
+      "size": [
+        156,
+        246
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        78,
+        209
+      ],
+      "basePolygon": [
+        [
+          78,
+          177
+        ],
+        [
+          142,
+          209
+        ],
+        [
+          78,
+          241
+        ],
+        [
+          14,
+          209
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        148,
+        234
+      ]
+    },
+    "pedra-marco": {
+      "file": "pecas/pedra-marco.png",
+      "size": [
+        73,
+        103
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        82
+      ],
+      "basePolygon": [
+        [
+          36,
+          66
+        ],
+        [
+          68,
+          82
+        ],
+        [
+          36,
+          98
+        ],
+        [
+          4,
+          82
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        74,
+        88
+      ]
+    },
+    "biruta": {
+      "file": "pecas/biruta.png",
+      "size": [
+        101,
+        157
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        136
+      ],
+      "basePolygon": [
+        [
+          36,
+          120
+        ],
+        [
+          68,
+          136
+        ],
+        [
+          36,
+          152
+        ],
+        [
+          4,
+          136
+        ]
+      ],
+      "source": "image_gen; manga style revision",
+      "fitReferenceSize": [
+        98,
+        136
+      ]
+    }
+  }
+}

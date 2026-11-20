@@ -1,0 +1,20 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-9fbd32a7-28d7-48a0-a5f2-415796b5aaf0.png",
+  "sha256": "bffe7adb9fe77bb5286214a6c3be0bace7be4a7360ccedf02ca41952a8e21032",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_references": [
+    "cacau-baby/concept-v2/concept.png: identidade",
+    "preguicau-young: anatomia e acabamento, quando usado"
+  ],
+  "decision_status": "approved",
+  "production_status": "concept",
+  "integration_status": "not_integrated",
+  "approval_note": "Autor: \"aprovado\", em 2026-11-04, após apresentação da linha completa. Aprovação visual dos quatro estágios; nomes, mecânicas e integração não incluídos."
+}

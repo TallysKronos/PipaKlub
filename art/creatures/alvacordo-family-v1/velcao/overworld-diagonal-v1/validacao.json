@@ -1,0 +1,45 @@
+{
+  "canvas": [
+    80,
+    80
+  ],
+  "pivotProposed": [
+    40,
+    65
+  ],
+  "entries": [
+    {
+      "id": "velcao",
+      "view": "frente-sw",
+      "bboxExclusive": [
+        11,
+        10,
+        69,
+        65
+      ],
+      "occupiedSize": [
+        58,
+        55
+      ],
+      "opaqueColors": 21,
+      "opaquePixels": 1552
+    },
+    {
+      "id": "velcao",
+      "view": "costas-nw",
+      "bboxExclusive": [
+        11,
+        11,
+        69,
+        65
+      ],
+      "occupiedSize": [
+        58,
+        54
+      ],
+      "opaqueColors": 19,
+      "opaquePixels": 1561
+    }
+  ],
+  "inGameValidated": false
+}

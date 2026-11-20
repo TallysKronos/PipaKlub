@@ -1,0 +1,80 @@
+{
+  "family_id": "dirubastiao",
+  "scope": "Quatro estágios documentais da Armada dos Lobos. Adultos anteriores preservados; novas pré-evoluções e vínculos propostos.",
+  "nodes": [
+    {
+      "id": "dirum",
+      "name": "Dirum",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Corpo-rosto achatado e largo, bochechas grandes dobradas, sem membros. Rabiola sai do lado posterior e leva estandarte; nó inferior é acabamento de estrutura, não segunda alma. Padrões dourados herdados são mais elaborados que o pedido mínimo.",
+      "story": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/dirubastiao/dirum/concept-v1/concept.png",
+      "brief": "../../../art/creatures/dirubastiao/dirum/concept-v1/brief.md"
+    },
+    {
+      "id": "dirupac",
+      "name": "Dirupac",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Quatro patas, uma dianteira levantada; rosto curioso e corpo compacto. Arco dorsal com linha frouxa sem projétil; ombros e punhos já têm pequenas proteções. O conceito mantém mais grevas que o brief pediu; revisitar simplificação se o autor preferir.",
+      "story": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/dirubastiao/dirupac/concept-v1/concept.png",
+      "brief": "../../../art/creatures/dirubastiao/dirupac/concept-v1/brief.md"
+    },
+    {
+      "id": "dirubalu",
+      "name": "Dirubalu",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Quatro patas separadas, pernas traseiras sem grevas, corpo comprido e peito ainda leve. Balestra pequena com seta e dois apoios; volume muito inferior à balista e couraça adulta.",
+      "story": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/dirubastiao/dirubalu/concept-v1/concept.png",
+      "brief": "../../../art/creatures/dirubastiao/dirubalu/concept-v1/brief.md"
+    },
+    {
+      "id": "dirubastiao",
+      "name": "Dirubastião",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Balista dorsal de cerco · Pleistoceno · lobo-terrível",
+      "story": "Ancora as quatro patas para lançar uma grande seta almática; perde mobilidade enquanto tensiona a balista.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/dirubastiao/concept-v1/concept.png",
+      "brief": "../../../art/creatures/dirubastiao/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dirum",
+      "to": "dirupac",
+      "kind": "reweaving",
+      "reason": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "dirupac",
+      "to": "dirubalu",
+      "kind": "reweaving",
+      "reason": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "dirubalu",
+      "to": "dirubastiao",
+      "kind": "reweaving",
+      "reason": "De equilibrar o próprio peso a apoiar uma pequena estrutura; aprende a disparar em movimento e, adulto, escolhe ancorar o corpo inteiro para proteger a retaguarda.",
+      "decision_status": "proposed"
+    }
+  ]
+}

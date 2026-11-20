@@ -1,0 +1,81 @@
+{
+  "family_id": "caracol-pneu",
+  "scope": "Quatro concepts propostos; sem integração ou validação mecânica.",
+  "nodes": [
+    {
+      "id": "caracol-pneu-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Aprende a aderir e se recolher numa pequena concha de borracha-papel.",
+      "story": "Aprende a aderir e se recolher numa pequena concha de borracha-papel.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/caracol-pneu-family-v1/caracol-pneu-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/caracol-pneu-family-v1/caracol-pneu-baby/concept-v1/brief.md"
+    },
+    {
+      "id": "caracol-pneu-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Alonga o pé de apoio e desenvolve sulcos largos e abas ainda fechadas na concha.",
+      "story": "Alonga o pé de apoio e desenvolve sulcos largos e abas ainda fechadas na concha.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/caracol-pneu-family-v1/caracol-pneu-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/caracol-pneu-family-v1/caracol-pneu-child/concept-v1/brief.md"
+    },
+    {
+      "id": "caracol-pneu-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Inclina a concha e abre duas membranas para captar vento; aprende a orientar o corpo antes de rolar.",
+      "story": "Inclina a concha e abre duas membranas para captar vento; aprende a orientar o corpo antes de rolar.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/caracol-pneu-family-v1/caracol-pneu-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/caracol-pneu-family-v1/caracol-pneu-young/concept-v1/brief.md"
+    },
+    {
+      "id": "espirrodante",
+      "name": "Adulto — Espirrodante (nome proposto)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Amplia o casco em roda-vela vertical; combina apoio do pé e painéis de vento para controlar deslocamento e defesa.",
+      "story": "Amplia o casco em roda-vela vertical; combina apoio do pé e painéis de vento para controlar deslocamento e defesa.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/caracol-pneu-family-v1/espirrodante/concept-v1/concept.png",
+      "brief": "../../../art/creatures/caracol-pneu-family-v1/espirrodante/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "caracol-pneu-baby",
+      "to": "caracol-pneu-child",
+      "kind": "reweaving",
+      "reason": "Alonga o pé de apoio e desenvolve sulcos largos e abas ainda fechadas na concha.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "caracol-pneu-child",
+      "to": "caracol-pneu-young",
+      "kind": "reweaving",
+      "reason": "Inclina a concha e abre duas membranas para captar vento; aprende a orientar o corpo antes de rolar.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "caracol-pneu-young",
+      "to": "espirrodante",
+      "kind": "reweaving",
+      "reason": "Amplia o casco em roda-vela vertical; combina apoio do pé e painéis de vento para controlar deslocamento e defesa.",
+      "decision_status": "proposed"
+    }
+  ]
+}

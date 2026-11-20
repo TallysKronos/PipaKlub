@@ -1,0 +1,85 @@
+{
+  "family_id": "mico-samurai",
+  "scope": "Quatro concepts visuais aprovados; nomes e mecânicas propostos; sem integração.",
+  "nodes": [
+    {
+      "id": "mico-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Descobre equilíbrio pela cauda e aprende a orientar os tufos de papel.",
+      "story": "Descobre equilíbrio pela cauda e aprende a orientar os tufos de papel.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/mico-samurai-family-v1/mico-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/mico-samurai-family-v1/mico-baby/concept-v1/brief.md",
+      "approval_note": "2026-11-04: autor disse “Aprovados!” ao solicitar em seguida a linha da anaconda. Escopo: quatro designs visuais do mico; nomes e regras continuam propostos."
+    },
+    {
+      "id": "mico-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Treina coordenação com duas varetas revestidas de papel.",
+      "story": "Treina coordenação com duas varetas revestidas de papel.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/mico-samurai-family-v1/mico-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/mico-samurai-family-v1/mico-child/concept-v1/brief.md",
+      "approval_note": "2026-11-04: autor disse “Aprovados!” ao solicitar em seguida a linha da anaconda. Escopo: quatro designs visuais do mico; nomes e regras continuam propostos."
+    },
+    {
+      "id": "mico-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Aprende a alternar guarda e alcance com duas lâminas leves e visor ainda aberto.",
+      "story": "Aprende a alternar guarda e alcance com duas lâminas leves e visor ainda aberto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/mico-samurai-family-v1/mico-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/mico-samurai-family-v1/mico-young/concept-v1/brief.md",
+      "approval_note": "2026-11-04: autor disse “Aprovados!” ao solicitar em seguida a linha da anaconda. Escopo: quatro designs visuais do mico; nomes e regras continuam propostos."
+    },
+    {
+      "id": "micoshiro",
+      "name": "Adulto — Micoshiro (nome proposto)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "O samurai esguio domina duas katanas e usa a cauda como contrapeso; o elmo fecha a proteção da cabeça.",
+      "story": "O samurai esguio domina duas katanas e usa a cauda como contrapeso; o elmo fecha a proteção da cabeça.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/mico-samurai-family-v1/micoshiro/concept-v1/concept.png",
+      "brief": "../../../art/creatures/mico-samurai-family-v1/micoshiro/concept-v1/brief.md",
+      "approval_note": "2026-11-04: autor disse “Aprovados!” ao solicitar em seguida a linha da anaconda. Escopo: quatro designs visuais do mico; nomes e regras continuam propostos."
+    }
+  ],
+  "edges": [
+    {
+      "from": "mico-baby",
+      "to": "mico-child",
+      "kind": "reweaving",
+      "reason": "Treina coordenação com duas varetas revestidas de papel.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "mico-child",
+      "to": "mico-young",
+      "kind": "reweaving",
+      "reason": "Aprende a alternar guarda e alcance com duas lâminas leves e visor ainda aberto.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "mico-young",
+      "to": "micoshiro",
+      "kind": "reweaving",
+      "reason": "O samurai esguio domina duas katanas e usa a cauda como contrapeso; o elmo fecha a proteção da cabeça.",
+      "decision_status": "proposed"
+    }
+  ]
+}

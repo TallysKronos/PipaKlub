@@ -1,10 +1,13 @@
 extends Node2D
 const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const HouseArt=preload("res://scripts/campaign/house_modern.gd")
-const ProfessorArt=preload("res://scripts/campaign/professor_modern.gd")
+const ProfessorArt=preload("res://scripts/campaign/professor_interior_v2.gd")
 const ShopArt=preload("res://scripts/campaign/shop_modern.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
+const RETALHO_IDLE := preload("res://assets/campaign/retalho-v1/overworld-idle-eight.png")
+const RETALHO_WALK := "res://assets/campaign/retalho-v1/overworld-walk-eight.png"
+var retalho_walk: Texture2D
 const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 ## Uses the original room coordinates, footprints and 2:1 projection.
 signal interacted(id: String)
@@ -18,6 +21,8 @@ var avatar: Node2D
 var props: Array[Dictionary] = []
 var camera: Dictionary
 var near := ""
+var outlined_person: Sprite2D
+const InteractionOutline = preload("res://scripts/overworld/interaction_outline.gd")
 var companion: Sprite2D
 var companion_frames: Array = []
 var companion_point := Vector2.ZERO
@@ -47,17 +52,19 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	props.clear()
 	retalho_follower=false
 	retalho_resident=null
+	outlined_person = null
 	companion = null
 	mother_sprite = null
 	companion_frames.clear()
 	trail.clear()
-	data = HouseArt.room_data(room)
+	data = ProfessorArt.room_data(room) if ProfessorArt.applies(room) else HouseArt.room_data(room)
 	target_marker=Node2D.new()
 	target_marker.z_index=250
 	target_marker.draw.connect(_draw_target)
 	add_child(target_marker)
 	camera = data.camera
 	actor = Vector2(point[0], point[1])
+	if ProfessorArt.applies(data):actor = ProfessorArt.resume_point(actor, data.blocked)
 	if ShopArt.applies(data):actor=preload("res://scripts/campaign/shop_data.gd").resume_point(actor)
 	can_walk = walk
 	target_hotspot = target
@@ -91,7 +98,7 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
 	avatar = Avatar.new()
 	add_child(avatar)
-	avatar.scale = Vector2.ONE * .80 * Avatar.BODY_SCALE * float(camera.scale)
+	avatar.scale = Vector2.ONE if ProfessorArt.applies(data) or ShopArt.applies(data) else Vector2.ONE * .80 * Avatar.BODY_SCALE * float(camera.scale)
 	props.append({"node": avatar, "rect": {}, "layer": "", "actor": true})
 	if mother:
 		var npc := Sprite2D.new()
@@ -158,6 +165,7 @@ func enable_stair_reveal() -> void:
 
 func set_story_paused(value: bool) -> void:
 	story_paused=value
+	_update_person_outline()
 	avatar.set_process(not value)
 	if value:avatar.moving=false; avatar.running=false
 	if is_instance_valid(opening_tv):
@@ -165,6 +173,8 @@ func set_story_paused(value: bool) -> void:
 		else:opening_tv.set_process(not value and opening_tv.visible)
 
 func project(p: Vector2) -> Vector2:
+	if ProfessorArt.applies(data):return ProfessorArt.visible_point(p)
+	if ShopArt.applies(data):return ShopArt.visible_point(p)
 	var point := Vector2((p.x - p.y) * .82, (p.x + p.y) * .41) if data.get("projection") == "street" else Vector2((p.x - p.y) / 3, (p.x + p.y) / 6)
 	return (point - Vector2(camera.x, camera.y)) * float(camera.scale)
 
@@ -178,6 +188,8 @@ func _behind(a: Dictionary, b: Dictionary) -> bool:
 
 func _update_order() -> void:
 	avatar.position = project(actor)
+	if ShopArt.applies(data):
+		position = ShopArt.camera_offset(actor)
 	if data.get("projection") == "street":
 		position = Vector2(480, 320) - avatar.position
 	var rest: Array[Dictionary] = []
@@ -235,14 +247,16 @@ func _process(delta: float) -> void:
 	if is_instance_valid(mother_sprite):opening_pose()
 	_step_retalho_resident(delta)
 	if is_instance_valid(companion) and companion_follow:
-		if not retalho_follower:
+		if not retalho_follower and not companion_frames.is_empty():
 			var frame:Dictionary=companion_frames[int(clock*12)%companion_frames.size()]
 			companion.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
 		if trail.is_empty() or trail.back().distance_to(actor) > 8:
 			trail.append(actor)
+		var companion_before := companion_point
 		companion_point=CompanionFollow.advance(companion_point,trail,minf(delta,.05),720.0,70.0,_companion_segment)
+		if not retalho_follower: CompanionFollow.animate(companion,delta,companion_before.distance_to(companion_point),128.0)
 		companion.position = project(companion_point)
-		if retalho_follower:_face_retalho(companion,avatar.facing)
+		if retalho_follower:_step_retalho_pose(companion,companion_before,companion_point)
 		else:CompanionFollow.orient(companion,avatar.facing)
 		_update_order()
 	near = ""
@@ -253,6 +267,7 @@ func _process(delta: float) -> void:
 		var reach:=150.0 if spot.id=="stairs" else 110.0
 		if distance<=reach and distance<nearest:
 			near=spot.id;nearest=distance
+	_update_person_outline()
 	avatar.running=false
 	avatar.moving = cinematic_actor_moving
 	if not can_walk:
@@ -262,7 +277,10 @@ func _process(delta: float) -> void:
 	if input.length() < .1:
 		return
 	# Invert the room projection so screen directions match the player's input.
-	var world := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x).normalized() * input.length() * 360 * Locomotion.multiplier() * minf(delta, .05)
+	var travel := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x)
+	if ProfessorArt.applies(data):
+		travel *= ProfessorArt.FLOOR.size / ProfessorArt.CELLS
+	var world := travel.normalized() * input.length() * 360 * Locomotion.multiplier() * minf(delta, .05)
 	var steps := maxi(1, ceili(world.length() / 4))
 	var before := actor
 	for i in steps:
@@ -280,7 +298,8 @@ func _process(delta: float) -> void:
 	avatar.moving = actor.distance_to(before)>.01
 	avatar.running=avatar.moving and Locomotion.requested()
 	if avatar.moving:avatar.face_motion(project(actor)-project(before))
-	if is_instance_valid(companion):CompanionFollow.orient(companion,avatar.facing)
+	if is_instance_valid(companion) and not retalho_follower:
+		CompanionFollow.orient(companion,avatar.facing)
 	_update_order()
 
 func _companion_segment(from:Vector2,to:Vector2) -> bool:
@@ -304,13 +323,28 @@ func _draw_target() -> void:
 		target_marker.draw_colored_polygon(PackedVector2Array([at+Vector2(-7,-38),at+Vector2(7,-38),at+Vector2(0,-27)]),color)
 
 
-func _face_retalho(sprite:Sprite2D,facing:String)->void:
+func _face_retalho(sprite:Sprite2D,facing:String,phase := 0)->void:
 	var index:=maxi(0,NpcPixels.DIRECTIONS.find(facing))
-	sprite.region_rect=Rect2((index%4)*64,floori(index/4.0)*96,64,96)
+	var stride := phase == 1 or phase == 3
+	sprite.texture=retalho_walk if stride else RETALHO_IDLE
+	var row := floori(index/4.0)+(2 if phase==3 else 0)
+	sprite.region_rect=Rect2((index%4)*64,row*96,64,96)
 	sprite.flip_h=false
+	sprite.set_meta("retalho_facing",facing)
+
+func _step_retalho_pose(sprite:Sprite2D,before:Vector2,after:Vector2)->void:
+	var facing := str(sprite.get_meta("retalho_facing","se"))
+	var distance := before.distance_to(after)
+	if distance < .01:
+		_face_retalho(sprite,facing)
+		return
+	facing=preload("res://scripts/kael_video_avatar.gd").facing_for(project(after)-project(before),facing)
+	var travel := fposmod(float(sprite.get_meta("retalho_stride",0.0))+distance,88.0)
+	sprite.set_meta("retalho_stride",travel)
+	_face_retalho(sprite,facing,floori(travel/22.0))
 
 func _style_retalho(sprite:Sprite2D)->void:
-	sprite.texture=load("res://assets/campaign/retalho-v1/overworld-idle-eight.png")
+	if retalho_walk == null: retalho_walk=load(RETALHO_WALK)
 	sprite.region_enabled=true
 	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.offset=Vector2(0,-44)
@@ -344,6 +378,7 @@ func add_retalho_resident()->void:
 func _step_retalho_resident(delta:float)->void:
 	if not is_instance_valid(retalho_resident):return
 	if retalho_point.distance_to(retalho_goal)<1.0:
+		_step_retalho_pose(retalho_resident,retalho_point,retalho_point)
 		retalho_wait-=delta
 		if retalho_wait>0:return
 		retalho_wait=.75
@@ -358,12 +393,23 @@ func _step_retalho_resident(delta:float)->void:
 	var next:=retalho_point.move_toward(retalho_goal,125.0*minf(delta,.05))
 	if next.distance_to(actor)<32 or next.distance_to(mother_point)<44:
 		retalho_goal=retalho_point
+		_step_retalho_pose(retalho_resident,retalho_point,retalho_point)
 		return
-	var direction:=project(next)-project(retalho_point)
+	_step_retalho_pose(retalho_resident,retalho_point,next)
 	retalho_point=next
-	var facing:=preload("res://scripts/kael_video_avatar.gd").facing_for(direction)
-	_face_retalho(retalho_resident,facing)
-	retalho_resident.position=project(next)+Vector2(0,-absf(sin(clock*16.0))*2)
+	retalho_resident.position=project(next)
 	for item in props:
 		if item.node==retalho_resident:item.rect=_foot(next)
 	_update_order()
+
+func _update_person_outline() -> void:
+	var target: Sprite2D
+	if can_walk and not story_paused:
+		match near:
+			"mother", "professor": target = mother_sprite
+			"counter": target = get_node_or_null("ShopOwner/Art") as Sprite2D
+	if outlined_person == target:
+		return
+	InteractionOutline.set_active(outlined_person, false)
+	outlined_person = target
+	InteractionOutline.set_active(outlined_person, true)

@@ -3,6 +3,11 @@ extends RefCounted
 const FALL=preload("res://scripts/overworld/cave_waterfall.gd")
 const BASE="res://assets/overworld/kits/"
 static func geometry() -> bool:return OS.get_environment("KRONASTA_GEOMETRIA")=="1"
+
+static func harbor_deck_at(model,u:int,v:int)->bool:
+ for dock:Dictionary in model.data.get("forest",{}).get("docks",[]):
+  if Rect2i(dock.u,dock.v,dock.w,dock.h).has_point(Vector2i(u,v)):return true
+ return false
 static func iso(p:Vector2,h:float=0) -> Vector2:return Vector2((p.x-p.y)*32,(p.x+p.y)*16-h)
 static func uv_points(values:Array) -> PackedVector2Array:
  var result:=PackedVector2Array()
@@ -11,8 +16,57 @@ static func uv_points(values:Array) -> PackedVector2Array:
 static func shapes(model) -> Array:
  var w:Dictionary=model.data.get("forest",{}).get("water",{}) if model.data.get("forest",{}).get("water")!=null else {}
  return [uv_points(w.contour),uv_points(w.channel)] if not w.is_empty() else []
+## Quedas (forest.lavaFalls e forest.waterFalls: u, v, width, drop). A cortina cobre a face
+## da frente (+v) das células de lava ou de água na borda do terraço e desce `drop` níveis;
+## um nó por célula, ordenado logo depois da parede dela.
+static func _lava_falls(view) -> void:
+ _falls(view,"lavaFalls",BASE+"lava-v1/surfaces/lava.png",Color("ffd27a"),Color(1.0,.86,.45,.55),Color.WHITE)
+ _falls(view,"waterFalls",BASE+"aguas-v1/surfaces/cortina-forte.png",Color("f2fbff"),Color(.95,.99,1.0,.7),Color("9fd3e6"))
+ # Cachoeira congelada: mesma cortina, parada e clara.
+ _falls(view,"iceFalls",BASE+"aguas-v1/surfaces/cortina-suave.png",Color("ffffff"),Color(.92,.97,1.0,.75),Color("dff3ff"),0.0)
+
+static func _falls(view,key:String,texture_path:String,lip:Color,splash_color:Color,tint:Color,flow:float=1.0) -> void:
+ var model=view.model
+ if geometry():return
+ for fall:Dictionary in model.data.get("forest",{}).get(key,[]):
+  var material:=ShaderMaterial.new()
+  material.shader=load("res://shaders/overworld/lava_region_fall.gdshader")
+  material.set_shader_parameter("lava_texture",load(texture_path))
+  material.set_shader_parameter("flow",flow)
+  for i in int(fall.width):
+   var u:int=int(fall.u)+i;var v:int=int(fall.v)
+   var top:float=float(model.cell_at(Vector2i(u,v)).get("level",0))*64
+   var drop:float=float(fall.drop)*64
+   var node:=Node2D.new();node.position=Vector2((u-v)*32,(u+v)*16+2.5);view.actors.add_child(node)
+   var a:Vector2=iso(Vector2(u,v+1),top)-node.position;var b:Vector2=iso(Vector2(u+1,v+1),top)-node.position
+   var curtain:=Polygon2D.new()
+   curtain.polygon=PackedVector2Array([a,b,b+Vector2(0,drop),a+Vector2(0,drop)])
+   var x0:float=float(i)*85.0;var x1:float=float(i+1)*85.0
+   curtain.uv=PackedVector2Array([Vector2(x0,0),Vector2(x1,0),Vector2(x1,drop*2.2),Vector2(x0,drop*2.2)])
+   curtain.texture=load(texture_path)
+   curtain.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+   curtain.material=material
+   curtain.color=tint
+   node.add_child(curtain)
+   # Lábio claro no alto e respingo incandescente na base.
+   line(node,PackedVector2Array([a,b]),3,lip)
+   var splash:=Polygon2D.new()
+   var base:Vector2=(a+b)*.5+Vector2(0,drop)
+   splash.polygon=PackedVector2Array([base+Vector2(-40,-6),base+Vector2(0,-22),base+Vector2(40,6),base+Vector2(6,26),base+Vector2(-34,14)])
+   splash.color=splash_color
+   node.add_child(splash)
+
+## Material único da lava (o shader anima sozinho).
+static var _lava_material: ShaderMaterial
+static func lava_material() -> ShaderMaterial:
+ if _lava_material==null:
+  _lava_material=ShaderMaterial.new()
+  _lava_material.shader=load("res://shaders/overworld/lava_region_flow.gdshader")
+  _lava_material.set_shader_parameter("lava_texture",load(BASE+"lava-v1/surfaces/lava.png"))
+ return _lava_material
+
 static func is_water(model,p:Vector2) -> bool:
- if model.data.get("forest",{}).get("harbor",false):return model.cell_at(Vector2i(p.floor())).get("material","")=="agua"
+ if model.data.get("forest",{}).get("harbor",false) or model.data.get("forest",{}).get("stream",false):return model.cell_at(Vector2i(p.floor())).get("material","")=="agua"
  for shape:PackedVector2Array in shapes(model):
   if shape.is_empty():continue
   if Geometry2D.is_point_in_polygon(p,shape):return true
@@ -85,13 +139,40 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
    target.material=null
    target.texture=null
    target.color=Color("a8b9b9") if model.data.get("forest",{}).get("industrial",false) else Color("b08a52")
-  if model.data.get("forest",{}).get("harbor",false) and c.get("material","")=="agua":
+  if (model.data.get("forest",{}).get("harbor",false) or model.data.get("forest",{}).get("stream",false)) and c.get("material","")=="agua":
    target.material=null;target.texture=null if geometry() else load(BASE+"aguas-v1/surfaces/rio-claro.png")
    target.vertex_colors=PackedColorArray();target.color=Color("2a7490") if geometry() else Color("5f9bac")
    target.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
    var water_uv:=PackedVector2Array()
    for p in points:water_uv.append((p+node.position)*.7)
    target.uv=water_uv
+  if model.data.get("forest",{}).get("lava",false) and not geometry():
+   # Vulcão: as células de "água" são lava animada; o resto é basalto, com brilho de
+   # brasa nas células vizinhas da lava.
+   if c.get("material","")=="agua":
+    target.material=lava_material()
+    target.texture=load(BASE+"lava-v1/surfaces/lava.png")
+    target.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+    target.vertex_colors=PackedColorArray();target.color=Color.WHITE
+    # UV de Polygon2D é em pixels da textura (512): seis células por repetição.
+    var lava_uv:=PackedVector2Array()
+    for p in fragment:lava_uv.append(p*(512.0/6.0))
+    target.uv=lava_uv
+   elif c.get("material","")!="ponte":
+    target.material=null
+    target.texture=load(BASE+"lava-v1/surfaces/basalto.png")
+    target.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+    var heat:=0.0
+    for d:Vector2i in [Vector2i(1,0),Vector2i(-1,0),Vector2i(0,1),Vector2i(0,-1)]:
+     var n:Dictionary=model.cell_at(Vector2i(u,v)+d)
+     if n.get("material","")=="agua" and int(n.get("level",0))>=int(c.get("level",0))-1:heat+=.25
+    target.vertex_colors=PackedColorArray()
+    target.color=Color.WHITE.lerp(Color("ff8a3d"),minf(.6,heat*.9)).darkened(.04*float((u*7+v*13)%4))
+    var basalt_uv:=PackedVector2Array()
+    for p in fragment:basalt_uv.append(p*64.0)
+    target.uv=basalt_uv
+   else:
+    target.color=Color("5f5866")
   if not coastal_tiles.is_empty():
    var tile:Texture2D=coastal_tiles.get(c.material,coastal_tiles.piso)
    var tile_uv:=PackedVector2Array()
@@ -149,6 +230,11 @@ static func line(parent:Node2D,points:PackedVector2Array,width:float,color:Color
 static func quad(parent:Node2D,points:PackedVector2Array,color:Color,texture:Texture2D=null) -> Polygon2D:
  var node:=Polygon2D.new();node.polygon=points;node.color=color;node.texture=texture;parent.add_child(node);return node
 static func build(view) -> void:
+ _lava_falls(view)
+ # Peças de gruta fora das minas (a boca da Gruta do Moinho nas Planícies).
+ if not view.model.data.get("forest",{}).get("mine",false) and not geometry():
+  for piece:Dictionary in view.model.data.pieces:
+   if piece.asset=="mina-cave":preload("res://scripts/overworld/mine_structures.gd").cave_prop(view,piece)
  var model=view.model
  var f:Dictionary=model.data.get("forest",{})
  if f.is_empty():return
@@ -225,6 +311,7 @@ static func build(view) -> void:
    line(post,PackedVector2Array([Vector2(0,-4),Vector2(0,-30)]),7,Color("687e83") if f.get("industrial",false) else Color("79542f"))
    line(post,PackedVector2Array([Vector2(-3,-30),Vector2(3,-30)]),3,Color("dbba78"))
  for guard:Dictionary in f.get("guards",[]):_guard(view,guard)
+ if str(model.data.id).begins_with("kronasta-mirante-"):_mirante_guards(view)
  for stairs:Dictionary in f.get("stairs",[]):_stairs(view,stairs)
  if f.get("landmark")!=null and not f.get("bamboo",false):_landmark(view,f.landmark)
  if not geometry():
@@ -241,6 +328,21 @@ static func build(view) -> void:
    var strand:=Node2D.new();var point:=Vector2(23.7,34.5);strand.position=view.model.project(point,false)+Vector2(0,2);view.actors.add_child(strand)
    var base:Vector2=view.model.project(point)-strand.position
    line(strand,PackedVector2Array([base+Vector2(-14,0),base+Vector2(-6,-3),base+Vector2(2,0),base+Vector2(9,-4),base+Vector2(18,-2)]),1.4,Color("514c42"))
+static func _mirante_guards(view) -> void:
+ var model=view.model
+ var part:=str(model.data.id).right(1)
+ var front_row:=21 if part=="c" else 7
+ var segments:Array=[Vector3i(19,front_row,22),Vector3i(27,front_row,30)]
+ if part=="c":segments=[Vector3i(17,front_row,21),Vector3i(28,front_row,33)]
+ for segment:Vector3i in segments:
+  for u in range(segment.x,segment.z+1):
+   var edge:=Vector2i(u,segment.y)
+   var cell:Dictionary=model.cell_at(edge)
+   var lower:Dictionary=model.cell_at(edge+Vector2i(0,1))
+   if cell.is_empty() or lower.is_empty() or not model.walkable(edge):continue
+   if cell.get("ramp")!=null or lower.get("ramp")!=null:continue
+   if int(cell.level)>int(lower.level):_guard(view,{"u":u,"v":segment.y,"side":"v"})
+
 static func _guard(view,g:Dictionary) -> void:
  var model=view.model
  var a:=Vector2(g.u+1,g.v) if g.side=="u" else Vector2(g.u,g.v+1)
@@ -256,8 +358,12 @@ static func _stairs(view,s:Dictionary) -> void:
  var u:float=s.u;var v:float=s.v;var width:float=s.width
  var base:float=float(view.model.cell_at(Vector2i(int(u),int(v))).get("level",0))*64
  var chamber: bool = view.model.data.get("forest",{}).get("chamber",false)
+ var district: String = str(view.model.data.id).get_slice("-",1)
+ var closed: bool = view.model.data.get("forest",{}).get("closedStairs",false) or district in ["centro","lajes","porto","palafitas"]
  var tread := Color("#636077") if chamber else Color("d1c69e")
  var riser := Color("#38364c") if chamber else Color("807c67")
+ if view.model.data.get("forest",{}).get("lava",false):tread=Color("6d6672");riser=Color("3a3540")
+ if view.model.data.get("forest",{}).get("ice",false):tread=Color("dbe9f2");riser=Color("8aa7bf")
  for k in 8:
   var low:float=float(k)/8;var high:float=float(k+1)/8;var height:float=base+high*64
   var a:=Vector2(u,v+2-high*2);var b:=Vector2(u+width,v+2-high*2)
@@ -265,7 +371,7 @@ static func _stairs(view,s:Dictionary) -> void:
   var node:=Node2D.new();node.position=iso((a+c)*.5)+Vector2(0,4);view.actors.add_child(node)
   quad(node,PackedVector2Array([iso(a,height)-node.position,iso(b,height)-node.position,iso(c,height)-node.position,iso(d,height)-node.position]),tread)
   quad(node,PackedVector2Array([iso(d,height)-node.position,iso(c,height)-node.position,iso(c,height-8)-node.position,iso(d,height-8)-node.position]),riser)
-  if view.model.data.get("forest",{}).get("closedStairs",false):
+  if closed:
    # The sloped collision surface cannot seal the triangular void under each tread.
    # Close the actual stepped prism, inside its measured footprint, per depth slice.
    for edge in [[a,d],[b,c]]:

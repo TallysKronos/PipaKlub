@@ -1,0 +1,1 @@
+Histórico substituído: fril atrás da cabeça parecia dragão, papel tinha ruído. Prompt inicial bloqueado, prompt-retry gerou esta imagem. V2 corrige face e acabamento.

@@ -1,0 +1,32 @@
+{
+  "id": "makareu",
+  "group_proposed": "portadores dos Crystais Pipas",
+  "legend_inspiration": "Makara",
+  "date": "2026-11-06",
+  "tool": "built-in image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-461ee446-9f88-4988-98b8-f8be20d6be40.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "background": "white",
+  "sha256": "8a6980f18f08cb882d162332f8c9c3632694184d534386057906708160a1eff0",
+  "references": [
+    {
+      "path": "../../../artifacts/crystais-pipas/concept-v1/concept.png",
+      "role": "own artifact identity"
+    },
+    {
+      "path": "../../vesperalito/concept-v2/concept.png",
+      "role": "own rendering and armor density"
+    }
+  ],
+  "external_images_attached": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation_status": "not_integrated"
+}

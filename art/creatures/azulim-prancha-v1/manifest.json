@@ -1,0 +1,64 @@
+{
+  "id": "azulim",
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "source": "art/creatures/soulmonsters-overworld-v2/azulim/duas-vistas.png",
+  "runtime_replaced": true,
+  "method": "Native Aseprite SW canonical-source face/head/diamond/crest and tail locked, original wing texture keyposes; existing NW unchanged",
+  "status": "integrado localmente; rosto original R3 conferido no jogo",
+  "animations": {
+    "idle": {
+      "image": "idle.png",
+      "frames": 4,
+      "durations_ms": [
+        750,
+        200,
+        750,
+        200
+      ],
+      "loop": true,
+      "sw_method": "Stable R1 core and tail; only wings microstroke1-2px"
+    },
+    "walk": {
+      "image": "walk.png",
+      "frames": 6,
+      "durations_ms": [
+        140,
+        100,
+        120,
+        140,
+        100,
+        120
+      ],
+      "loop": true,
+      "sw_method": "Six native wing keyposes with visible4-6px downstroke, R1 face/body/tail preserved per frame"
+    }
+  },
+  "generation_count": 3,
+  "batch_generation_count": 12,
+  "batch_generated_walk_poses": 72,
+  "batch_authored_idle_frames": 40,
+  "reviewer": "/root/animation_pixel_critic",
+  "review_score": 7.5,
+  "blocking_findings": [],
+  "correction_round": 3,
+  "wing_motion_revision": 2,
+  "native_wing_revision": 3,
+  "runtime_note": "R3 aplicada: cabeça/face/bico originais preservados nas dez poses frontais; NW intacto.",
+  "face_identity_revision": 3,
+  "identity_revision": 3,
+  "face_source": "art/creatures/soulmonsters-overworld-v2/azulim/duas-vistas.png SW",
+  "face_source_pixel_exact": true,
+  "approval_date": "2026-11-13",
+  "approval_note": "Usuário aprovou a correção facial R3: Gostei, aprovado. Aprovação específica da revisão de rosto original, já aplicada no jogo."
+}

@@ -1,0 +1,60 @@
+{
+  "source": "../pixel-64-v1/PixelSpec.json",
+  "correction": "Underlying continuity at neck shoulders waist hips, original pixel layers preserved",
+  "layer": "estrutura-articulacoes",
+  "core": {
+    "x": 20,
+    "y": 14,
+    "rows": [
+      "...........OOOOOO.........",
+      "..........ODVVVVDO........",
+      ".........ODVVVVVVDO.......",
+      "......OOODVVVVVVVDOOOO....",
+      "....OODVVVVVVVVVVVVVVDO...",
+      "...ODVVVVVVVVVVVVVVVVVDO..",
+      "..ODVVVVVVVVVVVVVVVVVVDO..",
+      ".ODVVVVVVVVVVVVVVVVVVVDO..",
+      ".ODVVVVVVVVVVVVVVVVVVVDO..",
+      ".ODVVVVVVVVVVVVVVVVVVDO...",
+      "..ODVVVVVVVVVVVVVVVVVDO...",
+      "...ODVVVVVVVVVVVVVVVDO....",
+      "....ODVVVVVVVVVVVVVVDO....",
+      ".....ODVVVVVVVVVVVVVDO....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      ".....ODVVVVVVVVVVVVDO.....",
+      "....ODVVVVVVVVVVVVVDO.....",
+      "....ODVVVVVDDVVVVVVDO.....",
+      "....ODVVVVDOODVVVVVDO.....",
+      "....ODVVVDO..ODVVVVDO.....",
+      ".....ODDDO....ODDDDO......"
+    ]
+  },
+  "palette": {
+    "O": "#191526",
+    "D": "#29203e",
+    "V": "#40305d",
+    "v": "#5a4277",
+    "I": "#fff0ce",
+    "C": "#e9c796",
+    "c": "#b58e73",
+    "G": "#ffca4b",
+    "g": "#c78222",
+    "A": "#f49b20",
+    "a": "#a85518",
+    "R": "#f27860",
+    "r": "#ad4754",
+    "E": "#ffdb55"
+  },
+  "frames": 8,
+  "canvas": [
+    64,
+    64
+  ]
+}

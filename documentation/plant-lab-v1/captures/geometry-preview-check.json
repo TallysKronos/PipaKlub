@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "read-only height hover",
+    "height commit matches preview plan",
+    "undo redo",
+    "ramp creation preview",
+    "shift removal preview",
+    "invalid ramp reason",
+    "stale worker results rejected"
+  ],
+  "errors": []
+}

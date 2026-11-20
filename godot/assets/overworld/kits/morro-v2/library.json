@@ -1,0 +1,253 @@
+{
+  "schema": "morro-v2",
+  "grid": [
+    64,
+    32
+  ],
+  "campaignIntegrated": false,
+  "collision": "not-authored",
+  "surfaces": [
+    {
+      "id": "pedra-clara",
+      "file": "surfaces/pedra-clara.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "C3AD91",
+        "CAB597",
+        "CCB699",
+        "CEB99B",
+        "D1BD9F"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "cimento-laje",
+      "file": "surfaces/cimento-laje.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "AA9E8E",
+        "B6AA99",
+        "B6AB99",
+        "B7AB9A",
+        "B8AC9B"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "terra-batida",
+      "file": "surfaces/terra-batida.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "A96B4D",
+        "AD6E4F",
+        "AE6E50",
+        "AF6E50",
+        "B27252"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "grama-quintal",
+      "file": "surfaces/grama-quintal.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "889D48",
+        "8DA248",
+        "8EA248",
+        "8FA349",
+        "96A84A"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "telha-barro",
+      "file": "surfaces/telha-barro.png",
+      "kind": "ground",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "8E4B38",
+        "B3634B",
+        "BC694E",
+        "BE6C50",
+        "C77255"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "muro-arrimo",
+      "file": "surfaces/muro-arrimo.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 6,
+      "palette": [
+        "756041",
+        "836C4F",
+        "887154",
+        "8C7356",
+        "927859",
+        "9A805F"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "tijolo-aparente",
+      "file": "surfaces/tijolo-aparente.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 6,
+      "palette": [
+        "A25F45",
+        "B5674B",
+        "B86B4D",
+        "BD6D4E",
+        "C47352",
+        "CD855F"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "reboco-pintado-rosa",
+      "file": "surfaces/reboco-pintado-rosa.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "C88788",
+        "C98A8A",
+        "CA8A8A",
+        "CB8B8B",
+        "CD8D8D"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "reboco-pintado-creme",
+      "file": "surfaces/reboco-pintado-creme.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "AA9174",
+        "BAA183",
+        "BEA688",
+        "C3AB8D",
+        "D1B99A"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "reboco-pintado-amarela",
+      "file": "surfaces/reboco-pintado-amarela.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "AC8E60",
+        "BCA16B",
+        "C1A570",
+        "C6AB75",
+        "D5B881"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "reboco-pintado-azul",
+      "file": "surfaces/reboco-pintado-azul.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "708891",
+        "829BA4",
+        "879FA8",
+        "8DA5AD",
+        "9DB4BA"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    },
+    {
+      "id": "reboco-pintado-verde",
+      "file": "surfaces/reboco-pintado-verde.png",
+      "kind": "wall",
+      "size": [
+        512,
+        512
+      ],
+      "colors": 5,
+      "palette": [
+        "6F886D",
+        "829B7A",
+        "879F7E",
+        "8DA482",
+        "9BB28E"
+      ],
+      "oppositeXMaxDifference": 0,
+      "oppositeYMaxDifference": 0,
+      "source": "image_gen; manga style revision"
+    }
+  ]
+}

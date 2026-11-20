@@ -6,14 +6,16 @@ const REGIONS := [
 	{"id":"bosque","name":"Bosque dos Ventos","at":Vector2(.40,.50),"scenes":["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"],"parts":["Trilha das Copas","Desvio do Riacho","Clareira do Marco"],"description":"Entre copas, riachos e mirantes. Três trilhas conectadas para explorar."},
 	{"id":"pantano","name":"Pântano dos Cipós","at":Vector2(.72,.30),"scenes":["kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c"],"parts":["Entrada alagada","Desvio dos Cipós","Lago profundo"],"description":"Passarelas e margens entre águas escuras. Prática de Remar após a orientação de Marisol; história do guardião e chefe ainda em desenvolvimento.","preview":true},
 	{"id":"montanha","name":"Serra de Kronasta","at":Vector2(.72,.60),"scenes":["kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c"],"parts":["Sopé","Encosta","Cume"],"description":"A pista de Mormaço leva ao sopé. Siga pela encosta para alcançar o cume."},
-	{"id":"industrial","name":"Distrito Industrial","at":Vector2(.88,.17),"scenes":["kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c"],"parts":["Distrito · A","Distrito · B","Distrito · C"],"description":"Galpões, passagens e pátios de carga. Exploração disponível; história em desenvolvimento.","preview":true},
+	{"id":"industrial","name":"Distrito Industrial","at":Vector2(.88,.17),"scenes":["kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c"],"parts":["Distrito · A","Distrito · B","Distrito · C"],"description":"Galpões, passagens e pátios de carga. Exploração disponível; história em desenvolvimento."},
 	{"id":"morro","name":"Morro do Sol","at":Vector2(.32,.86),"scenes":["morro"],"parts":["Entrada do Morro"],"description":"Encontre os pipeiros do Morro. Os desafios continuam liberando os caminhos pela campanha."},
-	{"id":"porto","name":"Costa de Kronasta","at":Vector2(.14,.48),"scenes":[],"parts":[],"description":"Uma costa à espera de novas jornadas. Nome e percurso provisórios."},
-	{"id":"ruinas","name":"Ruínas antigas","at":Vector2(.54,.78),"scenes":[],"parts":[],"description":"Vestígios nas terras do norte. Esta região ainda não está disponível."},
-	{"id":"vulcao","name":"Vulcão de Kronasta","at":Vector2(.88,.78),"scenes":[],"parts":[],"description":"Além das montanhas, uma terra de cinzas e lava. Região futura; nome provisório."},
-	{"id":"cavernas","name":"Cavernas de cristal","at":Vector2(.84,.43),"scenes":[],"parts":[],"description":"Passagens sob as rochas. Região futura; nome provisório."},
-	{"id":"planicies","name":"Planícies de Kronasta","at":Vector2(.52,.20),"scenes":[],"parts":[],"description":"Campos abertos ao vento. Região futura; nome provisório."},
+	{"id":"porto","name":"Porto Novo","at":Vector2(.16,.52),"scenes":["kronasta-porto-a","kronasta-porto-b","kronasta-porto-c"],"parts":["Terminal","Docas","Cais do Capitão"],"description":"Bairro 11. Terminal, docas e o cais do Capitão Jurandir."},
+	{"id":"coracao","name":"Coração das Ruínas","at":Vector2(.62,.86),"scenes":["kronasta-coracao-a","kronasta-coracao-b","kronasta-coracao-c","kronasta-coracao-d"],"parts":["Entrada","Corredor","Antecâmara","Câmara do Elo"],"description":"Debaixo da cidade, onde o Elo foi guardado."},
+	{"id":"vulcao","name":"Vulcão de Kronasta","at":Vector2(.88,.78),"scenes":["vulcao-a"],"parts":["Caldeira de Kronasta"],"description":"Nv.34–40 · abre depois de soltar a Rabiolava. Ilhas de basalto, passarelas sobre a lava e sete andares até a boca, onde o Tricórdio guarda a cratera. O Mestre Brasa e a Dona Cinza precisam de ajuda.","preview":true},
+	{"id":"cavernas","name":"Cavernas de cristal","at":Vector2(.84,.43),"scenes":[],"parts":[],"description":"Passagens sob as rochas. Ainda não há caminho aberto até lá."},
+	{"id":"planicies","name":"Planícies de Kronasta","at":Vector2(.52,.20),"scenes":["planicie-a","planicie-b","planicie-c","planicie-d"],"parts":["Campos do Vento","Colinas do Moinho","Vale das Pedras","Vila Campina"],"description":"Nv.10–16 · abre depois do Lacertubo. Campos ao vento, a Vila Campina com o mercado e o chafariz, o moinho parado do Seu Bento e, nas Colinas, a Gruta do Moinho: três galerias por baixo do morro e o Estratonte no lago do fundo.","preview":true},
 	{"id":"mina","name":"Mina de ferro","at":Vector2(.59,.62),"scenes":["mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d"],"parts":["Pátio de carga","Entroncamento ferroviário","Frentes de extração","Grande veio"],"description":"Quatro galerias conectadas, trilhos e passagens elevadas. Exploração disponível; história e mineração em desenvolvimento.","preview":true},
+	{"id":"abismo","name":"Abismo de Kronasta","at":Vector2(.06,.86),"scenes":["abismo-a","abismo-b","abismo-c","abismo-d"],"parts":["Recife da Entrada","Labirinto de Algas","Cidade Afundada","Trono das Marés"],"description":"Nv.37–42 · abre depois de Porto Novo. Quatro labirintos no fundo do mar, cheios de baús. Só se mergulha montado numa montaria aquática, como a Capiboia. O Seu Jacinto e a Celina esperam no recife; no fundo, o Coromar guarda o Trono das Marés.","preview":true},
+	{"id":"serra-gelada","name":"Serra Gelada","at":Vector2(.78,.16),"scenes":["serra-gelada-a","serra-gelada-b","serra-gelada-c"],"parts":["Vale Congelado","Desfiladeiro de Gelo","Coroa Glacial"],"description":"Nv.32–38 · abre depois do emblema da Dona Neve. Três trechos ligados pela neve: lagos congelados, cachoeiras, fendas e, no topo, o Borealvo, guardião da Coroa. O Seu Tomé e a Bia pedem ajuda no vale.","preview":true},
 	{"id":"gelo","name":"Geleira de Kronasta","at":Vector2(.67,.08),"scenes":["gelo-a","gelo-b","gelo-c","gelo-d"],"parts":["Clareira nevada","Bacia de gelo","Fenda glacial","Coroa da geleira"],"description":"Bosques nevados, gelo trincado e três pisos para explorar. História em desenvolvimento; o gelo não quebra nem escorrega.","preview":true},
 	{"id":"submerso","name":"Recifes de Kronasta","at":Vector2(.10,.71),"scenes":["submerso-a","submerso-b","submerso-c"],"parts":["Recife de entrada","Jardim de algas","Fenda abissal"],"description":"Explore o leito entre corais e formações rochosas. História em desenvolvimento; sem nado livre ou sistema de oxigênio.","preview":true},
 	{"id":"bambuzal","name":"Vila do Bambuzal","at":Vector2(.45,.68),"scenes":["kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c"],"parts":["Praça do Bambuzal","Caminho das Varetas","Arena do Lohan"],"description":"Praças e patamares entre os bambus. Quatro pipeiros guardam o caminho até o campeão."},
@@ -22,6 +24,10 @@ const REGIONS := [
 {"id":"caverna","name":"Caverna do Mural","at":Vector2(.54,.74),"scenes":["caverna-mural-a","caverna-mural-b","caverna-mural-c"],"parts":["Vestíbulo do Nó","Galeria do Vento","Salão do Primeiro Laço"],"description":"Tyler encontrou marcas antigas na pedra. A Rabiola Antiga pode responder a elas."},
 {"id":"cais","name":"Cais Velho","at":Vector2(.75,.72),"scenes":["kronasta-cais-a","kronasta-cais-b","kronasta-cais-c"],"parts":["Ancoradouro","Docas","Cais alto"],"description":"Barcos de pesca e pipas de sinalização. Cinco desafios pelo quinto emblema."},
 	{"id":"palafitas","name":"Palafitas · resgate","at":Vector2(.84,.82),"scenes":["kronasta-palafitas-a","kronasta-palafitas-b","kronasta-palafitas-c"],"parts":["Chegada do resgate","Travessia das docas","Patamar do resgate"],"description":"Percurso do resgate de Retalho. O campeonato do bairro ainda não está disponível."},
+	{"id":"centro","name":"Centro","at":Vector2(.29,.44),"scenes":["kronasta-centro-a","kronasta-centro-b","kronasta-centro-c"],"parts":["Praça da Matriz","Pipa TV","Arena do Centro"],"description":"Bairro 9. Praça da Matriz, estúdio da Pipa TV e a arena do Leo Antena."},
+	{"id":"lajes","name":"Condomínio","at":Vector2(.49,.41),"scenes":["kronasta-lajes-a","kronasta-lajes-b","kronasta-lajes-c"],"parts":["Portaria","Clube","Terraço"],"description":"Bairro 10. O condomínio das Lajes, com o terraço da Tainá."},
+	{"id":"mirante","name":"Alto do Mirante","at":Vector2(.62,.46),"scenes":["kronasta-mirante-a","kronasta-mirante-b","kronasta-mirante-c"],"parts":["Subida","Bandeiras","Topo"],"description":"Bairro 12. A subida até o Ícaro."},
+	{"id":"estadio","name":"Estádio de Kronasta","at":Vector2(.48,.245),"scenes":["kronasta-estadio-a"],"parts":["Lobby do Estádio"],"description":"A chave final do campeonato."},
 	{"id":"aracati","name":"Ilha do Aracati","at":Vector2(.22,.74),"scenes":["kronasta-aracati-a","kronasta-aracati-b","kronasta-aracati-c"],"parts":["Chegada","Trilha costeira","Terreiro"],"description":"A ponte abre após vencer Dona Neve."},
 ]
 const LINKS := [[0,1],[0,6],[0,7],[1,2],[2,8],[2,3],[2,4],[4,9],[4,10],[3,10],[3,11],[11,5],[4,12],[4,13],[7,14],[15,16],[16,17],[17,18],[17,19]]
@@ -31,13 +37,11 @@ static func region_for(scene:String) -> String:
 	if scene.begins_with("morro"):return "morro"
 	return "vila"
 static func can_travel(scene:String,player:Dictionary={}) -> bool:
-	if scene=="kronasta-estadio-a":
-		return preload("res://scripts/campaign/kronasta_story.gd").can_travel(player,"estadio")
-	if scene.begins_with("kronasta-aracati-"):
-		return scene=="kronasta-aracati-a" and preload("res://scripts/campaign/kronasta_story.gd").can_travel(player,"aracati")
-	if scene.begins_with("kronasta-montanha-"):
-		return scene=="kronasta-montanha-a" and preload("res://scripts/campaign/kronasta_story.gd").can_travel(player,"montanha")
 	if scene=="parque-patio-liga":return load("res://scripts/campaign/blue_exam_preparation.gd").eligible(player)
+	# Story regions follow the campaign (never the preview flag) and are entered by part A.
 	for region in REGIONS:
-		if scene in region.scenes:return not region.get("preview",false) or preload("res://scripts/campaign/kronasta_story.gd").qa() or (region.id=="pantano" and preload("res://scripts/campaign/kronasta_story.gd").swamp_open(player))
+		if scene in region.scenes and region.id in preload("res://scripts/campaign/park_checkpoint.gd").REGIONS:
+			return scene==region.scenes[0] and preload("res://scripts/campaign/kronasta_story.gd").can_travel(player,region.id)
+	for region in REGIONS:
+		if scene in region.scenes:return not region.get("preview",false) or preload("res://scripts/campaign/kronasta_story.gd").qa() or (region.id=="pantano" and preload("res://scripts/campaign/kronasta_story.gd").swamp_open(player)) or preload("res://scripts/campaign/side_regions.gd").open(player,region.id)
 	return false

@@ -1,0 +1,25 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-0ea40740-c151-451b-878e-22893c31c2bb.png",
+  "sha256": "c64efe88d26fa4f9112cd4f5ba1c95b514115953aeafe6a2e9ccf1c02ec40d8d",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    {
+      "path": "../../concept-v1/concept.png",
+      "role": "Identidade e acabamento do Gambalhote"
+    },
+    {
+      "path": "../../../onze-cavaleiros-v1/yaguarion/concept-v2/concept.png",
+      "role": "Regra do elmo e maturidade facial, sem transferir espécie ou paleta"
+    }
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "integration_status": "not_integrated"
+}

@@ -1,0 +1,29 @@
+{
+  "headPart": "head",
+  "windows": [
+    [
+      0,
+      0,
+      256,
+      312
+    ]
+  ],
+  "expressions": {
+    "fierce": {
+      "complete_head": true,
+      "canvas_identical": true,
+      "opaque_ratio": 0.9931054883043597
+    },
+    "hurt": {
+      "complete_head": true,
+      "canvas_identical": true,
+      "opaque_ratio": 1.008191499044325
+    },
+    "happy": {
+      "complete_head": true,
+      "canvas_identical": true,
+      "opaque_ratio": 0.9930372258123237
+    }
+  },
+  "method": "Whole head replaces whole head on equal canvas; opaque region retained, no mouth-only overlay."
+}

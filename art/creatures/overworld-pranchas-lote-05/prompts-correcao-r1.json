@@ -1,0 +1,12 @@
+[
+  {
+    "id": "trovareta",
+    "view": "sw",
+    "prompt": "EDIT IMAGE1 six-frame FRONT SOUTHWEST wingbeat sheet. IMAGE2 is the exact canonical front reference. Correct ONLY the incorrect golden long RIBBON TAIL STREAMERS: source image2 has the attached gold/teal streamers extending to SCREEN LEFT of torso/feet, while image1 moved them to SCREEN RIGHT in all6poses. Restore the ENTIRE tail ribbons and their attachment to their canonical SCREEN LEFT origin/side in EVERYFRAME, as image2. Do not mirror/flip whole character! Beak still faces left; preserve head, face, yellow/teal torso, two existing feet, lightning kite wings, their six distinct up/open/down/recovery poses and all spar patterns. Remove wrong rightside ribbon copy. Same grid3columns2rows, source84logicalpxhigh/112cell, same scale/groundbaseline, no cropping. Uniform crisp pixel clusters, source flatpalette,darkcontours. TRUEtransparent background, opaquesprites, no glow/gradient/shadow/text. Whole sheet3:2."
+  },
+  {
+    "id": "tufanocorte",
+    "view": "nw",
+    "prompt": "EDIT IMAGE1 six-pose sheet into the EXACT REAR NORTHWEST view in IMAGE2. Image1 wrongly shows a visible pale muzzle/eye/cream FRONT CHEST and is almost the same as front view. Replace the orientation in all6poses to match source image2: creature faces upper-left AWAY from viewer; face and pale muzzle HIDDEN behind teal nape/mane, back surfaces of shoulders/torso dominate, hindquarters nearest viewer. Preserve exact two golden spiral kite panels above head, green anatomy, cream narrow back collar, red accents and attached curling tail on canonical right, as source. Keep four existing limbs/paws present, no humanoid redesign or extra anatomy. Preserve six controlled hovering poses and slight tail/panel motion without turning head/front to camera. Same high top-down isometric camera as image2; not merely mirrored front. Exactly3columns2rows equal squaregrid, fully inside margins, same84logicalpixelheight on112cells and bodymass. Original flat limited colors and crisp dark squarepixel outlines. TRUEtransparent background, opaque sprite, NOglow/gradient/shadow/text/scenery. Whole sheet3:2."
+  }
+]

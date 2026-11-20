@@ -22,6 +22,8 @@ func run() -> void:
 	var folder:="user://lobby-"+State.new_id()
 	app.session._store=load("res://scripts/campaign/save_store.gd").new(folder);app.preferences.storage_path=folder+".cfg"
 	root.add_child(app);app.preferences.reduced_motion=true
+	# Same save mode as a journey opened from the title: autosave in space 0, manual spaces apart.
+	app.session.separate_autosave=true
 	check(app.session.start("slot-1").status=="ok","isolated slot")
 	var player:Dictionary=app.session.snapshot().player
 	player.journey={"lesson":5,"phase":"complete"};player.coins=3560
@@ -53,9 +55,30 @@ func run() -> void:
 		app._return_to_game();await settle()
 		check(is_instance_valid(app.pause_overlay) and root.gui_get_focus_owner()==app.pause_overlay.buttons[action],"return restores lobby focus "+action)
 	var before:Dictionary=app.session.snapshot().player.inventory
+	# Saving opens the manual spaces (the autosave keeps space 0); space 1 asks before
+	# replacing and then confirms with a notice.
 	app.pause_overlay.buttons.save.pressed.emit();await settle()
-	check(app.pause_overlay.buttons.save.text=="Jornada salva","save feedback")
+	var space:Button
+	for node in app.find_children("*","Button",true,false):
+		if node.text.begins_with("Espaço 1") and node.is_visible_in_tree():space=node
+	check(space!=null and not space.disabled,"save lists the manual spaces")
+	if space!=null:
+		space.pressed.emit();await settle()
+		for node in app.get_children():
+			if node.has_signal("confirmed") and node.get("dialog_text")!=null and str(node.dialog_text).begins_with("Substituir o espaço 1") and not node.is_queued_for_deletion():node.confirmed.emit()
+		await settle()
+	var saved_notice:=app.get_children().any(func(node):return node.get("dialog_text")!=null and str(node.dialog_text).begins_with("Jornada salva no espaço 1") and not node.is_queued_for_deletion())
+	check(saved_notice,"save feedback")
 	check(app.session._store.load_slot("slot-1").data.player.inventory==JSON.parse_string(JSON.stringify(before)),"save preserves inventory")
+	for node in app.get_children():
+		if node.get("dialog_text")!=null and str(node.dialog_text).begins_with("Jornada salva") and node.has_method("_finish"):node._finish(true)
+	app._return_to_game();await settle()
+	# Back from the save page the lobby may reopen after the map finishes loading.
+	for frame in 600:
+		if is_instance_valid(app.pause_overlay) and not is_instance_valid(app.scene_loading):break
+		await process_frame
+	await settle()
+	check(is_instance_valid(app.pause_overlay),"save page returns to the lobby")
 	app.pause_overlay.buttons.emblems.grab_focus();app.pause_overlay.buttons.emblems.pressed.emit();await settle()
 	var book:Control
 	for child in app.get_children():

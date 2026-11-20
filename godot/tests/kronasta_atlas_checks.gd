@@ -96,12 +96,15 @@ func exercise() -> bool:
 			DirAccess.make_dir_recursive_absolute(folder_out)
 			await RenderingServer.frame_post_draw
 			root.get_texture().get_image().save_png(folder_out.path_join("atlas-%dx%d.png"%[viewport.x,viewport.y]))
-	atlas.select(9)
-	check(atlas.parts.get_child(0).disabled,"volcano stays unavailable")
+	# O Vulcão ganhou a Caldeira (exploração) em 10/11; as Cavernas seguem sem caminho.
+	atlas.select(10)
+	check(Atlas.REGIONS[10].id=="cavernas" and atlas.parts.get_child(0).disabled,"crystal caves stay unavailable")
 	var story=preload("res://scripts/campaign/kronasta_story.gd")
 	story.qa_override=0
 	for region in Atlas.REGIONS:
 		if not region.get("preview",false):continue
+		# As regiões laterais abrem fora do QA num ponto da campanha (side_regions.gd, 11/11).
+		if preload("res://scripts/campaign/side_regions.gd").open(app.session.snapshot().player,region.id):continue
 		for scene in region.scenes:
 			var unchanged:Dictionary=app.session.snapshot()
 			check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==unchanged,"player cannot enter QA preview "+scene)

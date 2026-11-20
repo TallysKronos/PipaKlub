@@ -1,0 +1,29 @@
+{
+  "id": "vesperina",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-27ccbe4b-3acc-4640-823e-97f363afa0dd.png",
+  "sha256": "5b29d7550cc79b2ccaa34daf913067b3ede0dfefebced17a25a28ad48ccce94f",
+  "width": 1295,
+  "height": 1214,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/soulgen/keys/flautrevo/color-rig-v2/preview.png",
+      "role": "identidade própria atual"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/vesperalia/concept-v1/concept.png",
+      "role": "destino aprovado"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "acabamento aprovado"
+    }
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

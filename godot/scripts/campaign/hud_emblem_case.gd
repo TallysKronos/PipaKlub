@@ -3,6 +3,20 @@ signal closed
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Identity = preload("res://scripts/campaign/pipeiro_identity.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const DISTRICT_SEALS := [
+	preload("res://assets/ui/key-items/insignia-morro-do-sol.png"),
+	preload("res://assets/ui/key-items/insignia-bambuzal.svg"),
+	preload("res://assets/ui/key-items/insignia-beira-canal.svg"),
+	preload("res://assets/ui/key-items/insignia-feira.svg"),
+	preload("res://assets/ui/key-items/insignia-cais.svg"),
+	preload("res://assets/ui/key-items/insignia-vila-operaria.svg"),
+	preload("res://assets/ui/key-items/insignia-palafitas.svg"),
+	preload("res://assets/ui/key-items/insignia-alto-da-serra.svg"),
+	preload("res://assets/ui/key-items/insignia-centro.svg"),
+	preload("res://assets/ui/key-items/insignia-lajes.svg"),
+	preload("res://assets/ui/key-items/insignia-porto.svg"),
+	preload("res://assets/ui/key-items/insignia-mirante.svg"),
+]
 var player: Dictionary = {}
 var initial_slot := 0
 var selected := 0
@@ -95,7 +109,7 @@ func _ready() -> void:
 		socket.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);holder.add_child(socket)
 		var seal:=Seal.new();seal.mouse_filter=MOUSE_FILTER_IGNORE;seal.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);seal.offset_bottom=-12;socket.add_child(seal)
 		seal.earned=emblems().has(Identity.slot_id(index));seal.variant=index
-		if emblems().get(Identity.slot_id(index),{}).get("bossId","")=="mikka":seal.seal_texture=load("res://assets/ui/key-items/insignia-morro-do-sol.png")
+		if seal.earned: seal.seal_texture = DISTRICT_SEALS[index]
 		var number:=copy("%02d"%(index+1),socket,13,Hud.MUTED);number.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 		number.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);number.offset_top=-22;number.offset_bottom=-3
 		socket.pressed.connect(select_slot.bind(index));socket.focus_entered.connect(select_slot.bind(index))
@@ -139,7 +153,7 @@ func select_slot(index:int) -> void:
 	for i in slots.size():slots[i].active=i==index;slots[i].queue_redraw()
 	var entry:Dictionary=emblems().get(Identity.slot_id(index),{})
 	art.earned=not entry.is_empty();art.variant=index;art.queue_redraw()
-	art.seal_texture=load("res://assets/ui/key-items/insignia-morro-do-sol.png") if entry.get("bossId","")=="mikka" else null
+	art.seal_texture = DISTRICT_SEALS[index] if art.earned else null
 	if entry.is_empty():
 		title.text="Emblema %02d"%(index+1);location.text="Ainda não conquistado";chief.text="Chefe de bairro"
 		description.text="Este encaixe espera uma conquista sua.\n\nVença o chefe de um bairro para guardar o emblema correspondente aqui."

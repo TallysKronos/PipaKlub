@@ -1,0 +1,7 @@
+# Adulto de B — Porto vivo
+
+Definido pelo autor: B e C são jovens alternativas; criar uma evolução adulta acima de cada uma. Proposta: arquitetura, papel, nome descritivo e limite desta forma. Referência própria: b-quebra-corrente.
+
+B ADULT: develop the young current-blocker into an imposing LIVING HARBOR, quadrupedal and architectural but unmistakably alive. Transform the squat spherical torso into a high forward chest with compact tapering hindquarters, four thick webbed anchoring legs, near front leg planted ahead. Head small in relation to body with extended blunt mature muzzle, no helmet. The young single chest crescent becomes TWO huge continuous folded lateral breakwater surfaces rooted from collar and ribs. They sweep outward then curve protectively rearward like the two sides of an open boat, with a clearly visible sheltered negative space between them behind the neck. Do NOT enclose an extra animal, no building miniature. Ivory inner surfaces, petrol outer folds, mint rim. One side open a little to show folding mechanism at rib joint. Bamboo edge spar grows along each membrane and coral knotted flexible rib root is visible. Low rear keel rather than giant dorsal sail. Massive guardian posture, asymmetry of one deployed and one partly folded side; whole silhouette wider and more angular than young. No human hands, no shell turtle, no boat prop worn on body. Warm powerful wise aquatic adult.
+
+Não substitui Marévia ou Capibaluarte. Nenhuma imagem externa foi input. Princípios de corpo/função/material: benchmark Ultimate/Mega 2026-11-04.

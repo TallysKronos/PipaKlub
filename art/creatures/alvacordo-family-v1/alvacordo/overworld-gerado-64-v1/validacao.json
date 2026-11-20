@@ -1,0 +1,42 @@
+{
+  "source": "prancha-gerada.png",
+  "source_sha256": "d74b914c106b71813ccc4931e84ae3d2256a2b0dd4fe20042d339c7f25df1c5a",
+  "canvas": [
+    64,
+    64
+  ],
+  "sheet": [
+    256,
+    64
+  ],
+  "frames": 4,
+  "opaque_counts": [
+    1364,
+    1299,
+    1340,
+    1287
+  ],
+  "opaque_colors": 16,
+  "alpha_values": [
+    0,
+    255
+  ],
+  "durations_ms": [
+    160,
+    110,
+    160,
+    110
+  ],
+  "tags": [
+    {
+      "name": "walk-so",
+      "from": 0,
+      "to": 3,
+      "direction": "forward",
+      "color": "#000000ff"
+    }
+  ],
+  "integration": false,
+  "status": "pilot awaiting user review",
+  "method": "generated sheet converted via Aseprite; palette snap, binary alpha and baseline alignment"
+}

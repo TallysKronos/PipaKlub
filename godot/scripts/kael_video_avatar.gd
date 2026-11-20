@@ -1,9 +1,10 @@
 extends Node2D
 ## Video-derived pixel study: runtime translation/height belongs to the map controller.
 const Pixelgen = preload("res://scripts/pixelgen_sprites.gd")
+const LOCOMOTION_ASSETS := "res://assets/kael-video/iso-v2/"
 const DIRECTIONS := ["s","sw","w","nw","n","ne","e","se"]
-const BODY_SCALE := 1.12 # Old composed silhouette 96 px; new directional body about 86 px.
-const STANDING_HEIGHT := 86.0 # Measured SE standing silhouette; excludes transparent cell margin.
+const BODY_SCALE := 1.12
+const STANDING_HEIGHT := 70.0 # Visible height of the current front/three-quarter idle pose.
 var facing := "se"
 var moving := false
 var running := false
@@ -39,13 +40,13 @@ func set_motion_action(action: String) -> void:
 	motion_action=action
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
-	walking=Pixelgen.load_texture("res://assets/kael-video/kael-walk-eight.png")
-	resting=Pixelgen.load_texture("res://assets/kael-video/kael-idle-eight.png")
-	sprinting=Pixelgen.load_texture("res://assets/kael-video/kael-run-eight.png")
-	jumping=Pixelgen.load_texture("res://assets/kael-video/kael-jump.png")
-	jump_frames=JSON.parse_string(FileAccess.get_file_as_string("res://assets/kael-video/jump.json"))
-	item_texture=Pixelgen.load_texture("res://assets/kael-video/kael-item.png")
-	item_frames=JSON.parse_string(FileAccess.get_file_as_string("res://assets/kael-video/item.json"))
+	walking=Pixelgen.load_texture(LOCOMOTION_ASSETS+"walk.png")
+	resting=Pixelgen.load_texture(LOCOMOTION_ASSETS+"idle.png")
+	sprinting=Pixelgen.load_texture(LOCOMOTION_ASSETS+"run.png")
+	jumping=Pixelgen.load_texture(LOCOMOTION_ASSETS+"jump.png")
+	jump_frames=JSON.parse_string(FileAccess.get_file_as_string(LOCOMOTION_ASSETS+"jump.json"))
+	item_texture=Pixelgen.load_texture(LOCOMOTION_ASSETS+"item.png")
+	item_frames=JSON.parse_string(FileAccess.get_file_as_string(LOCOMOTION_ASSETS+"item.json"))
 
 func item_pose(t: float, from_facing: String) -> void:
 	item_time=clampf(t,0,1)
@@ -115,17 +116,7 @@ func _draw() -> void:
 				index=cycle_frame(RUN_TIMES)
 		if is_instance_valid(texture):draw_texture_rect_region(texture,Rect2(-32,-94,64,96),Rect2(index*64,row*96,64,96))
 		return
-	row=1 if facing in ["ne","nw","n"] else 0
-	var count: int=jump_frames.framesPerDirection
-	index=count-1
-	var elapsed := 0.0
-	for i in count:
-		elapsed+=jump_frames.durationsMs[i]
-		if jump_time*jump_frames.durationMs<elapsed:
-			index=i
-			break
-	var mirror := facing in ["sw","nw","w"]
-	draw_set_transform(Vector2.ZERO,0,Vector2(-1 if mirror else 1,1))
+	index=_timed_frame(jump_frames,jump_time)
 	var cell := Vector2(jump_frames.cell[0],jump_frames.cell[1])
 	var pivot := Vector2(jump_frames.pivot[0],jump_frames.pivot[1])
 	draw_texture_rect_region(jumping,Rect2(-pivot,cell),Rect2(Vector2(index,row)*cell,cell))

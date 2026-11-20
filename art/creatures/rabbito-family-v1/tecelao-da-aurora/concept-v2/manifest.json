@@ -1,0 +1,32 @@
+{
+  "id": "tecelao-da-aurora",
+  "version": 2,
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-8e655c8c-ac4a-43ab-97cd-a79f7ca1948d.png",
+  "sha256": "ba812e9fe5bf19ffcc6dc6ae639ca38b0adeb0ffe8c51abaa203aaee156eb32e",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento aceito pelo autor"
+    },
+    {
+      "path": "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+      "role": "Identidade da família"
+    }
+  ],
+  "decision_status": "approved",
+  "approval_note": "Autor: \"aprovado, todos, esse estilo ficou maravilhoso\". Aprovação visual do conjunto atual, sem certificar integração ou mecânicas.",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false,
+  "correction": {
+    "input": "tentativa-01.png",
+    "prompt": "prompt-correcao.txt",
+    "reason": "Remover corda e anéis que prendiam as patas dianteiras"
+  }
+}

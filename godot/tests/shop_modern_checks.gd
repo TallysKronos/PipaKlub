@@ -37,25 +37,30 @@ func run()->void:
    check(art.region_rect.end.x<=art.texture.get_width() and art.region_rect.end.y<=art.texture.get_height(),"crop inside PNG")
  var owner:=room.get_node("ShopOwner")
  check(owner.has_node("Art"),"new owner uses his own chibi asset")
- check(owner.z_index<room.get_node("Shop_counter").z_index,"owner is drawn behind the counter")
+ check(owner.z_index<room.get_node("Shop_balcao").z_index,"owner is drawn behind the counter")
  check(not room._safe(D.OWNER),"owner has a physical foot collision")
- room.actor=D.point(8,4.5);room.opening_pose();check(room.avatar.z_index>room.get_node("Shop_counter").z_index,"customer stands in front of counter")
- for pose in [[D.point(8,.8),"counter",true],[D.point(9,6),"table-a",true],[D.point(12,9.5),"table-a",false]]:
+ check(room.avatar.scale==Vector2.ONE and room.get_meta("shop_art")=="interior-moderno-v2","modern shop and Kael render at native scale")
+ for item in room.props:
+  if str(item.node.name).begins_with("Shop_"):
+   for sprite:Sprite2D in item.node.get_children():
+    check(sprite.scale==Vector2.ONE and sprite.texture_filter==CanvasItem.TEXTURE_FILTER_NEAREST,"native nearest atlas part "+sprite.name)
+ room.actor=D.point(8,5.7);room.opening_pose();check(room.avatar.z_index>room.get_node("Shop_balcao").z_index,"customer stands in front of counter")
+ for pose in [[D.point(6,2.2),"balcao",true],[D.point(9,6),"mesa-fundo",true],[D.point(16.5,10),"mesa-fundo",false]]:
   check(room._safe(pose[0]),"occlusion pose is on walkable floor")
   room.actor=pose[0];room.opening_pose()
   var prop:Node2D=room.get_node("Shop_"+str(pose[1]))
   check(room.avatar.z_index<prop.z_index if pose[2] else room.avatar.z_index>prop.z_index,"depth order around "+str(pose[1]))
  var aisle_clear:=true
- for x in range(1104,1393,16):
-  for y in range(720,1585,16):
+ for x in range(1056,1345,16):
+  for y in range(800,1585,16):
    if not room._safe(Vector2(x,y)):aisle_clear=false
  check(aisle_clear,"continuous three-cell-wide clear strip connects entrance to counter")
- var old_position:=D.point(11.5,5.5)
+ var old_position:=D.point(5,8)
  check(not D.safe(old_position) and D.safe(D.resume_point(old_position)),"old position under moved furniture recovers on free floor")
  var restored:=Room.new();root.add_child(restored);restored.configure(data,[old_position.x,old_position.y],false,"*",false,false)
  check(restored._safe(restored.actor) and restored.actor.distance_to(old_position)<144,"RoomView resumes an old save nearby without spawning inside furniture")
  restored.free()
- var session:=Session.new();session._store=Store.new("user://shop-checks-"+State.new_id());root.add_child(session)
+ var session:=Session.new();session._store=Store.new(ProjectSettings.globalize_path("res://.godot/shop-checks-"+State.new_id()));root.add_child(session)
  check(session.start("slot-1").status=="ok","isolated slot created")
  var saved:Dictionary=session.snapshot();saved.player.partners=[{"id":State.new_id(),"modelId":"rabbito","personalName":"Rabbito","xp":0,"craftBonus":0,"condition":{"line":100,"structure":100}}];saved.player.equippedPartnerId=saved.player.partners[0].id
  check(session.checkpoint({"kind":"world","scene":"quintal","position":[D.CITY_ENTRY.x,D.CITY_ENTRY.y],"space":"bairro-inicial-v2"},saved.player).status=="ok","old city scene remains valid")

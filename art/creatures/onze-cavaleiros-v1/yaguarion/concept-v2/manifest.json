@@ -1,0 +1,32 @@
+{
+  "id": "yaguarion",
+  "name": "Yaguarion",
+  "identity": "yaguaru-memoria",
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-d086ec22-68b0-4130-8695-46a7fa53c852.png",
+  "tool": "image_gen.imagegen",
+  "width": 1024,
+  "height": 1536,
+  "mode": "RGB",
+  "sha256": "c2b6c6a80dafc8c26ad192fc9a048df8aee99493a4b1810523912e987bcbf241",
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "references": [
+    {
+      "path": "art/soulgen/keys/yaguaru-memoria/color-rig-v2/preview.png",
+      "role": "identidade atual do autor"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png",
+      "role": "acabamento de cavaleiro aprovado"
+    }
+  ],
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "refinement_target": "../concept-v1/concept.png",
+  "revision_reason": "Elmo cobre região ocular humanoide; abertura inferior para nariz e boca.",
+  "approval_note": "2026-11-04: autor respondeu “aprovadissimo” à revisão concept-v2. Aprovação visual, com elmo cobrindo testa e olhos humanoides e abertura inferior para nariz e boca."
+}

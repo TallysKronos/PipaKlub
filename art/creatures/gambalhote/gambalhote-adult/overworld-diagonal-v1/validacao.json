@@ -1,0 +1,46 @@
+{
+  "canvas": [
+    96,
+    96
+  ],
+  "pivotProposed": [
+    48,
+    81
+  ],
+  "inGameValidated": false,
+  "animationValidated": false,
+  "entries": [
+    {
+      "id": "gambalhote-adult",
+      "view": "frente-3q",
+      "bboxExclusive": [
+        22,
+        5,
+        73,
+        82
+      ],
+      "occupiedSize": [
+        51,
+        77
+      ],
+      "opaqueColors": 22,
+      "opaquePixels": 1784
+    },
+    {
+      "id": "gambalhote-adult",
+      "view": "costas-3q",
+      "bboxExclusive": [
+        23,
+        5,
+        72,
+        81
+      ],
+      "occupiedSize": [
+        49,
+        76
+      ],
+      "opaqueColors": 20,
+      "opaquePixels": 1697
+    }
+  ]
+}

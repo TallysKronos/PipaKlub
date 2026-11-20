@@ -1,0 +1,20 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-23302d84-98d6-4bba-9250-0e6adee2116b.png",
+  "sha256": "2819e0eaa8e9dae2d5c12e3a05536a5afecf9873e97974baeb51e9c0146595c0",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "javali-guerreiro/concept-v1/concept.png: identidade e acabamento"
+  ],
+  "external_inputs": [],
+  "decision_status": "approved",
+  "production_status": "concept",
+  "integration_status": "not_integrated",
+  "approval_note": "2026-11-04 — autor: “Aprovado”, após apresentação da linha completa do javali e antes de pedir o estudo de quadrúpedes. Escopo: quatro designs visuais, sem aprovar regras."
+}

@@ -1,0 +1,74 @@
+{
+  "family_id": "lunafauce",
+  "family_name": "Lunafauce",
+  "scope": "Soldados da Meia-Noite. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "gotamar",
+      "name": "Gotamar",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "guelfita",
+      "name": "Guelfita",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "serpelume",
+      "name": "Serpelume",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/lunafauce.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "lunafauce",
+      "name": "Lunafauce",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/concept-v2/lunafauce.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Moreia bípede com duas velas nas guelras."
+    }
+  ],
+  "edges": [
+    {
+      "from": "gotamar",
+      "to": "guelfita",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "guelfita",
+      "to": "serpelume",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "serpelume",
+      "to": "lunafauce",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

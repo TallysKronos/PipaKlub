@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<title>Kael · Overworld isométrico v2</title>
+<style>
+  body{background:#17252f;color:#f4eee4;font:1rem system-ui;margin:2rem}
+  main{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+  figure{margin:0;background:#34454b;padding:.75rem;border-radius:.5rem;text-align:center}
+  canvas{display:block;width:192px;height:288px;image-rendering:pixelated;background:#9ba6a8;margin:.5rem auto}
+  select{font:inherit}
+</style>
+<h1>Kael · Overworld isométrico v2</h1>
+<label>Direção
+  <select id="direction">
+    <option value="0">Sul</option><option value="1">Sudoeste</option>
+    <option value="2">Oeste</option><option value="3">Noroeste</option>
+    <option value="4">Norte</option><option value="5">Nordeste</option>
+    <option value="6">Leste</option><option value="7" selected>Sudeste</option>
+  </select>
+</label>
+<main>
+  <figure><canvas id="idle" width="64" height="96"></canvas><figcaption>Repouso</figcaption></figure>
+  <figure><canvas id="walk" width="64" height="96"></canvas><figcaption>Caminhada</figcaption></figure>
+  <figure><canvas id="run" width="64" height="96"></canvas><figcaption>Corrida</figcaption></figure>
+</main>
+<script>
+const direction = document.querySelector('#direction');
+const modes = [
+  ['idle', [480, 150, 320, 150, 480, 150, 320, 150]],
+  ['walk', Array(8).fill(125)],
+  ['run', Array(8).fill(80)]
+].map(([name, durations]) => {
+  const image = new Image();
+  image.src = '../../../../godot/assets/kael-video/iso-v2/' + name + '.png';
+  const ctx = document.getElementById(name).getContext('2d');
+  return { image, ctx, durations, cycle: durations.reduce((a, b) => a + b, 0) };
+});
+function draw(time) {
+  for (const { image, ctx, durations, cycle } of modes) {
+    if (!image.naturalWidth) continue;
+    let remainder = time % cycle;
+    let frame = 0;
+    while (remainder >= durations[frame]) remainder -= durations[frame++];
+    ctx.clearRect(0, 0, 64, 96);
+    ctx.drawImage(image, frame * 64, Number(direction.value) * 96, 64, 96, 0, 0, 64, 96);
+  }
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</script>
+</html>

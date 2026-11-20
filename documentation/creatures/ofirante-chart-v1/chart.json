@@ -1,0 +1,92 @@
+{
+  "family_id": "ofirante",
+  "scope": "Concepts visuais aprovados pelo autor; relações, lore e condições propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "ofita",
+      "name": "Ofita",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Corpo-fita curto em vírgula, sem membros, rosto gentil e rabiola ligada por nó. A cobertura cefálica ficou mais larga que no brief; mantém poucas massas.",
+      "story": "De fita que escorrega a serpente que redireciona força com o corpo.",
+      "action": "perceber",
+      "tradeoff": "Pouca autonomia e alcance.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ofirante/ofita/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ofirante/ofita/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "ofirisco",
+      "name": "Ofirisco",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Uma espira aberta com continuidade corporal, gola curta e rosto reptiliano infantil; sem patas. Uma rabiola.",
+      "story": "De fita que escorrega a serpente que redireciona força com o corpo.",
+      "action": "explorar",
+      "tradeoff": "Pouca resistência e controle.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ofirante/ofirisco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ofirante/ofirisco/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "ofirastro",
+      "name": "Ofirastro",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "S contínuo com espira inferior, gola maior e proteção esparsa; dois dentes visíveis, olhos verdes. Menos massa e couraça que o adulto.",
+      "story": "De fita que escorrega a serpente que redireciona força com o corpo.",
+      "action": "especializar",
+      "tradeoff": "Menor sustentação e proteção que o adulto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ofirante/ofirastro/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ofirante/ofirastro/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "ofirante",
+      "name": "Ofirante",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Identidade da arte adulta atual preservada; cristal central, papel vivo e rabiola da própria família.",
+      "story": "De fita que escorrega a serpente que redireciona força com o corpo.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ofirante/concept-v2/concept.png",
+      "brief": "../../../art/creatures/ofirante/concept-v2/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "ofita",
+      "to": "ofirisco",
+      "kind": "reweaving",
+      "reason": "A construção simples de Ofita ganha corpo e órgãos de exploração em Ofirisco.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ofirisco",
+      "to": "ofirastro",
+      "kind": "reweaving",
+      "reason": "A exploração de Ofirisco exige movimento mais especializado e proteção parcial em Ofirastro.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ofirastro",
+      "to": "ofirante",
+      "kind": "reweaving",
+      "reason": "Ofirastro desenvolve sustentação e controle para a arquitetura adulta de Ofirante; aquisição do cristal e condições continuam propostas.",
+      "decision_status": "proposed"
+    }
+  ],
+  "crystal_note": "Proposta: cristal ancestral adquirido na forma adulta; nenhum novo fragmento/alma nas formas anteriores."
+}

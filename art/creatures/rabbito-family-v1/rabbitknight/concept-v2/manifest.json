@@ -1,0 +1,26 @@
+{
+  "id": "rabbitknight",
+  "version": 2,
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-5ab9ff88-7ae1-49b3-9446-86a851898c80.png",
+  "sha256": "23e6b934fe80f85ae0139e8102ffd84b1afb0ef47f6cd1fd881bbf70eb3c4e49",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento aceito pelo autor"
+    },
+    {
+      "path": "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+      "role": "Identidade da família"
+    }
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

@@ -1,0 +1,92 @@
+{
+  "family_id": "nimbalio",
+  "scope": "Concepts visuais aprovados pelo autor; relações, lore e condições propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "nimbim",
+      "name": "Nimbim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Face integrada na pipa triangular, duas pequenas abas laterais e rabiola contínua; sem patas. Mais largo que a ideia inicial de envelope arredondado, mas simples e distinto da criança.",
+      "story": "Da deriva involuntária ao domínio das correntes; as abas crescem e articulam.",
+      "action": "perceber",
+      "tradeoff": "Pouca autonomia e alcance.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/nimbalio/nimbim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/nimbalio/nimbim/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "nimbala",
+      "name": "Nimbala",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Duas velas independentes e corpo arredondado suspenso, sem patas; olhos ciano e uma rabiola. Ganha articulação em relação ao bebê.",
+      "story": "Da deriva involuntária ao domínio das correntes; as abas crescem e articulam.",
+      "action": "explorar",
+      "tradeoff": "Pouca resistência e controle.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/nimbalio/nimbala/concept-v1/concept.png",
+      "brief": "../../../art/creatures/nimbalio/nimbala/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "nimbordo",
+      "name": "Nimbordo",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Duas velas recortadas, quilha longa e curva, sem patas; rosto menor e rabiola íntegra. Perfil de manobra, diferente do manto pesado adulto.",
+      "story": "Da deriva involuntária ao domínio das correntes; as abas crescem e articulam.",
+      "action": "especializar",
+      "tradeoff": "Menor sustentação e proteção que o adulto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/nimbalio/nimbordo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/nimbalio/nimbordo/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "nimbalio",
+      "name": "Nimbálio",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Identidade da arte adulta atual preservada; cristal central, papel vivo e rabiola da própria família.",
+      "story": "Da deriva involuntária ao domínio das correntes; as abas crescem e articulam.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/nimbalio/concept-v2/concept.png",
+      "brief": "../../../art/creatures/nimbalio/concept-v2/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "nimbim",
+      "to": "nimbala",
+      "kind": "reweaving",
+      "reason": "A construção simples de Nimbim ganha corpo e órgãos de exploração em Nimbala.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "nimbala",
+      "to": "nimbordo",
+      "kind": "reweaving",
+      "reason": "A exploração de Nimbala exige movimento mais especializado e proteção parcial em Nimbordo.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "nimbordo",
+      "to": "nimbalio",
+      "kind": "reweaving",
+      "reason": "Nimbordo desenvolve sustentação e controle para a arquitetura adulta de Nimbálio; aquisição do cristal e condições continuam propostas.",
+      "decision_status": "proposed"
+    }
+  ],
+  "crystal_note": "Proposta: cristal ancestral adquirido na forma adulta; nenhum novo fragmento/alma nas formas anteriores."
+}

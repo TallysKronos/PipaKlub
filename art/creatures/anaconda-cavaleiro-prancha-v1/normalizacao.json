@@ -1,0 +1,240 @@
+{
+  "sheets": [
+    {
+      "path": "art/creatures/anaconda-cavaleiro-prancha-v1/gerado-walk-sw.png",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.21,
+      "alpha_threshold": 200,
+      "cells": [
+        {
+          "x": 0,
+          "y": 0.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 2,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 2,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 2,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 2,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 2,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 2,
+          "offset_y": 3,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/anaconda-cavaleiro-prancha-v1/gerado-walk-nw-r1.png",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.21105527638190955,
+      "alpha_threshold": 200,
+      "cells": [
+        {
+          "x": 0,
+          "y": 0.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512.0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -3,
+          "offset_y": 4,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/anaconda-cavaleiro-prancha-v1/gerado-idle-sw.png",
+      "action": "idle",
+      "view": "sw",
+      "scale": 0.1822125813449024,
+      "alpha_threshold": 200,
+      "cells": [
+        {
+          "x": 0,
+          "y": 0.0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 0,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 0.0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 0,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 627.0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 0,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 627.0,
+          "w": 627,
+          "h": 627,
+          "offset_x": 0,
+          "offset_y": 4,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/anaconda-cavaleiro-prancha-v1/gerado-idle-nw.png",
+      "action": "idle",
+      "view": "nw",
+      "scale": 0.1810344827586207,
+      "alpha_threshold": 200,
+      "cells": [
+        {
+          "x": 0,
+          "y": 0.0,
+          "w": 627,
+          "h": 627,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 0.0,
+          "w": 627,
+          "h": 627,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 627.0,
+          "w": 627,
+          "h": 627,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        },
+        {
+          "x": 627,
+          "y": 627.0,
+          "w": 627,
+          "h": 627,
+          "offset_x": -5,
+          "offset_y": 4,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "idle_durations": [
+    400,
+    150,
+    400,
+    150
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {
+    "000000": "020101",
+    "010000": "020101",
+    "070604": "020101",
+    "111412": "020101"
+  }
+}

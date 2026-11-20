@@ -1,0 +1,234 @@
+{
+  "id": "morro-v2",
+  "source": "Original art generated with image_gen and normalized for the game",
+  "state": "2D manga art; static kit QA passed",
+  "projection": "isometric64x32",
+  "assets": {
+    "caixa-dagua": {
+      "file": "pecas/caixa-dagua.png",
+      "size": [
+        137,
+        138
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        68,
+        101
+      ],
+      "basePolygon": [
+        [
+          68,
+          69
+        ],
+        [
+          132,
+          101
+        ],
+        [
+          68,
+          133
+        ],
+        [
+          4,
+          101
+        ]
+      ],
+      "source": "image_gen; manga style revision"
+    },
+    "varal": {
+      "file": "pecas/varal.png",
+      "size": [
+        106,
+        110
+      ],
+      "footprint": [
+        2,
+        1
+      ],
+      "anchor": [
+        52,
+        81
+      ],
+      "basePolygon": [
+        [
+          36,
+          57
+        ],
+        [
+          100,
+          89
+        ],
+        [
+          68,
+          105
+        ],
+        [
+          4,
+          73
+        ]
+      ],
+      "fitReferenceSize": [
+        106,
+        104
+      ],
+      "source": "image_gen; manga style revision"
+    },
+    "antena": {
+      "file": "pecas/antena.png",
+      "size": [
+        92,
+        142
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        48,
+        121
+      ],
+      "basePolygon": [
+        [
+          48,
+          105
+        ],
+        [
+          80,
+          121
+        ],
+        [
+          48,
+          137
+        ],
+        [
+          16,
+          121
+        ]
+      ],
+      "fitReferenceSize": [
+        86,
+        130
+      ],
+      "source": "image_gen; manga style revision"
+    },
+    "vaso-planta": {
+      "file": "pecas/vaso-planta.png",
+      "size": [
+        98,
+        125
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        46,
+        104
+      ],
+      "basePolygon": [
+        [
+          46,
+          88
+        ],
+        [
+          78,
+          104
+        ],
+        [
+          46,
+          120
+        ],
+        [
+          14,
+          104
+        ]
+      ],
+      "fitReferenceSize": [
+        86,
+        104
+      ],
+      "source": "image_gen; manga style revision"
+    },
+    "gato-de-luz": {
+      "file": "pecas/gato-de-luz.png",
+      "size": [
+        73,
+        133
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "anchor": [
+        36,
+        112
+      ],
+      "basePolygon": [
+        [
+          36,
+          96
+        ],
+        [
+          68,
+          112
+        ],
+        [
+          36,
+          128
+        ],
+        [
+          4,
+          112
+        ]
+      ],
+      "fitReferenceSize": [
+        76,
+        112
+      ],
+      "source": "image_gen; manga style revision"
+    },
+    "escadaria-cimento": {
+      "file": "pecas/escadaria-cimento.png",
+      "size": [
+        105,
+        121
+      ],
+      "footprint": [
+        1,
+        2
+      ],
+      "anchor": [
+        52,
+        92
+      ],
+      "basePolygon": [
+        [
+          68,
+          68
+        ],
+        [
+          100,
+          84
+        ],
+        [
+          36,
+          116
+        ],
+        [
+          4,
+          100
+        ]
+      ],
+      "risePx": 64,
+      "direction": "v-",
+      "fitReferenceSize": [
+        106,
+        122
+      ],
+      "source": "image_gen; manga style revision"
+    }
+  }
+}

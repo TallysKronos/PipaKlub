@@ -1,0 +1,81 @@
+{
+  "family_id": "coruja-balanca",
+  "scope": "Quatro designs visuais aprovados; regras propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "coruja-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Ciano/roxo, disco facial marfim, olhos âmbar, nós e balança.",
+      "story": "Descobre equilíbrio com duas pequenas abas laterais.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/coruja-balanca/coruja-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/coruja-balanca/coruja-baby/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “ok aprovado”, após a apresentação das três pré-evoluções. Escopo: bebê, criança e jovem visuais. Mecânicas e nomes continuam propostos."
+    },
+    {
+      "id": "coruja-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Ciano/roxo, disco facial marfim, olhos âmbar, nós e balança.",
+      "story": "Aprende a sustentar dois pratos pelas asas sem perder o apoio dos pés.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/coruja-balanca/coruja-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/coruja-balanca/coruja-child/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “ok aprovado”, após a apresentação das três pré-evoluções. Escopo: bebê, criança e jovem visuais. Mecânicas e nomes continuam propostos."
+    },
+    {
+      "id": "coruja-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Ciano/roxo, disco facial marfim, olhos âmbar, nós e balança.",
+      "story": "Ganha força de preensão e estabiliza uma travessa com as duas mãos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/coruja-balanca/coruja-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/coruja-balanca/coruja-young/concept-v1/brief.md",
+      "approval_note": "2026-11-04 — autor: “ok aprovado”, após a apresentação das três pré-evoluções. Escopo: bebê, criança e jovem visuais. Mecânicas e nomes continuam propostos."
+    },
+    {
+      "id": "coruja-balanca",
+      "name": "Adulto — guerreiro da balança",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Coruja robusta, armadura e balança de haste.",
+      "story": "Usa uma base forte para manejar a balança e manter a guarda.",
+      "decision_status": "approved",
+      "approval_note": "2026-11-04 — autor: “ótimo aprovado faça as pré evoluções agora”. Escopo: adulto guerreiro coruja visual; mecânicas continuam propostas.",
+      "production_status": "concept",
+      "art": "../../../art/creatures/coruja-balanca/concept-v1/concept.png",
+      "brief": "../../../art/creatures/coruja-balanca/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "coruja-baby",
+      "to": "coruja-child",
+      "kind": "reweaving",
+      "reason": "Aprende a sustentar dois pratos pelas asas sem perder o apoio dos pés.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "coruja-child",
+      "to": "coruja-young",
+      "kind": "reweaving",
+      "reason": "Ganha força de preensão e estabiliza uma travessa com as duas mãos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "coruja-young",
+      "to": "coruja-balanca",
+      "kind": "reweaving",
+      "reason": "Usa uma base forte para manejar a balança e manter a guarda.",
+      "decision_status": "proposed"
+    }
+  ]
+}

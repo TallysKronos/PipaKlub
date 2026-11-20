@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "contextual properties",
+    "preview preserves document and undo",
+    "floor preview and commit",
+    "wall preview and invalid top",
+    "waterfall width picker",
+    "valid/invalid waterfall placement",
+    "preview toggle",
+    "4 viewport sizes"
+  ],
+  "errors": []
+}

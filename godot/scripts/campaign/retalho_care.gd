@@ -2,7 +2,7 @@ extends RefCounted
 ## After district six: trust and recognition, never capture or category promotion.
 const Rules=preload("res://scripts/campaign/district_rules.gd")
 const AT=Vector2(1152,864)
-const APPROACH=Vector2(1152,960)
+const APPROACH=Vector2(1104,960)
 const SPACE="professor-home"
 static var _nodes:Array=[]
 var session:Node
@@ -18,7 +18,7 @@ static func step(p:Dictionary)->int:
   if not p.get("flags",{}).get(entries[i].flag,false):return i
  return entries.size()
 static func objective(p:Dictionary)->String:
- if step(p)<nodes().size():return "Aproxime-se de Retalho no tapete · respeite o espaço dele."
+ if step(p)<nodes().size():return "Aproxime-se de Retalho no tapete · respeite o espaço dela."
  return load("res://scripts/campaign/retalho_trust.gd").objective(p)
 static func room_data(data:Dictionary,p:Dictionary)->Dictionary:
  var result:=data.duplicate(true)
@@ -26,12 +26,7 @@ static func room_data(data:Dictionary,p:Dictionary)->Dictionary:
   result.hotspots.append({"id":"retalho-care","name":"Verificar o Varal" if p.flags.get("retalhoVaralLivre",false) else "Cuidar de Retalho","x":AT.x,"y":AT.y})
  return result
 static func walkable(point:Vector2)->bool:
- if not point.is_finite():return false
- var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json")).rooms.professor
- for dx in [-14,0,14]:
-  for dy in [-14,0,14]:
-   if not data.walkable.any(func(r):return Rect2(r[0],r[1],r[2],r[3]).has_point(point+Vector2(dx,dy))):return false
- return not data.blocked.any(func(r):return Rect2(r[0]-14,r[1]-14,r[2]+28,r[3]+28).has_point(point))
+ return preload("res://scripts/campaign/professor_interior_v2.gd").walkable(point)
 func near(point:Vector2)->bool:
  var saved:Dictionary=session.snapshot();var cp:Dictionary=saved.checkpoint
  return cp.get("kind")=="world" and cp.get("scene")==SPACE and available(saved.player) and walkable(point) and point.distance_to(AT)<=110

@@ -1,0 +1,252 @@
+[
+  {
+    "animation": "attack",
+    "frames": 10,
+    "duration_ms": 950,
+    "mirror_diff": 0,
+    "first_last_master_diff": [
+      0,
+      0
+    ],
+    "gif_size": [
+      384,
+      384
+    ],
+    "gif_encoded_frames": 10,
+    "cells": [
+      {
+        "frame": 1,
+        "duration_ms": 150,
+        "bbox": [
+          37,
+          18,
+          155,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 2,
+        "duration_ms": 100,
+        "bbox": [
+          33,
+          19,
+          158,
+          182
+        ],
+        "visible_colors": 23,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 3,
+        "duration_ms": 60,
+        "bbox": [
+          12,
+          34,
+          168,
+          182
+        ],
+        "visible_colors": 23,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 4,
+        "duration_ms": 50,
+        "bbox": [
+          9,
+          38,
+          171,
+          182
+        ],
+        "visible_colors": 23,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 5,
+        "duration_ms": 80,
+        "bbox": [
+          9,
+          39,
+          172,
+          182
+        ],
+        "visible_colors": 22,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 6,
+        "duration_ms": 80,
+        "bbox": [
+          9,
+          10,
+          175,
+          182
+        ],
+        "visible_colors": 23,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 7,
+        "duration_ms": 70,
+        "bbox": [
+          9,
+          39,
+          172,
+          182
+        ],
+        "visible_colors": 23,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 8,
+        "duration_ms": 80,
+        "bbox": [
+          9,
+          32,
+          169,
+          182
+        ],
+        "visible_colors": 23,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 9,
+        "duration_ms": 100,
+        "bbox": [
+          38,
+          17,
+          156,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 10,
+        "duration_ms": 180,
+        "bbox": [
+          37,
+          18,
+          155,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      }
+    ]
+  },
+  {
+    "animation": "damage",
+    "frames": 8,
+    "duration_ms": 720,
+    "mirror_diff": 0,
+    "first_last_master_diff": [
+      0,
+      0
+    ],
+    "gif_size": [
+      384,
+      384
+    ],
+    "gif_encoded_frames": 8,
+    "cells": [
+      {
+        "frame": 1,
+        "duration_ms": 50,
+        "bbox": [
+          37,
+          18,
+          155,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 2,
+        "duration_ms": 110,
+        "bbox": [
+          48,
+          21,
+          164,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 3,
+        "duration_ms": 50,
+        "bbox": [
+          47,
+          21,
+          163,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 4,
+        "duration_ms": 80,
+        "bbox": [
+          44,
+          20,
+          161,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 5,
+        "duration_ms": 90,
+        "bbox": [
+          41,
+          19,
+          158,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 6,
+        "duration_ms": 100,
+        "bbox": [
+          39,
+          18,
+          157,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 7,
+        "duration_ms": 80,
+        "bbox": [
+          36,
+          18,
+          154,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      },
+      {
+        "frame": 8,
+        "duration_ms": 160,
+        "bbox": [
+          37,
+          18,
+          155,
+          182
+        ],
+        "visible_colors": 24,
+        "partial_alpha": 0
+      }
+    ]
+  }
+]

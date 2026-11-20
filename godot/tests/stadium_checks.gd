@@ -60,6 +60,12 @@ func _initialize() -> void:
 		var flags: Dictionary = session.snapshot().player.flags
 		if not verify(Finals.round_index(flags)==round+int(won),"advance only on victory"):return
 		if not verify(flags.get("campeaoKronasta",false)==(round==3),"title only after Jamile"):return
+		# F27: every round ends with a reaction; the title round goes to the ending.
+		var after: String = Finals.stadium_return_text(flags,"won" if won else "lost")
+		if round==3:
+			if not verify(after=="","title round leaves the text to the ending"):return
+		elif not verify(after.begins_with(Finals.BRACKET[round][0]+":") and after.contains("Atendente:"),"reaction after round "+str(round)):return
+		if won and round<3 and not verify(after.contains(Finals.BRACKET[round+1][0]),"attendant names the next opponent"):return
 	session.free()
 	print("STADIUM: passed")
 	quit()

@@ -44,7 +44,9 @@ func _initialize()->void:
   check(service.settle().status=="ok","settle "+outcome)
   check(session.snapshot().player.flags.get("retalhoBosqueVencido",false)==(outcome=="won"),"only win reveals clue")
   var copy:Dictionary=session.snapshot();check(service.settle().status=="wrong_step" and session.snapshot()==copy,"no duplicate settlement")
-  check(copy.player.coins==100 and copy.player.partners.size()==1 and copy.player.partners[0].xp==4000,"story grants no invented loot capture or XP")
+  # Story wins pay the uniform XP of partner_levels.win_xp (BIBLIA §8); no coins, no capture.
+  var expected:int=4000+(preload("res://scripts/campaign/partner_levels.gd").win_xp(int(model.enemy_level),preload("res://scripts/campaign/partner_levels.gd").level_for_xp(4000),"story") if outcome=="won" else 0)
+  check(copy.player.coins==100 and copy.player.partners.size()==1 and copy.player.partners[0].xp==expected,"story grants no loot or capture, and only the uniform win XP (%d vs %d)"%[copy.player.partners[0].xp,expected])
  check(session.resume_slot("slot-1").status=="ok","win persists")
  session.checkpoint(CP.make("kronasta-bosque-d",Service.AT,CP.SPACE),session.snapshot().player)
  check(service.begin(Service.AT).status=="already_applied","no replay farming")

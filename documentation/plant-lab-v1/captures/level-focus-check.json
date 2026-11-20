@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "locked lower floor",
+    "large floor and height brushes clipped",
+    "protected objects retained",
+    "unlock permits editing",
+    "preferences survive reload",
+    "play mode has no focus overlay",
+    "focus does not enter map JSON"
+  ],
+  "errors": []
+}

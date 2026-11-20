@@ -1,0 +1,26 @@
+{
+  "id": "caramastro",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-265f4aa5-ac45-4369-b9fa-c46e75993216.png",
+  "sha256": "846c331053405cfd9a559d55608e47abff79c2703b4e179529a042ffc623e919",
+  "width": 1672,
+  "height": 941,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/creatures/carcara-family-v1/references/carcara-identity.png",
+      "role": "Identidade própria: crop de célula do atlas existente"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento limpo aprovado, sem importar espécie/paleta"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "approved",
+  "approval_note": "Autor: aprovados, antes do pedido Mata Verde. Aprovação visual, não integração.",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

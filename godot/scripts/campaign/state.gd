@@ -16,6 +16,7 @@ static func fresh(slot_id: String) -> Dictionary:
 	return {
 		"schemaVersion": SCHEMA_VERSION, "contentVersion": CONTENT_VERSION,
 		"rulesVersion": RULES_VERSION, "slotId": slot_id, "revision": 0,"playSeconds":0.0,
+		"campaignId": new_id(),
 		"checkpoint": {"kind": "opening", "step": 0},
 		"player": {"name": "Kael", "avatar": {}, "coins": 0,
 			"inventory": {}, "partners": [], "flags": {}, "openedChests": [],
@@ -23,7 +24,12 @@ static func fresh(slot_id: String) -> Dictionary:
 	}
 
 static func valid_slot(slot_id: String) -> bool:
-	return slot_id in ["slot-1", "slot-2", "slot-3"]
+	return slot_id in ["slot-0", "slot-1", "slot-2", "slot-3"]
+
+static func campaign_key(snapshot: Dictionary) -> String:
+	if snapshot.get("campaignId") is String and not snapshot.campaignId.is_empty(): return snapshot.campaignId
+	# Legacy copies cannot safely be grouped by name, partner or slot number.
+	return "legacy-" + JSON.stringify(snapshot, "", true).sha256_text()
 
 static func new_id() -> String:
 	var bytes := Crypto.new().generate_random_bytes(16)
@@ -49,6 +55,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 		return "unsupported"
 	if value.get("slotId") != slot_id or not valid_slot(slot_id) or not whole(value.get("revision")):
 		return "invalid"
+	if value.has("campaignId") and (not value.campaignId is String or value.campaignId.is_empty() or value.campaignId.length() > 128): return "invalid"
 	if not value.get("checkpoint") is Dictionary or not value.get("player") is Dictionary:
 		return "invalid"
 	for key in ["playSeconds","savedAt"]:
@@ -62,7 +69,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	if kind == "practice" and (not whole(checkpoint.get("lesson")) or checkpoint.lesson > 4):
 		return "invalid"
 	if kind == "world":
-		if checkpoint.get("scene") not in ["kronasta-aracati-a","kronasta-aracati-b","kronasta-aracati-c","kronasta-estadio-a","kronasta-mirante-a","kronasta-mirante-b","kronasta-mirante-c","kronasta-coracao-a","kronasta-coracao-b","kronasta-coracao-c","kronasta-coracao-d","kronasta-porto-a","kronasta-porto-b","kronasta-porto-c","kronasta-centro-a","kronasta-centro-b","kronasta-centro-c","kronasta-lajes-a","kronasta-lajes-b","kronasta-lajes-c","parque-patio-liga","kael-home","kronasta-palafitas-a","kronasta-palafitas-b","kronasta-palafitas-c","kronasta-industrial-d","kronasta-bosque-d","kronasta-cais-a","kronasta-cais-b","kronasta-cais-c","caverna-mural-a","caverna-mural-b","caverna-mural-c","kronasta-feira-a","kronasta-feira-b","kronasta-feira-c","kronasta-beira-canal-a","kronasta-beira-canal-b","kronasta-beira-canal-c","kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c","quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
+		if checkpoint.get("scene") not in ["kronasta-aracati-a","kronasta-aracati-b","kronasta-aracati-c","kronasta-estadio-a","kronasta-mirante-a","kronasta-mirante-b","kronasta-mirante-c","kronasta-coracao-a","kronasta-coracao-b","kronasta-coracao-c","kronasta-coracao-d","kronasta-porto-a","kronasta-porto-b","kronasta-porto-c","kronasta-centro-a","kronasta-centro-b","kronasta-centro-c","kronasta-lajes-a","kronasta-lajes-b","kronasta-lajes-c","parque-patio-liga","kael-home","kronasta-palafitas-a","kronasta-palafitas-b","kronasta-palafitas-c","kronasta-industrial-d","kronasta-bosque-d","kronasta-cais-a","kronasta-cais-b","kronasta-cais-c","caverna-mural-a","caverna-mural-b","caverna-mural-c","kronasta-feira-a","kronasta-feira-b","kronasta-feira-c","kronasta-beira-canal-a","kronasta-beira-canal-b","kronasta-beira-canal-c","kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c","quintal", "professor-home", "kite-shop", "vulcao-a", "planicie-a", "planicie-b", "planicie-c", "planicie-d", "caverna-a", "caverna-b", "caverna-c", "abismo-a", "abismo-b", "abismo-c", "abismo-d", "serra-gelada-a", "serra-gelada-b", "serra-gelada-c", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
 			return "invalid"
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
@@ -117,6 +124,15 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			for field in ["line", "structure"]:
 				if not number(partner.condition.get(field)) or partner.condition[field] < 0 or partner.condition[field] > 100: return "invalid"
 	if player.has("equippedPartnerId") and not partner_ids.has(player.equippedPartnerId): return "invalid"
+	if player.has("pendingPartners"):
+		if not player.pendingPartners is Array:return "invalid"
+		var reserved: Dictionary=partner_ids.duplicate()
+		for reward in player.pendingPartners:
+			if not reward is Dictionary or not reward.get("id") is String or reserved.has(reward.id) or not reward.get("partner") is Dictionary or reward.partner.get("id")!=reward.id:return "invalid"
+			if not reward.get("source") is String or reward.source.is_empty() or reward.source.length()>128 or not reward.get("mandatory") is bool or not reward.get("equip") is bool:return "invalid"
+			var probe:=fresh("slot-1");probe.player.partners=[reward.partner]
+			if inspect(probe,"slot-1")!="ok":return "invalid"
+			reserved[reward.id]=true
 	if not whole(player.get("tamerXp", 0)) or player.get("tamerXp", 0) > 31383: return "invalid"
 	for field in ["sightings", "acquiredModels"]:
 		if player.has(field):
@@ -212,7 +228,7 @@ static func valid_workshop(state: Dictionary) -> bool:
 
 static func valid_encounter(value: Variant) -> bool:
 	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["endgame-step", "lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story","tufanocorte-story","tyler-lab","ruinas-elo"] or not value.get("state") is Dictionary: return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["endgame-step", "lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story","tufanocorte-story","tyler-lab","ruinas-elo","geleira-boss","abismo-boss","gruta-boss","vulcao-boss"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
@@ -237,10 +253,19 @@ static func valid_encounter(value: Variant) -> bool:
 		var who:String=value.get("feiraOpponent","")
 		if who not in ["lalau","grampo"] or value.get("space")!="parque-overworld-v1":return false
 		if value.get("scene")!=("kronasta-feira-a" if who=="lalau" else "kronasta-feira-b") or state.get("enemyModelId")!=("mata" if who=="lalau" else "platyx-draft") or state.get("enemyLevel")!=(16 if who=="lalau" else 17):return false
+	# Guardiões das regiões laterais: cena, espécie e nível fixos (encounters.gd, GUARDIANS).
+	var guardians: Dictionary = load("res://scripts/campaign/encounters.gd").GUARDIANS
+	if guardians.has(value.kind):
+		var g: Array = guardians[value.kind]
+		if value.get("scene")!=g[0] or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!=g[2] or state.get("enemyLevel")!=g[3]:return false
 	if value.kind=="canal-gate" and (value.get("scene")!="park-veredas" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="platyx-draft" or state.get("enemyLevel")!=14):return false
 	if value.kind in ["wild","trainer"]:
 		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or not whole(state.get("enemyLevel")):return false
-		if value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-beira-canal-"):
+		# Kronasta wild encounters follow the region's table and level band (WildTables).
+		# Before this, Cais and every later region (Nv.17+) failed here and never started.
+		if value.kind=="wild" and (str(value.get("scene","")).begins_with("kronasta-") or preload("res://scripts/campaign/side_regions.gd").is_region(str(value.get("scene","")))):
+			if not preload("res://scripts/campaign/wild_tables.gd").allows(str(value.scene),str(state.get("enemyModelId","")),int(state.enemyLevel)):return false
+		elif value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-beira-canal-"):
 			if state.get("enemyModelId")!="lacertubo" or state.enemyLevel<12 or state.enemyLevel>14:return false
 		elif value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-feira-"):
 			if state.get("enemyModelId") not in ["rascunho-bicho-pau","rascunho-joaninha"] or state.enemyLevel<15 or state.enemyLevel>17:return false

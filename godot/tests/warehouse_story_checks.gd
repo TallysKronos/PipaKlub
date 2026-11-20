@@ -71,8 +71,12 @@ func run()->void:
   check(session.resume_slot("slot-1").status=="ok" and session.snapshot().player.encounter.state.outcome==outcome,"terminal dragon state resumes")
   var model:=Model.new();model.restore(session.snapshot().player.encounter.state)
   var preview:Dictionary=preload("res://scripts/campaign/hud_rewards.gd").preview(session.snapshot().player,session.snapshot().player.encounter,model)
-  check(preview.xp==0 and not preview.items.any(func(item):return str(item).begins_with("Rabiola")),"no phantom capture or XP")
+  # A won story duel pays the uniform win XP (BIBLIA §8), shown before and credited after.
+  var xp_before:int=int(session.snapshot().player.partners[0].xp)
+  check(not preview.items.any(func(item):return str(item).begins_with("Rabiola")),"no phantom capture")
+  check((preview.xp>0)==(outcome=="won"),"XP only for a win")
   check(story.settle().status=="ok","dragon settle "+outcome)
+  check(int(session.snapshot().player.partners[0].xp)-xp_before==preview.xp,"result card XP is what the settlement credits")
   check(bool(session.snapshot().player.flags.get("pipaDragaoDesatadaVencida",false))==(outcome=="won"),"win alone unlocks Bruno")
   check(Story.step(session.snapshot().player)==3,"failure preserves intervention")
  check(session.snapshot().player.inventory.get("agulha-desatar",0)==1,"one needle")

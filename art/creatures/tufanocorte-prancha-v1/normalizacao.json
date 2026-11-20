@@ -1,0 +1,275 @@
+{
+  "id": "tufanocorte",
+  "folder": "art/creatures/tufanocorte-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/tufanocorte/duas-vistas.png",
+  "height": 84,
+  "motion": "Mountain wind guardian: exact emerald green serpentine kite creature with elaborate GOLDEN spiral ring spars/panels, red/cream accents, distinctive source face/crest and attached curling tail. Locomotion is controlled in-place hovering, small connected body/tail curl phases and panel inclination while keeping ALL circular spiral ornaments in correct places. NO quadruped/humanoid redesign, no replacement of face or gold ring architecture.",
+  "sheets": [
+    {
+      "path": "art/creatures/tufanocorte-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "dd75d9c8bb780aac20eb429328741b61c7b6584457ac831c613c299d0c6b98de",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.2204724409448819,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          99,
+          60,
+          427,
+          441
+        ],
+        [
+          96,
+          42,
+          428,
+          398
+        ],
+        [
+          91,
+          65,
+          426,
+          445
+        ],
+        [
+          101,
+          87,
+          429,
+          448
+        ],
+        [
+          96,
+          73,
+          428,
+          434
+        ],
+        [
+          96,
+          63,
+          424,
+          432
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -1,
+          "offset_y": 1,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -1,
+          "offset_y": 1,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": -1,
+          "offset_y": 1,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -1,
+          "offset_y": 1,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -1,
+          "offset_y": 1,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": -1,
+          "offset_y": 1,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/tufanocorte-prancha-v1/gerado-walk-nw-r1.png",
+      "source_sha256": "054f7f521902d89f1bea722b0417d3a192586eb2f1b0102f79ada1bb88c03ecd",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.21374045801526717,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          108,
+          65,
+          457,
+          456
+        ],
+        [
+          86,
+          57,
+          438,
+          450
+        ],
+        [
+          78,
+          64,
+          425,
+          437
+        ],
+        [
+          90,
+          90,
+          431,
+          422
+        ],
+        [
+          81,
+          73,
+          431,
+          440
+        ],
+        [
+          79,
+          75,
+          435,
+          447
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 1,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 1,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 1,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 1,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 1,
+          "offset_y": 3,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 1,
+          "offset_y": 3,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "e92b7010a701445dfccb581646c59998a84a13d7e58f99470cc49d8e4514a666",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          43,
+          72,
+          46,
+          76
+        ],
+        "edits": [
+          {
+            "x": 44,
+            "y": 73,
+            "color": "0d625e"
+          },
+          {
+            "x": 44,
+            "y": 74,
+            "color": "0d625e"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          54,
+          69,
+          58,
+          72
+        ],
+        "edits": [
+          {
+            "x": 55,
+            "y": 70,
+            "color": "237d63"
+          },
+          {
+            "x": 56,
+            "y": 70,
+            "color": "237d63"
+          }
+        ]
+      }
+    }
+  }
+}

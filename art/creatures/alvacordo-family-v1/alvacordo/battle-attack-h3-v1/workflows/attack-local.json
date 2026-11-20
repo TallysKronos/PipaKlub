@@ -1,0 +1,203 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "alvacordo-attack-ref-576.png"
+    }
+  },
+  "8": {
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "audio_vae": [
+        "4",
+        0
+      ],
+      "prompt": "Animate exactly ONE Alvacordo adult canine kite warrior from the reference as a 2D pixel-art battle sprite. Preserve the exact ivory and teal armor plates, narrow amber eyes, long angular white canine muzzle, lightning blaze, long ears, white fur collar, teal diamond chest crystal, gold brackets, red cords, TWO curved kite bows attached to the forearms, high curved tail and two pennants. Adult proportions and limb count remain unchanged. Fixed orthographic camera, fixed scale, full body centered, three-quarter facing SCREEN LEFT throughout. ONE attack cycle in approximately five seconds: 0.0-0.5 hold the reference ready pose; 0.5-1.2 anticipate by bending knees and drawing both elbows closer while lowering the center of gravity; 1.2-2.2 perform a decisive near-arm diagonal bow slash down and forward toward screen left, with a small torso twist and clear planted supporting foot; 2.2-2.8 a short far-arm counter-slash, the two forearms move one after another and never merge; 2.8-3.5 follow-through with tail and pennants lagging behind the motion; 3.5-4.7 recover naturally to EXACTLY the reference ready pose; 4.7-end hold that same ready pose. The creature attacks an unseen opponent to the left but does NOT translate across the canvas, spin around, jump out of frame or face the camera. Both forearm bows remain visibly attached to the wrists and rigid in size; strings stay taut red. Hands keep their fingers, armor never melts or opens gaps, neck stays filled and connected, tail remains attached. Keep sharp black pixel outlines, small flat pixel clusters, hard upper-left armor highlights and cool gray recesses identical to the reference. NO repainting as smooth illustration or 3D. Uniform solid vivid MAGENTA #ff00ff everywhere outside the sprite, including all holes between arms and legs, no gradient, no floor, no shadow, no scenery. No camera cuts, no zoom, no text, no extra characters, no light streaks, no projectiles, no smoke, no glow or effects covering the body, no motion blur, no smears, no duplicated limbs, no mouth speech. Silent animation reference for extracting the anticipation, strike, follow-through and recovery poses.\n",
+      "width": 512,
+      "height": 512,
+      "length": 124,
+      "ref_image_size": "match",
+      "ref_images.ref_image_0": [
+        "5",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "MiniMaxH3AddGuide",
+    "inputs": {
+      "positive": [
+        "8",
+        0
+      ],
+      "latent": [
+        "8",
+        1
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image": [
+        "5",
+        0
+      ],
+      "frame_idx": 0
+    }
+  },
+  "10": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "conditioning": [
+        "19",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 2026110501
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "13": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "scheduler": "beta",
+      "steps": 16,
+      "denoise": 1.0
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "11",
+        0
+      ],
+      "guider": [
+        "10",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "13",
+        0
+      ],
+      "latent_image": [
+        "8",
+        1
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "18": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "17",
+        0
+      ],
+      "filename_prefix": "Soulmonsters/Alvacordo_attack_crosscut_v1",
+      "format": "auto",
+      "format.codec": "auto",
+      "codec": "auto"
+    }
+  },
+  "19": {
+    "class_type": "MiniMaxH3AddGuide",
+    "inputs": {
+      "positive": [
+        "9",
+        0
+      ],
+      "latent": [
+        "8",
+        1
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image": [
+        "5",
+        0
+      ],
+      "frame_idx": -1
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "family_id": "suturanoite",
+  "family_name": "Suturanoite",
+  "scope": "Soldados da Meia-Noite. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "plumico",
+      "name": "Plumico",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "rasapena",
+      "name": "Rasapena",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "velaespreita",
+      "name": "Velaespreita",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/suturanoite.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "suturanoite",
+      "name": "Suturanoite",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/soldados-da-meia-noite/concept-v2/suturanoite.png",
+      "brief": "../../../art/creatures/soldados-da-meia-noite/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Coruja com velas de pulso e rabiola de equilíbrio."
+    }
+  ],
+  "edges": [
+    {
+      "from": "plumico",
+      "to": "rasapena",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "rasapena",
+      "to": "velaespreita",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "velaespreita",
+      "to": "suturanoite",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

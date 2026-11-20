@@ -1,0 +1,45 @@
+{
+  "canvas": [
+    80,
+    80
+  ],
+  "pivotProposed": [
+    40,
+    65
+  ],
+  "entries": [
+    {
+      "id": "papisco",
+      "view": "frente-sw",
+      "bboxExclusive": [
+        25,
+        24,
+        54,
+        65
+      ],
+      "occupiedSize": [
+        29,
+        41
+      ],
+      "opaqueColors": 20,
+      "opaquePixels": 758
+    },
+    {
+      "id": "papisco",
+      "view": "costas-nw",
+      "bboxExclusive": [
+        25,
+        24,
+        54,
+        65
+      ],
+      "occupiedSize": [
+        29,
+        41
+      ],
+      "opaqueColors": 16,
+      "opaquePixels": 755
+    }
+  ],
+  "inGameValidated": false
+}

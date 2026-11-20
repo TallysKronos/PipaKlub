@@ -1,0 +1,272 @@
+{
+  "version": 1,
+  "video_generation": false,
+  "models": [
+    {
+      "id": "trovareta",
+      "source": "art/creatures/soulmonsters-overworld-v2/trovareta/duas-vistas.png",
+      "folder": "art/creatures/trovareta-prancha-v1",
+      "height": 84,
+      "motion": "Thunder guardian: exact yellow/teal kite-dragon/bird anatomy, long triangular paper wings with yellow lightning spars, head/crest and teal body, connected yellow streamers. Locomotion is in-place hovering wingstroke; alternate wing up/open/down/recover, keep source head/body/feet size and lightning motifs. Never replace head by generic eagle or dragon, never invent human limbs.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation only; zero face/feet/silhouette/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              49,
+              71,
+              52,
+              75
+            ],
+            "edits": [
+              {
+                "x": 50,
+                "y": 72,
+                "color": "e2bf8c"
+              },
+              {
+                "x": 50,
+                "y": 73,
+                "color": "e2bf8c"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              56,
+              64,
+              60,
+              67
+            ],
+            "edits": [
+              {
+                "x": 57,
+                "y": 65,
+                "color": "0c3036"
+              },
+              {
+                "x": 58,
+                "y": 65,
+                "color": "0c3036"
+              }
+            ]
+          }
+        }
+      },
+      "sheet_overrides": {
+        "walk-sw": "art/creatures/trovareta-prancha-v1/gerado-walk-sw-r1.png"
+      }
+    },
+    {
+      "id": "rabiolava",
+      "source": "art/creatures/soulmonsters-overworld-v2/rabiolava/duas-vistas.png",
+      "folder": "art/creatures/rabiolava-prancha-v1",
+      "height": 84,
+      "motion": "Lava guardian: exact red orange purple serpentine creature, twin bat-like kite wings, spiky small head and long COILED ribbon-tail body with orange lava edges. Locomotion is hovering wingstroke with slight coordinated tail curl change, continuous attachment, preserve body coil structure and matching headshape. NO legs or humanoid anatomy, no ordinary bat redesign.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation only; zero face/feet/silhouette/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              47,
+              80,
+              51,
+              83
+            ],
+            "edits": [
+              {
+                "x": 48,
+                "y": 81,
+                "color": "fa931c"
+              },
+              {
+                "x": 49,
+                "y": 81,
+                "color": "fa931c"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              52,
+              78,
+              55,
+              82
+            ],
+            "edits": [
+              {
+                "x": 53,
+                "y": 80,
+                "color": "fa6907"
+              },
+              {
+                "x": 53,
+                "y": 79,
+                "color": "fa6907"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "glacerol",
+      "source": "art/creatures/soulmonsters-overworld-v2/glacerol/duas-vistas.png",
+      "folder": "art/creatures/glacerol-prancha-v1",
+      "height": 84,
+      "motion": "Ice guardian: exact white/blue frosty creature with crystal ears/antlers, pale face/muzzle, blue ornamental wing/paper panels and attached flowing ribbon tails. Preserve exact count, shape and layering of visible limbs/panels/antlers in source. Locomotion is light hovering with restrained wing/panel stroke and connected ribbons following; NO extra anatomy or generic bird/wolf face redesign.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation only; zero face/feet/silhouette/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              36,
+              71,
+              40,
+              74
+            ],
+            "edits": [
+              {
+                "x": 37,
+                "y": 72,
+                "color": "52c4f9"
+              },
+              {
+                "x": 38,
+                "y": 72,
+                "color": "52c4f9"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              53,
+              65,
+              56,
+              69
+            ],
+            "edits": [
+              {
+                "x": 54,
+                "y": 66,
+                "color": "292183"
+              },
+              {
+                "x": 54,
+                "y": 67,
+                "color": "292183"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "tufanocorte",
+      "source": "art/creatures/soulmonsters-overworld-v2/tufanocorte/duas-vistas.png",
+      "folder": "art/creatures/tufanocorte-prancha-v1",
+      "height": 84,
+      "motion": "Mountain wind guardian: exact emerald green serpentine kite creature with elaborate GOLDEN spiral ring spars/panels, red/cream accents, distinctive source face/crest and attached curling tail. Locomotion is controlled in-place hovering, small connected body/tail curl phases and panel inclination while keeping ALL circular spiral ornaments in correct places. NO quadruped/humanoid redesign, no replacement of face or gold ring architecture.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation only; zero face/feet/silhouette/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              43,
+              72,
+              46,
+              76
+            ],
+            "edits": [
+              {
+                "x": 44,
+                "y": 73,
+                "color": "0d625e"
+              },
+              {
+                "x": 44,
+                "y": 74,
+                "color": "0d625e"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              54,
+              69,
+              58,
+              72
+            ],
+            "edits": [
+              {
+                "x": 55,
+                "y": 70,
+                "color": "237d63"
+              },
+              {
+                "x": 56,
+                "y": 70,
+                "color": "237d63"
+              }
+            ]
+          }
+        }
+      },
+      "sheet_overrides": {
+        "walk-nw": "art/creatures/tufanocorte-prancha-v1/gerado-walk-nw-r1.png"
+      }
+    },
+    {
+      "id": "pipa-dragao-desatada",
+      "source": "art/creatures/soulmonsters-overworld-v2/pipa-dragao-desatada/duas-vistas.png",
+      "folder": "art/creatures/pipa-dragao-desatada-prancha-v1",
+      "height": 84,
+      "motion": "Unbound kite-dragon: exact low broad cream/charcoal beast with burgundy facial/claw details, attached elaborate gold/green bamboo kite scaffold over back, knotted cords and long tail. Preserve the exact source headshape, visible face, limb count and attached framework/ornaments. Heavy grounded quadruped alternating four-paw gait with bent joints and same squat broad body mass. NO extra heads/limbs or toy sockets, no generic reptile replacing source.",
+      "idle_method": "Original rest pose fixed; tiny internal detail variation only; zero face/feet/silhouette/global translation",
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              51,
+              71,
+              55,
+              74
+            ],
+            "edits": [
+              {
+                "x": 52,
+                "y": 72,
+                "color": "fac9b0"
+              },
+              {
+                "x": 53,
+                "y": 72,
+                "color": "fac9b0"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              57,
+              71,
+              61,
+              74
+            ],
+            "edits": [
+              {
+                "x": 58,
+                "y": 72,
+                "color": "fac9b0"
+              },
+              {
+                "x": 59,
+                "y": 72,
+                "color": "fac9b0"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

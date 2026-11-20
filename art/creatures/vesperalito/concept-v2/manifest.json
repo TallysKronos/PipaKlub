@@ -1,0 +1,23 @@
+{
+  "id": "vesperalito",
+  "version": 2,
+  "date": "2026-11-06",
+  "tool": "built-in image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-3a93cee0-47bf-4e58-8adc-b2165da4589e.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "background": "white",
+  "sha256": "6460c893a1656d0d79a540eff14f1a0d81ca59beba50439cb26ec6f1030f05d7",
+  "reference": "../concept-v1/concept.png",
+  "reference_role": "author-owned edit target",
+  "external_images_attached": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation_status": "not_integrated"
+}

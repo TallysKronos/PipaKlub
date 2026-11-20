@@ -30,7 +30,9 @@ func run_checks() -> void:
 	var prompt: Label = front.status if is_instance_valid(front.status) else front.park.exploration_hud.prompt
 	print("street prompt: ", prompt.text, " ", prompt.size, " visible=", prompt.is_visible_in_tree())
 	check(prompt.get_line_count()<=2 and prompt.size.x>=180,"interaction prompt uses at most two readable lines")
-	check(prompt.get_parent().size.x > 180 and prompt.size.y < 60, "interaction prompt has readable dimensions")
+	# The Recorte theme loads in tests since the CI import fix: one line is 61 px tall.
+	# The limit is two of the theme's own lines, not a fixed pixel count.
+	check(prompt.get_parent().size.x > 180 and prompt.size.y <= prompt.get_line_height() * 2 + 8, "interaction prompt has readable dimensions (%.0f px, line %d px)" % [prompt.size.y, prompt.get_line_height()])
 	Fixtures.show(front, "battle")
 	await settle()
 	freeze(front)

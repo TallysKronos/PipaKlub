@@ -1,0 +1,20 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-42435f83-7954-4c34-9504-dc2d83dd3e25.png",
+  "sha256": "57d10e16b33a0611d64d7258b87ca7d27faafdf763b81851c6d7168b54633e1d",
+  "dimensions": [
+    1570,
+    1002
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "caracol-pneu-child/concept-v1/concept.png: origem",
+    "espirrodante/concept-v1/concept.png: destino"
+  ],
+  "reference_paths_relative_to": "art/creatures/caracol-pneu-family-v1",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "integration_status": "not_integrated"
+}

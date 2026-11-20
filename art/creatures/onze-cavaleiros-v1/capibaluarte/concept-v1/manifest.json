@@ -1,0 +1,32 @@
+{
+  "id": "capibaluarte",
+  "name": "Capibaluarte",
+  "family": "capivara-boia",
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-58cb5139-f4f9-4b05-bad6-923995c8b76a.png",
+  "width": 1199,
+  "height": 1312,
+  "mode": "RGB",
+  "alpha": false,
+  "sha256": "f8da60b9192cb39bd2b7b404eca0958fb91c95f11b1b4f232d53a0d228e7bde9",
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "sources": "fontes.json",
+  "references": [
+    {
+      "path": "art/creatures/capivara-boia/child-manga-v3/concept.png",
+      "role": "identidade própria atual"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/yaguarion/concept-v2/concept.png",
+      "role": "acabamento de cavaleiro aprovado"
+    }
+  ],
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "approval_note": "2026-11-04: autor respondeu Aprovado! ao concept-v1. Aprovação visual; rota evolutiva, requisitos e integração não incluídos."
+}

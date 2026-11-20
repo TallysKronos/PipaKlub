@@ -236,10 +236,30 @@ static func draw_result(canvas: CanvasItem, won: bool, fled: bool = false) -> vo
 	var text_width := display().get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 42).x
 	canvas.draw_string(display(), Vector2(500 - text_width / 2, 480), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 42, INK)
 
+const ILLUSTRATED_ITEMS := [
+	"rabiola-rascunho-bicho-pau",
+	"rabiola-rascunho-joaninha",
+	"bracadeira-do-bando",
+	"flor-de-cerejeira",
+	"apito-de-vento",
+	"apito-falso",
+	"certificado-rabiola-verde",
+	"certificado-rabiola-azul",
+	"emprestimo-carcara-nina",
+	"quest-fecho-guia",
+	"pista-caderno-heleana-1",
+	"papel-seda",
+	"vareta-bambu",
+	"cola-reparo",
+	"linha-encerada",
+]
+
 static func item_icon(id: String) -> Texture2D:
+	if id in ILLUSTRATED_ITEMS or id == "agulha-desatar": return item_art(id)
 	return icon("missoes" if id.begins_with("quest-") else "rabiola" if "rabiola" in id else "mochila")
 
 static func item_art(id: String) -> Texture2D:
+	if id in ILLUSTRATED_ITEMS: return load("res://assets/ui/key-items/" + id + ".svg")
 	if id=="agulha-desatar":return load("res://assets/campaign/warehouse-v1/agulha-desatar.svg")
 	if id in ["apito-de-elo","carteira-pipeiro","porta-emblemas","insignia-morro-do-sol"]:return load("res://assets/ui/key-items/"+id+".png")
 	if id=="kit-remendo":return load("res://assets/ui/kit-remendo.svg")

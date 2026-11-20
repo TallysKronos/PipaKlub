@@ -21,7 +21,7 @@ func run() -> void:
   saved.player.partners=[{"id":"preview-rabbito","modelId":"rabbito","personalName":"Rabbito","xp":0,"craftBonus":0,"condition":{"line":100,"structure":100}}]
   saved.player.equippedPartnerId="preview-rabbito";saved.player.journey={"lesson":5,"phase":"complete"}
   front.session._snapshot=saved;front._show_world()
-  await create_timer(1.0).timeout;await shot("frontend-hud")
+  await create_timer(1.0).timeout;await shot("frontend-hud" if name=="antes" else name+"-frontend")
   front.session.close_session();front.free();print("PROFESSOR frontend capture; isolated state, no reward commits");quit();return
  var content:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
  var room:=Room.new();root.add_child(room);room.position=Vector2(100,0);room.scale=Vector2.ONE*1.1

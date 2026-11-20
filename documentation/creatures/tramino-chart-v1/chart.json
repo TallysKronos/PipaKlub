@@ -1,0 +1,98 @@
+{
+  "family_id": "tramino",
+  "scope": "Bebê e criança v2 aprovadas; jovem v7 aprovada; adulto v3 permanece em avaliação. Sem integração.",
+  "nodes": [
+    {
+      "id": "traminho",
+      "name": "Traminho (proposto)",
+      "age": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Corpo único índigo/marfim com focinho coral e uma aba de rabiola.",
+      "story": "Aprende a recuperar tensão e equilíbrio para dar o primeiro impulso.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/tramino-family-v1/traminho/concept-v2/concept.png",
+      "brief": "../../../art/creatures/tramino-family-v1/traminho/concept-v2/brief.md",
+      "author_feedback": "Até a child achei legal; manter estas formas.",
+      "revision": "concept-v2",
+      "review_note": "Nova proposta para alinhar com jovem v7; sem aprovação automática.",
+      "approval_note": "Autor: “Aprovados, e ja vamos passar pro próximo”, após bebê e criança v2; aprovação visual restrita a essas duas novas artes."
+    },
+    {
+      "id": "tramino",
+      "name": "Tramino (proposto)",
+      "age": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Pequeno réptil bípede índigo/coral com rosto em cunha marfim, olhos contidos e duas abas.",
+      "story": "Curioso e impulsivo, sempre chama o parceiro para seguir antes de conferir o caminho.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/tramino-family-v1/tramino/concept-v2/concept.png",
+      "brief": "../../../art/creatures/tramino-family-v1/tramino/concept-v2/brief.md",
+      "author_feedback": "Até a child achei legal; manter estas formas.",
+      "revision": "concept-v2",
+      "review_note": "Nova proposta para alinhar com jovem v7; sem aprovação automática.",
+      "approval_note": "Autor: “Aprovados, e ja vamos passar pro próximo”, após bebê e criança v2; aprovação visual restrita a essas duas novas artes."
+    },
+    {
+      "id": "tramassauro",
+      "name": "Tramassauro (proposto)",
+      "age": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Jovem semiereto índigo/coral de cabeça C/Tirante em escala menor, corpo compacto e membrana no antebraço.",
+      "story": "Aprende a sustentar e orientar tensão com base firme e gestos controlados.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/tramino-family-v1/tramassauro/concept-v7/concept.png",
+      "brief": "../../../art/creatures/tramino-family-v1/tramassauro/concept-v7/brief.md",
+      "revision": "concept-v7",
+      "review_note": "Jovem v7 aceita antes do pedido de cavaleiro adulto.",
+      "head_proposals": "../../../art/creatures/tramino-family-v1/tramassauro/rostos-v1/index.html",
+      "head_direction": "C/Tirante — confirmado pela imagem do autor",
+      "approval_note": "Autor: Ok tudo bem para esse, agora gere um cavaleiro que vai ficar acima dessa evolução"
+    },
+    {
+      "id": "tramadraco",
+      "name": "Tramadraco — cavaleiro (nome proposto)",
+      "age": "Adulto",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Cavaleiro de armadura índigo/marfim, elmo dracônico com viseira fechada, cristal de pipa alto no peito, capa destruída e espada.",
+      "story": "A técnica de sustentar tensão torna-se guarda e compromisso, interpretados como cavaleiro adulto.",
+      "decision_status": "proposed",
+      "production_status": "rig-review",
+      "art": "../../../art/creatures/tramino-family-v1/tramadraco/concept-v3/concept.png",
+      "brief": "../../../art/creatures/tramino-family-v1/tramadraco/concept-v3/brief.md",
+      "review_note": "Nova direção adulta solicitada, correção de elmo em avaliação.",
+      "revision": "concept-v3",
+      "soulgen": "../../../art/soulgen/keys/tramadraco/cutout-rig-v1/tramadraco.soulgen.json"
+    }
+  ],
+  "edges": [
+    {
+      "from": "traminho",
+      "to": "tramino",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "O corpo inicial desdobra quatro membros e ganha impulso próprio."
+    },
+    {
+      "from": "tramino",
+      "to": "tramassauro",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "O impulso reorganiza os apoios em quadrupedismo e especializa os antebraços para interceptar."
+    },
+    {
+      "from": "tramassauro",
+      "to": "tramadraco",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "O autor pediu cavaleiro acima da jovem; peito e tirantes se reorganizam em armadura, elmo e guarda de espada.",
+      "requirements_status": "undefined"
+    }
+  ]
+}

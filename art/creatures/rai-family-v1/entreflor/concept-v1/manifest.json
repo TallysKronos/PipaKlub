@@ -1,0 +1,30 @@
+{
+  "id": "entreflor",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-1946b898-8ced-44a1-acc8-41614333f567.png",
+  "sha256": "71021bbc141e3859641d52a17ecf41e57f28962bf2250e31a9af1a1ff7a928b8",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/creatures/rai-family-v1/raiatar/concept-v1/concept.png",
+      "role": "Parceiro felino proposto, identidade da boca/linha e estrutura dorsal"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Parceiro leporino aprovado, identidade da boca/linha e acabamento"
+    }
+  ],
+  "decision_status": "approved",
+  "approval_note": "Autor: \"Todos aprovados!\" após a entrega do chart completo. Aprovação dos nomes e concepts, incluindo Entreflor; sem certificar regras, rigs ou integração.",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false,
+  "correction": {
+    "input": "tentativa-01.png",
+    "prompt": "prompt-correcao.txt"
+  }
+}

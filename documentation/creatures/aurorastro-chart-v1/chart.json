@@ -1,0 +1,38 @@
+{
+  "family_id": "aurorastro",
+  "family_name": "Aurorastro",
+  "scope": "Glaciais das Duas Marés. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "aurorastro-jovem",
+      "name": "Aurorastro (jovem)",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/glaciais-das-duas-marees/concept-v1/aurorastro.png",
+      "brief": "../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+      "story": ""
+    },
+    {
+      "id": "aurorastro-guardia-das-rotas-da-aurora",
+      "name": "Aurorastro (Guardiã das Rotas da Aurora)",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/glaciais-das-duas-marees/cavaleiros-v1/aurorastro.png",
+      "brief": "../../../art/creatures/glaciais-das-duas-marees/adultos-v1/EVOLUCOES.md",
+      "story": "Cavaleira raposa cuja cauda marca as rotas da aurora."
+    }
+  ],
+  "edges": [
+    {
+      "from": "aurorastro-jovem",
+      "to": "aurorastro-guardia-das-rotas-da-aurora",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

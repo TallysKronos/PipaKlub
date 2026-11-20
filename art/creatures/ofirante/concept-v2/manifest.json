@@ -1,0 +1,33 @@
+{
+  "id": "ofirante",
+  "version": 2,
+  "date": "2026-11-07",
+  "tool": "built-in image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-40576385-5cd7-4810-91c1-851ba9ffcb55.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "background": "white",
+  "sha256": "930cd2f6037b3cc4475ade0404955bc8f5688000f80f61608932609dbdd53a84",
+  "references": [
+    {
+      "path": "../concept-v1/concept.png",
+      "role": "author-owned identity/edit target"
+    },
+    {
+      "path": "../../grifarca/concept-v2/concept.png",
+      "role": "approved own living-kite construction guide, not ancestry"
+    }
+  ],
+  "external_images_attached": false,
+  "prompt": "prompt.txt",
+  "brief": "brief.md",
+  "review": "revisao.md",
+  "correction_prompt": null,
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation_status": "not_integrated",
+  "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+}

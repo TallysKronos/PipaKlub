@@ -1,0 +1,27 @@
+{
+  "id": "arauto-da-tempestade",
+  "version": 2,
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-05019a0e-d5b3-4c20-9d1f-5bd6cb911026.png",
+  "sha256": "d1e86d7bbe7aa195c4bbd64852d79523d32afb2d73e93e50e09f69c2ca127853",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+      "role": "Identidade"
+    },
+    {
+      "path": "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png",
+      "role": "Acabamento"
+    }
+  ],
+  "decision_status": "approved",
+  "approval_note": "Autor: \"aprovado, todos, esse estilo ficou maravilhoso\". Aprovação visual do conjunto atual, sem certificar integração ou mecânicas.",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

@@ -1,0 +1,37 @@
+{
+  "id": "riscarion",
+  "name": "Riscárion — Balisteiro da Penumbra",
+  "identity": "riscaz",
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-6d0d7112-2e5e-4c70-811a-3e57bd4ee0cf.png",
+  "first_pass": "primeira-passagem.png",
+  "sha256": "72ce217ccecc7821c9a5967c424b500a603983aacd0a5d9590618dbc239b8eae",
+  "width": 1217,
+  "height": 1293,
+  "mode": "RGB",
+  "prompts": [
+    "prompt.txt",
+    "prompt-refinamento-elmo.txt"
+  ],
+  "references": [
+    {
+      "path": "art/soulgen/keys/riscaz/cutout-rig-v1/preview.png",
+      "role": "identidade final do autor"
+    },
+    {
+      "path": "art/soulgen/keys/riscaz/cutout-rig-v1/author-head.png",
+      "role": "cabeça final da base"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png",
+      "role": "traço e linguagem de cavaleiro aprovados"
+    }
+  ],
+  "refinement_target": "primeira-passagem.png",
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "approval_note": "Autor: aprovado agr baby e jovem. Aprovação visual; nome, voto, obtenção e integração não confirmados."
+}

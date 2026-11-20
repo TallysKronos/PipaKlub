@@ -1,0 +1,32 @@
+{
+  "id": "vesperalia",
+  "name": "Vesperália — Porta-Estandarte dos Ecos",
+  "identity": "flautrevo",
+  "decision_status": "approved",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-9870c364-64f5-49ae-82d6-72150aed222c.png",
+  "sha256": "f223098da499a30487405b2389d87a657085d3eebc3eb906047cfff063ed4201",
+  "width": 1024,
+  "height": 1536,
+  "mode": "RGB",
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/soulgen/keys/flautrevo/color-rig-v2/preview.png",
+      "role": "identidade própria atual"
+    },
+    {
+      "path": "art/soulgen/keys/flautrevo/color-rig-v2/source.png",
+      "role": "anatomia e peças próprias"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png",
+      "role": "acabamento e arquitetura próprios aprovados"
+    }
+  ],
+  "external_images_used_for_generation": false,
+  "technical_pixel_art": false,
+  "approval_note": "Autor aprovou concept-v1 com aprovadíssimo e pediu bebê e jovem; escopo visual."
+}

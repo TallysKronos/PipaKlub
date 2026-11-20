@@ -92,11 +92,13 @@ func _initialize() -> void:
 	check(Story.state(player, "centro") == "vencido" and Story.state(player, "rua-dos-ventos") == "aberto", "night keeps Vila and Centro")
 	check(Story.state(player, "lajes") == "fechado", "Condomínio needs the bracelet")
 	var exit_b: Dictionary = CP.data("kronasta-centro-a").events.filter(func(e): return e.type == "saida" and str(e.props.get("destino","")) == "kronasta-centro-b")[0]
-	check(not CP.allowed(exit_b, player, "kronasta-centro-a"), "Bando barrier holds Centro A")
+	var barrier_at := CP.make("kronasta-centro-a", Vector2(exit_b.u + .5, exit_b.v + .5), CP.SPACE)
+	check(CP.allowed(exit_b, player, "kronasta-centro-a"), "night exit stays visible")
+	check(CP.exit_target(barrier_at, str(int(exit_b.id)), player).status == "night_barrier", "Bando barrier holds Centro A")
 	check(duel("barreira", "won"), "barrier capanga")
 	player = session.snapshot().player
 	check(player.flags.get("bracadeiraBando", false) and int(player.inventory.get(Endgame.BRACELET, 0)) == 1, "bracelet recorded")
-	check(CP.allowed(exit_b, player, "kronasta-centro-a"), "bracelet opens the barrier")
+	check(CP.exit_target(barrier_at, str(int(exit_b.id)), player).status == "ok", "bracelet opens the barrier")
 	check(Story.state(player, "lajes") == "aberto", "Condomínio opens at night")
 	check(Endgame.ready(player, "desalmado-centro"), "optional Desalmados appear")
 	check(Story.current_beat(player).id == "taina", "story points to Tainá")
@@ -132,11 +134,14 @@ func _initialize() -> void:
 	player.flags.enamorDerrotado = true
 	check(save(player), "persist Rato and Eremor")
 	check(Rules.unlocked(player, "mirante"), "Eremor opens the Mirante")
+	check(Story.region_objective(player,"kronasta-coracao-d").contains("Alto do Mirante"), "Ruins direct the player to the final district")
 	check(not Rules.city_final_unlocked(player), "final waits for Ícaro")
 	win_district(player, "mirante")
 	check(save(player), "persist Ícaro")
 	check(Rules.city_final_unlocked(player) and Story.state(player, "estadio") == "aberto", "12 districts, Rato and Eremor open the final")
 	check(Story.current_beat(player).id == "final", "story points to the final")
+	check(Story.region_objective(player,"kronasta-mirante-c").contains("Estádio"), "Mirante points to stadium travel")
+	check(Story.region_objective(player,"kronasta-estadio-a").contains("atendente"), "lobby explains next-round interaction")
 	check(Ruins.INTRO["kronasta-estadio-a"].contains("Gollia") and Ruins.INTRO["kronasta-estadio-a"].contains("Grampo"), "Gollia and Grampo in the stands")
 	player.flags.campeaoKronasta = true
 	check(Story.current_beat(player).is_empty() and Story.category(player) == "Campeão de Kronasta", "story complete")

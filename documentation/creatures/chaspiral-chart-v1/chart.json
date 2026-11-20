@@ -1,0 +1,83 @@
+{
+  "family_id": "chaspiral",
+  "scope": "Bebê e jovem propostas; base e adulta com aprovação visual própria. Nomes novos, posição numérica da base e requisitos propostos, sem integração.",
+  "nodes": [
+    {
+      "id": "infusim",
+      "name": "Infusim (nome proposto)",
+      "age": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "identity": "Corpo-xícara único com espiral, dois estabilizadores e uma aba.",
+      "story": "Aprende a recuperar o equilíbrio entre pausas e impulsos.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/chaspiral-family-v1/infusim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/chaspiral-family-v1/infusim/concept-v1/brief.md"
+    },
+    {
+      "id": "chaspiral",
+      "name": "Chaspiral",
+      "age": "Criança (posição proposta)",
+      "kind": "stage",
+      "stage": 2,
+      "identity": "Xícara, cachos coral assimétricos, asas e rabiola com sino.",
+      "story": "Experimenta ritmo por pausas e surpresas.",
+      "decision_status": "approved",
+      "approval_note": "Rig revisão 3 aprovado, conforme README existente; posição como criança é proposta desta organização.",
+      "production_status": "rig",
+      "art": "../../../art/soulgen/keys/chaspiral/color-rig-v2/preview.png",
+      "stage_status": "proposed_mapping"
+    },
+    {
+      "id": "chavalsa",
+      "name": "Chavalsa (nome proposto)",
+      "age": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "identity": "Duelista de papel leve, olhos visíveis e asas assimétricas.",
+      "story": "Aprende a marcar o próximo gesto em vez de chegar sempre atrasada.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/chaspiral-family-v1/chavalsa/concept-v1/concept.png",
+      "brief": "../../../art/creatures/chaspiral-family-v1/chavalsa/concept-v1/brief.md"
+    },
+    {
+      "id": "chaspiral-imperial",
+      "name": "Chaspiral imperial (rótulo)",
+      "age": "Adulta",
+      "kind": "stage",
+      "stage": 4,
+      "identity": "Cavaleira de visor, elmo-xícara, armadura de papel e manto assimétrico.",
+      "story": "Transforma descompasso em cadência cerimonial de duelo.",
+      "decision_status": "approved",
+      "approval_note": "Autor: ótimo agora gere as baby e joven",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onze-cavaleiros-v1/chaspiral-imperial/concept-v1/concept.png",
+      "brief": "../../../art/creatures/onze-cavaleiros-v1/chaspiral-imperial/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "infusim",
+      "to": "chaspiral",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "O corpo inicial desdobra asas, braços e os primeiros cachos."
+    },
+    {
+      "from": "chaspiral",
+      "to": "chavalsa",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "O gesto se alonga e ganha cadência de duelista."
+    },
+    {
+      "from": "chavalsa",
+      "to": "chaspiral-imperial",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "A precisão se consolida em proteção articulada, visor e florete."
+    }
+  ]
+}

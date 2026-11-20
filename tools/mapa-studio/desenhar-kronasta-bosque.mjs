@@ -118,7 +118,7 @@ const ev=[];const E=(type,name,u,v,props)=>ev.push(obj(type,name,u,v,props));
 E('entrada','Chegada ao Bosque dos Ventos',27,41,{});
 E('saida','Voltar ao mapa de Kronasta',27,43,{destino:'kronasta'});
 E('saida','Seguir para o Bosque dos Ventos B',24,1,{destino:'kronasta-bosque-b'});
-E('npc','Guarda-parque Dito',25,35,{fala:'Dito',texto:'Os platôs guardam mais do que vista. Repara nas rampas de terra.'});
+E('npc','Guarda-parque Dito',25,35,{fala:'Dito',storySpritePath:'res://assets/npc-ds/historia-v1/guarda-parque-dito.png',texto:'Os platôs guardam mais do que vista. Repara nas rampas de terra.'});
 // Item no alto do platô leste (escondido atrás das copas), outro no platô oeste, um na beira da
 // trilha (visível) e um cintilando no alto do platô sudeste.
 const items=[['Moedas esquecidas',22,3,'moedas',30,'visivel'],['Papel de seda',36,21,'papel-seda',2,'escondido'],['Vareta de bambu',13,30,'vareta-bambu',1,'escondido'],['Cola de reparo',24,24,'cola-reparo',1,'visivel'],['Linha encerada',42,32,'linha-encerada',1,'brilho'],['Página do caderno',11,10,'pista-caderno-heleana-1',1,'escondido']];

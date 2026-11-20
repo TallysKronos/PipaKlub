@@ -1,0 +1,22 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-55b0d50f-87ca-440c-b06f-6631eaffbb08.png",
+  "sha256": "306ce8cac0dfb18c7a561e106306463cd02562103823488e965f09dbd9b8e4e5",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    {
+      "path": "../../concept-v1/concept.png",
+      "role": "Identidade e acabamento do Gambalhote"
+    }
+  ],
+  "decision_status": "approved",
+  "production_status": "concept",
+  "integration_status": "not_integrated",
+  "approval_note": "Autor, 2026-11-04: \"Gostei muito de todos por min estariam aprovados mas achei que o ultimo teve um acabamento de luz e sombras na armadura que fugiu do estilo?\" Bebê e jovem aprovados; adulto tem design aceito com ressalva de acabamento. Nova versão de acabamento aguarda conferência."
+}

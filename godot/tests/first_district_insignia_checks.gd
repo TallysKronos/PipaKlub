@@ -124,7 +124,9 @@ func run() -> void:
 	player=app.session.snapshot().player;player.partners[0].condition={"line":100,"structure":100}
 	check(app.session.checkpoint(app.session.snapshot().checkpoint,player).status=="ok","rematch recovery")
 	# District rules: a won title is not replayed; only a pending defense reopens Mikka.
-	check(app.morro.start(final_point).status=="already_applied","won Mikka duel is not replayed")
+	# Depois do resultado o Morro abre no mapa isométrico: o ponto do rival é em células.
+	var rematch_point:Vector2=final_point if app.session.snapshot().checkpoint.get("space","")=="" else preload("res://scripts/campaign/park_checkpoint.gd").morro_rival("morro-area-5")
+	check(app.morro.start(rematch_point).status=="already_applied","won Mikka duel is not replayed")
 	player=app.session.snapshot().player
 	check(player.inventory[Badges.FIRST_ITEM]==1 and player.districtEmblems.size()==1 and player.districtEmblems["bairro-01"].earnedAt==badge_date,"revisit never duplicates or re-dates insignia")
 	check(not Badges.pending(app.session.snapshot()),"revisit does not replay ceremony")

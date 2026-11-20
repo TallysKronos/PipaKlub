@@ -1,0 +1,395 @@
+{
+  "atlas_size": [
+    2048,
+    64
+  ],
+  "frames": 32,
+  "tags": [
+    {
+      "name": "idle",
+      "from": 0,
+      "to": 7,
+      "direction": "forward",
+      "color": "#000000ff"
+    },
+    {
+      "name": "walk",
+      "from": 8,
+      "to": 15,
+      "direction": "forward",
+      "color": "#000000ff"
+    },
+    {
+      "name": "victory",
+      "from": 16,
+      "to": 23,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "defeat",
+      "from": 24,
+      "to": 31,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    }
+  ],
+  "gif": {
+    "idle": {
+      "size": [
+        256,
+        256
+      ],
+      "encoded_frames": 8,
+      "duration_ms": 1440
+    },
+    "walk": {
+      "size": [
+        256,
+        256
+      ],
+      "encoded_frames": 8,
+      "duration_ms": 920
+    },
+    "victory": {
+      "size": [
+        256,
+        256
+      ],
+      "encoded_frames": 8,
+      "duration_ms": 1540
+    },
+    "defeat": {
+      "size": [
+        256,
+        256
+      ],
+      "encoded_frames": 8,
+      "duration_ms": 1860
+    }
+  },
+  "frame_checks": [
+    {
+      "frame": 1,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 240,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 2,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 120,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 3,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 120,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 4,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 240,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 5,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 240,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 6,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 120,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 7,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 120,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 8,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 240,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 9,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 130,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 10,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 110,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 11,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 110,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 12,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 110,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 13,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 130,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 14,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 110,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 15,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 110,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 16,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 110,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 17,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 160,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 18,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 110,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 19,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 90,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 20,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 140,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 21,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 440,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 22,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 220,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 23,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 140,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 24,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 240,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 25,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 140,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 26,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 100,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 27,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 90,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 28,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 100,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 29,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 110,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 30,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 180,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 31,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 240,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    },
+    {
+      "frame": 32,
+      "size": [
+        64,
+        64
+      ],
+      "duration_ms": 900,
+      "visible_colors": 12,
+      "partial_alpha_pixels": 0
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "family_id": "gata-lunar",
+  "scope": "Concepts de quatro estágios e pesquisa; sem integração.",
+  "nodes": [
+    {
+      "id": "gata-lunar-baby",
+      "name": "Bebê",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Uma pequena pipa-rosto percebe correntes noturnas pela curva da própria rabiola.",
+      "story": "Uma pequena pipa-rosto percebe correntes noturnas pela curva da própria rabiola.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gata-lunar-family-v1/gata-lunar-baby/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gata-lunar-family-v1/gata-lunar-baby/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovadissimos\", em 2026-11-04, após apresentação dos quatro estágios. Aprovação visual da linha completa; nomes finais, mecânicas e integração não incluídos."
+    },
+    {
+      "id": "gata-lunar-child",
+      "name": "Criança",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "A gatinha aprende a tensionar o peito de pipa, explorando o vento com a pata erguida.",
+      "story": "A gatinha aprende a tensionar o peito de pipa, explorando o vento com a pata erguida.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gata-lunar-family-v1/gata-lunar-child/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gata-lunar-family-v1/gata-lunar-child/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovadissimos\", em 2026-11-04, após apresentação dos quatro estágios. Aprovação visual da linha completa; nomes finais, mecânicas e integração não incluídos."
+    },
+    {
+      "id": "gata-lunar-young",
+      "name": "Jovem",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Ganha alcance e precisão; as membranas entre dianteira e quadril controlam a tensão em movimento.",
+      "story": "Ganha alcance e precisão; as membranas entre dianteira e quadril controlam a tensão em movimento.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gata-lunar-family-v1/gata-lunar-young/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gata-lunar-family-v1/gata-lunar-young/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovadissimos\", em 2026-11-04, após apresentação dos quatro estágios. Aprovação visual da linha completa; nomes finais, mecânicas e integração não incluídos."
+    },
+    {
+      "id": "noctiluna",
+      "name": "Adulta — Noctiluna (nome proposto)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "A cavaleira-bruxa orienta suas membranas com um cajado-armação de lua, transformando o gesto felino em técnica ritual.",
+      "story": "A cavaleira-bruxa orienta suas membranas com um cajado-armação de lua, transformando o gesto felino em técnica ritual.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/gata-lunar-family-v1/noctiluna/concept-v1/concept.png",
+      "brief": "../../../art/creatures/gata-lunar-family-v1/noctiluna/concept-v1/brief.md",
+      "approval_note": "Autor: \"Aprovadissimos\", em 2026-11-04, após apresentação dos quatro estágios. Aprovação visual da linha completa; nomes finais, mecânicas e integração não incluídos."
+    }
+  ],
+  "edges": [
+    {
+      "from": "gata-lunar-baby",
+      "to": "gata-lunar-child",
+      "kind": "reweaving",
+      "reason": "A gatinha aprende a tensionar o peito de pipa, explorando o vento com a pata erguida.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "gata-lunar-child",
+      "to": "gata-lunar-young",
+      "kind": "reweaving",
+      "reason": "Ganha alcance e precisão; as membranas entre dianteira e quadril controlam a tensão em movimento.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "gata-lunar-young",
+      "to": "noctiluna",
+      "kind": "reweaving",
+      "reason": "A cavaleira-bruxa orienta suas membranas com um cajado-armação de lua, transformando o gesto felino em técnica ritual.",
+      "decision_status": "proposed"
+    }
+  ]
+}

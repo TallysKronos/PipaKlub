@@ -21,7 +21,9 @@ func _initialize() -> void:
 			var weight:=Pacing.weight(model,point)
 			if weight>0 and cell.material=="mato": grass+=1
 			elif weight>0: outside+=1
-			if cell.material in ["ponte","piso"] or cell.get("ramp")!=null: check(weight==0,"bridge, square and ramp safe: "+scene)
+			# Vulcão, Serra Gelada e Abismo andam sobre "piso" natural (side_regions.gd); pontes e rampas seguem seguras.
+			var natural_floor: bool=cell.material=="piso" and (scene.begins_with("vulcao-") or scene.begins_with("serra-gelada-") or scene.begins_with("abismo-"))
+			if (cell.material in ["ponte","piso"] and not natural_floor) or cell.get("ramp")!=null: check(weight==0,"bridge, square and ramp safe: "+scene)
 		# Natural free-roam areas spread encounters beyond the grass. Districts, the
 		# Bosque D detour, ruins, arenas and story maps keep them in the grass only
 		# (or have none) by design (park_pacing.gd).

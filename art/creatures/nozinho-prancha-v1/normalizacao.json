@@ -1,0 +1,275 @@
+{
+  "id": "nozinho",
+  "folder": "art/creatures/nozinho-prancha-v1",
+  "source": "art/creatures/soulmonsters-overworld-v2/nozinho/duas-vistas.png",
+  "height": 55,
+  "motion": "Small golden yellow knot/rope mouse-like kite creature. Preserve round blue face disk, round loop ears, golden knotted body and attached short tail. Small child biped with two hind feet and two short forepaws: gentle alternating foot contacts, restrained arm counterbalance. Do not change circular face or invent humanoid proportions.",
+  "sheets": [
+    {
+      "path": "art/creatures/nozinho-prancha-v1/gerado-walk-sw.png",
+      "source_sha256": "ce985707fb954316b920e18d2ad25f1a4e1bc30cbe432f44d9f3fa53c872e82e",
+      "action": "walk",
+      "view": "sw",
+      "scale": 0.19230769230769232,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          151,
+          122,
+          376,
+          395
+        ],
+        [
+          150,
+          122,
+          369,
+          402
+        ],
+        [
+          154,
+          118,
+          365,
+          404
+        ],
+        [
+          161,
+          120,
+          365,
+          401
+        ],
+        [
+          159,
+          125,
+          358,
+          403
+        ],
+        [
+          151,
+          124,
+          364,
+          402
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 22,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 22,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 22,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 22,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 22,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 22,
+          "edits": []
+        }
+      ]
+    },
+    {
+      "path": "art/creatures/nozinho-prancha-v1/gerado-walk-nw.png",
+      "source_sha256": "114c47c3c6481ef8c9beb3b3b1222d713ac43735d03fd6946905b7c2abfb58f6",
+      "action": "walk",
+      "view": "nw",
+      "scale": 0.2029520295202952,
+      "alpha_threshold": 200,
+      "master_pose": 1,
+      "inspected_bounds": [
+        [
+          152,
+          117,
+          353,
+          388
+        ],
+        [
+          150,
+          121,
+          348,
+          388
+        ],
+        [
+          147,
+          122,
+          346,
+          378
+        ],
+        [
+          152,
+          123,
+          352,
+          386
+        ],
+        [
+          150,
+          125,
+          352,
+          377
+        ],
+        [
+          151,
+          125,
+          346,
+          386
+        ]
+      ],
+      "cells": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 0,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 512,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 21,
+          "edits": []
+        },
+        {
+          "x": 1024,
+          "y": 512,
+          "w": 512,
+          "h": 512,
+          "offset_x": 6,
+          "offset_y": 21,
+          "edits": []
+        }
+      ]
+    }
+  ],
+  "source_sha256": "e99f0b00d7ab5b50a29844135688f0fecc9039df1696382fec4bfa8b6ffe12fa",
+  "idle_durations": [
+    750,
+    200,
+    750,
+    200
+  ],
+  "walk_durations": [
+    140,
+    100,
+    120,
+    140,
+    100,
+    120
+  ],
+  "manual_color_merges": {},
+  "authored_idle": {
+    "views": {
+      "sw": {
+        "region": [
+          52,
+          82,
+          56,
+          85
+        ],
+        "edits": [
+          {
+            "x": 53,
+            "y": 83,
+            "color": "ee9429"
+          },
+          {
+            "x": 54,
+            "y": 83,
+            "color": "ee9429"
+          }
+        ]
+      },
+      "nw": {
+        "region": [
+          54,
+          74,
+          58,
+          77
+        ],
+        "edits": [
+          {
+            "x": 55,
+            "y": 75,
+            "color": "fcd483"
+          },
+          {
+            "x": 56,
+            "y": 75,
+            "color": "fcd483"
+          }
+        ]
+      }
+    }
+  }
+}

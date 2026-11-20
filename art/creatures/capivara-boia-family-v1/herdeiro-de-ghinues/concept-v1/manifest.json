@@ -1,0 +1,29 @@
+{
+  "tool": "image_gen.imagegen built-in",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-4963a3bb-7158-455f-bb19-26862f878148.png",
+  "sha256": "0f1c9b7787b691ee29b5e80fa62fb3edfeed6d9e0fbf195614800e8696c9f7c8",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "references": [
+    {
+      "path": "../../capiboia-tececorrente/estudo-rosto-v1/concept.png",
+      "role": "Own head anatomy, left closed-mouth face"
+    },
+    {
+      "path": "../../capiboia-tececorrente/concept-v3/concept.png",
+      "role": "Own ancestry/body identity, restructured for twohanded relic"
+    }
+  ],
+  "external_generation_inputs": false,
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation_status": "not_integrated",
+  "kind": "special_reweaving_proposal",
+  "stage": null,
+  "source_stage_unknown": true,
+  "item": "Martelo de Ghinues",
+  "historical_owner": "Ghinues, ancient golem; author-defined, no current appearance"
+}

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import {serve} from './server.mjs';
 import {validate} from './model.mjs';
-const ids=['trovareta','rabiolava','glacerol','tufanocorte','retalho-original','retalho-mascarada','platyx','rai','riscaz','pipa-dragao','pipa-dragao-desatada','azulfazo','azulfazo-possuido','mormaco'];
+const ids=['alvacordo','tramadraco','trovareta','rabiolava','glacerol','tufanocorte','retalho-original','retalho-mascarada','platyx','rai','riscaz','pipa-dragao','pipa-dragao-desatada','azulfazo','azulfazo-possuido','mormaco'];
 test('approved campaign presets load through local Studio with their assets',async()=>{
  const server=http.createServer(serve);
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));

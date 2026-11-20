@@ -1,0 +1,92 @@
+{
+  "family_id": "saciventim",
+  "family_name": "Saci / Saciventim",
+  "scope": "Demons do Folclore. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "pirilo",
+      "name": "Piriló",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/saciventim.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "saciventim",
+      "name": "Saciventim",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/child-v1/saciventim.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": ""
+    },
+    {
+      "id": "ventapulo",
+      "name": "Ventapulo",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/saciventim.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "rodamastro",
+      "name": "Rodamastro",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/linhagens-v1/saciventim.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Vela dupla em espiral. Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "redemastro",
+      "name": "Redemastro",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/demons-do-folclore/adultos-alternativos-v1/saciventim.png",
+      "brief": "../../../art/creatures/demons-do-folclore/linhagens-v1/LINHAGENS.md",
+      "story": "Pata em mola e rotor circular que dá forma ao redemoinho."
+    }
+  ],
+  "edges": [
+    {
+      "from": "pirilo",
+      "to": "saciventim",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "saciventim",
+      "to": "ventapulo",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ventapulo",
+      "to": "rodamastro",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ventapulo",
+      "to": "redemastro",
+      "kind": "reweaving",
+      "reason": "Rota adulta alternativa, no mesmo estágio da primeira forma adulta.",
+      "decision_status": "proposed"
+    }
+  ]
+}

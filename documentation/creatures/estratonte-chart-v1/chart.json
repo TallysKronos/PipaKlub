@@ -1,0 +1,94 @@
+{
+  "family_id": "estratonte-family-v1",
+  "scope": "Quatro concepts aprovados visualmente, jovem atual v3. Nomes e mecânicas propostos; sem integração.",
+  "nodes": [
+    {
+      "id": "seixim",
+      "name": "Seixim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Anel de vértebra e papel com pescoço curto; sem membros; uma flâmula.",
+      "story": "Aprende a equilibrar pescoço e corpo.",
+      "action": "Flutuar e equilibrar",
+      "tradeoff": "Não tem apoios para resistir a rajadas.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/estratonte-family-v1/seixim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/estratonte-family-v1/seixim/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovados”, após revisão da jovem v3 como transição entre criança e adulta. Aprovação visual da família atual: Seixim v1, Vertim v1, Brontela v3 e Estratonte v1. Não aprova rigs, mecânicas ou integração."
+    },
+    {
+      "id": "vertim",
+      "name": "Vertim",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Quatro patas curtas, três segmentos principais no pescoço e ventre redondo de papel.",
+      "story": "Ganha confiança para sustentar a própria estrutura.",
+      "action": "Firmar os apoios",
+      "tradeoff": "Abas pequenas protegem apenas uma área reduzida.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/estratonte-family-v1/vertim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/estratonte-family-v1/vertim/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovados”, após revisão da jovem v3 como transição entre criança e adulta. Aprovação visual da família atual: Seixim v1, Vertim v1, Brontela v3 e Estratonte v1. Não aprova rigs, mecânicas ou integração."
+    },
+    {
+      "id": "brontela",
+      "name": "Brontela",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Quadrúpede intermediário de ventre arredondado, pescoço de quatro grandes segmentos, três costelas e pequena cobertura dorsal em formação.",
+      "story": "Começa a sustentar um pequeno painel dorsal com as costelas; esse painel se amplia no abrigo adulto.",
+      "action": "Aprender a sustentar",
+      "tradeoff": "Painel parcial protege pouca área e ainda exige equilíbrio.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/estratonte-family-v1/brontela/concept-v3/concept.png",
+      "brief": "../../../art/creatures/estratonte-family-v1/brontela/concept-v3/brief.md",
+      "revision": "concept-v3",
+      "approval_note": "Autor: “Aprovados”, após revisão da jovem v3 como transição entre criança e adulta. Aprovação visual da família atual: Seixim v1, Vertim v1, Brontela v3 e Estratonte v1. Não aprova rigs, mecânicas ou integração."
+    },
+    {
+      "id": "estratonte",
+      "name": "Estratonte",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Quatro patas robustas, torso largo e baixo, cobertura de pipa integrada às costelas, pescoço e cauda longos.",
+      "story": "Transforma a própria armação em abrigo para outros.",
+      "action": "Abrigar e ancorar",
+      "tradeoff": "Cobertura aberta exige apoios firmes e limita manobras.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/estratonte-family-v1/estratonte/concept-v1/concept.png",
+      "brief": "../../../art/creatures/estratonte-family-v1/estratonte/concept-v1/brief.md",
+      "approval_note": "Autor: “Aprovados”, após revisão da jovem v3 como transição entre criança e adulta. Aprovação visual da família atual: Seixim v1, Vertim v1, Brontela v3 e Estratonte v1. Não aprova rigs, mecânicas ou integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "seixim",
+      "to": "vertim",
+      "kind": "reweaving",
+      "reason": "Ganha quatro apoios para sustentar pescoço e ventre.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "vertim",
+      "to": "brontela",
+      "kind": "reweaving",
+      "reason": "Corpo amadurece moderadamente e costelas começam a sustentar pequeno painel dorsal.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "brontela",
+      "to": "estratonte",
+      "kind": "reweaving",
+      "reason": "Painel parcial se amplia em cobertura; torso e apoios se reforçam para abrigar.",
+      "decision_status": "proposed"
+    }
+  ]
+}

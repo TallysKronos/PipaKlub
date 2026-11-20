@@ -1,0 +1,92 @@
+{
+  "family_id": "vesperalito",
+  "scope": "Concepts visuais aprovados pelo autor; relações, lore e condições propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "vespim",
+      "name": "Vespim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Rosto e corpo integrados sob cobertura; dois apoios em abas, olhos violeta e rabiola única. Poucas massas grandes.",
+      "story": "Aprender a sustentar: de abrigo dobrado a guardião que contém impactos.",
+      "action": "perceber",
+      "tradeoff": "Pouca autonomia e alcance.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/vesperalito/vespim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/vesperalito/vespim/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "vespardo",
+      "name": "Vespardo",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Correção dirigida removeu quinto membro levantado. Quatro patas no chão; cobertura sustentada pelas varetas. Corpo baixo e rosto curioso diferem do adulto.",
+      "story": "Aprender a sustentar: de abrigo dobrado a guardião que contém impactos.",
+      "action": "explorar",
+      "tradeoff": "Pouca resistência e controle.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/vesperalito/vespardo/concept-v1/concept.png",
+      "brief": "../../../art/creatures/vesperalito/vespardo/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "vesperante",
+      "name": "Vesperante",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Quatro apoios, ombros elevados e pelve baixa, duas coberturas e proteção parcial anterior. Peito sem cristal e pernas mais leves que no adulto.",
+      "story": "Aprender a sustentar: de abrigo dobrado a guardião que contém impactos.",
+      "action": "especializar",
+      "tradeoff": "Menor sustentação e proteção que o adulto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/vesperalito/vesperante/concept-v1/concept.png",
+      "brief": "../../../art/creatures/vesperalito/vesperante/concept-v1/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    },
+    {
+      "id": "vesperalito",
+      "name": "Vesperálito",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Identidade da arte adulta atual preservada; cristal central, papel vivo e rabiola da própria família.",
+      "story": "Aprender a sustentar: de abrigo dobrado a guardião que contém impactos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/vesperalito/concept-v3/concept.png",
+      "brief": "../../../art/creatures/vesperalito/concept-v3/brief.md",
+      "approval_note": "Autor em 2026-11-07: “Aprovadissimos! Agora quero que você crie 4 linhas de soulmonsters mumificados, crie uma lore”. Aprovação visual das oito famílias apresentadas; lore, condições e implementação permanecem separadas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "vespim",
+      "to": "vespardo",
+      "kind": "reweaving",
+      "reason": "A construção simples de Vespim ganha corpo e órgãos de exploração em Vespardo.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "vespardo",
+      "to": "vesperante",
+      "kind": "reweaving",
+      "reason": "A exploração de Vespardo exige movimento mais especializado e proteção parcial em Vesperante.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "vesperante",
+      "to": "vesperalito",
+      "kind": "reweaving",
+      "reason": "Vesperante desenvolve sustentação e controle para a arquitetura adulta de Vesperálito; aquisição do cristal e condições continuam propostas.",
+      "decision_status": "proposed"
+    }
+  ],
+  "crystal_note": "Proposta: cristal ancestral adquirido na forma adulta; nenhum novo fragmento/alma nas formas anteriores."
+}

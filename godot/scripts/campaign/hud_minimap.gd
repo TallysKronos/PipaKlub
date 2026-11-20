@@ -39,7 +39,10 @@ func _draw() -> void:
 		for point in floor_polygon:
 			var position: Vector2 = subject.project(point) if projected else point
 			local.append(center + (position - origin) * .17)
-		for clipped in Geometry2D.intersect_polygons(local, diamond): draw_colored_polygon(clipped, Tokens.PAPEL_2)
+		for clipped in Geometry2D.intersect_polygons(local, diamond):
+			# Clipping a floor at the diamond's corner can leave a sliver that cannot be drawn.
+			if Geometry2D.triangulate_polygon(clipped).is_empty(): continue
+			draw_colored_polygon(clipped, Tokens.PAPEL_2)
 	var outline := diamond.duplicate()
 	outline.append(diamond[0])
 	draw_polyline(outline, Hud.PAPER, 3, true)

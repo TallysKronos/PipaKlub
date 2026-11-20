@@ -1,0 +1,92 @@
+{
+  "family_id": "alvacordo-family-v1",
+  "scope": "Adulto Alvacordo v4 aprovado visualmente; demais estados preservados. Sem integração.",
+  "nodes": [
+    {
+      "id": "farpim",
+      "name": "Farpim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Corpo único de pipa inflada, duas orelhas, sem membros, uma flâmula; olhos suaves.",
+      "story": "Aprende a seguir antes de conduzir.",
+      "action": "Flutuar e sentir a direção da linha.",
+      "tradeoff": "Não consegue se ancorar sozinho.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/alvacordo-family-v1/farpim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/alvacordo-family-v1/farpim/concept-v1/brief.md"
+    },
+    {
+      "id": "papisco",
+      "name": "Papisco",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Bípede pequeno, quatro membros, orelha dobrada, peito-pipa e punhos de papel.",
+      "story": "Descobre como puxar sem romper.",
+      "action": "Experimentar a tensão.",
+      "tradeoff": "A curiosidade pode fazê-lo perder o apoio.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/alvacordo-family-v1/papisco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/alvacordo-family-v1/papisco/concept-v1/brief.md"
+    },
+    {
+      "id": "velcao",
+      "name": "Velcão",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Quadrúpede de quatro patas, velas laterais nos ombros, focinho alongado e cauda-pluma.",
+      "story": "Troca a brincadeira pela leitura do movimento do grupo.",
+      "action": "Interceptar uma trajetória.",
+      "tradeoff": "As velas abertas ocupam espaço em passagens estreitas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/alvacordo-family-v1/velcao/concept-v1/concept.png",
+      "brief": "../../../art/creatures/alvacordo-family-v1/velcao/concept-v1/brief.md"
+    },
+    {
+      "id": "alvacordo",
+      "name": "Alvacordo",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Guardião canino com peitoral-pipa de tirantes, armadura de placas relevadas, braços completos e armações montadas lateralmente.",
+      "story": "Deixa de apenas perseguir: aprende a proteger e coordenar.",
+      "action": "Capturar e redirecionar linhas.",
+      "tradeoff": "Manter as duas armações tensionadas exige apoio firme.",
+      "decision_status": "approved",
+      "production_status": "rig-review",
+      "art": "../../../art/creatures/alvacordo-family-v1/alvacordo/concept-v4/concept.png",
+      "brief": "../../../art/creatures/alvacordo-family-v1/alvacordo/concept-v4/brief.md",
+      "revision": "concept-v4",
+      "approval_note": "Autor: “Aprovado!”, após apresentação da armadura v4 e correção do braço esquerdo. Aprovação visual do adulto v4; não inclui rig ou integração.",
+      "soulgen": "../../../art/soulgen/keys/alvacordo/cutout-rig-v1/alvacordo.soulgen.json"
+    }
+  ],
+  "edges": [
+    {
+      "from": "farpim",
+      "to": "papisco",
+      "kind": "reweaving",
+      "reason": "O corpo flutuante ganha apoios para experimentar a tensão.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "papisco",
+      "to": "velcao",
+      "kind": "reweaving",
+      "reason": "A coordenação vira interceptação: quatro apoios e velas de freio.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "velcao",
+      "to": "alvacordo",
+      "kind": "reweaving",
+      "reason": "A experiência de condução vira proteção: mãos controlam armações de tensão.",
+      "decision_status": "proposed"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "frames": [
+    {
+      "filename": "frente-sw",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "contentBounds": {
+        "height": 31,
+        "x": 26,
+        "width": 27,
+        "y": 42
+      },
+      "pivot": {
+        "x": 40,
+        "y": 72
+      }
+    },
+    {
+      "filename": "costas-nw",
+      "frame": {
+        "x": 80,
+        "y": 0,
+        "w": 80,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 80,
+        "h": 80
+      },
+      "contentBounds": {
+        "height": 31,
+        "x": 26,
+        "width": 28,
+        "y": 42
+      },
+      "pivot": {
+        "x": 40,
+        "y": 72
+      }
+    }
+  ],
+  "meta": {
+    "image": "duas-vistas.png",
+    "size": {
+      "w": 160,
+      "h": 80
+    },
+    "scale": "1",
+    "frameTags": [],
+    "slices": [
+      {
+        "name": "chao",
+        "keys": [
+          {
+            "frame": 0,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "w": 80,
+              "h": 80
+            },
+            "pivot": {
+              "x": 40,
+              "y": 72
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

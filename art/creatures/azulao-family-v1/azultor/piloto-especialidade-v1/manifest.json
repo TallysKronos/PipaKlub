@@ -1,0 +1,42 @@
+{
+  "tool": "image_gen integrada",
+  "status": "Proposta para avaliação do autor; não integrado",
+  "references": [
+    {
+      "path": "../silhuetas-v2-hipogrifo/prancha.png",
+      "role": "Estrutura A escolhida, somente coluna esquerda"
+    },
+    {
+      "path": "../../../../characters/parque-pipeiros-v2/references/locutor-aprovado.png",
+      "role": "Acabamento 2D mangá"
+    },
+    {
+      "path": "../../../../soulgen/keys/azulao/color-rig-v2/concept.png",
+      "role": "Identidade familiar"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "rascunho.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "39d310ef2fe51821c78d9902e58f6b381a163fa2fbb98ad8fc5b829773b5c968",
+      "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-3bac519f-39c2-475a-92e3-8622122ff6a7.png"
+    },
+    {
+      "file": "concept.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "dc2dad76f1d8ba5a93f0d7b1c2ca732da03280df0df9af0b361074e973dce6d2",
+      "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-09f0cadc-5515-47f2-b117-b0782817edcc.png"
+    }
+  ],
+  "prompts": [
+    "prompt.txt",
+    "prompt-correcao.txt"
+  ]
+}

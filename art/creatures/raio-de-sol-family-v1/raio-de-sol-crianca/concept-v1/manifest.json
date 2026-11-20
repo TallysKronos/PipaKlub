@@ -1,0 +1,25 @@
+{
+  "id": "raio-de-sol-crianca",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-9c8bede5-ced4-4a8b-9a78-549c58c56879.png",
+  "sha256": "33a243a66491cd6a3224226abbc98c5d06910e839d48a6a85ad2b531f2f4e73c",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/soulgen/keys/raio-de-sol/color-rig-v2/concept.png",
+      "role": "Identidade original preservada"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento aprovado"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

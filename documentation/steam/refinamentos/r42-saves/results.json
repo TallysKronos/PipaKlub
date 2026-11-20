@@ -1,0 +1,18 @@
+{
+  "scope": "single-process fixtures and injected filesystem errors; no physical disk-full/power-loss/concurrent-writer certification",
+  "campaignChecks": 207,
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "failures": 0,
+  "injectedStages": [
+    "primary-temp",
+    "backup-temp",
+    "backup-replace",
+    "primary-replace",
+    "primary-gap",
+    "preserve-damaged",
+    "primary-read",
+    "backup-read"
+  ],
+  "resilienceChecks": 152,
+  "base": "7fc263a0 plus this refinement"
+}

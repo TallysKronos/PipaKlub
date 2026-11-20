@@ -3,6 +3,7 @@ extends Control
 signal confirmed
 signal canceled
 signal choice_selected(id:String)
+signal speaker_changed(speaker:String)
 const Hud=preload("res://scripts/campaign/hud.gd")
 const Layout=preload("res://scripts/campaign/hud_layout.gd")
 const Surface=preload("res://scripts/campaign/hud_dialogue_surface.gd")
@@ -49,6 +50,9 @@ func _ready() -> void:
 	if previous_focus!=null:
 		var previous_reference:WeakRef=weakref(previous_focus)
 		tree_exiting.connect(func():
+			# Closing a lower modal must not steal focus from another live dialogue.
+			for other: Node in get_tree().get_nodes_in_group("manga_dialogue"):
+				if other != self and not other.is_queued_for_deletion() and other.is_visible_in_tree(): return
 			var target:Control=previous_reference.get_ref()
 			if target!=null and target.is_inside_tree() and target.is_visible_in_tree():Hud.focus_later(target))
 	for hud:Control in get_tree().get_nodes_in_group("exploration_hud"):
@@ -108,7 +112,11 @@ func _portrait_for(speaker:String) -> Texture2D:
 	if _portraits.has(speaker):return _portraits[speaker]
 	var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 	var texture:Texture2D
-	if data.portraits.has(speaker):texture=load("res://assets/campaign/"+data.portraits[speaker])
+	# The same person under the name the later acts use.
+	var key:String={"Heleana":"Mãe","Assis":"Sr. Assis","Professor Assis":"Sr. Assis"}.get(speaker,speaker)
+	if not data.portraits.has(key) and " · " in key:
+		key = key.get_slice(" · ",0)
+	if data.portraits.has(key):texture=load("res://assets/campaign/"+data.portraits[key])
 	else:
 		var maps:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/morro/maps.json"))
 		for area in maps.values():
@@ -174,6 +182,7 @@ func _show_page() -> void:
 	var page:Dictionary=pages[page_index]
 	body.text=page.text
 	name_label.text=page.speaker
+	speaker_changed.emit(str(page.speaker))
 	portrait.texture=_portrait_for(page.speaker)
 	portrait.visible=portrait.texture!=null
 	portrait.emotion=page.emotion;portrait.reaction=page.reaction;portrait.queue_redraw()

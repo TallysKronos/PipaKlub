@@ -1,0 +1,74 @@
+{
+  "family_id": "cernebravio",
+  "family_name": "Cernebravio",
+  "scope": "Cavalos do Bosque. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "bolotim",
+      "name": "Bolotim",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "brotozaino",
+      "name": "Brotozaino",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "raiztrope",
+      "name": "Raiztrope",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/cernebravio.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "cernebravio",
+      "name": "Cernebravio",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cavalos-do-bosque/concept-v2/cernebravio.png",
+      "brief": "../../../art/creatures/cavalos-do-bosque/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Carapaça de carvalho e coroa ramificada."
+    }
+  ],
+  "edges": [
+    {
+      "from": "bolotim",
+      "to": "brotozaino",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "brotozaino",
+      "to": "raiztrope",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "raiztrope",
+      "to": "cernebravio",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

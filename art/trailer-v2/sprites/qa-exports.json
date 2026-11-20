@@ -1,0 +1,772 @@
+[
+  {
+    "frame_count": 8,
+    "size": [
+      2800,
+      313
+    ],
+    "id": "eremor-rugido-v1",
+    "image": "godot/assets/campaign/eremor-rugido-v1.png",
+    "frames": [
+      {
+        "metrics": {
+          "x0": 59,
+          "y0": 102,
+          "x1": 305,
+          "y1": 284,
+          "opaque": 42,
+          "transparent": 82224,
+          "partial": 27284,
+          "colors": 19164,
+          "fingerprint": "916ccab0701404ed"
+        },
+        "index": 0,
+        "duration_ms": 400,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 60,
+          "y0": 101,
+          "x1": 303,
+          "y1": 284,
+          "opaque": 67,
+          "transparent": 82430,
+          "partial": 27053,
+          "colors": 18855,
+          "fingerprint": "a839a2c2538d434d"
+        },
+        "index": 1,
+        "duration_ms": 350,
+        "rect": {
+          "x": 350,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 60,
+          "y0": 101,
+          "x1": 303,
+          "y1": 284,
+          "opaque": 84,
+          "transparent": 82271,
+          "partial": 27195,
+          "colors": 18907,
+          "fingerprint": "d2aa1d31218877a3"
+        },
+        "index": 2,
+        "duration_ms": 250,
+        "rect": {
+          "x": 700,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 60,
+          "y0": 101,
+          "x1": 301,
+          "y1": 284,
+          "opaque": 74,
+          "transparent": 82558,
+          "partial": 26918,
+          "colors": 18685,
+          "fingerprint": "de044dabd2f27d23"
+        },
+        "index": 3,
+        "duration_ms": 250,
+        "rect": {
+          "x": 1050,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 59,
+          "y0": 100,
+          "x1": 302,
+          "y1": 284,
+          "opaque": 110,
+          "transparent": 82163,
+          "partial": 27277,
+          "colors": 18533,
+          "fingerprint": "fe953eabb0d2dc24"
+        },
+        "index": 4,
+        "duration_ms": 450,
+        "rect": {
+          "x": 1400,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 60,
+          "y0": 102,
+          "x1": 302,
+          "y1": 284,
+          "opaque": 79,
+          "transparent": 82532,
+          "partial": 26939,
+          "colors": 18570,
+          "fingerprint": "834a086ddc9d4a17"
+        },
+        "index": 5,
+        "duration_ms": 350,
+        "rect": {
+          "x": 1750,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 59,
+          "y0": 103,
+          "x1": 302,
+          "y1": 284,
+          "opaque": 78,
+          "transparent": 82603,
+          "partial": 26869,
+          "colors": 19025,
+          "fingerprint": "e08a1ad1a12c0c70"
+        },
+        "index": 6,
+        "duration_ms": 350,
+        "rect": {
+          "x": 2100,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 60,
+          "y0": 103,
+          "x1": 304,
+          "y1": 284,
+          "opaque": 71,
+          "transparent": 82855,
+          "partial": 26624,
+          "colors": 18970,
+          "fingerprint": "6fe788a67fff1f18"
+        },
+        "index": 7,
+        "duration_ms": 500,
+        "rect": {
+          "x": 2450,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      }
+    ],
+    "duration_ms": 2900.0,
+    "sha256": "f9e34fc84c3ae31c87e881bccbc842e3dd7ce41249684b5745003755f696dd5f",
+    "distinct_frames": 8
+  },
+  {
+    "frame_count": 8,
+    "size": [
+      2800,
+      313
+    ],
+    "id": "eremor-rugido-silhueta-v1",
+    "image": "godot/assets/campaign/eremor-rugido-silhueta-v1.png",
+    "frames": [
+      {
+        "metrics": {
+          "x0": 58,
+          "y0": 101,
+          "x1": 306,
+          "y1": 285,
+          "opaque": 28290,
+          "transparent": 81260,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "79f5178e51b30cfb"
+        },
+        "index": 0,
+        "duration_ms": 400,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 59,
+          "y0": 100,
+          "x1": 304,
+          "y1": 285,
+          "opaque": 28110,
+          "transparent": 81440,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "23bdfa045532c2f9"
+        },
+        "index": 1,
+        "duration_ms": 350,
+        "rect": {
+          "x": 350,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 59,
+          "y0": 100,
+          "x1": 304,
+          "y1": 285,
+          "opaque": 28164,
+          "transparent": 81386,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "73b6d5b36964100b"
+        },
+        "index": 2,
+        "duration_ms": 250,
+        "rect": {
+          "x": 700,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 59,
+          "y0": 100,
+          "x1": 302,
+          "y1": 285,
+          "opaque": 27492,
+          "transparent": 82058,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "d8e0fe577e2a674f"
+        },
+        "index": 3,
+        "duration_ms": 250,
+        "rect": {
+          "x": 1050,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 58,
+          "y0": 99,
+          "x1": 303,
+          "y1": 285,
+          "opaque": 27727,
+          "transparent": 81823,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "6bd841543fb770bd"
+        },
+        "index": 4,
+        "duration_ms": 450,
+        "rect": {
+          "x": 1400,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 59,
+          "y0": 101,
+          "x1": 303,
+          "y1": 285,
+          "opaque": 27821,
+          "transparent": 81729,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "a4ee31d8239f7422"
+        },
+        "index": 5,
+        "duration_ms": 350,
+        "rect": {
+          "x": 1750,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 58,
+          "y0": 102,
+          "x1": 303,
+          "y1": 285,
+          "opaque": 27841,
+          "transparent": 81709,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "b41ce071c1cf8788"
+        },
+        "index": 6,
+        "duration_ms": 350,
+        "rect": {
+          "x": 2100,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      },
+      {
+        "metrics": {
+          "x0": 59,
+          "y0": 102,
+          "x1": 305,
+          "y1": 285,
+          "opaque": 27707,
+          "transparent": 81843,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "aca30b4653b4ab01"
+        },
+        "index": 7,
+        "duration_ms": 500,
+        "rect": {
+          "x": 2450,
+          "y": 0,
+          "w": 350,
+          "h": 313
+        }
+      }
+    ],
+    "duration_ms": 2900.0,
+    "sha256": "ce5f00c191326a5700eea44efcad2dc6ae80f96d2ab0be487bce9208c7b010bc",
+    "distinct_frames": 8
+  },
+  {
+    "frame_count": 12,
+    "size": [
+      6144,
+      512
+    ],
+    "id": "eremor-onda-rugido-v1",
+    "image": "godot/assets/campaign/eremor-onda-rugido-v1.png",
+    "frames": [
+      {
+        "metrics": {
+          "x0": 232,
+          "y0": 280,
+          "x1": 279,
+          "y1": 307,
+          "opaque": 752,
+          "transparent": 261392,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "496165124c178f39"
+        },
+        "index": 0,
+        "duration_ms": 100,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 206,
+          "y0": 271,
+          "x1": 305,
+          "y1": 312,
+          "opaque": 1396,
+          "transparent": 260748,
+          "partial": 0,
+          "colors": 4,
+          "fingerprint": "4f3d4ed0cd26ad51"
+        },
+        "index": 1,
+        "duration_ms": 50,
+        "rect": {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 167,
+          "y0": 252,
+          "x1": 344,
+          "y1": 331,
+          "opaque": 2968,
+          "transparent": 259176,
+          "partial": 0,
+          "colors": 7,
+          "fingerprint": "fda8a672ba24cea5"
+        },
+        "index": 2,
+        "duration_ms": 50,
+        "rect": {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 133,
+          "y0": 236,
+          "x1": 378,
+          "y1": 346,
+          "opaque": 4617,
+          "transparent": 257527,
+          "partial": 0,
+          "colors": 7,
+          "fingerprint": "c6ba90b1ae52f6de"
+        },
+        "index": 3,
+        "duration_ms": 67,
+        "rect": {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 102,
+          "y0": 224,
+          "x1": 409,
+          "y1": 358,
+          "opaque": 6240,
+          "transparent": 255904,
+          "partial": 0,
+          "colors": 7,
+          "fingerprint": "2c0293163a763155"
+        },
+        "index": 4,
+        "duration_ms": 67,
+        "rect": {
+          "x": 2048,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 79,
+          "y0": 213,
+          "x1": 431,
+          "y1": 368,
+          "opaque": 7591,
+          "transparent": 254553,
+          "partial": 0,
+          "colors": 7,
+          "fingerprint": "8a881bd60a04eda8"
+        },
+        "index": 5,
+        "duration_ms": 83,
+        "rect": {
+          "x": 2560,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 60,
+          "y0": 205,
+          "x1": 450,
+          "y1": 375,
+          "opaque": 8597,
+          "transparent": 253547,
+          "partial": 0,
+          "colors": 7,
+          "fingerprint": "8a67b2ba0d55c5b8"
+        },
+        "index": 6,
+        "duration_ms": 83,
+        "rect": {
+          "x": 3072,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 47,
+          "y0": 199,
+          "x1": 464,
+          "y1": 379,
+          "opaque": 8175,
+          "transparent": 253969,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "4ba6ddf9c522c3ac"
+        },
+        "index": 7,
+        "duration_ms": 100,
+        "rect": {
+          "x": 3584,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 37,
+          "y0": 192,
+          "x1": 474,
+          "y1": 380,
+          "opaque": 7849,
+          "transparent": 254295,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "1e40859ec37006e0"
+        },
+        "index": 8,
+        "duration_ms": 100,
+        "rect": {
+          "x": 4096,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 29,
+          "y0": 188,
+          "x1": 482,
+          "y1": 381,
+          "opaque": 1375,
+          "transparent": 260769,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "5a534496555536b6"
+        },
+        "index": 9,
+        "duration_ms": 117,
+        "rect": {
+          "x": 4608,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 25,
+          "y0": 185,
+          "x1": 487,
+          "y1": 389,
+          "opaque": 725,
+          "transparent": 261419,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "9b9ae4ff925e4c1a"
+        },
+        "index": 10,
+        "duration_ms": 133,
+        "rect": {
+          "x": 5120,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 19,
+          "y0": 182,
+          "x1": 490,
+          "y1": 392,
+          "opaque": 520,
+          "transparent": 261624,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "351bfc8c59569e71"
+        },
+        "index": 11,
+        "duration_ms": 150,
+        "rect": {
+          "x": 5632,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      }
+    ],
+    "duration_ms": 1100.0,
+    "sha256": "4f4034ed0440e05d0483fe4c39394df8ad11ad43d237860f857fe9af0590a482",
+    "distinct_frames": 12
+  },
+  {
+    "frame_count": 6,
+    "size": [
+      3072,
+      512
+    ],
+    "id": "rabbito-rastro-v1",
+    "image": "godot/assets/campaign/rabbito-rastro-v1.png",
+    "frames": [
+      {
+        "metrics": {
+          "x0": 177,
+          "y0": 186,
+          "x1": 333,
+          "y1": 317,
+          "opaque": 1220,
+          "transparent": 260924,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "ef09878d0c7f9184"
+        },
+        "index": 0,
+        "duration_ms": 100,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 136,
+          "y0": 146,
+          "x1": 389,
+          "y1": 350,
+          "opaque": 4849,
+          "transparent": 257295,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "824c0087476d1c33"
+        },
+        "index": 1,
+        "duration_ms": 50,
+        "rect": {
+          "x": 512,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 83,
+          "y0": 110,
+          "x1": 439,
+          "y1": 380,
+          "opaque": 11632,
+          "transparent": 250512,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "f1c32f397186dffe"
+        },
+        "index": 2,
+        "duration_ms": 50,
+        "rect": {
+          "x": 1024,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 53,
+          "y0": 93,
+          "x1": 464,
+          "y1": 395,
+          "opaque": 11618,
+          "transparent": 250526,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "f8e708ee038f8842"
+        },
+        "index": 3,
+        "duration_ms": 83,
+        "rect": {
+          "x": 1536,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 47,
+          "y0": 89,
+          "x1": 471,
+          "y1": 393,
+          "opaque": 4471,
+          "transparent": 257673,
+          "partial": 0,
+          "colors": 5,
+          "fingerprint": "84081e79cca2a294"
+        },
+        "index": 4,
+        "duration_ms": 100,
+        "rect": {
+          "x": 2048,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      {
+        "metrics": {
+          "x0": 43,
+          "y0": 86,
+          "x1": 470,
+          "y1": 381,
+          "opaque": 869,
+          "transparent": 261275,
+          "partial": 0,
+          "colors": 2,
+          "fingerprint": "c48acb99072f2ce6"
+        },
+        "index": 5,
+        "duration_ms": 150,
+        "rect": {
+          "x": 2560,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      }
+    ],
+    "duration_ms": 533.0,
+    "sha256": "3db540fe6db1ca964619c766d6d6b1e6230722ab33dc59cdd3df1df30c5250b5",
+    "distinct_frames": 6
+  }
+]

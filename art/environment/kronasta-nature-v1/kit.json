@@ -1,0 +1,557 @@
+{
+  "id": "kronasta-nature-v1",
+  "assets": [
+    {
+      "id": "arvore-ipe-amarelo",
+      "name": "Ipê amarelo",
+      "family": "Árvores",
+      "anchor": [
+        32,
+        80
+      ],
+      "size": [
+        64,
+        80
+      ],
+      "tree": true,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arvore-ipe-rosa",
+      "name": "Ipê rosa",
+      "family": "Árvores",
+      "anchor": [
+        32,
+        80
+      ],
+      "size": [
+        64,
+        80
+      ],
+      "tree": true,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arvore-araucaria",
+      "name": "Araucária",
+      "family": "Árvores",
+      "anchor": [
+        32,
+        80
+      ],
+      "size": [
+        64,
+        80
+      ],
+      "tree": true,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arvore-folha-larga",
+      "name": "Árvore tropical",
+      "family": "Árvores",
+      "anchor": [
+        32,
+        80
+      ],
+      "size": [
+        64,
+        80
+      ],
+      "tree": true,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arvore-ancestral",
+      "name": "Árvore ancestral",
+      "family": "Árvores",
+      "anchor": [
+        32,
+        80
+      ],
+      "size": [
+        64,
+        80
+      ],
+      "tree": true,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arvore-casca-clara",
+      "name": "Árvore de casca clara",
+      "family": "Árvores",
+      "anchor": [
+        32,
+        80
+      ],
+      "size": [
+        64,
+        80
+      ],
+      "tree": true,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "samambaia-baixa",
+      "name": "Samambaia baixa",
+      "family": "Samambaias",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        40,
+        28
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "samambaia-broto",
+      "name": "Samambaia em broto",
+      "family": "Samambaias",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        36,
+        42
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arbusto-angular",
+      "name": "Arbusto angular",
+      "family": "Arbustos",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        44,
+        36
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arbusto-frutas",
+      "name": "Arbusto de frutos",
+      "family": "Arbustos",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        44,
+        36
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arbusto-flores-azuis",
+      "name": "Flores azuis",
+      "family": "Flores",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        44,
+        36
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "arbusto-flores-violetas",
+      "name": "Flores violetas",
+      "family": "Flores",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        44,
+        36
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "flores-amarelas",
+      "name": "Flores amarelas",
+      "family": "Flores",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        32,
+        24
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "margaridas",
+      "name": "Margaridas",
+      "family": "Flores",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        36,
+        30
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "bromelia-rubra",
+      "name": "Bromélia rubra",
+      "family": "Bromélias",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        36,
+        42
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "capim-lavanda",
+      "name": "Capim lavanda",
+      "family": "Capim",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        36,
+        38
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "folhas-do-brejo",
+      "name": "Folhas do brejo",
+      "family": "Aquáticas",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        42,
+        32
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "musgo-florido",
+      "name": "Musgo florido",
+      "family": "Musgos",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        38,
+        18
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "rocha-musgosa",
+      "name": "Rocha musgosa",
+      "family": "Pedras",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        48,
+        46
+      ],
+      "tree": false,
+      "collidable": true,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "pedras-miudas",
+      "name": "Pedras miúdas",
+      "family": "Pedras",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        40,
+        24
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "rocha-arenito",
+      "name": "Rocha de arenito",
+      "family": "Pedras",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        48,
+        40
+      ],
+      "tree": false,
+      "collidable": true,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "rocha-ardosia",
+      "name": "Rocha de ardósia",
+      "family": "Pedras",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        48,
+        24
+      ],
+      "tree": false,
+      "collidable": true,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "tronco-oco",
+      "name": "Tronco oco",
+      "family": "Madeira",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        56,
+        30
+      ],
+      "tree": false,
+      "collidable": true,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "toco-brotando",
+      "name": "Toco em broto",
+      "family": "Madeira",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        40,
+        38
+      ],
+      "tree": false,
+      "collidable": true,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "galho-caido",
+      "name": "Galho caído",
+      "family": "Madeira",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        48,
+        22
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "folhas-secas",
+      "name": "Folhas secas",
+      "family": "Solo",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        36,
+        18
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "cogumelos-rubros",
+      "name": "Cogumelos rubros",
+      "family": "Cogumelos",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        32,
+        28
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "cogumelos-cianos",
+      "name": "Cogumelos cianos",
+      "family": "Cogumelos",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        32,
+        28
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "cogumelos-madeira",
+      "name": "Cogumelos de madeira",
+      "family": "Cogumelos",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        40,
+        30
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    },
+    {
+      "id": "raizes-vivas",
+      "name": "Raízes vivas",
+      "family": "Madeira",
+      "anchor": [
+        32,
+        52
+      ],
+      "size": [
+        48,
+        30
+      ],
+      "tree": false,
+      "collidable": false,
+      "kit": "nature-v1"
+    }
+  ],
+  "masks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    19,
+    23,
+    27,
+    31,
+    38,
+    39,
+    46,
+    47,
+    55,
+    63,
+    76,
+    77,
+    78,
+    79,
+    95,
+    110,
+    111,
+    127,
+    137,
+    139,
+    141,
+    143,
+    155,
+    159,
+    175,
+    191,
+    205,
+    207,
+    223,
+    239,
+    255
+  ],
+  "treeFrame": [
+    64,
+    96
+  ],
+  "propFrame": [
+    64,
+    64
+  ],
+  "sourceGrid": {
+    "trees": [
+      3,
+      2
+    ],
+    "plants": [
+      4,
+      3
+    ],
+    "props": [
+      4,
+      3
+    ]
+  },
+  "method": "Generated art, explicit sheet cuts, nearest-neighbor resampling, 40-color palettes, binary alpha. No procedural redrawing."
+}

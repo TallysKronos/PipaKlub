@@ -1,0 +1,93 @@
+{
+  "family_id": "trinca-brasas",
+  "scope": "Dois concepts novos e duas bases aprovadas; maturidade documental sem integração.",
+  "nodes": [
+    {
+      "id": "braseco",
+      "name": "Braseco",
+      "stage": 1,
+      "kind": "stage",
+      "age": "Bebê",
+      "action": "Espiar em conjunto",
+      "identity": "Corpo baixo de envelope de papel, três pequenas cabeças e quatro patas curtas.",
+      "story": "Aprende a coordenar três focos de atenção num só indivíduo.",
+      "decision_status": "proposed",
+      "approval_note": null,
+      "production_status": "concept",
+      "implementation": "não integrado por este estudo",
+      "art": "../../../art/creatures/trinca-brasas-family-v1/braseco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/trinca-brasas-family-v1/braseco/concept-v1/brief.md"
+    },
+    {
+      "id": "trinca-brasas",
+      "name": "Trinca-brasas",
+      "stage": 2,
+      "kind": "stage",
+      "age": "Criança existente",
+      "action": "Explorar e proteger",
+      "identity": "Três cabeças caninas, corpo pequeno carvão/laranja, chaves e rabiola de três folhas.",
+      "story": "Companhia, coragem e proteção do lar constam no catálogo existente.",
+      "decision_status": "approved",
+      "approval_note": "Montagem final aprovada, registrada no README do Soulgen; associação de maturidade é documental.",
+      "production_status": "concept",
+      "implementation": "não integrado por este estudo",
+      "art": "../../../art/soulgen/keys/trinca-brasas/color-rig-v2/preview.png",
+      "brief": "../../../art/soulgen/keys/trinca-brasas/README.md"
+    },
+    {
+      "id": "trincaguarda",
+      "name": "Trincaguarda",
+      "stage": 3,
+      "kind": "stage",
+      "age": "Jovem quadrúpede",
+      "action": "Interpor e vigiar",
+      "identity": "Cão tricéfalo quadrúpede, peito alto, cintura e primeiras placas de guarda.",
+      "story": "A vigilância passa a ser sustentada pelo corpo e pela coordenação.",
+      "decision_status": "proposed",
+      "approval_note": null,
+      "production_status": "concept",
+      "implementation": "não integrado por este estudo",
+      "art": "../../../art/creatures/trinca-brasas-family-v1/trincaguarda/concept-v1/concept.png",
+      "brief": "../../../art/creatures/trinca-brasas-family-v1/trincaguarda/concept-v1/brief.md"
+    },
+    {
+      "id": "tricordio",
+      "name": "Tricórdio",
+      "stage": 4,
+      "kind": "stage",
+      "age": "Adulto cavaleiro",
+      "action": "Guardar e deliberar",
+      "identity": "Cabeça de elmo fechado, ombreiras caninas, couraça/escudo de copas, lança e chaves.",
+      "story": "A proteção ganha intenção e instrumentos; voto de ouvir antes de julgar continua proposta.",
+      "decision_status": "approved",
+      "approval_note": "Autor aprovou concept-v4 com “aprovado”; aprovação visual, não receita ou história.",
+      "production_status": "concept",
+      "implementation": "não integrado por este estudo",
+      "art": "../../../art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/concept.png",
+      "brief": "../../../art/creatures/onze-cavaleiros-v1/tricordio/concept-v4/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "braseco",
+      "to": "trinca-brasas",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "O bebê aprende a explorar e coordenar sua guarda."
+    },
+    {
+      "from": "trinca-brasas",
+      "to": "trincaguarda",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "A vigilância exige novos apoios e primeiras proteções."
+    },
+    {
+      "from": "trincaguarda",
+      "to": "tricordio",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "A guarda se reorganiza em corpo cavaleiresco e equipamento; transformação das cabeças segue direção do autor."
+    }
+  ]
+}

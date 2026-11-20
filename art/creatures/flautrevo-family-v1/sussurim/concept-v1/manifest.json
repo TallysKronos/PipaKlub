@@ -1,0 +1,29 @@
+{
+  "id": "sussurim",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-08ee2dd8-c72e-401c-98a0-0e361ce30e30.png",
+  "sha256": "c26c17a9dba93739775f010bd482d8bc4a2d999f8e6fd44223e235c886853f69",
+  "width": 1295,
+  "height": 1214,
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "path": "art/soulgen/keys/flautrevo/color-rig-v2/preview.png",
+      "role": "identidade própria atual"
+    },
+    {
+      "path": "art/creatures/onze-cavaleiros-v1/vesperalia/concept-v1/concept.png",
+      "role": "destino aprovado"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "acabamento aprovado"
+    }
+  ],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false
+}

@@ -83,6 +83,22 @@ Essas faixas são guias de concept, não correções automáticas dos sprites at
 - Papel pode ter vincos seletivos. Pele, pelo e tecido não recebem triangulação facetada por padrão.
 - Ilustração narrativa pode mudar a luz; anexar a prancha neutra para preservar as cores locais. Não pintar sombra de chão definitiva dentro de cada frame se o motor já a desenha.
 
+### Folha de concept dos Soulmonsters
+
+- Usar fundo branco uniforme até as bordas, com `#FFFFFF` como referência. As cores de papel, membrana e marfim pertencem à criatura. Deixar o espaço entre os estudos branco, sem textura, moldura, faixas, caixas ou divisórias.
+- Organizar vistas comparáveis de frente, perfil e costas com escala consistente e margens livres. Distribuir os demais estudos conforme a anatomia da criatura, com espaço para ler cada silhueta.
+- Usar um título discreto, notas curtas em português e setas pontuais para indicar encaixes, dobras ou partes móveis. Os desenhos conduzem a leitura da folha.
+- Consultar **Na prancha** na [Soulmonster Dex](documentation/creatures/familias/grupos.html). Incluir ao menos um gesto, hábito ou reação daquela forma. Quando o movimento explica a construção, mostrar a preparação e a ação em estudos separados.
+- Quando a forma só tiver sprite, rig do Soulgen ou arte antiga que não sustente as vistas, redesenhar a criatura no 2D mangá atual dentro da folha. Usar a montagem para conferir silhueta, proporções, rosto e quantidade de membros. Consultar o atlas para conferir cores, marcas, encaixes, linha e rabiola. Reconstruir o volume com contorno limpo, cores chapadas e sombras em blocos. Registrar quais referências orientaram o redesenho.
+
+**Ordem de produção**
+
+1. **Brief.** Abrir a referência da forma e escolher um comportamento da Dex e a parte do corpo que o torna possível.
+2. **Esboço.** Distribuir as vistas, a pose principal e os estudos na folha branca. Resolver silhueta, proporções e apoios antes do acabamento.
+3. **Lineart.** Desenhar frente, perfil e costas na mesma escala. Marcar as articulações, os encaixes da pipa e o lado de cada assimetria. Conferir se o gesto escolhido funciona só pelo desenho de linha.
+4. **Cor.** Aplicar cores chapadas e sombra simples à pose principal de corpo inteiro. Colorir estudos adicionais quando a cor explicar algo, como uma mudança de estado ou a diferença entre materiais.
+5. **Montagem e revisão.** Manter na folha final a pose principal colorida, as três vistas em lineart e pelo menos um detalhe ampliado ou uma sequência de gesto em linha. Usar traço escuro e poucas linhas internas. Conferir se vistas e poses mostram a mesma anatomia e se as notas continuam legíveis com a folha reduzida.
+
 ### Organização de paleta
 
 Escolher dominante, suporte, neutro e acento. Limitar inicialmente a três famílias cromáticas de identidade, além de pele, olhos e neutros; expandir apenas por necessidade. Essa regra não proíbe personagens multicoloridos já aprovados. Acentos ocupam área pequena e apontam para rosto, assinatura ou interação.

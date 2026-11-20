@@ -63,7 +63,7 @@ func run()->void:
 	check(app.session.checkpoint(saved.checkpoint,saved.player).status=="ok" and app.morro.settle().status=="ok","battle result commits title loss")
 	app._return_morro_result();await settle_frames()
 	check(Rules.status(app.session.snapshot().player,"morro")=="requalifying","frontend returns to requalification")
-	check(app.park.goal.text.contains("0/4"),"HUD explains requalification count")
+	check((app.park.goal.text if app.park.get("goal")!=null else app.park.exploration_hud.objective.text).contains("0/4"),"HUD explains requalification count")
 	await capture("02-requalificacao")
 	if is_instance_valid(dialog()):dialog().confirmed.emit();await settle_frames()
 	saved=app.session.snapshot()

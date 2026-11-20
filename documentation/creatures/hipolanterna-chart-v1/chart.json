@@ -1,0 +1,93 @@
+{
+  "family_id": "hipolanterna-family-v1",
+  "scope": "Quatro concepts aprovados visualmente; nomes e mecânicas propostos, sem integração.",
+  "nodes": [
+    {
+      "id": "pevidim",
+      "name": "Pevidim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Corpo único arredondado de três gomos, focinho tubular curto, duas abas e uma flâmula, sem membros.",
+      "story": "Aprende a se orientar pelo movimento da própria rabiola.",
+      "action": "Perceber",
+      "tradeoff": "Ainda não controla a abertura da lanterna.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/hipolanterna-family-v1/pevidim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/hipolanterna-family-v1/pevidim/concept-v1/brief.md",
+      "approval_note": "Autor: “aprovados! agora inicie uma line pra um bicho preguiça + cacau”, após a conclusão do bebê. Aprovação visual das quatro formas: Pevidim, Cavalume, Hipomoranga e Hipolanterna. Sem aprovação técnica ou integração."
+    },
+    {
+      "id": "cavalume",
+      "name": "Cavalume",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Ventre redondo de pipa-abóbora, pescoço curto, pequenas nadadeiras e cauda de uma curva curta.",
+      "story": "A primeira janela de papel começa a funcionar como sinal.",
+      "action": "Sinalizar",
+      "tradeoff": "Um sinal simples e pouco controlado.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/hipolanterna-family-v1/cavalume/concept-v1/concept.png",
+      "brief": "../../../art/creatures/hipolanterna-family-v1/cavalume/concept-v1/brief.md",
+      "approval_note": "Autor: “aprovados! agora inicie uma line pra um bicho preguiça + cacau”, após a conclusão do bebê. Aprovação visual das quatro formas: Pevidim, Cavalume, Hipomoranga e Hipolanterna. Sem aprovação técnica ou integração."
+    },
+    {
+      "id": "hipomoranga",
+      "name": "Hipomoranga",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Cavalo-marinho de pescoço longo, máscara angular, três janelas ventrais e cauda em espiral.",
+      "story": "Aprende quando mostrar seus sinais em vez de reagir a tudo.",
+      "action": "Atrair atenção",
+      "tradeoff": "Nadadeiras pequenas limitam manipulação dos gomos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/hipolanterna-family-v1/hipomoranga/concept-v1/concept.png",
+      "brief": "../../../art/creatures/hipolanterna-family-v1/hipomoranga/concept-v1/brief.md",
+      "approval_note": "Autor: “aprovados! agora inicie uma line pra um bicho preguiça + cacau”, após a conclusão do bebê. Aprovação visual das quatro formas: Pevidim, Cavalume, Hipomoranga e Hipolanterna. Sem aprovação técnica ou integração."
+    },
+    {
+      "id": "hipolanterna",
+      "name": "Hipolanterna",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Guardião-lanterna sem pernas, dois braços-nadadeiras com dedos de papel controlam gomos, cauda longa e dorsal ampla.",
+      "story": "Passa a controlar as próprias janelas com cordas e mãos-nadadeiras.",
+      "action": "Revelar e ocultar",
+      "tradeoff": "Precisa coordenar cauda, abertura dos gomos e direção da luz.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/hipolanterna-family-v1/hipolanterna/concept-v1/concept.png",
+      "brief": "../../../art/creatures/hipolanterna-family-v1/hipolanterna/concept-v1/brief.md",
+      "approval_note": "Autor: “aprovados! agora inicie uma line pra um bicho preguiça + cacau”, após a conclusão do bebê. Aprovação visual das quatro formas: Pevidim, Cavalume, Hipomoranga e Hipolanterna. Sem aprovação técnica ou integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "pevidim",
+      "to": "cavalume",
+      "kind": "reweaving",
+      "reason": "Corpo ganha pescoço e cauda para orientar um primeiro sinal.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cavalume",
+      "to": "hipomoranga",
+      "kind": "reweaving",
+      "reason": "Janelas e cauda ganham alcance e controle.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "hipomoranga",
+      "to": "hipolanterna",
+      "kind": "reweaving",
+      "reason": "Nadadeiras amadurecem em braços que manipulam as janelas do corpo.",
+      "decision_status": "proposed"
+    }
+  ]
+}

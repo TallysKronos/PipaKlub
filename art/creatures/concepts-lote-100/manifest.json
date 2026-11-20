@@ -1,0 +1,985 @@
+{
+  "date": "2026-11-11",
+  "tool": "image_gen.imagegen",
+  "total": 50,
+  "redraws": 36,
+  "sheets": [
+    {
+      "key": "azulao:azulim",
+      "name": "Azulim",
+      "family": "Azulão",
+      "stage": "Bebê",
+      "reference": "art/creatures/azulao-family-v1/azulim/concept-pipa-v3/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "azulim.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Azulim. Estágio Bebê. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Azulim”. Ideia para os desenhos de ação (não transcreva como parágrafo): Espia a chuva do abrigo e estica a rabiola para sentir se ela passou.; Desenhar só a ponta da rabiola aparecendo sob a telha.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/azulao-family-v1/azulim/concept-pipa-v3/concept.png"
+      ],
+      "generated_file": "exec-f7fd17fd-a9e9-4920-9438-3a427772b535.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "08c2c13c49b3f0a1d6a36a4b4269fa34767e6b7bbae1e2d1adf7b7d85eb81204"
+    },
+    {
+      "key": "azulao:azulao",
+      "name": "Azulão",
+      "family": "Azulão",
+      "stage": "Criança",
+      "reference": "art/soulgen/keys/azulao/color-rig-v2/concept.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "azulao.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Azulão. Estágio Criança. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Corpo losango com face de ave no papel, par de asas com volutas, rabiola dupla com nuvem na ponta. Sem pernas. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Azulão”. Ideia para os desenhos de ação (não transcreva como parágrafo): Quando a ventania separa o bando, volta à última corrente que todos reconheceram.; Mostrar as asas em concha sobre uma pipa menor na chuva.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/azulao/color-rig-v2/concept.png"
+      ],
+      "generated_file": "exec-203a772c-8806-41a5-96dd-c15e53da4868.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "4fd0b55ece16e0dc7ea1d97d2e2a8ef2933de5914e5fb80b24894034237aeb98"
+    },
+    {
+      "key": "azulao:azulfazo",
+      "name": "Azulfazo",
+      "family": "Azulão",
+      "stage": "Jovem",
+      "reference": "art/soulgen/keys/azulfazo/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "azulfazo.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Azulfazo. Estágio Jovem. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Azulfazo”. Ideia para os desenhos de ação (não transcreva como parágrafo): Abre a guarda com o peito para que os menores ganhem altura atrás dele.; Perfil do bico e das asas resistindo à primeira rajada.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/azulfazo/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-a2ffccdb-a66e-4811-a441-42efcf706091.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "6c57ca3b98b082bd24e080567c82e43990929ce50abf72badc23e7c3f6764b9a"
+    },
+    {
+      "key": "azulao:azultor",
+      "name": "Azultor",
+      "family": "Azulão",
+      "stage": "Adulto",
+      "reference": "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "azultor.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Azultor. Estágio Adulto. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.  Preserve quatro patas de hipogrifo: garras de ave dianteiras e cascos traseiros, bico de ave adulto, asas com volutas. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Azultor”. Ideia para os desenhos de ação (não transcreva como parágrafo): O hipogrifo finca as quatro patas para abrigar outros sob a armação das asas.; Vista traseira com o espaço coberto e as quatro pegadas.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png"
+      ],
+      "generated_file": "exec-566d1456-9295-4bde-8a63-0f3c6f376151.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "3048231308fbe45670fab0ca46067c97a15cc7ae8747ee6c0a8a71d160264bc8"
+    },
+    {
+      "key": "azulao:azulfazo-possuido",
+      "name": "Azulfazo possuído",
+      "family": "Azulão",
+      "stage": "Jovem",
+      "reference": "art/soulgen/keys/azulfazo-possuido/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "azulfazo-possuido.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Azulfazo possuído. Estágio Jovem. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Preserve as duas asas com espirais magenta, corpo escuro, garras e rabiola azul-violeta. Mostre a forma possuída em todas as vistas. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Azulfazo possuído”. Ideia para os desenhos de ação (não transcreva como parágrafo): A tensão do Carretel Negro atravessa o antigo vínculo com Gollia.; Estudos do mesmo olhar no início da transformação e quando a almática começa a ceder.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/azulfazo-possuido/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-c1085f7f-4150-43a6-b1d1-4c99baee2da0.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "6c2c57d61a92fab3526f10c3753b16fb9e710709e43302ae9f1e635b41c2c106"
+    },
+    {
+      "key": "carcara:carquim",
+      "name": "Carquim",
+      "family": "Carcará",
+      "stage": "Bebê",
+      "reference": "art/creatures/carcara-family-v1/carquim/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "carquim.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Carquim. Estágio Bebê. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Carquim”. Ideia para os desenhos de ação (não transcreva como parágrafo): Testa a altura esticando e recolhendo o primeiro nó da cauda.; Rabiola curta em duas posições, com as asas ainda encostadas no losango.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/carcara-family-v1/carquim/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-e03e614a-cdc6-41ed-931a-456cade72420.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "41801dcacb7464c508be2c4abfcf40d2a21ca0b6522d8290e69417e8300c3648"
+    },
+    {
+      "key": "carcara:carcara",
+      "name": "Carcará",
+      "family": "Carcará",
+      "stage": "Base · criança neste estudo",
+      "reference": "art/creatures/carcara-family-v1/references/carcara-identity.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "carcara.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Carcará. Estágio Criança. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Corpo losango alaranjado, sem patas, asas de ave em lâminas de papel e duas fitas com pingentes triangulares. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Carcará”. Ideia para os desenhos de ação (não transcreva como parágrafo): Espera a corrente boa enquanto o remendo bate na mesma direção das asas.; Detalhe do remendo quieto no momento da arrancada.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/carcara-family-v1/references/carcara-identity.png"
+      ],
+      "generated_file": "exec-9bef57b5-b1f6-411c-b225-f2fbeb78255c.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "804226ac30ef423888389f97c5fd359a8940f05488e96acef207e6a7f117aeef"
+    },
+    {
+      "key": "carcara:caravento",
+      "name": "Caravento",
+      "family": "Carcará",
+      "stage": "Jovem",
+      "reference": "art/creatures/carcara-family-v1/caravento/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "caravento.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Caravento. Estágio Jovem. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Caravento”. Ideia para os desenhos de ação (não transcreva como parágrafo): Faz uma curva em volta do obstáculo com a asa de fora bem aberta.; Três posições da asa e da rabiola seguindo a curva.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/carcara-family-v1/caravento/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-6a59e512-f61b-48c5-91d2-a46e5415437f.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "0af45ca7913b1001ead74b992f393e77cb124320b2eb5cca3c042a23c4ce953b"
+    },
+    {
+      "key": "carcara:caramastro",
+      "name": "Caramastro",
+      "family": "Carcará",
+      "stage": "Adulto",
+      "reference": "art/creatures/carcara-family-v1/caramastro/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "caramastro.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Caramastro. Estágio Adulto. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Caramastro”. Ideia para os desenhos de ação (não transcreva como parágrafo): Usa o bico e a dianteira da armação para segurar altura contra vento frontal.; Perfil de voo destacando o apoio do bico e a tensão das varetas.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/carcara-family-v1/caramastro/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-3c52b1e3-fbe7-4a8f-ae2f-db6ec5f43399.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "590cd3a6b7e70250b9dbfb5a1c8a004191619de3065e13b79c6255da2be35afb"
+    },
+    {
+      "key": "mata-verde:brotim",
+      "name": "Brotim",
+      "family": "Mata Verde",
+      "stage": "Bebê",
+      "reference": "art/creatures/mata-verde-family-v1/brotim/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "brotim.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Brotim. Estágio Bebê. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Brotim”. Ideia para os desenhos de ação (não transcreva como parágrafo): Enrola a primeira folha na linha para que a brisa não a leve.; Close da folha abraçando o fio.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/mata-verde-family-v1/brotim/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-7ca7b1a3-d90e-4b1a-8bd5-b94554c35ae5.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "e7ea60cc3705c353f624b451e7edb2f8e13a3c574ceb33bd196632376dc55d52"
+    },
+    {
+      "key": "mata-verde:mata-verde",
+      "name": "Mata Verde",
+      "family": "Mata Verde",
+      "stage": "Base · criança no estudo",
+      "reference": "art/soulgen/keys/mata-verde/color-rig-v2/concept.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "mata-verde.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Mata Verde. Estágio Criança. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Corpo losango em papel verde com rosto marfim, asas foliares, coroa de três folhas e rabiola verde de uma ponta. Sem pernas. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Mata Verde”. Ideia para os desenhos de ação (não transcreva como parágrafo): Balança entre galhos usando o giro da folha para mudar de lado.; Três poses entre dois pontos de apoio.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/mata-verde/color-rig-v2/concept.png"
+      ],
+      "generated_file": "exec-deca8086-b404-45ae-ba3b-30710c66955a.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "0e9b5cc054356eca8dd69670193d3677a8361e9a1d776dbe6060ffb281c6a637"
+    },
+    {
+      "key": "mata-verde:folhante",
+      "name": "Folhante",
+      "family": "Mata Verde",
+      "stage": "Jovem",
+      "reference": "art/creatures/mata-verde-family-v1/folhante/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "folhante.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Folhante. Estágio Jovem. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Folhante”. Ideia para os desenhos de ação (não transcreva como parágrafo): Treina passar por frestas de copa recolhendo as partes mais largas.; Mostrar a silhueta aberta antes da passagem e a forma recolhida dentro dela.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/mata-verde-family-v1/folhante/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-92cb35c0-3764-482a-a372-afab84a3e67c.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "e5f907c0755e9ab98c3ba42ff537abf6c50c3929350b1d97094c45d47bc980a9"
+    },
+    {
+      "key": "mata-verde:verdestrama",
+      "name": "Verdestrama",
+      "family": "Mata Verde",
+      "stage": "Adulto",
+      "reference": "art/creatures/mata-verde-family-v1/verdestrama/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "verdestrama.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Verdestrama. Estágio Adulto. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Verdestrama”. Ideia para os desenhos de ação (não transcreva como parágrafo): A fada inseto pousa a rapieira entre folhas e atravessa a copa sem cortar os ramos.; Pose de esgrima com asas abertas e a ponta da rapieira entre dois galhos.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/mata-verde-family-v1/verdestrama/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-db41d0a9-60bf-4141-aa7a-4945dd0026c4.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "d7e5e85d519dfbee7cfbf17cb781019efa932ac4353e1f3539635738de998b96"
+    },
+    {
+      "key": "rai:raibroto",
+      "name": "Raibroto",
+      "family": "Rai / Saber",
+      "stage": "Bebê",
+      "reference": "art/creatures/rai-family-v1/raibroto/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "raibroto.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Raibroto. Estágio Bebê. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Raibroto”. Ideia para os desenhos de ação (não transcreva como parágrafo): Vai atrás do menor movimento e se distrai com a própria rabiola.; Vinheta com a cabeça tentando alcançar a ponta do fio.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/rai-family-v1/raibroto/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-40779568-5a4c-4b76-86ed-0485dac008cf.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "05ffdcb78c2ffab75ff58e4666cad9c10671b7dbaf35b7557ec3c16a36ca0ebe"
+    },
+    {
+      "key": "rai:rai",
+      "name": "Rai / Saber",
+      "family": "Rai / Saber",
+      "stage": "Criança",
+      "reference": "art/soulgen/keys/rai/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "rai.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Rai / Saber. Estágio Criança. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Rai / Saber”. Ideia para os desenhos de ação (não transcreva como parágrafo): Rai se adianta ao perceber uma mudança no ritmo dos passos de Tyler.; Comparar o rosto brincalhão com o olhar de alerta e o sino imóvel após a pausa.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/rai/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-3a76c8c4-a233-467b-bee9-a04406b6ef88.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "256537e0305d94ec5a9c846525b7865500373a681b0692d5d85cc79442a4c09f"
+    },
+    {
+      "key": "rai:raigume",
+      "name": "Raigume",
+      "family": "Rai / Saber",
+      "stage": "Jovem",
+      "reference": "art/creatures/rai-family-v1/raigume/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "raigume.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Raigume. Estágio Jovem. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Raigume”. Ideia para os desenhos de ação (não transcreva como parágrafo): Mede o instante do salto observando o primeiro movimento do alvo.; Mostrar o corpo baixo e a cabeça seguindo a abertura.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/rai-family-v1/raigume/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-d397463d-32e0-4e55-b224-81d22eb62be4.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "c600c264fe64f70037c82d7e791b5f43ac3a1cc374757b75a1df67fac5fcf1c7"
+    },
+    {
+      "key": "rai:raisoberano",
+      "name": "Raisoberano",
+      "family": "Rai / Saber",
+      "stage": "Adulto",
+      "reference": "art/creatures/rai-family-v1/raisoberano/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "raisoberano.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Raisoberano. Estágio Adulto. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Raisoberano”. Ideia para os desenhos de ação (não transcreva como parágrafo): Coloca o corpo à frente de quem escolheu proteger antes de preparar o ataque.; Pose de guarda com o peso plantado e o olhar voltado ao perigo.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/rai-family-v1/raisoberano/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-85440f43-0d18-4b10-afd7-e15d22357038.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "ad586c3df82612669477e61c5bd27f03e287521820ea9adcad3a9b21e2daa924"
+    },
+    {
+      "key": "rai:raivela",
+      "name": "Raivela",
+      "family": "Rai / Saber",
+      "stage": "Jovem",
+      "reference": "art/creatures/rai-family-v1/raivela/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "raivela.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Raivela. Estágio Jovem. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Raivela”. Ideia para os desenhos de ação (não transcreva como parágrafo): Deixa a força passar e entra pela folga entre dois movimentos.; Vista superior do passo estreito entre duas trajetórias.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/rai-family-v1/raivela/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-b9a9108d-b740-4d5b-9683-db2921999b35.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "4c5b347c5c13d2f884e52980fb086aec184ca69612011991e2b76b400af5c54a"
+    },
+    {
+      "key": "rai:raiatar",
+      "name": "Raiatar",
+      "family": "Rai / Saber",
+      "stage": "Adulto",
+      "reference": "art/creatures/rai-family-v1/raiatar/concept-v1/concept.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "raiatar.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Raiatar. Estágio Adulto. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Raiatar”. Ideia para os desenhos de ação (não transcreva como parágrafo): Passa a dividir o ritmo do corte com outra criatura.; Mostrar dois ritmos de linha se encontrando no ponto em que a lâmina muda de rumo.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/rai-family-v1/raiatar/concept-v1/concept.png"
+      ],
+      "generated_file": "exec-902fa30b-a581-417f-8758-6d17d3d0c5d8.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "6fdf2353f15f441e644e1fa0c331718bfa9b10ae6449061f9671a047a4015a97"
+    },
+    {
+      "key": "retalho:retalho-original",
+      "name": "Retalho original",
+      "family": "Retalho — identidade e máscara",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/retalho-original/cutout-rig-v2/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "retalho-original.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Retalho original. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Bípede ágil de juba roxa e creme, estrutura com duas pontas de pipa na cabeça, membranas nos antebraços e cauda de fitas. Preserve a face natural da forma original. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Retalho original”. Ideia para os desenhos de ação (não transcreva como parágrafo): O antigo vínculo com Heleana pode ser evocado pelo nó que ela reconhece.; Close do nó nas duas formas e uma pose tranquila com a rabiola à vista.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/retalho-original/cutout-rig-v2/preview.png"
+      ],
+      "generated_file": "exec-e1a7c696-5fe8-4e7b-9b14-e956d77f267c.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "239f1239229f74c22f2f41de9b4f00bce6903c3ba11461f44c16f571d6ce583e"
+    },
+    {
+      "key": "retalho:retalho-mascarada",
+      "name": "Retalho mascarada / cicatrizes",
+      "family": "Retalho — identidade e máscara",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/retalho-mascarada/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "retalho-mascarada.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Retalho mascarada / cicatrizes. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Bípede feroz corcunda, face angulosa sob a máscara, mãos longas, cicatrizes vermelhas, duas estruturas de pipa na cabeça e rabiola larga. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Retalho mascarada / cicatrizes”. Ideia para os desenhos de ação (não transcreva como parágrafo): Nas Ruínas, protege o corpo corcunda atrás da máscara e avisa com um rosnado antes de avançar.; Sequência de garras firmadas, focinho contraído e dorso se elevando sob o grunhido.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/retalho-mascarada/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-54e2c825-b9a1-4229-abfc-c116100632f0.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "0cfc23dcdaa29e8475eb61f5fbd9c8d432d085662ebc7f1456e39b3483814f3c"
+    },
+    {
+      "key": "mormaco:mormaco",
+      "name": "Mormaço livre",
+      "family": "Mormaço — livre e possuído",
+      "stage": "Não definido",
+      "reference": "art/creatures/mormaco/model-c-v1/prancha-c-livre.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "mormaco.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Mormaço livre. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Use o quadrúpede livre vermelho e roxo com dois jatos azul-claro, vela triangular e rabiola. Mostre uma pose submersa só no estudo de gesto, nunca no turnaround. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Mormaço livre”. Ideia para os desenhos de ação (não transcreva como parágrafo): O guardião do pântano testa visitantes com enigmas. Enquanto espera a resposta, fica submerso com só os olhos e os gêiseres à mostra.; Corte em água profunda com o corpo abaixo da superfície e um close do olhar sonolento acompanhando quem responde.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/mormaco/model-c-v1/prancha-c-livre.png"
+      ],
+      "generated_file": "exec-f9f07a3d-76f1-4a36-925b-c85a6151b920.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "be13053f94af1b12b1e01cbc85f599caee20bd123a94810126239a00006568fa"
+    },
+    {
+      "key": "mormaco:mormaco-possuido",
+      "name": "Mormaço possuído",
+      "family": "Mormaço — livre e possuído",
+      "stage": "Não definido",
+      "reference": "art/creatures/mormaco/possessed-c-v2/prancha-possuido.png",
+      "redraw": false,
+      "status": "folha de concept para revisão",
+      "file": "mormaco-possuido.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Mormaço possuído. Mantenha integralmente o design existente, com linha 2D mangá limpa e sombras em blocos.  Use o quadrúpede preto-violeta com manchas magenta e dois jatos azuis com vapor roxo. Mostre a forma possuída em todas as vistas. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Mormaço possuído”. Ideia para os desenhos de ação (não transcreva como parágrafo): O Carretel Negro aperta os cordões da mesma carapaça e escurece o vapor dos gêiseres.; Comparar o nó tensionado com a forma livre e desenhar a soltura sem mudar a anatomia.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/creatures/mormaco/possessed-c-v2/prancha-possuido.png"
+      ],
+      "generated_file": "exec-cb262196-d886-40a4-a009-8a9d248488a5.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "f996f4f9a505f8a8e33b9676175207befd7ae37fefb1fbd298ba151448ecbb30"
+    },
+    {
+      "key": "pipa-dragao:pipa-dragao",
+      "name": "Pipa-Dragão sobrecarregada / químico B",
+      "family": "Pipa-Dragão — sobrecarregada e desatada",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/pipa-dragao/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "pipa-dragao.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Pipa-Dragão sobrecarregada / químico B. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Quadrúpede cinza rosado, vela triangular e canisters verdes. Cauda e rabiola alaranjada inteiras, conectadas. Os tubos ficam no circuito do equipamento, sem encaixes externos inventados nas patas. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Pipa-Dragão sobrecarregada / químico B”. Ideia para os desenhos de ação (não transcreva como parágrafo): Quando o composto sobrecarrega a armação, a criatura precisa firmar o peso antes de se mover.; Perfil da postura sobrecarregada com encaixes internos dos braços.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/pipa-dragao/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-bdd5d975-10c6-408c-8bb5-8a458cb9e9ba.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "9c6ae6da120a5300fc95c5a23c226e9fe0e37fc8058784f627fb3cdb18842a64"
+    },
+    {
+      "key": "pipa-dragao:pipa-dragao-desatada",
+      "name": "Pipa-Dragão desatada",
+      "family": "Pipa-Dragão — sobrecarregada e desatada",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "pipa-dragao-desatada.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Pipa-Dragão desatada. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Quadrúpede mais alongado com vela triangular, dois cilindros verdes, cauda e fitas. Cabeça completa e visível também no gesto de investida. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Pipa-Dragão desatada”. Ideia para os desenhos de ação (não transcreva como parágrafo): Solta a investida num único avanço com a cabeça guiando o movimento.; Mostrar a face inteira e a boca aberta em dois momentos da investida.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/preview.png"
+      ],
+      "generated_file": "exec-08ecc0a7-3dcb-4aef-8cdc-290db8e9394c.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "3006b31e0df27f491aa09f770a86bec52f1baaca3063410ad4c977e9a17bfd96"
+    },
+    {
+      "key": "alvaneve:alvaneve",
+      "name": "Alvaneve",
+      "family": "Alvaneve",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/alvaneve/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "alvaneve.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Alvaneve. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Alvaneve”. Ideia para os desenhos de ação (não transcreva como parágrafo): Só deixa tocar na costura dourada depois de confiar em quem se aproxima.; Close do peito e duas reações à mão estendida.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/alvaneve/color-rig-v2/preview.png",
+        "art/soulgen/keys/alvaneve/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-a2fa4050-1f08-42e7-8bab-bba5c97fe22f.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "cbc3af4e743ab27eee923af06cf54ec34774074b4771490733578540062b2b56"
+    },
+    {
+      "key": "araruna-memoria:araruna-memoria",
+      "name": "Araruna",
+      "family": "Araruna",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/araruna-memoria/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "araruna-memoria.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Araruna. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Araruna”. Ideia para os desenhos de ação (não transcreva como parágrafo): Guarda as cores de pipas que perderam as linhas e as reúne durante o voo.; Desenhar as faixas de costas e a mesma sequência de cores em curva.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/araruna-memoria/color-rig-v2/preview.png",
+        "art/soulgen/keys/araruna-memoria/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-cd0fe433-b49e-46e9-99df-b8b1c7bf3813.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "fae61827f5007c1fe36b6096f907ad086115824b0137ca1c5c8807b3061e1659"
+    },
+    {
+      "key": "auriflama:auriflama",
+      "name": "Auriflama",
+      "family": "Auriflama",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/auriflama/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "auriflama.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Auriflama. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Auriflama”. Ideia para os desenhos de ação (não transcreva como parágrafo): Depois de uma queda, abre as dobras quentes para encorajar quem ainda está no chão.; Pose de retomada do voo e detalhe da pena de papel sem combustão.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/auriflama/color-rig-v2/preview.png",
+        "art/soulgen/keys/auriflama/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-27bae479-fc12-46d3-9f0f-705852941482.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "d5abfd32aaeea03120fe33bfe56e651bf00b640cfd606b9b44d417aa436dd999"
+    },
+    {
+      "key": "azulongo:azulongo",
+      "name": "Azulongo",
+      "family": "Azulongo",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/azulongo/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "azulongo-v2.png",
+      "prompt": "Revise a folha de Azulongo (imagem 1). O atlas oficial (imagem 2) mostra um corpo serpentino contínuo em curva, DUAS patas dianteiras com garras que são os únicos membros, e uma cauda sem patas. Reconstrua a pose principal colorida para que tenha somente um par de braços, ambos presos nos ombros ao lado do tórax. Remova por completo a garra extra do canto inferior esquerdo, sua ligação e qualquer membro junto à cauda. Use o atlas para substituir o disco circular por um corpo dracônico curvo, cujo ventre de cor creme aparece em continuidade com a cauda e tem amarras de bambu seguindo a curva do corpo. Preserve a cabeça adulta/chibi angular da folha, os dois chifres dourados, os dois bigodes, a paleta azul, creme e dourado e as escamas triangulares. Repita esse mesmo corpo com dois braços em frente, perfil e costas em linha preta sem preenchimento. A curva está baixa perto do ventre, não é asa, carapaça nem escudo. Embaixo 2 gestos e um detalhe do nó. Folha branca limpa com poucas legendas, margens livres. Ilustração 2D mangá de papel vivo.",
+      "generated_file": "exec-16e35ce7-81d0-46a7-8038-438aee209a23.png",
+      "references": [
+        "art/soulgen/keys/azulongo/color-rig-v2/preview.png",
+        "art/soulgen/keys/azulongo/color-rig-v2/source.png",
+        "art/soulgen/keys/azulongo/color-rig-v2/body-chibi-source.png"
+      ],
+      "previous_generation": {
+        "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Azulongo. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais. Serpente dracônica azul com corpo em curva, um par de braços com garras, sem pernas extras, contorno de escamas de papel e bigodes finos. Use as partes repetidas do atlas como alternativas de vista, não como membros extras. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Azulongo”. Ideia para os desenhos de ação (não transcreva como parágrafo): Os bigodes de corda podem apontar para lados diferentes quando escuta duas correntes.; Vista frontal dos bigodes e detalhe do selo no peito.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+        "references": [
+          "art/soulgen/keys/azulongo/color-rig-v2/preview.png",
+          "art/soulgen/keys/azulongo/color-rig-v2/source.png"
+        ],
+        "generated_file": "exec-4a188f64-614e-46b1-863e-03a4539d7db3.png"
+      },
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "b749f3235ab486849eca69f62c337a3a364dbd096b9acf39c20d23c67867df29"
+    },
+    {
+      "key": "caimbira-memoria:caimbira-memoria",
+      "name": "Caimbira",
+      "family": "Caimbira",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/caimbira-memoria/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "caimbira-memoria.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Caimbira. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Caimbira”. Ideia para os desenhos de ação (não transcreva como parágrafo): As cheias antigas ainda percorrem as placas como linhas de corrente.; Mostrar as faixas mantendo juntas duas placas com marcas diferentes de cheia.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/caimbira-memoria/color-rig-v2/preview.png",
+        "art/soulgen/keys/caimbira-memoria/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-9561ff51-0101-4908-981c-988a4418857b.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "1802f3137f3d0c72868c443c16297de76fb31c7209e77866325ca22f3749ad64"
+    },
+    {
+      "key": "capimansa:capimansa",
+      "name": "Capimansa",
+      "family": "Capimansa",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/capimansa/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "capimansa.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Capimansa. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Capimansa”. Ideia para os desenhos de ação (não transcreva como parágrafo): Reduz o passo para que as companheiras mais lentas ainda alcancem os nós da vela.; Vinheta com o grupo reunido e um close dos nós.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/capimansa/color-rig-v2/preview.png",
+        "art/soulgen/keys/capimansa/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-dceccdd1-8fb1-4ab5-ad28-6392beef1a55.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "1ec60210235ee4672d09614e73b764f46344bcc8f8103f4101d709645089aca1"
+    },
+    {
+      "key": "glacerol:glacerol",
+      "name": "Glacerol",
+      "family": "Glacerol",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/glacerol/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "glacerol.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Glacerol. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Glacerol”. Ideia para os desenhos de ação (não transcreva como parágrafo): O lince passa o fio cortante pela fresta do gelo antes de decidir onde pisar.; Perfil da passada cautelosa e close do fio tenso sobre a fenda.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/glacerol/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-f053ef8a-7921-4577-b178-906c0e7fa402.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "b8cb8e3a07f3e37b5aa86f06f1202524a3e668f7b661426024399df54c30ccab"
+    },
+    {
+      "key": "guaravento:guaravento",
+      "name": "Guaravento",
+      "family": "Guaravento",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/guaravento/color-rig-v2/concept.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "guaravento.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Guaravento. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Guaravento”. Ideia para os desenhos de ação (não transcreva como parágrafo): Vira as orelhas de papel para a vibração da linha antes que a rajada chegue.; Close da orelha em alerta enquanto a rabiola ainda está caída.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/guaravento/color-rig-v2/concept.png"
+      ],
+      "generated_file": "exec-b6604501-1ce2-4ddf-bd87-0aa39e6affa3.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "e550d78949ac74b2b869103723b0b9332e43bff0fd25023fdd44b81527abfadf"
+    },
+    {
+      "key": "herravento:herravento",
+      "name": "Herravento",
+      "family": "Herravento",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/herravento/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "herravento.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Herravento. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Herravento”. Ideia para os desenhos de ação (não transcreva como parágrafo): Precisa de espaço para ganhar impulso antes de subir.; Sequência da arrancada até o momento em que as varetas deixam de vibrar.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/herravento/color-rig-v2/preview.png",
+        "art/soulgen/keys/herravento/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-4e5b8c8a-86c3-473f-9cb8-dd82e3963817.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "564bbce971e88fba534c16507822b00c8ff77e85e1e38be08199e1722436b344"
+    },
+    {
+      "key": "hiponilo:hiponilo",
+      "name": "Hiponilo",
+      "family": "Hiponilo",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/hiponilo/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "hiponilo.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Hiponilo. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Hiponilo”. Ideia para os desenhos de ação (não transcreva como parágrafo): Escuta a água com o corpo imóvel, deixando a rabiola seguir a memória da corrente.; Vista posterior da vela e do rastro de água em torno da cauda.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/hiponilo/color-rig-v2/preview.png",
+        "art/soulgen/keys/hiponilo/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-060a1dce-ad4b-4f9b-a541-02b626b45d44.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "a6521daa6de5dcae030b727d6463f7cc809019dc95edfcf3b68255ab8aef1cda"
+    },
+    {
+      "key": "jaguarluar:jaguarluar",
+      "name": "Jaguarluar",
+      "family": "Jaguarluar",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/jaguarluar/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "jaguarluar.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Jaguarluar. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Jaguarluar”. Ideia para os desenhos de ação (não transcreva como parágrafo): Guia quem se perdeu seguindo as aberturas da lua na copa.; Mostrar rosetas iluminadas e a vela verde ao passar de um galho ao outro.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/jaguarluar/color-rig-v2/preview.png",
+        "art/soulgen/keys/jaguarluar/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-a882e640-e6b0-4cf4-abcc-db857401611c.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "20850f30978ae0a93c20b7c0988476ec9aff0a3292732ffcc6b6928118d92b3f"
+    },
+    {
+      "key": "jarabrasa:jarabrasa",
+      "name": "Jarabrasa",
+      "family": "Jarabrasa",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/jarabrasa/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "jarabrasa.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Jarabrasa. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Jarabrasa”. Ideia para os desenhos de ação (não transcreva como parágrafo): Patrulha as trilhas com chamas de papel que podem roçar folhas sem queimá-las.; Close da fita luminosa contornando uma folha intacta.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/jarabrasa/color-rig-v2/preview.png",
+        "art/soulgen/keys/jarabrasa/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-b709b54c-bfac-4380-b3b8-33f21735dd81.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "c2e03323bffbfc3c619e06a060a8d130bc2fbaebb7eb638091e79f7717b51fdd"
+    },
+    {
+      "key": "lacertubo:lacertubo",
+      "name": "Lacertubo",
+      "family": "Lacertubo",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/lacertubo/color-rig-v2/assembly-review.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "lacertubo.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Lacertubo. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.  Use somente um quadrúpede sauriano da sequência de referência. Preserve a anatomia baixa, focinho longo, sela de pipa laranja/teal, quatro patas e cauda com rabiola. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Lacertubo”. Ideia para os desenhos de ação (não transcreva como parágrafo): Ergue a vela quando escuta um intruso pelos canos das Veredas.; Vista de costas com o som entrando por um tubo e a vela já armada.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/lacertubo/color-rig-v2/assembly-review.png"
+      ],
+      "generated_file": "exec-7a8565fd-7a51-444b-9e9b-daeef25a5558.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "9497dc02d3f16d88139663848c87c9412fa938ecc3972fb36f68580face47e91"
+    },
+    {
+      "key": "marulume:marulume",
+      "name": "Marulume",
+      "family": "Marulume",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/marulume/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "marulume.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Marulume. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Marulume”. Ideia para os desenhos de ação (não transcreva como parágrafo): Leva recados pelo céu com a cadência de quem nada.; Perfil de voo com a mensagem presa e uma curva comparável à de um mergulho.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/marulume/color-rig-v2/preview.png",
+        "art/soulgen/keys/marulume/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-0b78c077-01c0-4885-ae48-927475418afa.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "2b02e4fdda4154d7736caf40db84652c6994cfed5900852cbfc545ae5ea8f9cd"
+    },
+    {
+      "key": "micofolha:micofolha",
+      "name": "Micofolha",
+      "family": "Micofolha",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/micofolha/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "micofolha.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Micofolha. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Micofolha”. Ideia para os desenhos de ação (não transcreva como parágrafo): Amarra recados à rabiola antes de se lançar entre as copas.; Close do nó do recado e pose suspensa com o papel atrás do corpo.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/micofolha/color-rig-v2/preview.png",
+        "art/soulgen/keys/micofolha/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-9c7f19c2-9ef5-4025-b5f0-9bce141104b0.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "b29a9507572e5dcb6b7ddc227ced4a5460bdbfe2a7f121a9213523df23677572"
+    },
+    {
+      "key": "nevagume:nevagume",
+      "name": "Nevagume",
+      "family": "Nevagume",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/nevagume/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "nevagume.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Nevagume. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais. Preserve quatro patas, cabeça de tigre branca com marcas lilases, armação circular dorsal com cristal, laços vermelhos nas patas dianteiras e cauda listrada com ponta lilás. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Nevagume”. Ideia para os desenhos de ação (não transcreva como parágrafo): Toma a frente quando a rajada aperta e volta para conferir quem ficou.; Vista em guarda com a costura prateada do peito e o nó coral da pata.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/nevagume/color-rig-v2/preview.png",
+        "art/soulgen/keys/nevagume/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-07369e8a-42f2-4700-ab61-e9bd3b71cc92.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "a4339b23f045d7197fc005b71e0048576a14e2a2d0e39c495d840a3ce749f9d7"
+    },
+    {
+      "key": "nozinho:nozinho",
+      "name": "Nozinho",
+      "family": "Nozinho",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/nozinho/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "nozinho.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Nozinho. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Nozinho”. Ideia para os desenhos de ação (não transcreva como parágrafo): O laço que despertou nas mãos de Assis ajuda visitantes a desembaraçar a primeira linha.; Mostrar os olhos acompanhando o fio que desliza por dentro do nó.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/nozinho/color-rig-v2/preview.png",
+        "art/soulgen/keys/nozinho/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-a9f4bed6-298b-44f4-874d-86b17167f039.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "4762f1ac40a02bd37e864cd370fa8a7d8a8163333a8eda31ea3e494106a165d0"
+    },
+    {
+      "key": "platyx:platyx",
+      "name": "Platyx",
+      "family": "Platyx",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/platyx/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "platyx.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Platyx. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Platyx”. Ideia para os desenhos de ação (não transcreva como parágrafo): O parceiro ornitorrinco de Grampo mantém o bico rente ao chão quando vasculha as Ruínas.; Close do bico encostando numa peça solta e pose inteira ao recuar com ela.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/platyx/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-61797d1c-44af-4dc4-b236-9c12eb7867e5.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "5889683e14de8ecf1a678f8e2ef5d2d350eb75f67a20cfb244231d0d5e214cf2"
+    },
+    {
+      "key": "pteralis:pteralis",
+      "name": "Pteralis",
+      "family": "Pteralis",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/pteralis/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "pteralis.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Pteralis. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais.  Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Pteralis”. Ideia para os desenhos de ação (não transcreva como parágrafo): Prefere explorar correntes sem marcas a repetir a rota mais curta.; Detalhe da dobra da primeira asa e vinheta de descoberta na volta.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/pteralis/color-rig-v2/preview.png",
+        "art/soulgen/keys/pteralis/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-b709ece5-2c7e-43ad-bf98-8aa719a6ba33.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "49df21ed87323b3b8887f14475d7822082893064bd96fc2fd70c2e6461cc1937"
+    },
+    {
+      "key": "rabiolava:rabiolava",
+      "name": "Rabiolava",
+      "family": "Rabiolava",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/rabiolava/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "rabiolava.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Rabiolava. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Rabiolava”. Ideia para os desenhos de ação (não transcreva como parágrafo): A raia aérea segue colunas de ar quente, deixando as rabiolas incandescentes atrás das nadadeiras.; Mostrar a subida em espiral e o atraso das rabiolas na virada.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/rabiolava/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-8ef87462-3c09-4b22-a4dd-4b0c82733679.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "d2fff69d699084d92c169b031d5d88a74cee3286e2d14115fa2a604b1cb227bc"
+    },
+    {
+      "key": "rexal:rexal",
+      "name": "Rexal",
+      "family": "Rexal",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/rexal/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "rexal.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Rexal. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais. Tiranossauro bípede vermelho e creme, braços curtos, cauda robusta e pipa vermelha dorsal. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Rexal”. Ideia para os desenhos de ação (não transcreva como parágrafo): Ruge no primeiro susto e depois volta para buscar as almáticas pequenas.; Contrastar a boca aberta do rugido com o focinho baixo chamando o grupo.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/rexal/color-rig-v2/preview.png",
+        "art/soulgen/keys/rexal/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-af0185b1-03b5-4659-ae0e-bdf26af05104.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "b114ac608fb3d45d888a4e45373f07ede725ffef183fd097f250d39cb968cfe4"
+    },
+    {
+      "key": "stegaru:stegaru",
+      "name": "Stegaru",
+      "family": "Stegaru",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/stegaru/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "stegaru.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Stegaru. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais. Quadrúpede verde de cauda longa, placas dorsais em losangos alaranjados e focinho baixo. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Stegaru”. Ideia para os desenhos de ação (não transcreva como parágrafo): As placas lembram pipas diferentes da mesma festa e se inclinam juntas ao vento.; Vista dorsal de três placas com padrões distintos e direção compartilhada.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/stegaru/color-rig-v2/preview.png",
+        "art/soulgen/keys/stegaru/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-c897e63f-1bf7-4bf6-8b3e-d5ce293cf7e6.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "c56d7f5b867afdc7a9fd4d9ca723bab522346e7aea2439a1b98a304b827da4ae"
+    },
+    {
+      "key": "tricerafan:tricerafan",
+      "name": "Tricerafan",
+      "family": "Tricerafan",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/tricerafan/color-rig-v2/source.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "tricerafan.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Tricerafan. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas. Imagem 1 é a montagem de referência, imagem 2 é o atlas das mesmas partes e expressões. Mostre apenas o personagem montado, sem peças flutuantes ou faces adicionais. Quadrúpede com gola e três chifres, grandes blocos de azul e marfim com estrelas e cauda rígida. O atlas mostra a armação: mantenha a geometria da peça dorsal. Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Tricerafan”. Ideia para os desenhos de ação (não transcreva como parágrafo): Abre o leque para dar tempo a quem está atrás de recuperar o fôlego.; Vista frontal da guarda e detalhe das três varetas unidas.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/tricerafan/color-rig-v2/preview.png",
+        "art/soulgen/keys/tricerafan/color-rig-v2/source.png"
+      ],
+      "generated_file": "exec-dc620f1b-1cb6-41ff-840a-9e2db605d40d.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "95c5ebd2a4b11423f43df37781631bd02af345da1b8604d2655acd0fac4fe68c"
+    },
+    {
+      "key": "trovareta:trovareta",
+      "name": "Trovareta",
+      "family": "Trovareta",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/trovareta/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "trovareta.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Trovareta. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Trovareta”. Ideia para os desenhos de ação (não transcreva como parágrafo): O trovão se anuncia quando a carga começa a saltar de vareta em vareta.; Marcar na pose de alerta os pontos de origem e de saída do raio.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/trovareta/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-b6dc1f2a-c3ad-4fd3-83f7-d6bea51321d9.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "5f69d4a53052e6391ae4bb97afce3f778ae7cf46400d77acd5aa80a07ead89a1"
+    },
+    {
+      "key": "tufanocorte:tufanocorte",
+      "name": "Tufanocorte",
+      "family": "Tufanocorte",
+      "stage": "Não definido",
+      "reference": "art/soulgen/keys/tufanocorte/cutout-rig-v1/preview.png",
+      "redraw": true,
+      "status": "folha de concept para revisão",
+      "file": "tufanocorte.png",
+      "prompt": "SOULMONSTERS. Crie uma folha de concept 3:2 para Tufanocorte. Redesenhe o design como ilustração autoral 2D mangá nítida para esta folha. Reconstrua a anatomia contínua e os encaixes da pipa viva por baixo das peças. Transforme pixels e ruído em massas chapadas, sombras cel simples e contornos escuros limpos. Preserve identidade, silhueta, espécie, proporções, face, quantidade de membros, paleta e marcas.   Papel branco puro até as bordas, fundo vazio. Uma pose de corpo inteiro grande colorida à esquerda, sem cortes. À direita três vistas na mesma escala com lineart preto, sem preenchimento: Frente, Perfil, Costas. Na base dois pequenos gestos em lineart e detalhe ampliado de um encaixe. No máximo sete rótulos curtos, em português, sem blocos de texto, fichas, tabelas, caixas ou molduras. Cabeçalho discreto com o nome “Tufanocorte”. Ideia para os desenhos de ação (não transcreva como parágrafo): O carneiro inclina as espirais cortantes antes de firmar o casco na rajada da montanha.; Mostrar a espiral de frente e de perfil, com a rajada se dividindo nos dois lados.. O mesmo design em cada vista, de frente sem rotação, sem membros novos. O traço pertence a uma coleção de criaturas 2D mangá, com tecido de pipa, varetas, amarras e rabiolas onde constam na referência.",
+      "references": [
+        "art/soulgen/keys/tufanocorte/cutout-rig-v1/preview.png"
+      ],
+      "generated_file": "exec-7e02d97e-08dd-4341-af06-9f39c014a913.png",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "6c3b751786a912f6c5995345dcd6e4c019cc6467e8681e6dcf898bfaae8b9649"
+    }
+  ]
+}

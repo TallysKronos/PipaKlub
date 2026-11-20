@@ -1,0 +1,17 @@
+{
+  "checks": 44,
+  "failures": [],
+  "fixtureDirectory": "tmp/kael-gameplay-fixture",
+  "samples": [
+    {
+      "facing": "se",
+      "pixelScale": [
+        0.649599969387054,
+        0.649599969387054
+      ],
+      "scene": "street",
+      "walkDirections": 8
+    }
+  ],
+  "usesProductionSave": false
+}

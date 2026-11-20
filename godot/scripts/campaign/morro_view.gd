@@ -128,16 +128,7 @@ func _ready() -> void:
 	add_child(avatar)
 	avatar.scale = Vector2.ONE * .62 * Avatar.BODY_SCALE
 	companion = Sprite2D.new()
-	var model := "rabbito"
-	for partner in saved_player.partners:
-		if partner.id == saved_player.get("equippedPartnerId", ""): model = partner.modelId
-	var art: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(model, "rabbito")
-	var atlas: Dictionary = content.combat[art]
-	companion.texture = load("res://assets/campaign/" + atlas.image)
-	companion.region_enabled = true
-	frames = atlas.animations.idle
-	companion.scale = Vector2.ONE * .24
-	companion.offset.y = -100
+	_equip_companion(.24)
 	add_child(companion)
 	camera = Camera2D.new()
 	camera.position = player
@@ -181,8 +172,7 @@ func _refresh() -> void:
 	avatar.z_index = level_at(player) * 1200 + int(player.y)
 	companion.position = follower
 	companion.z_index = level_at(follower) * 1200 + int(follower.y)
-	var frame: Dictionary = frames[int(clock * 12) % frames.size()]
-	companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
+	_refresh_companion_art()
 	camera.position = player
 	for entry in decorations:
 		var rect: Variant = entry.data.occlusion

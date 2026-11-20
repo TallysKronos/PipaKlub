@@ -1,0 +1,9 @@
+# infusim — Bebê
+
+Autor pediu bebê e jovem após aprovar a cavaleira imperial com “ótimo agora gere as baby e joven”. Nomes novos são propostas. Base de identidade: rig Chaspiral aprovado, sem modificar seus arquivos.
+
+Aprende a recuperar o equilíbrio entre pausas e impulsos.
+
+BABY form, simpler than the child Chaspiral. ONE small asymmetric rounded trapezoid living paper body that is ALSO the face, tiny infant teacup-like folded envelope resting in its OWN shallow curved saucer-like underside. NOT an actual porcelain teacup prop with animal inside. Ivory front tension-paper face, turquoise side fold and petrol underside, two small dark teal oval eyes, a tiny curious o-mouth slightly offcenter. ONE coral paper spiral tuft curls from upper edge like a wisp; no elaborate hairstyle. TWO tiny side paper fins, one slightly broader/raised than other, function as primitive stabilizing wings. NO torso separate from head, no neck, no human arms/hands/legs/boots, no armor/weapon/crown/hat stacked on head. A small loop-shaped side fold recalls the cup handle as part of body, not accessory. One short gold-thread soul-rabiola attaches to back and ends in ONE coral/ivory diamond LABEL TAB with tiny gold knot. No bell yet, no multiple ribbons or cloud effects. Show it tilting with one fin open as it tries to stabilize, lively tender not inanimate smiling icon. Tiny creature with large clean silhouette, not miniature adult, not just literal smiling diamond.
+
+Aplicação dos princípios de simplicidade e especialização dos benchmarks, sem qualquer arte externa no input. Sem integração ou requisitos de gameplay definidos.

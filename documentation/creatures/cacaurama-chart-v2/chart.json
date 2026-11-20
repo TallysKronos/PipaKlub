@@ -1,0 +1,80 @@
+{
+  "family_id": "cacaurama",
+  "scope": "Revisão de concepts; adulto ainda em brief; sem integração.",
+  "nodes": [
+    {
+      "id": "cacau-baby",
+      "name": "Bebê (nome pendente)",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Fruto verde fechado; observa e se prende com pequenos ganchos.",
+      "story": "Fruto verde fechado; observa e se prende com pequenos ganchos.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cacaurama-family-v1/cacau-baby/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cacaurama-family-v1/cacau-baby/concept-v2/brief.md"
+    },
+    {
+      "id": "cacau-child",
+      "name": "Criança (nome pendente)",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Gomos crescem e os membros permitem explorar; primeiras pontas amarelas.",
+      "story": "Gomos crescem e os membros permitem explorar; primeiras pontas amarelas.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cacaurama-family-v1/cacau-child/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cacaurama-family-v1/cacau-child/concept-v2/brief.md"
+    },
+    {
+      "id": "cacaulento",
+      "name": "Jovem (nome pendente)",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Fruto dourado; braços longos tensionam a linha com precisão paciente.",
+      "story": "Fruto dourado; braços longos tensionam a linha com precisão paciente.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/cacaurama-family-v1/cacaulento/concept-v2/concept.png",
+      "brief": "../../../art/creatures/cacaurama-family-v1/cacaulento/concept-v2/brief.md"
+    },
+    {
+      "id": "cacaurama",
+      "name": "Adulto (nome pendente)",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Casca aberta revela anatomia de sementes e membranas.",
+      "story": "Amadurecer permite abrir a proteção e tecer com alcance maior.",
+      "decision_status": "proposed",
+      "production_status": "brief",
+      "brief": "../../../art/creatures/cacaurama-family-v1/cacaurama/concept-v2/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cacau-baby",
+      "to": "cacau-child",
+      "kind": "reweaving",
+      "reason": "Fruto verde fechado; observa e se prende com pequenos ganchos.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cacau-child",
+      "to": "cacaulento",
+      "kind": "reweaving",
+      "reason": "Gomos crescem e os membros permitem explorar; primeiras pontas amarelas.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cacaulento",
+      "to": "cacaurama",
+      "kind": "reweaving",
+      "reason": "Casca madura se abre na transformação fantástica; sementes organizam nova anatomia.",
+      "decision_status": "proposed"
+    }
+  ]
+}

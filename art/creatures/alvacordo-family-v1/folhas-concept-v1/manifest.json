@@ -1,0 +1,51 @@
+{
+  "tool": "image_gen.imagegen",
+  "date": "2026-11-10",
+  "design_status": "proposta de folha para revisão do autor",
+  "images": [
+    {
+      "id": "farpim",
+      "file": "farpim.png",
+      "reference": "../farpim/concept-v1/concept.png",
+      "reference_role": "Identidade e acabamento",
+      "prompt": "farpim-prompt.txt",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "b5bfd3c701c961eac3fea85fca0b3685854c86a022c46ec411736ead1def89fb"
+    },
+    {
+      "id": "papisco",
+      "file": "papisco.png",
+      "reference": "../papisco/concept-v1/concept.png",
+      "reference_role": "Identidade e acabamento",
+      "prompt": "papisco-prompt.txt",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "0c6f07bdd5951c40a028f6601a98f10e641adbcfb878b96fb5c36b79791375e3"
+    },
+    {
+      "id": "velcao",
+      "file": "velcao.png",
+      "reference": "../velcao/concept-v1/concept.png",
+      "reference_role": "Identidade e acabamento",
+      "prompt": "velcao-prompt.txt",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "e3903c9f68535c62ca672fde1858ba3d431b036ea5e5d8d7afafa592d2ee0214"
+    },
+    {
+      "id": "alvacordo",
+      "file": "alvacordo.png",
+      "reference": "../alvacordo/concept-v4/concept.png",
+      "reference_role": "Identidade e acabamento",
+      "prompt": "alvacordo-prompt.txt",
+      "width": 1536,
+      "height": 1024,
+      "png_color_type": 2,
+      "sha256": "3fe776688297f2c1492d44157b4559a9ba482779999a70ad5ba4ab7970fbff24"
+    }
+  ]
+}

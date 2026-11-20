@@ -1,0 +1,746 @@
+{
+	"atlas": {
+		"file": "atlas.png",
+		"filter": "nearest",
+		"mipmaps": false,
+		"padding_px": 2,
+		"size": [
+			1024,
+			2048
+		]
+	},
+	"canvas": [
+		976,
+		680
+	],
+	"entrance_cells": [
+		7.5,
+		13.5
+	],
+	"grid": {
+		"coordinate_system": "u para a direita e v para a esquerda, ambos descendo na tela",
+		"game_tile_px": [
+			64,
+			32
+		],
+		"reference_canvas_origin_px": [
+			443.0,
+			208.0
+		],
+		"reference_u_axis_px": [
+			28.0,
+			13.6000003814697
+		],
+		"reference_v_axis_px": [
+			-29.0,
+			13.1000003814697
+		],
+		"room_cells": [
+			18,
+			14
+		]
+	},
+	"limitations": [
+		"Recortes das superfícies visíveis. Mover móveis expõe áreas de piso e parede sem pintura.",
+		"Pegadas de referência da planta de jogabilidade em [u inicial, v inicial, u final, v final]. Apoios estimados no quadro para remontagem sem deformar.",
+		"Conferir a posição da porta, circulação, colisões e oclusão na cena kite-shop na integração."
+	],
+	"parts": [
+		{
+			"atlas_rect": [
+				2,
+				2,
+				923,
+				432
+			],
+			"draw_order": 0,
+			"file": "pecas/piso.png",
+			"footprint_cells": [
+				0,
+				0,
+				18,
+				14
+			],
+			"ground_anchor_cells": [
+				0.0,
+				0.0
+			],
+			"id": "piso",
+			"label": "Ladrilhos e borda do corte",
+			"opaque_pixels": 112134,
+			"pivot_px": [
+				416,
+				-9
+			],
+			"position_px": [
+				443,
+				208
+			],
+			"source_rect": [
+				27,
+				217,
+				923,
+				432
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				2,
+				438,
+				417,
+				367
+			],
+			"draw_order": 1,
+			"file": "pecas/parede-esquerda.png",
+			"footprint_cells": [
+				0,
+				0,
+				0,
+				14
+			],
+			"ground_anchor_cells": [
+				-0.19,
+				6.61
+			],
+			"id": "parede-esquerda",
+			"label": "Parede creme e rodapé coral",
+			"opaque_pixels": 39583,
+			"pivot_px": [
+				220,
+				262
+			],
+			"position_px": [
+				246,
+				292
+			],
+			"source_rect": [
+				26,
+				30,
+				417,
+				367
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				423,
+				438,
+				507,
+				421
+			],
+			"draw_order": 2,
+			"file": "pecas/parede-fundo.png",
+			"footprint_cells": [
+				0,
+				0,
+				18,
+				0
+			],
+			"ground_anchor_cells": [
+				9.395,
+				-0.136
+			],
+			"id": "parede-fundo",
+			"label": "Parede petróleo e rodapé coral",
+			"opaque_pixels": 38527,
+			"pivot_px": [
+				267,
+				304
+			],
+			"position_px": [
+				710,
+				334
+			],
+			"source_rect": [
+				443,
+				30,
+				507,
+				421
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				2,
+				863,
+				130,
+				156
+			],
+			"draw_order": 3,
+			"file": "pecas/janela-esquerda.png",
+			"footprint_cells": [],
+			"ground_anchor_cells": [
+				0.126,
+				2.846
+			],
+			"id": "janela-esquerda",
+			"label": "Janela da rua esquerda",
+			"opaque_pixels": 11699,
+			"pivot_px": [
+				69,
+				116
+			],
+			"position_px": [
+				364,
+				198
+			],
+			"source_rect": [
+				295,
+				82,
+				130,
+				156
+			],
+			"support_height_px": 49.0
+		},
+		{
+			"atlas_rect": [
+				136,
+				863,
+				171,
+				148
+			],
+			"draw_order": 4,
+			"file": "pecas/janela-direita.png",
+			"footprint_cells": [],
+			"ground_anchor_cells": [
+				13.305,
+				0.157
+			],
+			"id": "janela-direita",
+			"label": "Janela da rua direita",
+			"opaque_pixels": 13728,
+			"pivot_px": [
+				87,
+				137
+			],
+			"position_px": [
+				811,
+				348
+			],
+			"source_rect": [
+				724,
+				211,
+				171,
+				148
+			],
+			"support_height_px": 43.0
+		},
+		{
+			"atlas_rect": [
+				311,
+				863,
+				49,
+				80
+			],
+			"draw_order": 5,
+			"file": "pecas/quadro-pipa-esquerda.png",
+			"footprint_cells": [],
+			"ground_anchor_cells": [
+				1.971,
+				-0.062
+			],
+			"id": "quadro-pipa-esquerda",
+			"label": "Pipa amarela emoldurada",
+			"opaque_pixels": 2747,
+			"pivot_px": [
+				28,
+				50
+			],
+			"position_px": [
+				500,
+				138
+			],
+			"source_rect": [
+				472,
+				88,
+				49,
+				80
+			],
+			"support_height_px": 96.0
+		},
+		{
+			"atlas_rect": [
+				364,
+				863,
+				61,
+				90
+			],
+			"draw_order": 6,
+			"file": "pecas/quadro-pipa-central.png",
+			"footprint_cells": [],
+			"ground_anchor_cells": [
+				4.202,
+				-0.012
+			],
+			"id": "quadro-pipa-central",
+			"label": "Pipa vermelha emoldurada",
+			"opaque_pixels": 3858,
+			"pivot_px": [
+				23,
+				57
+			],
+			"position_px": [
+				561,
+				164
+			],
+			"source_rect": [
+				538,
+				107,
+				61,
+				90
+			],
+			"support_height_px": 101.0
+		},
+		{
+			"atlas_rect": [
+				429,
+				863,
+				47,
+				82
+			],
+			"draw_order": 7,
+			"file": "pecas/quadro-pipa-direita.png",
+			"footprint_cells": [],
+			"ground_anchor_cells": [
+				7.248,
+				0.033
+			],
+			"id": "quadro-pipa-direita",
+			"label": "Pipa verde emoldurada",
+			"opaque_pixels": 2844,
+			"pivot_px": [
+				21,
+				52
+			],
+			"position_px": [
+				645,
+				207
+			],
+			"source_rect": [
+				624,
+				155,
+				47,
+				82
+			],
+			"support_height_px": 100.0
+		},
+		{
+			"atlas_rect": [
+				480,
+				863,
+				215,
+				148
+			],
+			"draw_order": 8,
+			"file": "pecas/estante-fundo.png",
+			"footprint_cells": [
+				0,
+				0,
+				6,
+				1
+			],
+			"ground_anchor_cells": [
+				3.504,
+				0.866
+			],
+			"id": "estante-fundo",
+			"label": "Estante de carretéis do fundo",
+			"opaque_pixels": 19797,
+			"pivot_px": [
+				109,
+				120
+			],
+			"position_px": [
+				516,
+				267
+			],
+			"source_rect": [
+				407,
+				147,
+				215,
+				148
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				699,
+				863,
+				216,
+				144
+			],
+			"draw_order": 9,
+			"file": "pecas/estante-lateral.png",
+			"footprint_cells": [
+				12,
+				0,
+				18,
+				1
+			],
+			"ground_anchor_cells": [
+				15.291,
+				1.453
+			],
+			"id": "estante-lateral",
+			"label": "Estante de carretéis junto à janela",
+			"opaque_pixels": 19504,
+			"pivot_px": [
+				104,
+				119
+			],
+			"position_px": [
+				829,
+				435
+			],
+			"source_rect": [
+				725,
+				316,
+				216,
+				144
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				2,
+				1023,
+				143,
+				167
+			],
+			"draw_order": 10,
+			"file": "pecas/expositor-pipas.png",
+			"footprint_cells": [
+				0,
+				7,
+				1.5,
+				10
+			],
+			"ground_anchor_cells": [
+				1.023,
+				10.16
+			],
+			"id": "expositor-pipas",
+			"label": "Expositor vertical de pipas",
+			"opaque_pixels": 17434,
+			"pivot_px": [
+				48,
+				161
+			],
+			"position_px": [
+				177,
+				355
+			],
+			"source_rect": [
+				129,
+				194,
+				143,
+				167
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				149,
+				1023,
+				162,
+				110
+			],
+			"draw_order": 11,
+			"file": "pecas/gondola.png",
+			"footprint_cells": [
+				4,
+				6,
+				7,
+				8
+			],
+			"ground_anchor_cells": [
+				6.109,
+				7.933
+			],
+			"id": "gondola",
+			"label": "Gôndola baixa de materiais",
+			"opaque_pixels": 10794,
+			"pivot_px": [
+				90,
+				92
+			],
+			"position_px": [
+				384,
+				395
+			],
+			"source_rect": [
+				294,
+				303,
+				162,
+				110
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				315,
+				1023,
+				234,
+				121
+			],
+			"draw_order": 12,
+			"file": "pecas/balcao-caixa.png",
+			"footprint_cells": [
+				5,
+				2,
+				11,
+				3.5
+			],
+			"ground_anchor_cells": [
+				8.53,
+				3.511
+			],
+			"id": "balcao-caixa",
+			"label": "Balcão com vitrine",
+			"opaque_pixels": 14143,
+			"pivot_px": [
+				117,
+				91
+			],
+			"position_px": [
+				580,
+				370
+			],
+			"source_rect": [
+				463,
+				279,
+				234,
+				121
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				553,
+				1023,
+				41,
+				37
+			],
+			"draw_order": 13,
+			"file": "pecas/terminal.png",
+			"footprint_cells": [],
+			"ground_anchor_cells": [
+				10.339,
+				2.396
+			],
+			"id": "terminal",
+			"label": "Terminal do caixa",
+			"opaque_pixels": 1034,
+			"pivot_px": [
+				23,
+				32
+			],
+			"position_px": [
+				663,
+				336
+			],
+			"source_rect": [
+				640,
+				304,
+				41,
+				37
+			],
+			"support_height_px": 44.0
+		},
+		{
+			"atlas_rect": [
+				2,
+				1194,
+				444,
+				232
+			],
+			"draw_order": 14,
+			"file": "pecas/tapete-comunidade.png",
+			"footprint_cells": [
+				10.5,
+				4.5,
+				15.5,
+				13.5
+			],
+			"ground_anchor_cells": [
+				13.462,
+				9.688
+			],
+			"id": "tapete-comunidade",
+			"label": "Tapete da área de montagem",
+			"opaque_pixels": 17758,
+			"pivot_px": [
+				223,
+				135
+			],
+			"position_px": [
+				539,
+				518
+			],
+			"source_rect": [
+				316,
+				383,
+				444,
+				232
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				450,
+				1194,
+				210,
+				139
+			],
+			"draw_order": 15,
+			"file": "pecas/mesa-a.png",
+			"footprint_cells": [
+				11,
+				5,
+				15,
+				8
+			],
+			"ground_anchor_cells": [
+				13.717,
+				7.21
+			],
+			"id": "mesa-a",
+			"label": "Mesa de montagem do fundo e banco",
+			"opaque_pixels": 17463,
+			"pivot_px": [
+				113,
+				114
+			],
+			"position_px": [
+				618,
+				489
+			],
+			"source_rect": [
+				505,
+				375,
+				210,
+				139
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				664,
+				1194,
+				217,
+				143
+			],
+			"draw_order": 16,
+			"file": "pecas/mesa-b.png",
+			"footprint_cells": [
+				11,
+				10,
+				15,
+				13
+			],
+			"ground_anchor_cells": [
+				13.755,
+				12.591
+			],
+			"id": "mesa-b",
+			"label": "Mesa de montagem da frente e banco",
+			"opaque_pixels": 17363,
+			"pivot_px": [
+				111,
+				115
+			],
+			"position_px": [
+				463,
+				560
+			],
+			"source_rect": [
+				352,
+				445,
+				217,
+				143
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				885,
+				1194,
+				53,
+				27
+			],
+			"draw_order": 17,
+			"file": "pecas/capacho.png",
+			"footprint_cells": [
+				6.5,
+				13,
+				8.5,
+				14
+			],
+			"ground_anchor_cells": [
+				7.144,
+				15.484
+			],
+			"id": "capacho",
+			"label": "Capacho listrado da entrada",
+			"opaque_pixels": 722,
+			"pivot_px": [
+				27,
+				17
+			],
+			"position_px": [
+				194,
+				508
+			],
+			"source_rect": [
+				167,
+				491,
+				53,
+				27
+			],
+			"support_height_px": 0.0
+		},
+		{
+			"atlas_rect": [
+				2,
+				1430,
+				103,
+				137
+			],
+			"draw_order": 18,
+			"file": "pecas/porta-vidro.png",
+			"footprint_cells": [
+				6.5,
+				13,
+				8.5,
+				14
+			],
+			"ground_anchor_cells": [
+				7.274,
+				15.196
+			],
+			"id": "porta-vidro",
+			"label": "Porta de vidro e montantes",
+			"opaque_pixels": 9374,
+			"pivot_px": [
+				50,
+				118
+			],
+			"position_px": [
+				206,
+				506
+			],
+			"source_rect": [
+				156,
+				388,
+				103,
+				137
+			],
+			"support_height_px": 0.0
+		}
+	],
+	"source": "../quadro-chave.png",
+	"source_sha256": "420e905b8a4b3e7c2d50e6614ba2fec3bf2cfb7bc869637d936345eb2d0f5ea4",
+	"type": "kit de montagem fixa por recortes visíveis",
+	"version": 1
+}

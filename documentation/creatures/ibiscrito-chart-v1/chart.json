@@ -1,0 +1,89 @@
+{
+  "family_id": "ibiscrito",
+  "scope": "Concept e lore propostas; sem integração.",
+  "nodes": [
+    {
+      "id": "penim",
+      "name": "Penim",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê · I Cafifa",
+      "identity": "Rosto e corpo na pipa, duas pequenas abas, dois pés em abas, bico curto e olhos menta; faixa marcada e rabiola. Massa simples em contraste com a ave adulta.",
+      "story": "As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+      "action": "perceber e proteger a si",
+      "tradeoff": "Pouca autonomia de movimento.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ibiscrito/penim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ibiscrito/penim/concept-v1/brief.md"
+    },
+    {
+      "id": "ibisco",
+      "name": "Ibisco",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança · II Pipa",
+      "identity": "Duas pernas e duas asas curtas com raízes; bico e pescoço mais desenvolvidos que o bebê. Uma rabiola. Pescoço mais alongado que o brief, mas proporção de cabeça/asa ainda infantil.",
+      "story": "As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+      "action": "explorar a função",
+      "tradeoff": "Proteção e controle ainda limitados.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ibiscrito/ibisco/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ibiscrito/ibisco/concept-v1/brief.md"
+    },
+    {
+      "id": "caligibis",
+      "name": "Caligíbis",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem · III Arraia",
+      "identity": "Duas pernas longas e duas asas de lâminas largas, bico curvo e rabiola-pergaminho. Menos manto e mais intervalo entre lâminas que no adulto. Contagem exata de seis lâminas por asa não é uniformemente legível; não prometer rig com essa contagem.",
+      "story": "As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+      "action": "coordenar apoio e ação",
+      "tradeoff": "Estrutura em desenvolvimento, alcance parcial.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ibiscrito/caligibis/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ibiscrito/caligibis/concept-v1/brief.md"
+    },
+    {
+      "id": "ibiscrito",
+      "name": "Ibiscrito",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto · IV Pandorga",
+      "identity": "Duas pernas e duas asas amplas, pescoço enfaixado, bico longo curvo, crista de pena e rabiola-pergaminho. As faixas saem de raízes de asa; sem braços humanos adicionais.",
+      "story": "As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+      "action": "Os escribas das faixas",
+      "tradeoff": "Especialização exige preparar apoio e controlar tensão.",
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/ibiscrito/ibiscrito/concept-v1/concept.png",
+      "brief": "../../../art/creatures/ibiscrito/ibiscrito/concept-v1/brief.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "penim",
+      "to": "ibisco",
+      "kind": "reweaving",
+      "reason": "Penim ganha apoios e partes próprias para começar a função de os escribas das faixas.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "ibisco",
+      "to": "caligibis",
+      "kind": "reweaving",
+      "reason": "Ibisco desenvolve sustentação e articulações para coordenar essa função em Caligíbis.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "caligibis",
+      "to": "ibiscrito",
+      "kind": "reweaving",
+      "reason": "Caligíbis reorganiza seus apoios e faixas na estrutura especializada de Ibiscrito; As faixas recebem marcas de vento, não almas. O que começa como um risco vira um mapa de sons; o adulto registra avisos e devolve mensagens sem alterar o que ouviu.",
+      "decision_status": "proposed"
+    }
+  ]
+}

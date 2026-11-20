@@ -1,0 +1,56 @@
+{
+  "model": "azulfazo",
+  "status": "piloto integrado; lote194 com ciclos regionais funcionais",
+  "cell": [
+    112,
+    112
+  ],
+  "anchor": [
+    56,
+    100
+  ],
+  "sheet": [
+    896,
+    224
+  ],
+  "views": [
+    "sw",
+    "nw"
+  ],
+  "mirrors": {
+    "se": "sw",
+    "ne": "nw"
+  },
+  "frames_per_animation_per_view": 8,
+  "idle_ms": [
+    320,
+    140,
+    220,
+    320,
+    140,
+    220,
+    200,
+    240
+  ],
+  "walk_preview_ms": [
+    110,
+    90,
+    90,
+    100,
+    110,
+    90,
+    90,
+    100
+  ],
+  "walk_runtime": "8 poses por 2 celulas percorridas; 128 unidades nas salas/rotas antigas",
+  "source": "../duas-vistas.png",
+  "aseprite": "azulfazo-animado.aseprite",
+  "tags": [
+    "idle-sw",
+    "idle-nw",
+    "walk-sw",
+    "walk-nw"
+  ],
+  "palette": "preservada do sprite aprovado",
+  "remaining_static_soulmonsters": 0
+}

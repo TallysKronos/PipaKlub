@@ -393,3 +393,39 @@ static func untie_prisoner(view) -> void:
 		await release.finished
 		cord.queue_free()
 		return
+
+## Playtest: after the Eremor falls, a short shot shows the Elo key breaking at the
+## altar, so the victory text no longer has to carry it.
+static func shatter_key(view, reduced_motion: bool) -> void:
+	var altar: Vector2 = view.model.project(Vector2(24,15.5))
+	var shards := Node2D.new()
+	shards.name = "EloKeyShards"
+	shards.z_index = 4
+	shards.position = altar+Vector2(0,-36)
+	view.actors.add_child(shards)
+	var pieces: Array[Sprite2D] = []
+	var atlas: Texture2D = load("res://assets/ui/key-items/chave-elo-fragmentos.svg")
+	for i in 5:
+		var piece := Sprite2D.new()
+		piece.texture = atlas
+		piece.hframes = 5
+		piece.frame = i
+		piece.position = Vector2(-10 + i * 5, 0)
+		shards.add_child(piece)
+		pieces.append(piece)
+	var camera: Camera2D = view.camera
+	var back: Vector2 = camera.position
+	if reduced_motion:
+		for i in pieces.size():pieces[i].position = Vector2(-26+i*13,30)
+		return
+	var focus: Tween = view.create_tween()
+	focus.tween_property(camera,"position",altar,.4).set_trans(Tween.TRANS_SINE)
+	await focus.finished
+	var fall: Tween = view.create_tween().set_parallel()
+	for i in pieces.size():
+		fall.tween_property(pieces[i],"position",Vector2(-26+i*13,30+(i%2)*6),.45).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		fall.tween_property(pieces[i],"rotation",(i-2)*.6,.45)
+	await fall.finished
+	await view.get_tree().create_timer(.5).timeout
+	if not is_instance_valid(camera):return
+	await view.create_tween().tween_property(camera,"position",back,.35).set_trans(Tween.TRANS_SINE).finished

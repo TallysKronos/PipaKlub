@@ -1,0 +1,74 @@
+{
+  "family_id": "algodauro",
+  "family_name": "Algodauro",
+  "scope": "Bisões de Açúcar. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "fiapim",
+      "name": "Fiapim",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "algodauro",
+      "name": "Algodauro",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/concept-v1/algodauro.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": ""
+    },
+    {
+      "id": "nuviforte",
+      "name": "Nuviforte",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "algodauro-estrato",
+      "name": "Algodauro Estrato",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/algodauro.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Duas velas sustentam a juba de algodão-doce. Posição 3 da esquerda para a direita na prancha compartilhada."
+    }
+  ],
+  "edges": [
+    {
+      "from": "fiapim",
+      "to": "algodauro",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "algodauro",
+      "to": "nuviforte",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "nuviforte",
+      "to": "algodauro-estrato",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

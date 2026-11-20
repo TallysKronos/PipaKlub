@@ -1,0 +1,302 @@
+{
+  "created": "2026-11-13",
+  "tool": "Built-in image_gen__imagegen; no CLI/API fallback",
+  "provenance": "Generated for this project using repository canonical input art. No external stock assets or fonts. Inherited reference authorship/rights remain with their respective owners; no invented third-party license.",
+  "scope": "Trailer illustration assets only. No runtime edits,video capture or integration claims.",
+  "retalhoDecision": "Masked approved story form preserves trailer spoiler boundary; canon from Bible sections5 and story arc. Original pre-loss form not revealed.",
+  "assets": [
+    {
+      "id": "portrait-mikka",
+      "type": "portrait",
+      "source": "fontes/portrait-mikka-raw.png",
+      "prompt": "fontes/portrait-mikka.prompt.txt",
+      "final": "../../godot/assets/campaign/portrait-mikka-manga-v1.png",
+      "references": [
+        ".agents/skills/soulmonsters-character-art/references/locutor-aprovado.png",
+        "art/characters/mikka-overworld-v2/fonte.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1024x1536",
+      "approval": "Independent visual review 8/10,no blocking issues; owner approval pending"
+    },
+    {
+      "id": "portrait-dona-neve",
+      "type": "portrait",
+      "source": "fontes/portrait-dona-neve-raw.png",
+      "prompt": "fontes/portrait-dona-neve.prompt.txt",
+      "final": "../../godot/assets/campaign/portrait-dona-neve-manga-v1.png",
+      "references": [
+        ".agents/skills/soulmonsters-character-art/references/locutor-aprovado.png",
+        "art/characters/kronasta-oito-direcoes/serra/fontes/dona-neve.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1024x1536",
+      "approval": "Independent visual review 8/10,no blocking issues; owner approval pending"
+    },
+    {
+      "id": "portrait-icaro",
+      "type": "portrait",
+      "source": "fontes/portrait-icaro-raw.png",
+      "prompt": "fontes/portrait-icaro.prompt.txt",
+      "final": "../../godot/assets/campaign/portrait-icaro-manga-v1.png",
+      "references": [
+        ".agents/skills/soulmonsters-character-art/references/locutor-aprovado.png",
+        "art/characters/kronasta-oito-direcoes/mirante/fontes/icaro.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1024x1536",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "portrait-nina",
+      "type": "portrait",
+      "source": "fontes/portrait-nina-raw.png",
+      "prompt": "fontes/portrait-nina.prompt.txt",
+      "final": "../../godot/assets/campaign/portrait-nina-manga-v1.png",
+      "references": [
+        ".agents/skills/soulmonsters-character-art/references/locutor-aprovado.png",
+        "art/characters/npc-manga-sheets-v2/nina-sheet.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1024x1536",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "portrait-retalho",
+      "type": "portrait",
+      "source": "fontes/portrait-retalho-raw.png",
+      "prompt": "fontes/portrait-retalho.prompt.txt",
+      "final": "../../godot/assets/campaign/portrait-retalho-manga-v1.png",
+      "references": [
+        "art/soulgen/campaign-redesigns-v1/retalho-mascarada/concept-v2/prancha.png",
+        "art/soulgen/campaign-redesigns-v1/retalho-mascarada/concept-v2/APROVACAO.md",
+        "documentation/historia/BIBLIA-DA-HISTORIA.md"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1024x1536",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "portrait-tufanocorte",
+      "type": "portrait",
+      "source": "fontes/portrait-tufanocorte-raw.png",
+      "prompt": "fontes/portrait-tufanocorte.prompt.txt",
+      "final": "../../godot/assets/campaign/portrait-tufanocorte-manga-v1.png",
+      "references": [
+        "godot/assets/campaign/tufanocorte.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1024x1536",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "impact-especial-rabbito",
+      "type": "illustration",
+      "source": "fontes/impact-especial-rabbito-raw.png",
+      "prompt": "fontes/impact-especial-rabbito.prompt.txt",
+      "final": "impact-especial-rabbito.png",
+      "references": [
+        "art/soulgen/keys/rabbito/color-rig-v2/concept.png"
+      ],
+      "alpha": false,
+      "normalization": "ffmpeg scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080; aspect retained",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "abertura-carretel",
+      "type": "illustration",
+      "source": "fontes/abertura-carretel-raw.png",
+      "prompt": "fontes/abertura-carretel.prompt.txt",
+      "final": "abertura-carretel.png",
+      "references": [
+        "godot/assets/campaign/portrait-kael-manga-v4.png",
+        ".agents/skills/soulmonsters-character-art/references/locutor-aprovado.png"
+      ],
+      "alpha": false,
+      "normalization": "ffmpeg scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080; aspect retained",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "kronasta-ceu",
+      "type": "illustration",
+      "source": "fontes/kronasta-ceu-r4-raw.png",
+      "prompt": "fontes/kronasta-ceu-r4.prompt.txt",
+      "final": "kronasta-ceu.png",
+      "references": [
+        "art/trailer-v2/fontes/kronasta-ceu-referencias/bairro-concept.png",
+        "art/creatures/rai-family-v1/raivela/concept-v1/concept.png",
+        "godot/assets/campaign/tufanocorte.png",
+        "art/creatures/mata-verde-family-v1/folhante/concept-v1/concept.png",
+        "godot/assets/campaign/title-v1/reference-rigs/azulao.png"
+      ],
+      "alpha": false,
+      "normalization": "ffmpeg scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080; aspect retained",
+      "approval": "R1/R2/R3 superseded after owner feedback. R4 is a new dynamic composition, owner evaluation pending.",
+      "revision": 4,
+      "history": "fontes/kronasta-ceu-historico"
+    },
+    {
+      "id": "fecho-estadio",
+      "type": "illustration",
+      "source": "fontes/fecho-estadio-raw.png",
+      "prompt": "fontes/fecho-estadio.prompt.txt",
+      "final": "fecho-estadio.png",
+      "references": [
+        "art/characters/parque-pipeiros-v3/references/kael-estilo.png",
+        "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+        "godot/assets/campaign/maps/kronasta-atlas-manga-v3.png"
+      ],
+      "alpha": false,
+      "normalization": "ffmpeg scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080; aspect retained",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "tsk",
+      "type": "lettering",
+      "source": "fontes/tsk-raw.png",
+      "prompt": "fontes/tsk.prompt.txt",
+      "final": "onomatopeias/tsk.png",
+      "references": [],
+      "alpha": true,
+      "normalization": "Unmodified copy,1536x1024",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "zaak",
+      "type": "lettering",
+      "source": "fontes/zaak-raw.png",
+      "prompt": "fontes/zaak.prompt.txt",
+      "final": "onomatopeias/zaak.png",
+      "references": [
+        "art/trailer-v2/onomatopeias/tsk.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1536x1024",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "fwush",
+      "type": "lettering",
+      "source": "fontes/fwush-raw.png",
+      "prompt": "fontes/fwush.prompt.txt",
+      "final": "onomatopeias/fwush.png",
+      "references": [
+        "art/trailer-v2/onomatopeias/tsk.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1536x1024",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "krak",
+      "type": "lettering",
+      "source": "fontes/krak-raw.png",
+      "prompt": "fontes/krak.prompt.txt",
+      "final": "onomatopeias/krak.png",
+      "references": [
+        "art/trailer-v2/onomatopeias/tsk.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1536x1024",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "vuuum",
+      "type": "lettering",
+      "source": "fontes/vuuum-raw.png",
+      "prompt": "fontes/vuuum.prompt.txt",
+      "final": "onomatopeias/vuuum.png",
+      "references": [
+        "art/trailer-v2/onomatopeias/tsk.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1536x1024",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "splash",
+      "type": "lettering",
+      "source": "fontes/splash-raw.png",
+      "prompt": "fontes/splash.prompt.txt",
+      "final": "onomatopeias/splash.png",
+      "references": [
+        "art/trailer-v2/onomatopeias/tsk.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1536x1024",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "grrraaaooo",
+      "type": "lettering",
+      "source": "fontes/grrraaaooo-raw.png",
+      "prompt": "fontes/grrraaaooo.prompt.txt",
+      "final": "onomatopeias/grrraaaooo.png",
+      "references": [
+        "art/trailer-v2/onomatopeias/tsk.png"
+      ],
+      "alpha": true,
+      "normalization": "Unmodified copy,1536x1024",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "linhas-velocidade-radial",
+      "type": "speed-overlay",
+      "source": "fontes/linhas-velocidade-radial-raw.png",
+      "prompt": "fontes/linhas-velocidade-radial.prompt.txt",
+      "final": "linhas-velocidade-radial.png",
+      "references": [],
+      "alpha": true,
+      "normalization": "ffmpeg scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080; aspect retained",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    },
+    {
+      "id": "linhas-velocidade-horizontal",
+      "type": "speed-overlay",
+      "source": "fontes/linhas-velocidade-horizontal-raw.png",
+      "prompt": "fontes/linhas-velocidade-horizontal.prompt.txt",
+      "final": "linhas-velocidade-horizontal.png",
+      "references": [],
+      "alpha": true,
+      "normalization": "ffmpeg scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080; aspect retained",
+      "approval": "Authoring visual review complete; independent/owner review pending"
+    }
+  ],
+  "roarPieces": {
+    "source": "onomatopeias/grrraaaooo.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "parts": [
+      {
+        "file": "onomatopeias/grrraaaooo-01.png",
+        "rect": [
+          0,
+          0,
+          512,
+          1024
+        ]
+      },
+      {
+        "file": "onomatopeias/grrraaaooo-02.png",
+        "rect": [
+          512,
+          0,
+          512,
+          1024
+        ]
+      },
+      {
+        "file": "onomatopeias/grrraaaooo-03.png",
+        "rect": [
+          1024,
+          0,
+          512,
+          1024
+        ]
+      }
+    ],
+    "assembly": "Place at x=0,512,1024,y=0 to reconstruct exactly; animate pieces independently for screen-breaking roar."
+  }
+}

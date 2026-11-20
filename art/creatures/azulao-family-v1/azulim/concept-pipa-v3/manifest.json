@@ -1,0 +1,30 @@
+{
+  "id": "azulim",
+  "name": "Azulim",
+  "stage": "I · bebê",
+  "source": "exec-823e9a07-782d-499a-a822-ba2db87ab2bc.png",
+  "file": "azulim/concept-pipa-v3/concept.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGBA",
+  "alpha": [
+    0,
+    254
+  ],
+  "sha256": "c651f9dd589e9a7458dd103d19ea51de816c2d5b664b83f267e2214c17a210ea",
+  "tool": "image_gen integrada",
+  "status": "concept visual aprovado pelo autor; sem rig ou integração",
+  "prompt": "prompt.txt",
+  "generation_references": [
+    "art/soulgen/keys/azulao/color-rig-v2/concept.png",
+    "art/creatures/azulao-family-v1/azultor/rosto-adulto-v3/concept.png"
+  ],
+  "review": "../../lote-pipa-v3/REVISAO.md",
+  "visualApproval": {
+    "date": "2026-11-03",
+    "statement": "Gostei aprovados",
+    "scope": "design visual deste concept"
+  }
+}

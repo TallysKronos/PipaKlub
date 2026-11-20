@@ -1,0 +1,85 @@
+{
+  "family_id": "riscaz",
+  "scope": "Dois novos concepts; sem integração ou alterações na base.",
+  "nodes": [
+    {
+      "id": "riscotim",
+      "name": "Riscotim",
+      "kind": "stage",
+      "stage": 1,
+      "age": "Bebê",
+      "identity": "Cabeça-pipa sem tronco ou patas, orelhas assimétricas e duas fitas curtas.",
+      "story": "Aprende a equilibrar sua construção compacta antes de adquirir apoios.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/riscaz-family-v1/riscotim/concept-v1/concept.png",
+      "brief": "../../../art/creatures/riscaz-family-v1/riscotim/concept-v1/brief.md",
+      "approval_note": "2026-11-04: autor respondeu “aprovados” após revisão ratazanosa do jovem. Aprovação visual do bebê concept-v1 e jovem concept-v2; receitas e integração não incluídas."
+    },
+    {
+      "id": "riscaz",
+      "name": "Riscaz",
+      "kind": "stage",
+      "stage": 2,
+      "age": "Criança existente",
+      "identity": "Roedor baixo carvão e creme, incisivos, olho verde, vela e rabiola desigual.",
+      "story": "Base autoral preservada; maturidade é organização documental.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/soulgen/keys/riscaz/cutout-rig-v1/preview.png",
+      "brief": "../../../art/soulgen/keys/riscaz/README.md",
+      "approval_note": "Base final autoral preservada."
+    },
+    {
+      "id": "riscavela",
+      "name": "Riscavela",
+      "kind": "stage",
+      "stage": 3,
+      "age": "Jovem",
+      "identity": "Ratazana baixa e robusta, dorso arqueado, focinho longo, orelhas pequenas e quatro patas de dedos alongados.",
+      "story": "Aprende a ancorar os apoios e tensionar a vela; essa estrutura prepara a balista do adulto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/riscaz-family-v1/riscavela/concept-v2/concept.png",
+      "brief": "../../../art/creatures/riscaz-family-v1/riscavela/concept-v2/brief.md",
+      "approval_note": "2026-11-04: autor respondeu “aprovados” após revisão ratazanosa do jovem. Aprovação visual do bebê concept-v1 e jovem concept-v2; receitas e integração não incluídas."
+    },
+    {
+      "id": "riscarion",
+      "name": "Riscárion",
+      "kind": "stage",
+      "stage": 4,
+      "age": "Adulto cavaleiro",
+      "identity": "Elmo fechado em cunha, armadura leve, rabiola inteira e balista portátil.",
+      "story": "Transformação cavaleiresca sombria e venenosa pedida pelo autor; voto e origem continuam abertos.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onze-cavaleiros-v1/riscarion/concept-v1/concept.png",
+      "brief": "../../../art/creatures/onze-cavaleiros-v1/riscarion/concept-v1/brief.md",
+      "approval_note": "Aprovação visual explícita: aprovado agr baby e jovem."
+    }
+  ],
+  "edges": [
+    {
+      "from": "riscotim",
+      "to": "riscaz",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Cabeça-pipa passa a sustentar corpo e apoios."
+    },
+    {
+      "from": "riscaz",
+      "to": "riscavela",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Apoios alongados e tensão da vela antecipam função de ancoragem."
+    },
+    {
+      "from": "riscavela",
+      "to": "riscarion",
+      "kind": "reweaving",
+      "decision_status": "proposed",
+      "reason": "Postura quadrúpede se reorganiza em cavaleiro com elmo e balista."
+    }
+  ]
+}

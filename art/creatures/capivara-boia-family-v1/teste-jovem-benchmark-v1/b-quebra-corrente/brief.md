@@ -1,0 +1,7 @@
+# B — Contensor de correnteza
+
+Definido: criança de água da família capivara. Observado: menta/marfim/petróleo, pés palmados, focinho rombo, quilha e três abas. Proposto: estágio jovem alternativo com ação e arquitetura próprias. Não decidido: nome, rota, receita e habilidades de jogo.
+
+B: low very BROAD quadrupedal current-breaker. Radically wide chest and shoulders, relatively small calm capybara head recessed above prow-like ivory lower-jaw fold, four short robust splayed webbed feet (no human hands). A single continuous thick tension-paper crescent grows from front chest around both flanks as a low flexible breakwater, open behind, visibly part of body not a separate shield held in hand. Bamboo outer edge and two readable tension knots, no cages. Rear torso tapers sharply, no huge tall sail. Show braced oblique pose, near forefoot pushed outward and chest crescent opening against an imaginary current. Deep petrol dominant chest underside, mint upper body ivory crescent coral hinge knots. Soul-tail with three diamond tabs visible behind. Heavy young living animal, not armored adult knight, no helmet, no cannons, no stone turtle shell, no scenery.
+
+Direção: 45% criatura / 45% pipa funcional / 10% acabamento 2D mangá. Fonte de princípios: art/benchmarks/digimon-ultimate-mega-2026-11-04/. Nenhuma arte externa fornecida à geração.

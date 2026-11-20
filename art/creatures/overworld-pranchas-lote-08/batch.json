@@ -1,0 +1,1037 @@
+{
+  "version": 1,
+  "video_generation": false,
+  "identity_contract": "Positive original canonical face/head/upper-core mask including transparent gaps; full locomotor limbs free from shoulder/hip to toes, not only foot tips.",
+  "models": [
+    {
+      "id": "raibroto",
+      "source": "art/creatures/soulmonsters-overworld-v2/raibroto/duas-vistas.png",
+      "folder": "art/creatures/raibroto-prancha-v1",
+      "height": 41,
+      "motion": "BABY saber-feline paper-kite cub, small low rounded body with FOUR short paws, ivory pink charcoal face/ears, tiny red eyes, two small saber fangs and gold bell. One compact pink diamond sail bud above back and one attached gold-cord tail ending four pink petals. Real tiny quadruped walking, alternate diagonal support with complete short fore/hind limbs lifting and planting. No adult body or new ears/heads.",
+      "idle_method": "Stable original rest with two internal pixels varied outside protected head/core;1900ms,no lunge",
+      "source_core_lock": {
+        "views": {
+          "sw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  33,
+                  70
+                ],
+                [
+                  63,
+                  70
+                ],
+                [
+                  63,
+                  91
+                ],
+                [
+                  33,
+                  91
+                ]
+              ],
+              [
+                [
+                  38,
+                  89
+                ],
+                [
+                  50,
+                  89
+                ],
+                [
+                  50,
+                  96
+                ],
+                [
+                  38,
+                  96
+                ]
+              ],
+              [
+                [
+                  50,
+                  56
+                ],
+                [
+                  70,
+                  56
+                ],
+                [
+                  70,
+                  83
+                ],
+                [
+                  50,
+                  83
+                ]
+              ],
+              [
+                [
+                  52,
+                  78
+                ],
+                [
+                  66,
+                  78
+                ],
+                [
+                  69,
+                  86
+                ],
+                [
+                  61,
+                  90
+                ],
+                [
+                  53,
+                  87
+                ]
+              ]
+            ]
+          },
+          "nw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  34,
+                  68
+                ],
+                [
+                  60,
+                  68
+                ],
+                [
+                  60,
+                  89
+                ],
+                [
+                  34,
+                  89
+                ]
+              ],
+              [
+                [
+                  49,
+                  56
+                ],
+                [
+                  70,
+                  56
+                ],
+                [
+                  70,
+                  83
+                ],
+                [
+                  49,
+                  83
+                ]
+              ],
+              [
+                [
+                  48,
+                  78
+                ],
+                [
+                  61,
+                  78
+                ],
+                [
+                  64,
+                  86
+                ],
+                [
+                  58,
+                  90
+                ],
+                [
+                  50,
+                  88
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              57,
+              90,
+              61,
+              93
+            ],
+            "edits": [
+              {
+                "x": 58,
+                "y": 91,
+                "color": "f77c87"
+              },
+              {
+                "x": 59,
+                "y": 91,
+                "color": "f77c87"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              57,
+              90,
+              61,
+              93
+            ],
+            "edits": [
+              {
+                "x": 58,
+                "y": 91,
+                "color": "f0d5c5"
+              },
+              {
+                "x": 59,
+                "y": 91,
+                "color": "f0d5c5"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "raivela",
+      "source": "art/creatures/soulmonsters-overworld-v2/raivela/duas-vistas.png",
+      "folder": "art/creatures/raivela-prancha-v1",
+      "height": 70,
+      "motion": "Young PLANAR saber-feline with low diamond torso, two very broad curved pink ivory GOLD-SPAR side sails, source face and saber teeth/bell, FOUR original short paws FOLDED below body, attached gold-cord four-petal tail. Locomotion is gentle in-place controlled GLIDING wingstroke: sail outer tips fold INWARD/down then recover, fore/hind paws stay tucked. Preserve all four paws; no biped/humanoid redesign. Source NW is110px wide in112cell: do NOT expand width beyond source; fold wings, never shrink head/body to make room.",
+      "idle_method": "Stable original rest with two internal pixels varied outside protected head/core;1900ms,no lunge",
+      "source_core_lock": {
+        "views": {
+          "sw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  12,
+                  63
+                ],
+                [
+                  44,
+                  63
+                ],
+                [
+                  44,
+                  89
+                ],
+                [
+                  12,
+                  89
+                ]
+              ],
+              [
+                [
+                  25,
+                  87
+                ],
+                [
+                  32,
+                  87
+                ],
+                [
+                  32,
+                  100
+                ],
+                [
+                  25,
+                  100
+                ]
+              ],
+              [
+                [
+                  39,
+                  49
+                ],
+                [
+                  63,
+                  50
+                ],
+                [
+                  67,
+                  64
+                ],
+                [
+                  59,
+                  75
+                ],
+                [
+                  43,
+                  75
+                ],
+                [
+                  35,
+                  68
+                ]
+              ]
+            ]
+          },
+          "nw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  20,
+                  43
+                ],
+                [
+                  49,
+                  43
+                ],
+                [
+                  49,
+                  70
+                ],
+                [
+                  20,
+                  70
+                ]
+              ],
+              [
+                [
+                  40,
+                  51
+                ],
+                [
+                  65,
+                  51
+                ],
+                [
+                  69,
+                  66
+                ],
+                [
+                  58,
+                  77
+                ],
+                [
+                  42,
+                  73
+                ],
+                [
+                  34,
+                  64
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              57,
+              80,
+              61,
+              83
+            ],
+            "edits": [
+              {
+                "x": 58,
+                "y": 81,
+                "color": "9e1c3b"
+              },
+              {
+                "x": 59,
+                "y": 81,
+                "color": "9e1c3b"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              14,
+              72,
+              18,
+              75
+            ],
+            "edits": [
+              {
+                "x": 15,
+                "y": 73,
+                "color": "9e1c3b"
+              },
+              {
+                "x": 16,
+                "y": 73,
+                "color": "9e1c3b"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "raigume",
+      "source": "art/creatures/soulmonsters-overworld-v2/raigume/duas-vistas.png",
+      "folder": "art/creatures/raigume-prancha-v1",
+      "height": 70,
+      "motion": "Young low long saber-feline with high powerful shoulders, FOUR broad paws, ivory pink charcoal anatomy, exact angular feline face/red eyes/saber teeth/gold bell, ONE NARROW vertical pink kite sail and attached gold-cord petal tail. True connected quadruped walking with full limbs articulating from shoulder/hip, diagonal pairs alternate plant/lift/pass/push; strong forelegs, no tip-stamping or frozen upper legs.",
+      "idle_method": "Stable original rest with two internal pixels varied outside protected head/core;1900ms,no lunge",
+      "source_core_lock": {
+        "views": {
+          "sw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  24,
+                  50
+                ],
+                [
+                  59,
+                  50
+                ],
+                [
+                  59,
+                  82
+                ],
+                [
+                  24,
+                  82
+                ]
+              ],
+              [
+                [
+                  35,
+                  79
+                ],
+                [
+                  50,
+                  79
+                ],
+                [
+                  50,
+                  88
+                ],
+                [
+                  35,
+                  88
+                ]
+              ],
+              [
+                [
+                  35,
+                  26
+                ],
+                [
+                  68,
+                  26
+                ],
+                [
+                  68,
+                  63
+                ],
+                [
+                  35,
+                  63
+                ]
+              ],
+              [
+                [
+                  47,
+                  58
+                ],
+                [
+                  66,
+                  60
+                ],
+                [
+                  66,
+                  69
+                ],
+                [
+                  56,
+                  74
+                ],
+                [
+                  49,
+                  69
+                ]
+              ]
+            ]
+          },
+          "nw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  27,
+                  39
+                ],
+                [
+                  56,
+                  39
+                ],
+                [
+                  56,
+                  68
+                ],
+                [
+                  27,
+                  68
+                ]
+              ],
+              [
+                [
+                  41,
+                  26
+                ],
+                [
+                  75,
+                  26
+                ],
+                [
+                  75,
+                  67
+                ],
+                [
+                  41,
+                  67
+                ]
+              ],
+              [
+                [
+                  40,
+                  58
+                ],
+                [
+                  64,
+                  59
+                ],
+                [
+                  66,
+                  68
+                ],
+                [
+                  54,
+                  73
+                ],
+                [
+                  43,
+                  69
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              58,
+              76,
+              62,
+              79
+            ],
+            "edits": [
+              {
+                "x": 59,
+                "y": 77,
+                "color": "e3c6b0"
+              },
+              {
+                "x": 60,
+                "y": 77,
+                "color": "e3c6b0"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              37,
+              72,
+              41,
+              75
+            ],
+            "edits": [
+              {
+                "x": 38,
+                "y": 73,
+                "color": "dc9415"
+              },
+              {
+                "x": 39,
+                "y": 73,
+                "color": "dc9415"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "raisoberano",
+      "source": "art/creatures/soulmonsters-overworld-v2/raisoberano/duas-vistas.png",
+      "folder": "art/creatures/raisoberano-prancha-v1",
+      "height": 84,
+      "motion": "Adult broad compact quadruped saber-feline guardian with FOUR strong paws, original ivory pink brown face/red eyes/saber fangs, gold-red chest shield, large multi-petal sakura portal sail framework on back, attached gold cord four-petal tail. Heavy controlled four-paw DIAGONAL walking: opposite fore/hind supports alternate, full shoulder/hip limb arcs and lifted paws, same low broad body. Exact source head, dorsal architecture and correct ornament/tail sides, no human armor redesign.",
+      "idle_method": "Stable original rest with two internal pixels varied outside protected head/core;1900ms,no lunge",
+      "source_core_lock": {
+        "views": {
+          "sw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  112,
+                  0
+                ],
+                [
+                  112,
+                  70
+                ],
+                [
+                  0,
+                  70
+                ]
+              ],
+              [
+                [
+                  24,
+                  49
+                ],
+                [
+                  62,
+                  49
+                ],
+                [
+                  62,
+                  78
+                ],
+                [
+                  24,
+                  78
+                ]
+              ],
+              [
+                [
+                  46,
+                  64
+                ],
+                [
+                  67,
+                  63
+                ],
+                [
+                  71,
+                  77
+                ],
+                [
+                  59,
+                  83
+                ],
+                [
+                  49,
+                  78
+                ]
+              ]
+            ]
+          },
+          "nw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  112,
+                  0
+                ],
+                [
+                  112,
+                  70
+                ],
+                [
+                  0,
+                  70
+                ]
+              ],
+              [
+                [
+                  28,
+                  47
+                ],
+                [
+                  59,
+                  47
+                ],
+                [
+                  59,
+                  75
+                ],
+                [
+                  28,
+                  75
+                ]
+              ],
+              [
+                [
+                  47,
+                  60
+                ],
+                [
+                  68,
+                  61
+                ],
+                [
+                  73,
+                  73
+                ],
+                [
+                  61,
+                  79
+                ],
+                [
+                  49,
+                  74
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              36,
+              82,
+              40,
+              85
+            ],
+            "edits": [
+              {
+                "x": 37,
+                "y": 83,
+                "color": "ddb79d"
+              },
+              {
+                "x": 38,
+                "y": 83,
+                "color": "ddb79d"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              34,
+              80,
+              38,
+              83
+            ],
+            "edits": [
+              {
+                "x": 35,
+                "y": 81,
+                "color": "ddb79d"
+              },
+              {
+                "x": 36,
+                "y": 81,
+                "color": "ddb79d"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "raiatar",
+      "source": "art/creatures/soulmonsters-overworld-v2/raiatar/duas-vistas.png",
+      "folder": "art/creatures/raiatar-prancha-v1",
+      "height": 84,
+      "motion": "Adult SEMI-UPRIGHT BIPED saber-feline, hourglass ivory/pink body, TWO hind legs with dark feet and TWO free open arms with dark paws, exact angular feline head/red eyes and long saber fangs/gold bell. Two large dorsal pink sails form OPEN OVAL loom, attached four-petal golden-cord tail. Small grounded alternating BIPED hind-leg steps with complete hip-to-toe swing and gentle arm counterbalance, source head/body steady. No quadruped conversion or humanoid face, no weapons, closed sail oval or extra limbs.",
+      "idle_method": "Stable original rest with two internal pixels varied outside protected head/core;1900ms,no lunge",
+      "source_core_lock": {
+        "views": {
+          "sw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  112,
+                  0
+                ],
+                [
+                  112,
+                  65
+                ],
+                [
+                  0,
+                  65
+                ]
+              ],
+              [
+                [
+                  33,
+                  45
+                ],
+                [
+                  60,
+                  42
+                ],
+                [
+                  65,
+                  56
+                ],
+                [
+                  56,
+                  70
+                ],
+                [
+                  47,
+                  79
+                ],
+                [
+                  35,
+                  72
+                ]
+              ],
+              [
+                [
+                  43,
+                  64
+                ],
+                [
+                  59,
+                  64
+                ],
+                [
+                  61,
+                  74
+                ],
+                [
+                  55,
+                  83
+                ],
+                [
+                  47,
+                  82
+                ],
+                [
+                  42,
+                  74
+                ]
+              ]
+            ]
+          },
+          "nw": {
+            "moving_regions": [
+              [
+                0,
+                0,
+                112,
+                105
+              ]
+            ],
+            "protected_polygons": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  112,
+                  0
+                ],
+                [
+                  112,
+                  65
+                ],
+                [
+                  0,
+                  65
+                ]
+              ],
+              [
+                [
+                  36,
+                  44
+                ],
+                [
+                  61,
+                  44
+                ],
+                [
+                  66,
+                  59
+                ],
+                [
+                  59,
+                  73
+                ],
+                [
+                  43,
+                  75
+                ],
+                [
+                  35,
+                  64
+                ]
+              ],
+              [
+                [
+                  43,
+                  64
+                ],
+                [
+                  59,
+                  64
+                ],
+                [
+                  61,
+                  74
+                ],
+                [
+                  55,
+                  83
+                ],
+                [
+                  47,
+                  82
+                ],
+                [
+                  42,
+                  74
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "authored_idle": {
+        "views": {
+          "sw": {
+            "region": [
+              75,
+              82,
+              79,
+              85
+            ],
+            "edits": [
+              {
+                "x": 76,
+                "y": 83,
+                "color": "d98916"
+              },
+              {
+                "x": 77,
+                "y": 83,
+                "color": "d98916"
+              }
+            ]
+          },
+          "nw": {
+            "region": [
+              41,
+              76,
+              45,
+              79
+            ],
+            "edits": [
+              {
+                "x": 42,
+                "y": 77,
+                "color": "f25b6b"
+              },
+              {
+                "x": 43,
+                "y": 77,
+                "color": "f25b6b"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

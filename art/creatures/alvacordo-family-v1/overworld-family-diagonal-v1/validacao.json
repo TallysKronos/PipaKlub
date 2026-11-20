@@ -1,0 +1,141 @@
+{
+  "canvas": [
+    80,
+    80
+  ],
+  "staticViews": [
+    "SW",
+    "NW"
+  ],
+  "inGameValidated": false,
+  "entries": [
+    {
+      "id": "farpim",
+      "view": "frente-sw",
+      "bboxExclusive": [
+        25,
+        34,
+        55,
+        66
+      ],
+      "occupiedSize": [
+        30,
+        32
+      ],
+      "opaqueColors": 18,
+      "opaquePixels": 532
+    },
+    {
+      "id": "farpim",
+      "view": "costas-nw",
+      "bboxExclusive": [
+        25,
+        34,
+        55,
+        66
+      ],
+      "occupiedSize": [
+        30,
+        32
+      ],
+      "opaqueColors": 15,
+      "opaquePixels": 511
+    },
+    {
+      "id": "papisco",
+      "view": "frente-sw",
+      "bboxExclusive": [
+        25,
+        24,
+        54,
+        65
+      ],
+      "occupiedSize": [
+        29,
+        41
+      ],
+      "opaqueColors": 20,
+      "opaquePixels": 758
+    },
+    {
+      "id": "papisco",
+      "view": "costas-nw",
+      "bboxExclusive": [
+        25,
+        24,
+        54,
+        65
+      ],
+      "occupiedSize": [
+        29,
+        41
+      ],
+      "opaqueColors": 16,
+      "opaquePixels": 755
+    },
+    {
+      "id": "velcao",
+      "view": "frente-sw",
+      "bboxExclusive": [
+        11,
+        10,
+        69,
+        65
+      ],
+      "occupiedSize": [
+        58,
+        55
+      ],
+      "opaqueColors": 21,
+      "opaquePixels": 1552
+    },
+    {
+      "id": "velcao",
+      "view": "costas-nw",
+      "bboxExclusive": [
+        11,
+        11,
+        69,
+        65
+      ],
+      "occupiedSize": [
+        58,
+        54
+      ],
+      "opaqueColors": 19,
+      "opaquePixels": 1561
+    },
+    {
+      "id": "alvacordo",
+      "view": "frente-sw",
+      "bboxExclusive": [
+        10,
+        6,
+        69,
+        66
+      ],
+      "occupiedSize": [
+        59,
+        60
+      ],
+      "opaqueColors": 19,
+      "opaquePixels": 2237
+    },
+    {
+      "id": "alvacordo",
+      "view": "costas-nw",
+      "bboxExclusive": [
+        11,
+        5,
+        69,
+        72
+      ],
+      "occupiedSize": [
+        58,
+        67
+      ],
+      "opaqueColors": 19,
+      "opaquePixels": 2288
+    }
+  ]
+}

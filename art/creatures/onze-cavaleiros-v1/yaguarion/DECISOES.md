@@ -1,0 +1,1 @@
+Versão visual aprovada: concept-v2. Em 2026-11-04, o autor respondeu aprovadissimo à revisão com elmo cobrindo testa e olhos humanoides e abertura inferior para nariz e boca. concept-v1 preservado como histórico. Nome, voto, receitas e integração continuam propostas ou pendentes.

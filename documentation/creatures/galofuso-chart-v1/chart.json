@@ -1,0 +1,93 @@
+{
+  "family_id": "galofuso-family-v1",
+  "scope": "Quatro concepts aprovados visualmente pelo autor; rota e nomes propostos. Sem integração.",
+  "nodes": [
+    {
+      "id": "pivico",
+      "name": "Pivico",
+      "kind": "stage",
+      "stage": 1,
+      "maturity": "Bebê",
+      "identity": "Corpo único inflado de pipa, sem pernas, duas abas de asa, crista pequena e uma flâmula.",
+      "story": "Aprende a sentir o puxão da própria linha.",
+      "action": "Perceber a tensão",
+      "tradeoff": "Depende de correntes suaves; ainda não se ancora.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/galofuso-family-v1/pivico/concept-v1/concept.png",
+      "brief": "../../../art/creatures/galofuso-family-v1/pivico/concept-v1/brief.md",
+      "approval_note": "Autor: “aprovado”, após o comparativo Pivico, Cristim v2, Esporilho e Galofuso. Aprovação visual das quatro formas; nomes e mecânicas não canonizados por inferência; sem aprovação técnica de rig ou integração."
+    },
+    {
+      "id": "cristim",
+      "name": "Cristim",
+      "kind": "stage",
+      "stage": 2,
+      "maturity": "Criança",
+      "identity": "Corpo baixo e arredondado, duas patas curtas, duas asas e pequeno estilingue na ponta da asa.",
+      "story": "Troca o susto pela curiosidade; erra e insiste.",
+      "action": "Praticar a mira",
+      "tradeoff": "Mecanismo pequeno e instável; precisa parar para mirar.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/galofuso-family-v1/cristim/concept-v2/concept.png",
+      "brief": "../../../art/creatures/galofuso-family-v1/cristim/concept-v2/brief.md",
+      "approval_note": "Autor: “aprovado”, após o comparativo Pivico, Cristim v2, Esporilho e Galofuso. Aprovação visual das quatro formas; nomes e mecânicas não canonizados por inferência; sem aprovação técnica de rig ou integração."
+    },
+    {
+      "id": "esporilho",
+      "name": "Esporilho",
+      "kind": "stage",
+      "stage": 3,
+      "maturity": "Jovem",
+      "identity": "Galo esguio de pescoço comprido, duas pernas, uma asa-trilho e outra de equilíbrio, cauda de três velas.",
+      "story": "O impulso de desafiar vira técnica de duelo.",
+      "action": "Interceptar à distância",
+      "tradeoff": "O disparo exige apoio e recuperação da tensão.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/galofuso-family-v1/esporilho/concept-v1/concept.png",
+      "brief": "../../../art/creatures/galofuso-family-v1/esporilho/concept-v1/brief.md",
+      "approval_note": "Autor: “aprovado”, após o comparativo Pivico, Cristim v2, Esporilho e Galofuso. Aprovação visual das quatro formas; nomes e mecânicas não canonizados por inferência; sem aprovação técnica de rig ou integração."
+    },
+    {
+      "id": "galofuso",
+      "name": "Galofuso",
+      "kind": "stage",
+      "stage": 4,
+      "maturity": "Adulto",
+      "identity": "Atirador aviano bípede de armadura, crista-elmo e dois lançadores integrados aos antebraços, carretéis nos ombros.",
+      "story": "Aprende a escolher o momento do tiro e coordenar a pressão.",
+      "action": "Controlar duas linhas de tiro",
+      "tradeoff": "Rearmar os dois mecanismos o deixa momentaneamente exposto.",
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/galofuso-family-v1/galofuso/concept-v1/concept.png",
+      "brief": "../../../art/creatures/galofuso-family-v1/galofuso/concept-v1/brief.md",
+      "approval_note": "Autor: “aprovado”, após o comparativo Pivico, Cristim v2, Esporilho e Galofuso. Aprovação visual das quatro formas; nomes e mecânicas não canonizados por inferência; sem aprovação técnica de rig ou integração."
+    }
+  ],
+  "edges": [
+    {
+      "from": "pivico",
+      "to": "cristim",
+      "kind": "reweaving",
+      "reason": "Ganha apoios para experimentar mira e tensão.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "cristim",
+      "to": "esporilho",
+      "kind": "reweaving",
+      "reason": "Mecanismo de estalo amadurece em asa-trilho e postura de duelo.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "esporilho",
+      "to": "galofuso",
+      "kind": "reweaving",
+      "reason": "A técnica de um tiro vira coordenação de dois mecanismos e proteção de placas.",
+      "decision_status": "proposed"
+    }
+  ]
+}

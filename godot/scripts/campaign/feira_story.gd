@@ -63,6 +63,7 @@ func settle()->Dictionary:
 	if not valid_battle(e) or s.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
 	for p:Dictionary in saved.player.partners:
 		if p.id==s.partnerId:p.condition={"line":clampf(s.p.hp/s.p.stats.line*100,0,100),"structure":clampf(s.p.hull/s.p.stats.line*100,0,100)}
+	if s.outcome=="won":preload("res://scripts/campaign/progression.gd").story_win(saved.player,s)
 	if s.outcome=="won":
 		if e.feiraOpponent=="lalau":
 			saved.player.flags.feiraLalauVencido=true;saved.player.coins+=PRICE

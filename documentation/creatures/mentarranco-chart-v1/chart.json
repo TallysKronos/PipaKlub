@@ -1,0 +1,74 @@
+{
+  "family_id": "mentarranco",
+  "family_name": "Mentarranco",
+  "scope": "Bisões de Açúcar. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "mentisco",
+      "name": "Mentisco",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/mentarranco.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "mentarranco",
+      "name": "Mentarranco",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/concept-v1/mentarranco.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": ""
+    },
+    {
+      "id": "riscamenta",
+      "name": "Riscamenta",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/mentarranco.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "mentarranco-vendaval",
+      "name": "Mentarranco Vendaval",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/adultos-v2/mentarranco.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Elmo de bala de menta e vela de frenagem em flecha."
+    }
+  ],
+  "edges": [
+    {
+      "from": "mentisco",
+      "to": "mentarranco",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "mentarranco",
+      "to": "riscamenta",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "riscamenta",
+      "to": "mentarranco-vendaval",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

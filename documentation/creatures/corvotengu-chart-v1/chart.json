@@ -1,0 +1,74 @@
+{
+  "family_id": "corvotengu",
+  "family_name": "Corvotengu",
+  "scope": "Onis do Vento Bravio. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "penabroto",
+      "name": "Penabroto",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "bicapena",
+      "name": "Bicapena",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "lequeiro",
+      "name": "Lequeiro",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/corvotengu.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Posição 3 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "corvotengu",
+      "name": "Corvotengu",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/onis-do-vento-bravio/concept-v3/corvotengu.png",
+      "brief": "../../../art/creatures/onis-do-vento-bravio/pre-evolucoes-v1/LINHAGENS.md",
+      "story": "Urubu de pescoço curvo e cauda em leque."
+    }
+  ],
+  "edges": [
+    {
+      "from": "penabroto",
+      "to": "bicapena",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "bicapena",
+      "to": "lequeiro",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "lequeiro",
+      "to": "corvotengu",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

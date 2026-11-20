@@ -1,0 +1,6 @@
+# Conferência visual — entrega de concept
+
+Uma cabeça fechada em elmo de cunha: fenda verde estreita, sobrancelha estrutural creme e duas placas de incisivo embutidas na viseira. Orelhas reinterpretadas em aletas assimétricas, uma fendida/verde e outra recuada/creme. Mantém Riscaz sem rosto de rato infantil exposto. Primeira passagem conservava demais olho orgânico/incisivos pendurados e foi refinada; arquivo preservado como histórico.
+Dois braços com mãos seguram a balista; duas pernas/pés afastados sustentam postura de guarda. Armadura esguia com juntas livres, pequenas ombreiras e vela lateral única. Rabiola ligada ao corpo com fitas desiguais, toda dentro da margem. Paleta carvão/creme/verde, veneno sugerido pela munição verde ácida. Sombrio não foi convertido em possessão ou vilania canônica.
+Balista tem trilho, braços, feixes de torção, linha e munição visíveis. Anatomia/encaixes da arma são fantasia de concept: a trajetória da corda e a raiz dos braços precisam de vistas complementares antes de rig ou animação. Não certifica engenharia operacional. Sem alteração de jogo ou do Riscaz aprovado.
+Diferenças fora do elmo na edição dirigida não foram certificadas pixel a pixel; composição e corpo foram comparados visualmente. Concept proposto para avaliação do autor.

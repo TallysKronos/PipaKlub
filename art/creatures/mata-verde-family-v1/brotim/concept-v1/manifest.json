@@ -1,0 +1,29 @@
+{
+  "id": "brotim",
+  "tool": "image_gen.imagegen",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-8c3a3f60-5b5e-4f8a-b74e-f6cb6157e063.png",
+  "sha256": "99197fd676d80f2924c0e09353082c63e0da1b0ecf1bd5acd019b3d7ec08b3b2",
+  "width": 1254,
+  "height": 1254,
+  "mode": "RGB",
+  "alpha": false,
+  "references": [
+    {
+      "path": "art/soulgen/keys/mata-verde/color-rig-v2/concept.png",
+      "role": "Identidade existente"
+    },
+    {
+      "path": "art/creatures/rabbito-family-v1/arauto-da-tempestade/concept-v2/concept.png",
+      "role": "Acabamento aprovado"
+    }
+  ],
+  "prompt": "prompt.txt",
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "implementation": "não integrado",
+  "technical_pixel_art": false,
+  "correction": {
+    "input": "tentativa-01.png",
+    "prompt": "prompt-correcao.txt"
+  }
+}

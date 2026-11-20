@@ -1,0 +1,3 @@
+# Conferência
+
+Corpo único inflado de pipa, sem pernas, duas abas de asa, crista pequena e uma flâmula. Imagem gerada e inspecionada antes da etapa seguinte. Crista próxima da borda superior, sem corte visível; diagrama técnico precisará ampliar margem. A função descrita ainda é proposta: não foi validada em ação. Leves transições de sombra residuais; concept mangá, não pixel art de grade. Fundo branco opaco, não recortado, sem rig, animação ou integração. Em avaliação do autor.

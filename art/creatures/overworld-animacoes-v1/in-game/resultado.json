@@ -1,0 +1,150 @@
+{
+  "checks": 3688,
+  "failures": [],
+  "method": "Production walk_to and physics follower, graphical captures when available. Synthetic canopy corner checks the tall/wide footprint.",
+  "models": [
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 41.0,
+      "id": "farpim",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 55.0,
+      "id": "papisco",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 70.0,
+      "id": "azulfazo",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 84.0,
+      "id": "capibaluarte",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 84.0,
+      "id": "trovareta",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 84.0,
+      "id": "alvacordo",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 70.0,
+      "id": "aurorastro-jovem",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 70.0,
+      "id": "anaconda-young",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 84.0,
+      "id": "auriflama",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 84.0,
+      "id": "marulume",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    },
+    {
+      "directions": [
+        "ne",
+        "sw"
+      ],
+      "distance": 9.98998260498047,
+      "frames": 14,
+      "height": 70.0,
+      "id": "viuva-young",
+      "max_gap": 0.800003051757813,
+      "tree_min_alpha_on_route": 0.449999988079071,
+      "upper_body_occlusion": true
+    }
+  ]
+}

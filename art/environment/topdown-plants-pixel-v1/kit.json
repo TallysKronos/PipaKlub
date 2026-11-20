@@ -1,0 +1,211 @@
+{
+  "version": 1,
+  "status": "visual-pilot-for-review",
+  "target": "Godot top-down",
+  "cellSize": [
+    64,
+    64
+  ],
+  "atlas": "atlas-64.png",
+  "atlasSize": [
+    192,
+    128
+  ],
+  "paletteBudget": 24,
+  "items": [
+    {
+      "id": "capim-rabiola-a",
+      "file": "capim-rabiola-a.png",
+      "sourceFrame": 1,
+      "atlasRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 64
+      },
+      "rootAnchor": [
+        32,
+        52
+      ],
+      "bboxExclusive": [
+        19,
+        29,
+        49,
+        53
+      ],
+      "occupiedSize": [
+        30,
+        24
+      ],
+      "opaqueColors": 11,
+      "opaquePixels": 384,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "collision": "not-authored"
+    },
+    {
+      "id": "arbusto-folha-pipa-a",
+      "file": "arbusto-folha-pipa-a.png",
+      "sourceFrame": 2,
+      "atlasRegion": {
+        "x": 64,
+        "y": 0,
+        "width": 64,
+        "height": 64
+      },
+      "rootAnchor": [
+        32,
+        52
+      ],
+      "bboxExclusive": [
+        11,
+        21,
+        53,
+        53
+      ],
+      "occupiedSize": [
+        42,
+        32
+      ],
+      "opaqueColors": 14,
+      "opaquePixels": 793,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "collision": "not-authored"
+    },
+    {
+      "id": "bromelia-do-vento-a",
+      "file": "bromelia-do-vento-a.png",
+      "sourceFrame": 3,
+      "atlasRegion": {
+        "x": 128,
+        "y": 0,
+        "width": 64,
+        "height": 64
+      },
+      "rootAnchor": [
+        32,
+        52
+      ],
+      "bboxExclusive": [
+        11,
+        18,
+        55,
+        56
+      ],
+      "occupiedSize": [
+        44,
+        38
+      ],
+      "opaqueColors": 20,
+      "opaquePixels": 913,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "collision": "not-authored"
+    },
+    {
+      "id": "capim-rabiola-b",
+      "file": "capim-rabiola-b.png",
+      "sourceFrame": 4,
+      "atlasRegion": {
+        "x": 0,
+        "y": 64,
+        "width": 64,
+        "height": 64
+      },
+      "rootAnchor": [
+        32,
+        52
+      ],
+      "bboxExclusive": [
+        11,
+        23,
+        55,
+        53
+      ],
+      "occupiedSize": [
+        44,
+        30
+      ],
+      "opaqueColors": 15,
+      "opaquePixels": 648,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "collision": "not-authored"
+    },
+    {
+      "id": "arbusto-folha-pipa-b",
+      "file": "arbusto-folha-pipa-b.png",
+      "sourceFrame": 5,
+      "atlasRegion": {
+        "x": 64,
+        "y": 64,
+        "width": 64,
+        "height": 64
+      },
+      "rootAnchor": [
+        32,
+        52
+      ],
+      "bboxExclusive": [
+        3,
+        14,
+        58,
+        53
+      ],
+      "occupiedSize": [
+        55,
+        39
+      ],
+      "opaqueColors": 18,
+      "opaquePixels": 1373,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "collision": "not-authored"
+    },
+    {
+      "id": "bromelia-do-vento-b",
+      "file": "bromelia-do-vento-b.png",
+      "sourceFrame": 6,
+      "atlasRegion": {
+        "x": 128,
+        "y": 64,
+        "width": 64,
+        "height": 64
+      },
+      "rootAnchor": [
+        32,
+        52
+      ],
+      "bboxExclusive": [
+        4,
+        14,
+        58,
+        56
+      ],
+      "occupiedSize": [
+        54,
+        42
+      ],
+      "opaqueColors": 20,
+      "opaquePixels": 1339,
+      "alphaValues": [
+        0,
+        255
+      ],
+      "collision": "not-authored"
+    }
+  ],
+  "inGameValidated": false,
+  "seamlessFloorTiles": false
+}

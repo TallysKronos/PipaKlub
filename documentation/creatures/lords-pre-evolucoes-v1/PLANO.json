@@ -1,0 +1,303 @@
+{
+  "date": "2026-11-07",
+  "scope": "24 pré-evoluções dos oito Lords, três por família; nomes dos estágios descritivos até escolha do autor.",
+  "common": "Create ONE original pre-evolution SOULMONSTER, clean 2D MANGA concept on plain WHITE with ample margins, full uncropped creature and entire single rooted soul-rabiola. Attached OWN ADULT is ONLY family identity/material reference; do NOT redraw the adult smaller. Strong change in BODY ARCHITECTURE and maturity. 45% living expressive creature /45% functional living kite /10% crisp dark contour with selective stepped edges. Broad taut paper body planes, few clear folds and structural bamboo/nodes, NOT natural flesh/fur, not origami tessellation. Simple material palette inherited selectively, one base plus one HARD shadow and restrained hard highlight; no gradients, glossy render, realistic texture, gold trim everywhere, extra crystals, multicolor borders, text, logo or scenery. Eyes not orange. Cute early stages can be gentle but keep thin expressive manga linework, no rubbery western cartoon or glossy toy eyes. No adult helmet or full knight armor. Exactly ONE continuous soul-rabiola with cord and terminal; anatomical tail continues into that piece, no duplicate tails. ONE creature only, not a sheet of several views/stages. Stage brief: ",
+  "families": [
+    {
+      "id": "gravurso",
+      "story": "Aprende primeiro a apoiar o próprio corpo, depois uma carga e enfim a sustentar a passagem de outros.",
+      "stages": [
+        [
+          "Folding suspended POUCH-like baby, mostly one ivory folded square head-body, TWO tiny slate rounded ear folds, two blue almond eyes, short dark muzzle mark, NO developed legs/arms. TWO short umber lift-tabs at sides like tiny ears/handles, one broad bottom paper flap like supporting cradle. One thin umber soul cord with small square ivory tag. Very simple 5 large planes total, tender curious expression, no armor/hooks.",
+          "Apoiar-se"
+        ],
+        [
+          "CHILD quadruped BEAR CUB, compact ivory cub torso, FOUR stubby paws with slightly larger forepaws, slate short muzzle/throat patch, rounded ear folds, bright small blue eyes. ONE simple bronze open wrist cuff on one forepaw, NO yoke/wings/cape/armor elsewhere. One broad umber folded shoulder strap loose across back, stout single rabiola square terminal. Learns to catch a small falling fold with forepaw raised; no object or second creature, fourlimbs roots clear.",
+          "Segurar"
+        ],
+        [
+          "YOUNG quadruped powerful PAPER BEAR, long sturdy forelimbs and short hindlimbs, FOUR paws, low broad shoulders, medium bear muzzle SMALL blue eyes and angular cheek folds. Ivory body/slate throat, TWO bronze simple wrist braces each ONE blunt load hook; ONE narrow umber back tension strap between shoulders, no adult shoulder yoke or huge rear sails. One rooted thick umber rabiola square terminal. Shoulders lowered, both forepaws bearing load, distinguish from adult upright by horizontal stance and absent mantle.",
+          "Sustentar uma carga"
+        ]
+      ],
+      "adult": {
+        "id": "gravurso",
+        "name": "Gravurso",
+        "species": "Urso-pedra",
+        "title": "Lorde do Último Apoio",
+        "verb": "Amparar",
+        "lore": "Sustenta passagens que estão cedendo até que o último companheiro atravesse. Só vence quando consegue soltar o peso sem esmagar aquilo que protege.",
+        "version": 1,
+        "art": "../../../art/creatures/gravurso/concept-v1/concept.png",
+        "brief": "../../../art/creatures/gravurso/concept-v1/brief.md",
+        "review": "../../../art/creatures/gravurso/concept-v1/revisao.md",
+        "materials": [
+          "Marfim / ardósia",
+          "Bronze fosco",
+          "Umber",
+          "Azul gelo"
+        ]
+      },
+      "reference": "C:/Users/user/produto/pipa-club-integracao-atualizada/art/creatures/gravurso/concept-v1/concept.png"
+    },
+    {
+      "id": "avelince",
+      "story": "Deixa de ser levado pelo vento e aprende a usar a mudança de direção para proteger uma rota.",
+      "stages": [
+        [
+          "BABY as a tiny broad triangular pale-gray paper HEAD-SAIL with TWO large plum/ivory triangular folded ear membranes and two small violet eyes, short feline muzzle mark. NO body legs or armor. One thin plum rabiola ending forked ivory flag. TWO ears are its little balancing sails, one tucked one open. Only a few broad folds; curious not fierce.",
+          "Equilibrar-se"
+        ],
+        [
+          "CHILD LYNX KITTEN quadruped, FOUR small wide paws, lightgray body and ivory angular cheeks, small violet almond eyes, short feline muzzle. Two triangular plum ear tips with one tiny ivory bamboo rib each; TWO small plum lateral fin folds at shoulder, not full mantle/wings. NO armor. Short anatomical bobtail continues into one plum cord with ivory forkflag. Slight sidestep playful concentration, nonhuman face, no generic housecat fur.",
+          "Desviar o passo"
+        ],
+        [
+          "YOUNG quadruped lean DEEP-CHEST LYNX with FOUR long sprung legs and FOUR clawfeet, angular short snout/violet eyes, lightgray living paper. ONE broad offset plum/ivory SAIL opens from shoulder to flank supported by two clear ribs, opposite side only narrow folded counterpart; smaller triangular ear sails. ONE near shoulder guard and two simple front cuffs plum, no full armor. Low lateral pivot, longer legs and simpler mantle than massive adult, one plum braid/fork terminal.",
+          "Guiar o giro"
+        ]
+      ],
+      "adult": {
+        "id": "avelince",
+        "name": "Avelince",
+        "species": "Lince de vela",
+        "title": "Lorde da Contracorrente",
+        "verb": "Desviar",
+        "lore": "Atravessa investidas com um desvio mínimo e devolve a força para o chão. Suas velas só funcionam quando o corpo aceita girar junto.",
+        "version": 1,
+        "art": "../../../art/creatures/avelince/concept-v1/concept.png",
+        "brief": "../../../art/creatures/avelince/concept-v1/brief.md",
+        "review": "../../../art/creatures/avelince/concept-v1/revisao.md",
+        "materials": [
+          "Cinza claro",
+          "Ameixa",
+          "Marfim",
+          "Violeta"
+        ]
+      },
+      "reference": "C:/Users/user/produto/pipa-club-integracao-atualizada/art/creatures/avelince/concept-v1/concept.png"
+    },
+    {
+      "id": "torvargo",
+      "story": "Troca o impulso de empurrar tudo pela capacidade de abrir uma passagem sem destruí-la.",
+      "stages": [
+        [
+          "BABY round folded CHARCOAL paper bud-head, two small folded triangular pig ears, ivory lower face and belly flap, short blunt CORAL nose-patch, small mint eyes, NO tusks arms legs or armor. ONE tiny charcoal soul cord coral bluntchevron flag. Top one stiff folded ridge pointing forward, look curious snuffling, 5-6 broad planes only.",
+          "Farejar"
+        ],
+        [
+          "CHILD quadruped young PAPER BOAR, FOUR short legs and FOUR split hooves, charcoal body quiet ivory belly/throat, flat dark snout, small mint eyes, TWO tiny sideways ivory tusk buds, angular ear folds. ONE blunt coral forehead/shoulder ridge of tensioned paper, not metal armor. One charcoal braid coral flag. Braced curious shove pose, no humanoid abs/fists, broad large surfaces.",
+          "Empurrar"
+        ],
+        [
+          "YOUNG biped BOAR beast, TWO stout legs split-hoof feet and TWO long heavy arms with clawed mitts, hunched small head mint eyes, short sideways tusks. Charcoal body ivory broad throat/belly, one compact CORAL shoulder crescent held by a single bamboo rib and ONE coral near wrist brace, other wrist bare. No adult huge back hunch or full pair of gauntlets, short shallow rear folds. Lean forward with open balancing hand, one rabiola coralflag.",
+          "Abrir caminho"
+        ]
+      ],
+      "adult": {
+        "id": "torvargo",
+        "name": "Torvargo",
+        "species": "Javali-aríete",
+        "title": "Lorde do Primeiro Impacto",
+        "verb": "Romper",
+        "lore": "Abre um caminho pela barreira, mas precisa reconhecer o que há atrás dela antes de avançar. A marca de um golpe certo é a passagem que permanece de pé.",
+        "version": 1,
+        "art": "../../../art/creatures/torvargo/concept-v1/concept.png",
+        "brief": "../../../art/creatures/torvargo/concept-v1/brief.md",
+        "review": "../../../art/creatures/torvargo/concept-v1/revisao.md",
+        "materials": [
+          "Carvão / marfim",
+          "Coral",
+          "Vermelho escuro",
+          "Menta"
+        ]
+      },
+      "reference": "C:/Users/user/produto/pipa-club-integracao-atualizada/art/creatures/torvargo/concept-v1/concept.png"
+    },
+    {
+      "id": "najarcal",
+      "story": "Aprende a desenhar limites deixando uma abertura para quem precisa sair.",
+      "stages": [
+        [
+          "BABY as a tiny SAND/ivory teardrop folded snake HEAD with ONE short curled tail-base, NO arms or legs, two small blue eyes, one TEAL crescent hood-flap around head like a half-open paper bell. Only 4-5 broad planes, gentle questioning tilt. Tail continues into ONE thin teal rabiola small ivory crescentflag, no second tail.",
+          "Recolher-se"
+        ],
+        [
+          "CHILD small upright COBRA, ONE grounded loose spiral tail and NO arms/legs. Sand ivory taut paper body, blue almond eyes, TWO broad pale hood panels with ONE teal rim strip and two bamboo ribs rooted neck. Upper body slightly tilted guarding a wide OPEN loop in coil, not closed ring, one teal soul cord at tailtip with crescentflag. No armor/hoops/muscle.",
+          "Guardar um vão"
+        ],
+        [
+          "YOUNG tall lean serpent with ONE coiled supporting tail and TWO slender arms NO legs, mature developing flattened snout blue eyes. THREE calm ivory hood panels with bamboo arc, exposed sand body/darkgray throat. Two narrow teal upperarm cuffs, ONLY ONE wrist has a small open C-hoop attached via knot; other hand open shaping escape gap. No adult large tail-anchor plates. One thin teal rabiola crescentflag.",
+          "Conter sem fechar"
+        ]
+      ],
+      "adult": {
+        "id": "najarcal",
+        "name": "Najarcal",
+        "species": "Naja de campânula",
+        "title": "Lorde do Círculo Aberto",
+        "verb": "Conter",
+        "lore": "Prende a ameaça num círculo que sempre conserva uma saída. Se fechar a última abertura, aprisiona também quem veio salvar.",
+        "version": 1,
+        "art": "../../../art/creatures/najarcal/concept-v1/concept.png",
+        "brief": "../../../art/creatures/najarcal/concept-v1/brief.md",
+        "review": "../../../art/creatures/najarcal/concept-v1/revisao.md",
+        "materials": [
+          "Areia / marfim",
+          "Petróleo",
+          "Cinza",
+          "Azul"
+        ]
+      },
+      "reference": "C:/Users/user/produto/pipa-club-integracao-atualizada/art/creatures/najarcal/concept-v1/concept.png"
+    },
+    {
+      "id": "raptorio",
+      "story": "Aprende a prender uma linha, distribuir a tensão e libertá-la sem ferir quem está preso.",
+      "stages": [
+        [
+          "BABY as one small IVORY ACORN-shaped folded paper head-body, TWO tiny green OAK-LOBED wingflaps, small dark triangular beak and gentle MINT almond eyes. NO feet/hands/armor. Walnut cap-like collar fold NOT realistic acorn texture. ONE thin brown soul cord ends ONE tiny oakleaf flag, one pale mistletoe berry knot at cordroot. Very simple clean 5planes, floating.",
+          "Prender um fio"
+        ],
+        [
+          "CHILD small HAWK fledgling paper creature, TWO short wing-arms with one simple claw each and TWO little three-toed bird feet, ivory chest/head and mint eyes/darkcompact beak. EACH wing one broad GREEN OAK LEAF with a single ivory bamboo support; neck two paired oval mistletoe leaves/one cream berry knot. No wrist armor. One brown braid oakleaf terminal. Stands with one leafwing lifted, earnest expression, 4limbs only.",
+          "Distribuir tensão"
+        ],
+        [
+          "YOUNG upright lean hawk beast, TWO wing-arms ending simple two-prong catching claws, TWO long reversejointed legs THREE toes each. Small ivory head mint eyes, green collar TWO oakleafplanes; wings TWO lobed green paper vanes each with ivory ribs, brown localized fork wrists one simple knee brace only. Mistletoe cream berry-knots at BOTH wrists, short pale tension line between near wrist prongs ONLY not across full wingspan. Single brown braided rabiola TWO oakleaf terminal. Active leaning intercept, no full adult huge mantle.",
+          "Interromper um golpe"
+        ]
+      ],
+      "adult": {
+        "id": "raptorio",
+        "name": "Raptório",
+        "species": "Ave de carvalho e visco",
+        "title": "Lorde do Instante Partido",
+        "verb": "Interromper",
+        "lore": "Ampara linhas partidas entre seus nós de visco, abrindo asas de carvalho para distribuir a tensão. Precisa soltar cada linha antes que o abrigo vire prisão.",
+        "version": 2,
+        "art": "../../../art/creatures/raptorio/concept-v2/concept.png",
+        "brief": "../../../art/creatures/raptorio/concept-v2/brief.md",
+        "review": "../../../art/creatures/raptorio/concept-v2/revisao.md",
+        "materials": [
+          "Marfim",
+          "Nogueira",
+          "Verde de carvalho",
+          "Verde menta"
+        ]
+      },
+      "reference": "C:/Users/user/produto/pipa-club-integracao-atualizada/art/creatures/raptorio/concept-v2/concept.png"
+    },
+    {
+      "id": "cervoraculo",
+      "story": "Aprende a distinguir um sinal, comparar duas rotas e assumir a escolha de uma delas.",
+      "stages": [
+        [
+          "BABY as a small ivory folded KITE-HEAD with TWO wide darkgreen pointed deer-ear flaps, small gentle violet actual eyes, tiny deer muzzle, NO legs/antlers/armor. ONE small closed-eye-shaped charcoal mark in top forehead fold (symbol, not third biologicaleye). One thin forestgreen soulcord forkedivoryflag. Only a few clear planes, listening tilt.",
+          "Perceber um sinal"
+        ],
+        [
+          "CHILD quadruped FAWN livingpaper, FOUR thin but sturdy legs FOUR tiny split hooves, ivory body/angular deer snout violet actual eyes. TWO short bamboo antler branches each carrying ONE small ivory triangle sail with ONE black/violet eye motif, TOTAL TWO oracle eye-sails. No armor except one forestgreen collar fold. One green cord ivoryfork terminal. Long ears, contemplative upright gait, not scary/real fur.",
+          "Comparar duas rotas"
+        ],
+        [
+          "YOUNG quadruped STAG, FOUR grounded longlegs FOUR split hooves, ivory deepchest/longneck, narrow violet actual eyes and exposed adult-developing deer muzzle. TWO curved bamboo antler arcs each carrying TWO broad ivory paper eye-sails (four eye motifs TOTAL), a few green tension cords rooted ONE simple forestgreen shoulder yoke, no legarmor and no hanging plumbbob. Medium antler span much less adult, forehead quiet, one green braid forkflag. Listening head tilt.",
+          "Escolher uma passagem"
+        ]
+      ],
+      "adult": {
+        "id": "cervoraculo",
+        "name": "Cervoráculo",
+        "species": "Cervo de arco",
+        "title": "Lorde da Rota Restante",
+        "verb": "Orientar",
+        "lore": "Seis olhos nas velas dos chifres observam rotas possíveis. Ele sustenta apenas uma travessia por vez: enxergar alternativas não permite salvar todos os caminhos.",
+        "version": 2,
+        "art": "../../../art/creatures/cervoraculo/concept-v2/concept.png",
+        "brief": "../../../art/creatures/cervoraculo/concept-v2/brief.md",
+        "review": "../../../art/creatures/cervoraculo/concept-v2/revisao.md",
+        "materials": [
+          "Marfim / cinza",
+          "Verde floresta",
+          "Varetas claras",
+          "Violeta"
+        ]
+      },
+      "reference": "C:/Users/user/produto/pipa-club-integracao-atualizada/art/creatures/cervoraculo/concept-v2/concept.png"
+    },
+    {
+      "id": "cascoronte",
+      "story": "Começa protegendo a si mesmo, depois pequenos objetos e enfim aprende a levar alguém sem perder o equilíbrio.",
+      "stages": [
+        [
+          "BABY small IVORY folded turtle HEAD merged into ONE simple BURGUNDY rooflike shell fold, TWO tiny flipperflaps only no mature legs, gentle BLUE almond eyes. Shell like a paper envelope with one broad closing lid NOT ridges/scales. ONE tiny charcoal soulcord burgundy chevronflag. Round but angular manga livingpaper, 5 large planes, no door/window/stairs/passenger/armor.",
+          "Fechar o abrigo"
+        ],
+        [
+          "CHILD quadruped TURTLE paper beast FOUR shortlegs FOUR three-toed feet, ivory neck/face blue eyes, ONE broad burgundy folded shell dome, SMALL near-side hinged storage flap revealing one ivory pebble-sized rolled-paper parcel, no passenger or chair/house. Structural ivory bamboo edge ONLY around flap. No legarmor. Single charcoal braid burgundy roofchevron terminal. Compact alert walkingpose.",
+          "Guardar algo frágil"
+        ],
+        [
+          "YOUNG quadruped broad TORTOISE carrier FOUR heavy legs FOUR threeclaw feet, exposed ivory paper neck/blue-eyed blunt head, TWO broad burgundy roofplates. Nearside shell has ONE medium open pouch-like compartment ABOVE continuous abdomen, visible flat ivory floor and ONE neatly rolled blanket secured in it. No human/passenger/bench/window or staircase: this is a supply shelter not yet adult cabin. Hinged opening held by ONE bamboo stay, ONE shallow fold-out loading lip. ONE charcoal braid roofchevron terminal, noadult3plate roof orforelegcuffs.",
+          "Levar uma carga"
+        ]
+      ],
+      "adult": {
+        "id": "cascoronte",
+        "name": "Cascoronte",
+        "species": "Quelônio de bastião",
+        "title": "Lorde do Abrigo Móvel",
+        "verb": "Transportar",
+        "lore": "Leva passageiros dentro da própria carapaça e conserva o passo estável enquanto atravessam o perigo. Precisa recolher a escada e fechar o abrigo antes de retomar a marcha.",
+        "version": 2,
+        "art": "../../../art/creatures/cascoronte/concept-v2/concept.png",
+        "brief": "../../../art/creatures/cascoronte/concept-v2/brief.md",
+        "review": "../../../art/creatures/cascoronte/concept-v2/revisao.md",
+        "materials": [
+          "Marfim / cinza quente",
+          "Bordô",
+          "Grafite",
+          "Azul"
+        ]
+      },
+      "reference": "C:/Users/user/produto/pipa-club-integracao-atualizada/art/creatures/cascoronte/concept-v2/concept.png"
+    },
+    {
+      "id": "melicodia",
+      "story": "Aprende a recolher sinais, preservá-los em mel e depois organizar lembranças que podem ser compartilhadas.",
+      "stages": [
+        [
+          "BABY tiny HEXAGONAL wax-ivory folded paper grub HEAD-POD, two small teal almond eyes and tiny mandible notch, NO articulated legs or wings/arms. TWO short folded antenna buds top, one AMBER honeycell patch on forehead. ONE thin charcoal soulcord ends TINY amber diamond kite with miniature bamboo cross (stinger-to-be). Only 5-6 broad shapes, tender curious not mechanical cubetoy, one little lowerbody fold.",
+          "Receber um sinal"
+        ],
+        [
+          "CHILD BEE livingpaper, compact graphite/cream smallthorax and rounded amberabdomen, SMALL nonhuman head TEAL almond compoundeyes and two bamboo short antennae. SIX short insect legs clear: two little working claws FOUR supportfeet; TWO small ivory paper wings one pair with one large hexcell motif each, NO extra arms. One broad wax saddle cell stores ONE tiny honey droplet (notcube). SINGLE short charcoal cord from abdomen with small amber KITE STINGER/ivorycross/nib, no othertail. No CPUsinkfins/gauntlets/humanoidhead, gentle industrious pose.",
+          "Preservar uma gota"
+        ],
+        [
+          "YOUNG BEE data-scribe, SIX articulated insect limbs (TWO workingclaws FOUR supports), FOUR ivory PAPER wings in two clearpairs, graphite tautpaper body/cream jointfolds, SMALL mature TEAL-eyed mandibled head TWO ivory bamboo antennae. Abdomen compact AMBER hexcell with TWO short WAX coolingcomb ribs and ONE open honeyport extruding ONE matte honey CUBE on thin strand. No adult3fins/3cubes/hugeprocessorbreastplate. ONE continuous rooted charcoal/wax rabiola ending medium AMBER diamond KITE STINGER with cross/nib; curleddownside fulltip visible. Poised sorting gesture.",
+          "Organizar uma lembrança"
+        ]
+      ],
+      "adult": {
+        "id": "melicodia",
+        "name": "Melicódia",
+        "species": "Abelha-colmeia processadora",
+        "title": "Lady dos Favos de Memória",
+        "verb": "Codificar",
+        "lore": "Transforma sinais recebidos em cubos de mel que podem ser transportados e compartilhados. Para preservar uma lembrança, precisa escolher quais ruídos deixará de guardar.",
+        "version": 1,
+        "art": "../../../art/creatures/melicodia/concept-v1/concept.png",
+        "brief": "../../../art/creatures/melicodia/concept-v1/brief.md",
+        "review": "../../../art/creatures/melicodia/concept-v1/revisao.md",
+        "materials": [
+          "Grafite",
+          "Cera marfim",
+          "Mel âmbar",
+          "Ciano"
+        ]
+      },
+      "reference": "C:/Users/user/produto/pipa-club-integracao-atualizada/art/creatures/melicodia/concept-v1/concept.png"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Brontela v3 — transição de maturidade
+
+Autor rejeitou a jovem esguia e pediu um meio-termo entre criança e adulta. Quadrúpede intermediário de ventre arredondado, pescoço de quatro grandes segmentos, três costelas e pequena cobertura dorsal em formação. Começa a sustentar um pequeno painel dorsal com as costelas; esse painel se amplia no abrigo adulto. Preservar ventre e gentileza da criança; alongar moderadamente pescoço/patas, reduzir proporcionalmente cabeça/olhos. Cobertura estreita e parcial, sem as grandes abas da adulta. Função volta a sustentar/proteger em aprendizado. Nomes e mecânicas propostos.

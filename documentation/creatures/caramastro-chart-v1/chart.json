@@ -1,0 +1,74 @@
+{
+  "family_id": "caramastro",
+  "family_name": "Caramastro",
+  "scope": "Bisões de Açúcar. Catálogo de conceitos.",
+  "nodes": [
+    {
+      "id": "caldaco",
+      "name": "Caldaço",
+      "kind": "stage",
+      "stage": 1,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 1 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "caramastro",
+      "name": "Caramastro",
+      "kind": "stage",
+      "stage": 2,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/concept-v1/caramastro.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": ""
+    },
+    {
+      "id": "saltavela",
+      "name": "Saltavela",
+      "kind": "stage",
+      "stage": 3,
+      "decision_status": "proposed",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Posição 2 da esquerda para a direita na prancha compartilhada."
+    },
+    {
+      "id": "caramastro-regente",
+      "name": "Caramastro Regente",
+      "kind": "stage",
+      "stage": 4,
+      "decision_status": "approved",
+      "production_status": "concept",
+      "art": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/caramastro.png",
+      "brief": "../../../art/creatures/bisoes-de-acucar/linhagens-v1/LINHAGENS.md",
+      "story": "Duas velas de caramelo apoiadas no peito. Posição 3 da esquerda para a direita na prancha compartilhada."
+    }
+  ],
+  "edges": [
+    {
+      "from": "caldaco",
+      "to": "caramastro",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "caramastro",
+      "to": "saltavela",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    },
+    {
+      "from": "saltavela",
+      "to": "caramastro-regente",
+      "kind": "reweaving",
+      "reason": "Progressão visual documentada na ficha da linhagem.",
+      "decision_status": "proposed"
+    }
+  ]
+}

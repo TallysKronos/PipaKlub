@@ -1,0 +1,19 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "exec-3c08faff-ea72-4544-ba17-78aa9507a87e.png",
+  "sha256": "d353b6cf861bba4c6d3ae65a936522d1e08a7904ea40aed093ff68b0e3e10ef0",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "mode": "RGB",
+  "alpha": false,
+  "prompt": "prompt.txt",
+  "own_reference_inputs": [
+    "lince-de-cerco/concept-v1/concept.png: identidade e acabamento"
+  ],
+  "external_inputs": [],
+  "decision_status": "proposed",
+  "production_status": "concept",
+  "integration_status": "not_integrated"
+}

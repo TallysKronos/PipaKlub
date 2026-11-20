@@ -34,7 +34,8 @@ func run() -> void:
 		walk(view,start,str(goals[goal])+" return")
 	var door:Dictionary={}
 	for event in view.interaction_events:
-		if event.type=="saida" and event.props.destino=="park-clearing":door=event
+		# The high passage (entrada_destino) is checked in parque_connections_checks.
+		if event.type=="saida" and event.props.destino=="park-clearing" and not event.props.has("entrada_destino"):door=event
 	check(not door.is_empty(),"B exit exists")
 	view.nearby=door;view.interact()
 	check(view.area_id=="clareira-do-papel" and view.player==Vector2(44.5,8.5),"C to B arrival")

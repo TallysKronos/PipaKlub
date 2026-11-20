@@ -65,10 +65,15 @@ func run()->void:
 	if is_instance_valid(app.room.retalho_resident):
 		var start:Vector2=app.room.retalho_point
 		var safe:=true
+		var strides := {}
 		for frame in 180:
 			app.room._process(1.0/60.0)
 			safe=safe and app.room._safe(app.room.retalho_point)
+			var sprite: Sprite2D = app.room.retalho_resident
+			if sprite.texture != null and sprite.texture.resource_path.ends_with("overworld-walk-eight.png"):
+				strides[floori(sprite.region_rect.position.y / 192.0)] = true
 		check(safe and start.distance_to(app.room.retalho_point)>12,"Retalho roams through walkable interior")
+		check(strides.size() == 2,"resident alternates both stride poses")
 		if DisplayServer.get_name()!="headless":
 			await RenderingServer.frame_post_draw
 			root.get_texture().get_image().save_png(ProjectSettings.globalize_path("res://../documentation/qa/heleana-confession-v1/retalho-em-casa.png"))
@@ -81,6 +86,14 @@ func run()->void:
 	for frame in 20:await process_frame
 	check(not is_instance_valid(app.get_node_or_null("HeleanaConfessionDialogue")),"accepted branch waits for interaction")
 	check(not is_instance_valid(app.room.retalho_resident) and app.room.retalho_follower,"Kael's Retalho uses the directional sheet as follower")
+	var follower: Sprite2D = app.room.companion
+	app.room._step_retalho_pose(follower, Vector2.ZERO, Vector2(30,0))
+	check(follower.texture != null and follower.texture.resource_path.ends_with("overworld-walk-eight.png"),"follower uses a stride while moving")
+	app.room._step_retalho_pose(follower, Vector2.ZERO, Vector2.ZERO)
+	check(follower.texture != null and follower.texture.resource_path.ends_with("overworld-idle-eight.png"),"follower returns to idle when stopped")
+	if DisplayServer.get_name()!="headless":
+		await RenderingServer.frame_post_draw
+		root.get_texture().get_image().save_png(ProjectSettings.globalize_path("res://../documentation/campaign/overworld-sprites/capturas/retalho-seguidora.png"))
 	app._world_interact("mother")
 	for step in 13:
 		for frame in 6:await process_frame
