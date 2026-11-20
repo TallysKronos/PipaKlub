@@ -21,6 +21,7 @@ var option_buttons:Array[Button]=[]
 var show_portraits:=true
 var reduced_motion:=false
 var allow_cancel:=true
+var backdrop_opacity:=.38
 var body:Label
 var box:PanelContainer
 var nameplate:PanelContainer
@@ -240,7 +241,7 @@ func _input(event:InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		if allow_cancel:_finish(cancel_button_text.is_empty())
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO,size),Color(Hud.BLACK,.38))
+	draw_rect(Rect2(Vector2.ZERO,size),Color(Hud.BLACK,backdrop_opacity))
 	if not is_instance_valid(box):return
 	if box.shouted and reaction_age<.25 and not reduced_motion:
 		for index in 12:

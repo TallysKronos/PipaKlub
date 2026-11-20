@@ -50,54 +50,10 @@ func _ready()->void:
 	water=polygon(data.navigation.water)
 	for p in data.navigation.raised:raised.append(polygon(p))
 	colliders=data.colliders
-	var terrain:=Sprite2D.new()
-	terrain.texture=Pixel.load_texture(KIT+data.terrain)
-	terrain.centered=false
-	var material:=ShaderMaterial.new()
-	material.shader=preload("res://shaders/overworld/mormaco_cel_water.gdshader")
-	material.set_shader_parameter("water_mask",Pixel.load_texture(KIT+"water-mask.png"))
-	terrain.material=material
-	add_child(terrain)
 	actors=Node2D.new()
 	actors.y_sort_enabled=true
 	add_child(actors)
-	for i in data.trees.size():
-		var tree:Dictionary=data.trees[i]
-		var root:=Node2D.new()
-		root.name="Tree%02d"%i
-		root.position=Vector2(tree.foot[0],tree.foot[1]).round()
-		actors.add_child(root)
-		var image:=Sprite2D.new()
-		image.texture=Pixel.load_texture(KIT+tree.file)
-		image.centered=false
-		image.position=Vector2(tree.origin[0],tree.origin[1])-root.position
-		var wind:=ShaderMaterial.new()
-		wind.shader=preload("res://shaders/overworld/mormaco_cel_canopy.gdshader")
-		wind.set_shader_parameter("phase",float(i)*1.79)
-		image.material=wind
-		root.add_child(image)
-	for prop:Dictionary in data.get("props",[]):
-		var root:=Node2D.new()
-		root.position=Vector2(prop.foot[0],prop.foot[1]).round()
-		actors.add_child(root)
-		var image:=Sprite2D.new()
-		image.texture=Pixel.load_texture(KIT+prop.file)
-		image.centered=false
-		image.position=Vector2(prop.origin[0],prop.origin[1])-root.position
-		root.add_child(image)
-	var waterfall:Dictionary=data.waterfall
-	var fall:=Sprite2D.new()
-	fall.texture=Pixel.load_texture(KIT+waterfall.file)
-	fall.centered=false
-	# Register the lip with the notch and the plunge pool with the lower water plane.
-	fall.position=Vector2(waterfall.origin[0]+38,waterfall.origin[1]-19)
-	fall.scale.y=1.13
-	var flow:=ShaderMaterial.new()
-	flow.shader=preload("res://shaders/overworld/mormaco_cel_fall.gdshader")
-	flow.set_shader_parameter("terrain",terrain.texture)
-	fall.material=flow
-	add_child(fall)
-	move_child(fall,1)
+	preload("res://scripts/overworld/mormaco_cel_layers.gd").build(actors,data,Vector2.ZERO)
 	boss=Sprite2D.new()
 	boss.texture=Pixel.load_texture("res://assets/campaign/mormaco-v1/submerged.png")
 	boss.region_enabled=true

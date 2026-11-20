@@ -4006,6 +4006,7 @@ func _request_marisol_row(id:String)->void:
 		if _result(result):park.play_row(session.snapshot().player.marisolRowTrip))
 
 func _request_mormaco(action:String)->void:
+	if flow_busy:return
 	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
 	var point:Vector2=park.player
 	if action=="mormacoSignals":
@@ -4015,7 +4016,7 @@ func _request_mormaco(action:String)->void:
 		_confirm_park("Pouso da margem","Descansar e recuperar linha e armação da equipe? Sem custo ou experiência.","Descansar",func():
 			if _result(story.rest(point)):park.refresh(session.snapshot().player))
 	elif session.snapshot().player.flags.get("mormacoEmboscada",false) and not session.snapshot().player.flags.get("mormacoTylerChegou",false):
-		_confirm_park("Kael","Mormaço recua para o poço. — Espera… tem alguém na margem!\n\nVoz entre as árvores: Agora! Lancem o Carretel Negro!","Olhar para o poço",func():_play_mormaco_ambush.call_deferred(point))
+		if story.near(story.C,story.AT,point):_play_mormaco_ambush(point)
 	elif story.freed(session.snapshot().player):_notice("Mormaço: Os outros Ventos ainda estão presos. Não confunda pressa com vento, pequeno pipeiro.")
 	elif story.won(session.snapshot().player):
 		_confirm_park("O primeiro Vento livre","Os cordões perdem a tensão. O brilho violeta desaparece dos olhos de Mormaço; a água volta a subir clara. Ele respira fundo e observa Kael.\n\nMormaço: Enfim… Achou que eu estava dormindo?\n\nKael: Os outros Ventos também estão presos?\n\nMormaço: Estão. Quando o vento voltar a chamar, siga. O próximo chama do alto da Serra.","Escutar o Vento",func():
@@ -4025,8 +4026,22 @@ func _request_mormaco(action:String)->void:
 		_confirm_park("Kael e Tyler","Tyler: Rai e eu vamos abrir espaço. Mire nos fios do Carretel, Kael!\n\nKael: Entendido. Vamos trazer Mormaço de volta.","Lutar juntos",func():
 			if _result(story.begin(point)):_show_saved.call_deferred())
 	else:
-		_confirm_park("Kael · Mormaço","Mormaço ergue a cabeça sobre a água e aceita o desafio.\n\nKael: Quero ver o que o primeiro Vento sabe fazer.","Enfrentar",func():
+		if not story.near(story.C,story.AT,point):return
+		var stage_view:Node2D=park
+		if is_instance_valid(stage_view.mormaco) and not stage_view.mormaco.revealed:
+			flow_busy=true
+			stage_view.path.clear()
+			stage_view.paused=true
+			stage_view.avatar.moving=false
+			stage_view.avatar.running=false
+			await stage_view.mormaco.play_reveal()
+			if not is_instance_valid(stage_view) or park!=stage_view:return
+			flow_busy=false
+		var dialog:=_confirm_park("Mormaço","Mormaço: Sentiu? Nem daqui eu consigo puxar o vento.\n\nKael: A rabiola nem tremeu.\n\nMormaço: Jogue sua linha na minha corrente. Quero saber se o vento falha com você também.","Enfrentar",func():
 			if _result(story.begin(point)):_show_saved.call_deferred())
+		dialog.backdrop_opacity=.15
+		dialog.tree_exiting.connect(func():
+			if is_instance_valid(stage_view) and park==stage_view and is_instance_valid(stage_view.mormaco):stage_view.mormaco.finish_reveal())
 
 func _finish_mormaco_ambush()->bool:
 	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
@@ -4051,10 +4066,12 @@ func _play_mormaco_ambush(point:Vector2)->void:
 	stage_view.paused=false
 	flow_busy=false
 	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
-	if not _result(story.finish_ambush(point)):return
+	if not _result(story.finish_ambush(point)):
+		stage_view.mormaco.reset_possession()
+		return
 	stage_view.refresh(session.snapshot().player)
-	stage_view.mormaco.staging=false
-	_confirm_park("Tyler","Tyler chega à margem com Rai. — Kael! Aquele carretel está controlando o Mormaço. Se você enfrentar os jatos sozinho, ele vai te encurralar.\n\nKael: Eu seguro a linha. Vocês atacam quando ele baixar a guarda.\n\nTyler: Vamos juntos, Rai!","Lutar juntos",func():
+	stage_view.mormaco.show_tyler()
+	_confirm_park("Tyler","Tyler: A capanga na plataforma amarrou os jatos. Rai tentou chegar antes do segundo nó.\n\nKael: Eu seguro a linha. Vocês desfazem os nós quando ele baixar a guarda.","Lutar juntos",func():
 		if _result(story.begin(point)):_show_saved.call_deferred())
 func _return_mormaco()->void:
 	_show_saved()

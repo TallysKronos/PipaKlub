@@ -1,9 +1,10 @@
 shader_type canvas_item;
 render_mode unshaded;
 uniform sampler2D terrain : source_color, filter_nearest, repeat_disable;
+uniform vec2 map_origin;
 varying vec2 map_pixel;
 void vertex() {
-    map_pixel=(MODEL_MATRIX*vec4(VERTEX,0.0,1.0)).xy;
+    map_pixel=(MODEL_MATRIX*vec4(VERTEX,0.0,1.0)).xy-map_origin;
 }
 void fragment() {
     vec4 base=texture(TEXTURE,UV);

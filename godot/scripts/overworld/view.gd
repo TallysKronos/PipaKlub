@@ -136,7 +136,12 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	actors = terrain
 	parque_surfaces = ParqueSurfaces.new(model,actors,kits[1],_paint_material) if art_preview and kits.size()>1 and kits[1].has("mangaWater") else null
 	var forest: bool = art_preview and (model.data.biome == "floresta" or bool(model.data.get("forest",{}).get("nativeProps",false)))
-	if forest:
+	if model.data.has("celLake"):
+		var layers=preload("res://scripts/overworld/mormaco_cel_layers.gd")
+		var kit:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(layers.KIT+"kit.json"))
+		var origin:Array=model.data.celLake.origin
+		layers.build(actors,kit,Vector2(origin[0],origin[1]))
+	elif forest:
 		Forest.build(self)
 	else:
 		_build_context()

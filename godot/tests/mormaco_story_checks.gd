@@ -4,6 +4,8 @@ const CP=preload("res://scripts/campaign/park_checkpoint.gd")
 const Model=preload("res://scripts/campaign/encounter_model.gd")
 const State=preload("res://scripts/campaign/state.gd")
 const Store=preload("res://scripts/campaign/save_store.gd")
+const Arena=preload("res://scripts/overworld/mormaco_arena.gd")
+const REVEAL_SHOTS="art/overworld/pantano-mormaco-v2/aparicao"
 var app:Control
 var checks:=0
 var failures:=0
@@ -14,6 +16,10 @@ func check(ok:bool,label:String)->void:
  if not ok:failures+=1;printerr("FAIL "+label)
 func frames()->void:
  for i in 8:await process_frame
+func wait_until(predicate:Callable)->void:
+ for tick in 420:
+  if predicate.call():return
+  await physics_frame
 func at(scene:String,point:Vector2)->void:check(app.session.checkpoint(CP.make(scene,point,CP.SPACE),app.session.snapshot().player).status=="ok","checkpoint "+scene)
 func world()->void:
  for i in 900:
@@ -30,6 +36,24 @@ func approve()->void:
    while d.page_index<d.pages.size()-1:d.next_page()
    d.get_ok_button().pressed.emit();await frames();return
  check(false,"dialogue exists")
+func walk_to_event(point:Vector2)->bool:
+ var view:Node2D=app.park
+ if not view.walk_to(point):return false
+ for tick in 6000:
+  view._physics_process(1.0/60.0)
+  if view.path.is_empty():return view.player.distance_to(point)<.25 and not view.nearby.is_empty()
+ return false
+func follow_exit(destination:String)->bool:
+ for e:Dictionary in app.park.interaction_events:
+  if e.props.get("destino")!=destination:continue
+  if not walk_to_event(Vector2(e.u+.5,e.v+.5)) or app.park.nearby.id!=e.id:return false
+  app.park.interact()
+  for tick in 900:
+   await process_frame
+   if is_instance_valid(app.park) and app.park.saved_checkpoint.scene==destination and not is_instance_valid(app.scene_loading):
+    app.park.set_physics_process(false)
+    return true
+ return false
 func shot(name:String,folder:="documentation/qa/mormaco-story-v1")->void:
  if DisplayServer.get_name()=="headless":return
  await frames();await RenderingServer.frame_post_draw
@@ -54,13 +78,46 @@ func run()->void:
  check(service.begin(Story.AT).status=="wrong_step","observe signs before battle")
  at(Story.A,Story.SIGNAL);await world();app._request_mormaco("mormacoSignals");await frames();await shot("01-vento-parou");await approve()
  check(app.session.snapshot().player.flags.get("mormacoVentosPararam",false),"actual intro persists")
- at(Story.C,Story.AT);await world()
- check(is_instance_valid(app.park.mormaco) and app.park.mormaco.sprite.texture.resource_path.ends_with("submerged.png"),"guardian starts normal in actual pond")
+ check(await follow_exit("kronasta-pantano-b"),"walk to the exit from A and enter B")
+ check(await follow_exit(Story.C),"walk through B and enter the lake")
+ check(walk_to_event(Story.AT) and app.park.nearby.props.get("acao")=="mormacoStory","walk to the guardian with the equipped partner")
+ check(is_instance_valid(app.park.mormaco) and not app.park.mormaco.sprite.visible,"guardian starts submerged in actual pond")
+ var cinematic:bool="--mormaco-cinematic" in OS.get_cmdline_user_args()
+ if cinematic:
+  app.preferences.reduced_motion=false
+  app.park.reduced_motion=false
  for point in [Story.AT,Story.REST]:check(not CP.model_for(Story.C).path_to(CP.spawn(Story.C),point).is_empty(),"walkable station")
  await shot("02-possuido")
  check(service.release(Story.AT).status=="wrong_step","no release without victory")
  check(service.begin(Story.AT+Vector2(5,0)).status=="wrong_step","remote battle rejected")
- app._request_mormaco("mormacoStory");await frames();await approve()
+ var guardian:Node2D=app.park.mormaco
+ check(app.park.actors.has_node("MargemDoMormaco") and app.park.model.data.has("celLake"),"the approved lakeside renders in the campaign")
+ check(not is_instance_valid(guardian.caster),"the caster is hidden before the ambush")
+ var camera:Camera2D=app.park.camera
+ var original_position:=camera.position
+ var original_zoom:=camera.zoom
+ app._request_mormaco("mormacoStory")
+ if cinematic:
+  await wait_until(func():return guardian.reveal_phase=="surface")
+  check(app.park.paused and not app.park.exploration_hud.get_parent().visible,"reveal holds movement and clears the HUD")
+  for i in 6:await physics_frame
+  await shot("01-superficie",REVEAL_SHOTS)
+  await wait_until(func():return guardian.reveal_phase=="geysers")
+  for i in 14:await physics_frame
+  await shot("02-geiseres",REVEAL_SHOTS)
+  for i in 30:await physics_frame
+  await shot("02b-onda-na-margem",REVEAL_SHOTS)
+ await wait_until(func():return guardian.revealed and not app.flow_busy)
+ check(guardian.sprite.visible and not camera.position.is_equal_approx(original_position) and app.park.paused,"guardian and framing stay through the dialogue")
+ if cinematic:await shot("03-desafio",REVEAL_SHOTS)
+ var offer:Node=app.get_tree().get_first_node_in_group("manga_dialogue")
+ check(is_instance_valid(offer),"the challenge offers a choice")
+ if is_instance_valid(offer):offer.get_cancel_button().pressed.emit()
+ await frames()
+ check(camera.position.is_equal_approx(original_position) and camera.zoom.is_equal_approx(original_zoom) and not app.park.paused and not guardian.shore_effect.visible,"declining restores the camera, input and shore")
+ app._request_mormaco("mormacoStory")
+ await frames()
+ await approve()
  for i in 900:
   await process_frame
   if is_instance_valid(app.battle):break
@@ -85,8 +142,13 @@ func run()->void:
   await process_frame
  await frames()
  check(app.session.snapshot().checkpoint.kind=="world" and not Story.won(app.session.snapshot().player),"threshold returns to the pond without boss victory")
- check(app.park.mormaco.sprite.texture.resource_path.ends_with("submerged.png"),"possession has not started on return")
- await approve()
+ if cinematic:
+  check(app.park.mormaco.sprite.texture.resource_path.ends_with("submerged.png"),"the ambush starts with the normal guardian")
+  await wait_until(func():return app.park.mormaco.effect.mode=="ambush" and app.park.mormaco.effect.progress>.51)
+  check(is_instance_valid(app.park.mormaco.rai) and app.park.mormaco.sprite.texture.resource_path.ends_with("submerged.png"),"Rai reaches the shore before the possession completes")
+  var ambush:Node2D=app.park.mormaco
+  check(is_instance_valid(ambush.caster) and ambush.caster.position.is_equal_approx(Arena.cast_foot(app.park.model)) and (ambush.effect.cast_origin+ambush.root.position).is_equal_approx(ambush.caster.position+Arena.HAND),"the caster stands on the deck and the thread starts at her reel")
+  await shot("04-carretel",REVEAL_SHOTS)
  for i in 360:
   if is_instance_valid(app.park.mormaco.tyler) and not app.flow_busy:break
   await physics_frame
