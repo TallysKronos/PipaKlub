@@ -1,0 +1,76 @@
+{
+  "camera": "orthographic",
+  "resolution": [
+    1672,
+    941
+  ],
+  "objects": 2108,
+  "landmarks": {
+    "stair_top": [
+      470,
+      285
+    ],
+    "waterfall": [
+      906,
+      204
+    ],
+    "boss": [
+      880,
+      469
+    ],
+    "pier": [
+      1219,
+      375
+    ]
+  },
+  "reference": "codex-clipboard-25c4813d-468c-4251-be51-eb04fb269d14.png",
+  "cliff_topology": [
+    {
+      "name": "Base · rocha externa",
+      "closed_solid": false,
+      "boundary_edges": 226,
+      "non_manifold_edges": 226,
+      "expected_boundary_edges": 226
+    },
+    {
+      "name": "Terraço oeste · maciço fechado",
+      "closed_solid": true,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "expected_boundary_edges": 0
+    },
+    {
+      "name": "Patamar intermediário · maciço fechado",
+      "closed_solid": true,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "expected_boundary_edges": 0
+    },
+    {
+      "name": "Cume de trás · maciço fechado",
+      "closed_solid": true,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "expected_boundary_edges": 0
+    },
+    {
+      "name": "Margem alta da cachoeira · maciço fechado",
+      "closed_solid": true,
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "expected_boundary_edges": 0
+    },
+    {
+      "name": "Margem baixa · ligação contínua",
+      "closed_solid": false,
+      "boundary_edges": 130,
+      "non_manifold_edges": 130,
+      "expected_boundary_edges": 130
+    }
+  ],
+  "refinement": {
+    "closed_rock_objects": 105,
+    "pier_landing_supported": true,
+    "art_match_status": "partial; not an identical reproduction"
+  }
+}

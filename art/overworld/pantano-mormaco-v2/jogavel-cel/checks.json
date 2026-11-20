@@ -1,0 +1,41 @@
+{
+  "boss_frame_changed": true,
+  "campaign_save_accessed": false,
+  "failures": [],
+  "kael_visible_height": 70,
+  "routes": [
+    {
+      "outbound": true,
+      "return": true,
+      "target": [
+        1068.0,
+        870.0
+      ]
+    },
+    {
+      "outbound": true,
+      "return": true,
+      "target": [
+        1614.0,
+        1202.0
+      ]
+    },
+    {
+      "outbound": true,
+      "return": true,
+      "target": [
+        2440.0,
+        1118.0
+      ]
+    },
+    {
+      "feet": [
+        204.0,
+        854.0009765625
+      ],
+      "occlusion_tree": "tree-02.png"
+    }
+  ],
+  "scope": "Margem inferior; patamares superiores e campanha não convertidos",
+  "tree_layers": 28
+}
