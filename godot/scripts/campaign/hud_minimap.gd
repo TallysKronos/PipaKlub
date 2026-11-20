@@ -4,6 +4,8 @@ const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 var subject: Node2D
 var floors: Array[PackedVector2Array] = []
+var last_position := Vector2.INF
+var heading := Vector2.UP
 var timer := 0.0
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -29,22 +31,28 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	if not is_instance_valid(subject): return
 	var center := size/2
-	var diamond := PackedVector2Array([Vector2(center.x, 5), Vector2(size.x - 5, center.y), Vector2(center.x, size.y-5), Vector2(5, center.y)])
-	draw_colored_polygon(diamond, Tokens.TINTA)
+	var field:=Rect2(Vector2(2,2),size-Vector2(4,4))
+	var boundary:=preload("res://scripts/campaign/exploration_frame.gd").outline(field,14)
+	draw_colored_polygon(boundary,Tokens.LOBBY_SHADOW)
 	var origin: Vector2 = subject.get("player") if subject.get("player")!=null else subject.actor
-	var projected := subject.has_method("project")
-	if projected: origin = subject.project(origin)
+	var projection:=Callable(subject,"minimap_point") if subject.has_method("minimap_point") else Callable(subject,"project")
+	if projection.is_valid(): origin = projection.call(origin)
+	if last_position.is_finite():
+		var travel:=origin-last_position
+		if travel.length_squared()>.04:heading=travel.normalized()
+	last_position=origin
 	for floor_polygon in floors:
 		var local := PackedVector2Array()
 		for point in floor_polygon:
-			var position: Vector2 = subject.project(point) if projected else point
+			var position: Vector2 = projection.call(point) if projection.is_valid() else point
 			local.append(center + (position - origin) * .17)
-		for clipped in Geometry2D.intersect_polygons(local, diamond):
+		for clipped in Geometry2D.intersect_polygons(local, boundary):
 			# Clipping a floor at the diamond's corner can leave a sliver that cannot be drawn.
 			if Geometry2D.triangulate_polygon(clipped).is_empty(): continue
-			draw_colored_polygon(clipped, Tokens.PAPEL_2)
-	var outline := diamond.duplicate()
-	outline.append(diamond[0])
-	draw_polyline(outline, Hud.PAPER, 3, true)
-	draw_colored_polygon(PackedVector2Array([center + Vector2(0, -9), center + Vector2(7, 7), center + Vector2(0, 3), center + Vector2(-7, 7)]), Hud.PAPER)
-	draw_colored_polygon(PackedVector2Array([Vector2(center.x,7),Vector2(center.x-6,19),Vector2(center.x+6,19)]),Hud.CORAL)
+			draw_colored_polygon(clipped, Tokens.LOBBY_INSET_EDGE)
+	boundary.append(boundary[0])
+	draw_polyline(boundary,Tokens.LOBBY_STRIP_LINE,2,true)
+	draw_circle(center,9,Tokens.LOBBY_SHADOW,true,-1,true)
+	var side:=heading.orthogonal()
+	draw_colored_polygon(PackedVector2Array([center+heading*8,center-heading*5+side*5,center-heading*2,center-heading*5-side*5]),Tokens.CEU)
+	draw_line(Vector2(center.x-5,3),Vector2(center.x+5,3),Tokens.PAPEL,2,true)

@@ -2,6 +2,8 @@ extends Control
 ## One quiet, discovery-safe overlay for all campaign exploration scenes.
 signal chosen(action:String)
 const Hud=preload("res://scripts/campaign/hud.gd")
+const Frame=preload("res://scripts/campaign/exploration_frame.gd")
+const Tokens=preload("res://scripts/campaign/ui_tokens.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
 const Controls=preload("res://scripts/campaign/controls.gd")
 const Locomotion = preload("res://scripts/campaign/locomotion.gd")
@@ -36,8 +38,8 @@ var _objective_text:=""
 var _prompt_text:=""
 var _portrait_id:=""
 var _sample:=0.0
-func plate(parent:Node,accent:Color=Hud.MUTED) -> PanelContainer:
-	var panel=preload("res://scripts/campaign/hud_result_plate.gd").new()
+func plate(parent:Node,accent:Color=Hud.CYAN) -> PanelContainer:
+	var panel=Frame.new()
 	panel.accent=accent
 	panel.mouse_filter=MOUSE_FILTER_IGNORE
 	parent.add_child(panel)
@@ -57,10 +59,10 @@ func _ready() -> void:
 	area_panel=plate(self)
 	area=label(area_panel,24)
 	area.text=area_name
-	area.add_theme_font_override("font",Hud.display())
+	area.add_theme_font_override("font",Hud.font(true))
 	area_panel.modulate.a=0
 	area_panel.create_tween().tween_property(area_panel,"modulate:a",1,.14)
-	objective_panel=plate(self,Hud.CORAL)
+	objective_panel=plate(self,Hud.GOLD)
 	objective=label(objective_panel)
 	objective_panel.hide()
 	partner_panel=Control.new()
@@ -70,6 +72,12 @@ func _ready() -> void:
 	coins=label(self)
 	coins.autowrap_mode=TextServer.AUTOWRAP_OFF
 	coins.theme_type_variation="RecorteGoldText"
+	var coin_style:=StyleBoxFlat.new()
+	coin_style.bg_color=Tokens.LOBBY_TILE
+	coin_style.set_corner_radius_all(4)
+	coin_style.set_content_margin(SIDE_LEFT,8)
+	coin_style.set_content_margin(SIDE_RIGHT,8)
+	coins.add_theme_stylebox_override("normal",coin_style)
 	prompt_panel=plate(self,Hud.CYAN)
 	var row:=HBoxContainer.new()
 	row.mouse_filter=MOUSE_FILTER_IGNORE
@@ -90,7 +98,8 @@ func _ready() -> void:
 		button.text=option[0]
 		Hud.navigation_button(button,true,option[2])
 		button.add_theme_font_size_override("font_size",16)
-		button.custom_minimum_size=Vector2(144,48)
+		Frame.action(button)
+		button.custom_minimum_size=Vector2(84,42)
 		button.pressed.connect(func():chosen.emit(option[1]))
 		tools.add_child(button)
 	resized.connect(_layout)
@@ -100,12 +109,14 @@ func _ready() -> void:
 	run_button.focus_mode=Control.FOCUS_NONE
 	run_button.custom_minimum_size=Vector2(184,44)
 	Hud.navigation_button(run_button,true)
+	Frame.action(run_button)
 	run_button.tooltip_text="Segure Shift para correr ou clique para alternar. No controle: L3."
 	run_button.pressed.connect(func():
 		if is_instance_valid(subject) and subject.has_method("toggle_run"):subject.toggle_run())
 	add_child(run_button)
 	mount_button=Button.new();mount_button.name="MountToggle";mount_button.focus_mode=Control.FOCUS_NONE
 	mount_button.custom_minimum_size=Vector2(184,44);Hud.navigation_button(mount_button,true)
+	Frame.action(mount_button)
 	mount_button.tooltip_text="Apito de Elo · B no teclado / direcional para cima no controle."
 	mount_button.pressed.connect(func():
 		if is_instance_valid(subject) and subject.has_method("toggle_mount"):subject.toggle_mount())
@@ -140,8 +151,21 @@ func reveal_objective() -> void:
 	coin_age=0
 func push_notice(message:String,kind:String="saved") -> void:
 	var panel:=plate(notice_stack,{"saved":Hud.LINE,"item":Hud.GOLD,"error":Hud.CORAL}.get(kind,Hud.MUTED))
-	label(panel).text=message
-	if kind=="item":panel.draw.connect(func():panel.draw_texture_rect(Ink.brush(1),Rect2(-8,-6,28,20),false,Hud.GOLD))
+	var row:=HBoxContainer.new()
+	row.mouse_filter=MOUSE_FILTER_IGNORE
+	panel.add_child(row)
+	var icon:=TextureRect.new()
+	icon.mouse_filter=MOUSE_FILTER_IGNORE
+	icon.texture=Hud.icon("bag" if kind=="item" else "save" if kind=="saved" else "info")
+	icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.custom_minimum_size=Vector2(24,24)
+	icon.visible=icon.texture!=null
+	row.add_child(icon)
+	var message_label:=label(row,Layout.type("body"))
+	message_label.size_flags_horizontal=SIZE_EXPAND_FILL
+	message_label.text=message
+
 	notices.append({"panel":panel,"age":0.0})
 	while notices.size()>3:notices.pop_front().panel.queue_free()
 	_layout()
@@ -180,23 +204,24 @@ func _layout() -> void:
 	# Deck 16:10 and ultrawide share the same placement rules.
 	var safe:=Layout.safe_rect(size)
 	var gap:=Layout.space("m")
-	var compact:=area_age>=3
+	var swimming := is_instance_valid(subject) and "area_id" in subject and str(subject.get("area_id")).begins_with("abismo-")
+	var compact:=area_age>=3 or swimming
 	# Top left: area plate, then the objective under it.
 	var area_font:=Layout.type("small") if compact else Layout.type("title")
 	area.add_theme_font_size_override("font_size",area_font)
 	# Long area names widen the plate (up to 55% of the safe width) instead of wrapping
 	# against its bottom stripe; beyond that the plate grows in height.
 	var area_margins:=area_panel.get_theme_stylebox("panel").get_minimum_size().x+24
-	var area_need:=Hud.display().get_string_size(area.text,HORIZONTAL_ALIGNMENT_LEFT,-1,area_font).x+area_margins
-	area_panel.size=Layout.snap_v(Vector2(clampf(area_need,200 if compact else 320,safe.size.x*.55),40 if compact else 56))
+	var area_need:=Hud.font(true).get_string_size(area.text,HORIZONTAL_ALIGNMENT_LEFT,-1,area_font).x+area_margins
+	area_panel.size=Layout.snap_v(Vector2(clampf(area_need,140 if compact else 180,safe.size.x*.55),36 if compact else 44))
 	area_panel.position=safe.position
 	objective.add_theme_font_size_override("font_size",Layout.type("body"))
 	objective_panel.size=Vector2(minf(460,safe.size.x*.42),0)
-	objective_panel.size=Layout.snap_v(Vector2(objective_panel.size.x,maxf(56,objective_panel.get_combined_minimum_size().y)))
+	objective_panel.size=Layout.snap_v(Vector2(objective_panel.size.x,maxf(40,objective_panel.get_combined_minimum_size().y)))
 	objective_panel.position=Vector2(safe.position.x,area_panel.position.y+area_panel.size.y+gap)
 	objective_panel.visible=not objective.text.is_empty() and objective_age<4
 	# Top right: minimap, then the pointer tools under it.
-	var edge:=128.0
+	var edge:=clampf(safe.size.y*.16,84,112)
 	if is_instance_valid(map):
 		map.offset_left=-(size.x-safe.end.x)-edge
 		map.offset_right=-(size.x-safe.end.x)
@@ -207,7 +232,7 @@ func _layout() -> void:
 	tools.position=Vector2(safe.end.x-tools.get_combined_minimum_size().x,safe.position.y+edge+gap)
 	tools.visible=pointer_mode and not Controls.gamepad and idle_age<4
 	# Bottom left: partner card, coins above it.
-	partner_panel.size=Vector2(328,100)
+	partner_panel.size=Vector2(clampf(safe.size.x*.32,256,320),88)
 	partner_panel.position=Vector2(safe.position.x,safe.end.y-partner_panel.size.y)
 	partner_panel.visible=show_partner and not partner.is_empty()
 	coins.add_theme_font_size_override("font_size",Layout.type("small"))
@@ -219,6 +244,7 @@ func _layout() -> void:
 	prompt_panel.size=Vector2(minf(360,safe.size.x*.32),0)
 	# The text gets what the plate leaves after its insets and the button glyph.
 	var prompt_row:Container=prompt.get_parent()
+	prompt.custom_minimum_size.x=0
 	var used:=prompt_panel.get_theme_stylebox("panel").get_minimum_size().x+prompt_row.get_theme_constant("separation")
 	for child in prompt_row.get_children():
 		if child!=prompt:used+=child.get_combined_minimum_size().x
@@ -226,9 +252,6 @@ func _layout() -> void:
 	prompt_panel.size=Layout.snap_v(Vector2(prompt_panel.size.x,maxf(52,prompt_panel.get_combined_minimum_size().y)))
 	prompt_panel.position=safe.end-prompt_panel.size
 	prompt_panel.visible=not prompt.text.is_empty()
-	for panel in notice_stack.get_children():
-		for text in panel.get_children():
-			if text is Label:text.add_theme_font_size_override("font_size",Layout.type("body"))
 	notice_stack.add_theme_constant_override("separation",int(Layout.space("s")))
 	notice_stack.size=Vector2(minf(400,safe.size.x*.36),0)
 	notice_stack.size=Vector2(notice_stack.size.x,notice_stack.get_combined_minimum_size().y)
@@ -237,12 +260,14 @@ func _layout() -> void:
 	run_button.visible=is_instance_valid(subject) and subject.has_method("toggle_run") and (not subject.has_method("can_run") or subject.can_run())
 	run_button.set_pressed_no_signal(Locomotion.toggled)
 	run_button.text="Corrida ligada" if Locomotion.toggled else "Correr"
+	if swimming: run_button.text="Nado rápido ligado" if Locomotion.toggled else "Nadar rápido"
 	run_button.icon=Controls.glyph("run")
 	run_button.expand_icon=true
 	run_button.add_theme_constant_override("icon_max_width",28)
 	run_button.add_theme_font_size_override("font_size",Layout.type("small"))
 	run_button.tooltip_text=("Pressione %s ou clique para alternar a corrida." if Controls.gamepad else "Segure %s para correr ou clique para alternar.")%Controls.prompt("run")
-	run_button.custom_minimum_size=Vector2(168,44)
+	if swimming: run_button.tooltip_text="Use %s ou clique para alternar o nado rápido." % Controls.prompt("run")
+	run_button.custom_minimum_size=Vector2(128,40)
 	run_button.size=run_button.get_combined_minimum_size()
 	run_button.position=Vector2(safe.position.x+(safe.size.x-run_button.size.x)/2,safe.end.y-run_button.size.y)
 	run_button.modulate.a=1.0 if idle_age<4 or Locomotion.toggled else .55
@@ -254,50 +279,48 @@ func _layout() -> void:
 		mount_button.add_theme_font_size_override("font_size",Layout.type("small"))
 		mount_button.size=mount_button.get_combined_minimum_size()
 		mount_button.position=Vector2(safe.position.x+(safe.size.x-mount_button.size.x)/2,run_button.position.y-mount_button.size.y-Layout.space("s"))
+	if partner_panel.visible and run_button.position.x < partner_panel.get_rect().end.x+gap:
+		run_button.position.y=partner_panel.position.y-run_button.size.y-gap
+		if mount_button.visible:mount_button.position.y=run_button.position.y-mount_button.size.y-gap
 	partner_panel.queue_redraw()
 func _draw_partner() -> void:
 	if partner.is_empty():return
 	var extent:=partner_panel.size
-	Ink.plate(partner_panel,Rect2(Vector2.ZERO,extent),Hud.INK,Hud.CYAN,12)
-	# Kite diamond with the partner, tied to the bars by the elo line.
-	var center:=Vector2(extent.y*.5,extent.y*.5)
-	var radius:=extent.y*.4
-	var diamond:=PackedVector2Array([center+Vector2(0,-radius),center+Vector2(radius,0),center+Vector2(0,radius),center+Vector2(-radius,0),center+Vector2(0,-radius)])
-	partner_panel.draw_colored_polygon(diamond,Hud.SURFACE)
-	partner_panel.draw_polyline(diamond,Hud.CYAN,2,true)
-	if portrait!=null:partner_panel.draw_texture_rect(portrait,Hud.fit_texture(portrait,Rect2(center-Vector2.ONE*radius*.8,Vector2.ONE*radius*1.6)),false)
-	partner_panel.draw_line(center+Vector2(radius,0),Vector2(extent.y+4,extent.y*.5),Hud.CYAN,2,true)
-	# Rows on a 4-unit grid, 16 from the right stroke and 12 from the bottom one.
-	var left:=extent.y+8
-	var width:=extent.x-left-20
-	var name_size:=Layout.type("label")
-	var small:=Layout.type("micro")
+	Frame.frame(partner_panel,Rect2(Vector2.ZERO,extent),Hud.CYAN)
+	var portrait_box:=Rect2(8,9,64,68)
+	partner_panel.draw_colored_polygon(Frame.outline(portrait_box,10),Tokens.LOBBY_INSET)
+	if portrait!=null:
+		partner_panel.draw_texture_rect(portrait,Hud.fit_texture(portrait,portrait_box.grow(-3)),false)
+	var left:=82.0
+	var width:=extent.x-left-14
 	var level:=Model.level_for_xp(partner.get("xp",0))
 	var title:String=partner.get("personalName",partner.get("modelId","Parceiro"))
 	var level_text:="Nv. %d"%level
-	var level_width:=Hud.font(true).get_string_size(level_text,HORIZONTAL_ALIGNMENT_LEFT,-1,small).x
-	partner_panel.draw_string(Hud.font(true),Vector2(left,28),Ink.ellipsis(title,Hud.font(true),name_size,width-level_width-8),HORIZONTAL_ALIGNMENT_LEFT,-1,name_size,Hud.PAPER)
-	partner_panel.draw_string(Hud.font(true),Vector2(left+width-level_width,28),level_text,HORIZONTAL_ALIGNMENT_LEFT,-1,small,Hud.CYAN)
-	var health:float=partner.get("condition",{}).get("line",100)
-	var structure: float=partner.get("condition",{}).get("structure",100)
-	var color:=Hud.LINE if health>=50 else Hud.GOLD if health>=25 else Hud.CORAL
-	partner_panel.draw_rect(Rect2(left,40,width,8),Hud.TRACK)
-	partner_panel.draw_rect(Rect2(left,40,width*health/100,8),color)
-	# Two values, one per side, so neither truncates at the handheld text size.
-	var structure_text:="Estr. %d%%"%structure
-	var structure_width:=Hud.font().get_string_size(structure_text,HORIZONTAL_ALIGNMENT_LEFT,-1,small).x
-	var line_text:="Linha %d%%"%health
-	# Falls back to the short label if a larger text scale would make the two meet.
-	if Hud.font().get_string_size(line_text,HORIZONTAL_ALIGNMENT_LEFT,-1,small).x+structure_width+12>width:line_text="%d%%"%health
-	partner_panel.draw_string(Hud.font(),Vector2(left,68),line_text,HORIZONTAL_ALIGNMENT_LEFT,-1,small,Hud.PAPER)
-	partner_panel.draw_string(Hud.font(),Vector2(left+width-structure_width,68),structure_text,HORIZONTAL_ALIGNMENT_LEFT,-1,small,Hud.MUTED)
+	var small:=Layout.type("micro")
+	var heading:=Layout.type("label")
+	var font:=Hud.font(true)
+	var level_w:=font.get_string_size(level_text,HORIZONTAL_ALIGNMENT_LEFT,-1,small).x
+	partner_panel.draw_string(font,Vector2(left,25),Ink.ellipsis(title,font,heading,width-level_w-8),HORIZONTAL_ALIGNMENT_LEFT,-1,heading,Color.WHITE)
+	partner_panel.draw_string(font,Vector2(left+width-level_w,25),level_text,HORIZONTAL_ALIGNMENT_LEFT,-1,small,Hud.CYAN)
+	var condition:Dictionary=partner.get("condition",{})
+	var column:=(width-10)*.5
+	for i in 2:
+		var x:=left+i*(column+10)
+		var amount:=clampf(float(condition.get("line" if i==0 else "structure",100)),0,100)
+		var color:=Hud.LINE if i==0 else Hud.GOLD
+		if amount<25:color=Hud.CORAL
+		var caption:="Linha" if i==0 else "Estr."
+		var percent:="%d%%"%roundi(amount)
+		partner_panel.draw_string(font,Vector2(x,48),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,small,Color("aac4d8"))
+		partner_panel.draw_string(font,Vector2(x,48),percent,HORIZONTAL_ALIGNMENT_RIGHT,column,small,Color.WHITE)
+		partner_panel.draw_rect(Rect2(x,54,column,5),Tokens.LOBBY_INSET_EDGE)
+		partner_panel.draw_rect(Rect2(x,54,column*amount/100.,5),color)
 	var start:=Model.xp_for_level(level)
 	var next:=Model.xp_for_level(mini(50,level+1))
 	var progress:=1.0 if level>=50 else clampf(float(partner.get("xp",0)-start)/maxi(1,next-start),0,1)
-	var xp_width:=Hud.font(true).get_string_size("XP",HORIZONTAL_ALIGNMENT_LEFT,-1,small).x+6
-	partner_panel.draw_string(Hud.font(true),Vector2(left,extent.y-12),"XP",HORIZONTAL_ALIGNMENT_LEFT,-1,small,Hud.GOLD)
-	partner_panel.draw_rect(Rect2(left+xp_width,extent.y-21,width-xp_width,6),Hud.TRACK)
-	partner_panel.draw_rect(Rect2(left+xp_width,extent.y-21,(width-xp_width)*progress,6),Hud.GOLD)
+	partner_panel.draw_string(font,Vector2(left,80),"XP",HORIZONTAL_ALIGNMENT_LEFT,-1,small,Hud.CYAN)
+	partner_panel.draw_rect(Rect2(left+24,73,width-24,3),Tokens.LOBBY_INSET_EDGE)
+	partner_panel.draw_rect(Rect2(left+24,73,(width-24)*progress,3),Hud.CYAN)
 	partner_panel.tooltip_text="Experiência %d / %d para o Nv. %d"%[int(partner.get("xp",0))-start,next-start,mini(50,level+1)] if level<50 else "Nível máximo"
 func occupied_fraction() -> float:
 	var total:=0.0

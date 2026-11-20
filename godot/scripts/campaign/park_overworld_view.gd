@@ -238,6 +238,9 @@ func _roll_encounter_distance() -> void:
 func project(point: Vector2) -> Vector2:
 	return model.project(point)
 
+func minimap_point(point: Vector2) -> Vector2:
+	return model.project(point,false)
+
 func map_polygons() -> Array[PackedVector2Array]:
 	if not _map_floors.is_empty(): return _map_floors
 	# Row runs avoid thousands of tiny polygons in the HUD.
