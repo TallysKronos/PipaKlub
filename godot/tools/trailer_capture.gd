@@ -99,6 +99,12 @@ func setup() -> void:
 		for item in form.get("items", []): player.inventory[item.id] = 9
 		for flag in form.get("flags", []): player.flags[flag] = true
 		result = front.session.checkpoint(CP.make("kronasta-bosque-a", nearest_walkable(CP.model_for("kronasta-bosque-a"), Vector2(24.5, 24.5)), CP.SPACE), player)
+	elif shot == "possessao":
+		# Carretel Negro sobre o Mormaço (encenação real do mapa): -- --shot=possessao --secs=9
+		player.flags.erase("mormacoLiberto")
+		var pool = CP.model_for("kronasta-pantano-c")
+		result = front.session.checkpoint(CP.make("kronasta-pantano-c", nearest_walkable(pool, Vector2(26, 32)), CP.SPACE), player)
+		print("POSSESSAO")
 	elif shot == "guardiao":
 		var id := arg("id", "vulcaoBoss")
 		var scene: String = GUARDIAN_SCENES[id]
@@ -226,6 +232,10 @@ func _process(_delta: float) -> bool:
 			var probe: Dictionary = preload("res://scripts/campaign/evolution.gd").evolve(front.session.snapshot().player.duplicate(true), pid, arg("to", "rastro-dos-ventos"))
 			print("EVOLUCAO ", probe.status, " ", front.session.snapshot().player.partners[0].modelId)
 			front._execute_evolution(pid, arg("to", "rastro-dos-ventos"))
+	if shot == "possessao" and not guardian_fired and tick >= int(arg("delay", "80")) and front.get("park") != null and is_instance_valid(front.park) and is_instance_valid(front.park.get("mormaco")):
+		guardian_fired = true
+		front.park.paused = true
+		front.park.mormaco.play_possession()
 	if shot == "guardiao" and not guardian_fired and tick >= int(arg("delay", "80")) and front.get("park") != null and is_instance_valid(front.park):
 		guardian_fired = true
 		var id := arg("id", "vulcaoBoss")
