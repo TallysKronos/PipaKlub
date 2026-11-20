@@ -383,7 +383,7 @@ def cena_tres_faixas(t, d, L):
 
 def cena_grade(t, d, L):
     tela = Image.new("RGB", (W, H), PAPEL)
-    nomes = ["m09", "m12", "m13", "m14"]
+    nomes = ["m09", "m12", "m13", "m05"]
     g = 22
     cel = [(40, 40, W / 2 - g / 2, H / 2 - g / 2), (W / 2 + g / 2, 40, W - 40, H / 2 - g / 2),
            (40, H / 2 + g / 2, W / 2 - g / 2, H - 40), (W / 2 + g / 2, H / 2 + g / 2, W - 40, H - 40)]
@@ -543,7 +543,7 @@ ROTEIRO = [
     (9.0, 16.0, cena_primeiro, ["m01"]),
     (16.0, 31.0, cena_caminhada, ["m02", "m03", "m04", "m06", "m07"]),
     (31.0, 38.5, cena_tres_faixas, ["m08", "m10", "m11"]),
-    (38.5, 46.0, cena_grade, ["m09", "m12", "m13", "m14"]),
+    (38.5, 46.0, cena_grade, ["m09", "m12", "m13", "m05"]),
     (46.0, 62.0, cena_evolucao, ["evo1", "evo2"]),
     (62.0, 72.0, cena_mosaico, []),
     (72.0, 94.0, cena_guardioes, GUARDIOES),
