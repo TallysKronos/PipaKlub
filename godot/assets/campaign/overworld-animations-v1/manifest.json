@@ -1240,5 +1240,514 @@
   "micoshiro": {
     "idle": "res://assets/campaign/overworld-animations-v1/micoshiro/idle.png",
     "walk": "res://assets/campaign/overworld-animations-v1/micoshiro/walk.png"
+  },
+  "raio": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.7,
+      0.26,
+      0.52,
+      0.42
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/raio-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/raio/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/raio/walk.png"
+  },
+  "solguarda": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.7,
+      0.26,
+      0.52,
+      0.42
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/solguarda-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/solguarda/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/solguarda/walk.png"
+  },
+  "azulume": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.62,
+      0.22,
+      0.62,
+      0.22
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/azulume-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/azulume/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/azulume/walk.png"
+  },
+  "azulaculo": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.62,
+      0.22,
+      0.62,
+      0.22
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/azulaculo-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/azulaculo/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/azulaculo/walk.png"
+  },
+  "azuligero": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.62,
+      0.22,
+      0.62,
+      0.22
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/azuligero-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/azuligero/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/azuligero/walk.png"
+  },
+  "azulineo": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.62,
+      0.22,
+      0.62,
+      0.22
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/azulineo-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/azulineo/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/azulineo/walk.png"
+  },
+  "rai": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.7,
+      0.26,
+      0.52,
+      0.42
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/rai-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/rai/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/rai/walk.png"
+  },
+  "retalho-mascarada": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.7,
+      0.26,
+      0.52,
+      0.42
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/retalho-mascarada-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/retalho-mascarada/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/retalho-mascarada/walk.png"
+  },
+  "capiboia-tececorrente": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.7,
+      0.26,
+      0.52,
+      0.42
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/capiboia-tececorrente-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/capiboia-tececorrente/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/capiboia-tececorrente/walk.png"
+  },
+  "arauto-da-tempestade": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/arauto-da-tempestade-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/arauto-da-tempestade/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/arauto-da-tempestade/walk.png"
+  },
+  "rabbito-velocista-relampago": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/rabbito-velocista-relampago-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/rabbito-velocista-relampago/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/rabbito-velocista-relampago/walk.png"
+  },
+  "marevia": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.7,
+      0.26,
+      0.52,
+      0.42
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/marevia-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/marevia/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/marevia/walk.png"
+  },
+  "capiboia-porto": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.7,
+      0.26,
+      0.52,
+      0.42
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/capiboia-porto-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/capiboia-porto/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/capiboia-porto/walk.png"
+  },
+  "tecelao-da-aurora": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "idle_durations": [
+      0.4,
+      0.15,
+      0.4,
+      0.15
+    ],
+    "art_version": "sheet-v1",
+    "source_folder": "art/creatures/tecelao-da-aurora-prancha-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/tecelao-da-aurora/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/tecelao-da-aurora/walk.png"
+  },
+  "alvorvela": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/alvorvela/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/alvorvela/walk.png"
+  },
+  "borealvo": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/borealvo/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/borealvo/walk.png"
+  },
+  "coromar": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/coromar/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/coromar/walk.png"
+  },
+  "cristim": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/cristim/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/cristim/walk.png"
+  },
+  "estratonte": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/estratonte/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/estratonte/walk.png"
+  },
+  "galhim": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/galhim/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/galhim/walk.png"
+  },
+  "gevardente": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/gevardente/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/gevardente/walk.png"
+  },
+  "hipomoranga": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/hipomoranga/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/hipomoranga/walk.png"
+  },
+  "javali-child": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/javali-child/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/javali-child/walk.png"
+  },
+  "lupregente": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/lupregente/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/lupregente/walk.png"
+  },
+  "nimbordo": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/nimbordo/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/nimbordo/walk.png"
+  },
+  "ossito": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/ossito/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/ossito/walk.png"
+  },
+  "rascunho-bicho-pau": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/rascunho-bicho-pau/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/rascunho-bicho-pau/walk.png"
+  },
+  "rascunho-joaninha": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/rascunho-joaninha/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/rascunho-joaninha/walk.png"
+  },
+  "reciforte": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/reciforte/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/reciforte/walk.png"
+  },
+  "urso-polar-young": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/urso-polar-young/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/urso-polar-young/walk.png"
+  },
+  "vertim": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/vertim/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/vertim/walk.png"
+  },
+  "veskoro": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/veskoro/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/veskoro/walk.png"
+  },
+  "vortespira": {
+    "frame_counts": {
+      "idle": 4,
+      "walk": 8
+    },
+    "idle_durations": [
+      0.38,
+      0.16,
+      0.3,
+      0.16
+    ],
+    "art_version": "encontros-regionais-v1",
+    "idle": "res://assets/campaign/overworld-animations-v1/vortespira/idle.png",
+    "walk": "res://assets/campaign/overworld-animations-v1/vortespira/walk.png"
   }
 }
